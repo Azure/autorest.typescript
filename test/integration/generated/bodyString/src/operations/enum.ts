@@ -7,7 +7,7 @@
  */
 
 import { Enum } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyStringClientContext } from "../bodyStringClientContext";
@@ -44,10 +44,13 @@ export class EnumImpl implements Enum {
   getNotExpandable(
     options?: EnumGetNotExpandableOptionalParams
   ): Promise<EnumGetNotExpandableResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getNotExpandableOperationSpec
-    );
+    ) as Promise<EnumGetNotExpandableResponse>;
   }
 
   /**
@@ -58,11 +61,15 @@ export class EnumImpl implements Enum {
   putNotExpandable(
     stringBody: Colors,
     options?: EnumPutNotExpandableOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      stringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { stringBody, options },
+      operationArguments,
       putNotExpandableOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -72,10 +79,13 @@ export class EnumImpl implements Enum {
   getReferenced(
     options?: EnumGetReferencedOptionalParams
   ): Promise<EnumGetReferencedResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getReferencedOperationSpec
-    );
+    ) as Promise<EnumGetReferencedResponse>;
   }
 
   /**
@@ -86,11 +96,15 @@ export class EnumImpl implements Enum {
   putReferenced(
     enumStringBody: Colors,
     options?: EnumPutReferencedOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      enumStringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { enumStringBody, options },
+      operationArguments,
       putReferencedOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -100,10 +114,13 @@ export class EnumImpl implements Enum {
   getReferencedConstant(
     options?: EnumGetReferencedConstantOptionalParams
   ): Promise<EnumGetReferencedConstantResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getReferencedConstantOperationSpec
-    );
+    ) as Promise<EnumGetReferencedConstantResponse>;
   }
 
   /**
@@ -114,17 +131,21 @@ export class EnumImpl implements Enum {
   putReferencedConstant(
     enumStringBody: RefColorConstant,
     options?: EnumPutReferencedConstantOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      enumStringBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { enumStringBody, options },
+      operationArguments,
       putReferencedConstantOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getNotExpandableOperationSpec: coreClient.OperationSpec = {
+const getNotExpandableOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/notExpandable",
   httpMethod: "GET",
   responses: {
@@ -144,7 +165,7 @@ const getNotExpandableOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putNotExpandableOperationSpec: coreClient.OperationSpec = {
+const putNotExpandableOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/notExpandable",
   httpMethod: "PUT",
   responses: {
@@ -159,7 +180,7 @@ const putNotExpandableOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getReferencedOperationSpec: coreClient.OperationSpec = {
+const getReferencedOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/Referenced",
   httpMethod: "GET",
   responses: {
@@ -179,7 +200,7 @@ const getReferencedOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putReferencedOperationSpec: coreClient.OperationSpec = {
+const putReferencedOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/Referenced",
   httpMethod: "PUT",
   responses: {
@@ -194,7 +215,7 @@ const putReferencedOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getReferencedConstantOperationSpec: coreClient.OperationSpec = {
+const getReferencedConstantOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/ReferencedConstant",
   httpMethod: "GET",
   responses: {
@@ -209,7 +230,7 @@ const getReferencedConstantOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putReferencedConstantOperationSpec: coreClient.OperationSpec = {
+const putReferencedConstantOperationSpec: coreHttp.OperationSpec = {
   path: "/string/enum/ReferencedConstant",
   httpMethod: "PUT",
   responses: {

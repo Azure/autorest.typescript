@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PolicySetDefinitions } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PolicyClientContext } from "../policyClientContext";
@@ -206,15 +206,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     parameters: PolicySetDefinition,
     options?: PolicySetDefinitionsCreateOrUpdateOptionalParams
   ): Promise<PolicySetDefinitionsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -225,15 +220,11 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
   delete(
     policySetDefinitionName: string,
     options?: PolicySetDefinitionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -245,14 +236,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     policySetDefinitionName: string,
     options?: PolicySetDefinitionsGetOptionalParams
   ): Promise<PolicySetDefinitionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, options },
       getOperationSpec
-    ) as Promise<PolicySetDefinitionsGetResponse>;
+    );
   }
 
   /**
@@ -264,14 +251,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     policySetDefinitionName: string,
     options?: PolicySetDefinitionsGetBuiltInOptionalParams
   ): Promise<PolicySetDefinitionsGetBuiltInResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, options },
       getBuiltInOperationSpec
-    ) as Promise<PolicySetDefinitionsGetBuiltInResponse>;
+    );
   }
 
   /**
@@ -281,13 +264,7 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
   private _list(
     options?: PolicySetDefinitionsListOptionalParams
   ): Promise<PolicySetDefinitionsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<PolicySetDefinitionsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -297,13 +274,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
   private _listBuiltIn(
     options?: PolicySetDefinitionsListBuiltInOptionalParams
   ): Promise<PolicySetDefinitionsListBuiltInResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBuiltInOperationSpec
-    ) as Promise<PolicySetDefinitionsListBuiltInResponse>;
+    );
   }
 
   /**
@@ -320,16 +294,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     parameters: PolicySetDefinition,
     options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
   ): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      managementGroupId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, managementGroupId, parameters, options },
       createOrUpdateAtManagementGroupOperationSpec
-    ) as Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
+    );
   }
 
   /**
@@ -342,16 +310,11 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     policySetDefinitionName: string,
     managementGroupId: string,
     options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      managementGroupId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, managementGroupId, options },
       deleteAtManagementGroupOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -366,15 +329,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     managementGroupId: string,
     options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams
   ): Promise<PolicySetDefinitionsGetAtManagementGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policySetDefinitionName,
-      managementGroupId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policySetDefinitionName, managementGroupId, options },
       getAtManagementGroupOperationSpec
-    ) as Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
+    );
   }
 
   /**
@@ -386,14 +344,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     managementGroupId: string,
     options?: PolicySetDefinitionsListByManagementGroupOptionalParams
   ): Promise<PolicySetDefinitionsListByManagementGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      managementGroupId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { managementGroupId, options },
       listByManagementGroupOperationSpec
-    ) as Promise<PolicySetDefinitionsListByManagementGroupResponse>;
+    );
   }
 
   /**
@@ -405,14 +359,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     nextLink: string,
     options?: PolicySetDefinitionsListNextOptionalParams
   ): Promise<PolicySetDefinitionsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<PolicySetDefinitionsListNextResponse>;
+    );
   }
 
   /**
@@ -424,14 +374,10 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     nextLink: string,
     options?: PolicySetDefinitionsListBuiltInNextOptionalParams
   ): Promise<PolicySetDefinitionsListBuiltInNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBuiltInNextOperationSpec
-    ) as Promise<PolicySetDefinitionsListBuiltInNextResponse>;
+    );
   }
 
   /**
@@ -445,21 +391,16 @@ export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
     nextLink: string,
     options?: PolicySetDefinitionsListByManagementGroupNextOptionalParams
   ): Promise<PolicySetDefinitionsListByManagementGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      managementGroupId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { managementGroupId, nextLink, options },
       listByManagementGroupNextOperationSpec
-    ) as Promise<PolicySetDefinitionsListByManagementGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "PUT",
@@ -485,7 +426,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "DELETE",
@@ -505,7 +446,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "GET",
@@ -526,7 +467,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBuiltInOperationSpec: coreHttp.OperationSpec = {
+const getBuiltInOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "GET",
@@ -543,7 +484,7 @@ const getBuiltInOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policySetDefinitions",
   httpMethod: "GET",
@@ -560,7 +501,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBuiltInOperationSpec: coreHttp.OperationSpec = {
+const listBuiltInOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Authorization/policySetDefinitions",
   httpMethod: "GET",
   responses: {
@@ -576,7 +517,7 @@ const listBuiltInOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateAtManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "PUT",
@@ -602,7 +543,7 @@ const createOrUpdateAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
+const deleteAtManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "DELETE",
@@ -622,7 +563,7 @@ const deleteAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
+const getAtManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions/{policySetDefinitionName}",
   httpMethod: "GET",
@@ -643,7 +584,7 @@ const getAtManagementGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByManagementGroupOperationSpec: coreHttp.OperationSpec = {
+const listByManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policySetDefinitions",
   httpMethod: "GET",
@@ -660,7 +601,7 @@ const listByManagementGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -680,7 +621,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBuiltInNextOperationSpec: coreHttp.OperationSpec = {
+const listBuiltInNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -696,7 +637,7 @@ const listBuiltInNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByManagementGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

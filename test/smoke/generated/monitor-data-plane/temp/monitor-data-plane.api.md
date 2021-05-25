@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 
 // @public (undocumented)
 export interface ApiError {
@@ -61,33 +62,28 @@ export interface Metrics {
 }
 
 // @public
-export interface MetricsCreateOptionalParams extends coreHttp.OperationOptions {
+export interface MetricsCreateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MetricsCreateResponse = AzureMetricsResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AzureMetricsResult;
-    };
-};
+export type MetricsCreateResponse = AzureMetricsResult;
 
 // @public (undocumented)
 export class MonitorClient extends MonitorClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: MonitorClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
     // (undocumented)
     metrics: Metrics;
 }
 
 // @public (undocumented)
-export class MonitorClientContext extends coreHttp.ServiceClient {
+export class MonitorClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: MonitorClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
 }
 
 // @public
-export interface MonitorClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface MonitorClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     endpoint?: string;
 }

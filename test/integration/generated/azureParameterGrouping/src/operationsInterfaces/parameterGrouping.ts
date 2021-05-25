@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
@@ -24,26 +25,26 @@ export interface ParameterGrouping {
   postRequired(
     parameterGroupingPostRequiredParameters: ParameterGroupingPostRequiredParameters,
     options?: ParameterGroupingPostRequiredOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post a bunch of optional parameters grouped
    * @param options The options parameters.
    */
   postOptional(
     options?: ParameterGroupingPostOptionalOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post parameters from multiple different parameter groups
    * @param options The options parameters.
    */
   postMultiParamGroups(
     options?: ParameterGroupingPostMultiParamGroupsOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Post parameters with a shared parameter group object
    * @param options The options parameters.
    */
   postSharedParameterGroupObject(
     options?: ParameterGroupingPostSharedParameterGroupObjectOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

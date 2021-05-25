@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** The product documentation. */
 export interface Product {
@@ -52,38 +52,65 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface ValidationClientValidationOfMethodParametersOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the validationOfMethodParameters operation. */
-export type ValidationClientValidationOfMethodParametersResponse = Product;
+export type ValidationClientValidationOfMethodParametersResponse = Product & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product;
+  };
+};
 
 /** Optional parameters. */
 export interface ValidationClientValidationOfBodyOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** The product documentation. */
   body?: Product;
 }
 
 /** Contains response data for the validationOfBody operation. */
-export type ValidationClientValidationOfBodyResponse = Product;
+export type ValidationClientValidationOfBodyResponse = Product & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product;
+  };
+};
 
 /** Optional parameters. */
 export interface ValidationClientGetWithConstantInPathOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ValidationClientPostWithConstantInBodyOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** The product documentation. */
   body?: Product;
 }
 
 /** Contains response data for the postWithConstantInBody operation. */
-export type ValidationClientPostWithConstantInBodyResponse = Product;
+export type ValidationClientPostWithConstantInBodyResponse = Product & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product;
+  };
+};
 
 /** Optional parameters. */
 export interface ValidationClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

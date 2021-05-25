@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export type NotFoundErrorBaseUnion =
   | NotFoundErrorBase
@@ -67,28 +67,46 @@ export type PetHungryOrThirstyError = PetSadError & {
 
 /** Optional parameters. */
 export interface PetGetPetByIdOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPetById operation. */
-export type PetGetPetByIdResponse = PetDef;
+export type PetGetPetByIdResponse = PetDef & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetDef;
+  };
+};
 
 /** Optional parameters. */
 export interface PetDoSomethingOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the doSomething operation. */
-export type PetDoSomethingResponse = PetAction;
+export type PetDoSomethingResponse = PetAction & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAction;
+  };
+};
 
 /** Optional parameters. */
 export interface PetHasModelsParamOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Make sure model deserialization doesn't conflict with this param name, which has input name 'models'. Use client default value in call */
   models?: string;
 }
 
 /** Optional parameters. */
 export interface XmsErrorResponsesClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

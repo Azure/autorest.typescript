@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Features } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { FeatureClientContext } from "../featureClientContext";
@@ -147,13 +147,7 @@ export class FeaturesImpl implements Features {
   private _listAll(
     options?: FeaturesListAllOptionalParams
   ): Promise<FeaturesListAllResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listAllOperationSpec
-    ) as Promise<FeaturesListAllResponse>;
+    return this.client.sendOperationRequest({ options }, listAllOperationSpec);
   }
 
   /**
@@ -166,14 +160,10 @@ export class FeaturesImpl implements Features {
     resourceProviderNamespace: string,
     options?: FeaturesListOptionalParams
   ): Promise<FeaturesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, options },
       listOperationSpec
-    ) as Promise<FeaturesListResponse>;
+    );
   }
 
   /**
@@ -187,15 +177,10 @@ export class FeaturesImpl implements Features {
     featureName: string,
     options?: FeaturesGetOptionalParams
   ): Promise<FeaturesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      featureName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, featureName, options },
       getOperationSpec
-    ) as Promise<FeaturesGetResponse>;
+    );
   }
 
   /**
@@ -209,15 +194,10 @@ export class FeaturesImpl implements Features {
     featureName: string,
     options?: FeaturesRegisterOptionalParams
   ): Promise<FeaturesRegisterResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      featureName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, featureName, options },
       registerOperationSpec
-    ) as Promise<FeaturesRegisterResponse>;
+    );
   }
 
   /**
@@ -231,15 +211,10 @@ export class FeaturesImpl implements Features {
     featureName: string,
     options?: FeaturesUnregisterOptionalParams
   ): Promise<FeaturesUnregisterResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      featureName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, featureName, options },
       unregisterOperationSpec
-    ) as Promise<FeaturesUnregisterResponse>;
+    );
   }
 
   /**
@@ -251,14 +226,10 @@ export class FeaturesImpl implements Features {
     nextLink: string,
     options?: FeaturesListAllNextOptionalParams
   ): Promise<FeaturesListAllNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAllNextOperationSpec
-    ) as Promise<FeaturesListAllNextResponse>;
+    );
   }
 
   /**
@@ -272,21 +243,16 @@ export class FeaturesImpl implements Features {
     nextLink: string,
     options?: FeaturesListNextOptionalParams
   ): Promise<FeaturesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, nextLink, options },
       listNextOperationSpec
-    ) as Promise<FeaturesListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listAllOperationSpec: coreHttp.OperationSpec = {
+const listAllOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Features/features",
   httpMethod: "GET",
   responses: {
@@ -299,7 +265,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features",
   httpMethod: "GET",
@@ -317,7 +283,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}",
   httpMethod: "GET",
@@ -336,7 +302,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const registerOperationSpec: coreHttp.OperationSpec = {
+const registerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/register",
   httpMethod: "POST",
@@ -355,7 +321,7 @@ const registerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const unregisterOperationSpec: coreHttp.OperationSpec = {
+const unregisterOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Features/providers/{resourceProviderNamespace}/features/{featureName}/unregister",
   httpMethod: "POST",
@@ -374,7 +340,7 @@ const unregisterOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAllNextOperationSpec: coreHttp.OperationSpec = {
+const listAllNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -391,7 +357,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

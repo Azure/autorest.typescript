@@ -7,7 +7,7 @@
  */
 
 import { Readonlyproperty } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
@@ -37,7 +37,13 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
   getValid(
     options?: ReadonlypropertyGetValidOptionalParams
   ): Promise<ReadonlypropertyGetValidResponse> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getValidOperationSpec
+    ) as Promise<ReadonlypropertyGetValidResponse>;
   }
 
   /**
@@ -48,17 +54,21 @@ export class ReadonlypropertyImpl implements Readonlyproperty {
   putValid(
     complexBody: ReadonlyObj,
     options?: ReadonlypropertyPutValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreClient.OperationSpec = {
+const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/readonlyproperty/valid",
   httpMethod: "GET",
   responses: {
@@ -73,7 +83,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreClient.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/readonlyproperty/valid",
   httpMethod: "PUT",
   responses: {

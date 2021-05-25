@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -15,185 +15,320 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface DatetimeGetNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type DatetimeGetNullResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type DatetimeGetInvalidResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetOverflowOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOverflow operation. */
 export type DatetimeGetOverflowResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetUnderflowOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflow operation. */
 export type DatetimeGetUnderflowResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutUtcMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimePutUtcMaxDateTime7DigitsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetUtcLowercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcLowercaseMaxDateTime operation. */
 export type DatetimeGetUtcLowercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetUtcUppercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcUppercaseMaxDateTime operation. */
 export type DatetimeGetUtcUppercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetUtcUppercaseMaxDateTime7DigitsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcUppercaseMaxDateTime7Digits operation. */
 export type DatetimeGetUtcUppercaseMaxDateTime7DigitsResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutLocalPositiveOffsetMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalPositiveOffsetLowercaseMaxDateTime operation. */
 export type DatetimeGetLocalPositiveOffsetLowercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalPositiveOffsetUppercaseMaxDateTime operation. */
 export type DatetimeGetLocalPositiveOffsetUppercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutLocalNegativeOffsetMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalNegativeOffsetUppercaseMaxDateTime operation. */
 export type DatetimeGetLocalNegativeOffsetUppercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalNegativeOffsetLowercaseMaxDateTime operation. */
 export type DatetimeGetLocalNegativeOffsetLowercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutUtcMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetUtcMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcMinDateTime operation. */
 export type DatetimeGetUtcMinDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutLocalPositiveOffsetMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetLocalPositiveOffsetMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalPositiveOffsetMinDateTime operation. */
 export type DatetimeGetLocalPositiveOffsetMinDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimePutLocalNegativeOffsetMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface DatetimeGetLocalNegativeOffsetMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalNegativeOffsetMinDateTime operation. */
 export type DatetimeGetLocalNegativeOffsetMinDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface DatetimeGetLocalNoOffsetMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLocalNoOffsetMinDateTime operation. */
 export type DatetimeGetLocalNoOffsetMinDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface BodyDateTimeClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

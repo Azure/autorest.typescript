@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface StorageError {
   message?: string;
@@ -43,7 +43,7 @@ export interface LeaseAccessConditions {
 
 /** Optional parameters. */
 export interface FileUploadRangeFromURLOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   sourceModifiedAccessConditions?: SourceModifiedAccessConditions;
   /** Parameter group */
@@ -57,11 +57,17 @@ export interface FileUploadRangeFromURLOptionalParams
 }
 
 /** Contains response data for the uploadRangeFromURL operation. */
-export type FileUploadRangeFromURLResponse = FileUploadRangeFromURLHeaders;
+export type FileUploadRangeFromURLResponse = FileUploadRangeFromURLHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: FileUploadRangeFromURLHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface StorageFileShareClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Only update is supported: - Update: Writes the bytes downloaded from the source url into the specified range. */
   fileRangeWriteFromUrl?: string;
   /** Specifies the version of the operation to use for this request. */

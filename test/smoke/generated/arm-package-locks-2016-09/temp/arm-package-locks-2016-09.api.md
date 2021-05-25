@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
@@ -13,28 +14,18 @@ export interface AuthorizationOperations {
 }
 
 // @public
-export interface AuthorizationOperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface AuthorizationOperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AuthorizationOperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type AuthorizationOperationsListNextResponse = OperationListResult;
 
 // @public
-export interface AuthorizationOperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface AuthorizationOperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AuthorizationOperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type AuthorizationOperationsListResponse = OperationListResult;
 
 // @public
 export const enum KnownLockLevel {
@@ -51,7 +42,7 @@ export type LockLevel = string;
 
 // @public (undocumented)
 export class ManagementLockClient extends ManagementLockClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLockClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
     // (undocumented)
     authorizationOperations: AuthorizationOperations;
     // (undocumented)
@@ -59,10 +50,10 @@ export class ManagementLockClient extends ManagementLockClientContext {
 }
 
 // @public (undocumented)
-export class ManagementLockClientContext extends coreHttp.ServiceClient {
+export class ManagementLockClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLockClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -70,7 +61,7 @@ export class ManagementLockClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface ManagementLockClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface ManagementLockClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -103,10 +94,10 @@ export interface ManagementLocks {
     createOrUpdateAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
     createOrUpdateAtSubscriptionLevel(lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
     createOrUpdateByScope(scope: string, lockName: string, parameters: ManagementLockObject, options?: ManagementLocksCreateOrUpdateByScopeOptionalParams): Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
-    deleteAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams): Promise<coreHttp.RestResponse>;
-    deleteAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: ManagementLocksDeleteAtResourceLevelOptionalParams): Promise<coreHttp.RestResponse>;
-    deleteAtSubscriptionLevel(lockName: string, options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams): Promise<coreHttp.RestResponse>;
-    deleteByScope(scope: string, lockName: string, options?: ManagementLocksDeleteByScopeOptionalParams): Promise<coreHttp.RestResponse>;
+    deleteAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams): Promise<void>;
+    deleteAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: ManagementLocksDeleteAtResourceLevelOptionalParams): Promise<void>;
+    deleteAtSubscriptionLevel(lockName: string, options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams): Promise<void>;
+    deleteByScope(scope: string, lockName: string, options?: ManagementLocksDeleteByScopeOptionalParams): Promise<void>;
     getAtResourceGroupLevel(resourceGroupName: string, lockName: string, options?: ManagementLocksGetAtResourceGroupLevelOptionalParams): Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
     getAtResourceLevel(resourceGroupName: string, resourceProviderNamespace: string, parentResourcePath: string, resourceType: string, resourceName: string, lockName: string, options?: ManagementLocksGetAtResourceLevelOptionalParams): Promise<ManagementLocksGetAtResourceLevelResponse>;
     getAtSubscriptionLevel(lockName: string, options?: ManagementLocksGetAtSubscriptionLevelOptionalParams): Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
@@ -118,220 +109,140 @@ export interface ManagementLocks {
 }
 
 // @public
-export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksCreateOrUpdateByScopeOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksCreateOrUpdateByScopeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ManagementLocksDeleteAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksDeleteAtResourceLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ManagementLocksDeleteByScopeOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksDeleteByScopeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ManagementLocksGetAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksGetAtResourceGroupLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksGetAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksGetAtResourceLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksGetAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksGetAtSubscriptionLevelOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksGetByScopeOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksGetByScopeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementLocksGetByScopeResponse = ManagementLockObject & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockObject;
-    };
-};
+export type ManagementLocksGetByScopeResponse = ManagementLockObject;
 
 // @public
-export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtResourceGroupLevelNextResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtResourceGroupLevelNextResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListAtResourceGroupLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtResourceGroupLevelOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListAtResourceLevelNextOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtResourceLevelNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtResourceLevelNextResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtResourceLevelNextResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListAtResourceLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtResourceLevelOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtSubscriptionLevelNextResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtSubscriptionLevelNextResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListAtSubscriptionLevelOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListAtSubscriptionLevelOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListByScopeNextOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListByScopeNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListByScopeNextResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListByScopeNextResponse = ManagementLockListResult;
 
 // @public
-export interface ManagementLocksListByScopeOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementLocksListByScopeOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ManagementLocksListByScopeResponse = ManagementLockListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementLockListResult;
-    };
-};
+export type ManagementLocksListByScopeResponse = ManagementLockListResult;
 
 // @public
 export interface Operation {

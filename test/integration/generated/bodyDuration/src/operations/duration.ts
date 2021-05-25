@@ -7,7 +7,7 @@
  */
 
 import { Duration } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyDurationClientContext } from "../bodyDurationClientContext";
@@ -40,7 +40,13 @@ export class DurationImpl implements Duration {
   getNull(
     options?: DurationGetNullOptionalParams
   ): Promise<DurationGetNullResponse> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getNullOperationSpec
+    ) as Promise<DurationGetNullResponse>;
   }
 
   /**
@@ -51,11 +57,15 @@ export class DurationImpl implements Duration {
   putPositiveDuration(
     durationBody: string,
     options?: DurationPutPositiveDurationOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      durationBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { durationBody, options },
+      operationArguments,
       putPositiveDurationOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -65,10 +75,13 @@ export class DurationImpl implements Duration {
   getPositiveDuration(
     options?: DurationGetPositiveDurationOptionalParams
   ): Promise<DurationGetPositiveDurationResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getPositiveDurationOperationSpec
-    );
+    ) as Promise<DurationGetPositiveDurationResponse>;
   }
 
   /**
@@ -78,16 +91,19 @@ export class DurationImpl implements Duration {
   getInvalid(
     options?: DurationGetInvalidOptionalParams
   ): Promise<DurationGetInvalidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidOperationSpec
-    );
+    ) as Promise<DurationGetInvalidResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreClient.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/duration/null",
   httpMethod: "GET",
   responses: {
@@ -102,7 +118,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putPositiveDurationOperationSpec: coreClient.OperationSpec = {
+const putPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   path: "/duration/positiveduration",
   httpMethod: "PUT",
   responses: {
@@ -117,7 +133,7 @@ const putPositiveDurationOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPositiveDurationOperationSpec: coreClient.OperationSpec = {
+const getPositiveDurationOperationSpec: coreHttp.OperationSpec = {
   path: "/duration/positiveduration",
   httpMethod: "GET",
   responses: {
@@ -132,7 +148,7 @@ const getPositiveDurationOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidOperationSpec: coreClient.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   path: "/duration/invalid",
   httpMethod: "GET",
   responses: {

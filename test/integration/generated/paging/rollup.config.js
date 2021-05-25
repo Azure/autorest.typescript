@@ -48,15 +48,15 @@ export function openTelemetryCommonJs() {
       // working around a limitation in the rollup common.js plugin - it's not able to resolve these modules so the named exports listed above will not get applied. We have to drill down to the actual path.
       `../../../common/temp/node_modules/.pnpm/@opentelemetry/api@${version}/node_modules/@opentelemetry/api/build/src/index.js`
     ] = [
-        "SpanKind",
-        "TraceFlags",
-        "getSpan",
-        "setSpan",
-        "StatusCode",
-        "CanonicalCode",
-        "getSpanContext",
-        "setSpanContext"
-      ];
+      "SpanKind",
+      "TraceFlags",
+      "getSpan",
+      "setSpan",
+      "StatusCode",
+      "CanonicalCode",
+      "getSpanContext",
+      "setSpanContext"
+    ];
   }
 
   return namedExports;
@@ -73,8 +73,8 @@ function ignoreNiseSinonEvalWarnings(warning) {
   return (
     warning.code === "EVAL" &&
     warning.id &&
-    (warning.id.includes("node_modules/nise") ||
-      warning.id.includes("node_modules/sinon")) === true
+      (warning.id.includes("node_modules/nise") ||
+        warning.id.includes("node_modules/sinon")) === true
   );
 }
 

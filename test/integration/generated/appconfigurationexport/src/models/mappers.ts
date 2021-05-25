@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const KeyListResult: coreClient.CompositeMapper = {
+export const KeyListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyListResult",
@@ -35,7 +35,7 @@ export const KeyListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const Key: coreClient.CompositeMapper = {
+export const Key: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Key",
@@ -51,7 +51,7 @@ export const Key: coreClient.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreClient.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -90,7 +90,7 @@ export const ErrorModel: coreClient.CompositeMapper = {
   }
 };
 
-export const KeyValueListResult: coreClient.CompositeMapper = {
+export const KeyValueListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyValueListResult",
@@ -117,7 +117,7 @@ export const KeyValueListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const KeyValue: coreClient.CompositeMapper = {
+export const KeyValue: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyValue",
@@ -175,7 +175,7 @@ export const KeyValue: coreClient.CompositeMapper = {
   }
 };
 
-export const LabelListResult: coreClient.CompositeMapper = {
+export const LabelListResult: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LabelListResult",
@@ -202,7 +202,7 @@ export const LabelListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const Label: coreClient.CompositeMapper = {
+export const Label: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Label",
@@ -218,7 +218,7 @@ export const Label: coreClient.CompositeMapper = {
   }
 };
 
-export const AppConfigurationClientGetKeysHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetKeysHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetKeysHeaders",
@@ -233,7 +233,7 @@ export const AppConfigurationClientGetKeysHeaders: coreClient.CompositeMapper = 
   }
 };
 
-export const AppConfigurationClientCheckKeysHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientCheckKeysHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientCheckKeysHeaders",
@@ -248,7 +248,7 @@ export const AppConfigurationClientCheckKeysHeaders: coreClient.CompositeMapper 
   }
 };
 
-export const AppConfigurationClientGetKeyValuesHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetKeyValuesHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetKeyValuesHeaders",
@@ -263,7 +263,7 @@ export const AppConfigurationClientGetKeyValuesHeaders: coreClient.CompositeMapp
   }
 };
 
-export const AppConfigurationClientCheckKeyValuesHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientCheckKeyValuesHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientCheckKeyValuesHeaders",
@@ -278,7 +278,7 @@ export const AppConfigurationClientCheckKeyValuesHeaders: coreClient.CompositeMa
   }
 };
 
-export const AppConfigurationClientGetKeyValueHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetKeyValueHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetKeyValueHeaders",
@@ -305,7 +305,7 @@ export const AppConfigurationClientGetKeyValueHeaders: coreClient.CompositeMappe
   }
 };
 
-export const AppConfigurationClientPutKeyValueHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientPutKeyValueHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientPutKeyValueHeaders",
@@ -326,7 +326,7 @@ export const AppConfigurationClientPutKeyValueHeaders: coreClient.CompositeMappe
   }
 };
 
-export const AppConfigurationClientDeleteKeyValueHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientDeleteKeyValueHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientDeleteKeyValueHeaders",
@@ -347,7 +347,7 @@ export const AppConfigurationClientDeleteKeyValueHeaders: coreClient.CompositeMa
   }
 };
 
-export const AppConfigurationClientCheckKeyValueHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientCheckKeyValueHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientCheckKeyValueHeaders",
@@ -374,7 +374,7 @@ export const AppConfigurationClientCheckKeyValueHeaders: coreClient.CompositeMap
   }
 };
 
-export const AppConfigurationClientGetLabelsHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetLabelsHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetLabelsHeaders",
@@ -389,7 +389,7 @@ export const AppConfigurationClientGetLabelsHeaders: coreClient.CompositeMapper 
   }
 };
 
-export const AppConfigurationClientCheckLabelsHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientCheckLabelsHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientCheckLabelsHeaders",
@@ -404,7 +404,7 @@ export const AppConfigurationClientCheckLabelsHeaders: coreClient.CompositeMappe
   }
 };
 
-export const AppConfigurationClientPutLockHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientPutLockHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientPutLockHeaders",
@@ -425,7 +425,7 @@ export const AppConfigurationClientPutLockHeaders: coreClient.CompositeMapper = 
   }
 };
 
-export const AppConfigurationClientDeleteLockHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientDeleteLockHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientDeleteLockHeaders",
@@ -446,7 +446,7 @@ export const AppConfigurationClientDeleteLockHeaders: coreClient.CompositeMapper
   }
 };
 
-export const AppConfigurationClientGetRevisionsHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetRevisionsHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetRevisionsHeaders",
@@ -461,7 +461,7 @@ export const AppConfigurationClientGetRevisionsHeaders: coreClient.CompositeMapp
   }
 };
 
-export const AppConfigurationClientCheckRevisionsHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientCheckRevisionsHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientCheckRevisionsHeaders",
@@ -476,7 +476,7 @@ export const AppConfigurationClientCheckRevisionsHeaders: coreClient.CompositeMa
   }
 };
 
-export const AppConfigurationClientGetKeysNextHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetKeysNextHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetKeysNextHeaders",
@@ -491,7 +491,7 @@ export const AppConfigurationClientGetKeysNextHeaders: coreClient.CompositeMappe
   }
 };
 
-export const AppConfigurationClientGetKeyValuesNextHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetKeyValuesNextHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetKeyValuesNextHeaders",
@@ -506,7 +506,7 @@ export const AppConfigurationClientGetKeyValuesNextHeaders: coreClient.Composite
   }
 };
 
-export const AppConfigurationClientGetLabelsNextHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetLabelsNextHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetLabelsNextHeaders",
@@ -521,7 +521,7 @@ export const AppConfigurationClientGetLabelsNextHeaders: coreClient.CompositeMap
   }
 };
 
-export const AppConfigurationClientGetRevisionsNextHeaders: coreClient.CompositeMapper = {
+export const AppConfigurationClientGetRevisionsNextHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppConfigurationClientGetRevisionsNextHeaders",

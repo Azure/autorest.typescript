@@ -48,21 +48,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -93,21 +84,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -216,12 +207,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClient",
-              "canonicalReference": "@azure/core-http!ServiceClient:class"
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -242,21 +233,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -287,21 +269,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -402,12 +384,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -440,28 +422,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -469,7 +429,7 @@
           "name": "FeatureClientListOperationsNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -483,12 +443,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -521,28 +481,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -550,7 +488,7 @@
           "name": "FeatureClientListOperationsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -564,12 +502,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClientOptions",
-              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+              "canonicalReference": "@azure/core-client!ServiceClientOptions:interface"
             },
             {
               "kind": "Content",
@@ -1313,12 +1251,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1351,28 +1289,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1380,7 +1296,7 @@
           "name": "FeaturesGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1394,12 +1310,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1432,28 +1348,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1461,7 +1355,7 @@
           "name": "FeaturesListAllNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1475,12 +1369,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1513,28 +1407,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1542,7 +1414,7 @@
           "name": "FeaturesListAllResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1556,12 +1428,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1594,28 +1466,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1623,7 +1473,7 @@
           "name": "FeaturesListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1637,12 +1487,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1675,28 +1525,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1704,7 +1532,7 @@
           "name": "FeaturesListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1718,12 +1546,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1756,28 +1584,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1785,7 +1591,7 @@
           "name": "FeaturesRegisterResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1799,12 +1605,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1837,28 +1643,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1866,7 +1650,7 @@
           "name": "FeaturesUnregisterResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {

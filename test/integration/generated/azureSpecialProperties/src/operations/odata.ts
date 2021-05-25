@@ -7,7 +7,7 @@
  */
 
 import { Odata } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -29,17 +29,22 @@ export class OdataImpl implements Odata {
    * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    * @param options The options parameters.
    */
-  getWithFilter(options?: OdataGetWithFilterOptionalParams): Promise<void> {
+  getWithFilter(
+    options?: OdataGetWithFilterOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getWithFilterOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getWithFilterOperationSpec: coreClient.OperationSpec = {
+const getWithFilterOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/odata/filter",
   httpMethod: "GET",
   responses: {

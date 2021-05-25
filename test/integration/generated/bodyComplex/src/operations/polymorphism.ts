@@ -7,7 +7,7 @@
  */
 
 import { Polymorphism } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
@@ -50,7 +50,13 @@ export class PolymorphismImpl implements Polymorphism {
   getValid(
     options?: PolymorphismGetValidOptionalParams
   ): Promise<PolymorphismGetValidResponse> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getValidOperationSpec
+    ) as Promise<PolymorphismGetValidResponse>;
   }
 
   /**
@@ -93,11 +99,15 @@ export class PolymorphismImpl implements Polymorphism {
   putValid(
     complexBody: FishUnion,
     options?: PolymorphismPutValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -107,10 +117,13 @@ export class PolymorphismImpl implements Polymorphism {
   getDotSyntax(
     options?: PolymorphismGetDotSyntaxOptionalParams
   ): Promise<PolymorphismGetDotSyntaxResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDotSyntaxOperationSpec
-    );
+    ) as Promise<PolymorphismGetDotSyntaxResponse>;
   }
 
   /**
@@ -122,10 +135,13 @@ export class PolymorphismImpl implements Polymorphism {
   getComposedWithDiscriminator(
     options?: PolymorphismGetComposedWithDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithDiscriminatorResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComposedWithDiscriminatorOperationSpec
-    );
+    ) as Promise<PolymorphismGetComposedWithDiscriminatorResponse>;
   }
 
   /**
@@ -137,10 +153,13 @@ export class PolymorphismImpl implements Polymorphism {
   getComposedWithoutDiscriminator(
     options?: PolymorphismGetComposedWithoutDiscriminatorOptionalParams
   ): Promise<PolymorphismGetComposedWithoutDiscriminatorResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComposedWithoutDiscriminatorOperationSpec
-    );
+    ) as Promise<PolymorphismGetComposedWithoutDiscriminatorResponse>;
   }
 
   /**
@@ -151,10 +170,13 @@ export class PolymorphismImpl implements Polymorphism {
   getComplicated(
     options?: PolymorphismGetComplicatedOptionalParams
   ): Promise<PolymorphismGetComplicatedResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplicatedOperationSpec
-    );
+    ) as Promise<PolymorphismGetComplicatedResponse>;
   }
 
   /**
@@ -166,11 +188,15 @@ export class PolymorphismImpl implements Polymorphism {
   putComplicated(
     complexBody: SalmonUnion,
     options?: PolymorphismPutComplicatedOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putComplicatedOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -182,10 +208,14 @@ export class PolymorphismImpl implements Polymorphism {
     complexBody: SalmonUnion,
     options?: PolymorphismPutMissingDiscriminatorOptionalParams
   ): Promise<PolymorphismPutMissingDiscriminatorResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putMissingDiscriminatorOperationSpec
-    );
+    ) as Promise<PolymorphismPutMissingDiscriminatorResponse>;
   }
 
   /**
@@ -223,17 +253,21 @@ export class PolymorphismImpl implements Polymorphism {
   putValidMissingRequired(
     complexBody: FishUnion,
     options?: PolymorphismPutValidMissingRequiredOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putValidMissingRequiredOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreClient.OperationSpec = {
+const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/valid",
   httpMethod: "GET",
   responses: {
@@ -248,7 +282,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreClient.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/valid",
   httpMethod: "PUT",
   responses: {
@@ -263,7 +297,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDotSyntaxOperationSpec: coreClient.OperationSpec = {
+const getDotSyntaxOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/dotsyntax",
   httpMethod: "GET",
   responses: {
@@ -278,7 +312,7 @@ const getDotSyntaxOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComposedWithDiscriminatorOperationSpec: coreClient.OperationSpec = {
+const getComposedWithDiscriminatorOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/composedWithDiscriminator",
   httpMethod: "GET",
   responses: {
@@ -293,7 +327,7 @@ const getComposedWithDiscriminatorOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComposedWithoutDiscriminatorOperationSpec: coreClient.OperationSpec = {
+const getComposedWithoutDiscriminatorOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/composedWithoutDiscriminator",
   httpMethod: "GET",
   responses: {
@@ -308,7 +342,7 @@ const getComposedWithoutDiscriminatorOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplicatedOperationSpec: coreClient.OperationSpec = {
+const getComplicatedOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/complicated",
   httpMethod: "GET",
   responses: {
@@ -323,7 +357,7 @@ const getComplicatedOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putComplicatedOperationSpec: coreClient.OperationSpec = {
+const putComplicatedOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/complicated",
   httpMethod: "PUT",
   responses: {
@@ -338,7 +372,7 @@ const putComplicatedOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putMissingDiscriminatorOperationSpec: coreClient.OperationSpec = {
+const putMissingDiscriminatorOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/missingdiscriminator",
   httpMethod: "PUT",
   responses: {
@@ -355,7 +389,7 @@ const putMissingDiscriminatorOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putValidMissingRequiredOperationSpec: coreClient.OperationSpec = {
+const putValidMissingRequiredOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/polymorphism/missingrequired/invalid",
   httpMethod: "PUT",
   responses: {

@@ -9,8 +9,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 import {
   AnalyzeBatchInput as AnalyzeBatchInputMapper,
   MultiLanguageBatchInput as MultiLanguageBatchInputMapper,
@@ -169,7 +170,7 @@ export const piiCategories: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const input1: OperationParameter = {

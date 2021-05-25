@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { FeaturesImpl } from "./operations";
@@ -32,7 +33,7 @@ export class FeatureClient extends FeatureClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: FeatureClientOptionalParams
   ) {
@@ -89,13 +90,7 @@ export class FeatureClient extends FeatureClientContext {
   private _listOperations(
     options?: FeatureClientListOperationsOptionalParams
   ): Promise<FeatureClientListOperationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      listOperationsOperationSpec
-    ) as Promise<FeatureClientListOperationsResponse>;
+    return this.sendOperationRequest({ options }, listOperationsOperationSpec);
   }
 
   /**
@@ -107,22 +102,18 @@ export class FeatureClient extends FeatureClientContext {
     nextLink: string,
     options?: FeatureClientListOperationsNextOptionalParams
   ): Promise<FeatureClientListOperationsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listOperationsNextOperationSpec
-    ) as Promise<FeatureClientListOperationsNextResponse>;
+    );
   }
 
   features: Features;
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationsOperationSpec: coreHttp.OperationSpec = {
+const listOperationsOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Features/operations",
   httpMethod: "GET",
   responses: {
@@ -135,7 +126,7 @@ const listOperationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
+const listOperationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

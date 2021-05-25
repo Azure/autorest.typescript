@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const BasicDef: coreClient.CompositeMapper = {
+export const BasicDef: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BasicDef",
@@ -36,7 +36,7 @@ export const BasicDef: coreClient.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreClient.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -57,7 +57,7 @@ export const ErrorModel: coreClient.CompositeMapper = {
   }
 };
 
-export const IntWrapper: coreClient.CompositeMapper = {
+export const IntWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IntWrapper",
@@ -78,7 +78,7 @@ export const IntWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const LongWrapper: coreClient.CompositeMapper = {
+export const LongWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LongWrapper",
@@ -99,7 +99,7 @@ export const LongWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const FloatWrapper: coreClient.CompositeMapper = {
+export const FloatWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FloatWrapper",
@@ -120,7 +120,7 @@ export const FloatWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const DoubleWrapper: coreClient.CompositeMapper = {
+export const DoubleWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DoubleWrapper",
@@ -142,7 +142,7 @@ export const DoubleWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const BooleanWrapper: coreClient.CompositeMapper = {
+export const BooleanWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BooleanWrapper",
@@ -163,7 +163,7 @@ export const BooleanWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const StringWrapper: coreClient.CompositeMapper = {
+export const StringWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StringWrapper",
@@ -190,7 +190,7 @@ export const StringWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const DateWrapper: coreClient.CompositeMapper = {
+export const DateWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DateWrapper",
@@ -211,7 +211,7 @@ export const DateWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const DatetimeWrapper: coreClient.CompositeMapper = {
+export const DatetimeWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatetimeWrapper",
@@ -232,7 +232,7 @@ export const DatetimeWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const Datetimerfc1123Wrapper: coreClient.CompositeMapper = {
+export const Datetimerfc1123Wrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Datetimerfc1123Wrapper",
@@ -253,7 +253,7 @@ export const Datetimerfc1123Wrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const DurationWrapper: coreClient.CompositeMapper = {
+export const DurationWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DurationWrapper",
@@ -268,7 +268,7 @@ export const DurationWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const ByteWrapper: coreClient.CompositeMapper = {
+export const ByteWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ByteWrapper",
@@ -283,7 +283,7 @@ export const ByteWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const ArrayWrapper: coreClient.CompositeMapper = {
+export const ArrayWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ArrayWrapper",
@@ -303,7 +303,7 @@ export const ArrayWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const DictionaryWrapper: coreClient.CompositeMapper = {
+export const DictionaryWrapper: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DictionaryWrapper",
@@ -320,7 +320,7 @@ export const DictionaryWrapper: coreClient.CompositeMapper = {
   }
 };
 
-export const Pet: coreClient.CompositeMapper = {
+export const Pet: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Pet",
@@ -341,7 +341,7 @@ export const Pet: coreClient.CompositeMapper = {
   }
 };
 
-export const Fish: coreClient.CompositeMapper = {
+export const Fish: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Fish",
@@ -387,7 +387,7 @@ export const Fish: coreClient.CompositeMapper = {
   }
 };
 
-export const DotFish: coreClient.CompositeMapper = {
+export const DotFish: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DotFish",
@@ -414,7 +414,7 @@ export const DotFish: coreClient.CompositeMapper = {
   }
 };
 
-export const DotFishMarket: coreClient.CompositeMapper = {
+export const DotFishMarket: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DotFishMarket",
@@ -461,7 +461,7 @@ export const DotFishMarket: coreClient.CompositeMapper = {
   }
 };
 
-export const ReadonlyObj: coreClient.CompositeMapper = {
+export const ReadonlyObj: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ReadonlyObj",
@@ -483,7 +483,7 @@ export const ReadonlyObj: coreClient.CompositeMapper = {
   }
 };
 
-export const MyBaseType: coreClient.CompositeMapper = {
+export const MyBaseType: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MyBaseType",
@@ -516,7 +516,7 @@ export const MyBaseType: coreClient.CompositeMapper = {
   }
 };
 
-export const Dog: coreClient.CompositeMapper = {
+export const Dog: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Dog",
@@ -532,7 +532,7 @@ export const Dog: coreClient.CompositeMapper = {
   }
 };
 
-export const Cat: coreClient.CompositeMapper = {
+export const Cat: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Cat",
@@ -560,7 +560,7 @@ export const Cat: coreClient.CompositeMapper = {
   }
 };
 
-export const Salmon: coreClient.CompositeMapper = {
+export const Salmon: coreHttp.CompositeMapper = {
   serializedName: "salmon",
   type: {
     name: "Composite",
@@ -588,7 +588,7 @@ export const Salmon: coreClient.CompositeMapper = {
   }
 };
 
-export const Shark: coreClient.CompositeMapper = {
+export const Shark: coreHttp.CompositeMapper = {
   serializedName: "shark",
   type: {
     name: "Composite",
@@ -617,7 +617,7 @@ export const Shark: coreClient.CompositeMapper = {
   }
 };
 
-export const DotSalmon: coreClient.CompositeMapper = {
+export const DotSalmon: coreHttp.CompositeMapper = {
   serializedName: "DotSalmon",
   type: {
     name: "Composite",
@@ -642,7 +642,7 @@ export const DotSalmon: coreClient.CompositeMapper = {
   }
 };
 
-export const MyDerivedType: coreClient.CompositeMapper = {
+export const MyDerivedType: coreHttp.CompositeMapper = {
   serializedName: "Kind1",
   type: {
     name: "Composite",
@@ -661,7 +661,7 @@ export const MyDerivedType: coreClient.CompositeMapper = {
   }
 };
 
-export const Siamese: coreClient.CompositeMapper = {
+export const Siamese: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Siamese",
@@ -677,7 +677,7 @@ export const Siamese: coreClient.CompositeMapper = {
   }
 };
 
-export const SmartSalmon: coreClient.CompositeMapper = {
+export const SmartSalmon: coreHttp.CompositeMapper = {
   serializedName: "smart_salmon",
   type: {
     name: "Composite",
@@ -697,7 +697,7 @@ export const SmartSalmon: coreClient.CompositeMapper = {
   }
 };
 
-export const Sawshark: coreClient.CompositeMapper = {
+export const Sawshark: coreHttp.CompositeMapper = {
   serializedName: "sawshark",
   type: {
     name: "Composite",
@@ -716,7 +716,7 @@ export const Sawshark: coreClient.CompositeMapper = {
   }
 };
 
-export const Goblinshark: coreClient.CompositeMapper = {
+export const Goblinshark: coreHttp.CompositeMapper = {
   serializedName: "goblin",
   type: {
     name: "Composite",
@@ -742,7 +742,7 @@ export const Goblinshark: coreClient.CompositeMapper = {
   }
 };
 
-export const Cookiecuttershark: coreClient.CompositeMapper = {
+export const Cookiecuttershark: coreHttp.CompositeMapper = {
   serializedName: "cookiecuttershark",
   type: {
     name: "Composite",

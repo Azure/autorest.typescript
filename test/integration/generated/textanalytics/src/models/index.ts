@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** Contains a set of input documents to be analyzed by the service. */
 export interface MultiLanguageBatchInput {
@@ -1123,17 +1123,23 @@ export type TargetRelationType = "assessment" | "target";
 
 /** Optional parameters. */
 export interface GeneratedClientAnalyzeOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Collection of documents to analyze and tasks to execute. */
   body?: AnalyzeBatchInput;
 }
 
 /** Contains response data for the analyze operation. */
-export type GeneratedClientAnalyzeResponse = GeneratedClientAnalyzeHeaders;
+export type GeneratedClientAnalyzeResponse = GeneratedClientAnalyzeHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: GeneratedClientAnalyzeHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientAnalyzeStatusOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) Set the maximum number of results per task. When both $top and $skip are specified, $skip is applied first. */
@@ -1143,11 +1149,20 @@ export interface GeneratedClientAnalyzeStatusOptionalParams
 }
 
 /** Contains response data for the analyzeStatus operation. */
-export type GeneratedClientAnalyzeStatusResponse = AnalyzeJobState;
+export type GeneratedClientAnalyzeStatusResponse = AnalyzeJobState & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: AnalyzeJobState;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientHealthStatusOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) Set the maximum number of results per task. When both $top and $skip are specified, $skip is applied first. */
@@ -1157,18 +1172,33 @@ export interface GeneratedClientHealthStatusOptionalParams
 }
 
 /** Contains response data for the healthStatus operation. */
-export type GeneratedClientHealthStatusResponse = HealthcareJobState;
+export type GeneratedClientHealthStatusResponse = HealthcareJobState & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: HealthcareJobState;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientCancelHealthJobOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the cancelHealthJob operation. */
-export type GeneratedClientCancelHealthJobResponse = GeneratedClientCancelHealthJobHeaders;
+export type GeneratedClientCancelHealthJobResponse = GeneratedClientCancelHealthJobHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: GeneratedClientCancelHealthJobHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientHealthOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
   modelVersion?: string;
   /** (Optional) Specifies the method used to interpret string offsets.  Defaults to Text Elements (Graphemes) according to Unicode v8.0.0. For additional information see https://aka.ms/text-analytics-offsets */
@@ -1176,11 +1206,17 @@ export interface GeneratedClientHealthOptionalParams
 }
 
 /** Contains response data for the health operation. */
-export type GeneratedClientHealthResponse = GeneratedClientHealthHeaders;
+export type GeneratedClientHealthResponse = GeneratedClientHealthHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: GeneratedClientHealthHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientEntitiesRecognitionGeneralOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1190,11 +1226,20 @@ export interface GeneratedClientEntitiesRecognitionGeneralOptionalParams
 }
 
 /** Contains response data for the entitiesRecognitionGeneral operation. */
-export type GeneratedClientEntitiesRecognitionGeneralResponse = EntitiesResult;
+export type GeneratedClientEntitiesRecognitionGeneralResponse = EntitiesResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: EntitiesResult;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientEntitiesRecognitionPiiOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1208,11 +1253,20 @@ export interface GeneratedClientEntitiesRecognitionPiiOptionalParams
 }
 
 /** Contains response data for the entitiesRecognitionPii operation. */
-export type GeneratedClientEntitiesRecognitionPiiResponse = PiiResult;
+export type GeneratedClientEntitiesRecognitionPiiResponse = PiiResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PiiResult;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientEntitiesLinkingOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1222,11 +1276,20 @@ export interface GeneratedClientEntitiesLinkingOptionalParams
 }
 
 /** Contains response data for the entitiesLinking operation. */
-export type GeneratedClientEntitiesLinkingResponse = EntityLinkingResult;
+export type GeneratedClientEntitiesLinkingResponse = EntityLinkingResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: EntityLinkingResult;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientKeyPhrasesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1234,11 +1297,20 @@ export interface GeneratedClientKeyPhrasesOptionalParams
 }
 
 /** Contains response data for the keyPhrases operation. */
-export type GeneratedClientKeyPhrasesResponse = KeyPhraseResult;
+export type GeneratedClientKeyPhrasesResponse = KeyPhraseResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: KeyPhraseResult;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientLanguagesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1246,11 +1318,20 @@ export interface GeneratedClientLanguagesOptionalParams
 }
 
 /** Contains response data for the languages operation. */
-export type GeneratedClientLanguagesResponse = LanguageResult;
+export type GeneratedClientLanguagesResponse = LanguageResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: LanguageResult;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientSentimentOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** (Optional) if set to true, response will contain request and document level statistics. */
   includeStatistics?: boolean;
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
@@ -1262,11 +1343,20 @@ export interface GeneratedClientSentimentOptionalParams
 }
 
 /** Contains response data for the sentiment operation. */
-export type GeneratedClientSentimentResponse = SentimentResponse;
+export type GeneratedClientSentimentResponse = SentimentResponse & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SentimentResponse;
+  };
+};
 
 /** Optional parameters. */
 export interface GeneratedClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

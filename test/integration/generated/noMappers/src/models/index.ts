@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** Known values of {@link Enum0} that the service accepts. */
 export const enum KnownEnum0 {
@@ -26,17 +26,26 @@ export type Enum0 = string;
 
 /** Optional parameters. */
 export interface NoMappersClientApiV1ValueGetOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the apiV1ValueGet operation. */
 export type NoMappersClientApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface NoMappersClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Image,
@@ -111,9 +110,7 @@ export interface Images {
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an Image.
    * @param resourceGroupName The name of the resource group.
@@ -124,7 +121,7 @@ export interface Images {
     resourceGroupName: string,
     imageName: string,
     options?: ImagesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets an image.
    * @param resourceGroupName The name of the resource group.

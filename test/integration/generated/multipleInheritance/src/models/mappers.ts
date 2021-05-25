@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const Pet: coreClient.CompositeMapper = {
+export const Pet: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Pet",
@@ -24,7 +24,7 @@ export const Pet: coreClient.CompositeMapper = {
   }
 };
 
-export const ErrorModel: coreClient.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -45,7 +45,7 @@ export const ErrorModel: coreClient.CompositeMapper = {
   }
 };
 
-export const Feline: coreClient.CompositeMapper = {
+export const Feline: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Feline",
@@ -66,7 +66,7 @@ export const Feline: coreClient.CompositeMapper = {
   }
 };
 
-export const Horse: coreClient.CompositeMapper = {
+export const Horse: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Horse",
@@ -82,7 +82,7 @@ export const Horse: coreClient.CompositeMapper = {
   }
 };
 
-export const Cat: coreClient.CompositeMapper = {
+export const Cat: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Cat",
@@ -99,7 +99,7 @@ export const Cat: coreClient.CompositeMapper = {
   }
 };
 
-export const Kitten: coreClient.CompositeMapper = {
+export const Kitten: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Kitten",

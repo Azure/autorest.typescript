@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VpnLinkConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -127,16 +127,10 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     connectionName: string,
     options?: VpnLinkConnectionsListByVpnConnectionOptionalParams
   ): Promise<VpnLinkConnectionsListByVpnConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, gatewayName, connectionName, options },
       listByVpnConnectionOperationSpec
-    ) as Promise<VpnLinkConnectionsListByVpnConnectionResponse>;
+    );
   }
 
   /**
@@ -154,23 +148,16 @@ export class VpnLinkConnectionsImpl implements VpnLinkConnections {
     nextLink: string,
     options?: VpnLinkConnectionsListByVpnConnectionNextOptionalParams
   ): Promise<VpnLinkConnectionsListByVpnConnectionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, gatewayName, connectionName, nextLink, options },
       listByVpnConnectionNextOperationSpec
-    ) as Promise<VpnLinkConnectionsListByVpnConnectionNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByVpnConnectionOperationSpec: coreHttp.OperationSpec = {
+const listByVpnConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}/vpnLinkConnections",
   httpMethod: "GET",
@@ -193,7 +180,7 @@ const listByVpnConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByVpnConnectionNextOperationSpec: coreHttp.OperationSpec = {
+const listByVpnConnectionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

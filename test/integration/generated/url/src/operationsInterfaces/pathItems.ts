@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
@@ -27,7 +28,7 @@ export interface PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
@@ -40,7 +41,7 @@ export interface PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery=null,
@@ -53,7 +54,7 @@ export interface PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
    * localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null,
@@ -66,5 +67,5 @@ export interface PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

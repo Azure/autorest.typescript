@@ -7,7 +7,7 @@
  */
 
 import { LrosaDs } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
@@ -91,41 +91,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutNonRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putNonRetry400OperationSpec,
       sendOperation
     );
@@ -155,41 +135,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutNonRetry201Creating400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutNonRetry201Creating400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry201Creating400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putNonRetry201Creating400OperationSpec,
       sendOperation
     );
@@ -220,41 +180,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutNonRetry201Creating400InvalidJsonResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutNonRetry201Creating400InvalidJsonResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutNonRetry201Creating400InvalidJsonResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putNonRetry201Creating400InvalidJsonOperationSpec,
       sendOperation
     );
@@ -287,41 +227,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutAsyncRelativeRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRelativeRetry400OperationSpec,
       sendOperation
     );
@@ -351,41 +271,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDeleteNonRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDeleteNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteNonRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteNonRetry400OperationSpec,
       sendOperation
     );
@@ -414,41 +314,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDelete202NonRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDelete202NonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDelete202NonRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete202NonRetry400OperationSpec,
       sendOperation
     );
@@ -478,41 +358,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDeleteAsyncRelativeRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDeleteAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRelativeRetry400OperationSpec,
       sendOperation
     );
@@ -542,41 +402,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPostNonRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPostNonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostNonRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postNonRetry400OperationSpec,
       sendOperation
     );
@@ -605,41 +445,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPost202NonRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPost202NonRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202NonRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202NonRetry400OperationSpec,
       sendOperation
     );
@@ -669,41 +489,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPostAsyncRelativeRetry400Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPostAsyncRelativeRetry400Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetry400Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRelativeRetry400OperationSpec,
       sendOperation
     );
@@ -733,41 +533,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutError201NoProvisioningStatePayloadResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutError201NoProvisioningStatePayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutError201NoProvisioningStatePayloadResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putError201NoProvisioningStatePayloadOperationSpec,
       sendOperation
     );
@@ -800,41 +580,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutAsyncRelativeRetryNoStatusResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryNoStatusResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRelativeRetryNoStatusOperationSpec,
       sendOperation
     );
@@ -867,41 +627,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryNoStatusPayloadResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRelativeRetryNoStatusPayloadOperationSpec,
       sendOperation
     );
@@ -928,42 +668,24 @@ export class LrosaDsImpl implements LrosaDs {
    */
   async beginDelete204Succeeded(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        coreHttp.RestResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete204SucceededOperationSpec,
       sendOperation
     );
@@ -975,7 +697,7 @@ export class LrosaDsImpl implements LrosaDs {
    */
   async beginDelete204SucceededAndWait(
     options?: LrosaDsDelete204SucceededOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
     const poller = await this.beginDelete204Succeeded(options);
     return poller.pollUntilDone();
   }
@@ -993,41 +715,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDeleteAsyncRelativeRetryNoStatusResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryNoStatusResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRelativeRetryNoStatusOperationSpec,
       sendOperation
     );
@@ -1057,41 +759,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPost202NoLocationResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPost202NoLocationResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202NoLocationResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202NoLocationOperationSpec,
       sendOperation
     );
@@ -1122,41 +804,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPostAsyncRelativeRetryNoPayloadResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPostAsyncRelativeRetryNoPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryNoPayloadResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRelativeRetryNoPayloadOperationSpec,
       sendOperation
     );
@@ -1188,41 +850,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPut200InvalidJsonResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPut200InvalidJsonResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPut200InvalidJsonResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put200InvalidJsonOperationSpec,
       sendOperation
     );
@@ -1253,41 +895,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryInvalidHeaderResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRelativeRetryInvalidHeaderOperationSpec,
       sendOperation
     );
@@ -1321,41 +943,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPutAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec,
       sendOperation
     );
@@ -1389,41 +991,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDelete202RetryInvalidHeaderResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDelete202RetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDelete202RetryInvalidHeaderResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete202RetryInvalidHeaderOperationSpec,
       sendOperation
     );
@@ -1454,41 +1036,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryInvalidHeaderResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec,
       sendOperation
     );
@@ -1523,41 +1085,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec,
       sendOperation
     );
@@ -1590,41 +1132,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPost202RetryInvalidHeaderResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPost202RetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPost202RetryInvalidHeaderResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202RetryInvalidHeaderOperationSpec,
       sendOperation
     );
@@ -1656,41 +1178,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryInvalidHeaderResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRelativeRetryInvalidHeaderOperationSpec,
       sendOperation
     );
@@ -1725,41 +1227,21 @@ export class LrosaDsImpl implements LrosaDs {
       LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec,
       sendOperation
     );
@@ -1779,11 +1261,23 @@ export class LrosaDsImpl implements LrosaDs {
     );
     return poller.pollUntilDone();
   }
+
+  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+    options: TOptions | undefined,
+    finalStateVia?: string
+  ): coreHttp.RequestOptionsBase {
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const putNonRetry400OperationSpec: coreClient.OperationSpec = {
+const putNonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/put/400",
   httpMethod: "PUT",
   responses: {
@@ -1809,7 +1303,7 @@ const putNonRetry400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putNonRetry201Creating400OperationSpec: coreClient.OperationSpec = {
+const putNonRetry201Creating400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/put/201/creating/400",
   httpMethod: "PUT",
   responses: {
@@ -1835,7 +1329,7 @@ const putNonRetry201Creating400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putNonRetry201Creating400InvalidJsonOperationSpec: coreClient.OperationSpec = {
+const putNonRetry201Creating400InvalidJsonOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/put/201/creating/400/invalidjson",
   httpMethod: "PUT",
   responses: {
@@ -1861,7 +1355,7 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreClient.OperationSpe
   mediaType: "json",
   serializer
 };
-const putAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
+const putAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/putasync/retry/400",
   httpMethod: "PUT",
   responses: {
@@ -1891,7 +1385,7 @@ const putAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteNonRetry400OperationSpec: coreClient.OperationSpec = {
+const deleteNonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/delete/400",
   httpMethod: "DELETE",
   responses: {
@@ -1915,7 +1409,7 @@ const deleteNonRetry400OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const delete202NonRetry400OperationSpec: coreClient.OperationSpec = {
+const delete202NonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/delete/202/retry/400",
   httpMethod: "DELETE",
   responses: {
@@ -1939,7 +1433,7 @@ const delete202NonRetry400OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/deleteasync/retry/400",
   httpMethod: "DELETE",
   responses: {
@@ -1963,7 +1457,7 @@ const deleteAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const postNonRetry400OperationSpec: coreClient.OperationSpec = {
+const postNonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/post/400",
   httpMethod: "POST",
   responses: {
@@ -1989,7 +1483,7 @@ const postNonRetry400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const post202NonRetry400OperationSpec: coreClient.OperationSpec = {
+const post202NonRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/post/202/retry/400",
   httpMethod: "POST",
   responses: {
@@ -2015,7 +1509,7 @@ const post202NonRetry400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
+const postAsyncRelativeRetry400OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/nonretryerror/postasync/retry/400",
   httpMethod: "POST",
   responses: {
@@ -2041,7 +1535,7 @@ const postAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putError201NoProvisioningStatePayloadOperationSpec: coreClient.OperationSpec = {
+const putError201NoProvisioningStatePayloadOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/put/201/noprovisioningstatepayload",
   httpMethod: "PUT",
   responses: {
@@ -2067,7 +1561,7 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreClient.OperationSp
   mediaType: "json",
   serializer
 };
-const putAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = {
+const putAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/putasync/retry/nostatus",
   httpMethod: "PUT",
   responses: {
@@ -2097,7 +1591,7 @@ const putAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreClient.OperationSpec = {
+const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/putasync/retry/nostatuspayload",
   httpMethod: "PUT",
   responses: {
@@ -2127,7 +1621,7 @@ const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreClient.OperationSpe
   mediaType: "json",
   serializer
 };
-const delete204SucceededOperationSpec: coreClient.OperationSpec = {
+const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/delete/204/nolocation",
   httpMethod: "DELETE",
   responses: {
@@ -2143,7 +1637,7 @@ const delete204SucceededOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRelativeRetryNoStatusOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/deleteasync/retry/nostatus",
   httpMethod: "DELETE",
   responses: {
@@ -2167,7 +1661,7 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const post202NoLocationOperationSpec: coreClient.OperationSpec = {
+const post202NoLocationOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/post/202/nolocation",
   httpMethod: "POST",
   responses: {
@@ -2193,7 +1687,7 @@ const post202NoLocationOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncRelativeRetryNoPayloadOperationSpec: coreClient.OperationSpec = {
+const postAsyncRelativeRetryNoPayloadOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/postasync/retry/nopayload",
   httpMethod: "POST",
   responses: {
@@ -2219,7 +1713,7 @@ const postAsyncRelativeRetryNoPayloadOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put200InvalidJsonOperationSpec: coreClient.OperationSpec = {
+const put200InvalidJsonOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/put/200/invalidjson",
   httpMethod: "PUT",
   responses: {
@@ -2245,7 +1739,7 @@ const put200InvalidJsonOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
+const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/putasync/retry/invalidheader",
   httpMethod: "PUT",
   responses: {
@@ -2275,7 +1769,7 @@ const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec 
   mediaType: "json",
   serializer
 };
-const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.OperationSpec = {
+const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/putasync/retry/invalidjsonpolling",
   httpMethod: "PUT",
   responses: {
@@ -2309,7 +1803,7 @@ const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operation
   mediaType: "json",
   serializer
 };
-const delete202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
+const delete202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/delete/202/retry/invalidheader",
   httpMethod: "DELETE",
   responses: {
@@ -2333,7 +1827,7 @@ const delete202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/deleteasync/retry/invalidheader",
   httpMethod: "DELETE",
   responses: {
@@ -2357,7 +1851,7 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSp
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/deleteasync/retry/invalidjsonpolling",
   httpMethod: "DELETE",
   responses: {
@@ -2385,7 +1879,7 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operat
   headerParameters: [Parameters.accept],
   serializer
 };
-const post202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
+const post202RetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/post/202/retry/invalidheader",
   httpMethod: "POST",
   responses: {
@@ -2411,7 +1905,7 @@ const post202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
+const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/postasync/retry/invalidheader",
   httpMethod: "POST",
   responses: {
@@ -2437,7 +1931,7 @@ const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec
   mediaType: "json",
   serializer
 };
-const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.OperationSpec = {
+const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/error/postasync/retry/invalidjsonpolling",
   httpMethod: "POST",
   responses: {

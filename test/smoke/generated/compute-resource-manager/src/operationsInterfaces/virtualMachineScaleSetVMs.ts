@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetVM,
@@ -60,9 +59,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Reimages (upgrade the operating system) a specific virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -75,7 +72,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
    * operation is only supported for managed disks.
@@ -89,9 +86,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Allows you to re-image all the disks ( including data disks ) in the a VM scale set instance. This
    * operation is only supported for managed disks.
@@ -105,7 +100,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
    * releases the compute resources it uses. You are not billed for the compute resources of this virtual
@@ -120,9 +115,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deallocates a specific virtual machine in a VM scale set. Shuts down the virtual machine and
    * releases the compute resources it uses. You are not billed for the compute resources of this virtual
@@ -137,7 +130,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates a virtual machine of a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -185,9 +178,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -200,7 +191,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a virtual machine from a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -241,9 +232,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Power off (stop) a virtual machine in a VM scale set. Note that resources are still attached and you
    * are getting charged for the resources. Instead, use deallocate to release resources and avoid
@@ -258,7 +247,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Restarts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -271,9 +260,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRestartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Restarts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -286,7 +273,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRestartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -299,9 +286,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -314,7 +299,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsStartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
    * it back on.
@@ -328,9 +313,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRedeployOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Shuts down the virtual machine in the virtual machine scale set, moves it to a new node, and powers
    * it back on.
@@ -344,7 +327,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRedeployOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Performs maintenance on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -357,9 +340,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Performs maintenance on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.
@@ -372,7 +353,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * The operation to simulate the eviction of spot virtual machine in a VM scale set. The eviction will
    * occur within 30 minutes of calling the API
@@ -386,7 +367,7 @@ export interface VirtualMachineScaleSetVMs {
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Run command on a virtual machine in a VM scale set.
    * @param resourceGroupName The name of the resource group.

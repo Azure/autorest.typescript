@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Plan for the managed application. */
 export interface Plan {
@@ -255,23 +255,14 @@ export type ApplicationArtifactType = "Template" | "Custom";
 
 /** Optional parameters. */
 export interface ApplicationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ApplicationsGetResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsGetResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -280,7 +271,7 @@ export interface ApplicationsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -288,87 +279,42 @@ export interface ApplicationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ApplicationsCreateOrUpdateResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsCreateOrUpdateResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Parameters supplied to update an existing managed application. */
   parameters?: Application;
 }
 
 /** Contains response data for the update operation. */
-export type ApplicationsUpdateResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsUpdateResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ApplicationsListByResourceGroupResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListByResourceGroupResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationsListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type ApplicationsListBySubscriptionResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListBySubscriptionResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationsGetByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getById operation. */
-export type ApplicationsGetByIdResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsGetByIdResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsDeleteByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -377,7 +323,7 @@ export interface ApplicationsDeleteByIdOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationsCreateOrUpdateByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -385,87 +331,42 @@ export interface ApplicationsCreateOrUpdateByIdOptionalParams
 }
 
 /** Contains response data for the createOrUpdateById operation. */
-export type ApplicationsCreateOrUpdateByIdResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsCreateOrUpdateByIdResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsUpdateByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Parameters supplied to update an existing managed application. */
   parameters?: Application;
 }
 
 /** Contains response data for the updateById operation. */
-export type ApplicationsUpdateByIdResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsUpdateByIdResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationsListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ApplicationDefinitionsGetResponse = ApplicationDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinition;
-  };
-};
+export type ApplicationDefinitionsGetResponse = ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -474,7 +375,7 @@ export interface ApplicationDefinitionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -482,52 +383,25 @@ export interface ApplicationDefinitionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinition;
-  };
-};
+export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinitionListResult;
-  };
-};
+export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsGetByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getById operation. */
-export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinition;
-  };
-};
+export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsDeleteByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -536,7 +410,7 @@ export interface ApplicationDefinitionsDeleteByIdOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -544,36 +418,18 @@ export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams
 }
 
 /** Contains response data for the createOrUpdateById operation. */
-export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinition;
-  };
-};
+export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition;
 
 /** Optional parameters. */
 export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationDefinitionListResult;
-  };
-};
+export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult;
 
 /** Optional parameters. */
 export interface ApplicationClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

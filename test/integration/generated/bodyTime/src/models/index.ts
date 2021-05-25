@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -14,26 +14,44 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface TimeGetOptionalParams extends coreClient.OperationOptions {}
+export interface TimeGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type TimeGetResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
-export interface TimePutOptionalParams extends coreClient.OperationOptions {}
+export interface TimePutOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the put operation. */
 export type TimePutResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface BodyTimeClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   DatabaseOperation,
   DatabaseOperationsListByDatabaseOptionalParams,
@@ -47,5 +46,5 @@ export interface DatabaseOperations {
     databaseName: string,
     operationId: string,
     options?: DatabaseOperationsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const ErrorModel: coreClient.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -29,7 +29,7 @@ export const ErrorModel: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseExistingKeyHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseExistingKeyHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseExistingKeyHeaders",
@@ -44,7 +44,7 @@ export const HeaderResponseExistingKeyHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseProtectedKeyHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseProtectedKeyHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseProtectedKeyHeaders",
@@ -59,7 +59,7 @@ export const HeaderResponseProtectedKeyHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseIntegerHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseIntegerHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseIntegerHeaders",
@@ -74,7 +74,7 @@ export const HeaderResponseIntegerHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseLongHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseLongHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseLongHeaders",
@@ -89,7 +89,7 @@ export const HeaderResponseLongHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseFloatHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseFloatHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseFloatHeaders",
@@ -104,7 +104,7 @@ export const HeaderResponseFloatHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDoubleHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseDoubleHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseDoubleHeaders",
@@ -119,7 +119,7 @@ export const HeaderResponseDoubleHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseBoolHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseBoolHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseBoolHeaders",
@@ -134,7 +134,7 @@ export const HeaderResponseBoolHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseStringHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseStringHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseStringHeaders",
@@ -149,7 +149,7 @@ export const HeaderResponseStringHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDateHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseDateHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseDateHeaders",
@@ -164,7 +164,7 @@ export const HeaderResponseDateHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDatetimeHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseDatetimeHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseDatetimeHeaders",
@@ -179,7 +179,7 @@ export const HeaderResponseDatetimeHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseDatetimeRfc1123Headers: coreClient.CompositeMapper = {
+export const HeaderResponseDatetimeRfc1123Headers: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseDatetimeRfc1123Headers",
@@ -194,7 +194,7 @@ export const HeaderResponseDatetimeRfc1123Headers: coreClient.CompositeMapper = 
   }
 };
 
-export const HeaderResponseDurationHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseDurationHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseDurationHeaders",
@@ -209,7 +209,7 @@ export const HeaderResponseDurationHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseByteHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseByteHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseByteHeaders",
@@ -224,7 +224,7 @@ export const HeaderResponseByteHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const HeaderResponseEnumHeaders: coreClient.CompositeMapper = {
+export const HeaderResponseEnumHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HeaderResponseEnumHeaders",

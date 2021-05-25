@@ -1169,16 +1169,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -1187,7 +1178,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1323,16 +1314,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -1341,7 +1323,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1901,16 +1883,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -1919,7 +1892,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1989,16 +1962,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -2007,7 +1971,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2078,16 +2042,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -2096,7 +2051,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2167,16 +2122,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -2185,7 +2131,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -2228,12 +2174,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2261,12 +2207,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2299,28 +2245,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Application",
-              "canonicalReference": "graphrbac-data-plane!Application:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2328,7 +2252,7 @@
           "name": "ApplicationsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2342,12 +2266,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2375,12 +2299,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2413,28 +2337,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Application",
-              "canonicalReference": "graphrbac-data-plane!Application:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2442,7 +2344,7 @@
           "name": "ApplicationsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2456,12 +2358,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2494,28 +2396,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ServicePrincipalObjectResult",
-              "canonicalReference": "graphrbac-data-plane!ServicePrincipalObjectResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2523,7 +2403,7 @@
           "name": "ApplicationsGetServicePrincipalsIdByAppIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2537,12 +2417,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2575,28 +2455,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "KeyCredentialListResult",
-              "canonicalReference": "graphrbac-data-plane!KeyCredentialListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2604,7 +2462,7 @@
           "name": "ApplicationsListKeyCredentialsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2618,12 +2476,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2656,28 +2514,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ApplicationListResult",
-              "canonicalReference": "graphrbac-data-plane!ApplicationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2685,7 +2521,7 @@
           "name": "ApplicationsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2699,12 +2535,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2758,12 +2594,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2796,28 +2632,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2825,7 +2639,7 @@
           "name": "ApplicationsListOwnersNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2839,12 +2653,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2877,28 +2691,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2906,7 +2698,7 @@
           "name": "ApplicationsListOwnersResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2920,12 +2712,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2958,28 +2750,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PasswordCredentialListResult",
-              "canonicalReference": "graphrbac-data-plane!PasswordCredentialListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2987,7 +2757,7 @@
           "name": "ApplicationsListPasswordCredentialsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3006,28 +2776,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ApplicationListResult",
-              "canonicalReference": "graphrbac-data-plane!ApplicationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3035,7 +2783,7 @@
           "name": "ApplicationsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3049,12 +2797,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3082,12 +2830,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3115,12 +2863,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3148,12 +2896,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3628,16 +3376,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -3646,7 +3385,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -3886,12 +3625,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3919,12 +3658,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3957,28 +3696,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ApplicationListResult",
-              "canonicalReference": "graphrbac-data-plane!ApplicationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3986,7 +3703,7 @@
           "name": "DeletedApplicationsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -4000,12 +3717,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -4064,28 +3781,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ApplicationListResult",
-              "canonicalReference": "graphrbac-data-plane!ApplicationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -4093,7 +3788,7 @@
           "name": "DeletedApplicationsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -4107,12 +3802,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -4145,28 +3840,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Application",
-              "canonicalReference": "graphrbac-data-plane!Application:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -4174,7 +3847,7 @@
           "name": "DeletedApplicationsRestoreResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -4806,12 +4479,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -4844,28 +4517,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Domain",
-              "canonicalReference": "graphrbac-data-plane!Domain:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -4873,7 +4524,7 @@
           "name": "DomainsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -4887,12 +4538,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -4951,28 +4602,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DomainListResult",
-              "canonicalReference": "graphrbac-data-plane!DomainListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -4980,7 +4609,7 @@
           "name": "DomainsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5215,21 +4844,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -5260,21 +4880,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "tenantID",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -5540,12 +5160,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClient",
-              "canonicalReference": "@azure/core-http!ServiceClient:class"
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -5566,21 +5186,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -5611,21 +5222,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "tenantID",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -5726,12 +5337,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClientOptions",
-              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+              "canonicalReference": "@azure/core-client!ServiceClientOptions:interface"
             },
             {
               "kind": "Content",
@@ -6340,16 +5951,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -6358,7 +5960,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6429,16 +6031,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -6447,7 +6040,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6583,16 +6176,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -6601,7 +6185,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7241,16 +6825,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -7259,7 +6834,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7329,16 +6904,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -7347,7 +6913,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7390,12 +6956,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7423,12 +6989,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7456,12 +7022,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7494,28 +7060,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ADGroup",
-              "canonicalReference": "graphrbac-data-plane!ADGroup:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7523,7 +7067,7 @@
           "name": "GroupsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7537,12 +7081,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7570,12 +7114,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7608,28 +7152,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7637,7 +7159,7 @@
           "name": "GroupsGetGroupMembersNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7651,12 +7173,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7689,28 +7211,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7718,7 +7218,7 @@
           "name": "GroupsGetGroupMembersResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7732,12 +7232,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7770,28 +7270,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "GroupGetMemberGroupsResult",
-              "canonicalReference": "graphrbac-data-plane!GroupGetMemberGroupsResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7799,7 +7277,7 @@
           "name": "GroupsGetMemberGroupsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7813,12 +7291,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7851,28 +7329,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ADGroup",
-              "canonicalReference": "graphrbac-data-plane!ADGroup:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7880,7 +7336,7 @@
           "name": "GroupsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7894,12 +7350,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7932,28 +7388,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "CheckGroupMembershipResult",
-              "canonicalReference": "graphrbac-data-plane!CheckGroupMembershipResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7961,7 +7395,7 @@
           "name": "GroupsIsMemberOfResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7975,12 +7409,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8013,28 +7447,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "GroupListResult",
-              "canonicalReference": "graphrbac-data-plane!GroupListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8042,7 +7454,7 @@
           "name": "GroupsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8056,12 +7468,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8115,12 +7527,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8153,28 +7565,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8182,7 +7572,7 @@
           "name": "GroupsListOwnersNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8196,12 +7586,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8234,28 +7624,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8263,7 +7631,7 @@
           "name": "GroupsListOwnersResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8282,28 +7650,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "GroupListResult",
-              "canonicalReference": "graphrbac-data-plane!GroupListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8311,7 +7657,7 @@
           "name": "GroupsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8325,12 +7671,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8358,12 +7704,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -9335,16 +8681,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -9353,7 +8690,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -9520,12 +8857,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -9585,28 +8922,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OAuth2PermissionGrantDef",
-              "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantDef:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -9614,7 +8929,7 @@
           "name": "OAuth2PermissionGrantCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -9870,12 +9185,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -9903,12 +9218,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -9941,28 +9256,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OAuth2PermissionGrantListResult",
-              "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -9970,7 +9263,7 @@
           "name": "OAuth2PermissionGrantListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -9984,12 +9277,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -10048,28 +9341,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OAuth2PermissionGrantListResult",
-              "canonicalReference": "graphrbac-data-plane!OAuth2PermissionGrantListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -10077,7 +9348,7 @@
           "name": "OAuth2PermissionGrantListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -10325,12 +9596,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -10363,28 +9634,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -10392,7 +9641,7 @@
           "name": "ObjectsGetObjectsByObjectIdsNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -10406,12 +9655,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -10444,28 +9693,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -10473,7 +9700,7 @@
           "name": "ObjectsGetObjectsByObjectIdsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -12042,16 +11269,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -12060,7 +11278,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12547,16 +11765,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -12565,7 +11774,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12636,16 +11845,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -12654,7 +11854,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12725,16 +11925,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -12743,7 +11934,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -12786,12 +11977,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -12824,28 +12015,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ServicePrincipal",
-              "canonicalReference": "graphrbac-data-plane!ServicePrincipal:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -12853,7 +12022,7 @@
           "name": "ServicePrincipalsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -12867,12 +12036,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -12900,12 +12069,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -12938,28 +12107,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ServicePrincipal",
-              "canonicalReference": "graphrbac-data-plane!ServicePrincipal:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -12967,7 +12114,7 @@
           "name": "ServicePrincipalsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -12981,12 +12128,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13019,28 +12166,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "KeyCredentialListResult",
-              "canonicalReference": "graphrbac-data-plane!KeyCredentialListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13048,7 +12173,7 @@
           "name": "ServicePrincipalsListKeyCredentialsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13062,12 +12187,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13100,28 +12225,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ServicePrincipalListResult",
-              "canonicalReference": "graphrbac-data-plane!ServicePrincipalListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13129,7 +12232,7 @@
           "name": "ServicePrincipalsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13143,12 +12246,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13202,12 +12305,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13240,28 +12343,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13269,7 +12350,7 @@
           "name": "ServicePrincipalsListOwnersNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13283,12 +12364,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13321,28 +12402,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13350,7 +12409,7 @@
           "name": "ServicePrincipalsListOwnersResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13364,12 +12423,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13402,28 +12461,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PasswordCredentialListResult",
-              "canonicalReference": "graphrbac-data-plane!PasswordCredentialListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13431,7 +12468,7 @@
           "name": "ServicePrincipalsListPasswordCredentialsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13450,28 +12487,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ServicePrincipalListResult",
-              "canonicalReference": "graphrbac-data-plane!ServicePrincipalListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13479,7 +12494,7 @@
           "name": "ServicePrincipalsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13493,12 +12508,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13526,12 +12541,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13559,12 +12574,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13827,12 +12842,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13865,28 +12880,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "User",
-              "canonicalReference": "graphrbac-data-plane!User:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13894,7 +12887,7 @@
           "name": "SignedInUserGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13908,12 +12901,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -13946,28 +12939,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -13975,7 +12946,7 @@
           "name": "SignedInUserListOwnedObjectsNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -13989,12 +12960,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -14027,28 +12998,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DirectoryObjectListResult",
-              "canonicalReference": "graphrbac-data-plane!DirectoryObjectListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -14056,7 +13005,7 @@
           "name": "SignedInUserListOwnedObjectsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -14753,16 +13702,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -14771,7 +13711,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -15119,16 +14059,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -15137,7 +14068,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -15180,12 +14111,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15218,28 +14149,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "User",
-              "canonicalReference": "graphrbac-data-plane!User:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -15247,7 +14156,7 @@
           "name": "UsersCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -15261,12 +14170,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15294,12 +14203,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15332,28 +14241,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "UserGetMemberGroupsResult",
-              "canonicalReference": "graphrbac-data-plane!UserGetMemberGroupsResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -15361,7 +14248,7 @@
           "name": "UsersGetMemberGroupsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -15375,12 +14262,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15413,28 +14300,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "User",
-              "canonicalReference": "graphrbac-data-plane!User:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -15442,7 +14307,7 @@
           "name": "UsersGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -15456,12 +14321,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15494,28 +14359,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "UserListResult",
-              "canonicalReference": "graphrbac-data-plane!UserListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -15523,7 +14366,7 @@
           "name": "UsersListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -15537,12 +14380,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -15626,28 +14469,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "UserListResult",
-              "canonicalReference": "graphrbac-data-plane!UserListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -15655,7 +14476,7 @@
           "name": "UsersListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -15669,12 +14490,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",

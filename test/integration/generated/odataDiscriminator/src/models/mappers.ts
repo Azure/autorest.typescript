@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const LexicalAnalyzer: coreClient.CompositeMapper = {
+export const LexicalAnalyzer: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LexicalAnalyzer",
@@ -36,7 +36,7 @@ export const LexicalAnalyzer: coreClient.CompositeMapper = {
   }
 };
 
-export const PathHierarchyTokenizerV2: coreClient.CompositeMapper = {
+export const PathHierarchyTokenizerV2: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PathHierarchyTokenizerV2",
@@ -59,7 +59,7 @@ export const PathHierarchyTokenizerV2: coreClient.CompositeMapper = {
   }
 };
 
-export const PatternAnalyzer: coreClient.CompositeMapper = {
+export const PatternAnalyzer: coreHttp.CompositeMapper = {
   serializedName: "#Microsoft.Azure.Search.PatternAnalyzer",
   type: {
     name: "Composite",
@@ -97,7 +97,7 @@ export const PatternAnalyzer: coreClient.CompositeMapper = {
   }
 };
 
-export const LuceneStandardAnalyzer: coreClient.CompositeMapper = {
+export const LuceneStandardAnalyzer: coreHttp.CompositeMapper = {
   serializedName: "#Microsoft.Azure.Search.StandardAnalyzer",
   type: {
     name: "Composite",
@@ -131,7 +131,7 @@ export const LuceneStandardAnalyzer: coreClient.CompositeMapper = {
   }
 };
 
-export const StopAnalyzer: coreClient.CompositeMapper = {
+export const StopAnalyzer: coreHttp.CompositeMapper = {
   serializedName: "#Microsoft.Azure.Search.StopAnalyzer",
   type: {
     name: "Composite",

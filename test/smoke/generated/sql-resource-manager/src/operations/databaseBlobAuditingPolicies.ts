@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DatabaseBlobAuditingPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -134,16 +134,10 @@ export class DatabaseBlobAuditingPoliciesImpl
     databaseName: string,
     options?: DatabaseBlobAuditingPoliciesGetOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       getOperationSpec
-    ) as Promise<DatabaseBlobAuditingPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -162,17 +156,10 @@ export class DatabaseBlobAuditingPoliciesImpl
     parameters: DatabaseBlobAuditingPolicy,
     options?: DatabaseBlobAuditingPoliciesCreateOrUpdateOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<DatabaseBlobAuditingPoliciesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -189,16 +176,10 @@ export class DatabaseBlobAuditingPoliciesImpl
     databaseName: string,
     options?: DatabaseBlobAuditingPoliciesListByDatabaseOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesListByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       listByDatabaseOperationSpec
-    ) as Promise<DatabaseBlobAuditingPoliciesListByDatabaseResponse>;
+    );
   }
 
   /**
@@ -217,23 +198,16 @@ export class DatabaseBlobAuditingPoliciesImpl
     nextLink: string,
     options?: DatabaseBlobAuditingPoliciesListByDatabaseNextOptionalParams
   ): Promise<DatabaseBlobAuditingPoliciesListByDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, nextLink, options },
       listByDatabaseNextOperationSpec
-    ) as Promise<DatabaseBlobAuditingPoliciesListByDatabaseNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/auditingSettings/{blobAuditingPolicyName}",
   httpMethod: "GET",
@@ -255,7 +229,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/auditingSettings/{blobAuditingPolicyName}",
   httpMethod: "PUT",
@@ -282,7 +256,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/auditingSettings",
   httpMethod: "GET",
@@ -303,7 +277,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

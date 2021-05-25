@@ -7,7 +7,7 @@
  */
 
 import { VpnSiteLinkConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -43,23 +43,22 @@ export class VpnSiteLinkConnectionsImpl implements VpnSiteLinkConnections {
     linkConnectionName: string,
     options?: VpnSiteLinkConnectionsGetOptionalParams
   ): Promise<VpnSiteLinkConnectionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      linkConnectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        gatewayName,
+        connectionName,
+        linkConnectionName,
+        options
+      },
       getOperationSpec
-    ) as Promise<VpnSiteLinkConnectionsGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}/vpnLinkConnections/{linkConnectionName}",
   httpMethod: "GET",

@@ -9,8 +9,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
@@ -94,5 +95,5 @@ export const pageRange: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };

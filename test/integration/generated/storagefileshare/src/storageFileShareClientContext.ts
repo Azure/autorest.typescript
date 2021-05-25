@@ -1,7 +1,10 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { StorageFileShareClientOptionalParams } from "./models";
 
-export class StorageFileShareClientContext extends coreClient.ServiceClient {
+const packageName = "storagefileshare";
+const packageVersion = "1.0.0-preview1";
+
+export class StorageFileShareClientContext extends coreHttp.ServiceClient {
   url: string;
   fileRangeWriteFromUrl: string;
   version: string;
@@ -21,16 +24,16 @@ export class StorageFileShareClientContext extends coreClient.ServiceClient {
     if (!options) {
       options = {};
     }
-    const defaults: StorageFileShareClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "{url}"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "{url}";
     // Parameter assignments
     this.url = url;
 

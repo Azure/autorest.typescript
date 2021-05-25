@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GremlinDatabaseGetResults,
@@ -128,9 +127,7 @@ export interface GremlinResources {
     accountName: string,
     databaseName: string,
     options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Gremlin database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -143,7 +140,7 @@ export interface GremlinResources {
     accountName: string,
     databaseName: string,
     options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the RUs per second of the Gremlin database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -265,9 +262,7 @@ export interface GremlinResources {
     databaseName: string,
     graphName: string,
     options?: GremlinResourcesDeleteGremlinGraphOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Gremlin graph.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -282,7 +277,7 @@ export interface GremlinResources {
     databaseName: string,
     graphName: string,
     options?: GremlinResourcesDeleteGremlinGraphOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the Gremlin graph throughput under an existing Azure Cosmos DB database account with the
    * provided name.

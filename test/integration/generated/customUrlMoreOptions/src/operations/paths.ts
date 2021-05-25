@@ -7,7 +7,7 @@
  */
 
 import { Paths } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CustomUrlMoreOptionsClientContext } from "../customUrlMoreOptionsClientContext";
@@ -37,17 +37,23 @@ export class PathsImpl implements Paths {
     secret: string,
     keyName: string,
     options?: PathsGetEmptyOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      vault,
+      secret,
+      keyName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { vault, secret, keyName, options },
+      operationArguments,
       getEmptyOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getEmptyOperationSpec: coreClient.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/customuri/{subscriptionId}/{keyName}",
   httpMethod: "GET",
   responses: {

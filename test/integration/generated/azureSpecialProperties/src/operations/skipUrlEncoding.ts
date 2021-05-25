@@ -7,7 +7,7 @@
  */
 
 import { SkipUrlEncoding } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -41,11 +41,15 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   getMethodPathValid(
     unencodedPathParam: string,
     options?: SkipUrlEncodingGetMethodPathValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      unencodedPathParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { unencodedPathParam, options },
+      operationArguments,
       getMethodPathValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -56,11 +60,15 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   getPathValid(
     unencodedPathParam: string,
     options?: SkipUrlEncodingGetPathValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      unencodedPathParam,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { unencodedPathParam, options },
+      operationArguments,
       getPathValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -69,11 +77,14 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getSwaggerPathValid(
     options?: SkipUrlEncodingGetSwaggerPathValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSwaggerPathValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -84,11 +95,15 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   getMethodQueryValid(
     q1: string,
     options?: SkipUrlEncodingGetMethodQueryValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      q1,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { q1, options },
+      operationArguments,
       getMethodQueryValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -97,11 +112,14 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getMethodQueryNull(
     options?: SkipUrlEncodingGetMethodQueryNullOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getMethodQueryNullOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -112,11 +130,15 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   getPathQueryValid(
     q1: string,
     options?: SkipUrlEncodingGetPathQueryValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      q1,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { q1, options },
+      operationArguments,
       getPathQueryValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -125,17 +147,20 @@ export class SkipUrlEncodingImpl implements SkipUrlEncoding {
    */
   getSwaggerQueryValid(
     options?: SkipUrlEncodingGetSwaggerQueryValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSwaggerQueryValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getMethodPathValidOperationSpec: coreClient.OperationSpec = {
+const getMethodPathValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/method/path/valid/{unencodedPathParam}",
   httpMethod: "GET",
   responses: {
@@ -148,7 +173,7 @@ const getMethodPathValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPathValidOperationSpec: coreClient.OperationSpec = {
+const getPathValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/path/path/valid/{unencodedPathParam}",
   httpMethod: "GET",
   responses: {
@@ -161,7 +186,7 @@ const getPathValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSwaggerPathValidOperationSpec: coreClient.OperationSpec = {
+const getSwaggerPathValidOperationSpec: coreHttp.OperationSpec = {
   path:
     "/azurespecials/skipUrlEncoding/swagger/path/valid/{unencodedPathParam}",
   httpMethod: "GET",
@@ -175,7 +200,7 @@ const getSwaggerPathValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMethodQueryValidOperationSpec: coreClient.OperationSpec = {
+const getMethodQueryValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/method/query/valid",
   httpMethod: "GET",
   responses: {
@@ -189,7 +214,7 @@ const getMethodQueryValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMethodQueryNullOperationSpec: coreClient.OperationSpec = {
+const getMethodQueryNullOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/method/query/null",
   httpMethod: "GET",
   responses: {
@@ -203,7 +228,7 @@ const getMethodQueryNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPathQueryValidOperationSpec: coreClient.OperationSpec = {
+const getPathQueryValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/path/query/valid",
   httpMethod: "GET",
   responses: {
@@ -217,7 +242,7 @@ const getPathQueryValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSwaggerQueryValidOperationSpec: coreClient.OperationSpec = {
+const getSwaggerQueryValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/skipUrlEncoding/swagger/query/valid",
   httpMethod: "GET",
   responses: {

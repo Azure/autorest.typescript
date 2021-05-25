@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationDefinition,
@@ -58,9 +57,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -71,7 +68,7 @@ export interface ApplicationDefinitions {
     resourceGroupName: string,
     applicationDefinitionName: string,
     options?: ApplicationDefinitionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a new managed application definition.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -126,9 +123,7 @@ export interface ApplicationDefinitions {
   beginDeleteById(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,
@@ -140,7 +135,7 @@ export interface ApplicationDefinitions {
   beginDeleteByIdAndWait(
     applicationDefinitionId: string,
     options?: ApplicationDefinitionsDeleteByIdOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a new managed application definition.
    * @param applicationDefinitionId The fully qualified ID of the managed application definition,

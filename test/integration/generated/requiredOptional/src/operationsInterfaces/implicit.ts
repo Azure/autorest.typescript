@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
@@ -27,54 +28,54 @@ export interface Implicit {
   getRequiredPath(
     pathParameter: string,
     options?: ImplicitGetRequiredPathOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional query parameter
    * @param options The options parameters.
    */
   putOptionalQuery(
     options?: ImplicitPutOptionalQueryOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional header parameter
    * @param options The options parameters.
    */
   putOptionalHeader(
     options?: ImplicitPutOptionalHeaderOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional body parameter
    * @param options The options parameters.
    */
   putOptionalBody(
     options?: ImplicitPutOptionalBodyOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional body parameter
    * @param options The options parameters.
    */
   putOptionalBinaryBody(
     options?: ImplicitPutOptionalBinaryBodyOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly required path parameter
    * @param options The options parameters.
    */
   getRequiredGlobalPath(
     options?: ImplicitGetRequiredGlobalPathOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly required query parameter
    * @param options The options parameters.
    */
   getRequiredGlobalQuery(
     options?: ImplicitGetRequiredGlobalQueryOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Test implicitly optional query parameter
    * @param options The options parameters.
    */
   getOptionalGlobalQuery(
     options?: ImplicitGetOptionalGlobalQueryOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

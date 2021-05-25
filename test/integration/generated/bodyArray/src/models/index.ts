@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -57,570 +57,1028 @@ export type Enum1 = string;
 export type FooEnum = "foo1" | "foo2" | "foo3";
 
 /** Optional parameters. */
-export interface ArrayGetNullOptionalParams
-  extends coreClient.OperationOptions {}
+export interface ArrayGetNullOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type ArrayGetNullResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type ArrayGetInvalidResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
 export type ArrayGetEmptyResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetBooleanTfftOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanTfft operation. */
 export type ArrayGetBooleanTfftResponse = {
   /** The parsed response body. */
   body: boolean[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: boolean[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutBooleanTfftOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetBooleanInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidNull operation. */
 export type ArrayGetBooleanInvalidNullResponse = {
   /** The parsed response body. */
   body: boolean[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: boolean[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetBooleanInvalidStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBooleanInvalidString operation. */
 export type ArrayGetBooleanInvalidStringResponse = {
   /** The parsed response body. */
   body: boolean[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: boolean[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetIntegerValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getIntegerValid operation. */
 export type ArrayGetIntegerValidResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutIntegerValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetIntInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getIntInvalidNull operation. */
 export type ArrayGetIntInvalidNullResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetIntInvalidStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getIntInvalidString operation. */
 export type ArrayGetIntInvalidStringResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetLongValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongValid operation. */
 export type ArrayGetLongValidResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutLongValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetLongInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongInvalidNull operation. */
 export type ArrayGetLongInvalidNullResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetLongInvalidStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getLongInvalidString operation. */
 export type ArrayGetLongInvalidStringResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetFloatValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloatValid operation. */
 export type ArrayGetFloatValidResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutFloatValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetFloatInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidNull operation. */
 export type ArrayGetFloatInvalidNullResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetFloatInvalidStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFloatInvalidString operation. */
 export type ArrayGetFloatInvalidStringResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDoubleValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleValid operation. */
 export type ArrayGetDoubleValidResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutDoubleValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetDoubleInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidNull operation. */
 export type ArrayGetDoubleInvalidNullResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDoubleInvalidStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDoubleInvalidString operation. */
 export type ArrayGetDoubleInvalidStringResponse = {
   /** The parsed response body. */
   body: number[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetStringValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringValid operation. */
 export type ArrayGetStringValidResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutStringValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetEnumValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEnumValid operation. */
 export type ArrayGetEnumValidResponse = {
   /** The parsed response body. */
   body: FooEnum[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: FooEnum[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutEnumValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetStringEnumValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringEnumValid operation. */
 export type ArrayGetStringEnumValidResponse = {
   /** The parsed response body. */
   body: Enum0[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Enum0[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutStringEnumValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetStringWithNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringWithNull operation. */
 export type ArrayGetStringWithNullResponse = {
   /** The parsed response body. */
   body: (string | null)[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: (string | null)[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetStringWithInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getStringWithInvalid operation. */
 export type ArrayGetStringWithInvalidResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetUuidValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUuidValid operation. */
 export type ArrayGetUuidValidResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutUuidValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetUuidInvalidCharsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUuidInvalidChars operation. */
 export type ArrayGetUuidInvalidCharsResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDateValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateValid operation. */
 export type ArrayGetDateValidResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutDateValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetDateInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateInvalidNull operation. */
 export type ArrayGetDateInvalidNullResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDateInvalidCharsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateInvalidChars operation. */
 export type ArrayGetDateInvalidCharsResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDateTimeValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeValid operation. */
 export type ArrayGetDateTimeValidResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutDateTimeValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetDateTimeInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidNull operation. */
 export type ArrayGetDateTimeInvalidNullResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDateTimeInvalidCharsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeInvalidChars operation. */
 export type ArrayGetDateTimeInvalidCharsResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetDateTimeRfc1123ValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDateTimeRfc1123Valid operation. */
 export type ArrayGetDateTimeRfc1123ValidResponse = {
   /** The parsed response body. */
   body: Date[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutDateTimeRfc1123ValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetDurationValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDurationValid operation. */
 export type ArrayGetDurationValidResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutDurationValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetByteValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByteValid operation. */
 export type ArrayGetByteValidResponse = {
   /** The parsed response body. */
   body: Uint8Array[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutByteValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetByteInvalidNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getByteInvalidNull operation. */
 export type ArrayGetByteInvalidNullResponse = {
   /** The parsed response body. */
   body: Uint8Array[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetBase64UrlOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBase64Url operation. */
 export type ArrayGetBase64UrlResponse = {
   /** The parsed response body. */
   body: Uint8Array[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetComplexNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexNull operation. */
-export type ArrayGetComplexNullResponse = (Product | null)[];
+export type ArrayGetComplexNullResponse = (Product | null)[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: (Product | null)[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetComplexEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexEmpty operation. */
-export type ArrayGetComplexEmptyResponse = Product[];
+export type ArrayGetComplexEmptyResponse = Product[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetComplexItemNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexItemNull operation. */
-export type ArrayGetComplexItemNullResponse = (Product | null)[];
+export type ArrayGetComplexItemNullResponse = (Product | null)[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: (Product | null)[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetComplexItemEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexItemEmpty operation. */
-export type ArrayGetComplexItemEmptyResponse = Product[];
+export type ArrayGetComplexItemEmptyResponse = Product[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetComplexValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexValid operation. */
-export type ArrayGetComplexValidResponse = Product[];
+export type ArrayGetComplexValidResponse = Product[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Product[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayPutComplexValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetArrayNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayNull operation. */
 export type ArrayGetArrayNullResponse = {
   /** The parsed response body. */
   body: string[][];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[][];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetArrayEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayEmpty operation. */
 export type ArrayGetArrayEmptyResponse = {
   /** The parsed response body. */
   body: string[][];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[][];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetArrayItemNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayItemNull operation. */
 export type ArrayGetArrayItemNullResponse = {
   /** The parsed response body. */
   body: (string[] | null)[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: (string[] | null)[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetArrayItemEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayItemEmpty operation. */
 export type ArrayGetArrayItemEmptyResponse = {
   /** The parsed response body. */
   body: string[][];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[][];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayGetArrayValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getArrayValid operation. */
 export type ArrayGetArrayValidResponse = {
   /** The parsed response body. */
   body: string[][];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[][];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayPutArrayValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ArrayGetDictionaryNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryNull operation. */
 export type ArrayGetDictionaryNullResponse = ({
   [propertyName: string]: string;
-} | null)[];
+} | null)[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ({ [propertyName: string]: string } | null)[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetDictionaryEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryEmpty operation. */
 export type ArrayGetDictionaryEmptyResponse = {
   [propertyName: string]: string;
-}[];
+}[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: { [propertyName: string]: string }[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetDictionaryItemNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemNull operation. */
 export type ArrayGetDictionaryItemNullResponse = ({
   [propertyName: string]: string;
-} | null)[];
+} | null)[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ({ [propertyName: string]: string } | null)[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetDictionaryItemEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryItemEmpty operation. */
 export type ArrayGetDictionaryItemEmptyResponse = {
   [propertyName: string]: string;
-}[];
+}[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: { [propertyName: string]: string }[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayGetDictionaryValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getDictionaryValid operation. */
 export type ArrayGetDictionaryValidResponse = {
   [propertyName: string]: string;
-}[];
+}[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: { [propertyName: string]: string }[];
+  };
+};
 
 /** Optional parameters. */
 export interface ArrayPutDictionaryValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface BodyArrayClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

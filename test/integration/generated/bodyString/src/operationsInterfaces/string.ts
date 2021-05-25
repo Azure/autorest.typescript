@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   StringGetNullOptionalParams,
   StringGetNullResponse,
@@ -43,7 +44,9 @@ export interface StringOperations {
    * Set string value null
    * @param options The options parameters.
    */
-  putNull(options?: StringPutNullOptionalParams): Promise<void>;
+  putNull(
+    options?: StringPutNullOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get empty string value value ''
    * @param options The options parameters.
@@ -55,7 +58,9 @@ export interface StringOperations {
    * Set string value empty ''
    * @param options The options parameters.
    */
-  putEmpty(options?: StringPutEmptyOptionalParams): Promise<void>;
+  putEmpty(
+    options?: StringPutEmptyOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
@@ -67,7 +72,9 @@ export interface StringOperations {
    * Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'
    * @param options The options parameters.
    */
-  putMbcs(options?: StringPutMbcsOptionalParams): Promise<void>;
+  putMbcs(
+    options?: StringPutMbcsOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all
    * good men to come to the aid of their country<tab><space><space>'
@@ -81,7 +88,9 @@ export interface StringOperations {
    * good men to come to the aid of their country<tab><space><space>'
    * @param options The options parameters.
    */
-  putWhitespace(options?: StringPutWhitespaceOptionalParams): Promise<void>;
+  putWhitespace(
+    options?: StringPutWhitespaceOptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get String value when no string value is sent in response payload
    * @param options The options parameters.
@@ -111,7 +120,7 @@ export interface StringOperations {
   putBase64UrlEncoded(
     stringBody: Uint8Array,
     options?: StringPutBase64UrlEncodedOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get null value that is expected to be base64url encoded
    * @param options The options parameters.

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FlowLog,
@@ -94,9 +93,7 @@ export interface FlowLogs {
     networkWatcherName: string,
     flowLogName: string,
     options?: FlowLogsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified flow log resource.
    * @param resourceGroupName The name of the resource group.
@@ -109,5 +106,5 @@ export interface FlowLogs {
     networkWatcherName: string,
     flowLogName: string,
     options?: FlowLogsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

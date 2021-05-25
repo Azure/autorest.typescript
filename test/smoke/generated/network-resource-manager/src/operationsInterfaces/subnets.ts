@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Subnet,
@@ -50,9 +49,7 @@ export interface Subnets {
     virtualNetworkName: string,
     subnetName: string,
     options?: SubnetsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified subnet.
    * @param resourceGroupName The name of the resource group.
@@ -65,7 +62,7 @@ export interface Subnets {
     virtualNetworkName: string,
     subnetName: string,
     options?: SubnetsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified subnet by virtual network and resource group.
    * @param resourceGroupName The name of the resource group.
@@ -129,9 +126,7 @@ export interface Subnets {
     subnetName: string,
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
     options?: SubnetsPrepareNetworkPoliciesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Prepares a subnet by applying network intent policies.
    * @param resourceGroupName The name of the resource group.
@@ -147,7 +142,7 @@ export interface Subnets {
     subnetName: string,
     prepareNetworkPoliciesRequestParameters: PrepareNetworkPoliciesRequest,
     options?: SubnetsPrepareNetworkPoliciesOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Unprepares a subnet by removing network intent policies.
    * @param resourceGroupName The name of the resource group.
@@ -163,9 +158,7 @@ export interface Subnets {
     subnetName: string,
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
     options?: SubnetsUnprepareNetworkPoliciesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Unprepares a subnet by removing network intent policies.
    * @param resourceGroupName The name of the resource group.
@@ -181,5 +174,5 @@ export interface Subnets {
     subnetName: string,
     unprepareNetworkPoliciesRequestParameters: UnprepareNetworkPoliciesRequest,
     options?: SubnetsUnprepareNetworkPoliciesOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

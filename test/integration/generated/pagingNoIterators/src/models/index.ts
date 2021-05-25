@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ProductResultValue {
   value?: Product[];
@@ -120,71 +120,143 @@ export type OperationResultStatus = string;
 
 /** Optional parameters. */
 export interface PagingGetNoItemNamePagesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNoItemNamePages operation. */
-export type PagingGetNoItemNamePagesResponse = ProductResultValue;
+export type PagingGetNoItemNamePagesResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetNullNextLinkNamePagesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNullNextLinkNamePages operation. */
-export type PagingGetNullNextLinkNamePagesResponse = ProductResult;
+export type PagingGetNullNextLinkNamePagesResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetSinglePagesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSinglePages operation. */
-export type PagingGetSinglePagesResponse = ProductResult;
+export type PagingGetSinglePagesResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the firstResponseEmpty operation. */
-export type PagingFirstResponseEmptyResponse = ProductResultValue;
+export type PagingFirstResponseEmptyResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
   clientRequestId?: string;
 }
 
 /** Contains response data for the getMultiplePages operation. */
-export type PagingGetMultiplePagesResponse = ProductResult;
+export type PagingGetMultiplePagesResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetWithQueryParamsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWithQueryParams operation. */
-export type PagingGetWithQueryParamsResponse = ProductResult;
+export type PagingGetWithQueryParamsResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingNextOperationWithQueryParamsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the nextOperationWithQueryParams operation. */
-export type PagingNextOperationWithQueryParamsResponse = ProductResult;
+export type PagingNextOperationWithQueryParamsResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetOdataMultiplePagesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
   clientRequestId?: string;
 }
 
 /** Contains response data for the getOdataMultiplePages operation. */
-export type PagingGetOdataMultiplePagesResponse = OdataProductResult;
+export type PagingGetOdataMultiplePagesResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesWithOffsetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   clientRequestId?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -193,60 +265,132 @@ export interface PagingGetMultiplePagesWithOffsetOptionalParams
 }
 
 /** Contains response data for the getMultiplePagesWithOffset operation. */
-export type PagingGetMultiplePagesWithOffsetResponse = ProductResult;
+export type PagingGetMultiplePagesWithOffsetResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesRetryFirstOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetryFirst operation. */
-export type PagingGetMultiplePagesRetryFirstResponse = ProductResult;
+export type PagingGetMultiplePagesRetryFirstResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesRetrySecondOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetrySecond operation. */
-export type PagingGetMultiplePagesRetrySecondResponse = ProductResult;
+export type PagingGetMultiplePagesRetrySecondResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetSinglePagesFailureOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSinglePagesFailure operation. */
-export type PagingGetSinglePagesFailureResponse = ProductResult;
+export type PagingGetSinglePagesFailureResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFailureOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailure operation. */
-export type PagingGetMultiplePagesFailureResponse = ProductResult;
+export type PagingGetMultiplePagesFailureResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFailureUriOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailureUri operation. */
-export type PagingGetMultiplePagesFailureUriResponse = ProductResult;
+export type PagingGetMultiplePagesFailureUriResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFragmentNextLinkOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFragmentNextLink operation. */
-export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult;
+export type PagingGetMultiplePagesFragmentNextLinkResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFragmentWithGroupingNextLink operation. */
-export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult;
+export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesLROOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
@@ -257,75 +401,156 @@ export interface PagingGetMultiplePagesLROOptionalParams
 }
 
 /** Contains response data for the getMultiplePagesLRO operation. */
-export type PagingGetMultiplePagesLROResponse = ProductResult;
+export type PagingGetMultiplePagesLROResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingNextFragmentOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the nextFragment operation. */
-export type PagingNextFragmentResponse = OdataProductResult;
+export type PagingNextFragmentResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingNextFragmentWithGroupingOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the nextFragmentWithGrouping operation. */
-export type PagingNextFragmentWithGroupingResponse = OdataProductResult;
+export type PagingNextFragmentWithGroupingResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientName operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName;
+export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValueWithXMSClientName;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetNoItemNamePagesNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNoItemNamePagesNext operation. */
-export type PagingGetNoItemNamePagesNextResponse = ProductResultValue;
+export type PagingGetNoItemNamePagesNextResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetSinglePagesNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSinglePagesNext operation. */
-export type PagingGetSinglePagesNextResponse = ProductResult;
+export type PagingGetSinglePagesNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingFirstResponseEmptyNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the firstResponseEmptyNext operation. */
-export type PagingFirstResponseEmptyNextResponse = ProductResultValue;
+export type PagingFirstResponseEmptyNextResponse = ProductResultValue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValue;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesNextOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesOptions?: PagingGetMultiplePagesOptions;
   clientRequestId?: string;
 }
 
 /** Contains response data for the getMultiplePagesNext operation. */
-export type PagingGetMultiplePagesNextResponse = ProductResult;
+export type PagingGetMultiplePagesNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetOdataMultiplePagesNextOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetOdataMultiplePagesOptions?: PagingGetOdataMultiplePagesOptions;
   clientRequestId?: string;
 }
 
 /** Contains response data for the getOdataMultiplePagesNext operation. */
-export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult;
+export type PagingGetOdataMultiplePagesNextResponse = OdataProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: OdataProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesWithOffsetNextOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   clientRequestId?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -334,64 +559,136 @@ export interface PagingGetMultiplePagesWithOffsetNextOptionalParams
 }
 
 /** Contains response data for the getMultiplePagesWithOffsetNext operation. */
-export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult;
+export type PagingGetMultiplePagesWithOffsetNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesRetryFirstNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetryFirstNext operation. */
-export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult;
+export type PagingGetMultiplePagesRetryFirstNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesRetrySecondNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesRetrySecondNext operation. */
-export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult;
+export type PagingGetMultiplePagesRetrySecondNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetSinglePagesFailureNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSinglePagesFailureNext operation. */
-export type PagingGetSinglePagesFailureNextResponse = ProductResult;
+export type PagingGetSinglePagesFailureNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFailureNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailureNext operation. */
-export type PagingGetMultiplePagesFailureNextResponse = ProductResult;
+export type PagingGetMultiplePagesFailureNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesFailureUriNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getMultiplePagesFailureUriNext operation. */
-export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult;
+export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetMultiplePagesLRONextOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
 }
 
 /** Contains response data for the getMultiplePagesLRONext operation. */
-export type PagingGetMultiplePagesLRONextResponse = ProductResult;
+export type PagingGetMultiplePagesLRONextResponse = ProductResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResult;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getPagingModelWithItemNameWithXMSClientNameNext operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName;
+export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ProductResultValueWithXMSClientName;
+  };
+};
 
 /** Optional parameters. */
 export interface PagingNoIteratorsClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

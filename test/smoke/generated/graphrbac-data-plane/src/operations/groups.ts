@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Groups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -351,14 +351,10 @@ export class GroupsImpl implements Groups {
     parameters: CheckGroupMembershipParameters,
     options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       isMemberOfOperationSpec
-    ) as Promise<GroupsIsMemberOfResponse>;
+    );
   }
 
   /**
@@ -371,16 +367,11 @@ export class GroupsImpl implements Groups {
     groupObjectId: string,
     memberObjectId: string,
     options?: GroupsRemoveMemberOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      groupObjectId,
-      memberObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { groupObjectId, memberObjectId, options },
       removeMemberOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -394,16 +385,11 @@ export class GroupsImpl implements Groups {
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
     options?: GroupsAddMemberOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      groupObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { groupObjectId, parameters, options },
       addMemberOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -415,14 +401,10 @@ export class GroupsImpl implements Groups {
     parameters: GroupCreateParameters,
     options?: GroupsCreateOptionalParams
   ): Promise<GroupsCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       createOperationSpec
-    ) as Promise<GroupsCreateResponse>;
+    );
   }
 
   /**
@@ -432,13 +414,7 @@ export class GroupsImpl implements Groups {
   private _list(
     options?: GroupsListOptionalParams
   ): Promise<GroupsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<GroupsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -450,14 +426,10 @@ export class GroupsImpl implements Groups {
     objectId: string,
     options?: GroupsGetGroupMembersOptionalParams
   ): Promise<GroupsGetGroupMembersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       getGroupMembersOperationSpec
-    ) as Promise<GroupsGetGroupMembersResponse>;
+    );
   }
 
   /**
@@ -469,14 +441,10 @@ export class GroupsImpl implements Groups {
     objectId: string,
     options?: GroupsGetOptionalParams
   ): Promise<GroupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       getOperationSpec
-    ) as Promise<GroupsGetResponse>;
+    );
   }
 
   /**
@@ -487,15 +455,11 @@ export class GroupsImpl implements Groups {
   delete(
     objectId: string,
     options?: GroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -509,15 +473,10 @@ export class GroupsImpl implements Groups {
     parameters: GroupGetMemberGroupsParameters,
     options?: GroupsGetMemberGroupsOptionalParams
   ): Promise<GroupsGetMemberGroupsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       getMemberGroupsOperationSpec
-    ) as Promise<GroupsGetMemberGroupsResponse>;
+    );
   }
 
   /**
@@ -529,14 +488,10 @@ export class GroupsImpl implements Groups {
     objectId: string,
     options?: GroupsListOwnersOptionalParams
   ): Promise<GroupsListOwnersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       listOwnersOperationSpec
-    ) as Promise<GroupsListOwnersResponse>;
+    );
   }
 
   /**
@@ -550,16 +505,11 @@ export class GroupsImpl implements Groups {
     objectId: string,
     parameters: AddOwnerParameters,
     options?: GroupsAddOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       addOwnerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -572,16 +522,11 @@ export class GroupsImpl implements Groups {
     objectId: string,
     ownerObjectId: string,
     options?: GroupsRemoveOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      ownerObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, ownerObjectId, options },
       removeOwnerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -593,14 +538,10 @@ export class GroupsImpl implements Groups {
     nextLink: string,
     options?: GroupsListNextOptionalParams
   ): Promise<GroupsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<GroupsListNextResponse>;
+    );
   }
 
   /**
@@ -612,14 +553,10 @@ export class GroupsImpl implements Groups {
     nextLink: string,
     options?: GroupsGetGroupMembersNextOptionalParams
   ): Promise<GroupsGetGroupMembersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       getGroupMembersNextOperationSpec
-    ) as Promise<GroupsGetGroupMembersNextResponse>;
+    );
   }
 
   /**
@@ -633,21 +570,16 @@ export class GroupsImpl implements Groups {
     nextLink: string,
     options?: GroupsListOwnersNextOptionalParams
   ): Promise<GroupsListOwnersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, nextLink, options },
       listOwnersNextOperationSpec
-    ) as Promise<GroupsListOwnersNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const isMemberOfOperationSpec: coreHttp.OperationSpec = {
+const isMemberOfOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/isMemberOf",
   httpMethod: "POST",
   responses: {
@@ -665,7 +597,7 @@ const isMemberOfOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const removeMemberOperationSpec: coreHttp.OperationSpec = {
+const removeMemberOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{groupObjectId}/$links/members/{memberObjectId}",
   httpMethod: "DELETE",
   responses: {
@@ -684,7 +616,7 @@ const removeMemberOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const addMemberOperationSpec: coreHttp.OperationSpec = {
+const addMemberOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{groupObjectId}/$links/members",
   httpMethod: "POST",
   responses: {
@@ -704,7 +636,7 @@ const addMemberOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups",
   httpMethod: "POST",
   responses: {
@@ -722,7 +654,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups",
   httpMethod: "GET",
   responses: {
@@ -738,7 +670,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getGroupMembersOperationSpec: coreHttp.OperationSpec = {
+const getGroupMembersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/members",
   httpMethod: "GET",
   responses: {
@@ -754,7 +686,7 @@ const getGroupMembersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}",
   httpMethod: "GET",
   responses: {
@@ -770,7 +702,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}",
   httpMethod: "DELETE",
   responses: {
@@ -784,7 +716,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
+const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/getMemberGroups",
   httpMethod: "POST",
   responses: {
@@ -802,7 +734,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOwnersOperationSpec: coreHttp.OperationSpec = {
+const listOwnersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/owners",
   httpMethod: "GET",
   responses: {
@@ -818,7 +750,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const addOwnerOperationSpec: coreHttp.OperationSpec = {
+const addOwnerOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/$links/owners",
   httpMethod: "POST",
   responses: {
@@ -834,7 +766,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const removeOwnerOperationSpec: coreHttp.OperationSpec = {
+const removeOwnerOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/groups/{objectId}/$links/owners/{ownerObjectId}",
   httpMethod: "DELETE",
   responses: {
@@ -853,7 +785,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -869,7 +801,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getGroupMembersNextOperationSpec: coreHttp.OperationSpec = {
+const getGroupMembersNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -885,7 +817,7 @@ const getGroupMembersNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
+const listOwnersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

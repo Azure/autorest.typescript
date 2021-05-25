@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { ODataDiscriminatorClientContext } from "./oDataDiscriminatorClientContext";
@@ -36,13 +36,19 @@ export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
   apiV1ValueGet(
     options?: ODataDiscriminatorClientApiV1ValueGetOptionalParams
   ): Promise<ODataDiscriminatorClientApiV1ValueGetResponse> {
-    return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      apiV1ValueGetOperationSpec
+    ) as Promise<ODataDiscriminatorClientApiV1ValueGetResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
+const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "GET",
   responses: {

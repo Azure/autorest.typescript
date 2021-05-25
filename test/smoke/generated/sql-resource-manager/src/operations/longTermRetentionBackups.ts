@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LongTermRetentionBackups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -527,18 +527,17 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     backupName: string,
     options?: LongTermRetentionBackupsGetByResourceGroupOptionalParams
   ): Promise<LongTermRetentionBackupsGetByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        backupName,
+        options
+      },
       getByResourceGroupOperationSpec
-    ) as Promise<LongTermRetentionBackupsGetByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -558,29 +557,49 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        backupName,
+        options
+      },
       deleteByResourceGroupOperationSpec,
       sendOperation
     );
@@ -603,7 +622,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteByResourceGroup(
       resourceGroupName,
       locationName,
@@ -631,17 +650,16 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     options?: LongTermRetentionBackupsListByResourceGroupDatabaseOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        options
+      },
       listByResourceGroupDatabaseOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByResourceGroupDatabaseResponse>;
+    );
   }
 
   /**
@@ -656,15 +674,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     locationName: string,
     options?: LongTermRetentionBackupsListByResourceGroupLocationOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupLocationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, locationName, options },
       listByResourceGroupLocationOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByResourceGroupLocationResponse>;
+    );
   }
 
   /**
@@ -681,16 +694,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByResourceGroupServerOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupServerResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, locationName, longTermRetentionServerName, options },
       listByResourceGroupServerOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByResourceGroupServerResponse>;
+    );
   }
 
   /**
@@ -708,17 +715,16 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     backupName: string,
     options?: LongTermRetentionBackupsGetOptionalParams
   ): Promise<LongTermRetentionBackupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        backupName,
+        options
+      },
       getOperationSpec
-    ) as Promise<LongTermRetentionBackupsGetResponse>;
+    );
   }
 
   /**
@@ -735,28 +741,48 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      backupName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        backupName,
+        options
+      },
       deleteOperationSpec,
       sendOperation
     );
@@ -776,7 +802,7 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       locationName,
       longTermRetentionServerName,
@@ -800,16 +826,15 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     options?: LongTermRetentionBackupsListByDatabaseOptionalParams
   ): Promise<LongTermRetentionBackupsListByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        options
+      },
       listByDatabaseOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByDatabaseResponse>;
+    );
   }
 
   /**
@@ -821,14 +846,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     locationName: string,
     options?: LongTermRetentionBackupsListByLocationOptionalParams
   ): Promise<LongTermRetentionBackupsListByLocationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, options },
       listByLocationOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByLocationResponse>;
+    );
   }
 
   /**
@@ -842,15 +863,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     longTermRetentionServerName: string,
     options?: LongTermRetentionBackupsListByServerOptionalParams
   ): Promise<LongTermRetentionBackupsListByServerResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, longTermRetentionServerName, options },
       listByServerOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByServerResponse>;
+    );
   }
 
   /**
@@ -872,20 +888,17 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByResourceGroupDatabaseNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        nextLink,
+        options
+      },
       listByResourceGroupDatabaseNextOperationSpec
-    ) as Promise<
-      LongTermRetentionBackupsListByResourceGroupDatabaseNextResponse
-    >;
+    );
   }
 
   /**
@@ -903,18 +916,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByResourceGroupLocationNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupLocationNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, locationName, nextLink, options },
       listByResourceGroupLocationNextOperationSpec
-    ) as Promise<
-      LongTermRetentionBackupsListByResourceGroupLocationNextResponse
-    >;
+    );
   }
 
   /**
@@ -934,17 +939,16 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByResourceGroupServerNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByResourceGroupServerNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      locationName,
-      longTermRetentionServerName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        locationName,
+        longTermRetentionServerName,
+        nextLink,
+        options
+      },
       listByResourceGroupServerNextOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByResourceGroupServerNextResponse>;
+    );
   }
 
   /**
@@ -962,17 +966,16 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByDatabaseNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      longTermRetentionDatabaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        locationName,
+        longTermRetentionServerName,
+        longTermRetentionDatabaseName,
+        nextLink,
+        options
+      },
       listByDatabaseNextOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByDatabaseNextResponse>;
+    );
   }
 
   /**
@@ -986,15 +989,10 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByLocationNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByLocationNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, nextLink, options },
       listByLocationNextOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByLocationNextResponse>;
+    );
   }
 
   /**
@@ -1010,34 +1008,16 @@ export class LongTermRetentionBackupsImpl implements LongTermRetentionBackups {
     nextLink: string,
     options?: LongTermRetentionBackupsListByServerNextOptionalParams
   ): Promise<LongTermRetentionBackupsListByServerNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      longTermRetentionServerName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, longTermRetentionServerName, nextLink, options },
       listByServerNextOperationSpec
-    ) as Promise<LongTermRetentionBackupsListByServerNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const getByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "GET",
@@ -1060,7 +1040,7 @@ const getByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const deleteByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "DELETE",
@@ -1077,7 +1057,7 @@ const deleteByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByResourceGroupDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1103,7 +1083,7 @@ const listByResourceGroupDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupLocationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1127,7 +1107,7 @@ const listByResourceGroupLocationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupServerOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupServerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1152,7 +1132,7 @@ const listByResourceGroupServerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "GET",
@@ -1174,7 +1154,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups/{backupName}",
   httpMethod: "DELETE",
@@ -1190,7 +1170,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionDatabases/{longTermRetentionDatabaseName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1215,7 +1195,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByLocationOperationSpec: coreHttp.OperationSpec = {
+const listByLocationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1238,7 +1218,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByServerOperationSpec: coreHttp.OperationSpec = {
+const listByServerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/longTermRetentionServers/{longTermRetentionServerName}/longTermRetentionBackups",
   httpMethod: "GET",
@@ -1262,7 +1242,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1288,7 +1268,7 @@ const listByResourceGroupDatabaseNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupLocationNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1312,7 +1292,7 @@ const listByResourceGroupLocationNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupServerNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1337,7 +1317,7 @@ const listByResourceGroupServerNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1362,7 +1342,7 @@ const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
+const listByLocationNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1385,7 +1365,7 @@ const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByServerNextOperationSpec: coreHttp.OperationSpec = {
+const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

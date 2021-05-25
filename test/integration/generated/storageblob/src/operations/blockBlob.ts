@@ -1,6 +1,5 @@
 import { BlockBlob } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageBlobClientContext } from "../storageBlobClientContext";
@@ -37,13 +36,19 @@ export class BlockBlobImpl implements BlockBlob {
   stageBlock(
     blockId: string,
     contentLength: number,
-    body: coreRestPipeline.RequestBodyType,
+    body: coreHttp.HttpRequestBody,
     options?: BlockBlobStageBlockOptionalParams
   ): Promise<BlockBlobStageBlockResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      blockId,
+      contentLength,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { blockId, contentLength, body, options },
+      operationArguments,
       stageBlockOperationSpec
-    );
+    ) as Promise<BlockBlobStageBlockResponse>;
   }
 
   /**
@@ -57,13 +62,18 @@ export class BlockBlobImpl implements BlockBlob {
    */
   upload(
     contentLength: number,
-    body: coreRestPipeline.RequestBodyType,
+    body: coreHttp.HttpRequestBody,
     options?: BlockBlobUploadOptionalParams
   ): Promise<BlockBlobUploadResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      contentLength,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { contentLength, body, options },
+      operationArguments,
       uploadOperationSpec
-    );
+    ) as Promise<BlockBlobUploadResponse>;
   }
 
   /**
@@ -84,16 +94,21 @@ export class BlockBlobImpl implements BlockBlob {
     copySource: string,
     options?: BlockBlobPutBlobFromUrlOptionalParams
   ): Promise<BlockBlobPutBlobFromUrlResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      contentLength,
+      copySource,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { contentLength, copySource, options },
+      operationArguments,
       putBlobFromUrlOperationSpec
-    );
+    ) as Promise<BlockBlobPutBlobFromUrlResponse>;
   }
 }
 // Operation Specifications
-const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
+const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
 
-const stageBlockOperationSpec: coreClient.OperationSpec = {
+const stageBlockOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
   responses: {
@@ -127,7 +142,7 @@ const stageBlockOperationSpec: coreClient.OperationSpec = {
   mediaType: "binary",
   serializer: xmlSerializer
 };
-const uploadOperationSpec: coreClient.OperationSpec = {
+const uploadOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
   responses: {
@@ -175,7 +190,7 @@ const uploadOperationSpec: coreClient.OperationSpec = {
   mediaType: "binary",
   serializer: xmlSerializer
 };
-const putBlobFromUrlOperationSpec: coreClient.OperationSpec = {
+const putBlobFromUrlOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
   responses: {

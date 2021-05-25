@@ -1,4 +1,4 @@
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import {
   AppendBlobAppendBlockOptionalParams,
   AppendBlobAppendBlockResponse
@@ -16,7 +16,7 @@ export interface AppendBlob {
    */
   appendBlock(
     contentLength: number,
-    body: coreRestPipeline.RequestBodyType,
+    body: coreHttp.HttpRequestBody,
     options?: AppendBlobAppendBlockOptionalParams
   ): Promise<AppendBlobAppendBlockResponse>;
 }

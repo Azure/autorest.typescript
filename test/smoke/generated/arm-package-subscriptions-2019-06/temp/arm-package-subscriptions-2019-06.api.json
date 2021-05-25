@@ -607,12 +607,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -645,28 +645,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -674,7 +652,7 @@
           "name": "OperationsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -688,12 +666,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -726,28 +704,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -755,7 +711,7 @@
           "name": "OperationsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1039,21 +995,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -1076,14 +1023,14 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 }
               ]
@@ -1187,12 +1134,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClient",
-              "canonicalReference": "@azure/core-http!ServiceClient:class"
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -1213,21 +1160,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -1250,14 +1188,14 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 }
               ]
@@ -1332,12 +1270,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClientOptions",
-              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+              "canonicalReference": "@azure/core-client!ServiceClientOptions:interface"
             },
             {
               "kind": "Content",
@@ -1824,12 +1762,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1862,28 +1800,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "Subscription",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1891,7 +1807,7 @@
           "name": "SubscriptionsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1905,12 +1821,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -1943,28 +1859,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "LocationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -1972,7 +1866,7 @@
           "name": "SubscriptionsListLocationsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -1986,12 +1880,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2024,28 +1918,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "SubscriptionListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2053,7 +1925,7 @@
           "name": "SubscriptionsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2067,12 +1939,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2105,28 +1977,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "SubscriptionListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2134,7 +1984,7 @@
           "name": "SubscriptionsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2535,12 +2385,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2573,28 +2423,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "TenantListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2602,7 +2430,7 @@
           "name": "TenantsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2616,12 +2444,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2654,28 +2482,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "TenantListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2683,7 +2489,7 @@
           "name": "TenantsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         }
       ]

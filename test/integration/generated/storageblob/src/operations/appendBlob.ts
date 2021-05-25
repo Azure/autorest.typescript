@@ -1,6 +1,5 @@
 import { AppendBlob } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageBlobClientContext } from "../storageBlobClientContext";
@@ -31,19 +30,24 @@ export class AppendBlobImpl implements AppendBlob {
    */
   appendBlock(
     contentLength: number,
-    body: coreRestPipeline.RequestBodyType,
+    body: coreHttp.HttpRequestBody,
     options?: AppendBlobAppendBlockOptionalParams
   ): Promise<AppendBlobAppendBlockResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      contentLength,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { contentLength, body, options },
+      operationArguments,
       appendBlockOperationSpec
-    );
+    ) as Promise<AppendBlobAppendBlockResponse>;
   }
 }
 // Operation Specifications
-const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
+const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
 
-const appendBlockOperationSpec: coreClient.OperationSpec = {
+const appendBlockOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
   responses: {

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Site,
@@ -1443,7 +1442,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
    * existing app.
@@ -1482,7 +1481,7 @@ export interface WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsApplySlotConfigToProductionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a backup of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1522,7 +1521,7 @@ export interface WebApps {
     name: string,
     backupId: string,
     options?: WebAppsDeleteBackupOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets status of a web app backup that may be in progress, including secrets
    * associated with the backup, such as the Azure Storage SAS URL. Also can be used to update the SAS
@@ -1554,9 +1553,7 @@ export interface WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1571,7 +1568,7 @@ export interface WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1667,7 +1664,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteBackupConfigurationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the backup configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1916,7 +1913,7 @@ export interface WebApps {
     name: string,
     snapshotId: string,
     options?: WebAppsRecoverSiteConfigurationSnapshotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the last lines of docker logs for the given site
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1964,7 +1961,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsDeleteContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Start a continuous web job for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1977,7 +1974,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsStartContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Stop a continuous web job for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -1990,7 +1987,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsStopContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a deployment by its ID for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2031,7 +2028,7 @@ export interface WebApps {
     name: string,
     id: string,
     options?: WebAppsDeleteDeploymentOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for List deployment log for specific deployment for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2102,7 +2099,7 @@ export interface WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     options?: WebAppsDeleteDomainOwnershipIdentifierOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
    * identifier.
@@ -2243,7 +2240,7 @@ export interface WebApps {
     name: string,
     functionName: string,
     options?: WebAppsDeleteFunctionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Add or update a function secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2275,7 +2272,7 @@ export interface WebApps {
     functionName: string,
     keyName: string,
     options?: WebAppsDeleteFunctionSecretOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get function keys for a function in a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2323,7 +2320,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListSyncStatusOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Syncs function trigger metadata to the management database
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2334,7 +2331,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncFunctionsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Add or update a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2366,7 +2363,7 @@ export interface WebApps {
     keyType: string,
     keyName: string,
     options?: WebAppsDeleteHostSecretOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get the named hostname binding for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2407,7 +2404,7 @@ export interface WebApps {
     name: string,
     hostName: string,
     options?: WebAppsDeleteHostNameBindingOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Retrieves a specific Service Bus Hybrid Connection used by this Web App.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2454,7 +2451,7 @@ export interface WebApps {
     namespaceName: string,
     relayName: string,
     options?: WebAppsDeleteHybridConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -2535,7 +2532,7 @@ export interface WebApps {
     name: string,
     entityName: string,
     options?: WebAppsDeleteRelayServiceConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
    * (PATCH).
@@ -2658,7 +2655,7 @@ export interface WebApps {
     processId: string,
     instanceId: string,
     options?: WebAppsDeleteInstanceProcessOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
    * site.
@@ -2831,7 +2828,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteSwiftVirtualNetworkOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
    * "swiftSupported" is true when doing a GET against this resource, and 2) that the target Subnet has
@@ -2923,7 +2920,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopWebSiteNetworkTraceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
    * specified).
@@ -2976,7 +2973,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsGenerateNewSitePublishingPasswordOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets web app's event logs.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3039,7 +3036,7 @@ export interface WebApps {
     name: string,
     premierAddOnName: string,
     options?: WebAppsDeletePremierAddOnOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Updates a named add-on of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3107,7 +3104,7 @@ export interface WebApps {
     name: string,
     processId: string,
     options?: WebAppsDeleteProcessOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
    * site.
@@ -3178,7 +3175,7 @@ export interface WebApps {
     name: string,
     publicCertificateName: string,
     options?: WebAppsDeletePublicCertificateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the publishing profile for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3204,7 +3201,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsResetProductionSlotConfigOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restarts an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3215,7 +3212,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsRestartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3228,9 +3225,7 @@ export interface WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3243,7 +3238,7 @@ export interface WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3256,9 +3251,7 @@ export interface WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3271,7 +3264,7 @@ export interface WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3285,9 +3278,7 @@ export interface WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3301,7 +3292,7 @@ export interface WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3358,7 +3349,7 @@ export interface WebApps {
     name: string,
     siteExtensionId: string,
     options?: WebAppsDeleteSiteExtensionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3372,9 +3363,7 @@ export interface WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3388,7 +3377,7 @@ export interface WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the details of a web, mobile, or API app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3455,7 +3444,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new web, mobile, or API app in an existing resource group, or updates an
    * existing app.
@@ -3502,7 +3491,7 @@ export interface WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsApplySlotConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a backup of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3551,7 +3540,7 @@ export interface WebApps {
     backupId: string,
     slot: string,
     options?: WebAppsDeleteBackupSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets status of a web app backup that may be in progress, including secrets
    * associated with the backup, such as the Azure Storage SAS URL. Also can be used to update the SAS
@@ -3588,9 +3577,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a specific backup to another app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3608,7 +3595,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Replaces the application settings of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3727,7 +3714,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteBackupConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the backup configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -3972,7 +3959,7 @@ export interface WebApps {
     snapshotId: string,
     slot: string,
     options?: WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the last lines of docker logs for the given site
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4030,7 +4017,7 @@ export interface WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsDeleteContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Start a continuous web job for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4046,7 +4033,7 @@ export interface WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsStartContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Stop a continuous web job for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4062,7 +4049,7 @@ export interface WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsStopContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a deployment by its ID for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4112,7 +4099,7 @@ export interface WebApps {
     id: string,
     slot: string,
     options?: WebAppsDeleteDeploymentSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for List deployment log for specific deployment for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4198,7 +4185,7 @@ export interface WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     options?: WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a domain ownership identifier for web app, or updates an existing ownership
    * identifier.
@@ -4360,7 +4347,7 @@ export interface WebApps {
     functionName: string,
     slot: string,
     options?: WebAppsDeleteInstanceFunctionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Add or update a function secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4396,7 +4383,7 @@ export interface WebApps {
     keyName: string,
     slot: string,
     options?: WebAppsDeleteFunctionSecretSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get function keys for a function in a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4452,7 +4439,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsListSyncStatusSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Syncs function trigger metadata to the management database
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4465,7 +4452,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncFunctionsSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Add or update a host level secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4501,7 +4488,7 @@ export interface WebApps {
     keyName: string,
     slot: string,
     options?: WebAppsDeleteHostSecretSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get the named hostname binding for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4551,7 +4538,7 @@ export interface WebApps {
     slot: string,
     hostName: string,
     options?: WebAppsDeleteHostNameBindingSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Retrieves a specific Service Bus Hybrid Connection used by this Web App.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4604,7 +4591,7 @@ export interface WebApps {
     relayName: string,
     slot: string,
     options?: WebAppsDeleteHybridConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new Hybrid Connection using a Service Bus relay.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -4701,7 +4688,7 @@ export interface WebApps {
     entityName: string,
     slot: string,
     options?: WebAppsDeleteRelayServiceConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new hybrid connection configuration (PUT), or updates an existing one
    * (PATCH).
@@ -4844,7 +4831,7 @@ export interface WebApps {
     slot: string,
     instanceId: string,
     options?: WebAppsDeleteInstanceProcessSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
    * site.
@@ -4973,7 +4960,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Integrates this Web App with a Virtual Network. This requires that 1)
    * "swiftSupported" is true when doing a GET against this resource, and 2) that the target Subnet has
@@ -5082,7 +5069,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopWebSiteNetworkTraceSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a named operation for a network trace capturing (or deployment slot, if
    * specified).
@@ -5147,7 +5134,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets web app's event logs.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5224,7 +5211,7 @@ export interface WebApps {
     premierAddOnName: string,
     slot: string,
     options?: WebAppsDeletePremierAddOnSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Updates a named add-on of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5397,7 +5384,7 @@ export interface WebApps {
     processId: string,
     slot: string,
     options?: WebAppsDeleteProcessSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a memory dump of a process by its ID for a specific scaled-out instance in a web
    * site.
@@ -5483,7 +5470,7 @@ export interface WebApps {
     slot: string,
     publicCertificateName: string,
     options?: WebAppsDeletePublicCertificateSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the publishing profile for an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5515,7 +5502,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsResetSlotConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restarts an app (or deployment slot, if specified).
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5529,7 +5516,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsRestartSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5545,9 +5532,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores an app from a backup blob in Azure Storage.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5563,7 +5548,7 @@ export interface WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5578,9 +5563,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a deleted web app to this web app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5595,7 +5578,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5611,9 +5594,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Restores a web app from a snapshot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5629,7 +5610,7 @@ export interface WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get site extension information by its ID for a web site, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5698,7 +5679,7 @@ export interface WebApps {
     siteExtensionId: string,
     slot: string,
     options?: WebAppsDeleteSiteExtensionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5715,9 +5696,7 @@ export interface WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopySlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Copies a deployment slot to another deployment slot of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5734,7 +5713,7 @@ export interface WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopySlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5750,9 +5729,7 @@ export interface WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5768,7 +5745,7 @@ export interface WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5833,7 +5810,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSourceControlSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Updates the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5863,7 +5840,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Start capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5908,7 +5885,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5921,7 +5898,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopNetworkTraceSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Sync web app repository.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5934,7 +5911,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncRepositorySlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Syncs function trigger metadata to the management database
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5947,7 +5924,7 @@ export interface WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncFunctionTriggersSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a triggered web job by its ID for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -5979,7 +5956,7 @@ export interface WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsDeleteTriggeredWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a triggered web job's history by its ID for an app, , or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6013,7 +5990,7 @@ export interface WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsRunTriggeredWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the virtual networks the app (or deployment slot) is connected to.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6078,7 +6055,7 @@ export interface WebApps {
     vnetName: string,
     slot: string,
     options?: WebAppsDeleteVnetConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
    * properties (PATCH).
@@ -6184,9 +6161,7 @@ export interface WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Description for Swaps two deployment slots of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6199,7 +6174,7 @@ export interface WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6252,7 +6227,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteSourceControlOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Updates the source control configuration of an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6276,7 +6251,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Start capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6314,7 +6289,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Stop ongoing capturing network packets for the site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6325,7 +6300,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopNetworkTraceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Sync web app repository.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6336,7 +6311,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncRepositoryOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Syncs function trigger metadata to the management database
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6347,7 +6322,7 @@ export interface WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncFunctionTriggersOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a triggered web job by its ID for an app, or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6373,7 +6348,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsDeleteTriggeredWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets a triggered web job's history by its ID for an app, , or a deployment slot.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6401,7 +6376,7 @@ export interface WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsRunTriggeredWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the virtual networks the app (or deployment slot) is connected to.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -6454,7 +6429,7 @@ export interface WebApps {
     name: string,
     vnetName: string,
     options?: WebAppsDeleteVnetConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Adds a Virtual Network connection to an app or slot (PUT) or updates the connection
    * properties (PATCH).

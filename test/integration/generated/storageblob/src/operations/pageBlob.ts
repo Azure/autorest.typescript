@@ -1,6 +1,5 @@
 import { PageBlob } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageBlobClientContext } from "../storageBlobClientContext";
@@ -29,19 +28,24 @@ export class PageBlobImpl implements PageBlob {
    */
   uploadPages(
     contentLength: number,
-    body: coreRestPipeline.RequestBodyType,
+    body: coreHttp.HttpRequestBody,
     options?: PageBlobUploadPagesOptionalParams
   ): Promise<PageBlobUploadPagesResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      contentLength,
+      body,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { contentLength, body, options },
+      operationArguments,
       uploadPagesOperationSpec
-    );
+    ) as Promise<PageBlobUploadPagesResponse>;
   }
 }
 // Operation Specifications
-const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
+const xmlSerializer = new coreHttp.Serializer(Mappers, /* isXml */ true);
 
-const uploadPagesOperationSpec: coreClient.OperationSpec = {
+const uploadPagesOperationSpec: coreHttp.OperationSpec = {
   path: "/{containerName}/{blob}",
   httpMethod: "PUT",
   responses: {

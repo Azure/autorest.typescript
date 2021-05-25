@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
@@ -249,7 +250,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: NetworkManagementClientOptionalParams
   ) {
@@ -390,18 +391,6 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     this.webApplicationFirewallPolicies = new WebApplicationFirewallPoliciesImpl(
       this
     );
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
   }
 
   /**
@@ -737,24 +726,41 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       NetworkManagementClientPutBastionShareableLinkResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<NetworkManagementClientPutBastionShareableLinkResponse> => {
+      return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.sendOperationRequest(args, spec) as Promise<
-        NetworkManagementClientPutBastionShareableLinkResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, bastionHostName, bslRequest, options },
       putBastionShareableLinkOperationSpec,
       sendOperation,
       "location"
@@ -773,27 +779,42 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, bastionHostName, bslRequest, options },
       deleteBastionShareableLinkOperationSpec,
       sendOperation,
       "location"
@@ -812,7 +833,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bastionHostName: string,
     bslRequest: BastionShareableLinkListRequest,
     options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteBastionShareableLink(
       resourceGroupName,
       bastionHostName,
@@ -835,16 +856,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     bslRequest: BastionShareableLinkListRequest,
     options?: NetworkManagementClientGetBastionShareableLinkOptionalParams
   ): Promise<NetworkManagementClientGetBastionShareableLinkResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, bslRequest, options },
       getBastionShareableLinkOperationSpec
-    ) as Promise<NetworkManagementClientGetBastionShareableLinkResponse>;
+    );
   }
 
   /**
@@ -863,23 +878,41 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       NetworkManagementClientGetActiveSessionsResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<NetworkManagementClientGetActiveSessionsResponse> => {
+      return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.sendOperationRequest(args, spec) as Promise<
-        NetworkManagementClientGetActiveSessionsResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, bastionHostName, options },
       getActiveSessionsOperationSpec,
       sendOperation,
       "location"
@@ -899,16 +932,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     sessionIds: SessionIds,
     options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams
   ): Promise<NetworkManagementClientDisconnectActiveSessionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      sessionIds,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, sessionIds, options },
       disconnectActiveSessionsOperationSpec
-    ) as Promise<NetworkManagementClientDisconnectActiveSessionsResponse>;
+    );
   }
 
   /**
@@ -923,15 +950,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     domainNameLabel: string,
     options?: NetworkManagementClientCheckDnsNameAvailabilityOptionalParams
   ): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      domainNameLabel,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { location, domainNameLabel, options },
       checkDnsNameAvailabilityOperationSpec
-    ) as Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse>;
+    );
   }
 
   /**
@@ -945,15 +967,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     virtualWANName: string,
     options?: NetworkManagementClientSupportedSecurityProvidersOptionalParams
   ): Promise<NetworkManagementClientSupportedSecurityProvidersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualWANName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualWANName, options },
       supportedSecurityProvidersOperationSpec
-    ) as Promise<NetworkManagementClientSupportedSecurityProvidersResponse>;
+    );
   }
 
   /**
@@ -978,24 +995,41 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualWANName,
-      vpnClientParams,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse> => {
+      return this.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.sendOperationRequest(args, spec) as Promise<
-        NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualWANName, vpnClientParams, options },
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
       sendOperation,
       "location"
@@ -1044,17 +1078,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     nextLink: string,
     options?: NetworkManagementClientPutBastionShareableLinkNextOptionalParams
   ): Promise<NetworkManagementClientPutBastionShareableLinkNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, bslRequest, nextLink, options },
       putBastionShareableLinkNextOperationSpec
-    ) as Promise<NetworkManagementClientPutBastionShareableLinkNextResponse>;
+    );
   }
 
   /**
@@ -1073,17 +1100,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     nextLink: string,
     options?: NetworkManagementClientGetBastionShareableLinkNextOptionalParams
   ): Promise<NetworkManagementClientGetBastionShareableLinkNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      bslRequest,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, bslRequest, nextLink, options },
       getBastionShareableLinkNextOperationSpec
-    ) as Promise<NetworkManagementClientGetBastionShareableLinkNextResponse>;
+    );
   }
 
   /**
@@ -1099,16 +1119,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     nextLink: string,
     options?: NetworkManagementClientGetActiveSessionsNextOptionalParams
   ): Promise<NetworkManagementClientGetActiveSessionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, nextLink, options },
       getActiveSessionsNextOperationSpec
-    ) as Promise<NetworkManagementClientGetActiveSessionsNextResponse>;
+    );
   }
 
   /**
@@ -1127,17 +1141,10 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     nextLink: string,
     options?: NetworkManagementClientDisconnectActiveSessionsNextOptionalParams
   ): Promise<NetworkManagementClientDisconnectActiveSessionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      sessionIds,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, sessionIds, nextLink, options },
       disconnectActiveSessionsNextOperationSpec
-    ) as Promise<NetworkManagementClientDisconnectActiveSessionsNextResponse>;
+    );
   }
 
   applicationGateways: ApplicationGateways;
@@ -1236,9 +1243,9 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
   webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
+const putBastionShareableLinkOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/createShareableLinks",
   httpMethod: "POST",
@@ -1271,7 +1278,7 @@ const putBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
+const deleteBastionShareableLinkOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/deleteShareableLinks",
   httpMethod: "POST",
@@ -1296,7 +1303,7 @@ const deleteBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
+const getBastionShareableLinkOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/getShareableLinks",
   httpMethod: "POST",
@@ -1320,7 +1327,7 @@ const getBastionShareableLinkOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getActiveSessionsOperationSpec: coreHttp.OperationSpec = {
+const getActiveSessionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/getActiveSessions",
   httpMethod: "POST",
@@ -1351,7 +1358,7 @@ const getActiveSessionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const disconnectActiveSessionsOperationSpec: coreHttp.OperationSpec = {
+const disconnectActiveSessionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}/disconnectActiveSessions",
   httpMethod: "POST",
@@ -1375,7 +1382,7 @@ const disconnectActiveSessionsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const checkDnsNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
+const checkDnsNameAvailabilityOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/CheckDnsNameAvailability",
   httpMethod: "GET",
@@ -1396,7 +1403,7 @@ const checkDnsNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const supportedSecurityProvidersOperationSpec: coreHttp.OperationSpec = {
+const supportedSecurityProvidersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans/{virtualWANName}/supportedSecurityProviders",
   httpMethod: "GET",
@@ -1418,7 +1425,7 @@ const supportedSecurityProvidersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.OperationSpec = {
+const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualWans/{virtualWANName}/GenerateVpnProfile",
   httpMethod: "POST",
@@ -1451,7 +1458,7 @@ const generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec: coreHttp.
   mediaType: "json",
   serializer
 };
-const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
+const putBastionShareableLinkNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1475,7 +1482,7 @@ const putBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
+const getBastionShareableLinkNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1498,7 +1505,7 @@ const getBastionShareableLinkNextOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
+const getActiveSessionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1521,7 +1528,7 @@ const getActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const disconnectActiveSessionsNextOperationSpec: coreHttp.OperationSpec = {
+const disconnectActiveSessionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -4,12 +4,13 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public (undocumented)
 export class ManagementLinkClient extends ManagementLinkClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -17,10 +18,10 @@ export class ManagementLinkClient extends ManagementLinkClientContext {
 }
 
 // @public (undocumented)
-export class ManagementLinkClientContext extends coreHttp.ServiceClient {
+export class ManagementLinkClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -28,7 +29,7 @@ export class ManagementLinkClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface ManagementLinkClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface ManagementLinkClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -60,28 +61,18 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 export interface ResourceLink {
@@ -112,89 +103,59 @@ export interface ResourceLinkResult {
 // @public
 export interface ResourceLinks {
     createOrUpdate(linkId: string, parameters: ResourceLink, options?: ResourceLinksCreateOrUpdateOptionalParams): Promise<ResourceLinksCreateOrUpdateResponse>;
-    delete(linkId: string, options?: ResourceLinksDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(linkId: string, options?: ResourceLinksDeleteOptionalParams): Promise<void>;
     get(linkId: string, options?: ResourceLinksGetOptionalParams): Promise<ResourceLinksGetResponse>;
     listAtSourceScope(scope: string, options?: ResourceLinksListAtSourceScopeOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
     listAtSubscription(options?: ResourceLinksListAtSubscriptionOptionalParams): PagedAsyncIterableIterator<ResourceLink>;
 }
 
 // @public
-export interface ResourceLinksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceLinksCreateOrUpdateResponse = ResourceLink & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLink;
-    };
-};
+export type ResourceLinksCreateOrUpdateResponse = ResourceLink;
 
 // @public
-export interface ResourceLinksDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ResourceLinksGetOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceLinksGetResponse = ResourceLink & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLink;
-    };
-};
+export type ResourceLinksGetResponse = ResourceLink;
 
 // @public
-export interface ResourceLinksListAtSourceScopeNextOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksListAtSourceScopeNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLinkResult;
-    };
-};
+export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult;
 
 // @public
-export interface ResourceLinksListAtSourceScopeOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksListAtSourceScopeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLinkResult;
-    };
-};
+export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
 
 // @public
-export interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksListAtSubscriptionNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLinkResult;
-    };
-};
+export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult;
 
 // @public
-export interface ResourceLinksListAtSubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceLinksListAtSubscriptionOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceLinkResult;
-    };
-};
+export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult;
 
 
 // (No @packageDocumentation comment for this package)

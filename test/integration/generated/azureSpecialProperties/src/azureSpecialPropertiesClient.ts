@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreAuth from "@azure/core-auth";
+import * as coreHttp from "@azure/core-http";
 import {
   XMsClientRequestIdImpl,
   SubscriptionInCredentialsImpl,
@@ -39,7 +39,7 @@ export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientCo
    * @param options The parameter options
    */
   constructor(
-    credentials: coreAuth.TokenCredential,
+    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {

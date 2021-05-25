@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
@@ -137,182 +138,112 @@ export interface PolicyAssignments {
 }
 
 // @public
-export interface PolicyAssignmentsCreateByIdOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsCreateByIdOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsCreateOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsCreateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsCreateResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsDeleteByIdOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsDeleteByIdOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsDeleteResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsGetByIdOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsGetByIdOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsGetByIdResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsGetResponse = PolicyAssignment & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignment;
-    };
-};
+export type PolicyAssignmentsGetResponse = PolicyAssignment;
 
 // @public
-export interface PolicyAssignmentsListForManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForManagementGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListForManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListForResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForResourceGroupNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListForResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForResourceGroupOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListForResourceNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForResourceNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListForResourceOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListForResourceOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult;
 
 // @public
-export interface PolicyAssignmentsListOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyAssignmentsListOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type PolicyAssignmentsListResponse = PolicyAssignmentListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyAssignmentListResult;
-    };
-};
+export type PolicyAssignmentsListResponse = PolicyAssignmentListResult;
 
 // @public (undocumented)
 export class PolicyClient extends PolicyClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: PolicyClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
     // (undocumented)
     policyAssignments: PolicyAssignments;
     // (undocumented)
@@ -322,10 +253,10 @@ export class PolicyClient extends PolicyClientContext {
 }
 
 // @public (undocumented)
-export class PolicyClientContext extends coreHttp.ServiceClient {
+export class PolicyClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: PolicyClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -333,7 +264,7 @@ export class PolicyClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface PolicyClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface PolicyClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -384,8 +315,8 @@ export interface PolicyDefinitionReference {
 export interface PolicyDefinitions {
     createOrUpdate(policyDefinitionName: string, parameters: PolicyDefinition, options?: PolicyDefinitionsCreateOrUpdateOptionalParams): Promise<PolicyDefinitionsCreateOrUpdateResponse>;
     createOrUpdateAtManagementGroup(policyDefinitionName: string, managementGroupId: string, parameters: PolicyDefinition, options?: PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams): Promise<PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse>;
-    delete(policyDefinitionName: string, options?: PolicyDefinitionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    deleteAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(policyDefinitionName: string, options?: PolicyDefinitionsDeleteOptionalParams): Promise<void>;
+    deleteAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: PolicyDefinitionsDeleteAtManagementGroupOptionalParams): Promise<void>;
     get(policyDefinitionName: string, options?: PolicyDefinitionsGetOptionalParams): Promise<PolicyDefinitionsGetResponse>;
     getAtManagementGroup(policyDefinitionName: string, managementGroupId: string, options?: PolicyDefinitionsGetAtManagementGroupOptionalParams): Promise<PolicyDefinitionsGetAtManagementGroupResponse>;
     getBuiltIn(policyDefinitionName: string, options?: PolicyDefinitionsGetBuiltInOptionalParams): Promise<PolicyDefinitionsGetBuiltInResponse>;
@@ -395,144 +326,89 @@ export interface PolicyDefinitions {
 }
 
 // @public
-export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinition;
-    };
-};
+export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition;
 
 // @public
-export interface PolicyDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinition;
-    };
-};
+export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition;
 
 // @public
-export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface PolicyDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface PolicyDefinitionsGetAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsGetAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinition;
-    };
-};
+export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition;
 
 // @public
-export interface PolicyDefinitionsGetBuiltInOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsGetBuiltInOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinition;
-    };
-};
+export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition;
 
 // @public
-export interface PolicyDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsGetResponse = PolicyDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinition;
-    };
-};
+export type PolicyDefinitionsGetResponse = PolicyDefinition;
 
 // @public
-export interface PolicyDefinitionsListBuiltInNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListBuiltInNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult;
 
 // @public
-export interface PolicyDefinitionsListBuiltInOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListBuiltInOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult;
 
 // @public
-export interface PolicyDefinitionsListByManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListByManagementGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult;
 
 // @public
-export interface PolicyDefinitionsListByManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListByManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult;
 
 // @public
-export interface PolicyDefinitionsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult;
 
 // @public
-export interface PolicyDefinitionsListOptionalParams extends coreHttp.OperationOptions {
+export interface PolicyDefinitionsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicyDefinitionListResult;
-    };
-};
+export type PolicyDefinitionsListResponse = PolicyDefinitionListResult;
 
 // @public
 export interface PolicySetDefinition {
@@ -560,8 +436,8 @@ export interface PolicySetDefinitionListResult {
 export interface PolicySetDefinitions {
     createOrUpdate(policySetDefinitionName: string, parameters: PolicySetDefinition, options?: PolicySetDefinitionsCreateOrUpdateOptionalParams): Promise<PolicySetDefinitionsCreateOrUpdateResponse>;
     createOrUpdateAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, parameters: PolicySetDefinition, options?: PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams): Promise<PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse>;
-    delete(policySetDefinitionName: string, options?: PolicySetDefinitionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    deleteAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(policySetDefinitionName: string, options?: PolicySetDefinitionsDeleteOptionalParams): Promise<void>;
+    deleteAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams): Promise<void>;
     get(policySetDefinitionName: string, options?: PolicySetDefinitionsGetOptionalParams): Promise<PolicySetDefinitionsGetResponse>;
     getAtManagementGroup(policySetDefinitionName: string, managementGroupId: string, options?: PolicySetDefinitionsGetAtManagementGroupOptionalParams): Promise<PolicySetDefinitionsGetAtManagementGroupResponse>;
     getBuiltIn(policySetDefinitionName: string, options?: PolicySetDefinitionsGetBuiltInOptionalParams): Promise<PolicySetDefinitionsGetBuiltInResponse>;
@@ -571,144 +447,89 @@ export interface PolicySetDefinitions {
 }
 
 // @public
-export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinition;
-    };
-};
+export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition;
 
 // @public
-export interface PolicySetDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinition;
-    };
-};
+export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition;
 
 // @public
-export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface PolicySetDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinition;
-    };
-};
+export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition;
 
 // @public
-export interface PolicySetDefinitionsGetBuiltInOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsGetBuiltInOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinition;
-    };
-};
+export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition;
 
 // @public
-export interface PolicySetDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinition;
-    };
-};
+export type PolicySetDefinitionsGetResponse = PolicySetDefinition;
 
 // @public
-export interface PolicySetDefinitionsListBuiltInNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListBuiltInNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult;
 
 // @public
-export interface PolicySetDefinitionsListBuiltInOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListBuiltInOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult;
 
 // @public
-export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult;
 
 // @public
-export interface PolicySetDefinitionsListByManagementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListByManagementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult;
 
 // @public
-export interface PolicySetDefinitionsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult;
 
 // @public
-export interface PolicySetDefinitionsListOptionalParams extends coreHttp.OperationOptions {
+export interface PolicySetDefinitionsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PolicySetDefinitionListResult;
-    };
-};
+export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult;
 
 // @public
 export interface PolicySku {

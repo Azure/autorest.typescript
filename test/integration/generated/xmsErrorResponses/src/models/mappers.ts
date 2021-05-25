@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const Animal: coreClient.CompositeMapper = {
+export const Animal: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Animal",
@@ -23,7 +23,7 @@ export const Animal: coreClient.CompositeMapper = {
   }
 };
 
-export const BaseError: coreClient.CompositeMapper = {
+export const BaseError: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BaseError",
@@ -38,7 +38,7 @@ export const BaseError: coreClient.CompositeMapper = {
   }
 };
 
-export const PetAction: coreClient.CompositeMapper = {
+export const PetAction: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetAction",
@@ -53,7 +53,7 @@ export const PetAction: coreClient.CompositeMapper = {
   }
 };
 
-export const PetDef: coreClient.CompositeMapper = {
+export const PetDef: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PetDef",
@@ -70,7 +70,7 @@ export const PetDef: coreClient.CompositeMapper = {
   }
 };
 
-export const NotFoundErrorBase: coreClient.CompositeMapper = {
+export const NotFoundErrorBase: coreHttp.CompositeMapper = {
   serializedName: "NotFoundErrorBase",
   type: {
     name: "Composite",
@@ -99,7 +99,7 @@ export const NotFoundErrorBase: coreClient.CompositeMapper = {
   }
 };
 
-export const PetActionError: coreClient.CompositeMapper = {
+export const PetActionError: coreHttp.CompositeMapper = {
   serializedName: "PetActionError",
   type: {
     name: "Composite",
@@ -128,7 +128,7 @@ export const PetActionError: coreClient.CompositeMapper = {
   }
 };
 
-export const LinkNotFound: coreClient.CompositeMapper = {
+export const LinkNotFound: coreHttp.CompositeMapper = {
   serializedName: "InvalidResourceLink",
   type: {
     name: "Composite",
@@ -147,7 +147,7 @@ export const LinkNotFound: coreClient.CompositeMapper = {
   }
 };
 
-export const AnimalNotFound: coreClient.CompositeMapper = {
+export const AnimalNotFound: coreHttp.CompositeMapper = {
   serializedName: "AnimalNotFound",
   type: {
     name: "Composite",
@@ -166,7 +166,7 @@ export const AnimalNotFound: coreClient.CompositeMapper = {
   }
 };
 
-export const PetSadError: coreClient.CompositeMapper = {
+export const PetSadError: coreHttp.CompositeMapper = {
   serializedName: "PetSadError",
   type: {
     name: "Composite",
@@ -188,7 +188,7 @@ export const PetSadError: coreClient.CompositeMapper = {
   }
 };
 
-export const PetHungryOrThirstyError: coreClient.CompositeMapper = {
+export const PetHungryOrThirstyError: coreHttp.CompositeMapper = {
   serializedName: "PetHungryOrThirstyError",
   type: {
     name: "Composite",

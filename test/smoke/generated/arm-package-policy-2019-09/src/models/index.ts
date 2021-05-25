@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** The policy assignment. */
 export interface PolicyAssignment {
@@ -334,617 +334,293 @@ export type ResourceIdentityType = "SystemAssigned" | "None";
 
 /** Optional parameters. */
 export interface PolicyAssignmentsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the delete operation. */
-export type PolicyAssignmentsDeleteResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsDeleteResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type PolicyAssignmentsCreateResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsCreateResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PolicyAssignmentsGetResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsGetResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the listForResourceGroup operation. */
-export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForResourceGroupResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the listForResource operation. */
-export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForResourceResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForManagementGroup operation. */
-export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForManagementGroupResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type PolicyAssignmentsListResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsDeleteByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the deleteById operation. */
-export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsDeleteByIdResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsCreateByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createById operation. */
-export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsCreateByIdResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsGetByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getById operation. */
-export type PolicyAssignmentsGetByIdResponse = PolicyAssignment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignment;
-  };
-};
+export type PolicyAssignmentsGetByIdResponse = PolicyAssignment;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the listForResourceGroupNext operation. */
-export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForResourceGroupNextResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForResourceNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the listForResourceNext operation. */
-export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForResourceNextResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListForManagementGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listForManagementGroupNext operation. */
-export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListForManagementGroupNextResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyAssignmentsListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed. */
   filter?: string;
 }
 
 /** Contains response data for the listNext operation. */
-export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyAssignmentListResult;
-  };
-};
+export type PolicyAssignmentsListNextResponse = PolicyAssignmentListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinition;
-  };
-};
+export type PolicyDefinitionsCreateOrUpdateResponse = PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolicyDefinitionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PolicyDefinitionsGetResponse = PolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinition;
-  };
-};
+export type PolicyDefinitionsGetResponse = PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsGetBuiltInOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBuiltIn operation. */
-export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinition;
-  };
-};
+export type PolicyDefinitionsGetBuiltInResponse = PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
-export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinition;
-  };
-};
+export type PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsDeleteAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolicyDefinitionsGetAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroup operation. */
-export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinition;
-  };
-};
+export type PolicyDefinitionsGetAtManagementGroupResponse = PolicyDefinition;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PolicyDefinitionsListResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListBuiltInOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltIn operation. */
-export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListBuiltInResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListByManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroup operation. */
-export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListByManagementGroupResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListNextResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListBuiltInNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltInNext operation. */
-export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListBuiltInNextResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyDefinitionsListByManagementGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroupNext operation. */
-export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicyDefinitionListResult;
-  };
-};
+export type PolicyDefinitionsListByManagementGroupNextResponse = PolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinition;
-  };
-};
+export type PolicySetDefinitionsCreateOrUpdateResponse = PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PolicySetDefinitionsGetResponse = PolicySetDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinition;
-  };
-};
+export type PolicySetDefinitionsGetResponse = PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsGetBuiltInOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBuiltIn operation. */
-export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinition;
-  };
-};
+export type PolicySetDefinitionsGetBuiltInResponse = PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListBuiltInOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltIn operation. */
-export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListBuiltInResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtManagementGroup operation. */
-export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinition;
-  };
-};
+export type PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse = PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsGetAtManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroup operation. */
-export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinition;
-  };
-};
+export type PolicySetDefinitionsGetAtManagementGroupResponse = PolicySetDefinition;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListByManagementGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroup operation. */
-export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListByManagementGroupResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListNextResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListBuiltInNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBuiltInNext operation. */
-export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListBuiltInNextResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicySetDefinitionsListByManagementGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByManagementGroupNext operation. */
-export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PolicySetDefinitionListResult;
-  };
-};
+export type PolicySetDefinitionsListByManagementGroupNextResponse = PolicySetDefinitionListResult;
 
 /** Optional parameters. */
 export interface PolicyClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

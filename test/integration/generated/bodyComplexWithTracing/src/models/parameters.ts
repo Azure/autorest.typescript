@@ -10,7 +10,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-client";
+} from "@azure/core-http";
 import {
   BasicDef as BasicDefMapper,
   IntWrapper as IntWrapperMapper,

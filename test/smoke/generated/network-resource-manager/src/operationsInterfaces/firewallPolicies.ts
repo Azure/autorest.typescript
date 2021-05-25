@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   FirewallPolicy,
@@ -50,9 +49,7 @@ export interface FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: FirewallPoliciesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified Firewall Policy.
    * @param resourceGroupName The name of the resource group.
@@ -63,7 +60,7 @@ export interface FirewallPolicies {
     resourceGroupName: string,
     firewallPolicyName: string,
     options?: FirewallPoliciesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified Firewall Policy.
    * @param resourceGroupName The name of the resource group.

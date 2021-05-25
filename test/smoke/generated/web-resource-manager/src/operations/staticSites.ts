@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { StaticSites } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -581,13 +581,7 @@ export class StaticSitesImpl implements StaticSites {
   private _list(
     options?: StaticSitesListOptionalParams
   ): Promise<StaticSitesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<StaticSitesListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -599,14 +593,10 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     options?: StaticSitesGetStaticSitesByResourceGroupOptionalParams
   ): Promise<StaticSitesGetStaticSitesByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       getStaticSitesByResourceGroupOperationSpec
-    ) as Promise<StaticSitesGetStaticSitesByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -620,15 +610,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesGetStaticSiteOptionalParams
   ): Promise<StaticSitesGetStaticSiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getStaticSiteOperationSpec
-    ) as Promise<StaticSitesGetStaticSiteResponse>;
+    );
   }
 
   /**
@@ -645,16 +630,10 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteEnvelope: StaticSiteARMResource,
     options?: StaticSitesCreateOrUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      staticSiteEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, staticSiteEnvelope, options },
       createOrUpdateStaticSiteOperationSpec
-    ) as Promise<StaticSitesCreateOrUpdateStaticSiteResponse>;
+    );
   }
 
   /**
@@ -667,16 +646,11 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDeleteStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteStaticSiteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -693,16 +667,10 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteEnvelope: StaticSitePatchResource,
     options?: StaticSitesUpdateStaticSiteOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      staticSiteEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, staticSiteEnvelope, options },
       updateStaticSiteOperationSpec
-    ) as Promise<StaticSitesUpdateStaticSiteResponse>;
+    );
   }
 
   /**
@@ -718,16 +686,10 @@ export class StaticSitesImpl implements StaticSites {
     authprovider: string,
     options?: StaticSitesListStaticSiteUsersOptionalParams
   ): Promise<StaticSitesListStaticSiteUsersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      authprovider,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, authprovider, options },
       listStaticSiteUsersOperationSpec
-    ) as Promise<StaticSitesListStaticSiteUsersResponse>;
+    );
   }
 
   /**
@@ -744,18 +706,11 @@ export class StaticSitesImpl implements StaticSites {
     authprovider: string,
     userid: string,
     options?: StaticSitesDeleteStaticSiteUserOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      authprovider,
-      userid,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, authprovider, userid, options },
       deleteStaticSiteUserOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -775,18 +730,17 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteUserEnvelope: StaticSiteUserARMResource,
     options?: StaticSitesUpdateStaticSiteUserOptionalParams
   ): Promise<StaticSitesUpdateStaticSiteUserResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      authprovider,
-      userid,
-      staticSiteUserEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        authprovider,
+        userid,
+        staticSiteUserEnvelope,
+        options
+      },
       updateStaticSiteUserOperationSpec
-    ) as Promise<StaticSitesUpdateStaticSiteUserResponse>;
+    );
   }
 
   /**
@@ -800,15 +754,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesGetStaticSiteBuildsOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getStaticSiteBuildsOperationSpec
-    ) as Promise<StaticSitesGetStaticSiteBuildsResponse>;
+    );
   }
 
   /**
@@ -824,16 +773,10 @@ export class StaticSitesImpl implements StaticSites {
     prId: string,
     options?: StaticSitesGetStaticSiteBuildOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, options },
       getStaticSiteBuildOperationSpec
-    ) as Promise<StaticSitesGetStaticSiteBuildResponse>;
+    );
   }
 
   /**
@@ -848,17 +791,11 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     prId: string,
     options?: StaticSitesDeleteStaticSiteBuildOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, options },
       deleteStaticSiteBuildOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -878,19 +815,10 @@ export class StaticSitesImpl implements StaticSites {
   ): Promise<
     StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      appSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, appSettings, options },
       createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec
-    ) as Promise<
-      StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse
-    >;
+    );
   }
 
   /**
@@ -906,16 +834,10 @@ export class StaticSitesImpl implements StaticSites {
     prId: string,
     options?: StaticSitesListStaticSiteBuildFunctionsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, options },
       listStaticSiteBuildFunctionsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteBuildFunctionsResponse>;
+    );
   }
 
   /**
@@ -931,16 +853,10 @@ export class StaticSitesImpl implements StaticSites {
     prId: string,
     options?: StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, options },
       listStaticSiteBuildFunctionAppSettingsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteBuildFunctionAppSettingsResponse>;
+    );
   }
 
   /**
@@ -956,18 +872,10 @@ export class StaticSitesImpl implements StaticSites {
     appSettings: StringDictionary,
     options?: StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      appSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, appSettings, options },
       createOrUpdateStaticSiteFunctionAppSettingsOperationSpec
-    ) as Promise<
-      StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse
-    >;
+    );
   }
 
   /**
@@ -983,16 +891,15 @@ export class StaticSitesImpl implements StaticSites {
     staticSiteUserRolesInvitationEnvelope: StaticSiteUserInvitationRequestResource,
     options?: StaticSitesCreateUserRolesInvitationLinkOptionalParams
   ): Promise<StaticSitesCreateUserRolesInvitationLinkResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      staticSiteUserRolesInvitationEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        staticSiteUserRolesInvitationEnvelope,
+        options
+      },
       createUserRolesInvitationLinkOperationSpec
-    ) as Promise<StaticSitesCreateUserRolesInvitationLinkResponse>;
+    );
   }
 
   /**
@@ -1006,15 +913,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesListStaticSiteCustomDomainsOptionalParams
   ): Promise<StaticSitesListStaticSiteCustomDomainsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listStaticSiteCustomDomainsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteCustomDomainsResponse>;
+    );
   }
 
   /**
@@ -1031,16 +933,10 @@ export class StaticSitesImpl implements StaticSites {
     domainName: string,
     options?: StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
   ): Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainName, options },
       createOrUpdateStaticSiteCustomDomainOperationSpec
-    ) as Promise<StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse>;
+    );
   }
 
   /**
@@ -1055,17 +951,11 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainName, options },
       deleteStaticSiteCustomDomainOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1080,17 +970,11 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainName, options },
       validateCustomDomainCanBeAddedToStaticSiteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1103,16 +987,11 @@ export class StaticSitesImpl implements StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDetachStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       detachStaticSiteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1126,15 +1005,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesListStaticSiteFunctionsOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listStaticSiteFunctionsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteFunctionsResponse>;
+    );
   }
 
   /**
@@ -1148,15 +1022,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listStaticSiteFunctionAppSettingsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteFunctionAppSettingsResponse>;
+    );
   }
 
   /**
@@ -1170,15 +1039,10 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     options?: StaticSitesListStaticSiteSecretsOptionalParams
   ): Promise<StaticSitesListStaticSiteSecretsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listStaticSiteSecretsOperationSpec
-    ) as Promise<StaticSitesListStaticSiteSecretsResponse>;
+    );
   }
 
   /**
@@ -1193,17 +1057,11 @@ export class StaticSitesImpl implements StaticSites {
     name: string,
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
     options?: StaticSitesResetStaticSiteApiKeyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      resetPropertiesEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, resetPropertiesEnvelope, options },
       resetStaticSiteApiKeyOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1215,14 +1073,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesListNextOptionalParams
   ): Promise<StaticSitesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<StaticSitesListNextResponse>;
+    );
   }
 
   /**
@@ -1237,15 +1091,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesGetStaticSitesByResourceGroupNextOptionalParams
   ): Promise<StaticSitesGetStaticSitesByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       getStaticSitesByResourceGroupNextOperationSpec
-    ) as Promise<StaticSitesGetStaticSitesByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -1263,17 +1112,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesListStaticSiteUsersNextOptionalParams
   ): Promise<StaticSitesListStaticSiteUsersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      authprovider,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, authprovider, nextLink, options },
       listStaticSiteUsersNextOperationSpec
-    ) as Promise<StaticSitesListStaticSiteUsersNextResponse>;
+    );
   }
 
   /**
@@ -1289,16 +1131,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesGetStaticSiteBuildsNextOptionalParams
   ): Promise<StaticSitesGetStaticSiteBuildsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       getStaticSiteBuildsNextOperationSpec
-    ) as Promise<StaticSitesGetStaticSiteBuildsNextResponse>;
+    );
   }
 
   /**
@@ -1317,17 +1153,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesListStaticSiteBuildFunctionsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      prId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, prId, nextLink, options },
       listStaticSiteBuildFunctionsNextOperationSpec
-    ) as Promise<StaticSitesListStaticSiteBuildFunctionsNextResponse>;
+    );
   }
 
   /**
@@ -1344,16 +1173,10 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesListStaticSiteCustomDomainsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteCustomDomainsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listStaticSiteCustomDomainsNextOperationSpec
-    ) as Promise<StaticSitesListStaticSiteCustomDomainsNextResponse>;
+    );
   }
 
   /**
@@ -1370,22 +1193,16 @@ export class StaticSitesImpl implements StaticSites {
     nextLink: string,
     options?: StaticSitesListStaticSiteFunctionsNextOptionalParams
   ): Promise<StaticSitesListStaticSiteFunctionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listStaticSiteFunctionsNextOperationSpec
-    ) as Promise<StaticSitesListStaticSiteFunctionsNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/staticSites",
   httpMethod: "GET",
   responses: {
@@ -1401,7 +1218,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStaticSitesByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const getStaticSitesByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites",
   httpMethod: "GET",
@@ -1422,7 +1239,7 @@ const getStaticSitesByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const getStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}",
   httpMethod: "GET",
@@ -1444,7 +1261,7 @@ const getStaticSiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}",
   httpMethod: "PUT",
@@ -1471,7 +1288,7 @@ const createOrUpdateStaticSiteOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const deleteStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}",
   httpMethod: "DELETE",
@@ -1492,7 +1309,7 @@ const deleteStaticSiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const updateStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}",
   httpMethod: "PATCH",
@@ -1519,7 +1336,7 @@ const updateStaticSiteOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listStaticSiteUsersOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteUsersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/authproviders/{authprovider}/listUsers",
   httpMethod: "POST",
@@ -1542,7 +1359,7 @@ const listStaticSiteUsersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
+const deleteStaticSiteUserOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/authproviders/{authprovider}/users/{userid}",
   httpMethod: "DELETE",
@@ -1564,7 +1381,7 @@ const deleteStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
+const updateStaticSiteUserOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/authproviders/{authprovider}/users/{userid}",
   httpMethod: "PATCH",
@@ -1590,7 +1407,7 @@ const updateStaticSiteUserOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getStaticSiteBuildsOperationSpec: coreHttp.OperationSpec = {
+const getStaticSiteBuildsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds",
   httpMethod: "GET",
@@ -1612,7 +1429,7 @@ const getStaticSiteBuildsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
+const getStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}",
   httpMethod: "GET",
@@ -1635,7 +1452,7 @@ const getStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
+const deleteStaticSiteBuildOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}",
   httpMethod: "DELETE",
@@ -1657,7 +1474,7 @@ const deleteStaticSiteBuildOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/config/functionappsettings",
   httpMethod: "PUT",
@@ -1685,7 +1502,7 @@ const createOrUpdateStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.Op
   mediaType: "json",
   serializer
 };
-const listStaticSiteBuildFunctionsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteBuildFunctionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/functions",
   httpMethod: "GET",
@@ -1708,7 +1525,7 @@ const listStaticSiteBuildFunctionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/builds/{prId}/listFunctionAppSettings",
   httpMethod: "POST",
@@ -1734,7 +1551,7 @@ const listStaticSiteBuildFunctionAppSettingsOperationSpec: coreHttp.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/config/functionappsettings",
   httpMethod: "PUT",
@@ -1761,7 +1578,7 @@ const createOrUpdateStaticSiteFunctionAppSettingsOperationSpec: coreHttp.Operati
   mediaType: "json",
   serializer
 };
-const createUserRolesInvitationLinkOperationSpec: coreHttp.OperationSpec = {
+const createUserRolesInvitationLinkOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/createUserInvitation",
   httpMethod: "POST",
@@ -1785,7 +1602,7 @@ const createUserRolesInvitationLinkOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listStaticSiteCustomDomainsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteCustomDomainsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains",
   httpMethod: "GET",
@@ -1807,7 +1624,7 @@ const listStaticSiteCustomDomainsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}",
   httpMethod: "PUT",
@@ -1833,7 +1650,7 @@ const createOrUpdateStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec 
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
+const deleteStaticSiteCustomDomainOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}",
   httpMethod: "DELETE",
@@ -1855,7 +1672,7 @@ const deleteStaticSiteCustomDomainOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/customDomains/{domainName}/validate",
   httpMethod: "POST",
@@ -1877,7 +1694,7 @@ const validateCustomDomainCanBeAddedToStaticSiteOperationSpec: coreHttp.Operatio
   headerParameters: [Parameters.accept],
   serializer
 };
-const detachStaticSiteOperationSpec: coreHttp.OperationSpec = {
+const detachStaticSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/detach",
   httpMethod: "POST",
@@ -1898,7 +1715,7 @@ const detachStaticSiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteFunctionsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteFunctionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/functions",
   httpMethod: "GET",
@@ -1920,7 +1737,7 @@ const listStaticSiteFunctionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteFunctionAppSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listFunctionAppSettings",
   httpMethod: "POST",
@@ -1945,7 +1762,7 @@ const listStaticSiteFunctionAppSettingsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteSecretsOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteSecretsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/listSecrets",
   httpMethod: "POST",
@@ -1967,7 +1784,7 @@ const listStaticSiteSecretsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const resetStaticSiteApiKeyOperationSpec: coreHttp.OperationSpec = {
+const resetStaticSiteApiKeyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/staticSites/{name}/resetapikey",
   httpMethod: "POST",
@@ -1989,7 +1806,7 @@ const resetStaticSiteApiKeyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2009,7 +1826,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStaticSitesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const getStaticSitesByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2030,7 +1847,7 @@ const getStaticSitesByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteUsersNextOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteUsersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2053,7 +1870,7 @@ const listStaticSiteUsersNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStaticSiteBuildsNextOperationSpec: coreHttp.OperationSpec = {
+const getStaticSiteBuildsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2075,7 +1892,7 @@ const getStaticSiteBuildsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteBuildFunctionsNextOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteBuildFunctionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2098,7 +1915,7 @@ const listStaticSiteBuildFunctionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteCustomDomainsNextOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteCustomDomainsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2120,7 +1937,7 @@ const listStaticSiteCustomDomainsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listStaticSiteFunctionsNextOperationSpec: coreHttp.OperationSpec = {
+const listStaticSiteFunctionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

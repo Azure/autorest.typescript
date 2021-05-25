@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { NoOperationsClientOptionalParams } from "./models";
 
-export class NoOperationsClientContext extends coreClient.ServiceClient {
+const packageName = "no-operation";
+const packageVersion = "1.0.0-preview1";
+
+export class NoOperationsClientContext extends coreHttp.ServiceClient {
   /**
    * Initializes a new instance of the NoOperationsClientContext class.
    * @param options The parameter options
@@ -19,15 +22,15 @@ export class NoOperationsClientContext extends coreClient.ServiceClient {
     if (!options) {
       options = {};
     }
-    const defaults: NoOperationsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint;
   }
 }

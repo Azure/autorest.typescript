@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   DictionaryGetNullOptionalParams,
   DictionaryGetNullResponse,
@@ -149,7 +150,7 @@ export interface Dictionary {
   putEmpty(
     arrayBody: { [propertyName: string]: string },
     options?: DictionaryPutEmptyOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get Dictionary with null value
    * @param options The options parameters.
@@ -193,7 +194,7 @@ export interface Dictionary {
   putBooleanTfft(
     arrayBody: { [propertyName: string]: boolean },
     options?: DictionaryPutBooleanTfftOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get boolean dictionary value {"0": true, "1": null, "2": false }
    * @param options The options parameters.
@@ -223,7 +224,7 @@ export interface Dictionary {
   putIntegerValid(
     arrayBody: { [propertyName: string]: number },
     options?: DictionaryPutIntegerValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get integer dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
@@ -253,7 +254,7 @@ export interface Dictionary {
   putLongValid(
     arrayBody: { [propertyName: string]: number },
     options?: DictionaryPutLongValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get long dictionary value {"0": 1, "1": null, "2": 0}
    * @param options The options parameters.
@@ -283,7 +284,7 @@ export interface Dictionary {
   putFloatValid(
     arrayBody: { [propertyName: string]: number },
     options?: DictionaryPutFloatValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
@@ -313,7 +314,7 @@ export interface Dictionary {
   putDoubleValid(
     arrayBody: { [propertyName: string]: number },
     options?: DictionaryPutDoubleValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get float dictionary value {"0": 0.0, "1": null, "2": 1.2e20}
    * @param options The options parameters.
@@ -343,7 +344,7 @@ export interface Dictionary {
   putStringValid(
     arrayBody: { [propertyName: string]: string },
     options?: DictionaryPutStringValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get string dictionary value {"0": "foo", "1": null, "2": "foo2"}
    * @param options The options parameters.
@@ -373,7 +374,7 @@ export interface Dictionary {
   putDateValid(
     arrayBody: { [propertyName: string]: Date },
     options?: DictionaryPutDateValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get date dictionary value {"0": "2012-01-01", "1": null, "2": "1776-07-04"}
    * @param options The options parameters.
@@ -406,7 +407,7 @@ export interface Dictionary {
   putDateTimeValid(
     arrayBody: { [propertyName: string]: Date },
     options?: DictionaryPutDateTimeValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get date dictionary value {"0": "2000-12-01t00:00:01z", "1": null}
    * @param options The options parameters.
@@ -439,7 +440,7 @@ export interface Dictionary {
   putDateTimeRfc1123Valid(
     arrayBody: { [propertyName: string]: Date },
     options?: DictionaryPutDateTimeRfc1123ValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get duration dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}
    * @param options The options parameters.
@@ -455,7 +456,7 @@ export interface Dictionary {
   putDurationValid(
     arrayBody: { [propertyName: string]: string },
     options?: DictionaryPutDurationValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)} with
    * each item encoded in base64
@@ -474,7 +475,7 @@ export interface Dictionary {
   putByteValid(
     arrayBody: { [propertyName: string]: Uint8Array },
     options?: DictionaryPutByteValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64 encoded
    * @param options The options parameters.
@@ -538,7 +539,7 @@ export interface Dictionary {
   putComplexValid(
     arrayBody: { [propertyName: string]: Widget },
     options?: DictionaryPutComplexValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get a null array
    * @param options The options parameters.
@@ -583,7 +584,7 @@ export interface Dictionary {
   putArrayValid(
     arrayBody: { [propertyName: string]: string[] },
     options?: DictionaryPutArrayValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get an dictionaries of dictionaries with value null
    * @param options The options parameters.
@@ -635,5 +636,5 @@ export interface Dictionary {
   putDictionaryValid(
     arrayBody: { [propertyName: string]: { [propertyName: string]: string } },
     options?: DictionaryPutDictionaryValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

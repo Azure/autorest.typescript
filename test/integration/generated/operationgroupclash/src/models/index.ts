@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface Product {
   integer?: number;
@@ -28,7 +28,7 @@ export type Enum0 = string;
 
 /** Optional parameters. */
 export interface ProductOperationsApiV1ValueGetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
@@ -37,11 +37,20 @@ export interface ProductOperationsApiV1ValueGetOptionalParams
 export type ProductOperationsApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface OperationGroupClashClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

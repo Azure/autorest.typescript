@@ -7,7 +7,7 @@
  */
 
 import { Time } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyTimeClientContext } from "../bodyTimeClientContext";
@@ -35,7 +35,13 @@ export class TimeImpl implements Time {
    * @param options The options parameters.
    */
   get(options?: TimeGetOptionalParams): Promise<TimeGetResponse> {
-    return this.client.sendOperationRequest({ options }, getOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getOperationSpec
+    ) as Promise<TimeGetResponse>;
   }
 
   /**
@@ -49,16 +55,20 @@ export class TimeImpl implements Time {
     timeBody: string,
     options?: TimePutOptionalParams
   ): Promise<TimePutResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      timeBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { timeBody, options },
+      operationArguments,
       putOperationSpec
-    );
+    ) as Promise<TimePutResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/time/get",
   httpMethod: "GET",
   responses: {
@@ -73,7 +83,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putOperationSpec: coreClient.OperationSpec = {
+const putOperationSpec: coreHttp.OperationSpec = {
   path: "/time/put",
   httpMethod: "PUT",
   responses: {

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** Known values of {@link IntEnum} that the service accepts. */
 export const enum KnownIntEnum {
@@ -53,7 +53,7 @@ export const enum KnownFloatEnum {
 export type FloatEnum = number;
 
 /** Optional parameters. */
-export interface IntPutOptionalParams extends coreClient.OperationOptions {
+export interface IntPutOptionalParams extends coreHttp.OperationOptions {
   /** Input int enum. */
   input?: IntEnum;
 }
@@ -62,19 +62,37 @@ export interface IntPutOptionalParams extends coreClient.OperationOptions {
 export type IntPutResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
-export interface IntGetOptionalParams extends coreClient.OperationOptions {}
+export interface IntGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type IntGetResponse = {
   /** The parsed response body. */
   body: IntEnum;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: IntEnum;
+  };
 };
 
 /** Optional parameters. */
-export interface FloatPutOptionalParams extends coreClient.OperationOptions {
+export interface FloatPutOptionalParams extends coreHttp.OperationOptions {
   /** Input float enum. */
   input?: FloatEnum;
 }
@@ -83,20 +101,38 @@ export interface FloatPutOptionalParams extends coreClient.OperationOptions {
 export type FloatPutResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
-export interface FloatGetOptionalParams extends coreClient.OperationOptions {}
+export interface FloatGetOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the get operation. */
 export type FloatGetResponse = {
   /** The parsed response body. */
   body: FloatEnum;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: FloatEnum;
+  };
 };
 
 /** Optional parameters. */
 export interface NonStringEnumClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

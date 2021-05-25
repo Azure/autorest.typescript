@@ -6,11 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
-import * as coreAuth from "@azure/core-auth";
+import * as coreHttp from "@azure/core-http";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
-export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClient {
+const packageName = "azure-special-properties";
+const packageVersion = "1.0.0-preview1";
+
+export class AzureSpecialPropertiesClientContext extends coreHttp.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
@@ -23,7 +25,7 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
    * @param options The parameter options
    */
   constructor(
-    credentials: coreAuth.TokenCredential,
+    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     subscriptionId: string,
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {
@@ -38,22 +40,23 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
     if (!options) {
       options = {};
     }
-    const defaults: AzureSpecialPropertiesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8",
-      credential: credentials
-    };
+
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
     if (!options.credentialScopes) {
       options.credentialScopes = [
         "https://microsoft.com/.default",
         "http://microsoft.com/.default"
       ];
     }
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
+
+    super(credentials, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "http://localhost:3000";
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
@@ -32,13 +32,19 @@ export class ReportClient extends ReportClientContext {
   getReport(
     options?: ReportClientGetReportOptionalParams
   ): Promise<ReportClientGetReportResponse> {
-    return this.sendOperationRequest({ options }, getReportOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getReportOperationSpec
+    ) as Promise<ReportClientGetReportResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getReportOperationSpec: coreClient.OperationSpec = {
+const getReportOperationSpec: coreHttp.OperationSpec = {
   path: "/report/azure",
   httpMethod: "GET",
   responses: {

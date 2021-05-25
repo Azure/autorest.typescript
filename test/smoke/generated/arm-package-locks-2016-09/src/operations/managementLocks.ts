@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagementLocks } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagementLockClientContext } from "../managementLockClientContext";
@@ -339,16 +339,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     parameters: ManagementLockObject,
     options?: ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      lockName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, lockName, parameters, options },
       createOrUpdateAtResourceGroupLevelOperationSpec
-    ) as Promise<ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse>;
+    );
   }
 
   /**
@@ -363,16 +357,11 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceGroupName: string,
     lockName: string,
     options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, lockName, options },
       deleteAtResourceGroupLevelOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -386,15 +375,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     lockName: string,
     options?: ManagementLocksGetAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceGroupLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, lockName, options },
       getAtResourceGroupLevelOperationSpec
-    ) as Promise<ManagementLocksGetAtResourceGroupLevelResponse>;
+    );
   }
 
   /**
@@ -414,16 +398,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     parameters: ManagementLockObject,
     options?: ManagementLocksCreateOrUpdateByScopeOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateByScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      lockName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, lockName, parameters, options },
       createOrUpdateByScopeOperationSpec
-    ) as Promise<ManagementLocksCreateOrUpdateByScopeResponse>;
+    );
   }
 
   /**
@@ -436,16 +414,11 @@ export class ManagementLocksImpl implements ManagementLocks {
     scope: string,
     lockName: string,
     options?: ManagementLocksDeleteByScopeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, lockName, options },
       deleteByScopeOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -459,15 +432,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     lockName: string,
     options?: ManagementLocksGetByScopeOptionalParams
   ): Promise<ManagementLocksGetByScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, lockName, options },
       getByScopeOperationSpec
-    ) as Promise<ManagementLocksGetByScopeResponse>;
+    );
   }
 
   /**
@@ -495,20 +463,19 @@ export class ManagementLocksImpl implements ManagementLocks {
     parameters: ManagementLockObject,
     options?: ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      lockName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        lockName,
+        parameters,
+        options
+      },
       createOrUpdateAtResourceLevelOperationSpec
-    ) as Promise<ManagementLocksCreateOrUpdateAtResourceLevelResponse>;
+    );
   }
 
   /**
@@ -533,20 +500,19 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceName: string,
     lockName: string,
     options?: ManagementLocksDeleteAtResourceLevelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        lockName,
+        options
+      },
       deleteAtResourceLevelOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -568,19 +534,18 @@ export class ManagementLocksImpl implements ManagementLocks {
     lockName: string,
     options?: ManagementLocksGetAtResourceLevelOptionalParams
   ): Promise<ManagementLocksGetAtResourceLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        lockName,
+        options
+      },
       getAtResourceLevelOperationSpec
-    ) as Promise<ManagementLocksGetAtResourceLevelResponse>;
+    );
   }
 
   /**
@@ -598,15 +563,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     parameters: ManagementLockObject,
     options?: ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      lockName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { lockName, parameters, options },
       createOrUpdateAtSubscriptionLevelOperationSpec
-    ) as Promise<ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse>;
+    );
   }
 
   /**
@@ -619,15 +579,11 @@ export class ManagementLocksImpl implements ManagementLocks {
   deleteAtSubscriptionLevel(
     lockName: string,
     options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { lockName, options },
       deleteAtSubscriptionLevelOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -639,14 +595,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     lockName: string,
     options?: ManagementLocksGetAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksGetAtSubscriptionLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      lockName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { lockName, options },
       getAtSubscriptionLevelOperationSpec
-    ) as Promise<ManagementLocksGetAtSubscriptionLevelResponse>;
+    );
   }
 
   /**
@@ -658,14 +610,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceGroupName: string,
     options?: ManagementLocksListAtResourceGroupLevelOptionalParams
   ): Promise<ManagementLocksListAtResourceGroupLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listAtResourceGroupLevelOperationSpec
-    ) as Promise<ManagementLocksListAtResourceGroupLevelResponse>;
+    );
   }
 
   /**
@@ -686,18 +634,17 @@ export class ManagementLocksImpl implements ManagementLocks {
     resourceName: string,
     options?: ManagementLocksListAtResourceLevelOptionalParams
   ): Promise<ManagementLocksListAtResourceLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        options
+      },
       listAtResourceLevelOperationSpec
-    ) as Promise<ManagementLocksListAtResourceLevelResponse>;
+    );
   }
 
   /**
@@ -707,13 +654,10 @@ export class ManagementLocksImpl implements ManagementLocks {
   private _listAtSubscriptionLevel(
     options?: ManagementLocksListAtSubscriptionLevelOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAtSubscriptionLevelOperationSpec
-    ) as Promise<ManagementLocksListAtSubscriptionLevelResponse>;
+    );
   }
 
   /**
@@ -729,14 +673,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     scope: string,
     options?: ManagementLocksListByScopeOptionalParams
   ): Promise<ManagementLocksListByScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, options },
       listByScopeOperationSpec
-    ) as Promise<ManagementLocksListByScopeResponse>;
+    );
   }
 
   /**
@@ -751,15 +691,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtResourceGroupLevelNextOptionalParams
   ): Promise<ManagementLocksListAtResourceGroupLevelNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listAtResourceGroupLevelNextOperationSpec
-    ) as Promise<ManagementLocksListAtResourceGroupLevelNextResponse>;
+    );
   }
 
   /**
@@ -782,19 +717,18 @@ export class ManagementLocksImpl implements ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtResourceLevelNextOptionalParams
   ): Promise<ManagementLocksListAtResourceLevelNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
       listAtResourceLevelNextOperationSpec
-    ) as Promise<ManagementLocksListAtResourceLevelNextResponse>;
+    );
   }
 
   /**
@@ -807,14 +741,10 @@ export class ManagementLocksImpl implements ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListAtSubscriptionLevelNextOptionalParams
   ): Promise<ManagementLocksListAtSubscriptionLevelNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAtSubscriptionLevelNextOperationSpec
-    ) as Promise<ManagementLocksListAtSubscriptionLevelNextResponse>;
+    );
   }
 
   /**
@@ -832,21 +762,16 @@ export class ManagementLocksImpl implements ManagementLocks {
     nextLink: string,
     options?: ManagementLocksListByScopeNextOptionalParams
   ): Promise<ManagementLocksListByScopeNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, nextLink, options },
       listByScopeNextOperationSpec
-    ) as Promise<ManagementLocksListByScopeNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateAtResourceGroupLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "PUT",
@@ -870,7 +795,7 @@ const createOrUpdateAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = 
   mediaType: "json",
   serializer
 };
-const deleteAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
+const deleteAtResourceGroupLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "DELETE",
@@ -884,7 +809,7 @@ const deleteAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
+const getAtResourceGroupLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "GET",
@@ -903,7 +828,7 @@ const getAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateByScopeOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateByScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "PUT",
   responses: {
@@ -921,7 +846,7 @@ const createOrUpdateByScopeOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteByScopeOperationSpec: coreHttp.OperationSpec = {
+const deleteByScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "DELETE",
   responses: { 200: {}, 204: {} },
@@ -929,7 +854,7 @@ const deleteByScopeOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.lockName, Parameters.scope],
   serializer
 };
-const getByScopeOperationSpec: coreHttp.OperationSpec = {
+const getByScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "GET",
   responses: {
@@ -942,7 +867,7 @@ const getByScopeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateAtResourceLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "PUT",
@@ -970,7 +895,7 @@ const createOrUpdateAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
+const deleteAtResourceLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "DELETE",
@@ -988,7 +913,7 @@ const deleteAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
+const getAtResourceLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "GET",
@@ -1011,7 +936,7 @@ const getAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateAtSubscriptionLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "PUT",
@@ -1034,7 +959,7 @@ const createOrUpdateAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
+const deleteAtSubscriptionLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "DELETE",
@@ -1047,7 +972,7 @@ const deleteAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
+const getAtSubscriptionLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks/{lockName}",
   httpMethod: "GET",
@@ -1065,7 +990,7 @@ const getAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
+const listAtResourceGroupLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/locks",
   httpMethod: "GET",
@@ -1083,7 +1008,7 @@ const listAtResourceGroupLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
+const listAtResourceLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/locks",
   httpMethod: "GET",
@@ -1105,7 +1030,7 @@ const listAtResourceLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
+const listAtSubscriptionLevelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/locks",
   httpMethod: "GET",
@@ -1119,7 +1044,7 @@ const listAtSubscriptionLevelOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByScopeOperationSpec: coreHttp.OperationSpec = {
+const listByScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Authorization/locks",
   httpMethod: "GET",
   responses: {
@@ -1132,7 +1057,7 @@ const listByScopeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtResourceGroupLevelNextOperationSpec: coreHttp.OperationSpec = {
+const listAtResourceGroupLevelNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1150,7 +1075,7 @@ const listAtResourceGroupLevelNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtResourceLevelNextOperationSpec: coreHttp.OperationSpec = {
+const listAtResourceLevelNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1172,7 +1097,7 @@ const listAtResourceLevelNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSubscriptionLevelNextOperationSpec: coreHttp.OperationSpec = {
+const listAtSubscriptionLevelNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1189,7 +1114,7 @@ const listAtSubscriptionLevelNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByScopeNextOperationSpec: coreHttp.OperationSpec = {
+const listByScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

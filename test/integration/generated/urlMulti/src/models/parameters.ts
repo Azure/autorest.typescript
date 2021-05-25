@@ -9,8 +9,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -49,7 +50,7 @@ export const arrayQuery: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "Multi"
+  collectionFormat: QueryCollectionFormat.Multi
 };
 
 export const arrayQuery1: OperationQueryParameter = {
@@ -65,5 +66,5 @@ export const arrayQuery1: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "Multi"
+  collectionFormat: QueryCollectionFormat.Multi
 };

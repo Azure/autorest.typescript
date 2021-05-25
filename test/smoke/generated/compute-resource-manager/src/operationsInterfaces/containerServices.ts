@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ContainerService,
@@ -107,9 +106,7 @@ export interface ContainerServices {
     resourceGroupName: string,
     containerServiceName: string,
     options?: ContainerServicesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified container service in the specified subscription and resource group. The
    * operation does not delete other resources created as part of creating a container service, including
@@ -124,5 +121,5 @@ export interface ContainerServices {
     resourceGroupName: string,
     containerServiceName: string,
     options?: ContainerServicesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

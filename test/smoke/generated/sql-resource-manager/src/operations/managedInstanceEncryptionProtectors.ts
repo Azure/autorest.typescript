@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedInstanceEncryptionProtectors } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -128,27 +128,47 @@ export class ManagedInstanceEncryptionProtectorsImpl
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
     options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        encryptionProtectorName,
+        options
+      },
       revalidateOperationSpec,
       sendOperation
     );
@@ -167,7 +187,7 @@ export class ManagedInstanceEncryptionProtectorsImpl
     managedInstanceName: string,
     encryptionProtectorName: EncryptionProtectorName,
     options?: ManagedInstanceEncryptionProtectorsRevalidateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRevalidate(
       resourceGroupName,
       managedInstanceName,
@@ -189,15 +209,10 @@ export class ManagedInstanceEncryptionProtectorsImpl
     managedInstanceName: string,
     options?: ManagedInstanceEncryptionProtectorsListByInstanceOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, options },
       listByInstanceOperationSpec
-    ) as Promise<ManagedInstanceEncryptionProtectorsListByInstanceResponse>;
+    );
   }
 
   /**
@@ -214,16 +229,15 @@ export class ManagedInstanceEncryptionProtectorsImpl
     encryptionProtectorName: EncryptionProtectorName,
     options?: ManagedInstanceEncryptionProtectorsGetOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        encryptionProtectorName,
+        options
+      },
       getOperationSpec
-    ) as Promise<ManagedInstanceEncryptionProtectorsGetResponse>;
+    );
   }
 
   /**
@@ -249,25 +263,47 @@ export class ManagedInstanceEncryptionProtectorsImpl
       ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      encryptionProtectorName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ManagedInstanceEncryptionProtectorsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        encryptionProtectorName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -313,34 +349,16 @@ export class ManagedInstanceEncryptionProtectorsImpl
     nextLink: string,
     options?: ManagedInstanceEncryptionProtectorsListByInstanceNextOptionalParams
   ): Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, nextLink, options },
       listByInstanceNextOperationSpec
-    ) as Promise<ManagedInstanceEncryptionProtectorsListByInstanceNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const revalidateOperationSpec: coreHttp.OperationSpec = {
+const revalidateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}/revalidate",
   httpMethod: "POST",
@@ -355,7 +373,7 @@ const revalidateOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByInstanceOperationSpec: coreHttp.OperationSpec = {
+const listByInstanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector",
   httpMethod: "GET",
@@ -375,7 +393,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}",
   httpMethod: "GET",
@@ -396,7 +414,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/encryptionProtector/{encryptionProtectorName}",
   httpMethod: "PUT",
@@ -428,7 +446,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
+const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

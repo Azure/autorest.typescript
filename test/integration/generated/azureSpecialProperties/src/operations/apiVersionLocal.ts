@@ -7,7 +7,7 @@
  */
 
 import { ApiVersionLocal } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -36,11 +36,14 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    */
   getMethodLocalValid(
     options?: ApiVersionLocalGetMethodLocalValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getMethodLocalValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -49,11 +52,14 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    */
   getMethodLocalNull(
     options?: ApiVersionLocalGetMethodLocalNullOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getMethodLocalNullOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -62,11 +68,14 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    */
   getPathLocalValid(
     options?: ApiVersionLocalGetPathLocalValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getPathLocalValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -75,17 +84,20 @@ export class ApiVersionLocalImpl implements ApiVersionLocal {
    */
   getSwaggerLocalValid(
     options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSwaggerLocalValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getMethodLocalValidOperationSpec: coreClient.OperationSpec = {
+const getMethodLocalValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/apiVersion/method/string/none/query/local/2.0",
   httpMethod: "GET",
   responses: {
@@ -99,7 +111,7 @@ const getMethodLocalValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMethodLocalNullOperationSpec: coreClient.OperationSpec = {
+const getMethodLocalNullOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/apiVersion/method/string/none/query/local/null",
   httpMethod: "GET",
   responses: {
@@ -113,7 +125,7 @@ const getMethodLocalNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPathLocalValidOperationSpec: coreClient.OperationSpec = {
+const getPathLocalValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/apiVersion/path/string/none/query/local/2.0",
   httpMethod: "GET",
   responses: {
@@ -127,7 +139,7 @@ const getPathLocalValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
+const getSwaggerLocalValidOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/apiVersion/swagger/string/none/query/local/2.0",
   httpMethod: "GET",
   responses: {

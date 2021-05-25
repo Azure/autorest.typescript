@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Usages } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -118,15 +118,10 @@ export class UsagesImpl implements Usages {
     instancePoolName: string,
     options?: UsagesListByInstancePoolOptionalParams
   ): Promise<UsagesListByInstancePoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      instancePoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, instancePoolName, options },
       listByInstancePoolOperationSpec
-    ) as Promise<UsagesListByInstancePoolResponse>;
+    );
   }
 
   /**
@@ -143,22 +138,16 @@ export class UsagesImpl implements Usages {
     nextLink: string,
     options?: UsagesListByInstancePoolNextOptionalParams
   ): Promise<UsagesListByInstancePoolNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      instancePoolName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, instancePoolName, nextLink, options },
       listByInstancePoolNextOperationSpec
-    ) as Promise<UsagesListByInstancePoolNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {
+const listByInstancePoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/instancePools/{instancePoolName}/usages",
   httpMethod: "GET",
@@ -178,7 +167,7 @@ const listByInstancePoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByInstancePoolNextOperationSpec: coreHttp.OperationSpec = {
+const listByInstancePoolNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

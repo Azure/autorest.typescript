@@ -7,7 +7,7 @@
  */
 
 import { HttpRedirects } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
@@ -65,7 +65,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   head300(
     options?: HttpRedirectsHead300OptionalParams
   ): Promise<HttpRedirectsHead300Response> {
-    return this.client.sendOperationRequest({ options }, head300OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      head300OperationSpec
+    ) as Promise<HttpRedirectsHead300Response>;
   }
 
   /**
@@ -75,7 +81,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   get300(
     options?: HttpRedirectsGet300OptionalParams
   ): Promise<HttpRedirectsGet300Response> {
-    return this.client.sendOperationRequest({ options }, get300OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      get300OperationSpec
+    ) as Promise<HttpRedirectsGet300Response>;
   }
 
   /**
@@ -85,7 +97,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   head301(
     options?: HttpRedirectsHead301OptionalParams
   ): Promise<HttpRedirectsHead301Response> {
-    return this.client.sendOperationRequest({ options }, head301OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      head301OperationSpec
+    ) as Promise<HttpRedirectsHead301Response>;
   }
 
   /**
@@ -95,7 +113,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   get301(
     options?: HttpRedirectsGet301OptionalParams
   ): Promise<HttpRedirectsGet301Response> {
-    return this.client.sendOperationRequest({ options }, get301OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      get301OperationSpec
+    ) as Promise<HttpRedirectsGet301Response>;
   }
 
   /**
@@ -106,7 +130,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   put301(
     options?: HttpRedirectsPut301OptionalParams
   ): Promise<HttpRedirectsPut301Response> {
-    return this.client.sendOperationRequest({ options }, put301OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      put301OperationSpec
+    ) as Promise<HttpRedirectsPut301Response>;
   }
 
   /**
@@ -116,7 +146,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   head302(
     options?: HttpRedirectsHead302OptionalParams
   ): Promise<HttpRedirectsHead302Response> {
-    return this.client.sendOperationRequest({ options }, head302OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      head302OperationSpec
+    ) as Promise<HttpRedirectsHead302Response>;
   }
 
   /**
@@ -126,7 +162,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   get302(
     options?: HttpRedirectsGet302OptionalParams
   ): Promise<HttpRedirectsGet302Response> {
-    return this.client.sendOperationRequest({ options }, get302OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      get302OperationSpec
+    ) as Promise<HttpRedirectsGet302Response>;
   }
 
   /**
@@ -137,7 +179,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   patch302(
     options?: HttpRedirectsPatch302OptionalParams
   ): Promise<HttpRedirectsPatch302Response> {
-    return this.client.sendOperationRequest({ options }, patch302OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      patch302OperationSpec
+    ) as Promise<HttpRedirectsPatch302Response>;
   }
 
   /**
@@ -148,7 +196,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   post303(
     options?: HttpRedirectsPost303OptionalParams
   ): Promise<HttpRedirectsPost303Response> {
-    return this.client.sendOperationRequest({ options }, post303OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      post303OperationSpec
+    ) as Promise<HttpRedirectsPost303Response>;
   }
 
   /**
@@ -158,7 +212,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   head307(
     options?: HttpRedirectsHead307OptionalParams
   ): Promise<HttpRedirectsHead307Response> {
-    return this.client.sendOperationRequest({ options }, head307OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      head307OperationSpec
+    ) as Promise<HttpRedirectsHead307Response>;
   }
 
   /**
@@ -168,7 +228,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   get307(
     options?: HttpRedirectsGet307OptionalParams
   ): Promise<HttpRedirectsGet307Response> {
-    return this.client.sendOperationRequest({ options }, get307OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      get307OperationSpec
+    ) as Promise<HttpRedirectsGet307Response>;
   }
 
   /**
@@ -178,10 +244,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   options307(
     options?: HttpRedirectsOptions307OptionalParams
   ): Promise<HttpRedirectsOptions307Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       options307OperationSpec
-    );
+    ) as Promise<HttpRedirectsOptions307Response>;
   }
 
   /**
@@ -191,7 +260,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   put307(
     options?: HttpRedirectsPut307OptionalParams
   ): Promise<HttpRedirectsPut307Response> {
-    return this.client.sendOperationRequest({ options }, put307OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      put307OperationSpec
+    ) as Promise<HttpRedirectsPut307Response>;
   }
 
   /**
@@ -201,7 +276,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   patch307(
     options?: HttpRedirectsPatch307OptionalParams
   ): Promise<HttpRedirectsPatch307Response> {
-    return this.client.sendOperationRequest({ options }, patch307OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      patch307OperationSpec
+    ) as Promise<HttpRedirectsPatch307Response>;
   }
 
   /**
@@ -211,7 +292,13 @@ export class HttpRedirectsImpl implements HttpRedirects {
   post307(
     options?: HttpRedirectsPost307OptionalParams
   ): Promise<HttpRedirectsPost307Response> {
-    return this.client.sendOperationRequest({ options }, post307OperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      post307OperationSpec
+    ) as Promise<HttpRedirectsPost307Response>;
   }
 
   /**
@@ -221,16 +308,19 @@ export class HttpRedirectsImpl implements HttpRedirects {
   delete307(
     options?: HttpRedirectsDelete307OptionalParams
   ): Promise<HttpRedirectsDelete307Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       delete307OperationSpec
-    );
+    ) as Promise<HttpRedirectsDelete307Response>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const head300OperationSpec: coreClient.OperationSpec = {
+const head300OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/300",
   httpMethod: "HEAD",
   responses: {
@@ -246,7 +336,7 @@ const head300OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const get300OperationSpec: coreClient.OperationSpec = {
+const get300OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/300",
   httpMethod: "GET",
   responses: {
@@ -265,7 +355,7 @@ const get300OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const head301OperationSpec: coreClient.OperationSpec = {
+const head301OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/301",
   httpMethod: "HEAD",
   responses: {
@@ -281,7 +371,7 @@ const head301OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const get301OperationSpec: coreClient.OperationSpec = {
+const get301OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/301",
   httpMethod: "GET",
   responses: {
@@ -297,7 +387,7 @@ const get301OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const put301OperationSpec: coreClient.OperationSpec = {
+const put301OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/301",
   httpMethod: "PUT",
   responses: {
@@ -314,7 +404,7 @@ const put301OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const head302OperationSpec: coreClient.OperationSpec = {
+const head302OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/302",
   httpMethod: "HEAD",
   responses: {
@@ -330,7 +420,7 @@ const head302OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const get302OperationSpec: coreClient.OperationSpec = {
+const get302OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/302",
   httpMethod: "GET",
   responses: {
@@ -346,7 +436,7 @@ const get302OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const patch302OperationSpec: coreClient.OperationSpec = {
+const patch302OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/302",
   httpMethod: "PATCH",
   responses: {
@@ -363,7 +453,7 @@ const patch302OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const post303OperationSpec: coreClient.OperationSpec = {
+const post303OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/303",
   httpMethod: "POST",
   responses: {
@@ -381,7 +471,7 @@ const post303OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const head307OperationSpec: coreClient.OperationSpec = {
+const head307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "HEAD",
   responses: {
@@ -397,7 +487,7 @@ const head307OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const get307OperationSpec: coreClient.OperationSpec = {
+const get307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "GET",
   responses: {
@@ -413,7 +503,7 @@ const get307OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const options307OperationSpec: coreClient.OperationSpec = {
+const options307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "OPTIONS",
   responses: {
@@ -429,7 +519,7 @@ const options307OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const put307OperationSpec: coreClient.OperationSpec = {
+const put307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "PUT",
   responses: {
@@ -447,7 +537,7 @@ const put307OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const patch307OperationSpec: coreClient.OperationSpec = {
+const patch307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "PATCH",
   responses: {
@@ -465,7 +555,7 @@ const patch307OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const post307OperationSpec: coreClient.OperationSpec = {
+const post307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "POST",
   responses: {
@@ -483,7 +573,7 @@ const post307OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const delete307OperationSpec: coreClient.OperationSpec = {
+const delete307OperationSpec: coreHttp.OperationSpec = {
   path: "/http/redirect/307",
   httpMethod: "DELETE",
   responses: {

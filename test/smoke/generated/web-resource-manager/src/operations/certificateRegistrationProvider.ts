@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { CertificateRegistrationProvider } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -86,13 +86,10 @@ export class CertificateRegistrationProviderImpl
   private _listOperations(
     options?: CertificateRegistrationProviderListOperationsOptionalParams
   ): Promise<CertificateRegistrationProviderListOperationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listOperationsOperationSpec
-    ) as Promise<CertificateRegistrationProviderListOperationsResponse>;
+    );
   }
 
   /**
@@ -104,20 +101,16 @@ export class CertificateRegistrationProviderImpl
     nextLink: string,
     options?: CertificateRegistrationProviderListOperationsNextOptionalParams
   ): Promise<CertificateRegistrationProviderListOperationsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listOperationsNextOperationSpec
-    ) as Promise<CertificateRegistrationProviderListOperationsNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationsOperationSpec: coreHttp.OperationSpec = {
+const listOperationsOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.CertificateRegistration/operations",
   httpMethod: "GET",
   responses: {
@@ -133,7 +126,7 @@ const listOperationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
+const listOperationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const AzureMetricsDocument: coreHttp.CompositeMapper = {
+export const AzureMetricsDocument: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMetricsDocument",
@@ -31,7 +31,7 @@ export const AzureMetricsDocument: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureMetricsData: coreHttp.CompositeMapper = {
+export const AzureMetricsData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMetricsData",
@@ -47,7 +47,7 @@ export const AzureMetricsData: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureMetricsBaseData: coreHttp.CompositeMapper = {
+export const AzureMetricsBaseData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMetricsBaseData",
@@ -94,7 +94,7 @@ export const AzureMetricsBaseData: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureTimeSeriesData: coreHttp.CompositeMapper = {
+export const AzureTimeSeriesData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureTimeSeriesData",
@@ -142,7 +142,7 @@ export const AzureTimeSeriesData: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureMetricsResult: coreHttp.CompositeMapper = {
+export const AzureMetricsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureMetricsResult",
@@ -164,7 +164,7 @@ export const AzureMetricsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiFailureResponse: coreHttp.CompositeMapper = {
+export const ApiFailureResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApiFailureResponse",
@@ -180,7 +180,7 @@ export const ApiFailureResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiError: coreHttp.CompositeMapper = {
+export const ApiError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApiError",

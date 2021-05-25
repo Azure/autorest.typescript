@@ -7,7 +7,7 @@
  */
 
 import { Array } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyComplexClientContext } from "../bodyComplexClientContext";
@@ -42,7 +42,13 @@ export class ArrayImpl implements Array {
   getValid(
     options?: ArrayGetValidOptionalParams
   ): Promise<ArrayGetValidResponse> {
-    return this.client.sendOperationRequest({ options }, getValidOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getValidOperationSpec
+    ) as Promise<ArrayGetValidResponse>;
   }
 
   /**
@@ -54,11 +60,15 @@ export class ArrayImpl implements Array {
   putValid(
     complexBody: ArrayWrapper,
     options?: ArrayPutValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -68,7 +78,13 @@ export class ArrayImpl implements Array {
   getEmpty(
     options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
-    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getEmptyOperationSpec
+    ) as Promise<ArrayGetEmptyResponse>;
   }
 
   /**
@@ -79,11 +95,15 @@ export class ArrayImpl implements Array {
   putEmpty(
     complexBody: ArrayWrapper,
     options?: ArrayPutEmptyOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { complexBody, options },
+      operationArguments,
       putEmptyOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -93,16 +113,19 @@ export class ArrayImpl implements Array {
   getNotProvided(
     options?: ArrayGetNotProvidedOptionalParams
   ): Promise<ArrayGetNotProvidedResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getNotProvidedOperationSpec
-    );
+    ) as Promise<ArrayGetNotProvidedResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreClient.OperationSpec = {
+const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/valid",
   httpMethod: "GET",
   responses: {
@@ -117,7 +140,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreClient.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/valid",
   httpMethod: "PUT",
   responses: {
@@ -132,7 +155,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getEmptyOperationSpec: coreClient.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/empty",
   httpMethod: "GET",
   responses: {
@@ -147,7 +170,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putEmptyOperationSpec: coreClient.OperationSpec = {
+const putEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/empty",
   httpMethod: "PUT",
   responses: {
@@ -162,7 +185,7 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getNotProvidedOperationSpec: coreClient.OperationSpec = {
+const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/array/notprovided",
   httpMethod: "GET",
   responses: {

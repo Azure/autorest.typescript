@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import { OdataGetWithFilterOptionalParams } from "../models";
 
 /** Interface representing a Odata. */
@@ -14,5 +15,7 @@ export interface Odata {
    * Specify filter parameter with value '$filter=id gt 5 and name eq 'foo'&$orderby=id&$top=10'
    * @param options The options parameters.
    */
-  getWithFilter(options?: OdataGetWithFilterOptionalParams): Promise<void>;
+  getWithFilter(
+    options?: OdataGetWithFilterOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

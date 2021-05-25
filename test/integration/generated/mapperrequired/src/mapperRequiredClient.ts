@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { MapperRequiredClientContext } from "./mapperRequiredClientContext";
@@ -36,16 +36,20 @@ export class MapperRequiredClient extends MapperRequiredClientContext {
     issuerName: string,
     options?: MapperRequiredClientUpdateCertificateIssuerOptionalParams
   ): Promise<MapperRequiredClientUpdateCertificateIssuerResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      issuerName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { issuerName, options },
+      operationArguments,
       updateCertificateIssuerOperationSpec
-    );
+    ) as Promise<MapperRequiredClientUpdateCertificateIssuerResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const updateCertificateIssuerOperationSpec: coreClient.OperationSpec = {
+const updateCertificateIssuerOperationSpec: coreHttp.OperationSpec = {
   path: "/certificates/issuers/{issuer-name}",
   httpMethod: "PATCH",
   responses: {

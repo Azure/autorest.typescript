@@ -7,7 +7,7 @@
  */
 
 import { Int } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyIntegerClientContext } from "../bodyIntegerClientContext";
@@ -54,7 +54,13 @@ export class IntImpl implements Int {
    * @param options The options parameters.
    */
   getNull(options?: IntGetNullOptionalParams): Promise<IntGetNullResponse> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getNullOperationSpec
+    ) as Promise<IntGetNullResponse>;
   }
 
   /**
@@ -64,10 +70,13 @@ export class IntImpl implements Int {
   getInvalid(
     options?: IntGetInvalidOptionalParams
   ): Promise<IntGetInvalidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidOperationSpec
-    );
+    ) as Promise<IntGetInvalidResponse>;
   }
 
   /**
@@ -77,10 +86,13 @@ export class IntImpl implements Int {
   getOverflowInt32(
     options?: IntGetOverflowInt32OptionalParams
   ): Promise<IntGetOverflowInt32Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getOverflowInt32OperationSpec
-    );
+    ) as Promise<IntGetOverflowInt32Response>;
   }
 
   /**
@@ -90,10 +102,13 @@ export class IntImpl implements Int {
   getUnderflowInt32(
     options?: IntGetUnderflowInt32OptionalParams
   ): Promise<IntGetUnderflowInt32Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getUnderflowInt32OperationSpec
-    );
+    ) as Promise<IntGetUnderflowInt32Response>;
   }
 
   /**
@@ -103,10 +118,13 @@ export class IntImpl implements Int {
   getOverflowInt64(
     options?: IntGetOverflowInt64OptionalParams
   ): Promise<IntGetOverflowInt64Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getOverflowInt64OperationSpec
-    );
+    ) as Promise<IntGetOverflowInt64Response>;
   }
 
   /**
@@ -116,10 +134,13 @@ export class IntImpl implements Int {
   getUnderflowInt64(
     options?: IntGetUnderflowInt64OptionalParams
   ): Promise<IntGetUnderflowInt64Response> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getUnderflowInt64OperationSpec
-    );
+    ) as Promise<IntGetUnderflowInt64Response>;
   }
 
   /**
@@ -130,11 +151,15 @@ export class IntImpl implements Int {
   putMax32(
     intBody: number,
     options?: IntPutMax32OptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options },
+      operationArguments,
       putMax32OperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -145,11 +170,15 @@ export class IntImpl implements Int {
   putMax64(
     intBody: number,
     options?: IntPutMax64OptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options },
+      operationArguments,
       putMax64OperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -160,11 +189,15 @@ export class IntImpl implements Int {
   putMin32(
     intBody: number,
     options?: IntPutMin32OptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options },
+      operationArguments,
       putMin32OperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -175,11 +208,15 @@ export class IntImpl implements Int {
   putMin64(
     intBody: number,
     options?: IntPutMin64OptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options },
+      operationArguments,
       putMin64OperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -189,10 +226,13 @@ export class IntImpl implements Int {
   getUnixTime(
     options?: IntGetUnixTimeOptionalParams
   ): Promise<IntGetUnixTimeResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getUnixTimeOperationSpec
-    );
+    ) as Promise<IntGetUnixTimeResponse>;
   }
 
   /**
@@ -203,11 +243,15 @@ export class IntImpl implements Int {
   putUnixTimeDate(
     intBody: Date,
     options?: IntPutUnixTimeDateOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      intBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { intBody, options },
+      operationArguments,
       putUnixTimeDateOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -217,10 +261,13 @@ export class IntImpl implements Int {
   getInvalidUnixTime(
     options?: IntGetInvalidUnixTimeOptionalParams
   ): Promise<IntGetInvalidUnixTimeResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidUnixTimeOperationSpec
-    );
+    ) as Promise<IntGetInvalidUnixTimeResponse>;
   }
 
   /**
@@ -230,16 +277,19 @@ export class IntImpl implements Int {
   getNullUnixTime(
     options?: IntGetNullUnixTimeOptionalParams
   ): Promise<IntGetNullUnixTimeResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getNullUnixTimeOperationSpec
-    );
+    ) as Promise<IntGetNullUnixTimeResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreClient.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/int/null",
   httpMethod: "GET",
   responses: {
@@ -254,7 +304,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidOperationSpec: coreClient.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   path: "/int/invalid",
   httpMethod: "GET",
   responses: {
@@ -269,7 +319,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOverflowInt32OperationSpec: coreClient.OperationSpec = {
+const getOverflowInt32OperationSpec: coreHttp.OperationSpec = {
   path: "/int/overflowint32",
   httpMethod: "GET",
   responses: {
@@ -284,7 +334,7 @@ const getOverflowInt32OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getUnderflowInt32OperationSpec: coreClient.OperationSpec = {
+const getUnderflowInt32OperationSpec: coreHttp.OperationSpec = {
   path: "/int/underflowint32",
   httpMethod: "GET",
   responses: {
@@ -299,7 +349,7 @@ const getUnderflowInt32OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOverflowInt64OperationSpec: coreClient.OperationSpec = {
+const getOverflowInt64OperationSpec: coreHttp.OperationSpec = {
   path: "/int/overflowint64",
   httpMethod: "GET",
   responses: {
@@ -314,7 +364,7 @@ const getOverflowInt64OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getUnderflowInt64OperationSpec: coreClient.OperationSpec = {
+const getUnderflowInt64OperationSpec: coreHttp.OperationSpec = {
   path: "/int/underflowint64",
   httpMethod: "GET",
   responses: {
@@ -329,7 +379,7 @@ const getUnderflowInt64OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putMax32OperationSpec: coreClient.OperationSpec = {
+const putMax32OperationSpec: coreHttp.OperationSpec = {
   path: "/int/max/32",
   httpMethod: "PUT",
   responses: {
@@ -344,7 +394,7 @@ const putMax32OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putMax64OperationSpec: coreClient.OperationSpec = {
+const putMax64OperationSpec: coreHttp.OperationSpec = {
   path: "/int/max/64",
   httpMethod: "PUT",
   responses: {
@@ -359,7 +409,7 @@ const putMax64OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putMin32OperationSpec: coreClient.OperationSpec = {
+const putMin32OperationSpec: coreHttp.OperationSpec = {
   path: "/int/min/32",
   httpMethod: "PUT",
   responses: {
@@ -374,7 +424,7 @@ const putMin32OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putMin64OperationSpec: coreClient.OperationSpec = {
+const putMin64OperationSpec: coreHttp.OperationSpec = {
   path: "/int/min/64",
   httpMethod: "PUT",
   responses: {
@@ -389,7 +439,7 @@ const putMin64OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getUnixTimeOperationSpec: coreClient.OperationSpec = {
+const getUnixTimeOperationSpec: coreHttp.OperationSpec = {
   path: "/int/unixtime",
   httpMethod: "GET",
   responses: {
@@ -404,7 +454,7 @@ const getUnixTimeOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putUnixTimeDateOperationSpec: coreClient.OperationSpec = {
+const putUnixTimeDateOperationSpec: coreHttp.OperationSpec = {
   path: "/int/unixtime",
   httpMethod: "PUT",
   responses: {
@@ -419,7 +469,7 @@ const putUnixTimeDateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getInvalidUnixTimeOperationSpec: coreClient.OperationSpec = {
+const getInvalidUnixTimeOperationSpec: coreHttp.OperationSpec = {
   path: "/int/invalidunixtime",
   httpMethod: "GET",
   responses: {
@@ -434,7 +484,7 @@ const getInvalidUnixTimeOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNullUnixTimeOperationSpec: coreClient.OperationSpec = {
+const getNullUnixTimeOperationSpec: coreHttp.OperationSpec = {
   path: "/int/nullunixtime",
   httpMethod: "GET",
   responses: {

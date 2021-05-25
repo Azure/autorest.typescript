@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AppServicePlans } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -479,13 +479,7 @@ export class AppServicePlansImpl implements AppServicePlans {
   private _list(
     options?: AppServicePlansListOptionalParams
   ): Promise<AppServicePlansListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<AppServicePlansListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -497,14 +491,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     options?: AppServicePlansListByResourceGroupOptionalParams
   ): Promise<AppServicePlansListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<AppServicePlansListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -518,15 +508,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansGetOptionalParams
   ): Promise<AppServicePlansGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getOperationSpec
-    ) as Promise<AppServicePlansGetResponse>;
+    );
   }
 
   /**
@@ -547,24 +532,41 @@ export class AppServicePlansImpl implements AppServicePlans {
       AppServicePlansCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      appServicePlan,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServicePlansCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServicePlansCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, appServicePlan, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -602,16 +604,11 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -627,16 +624,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     appServicePlan: AppServicePlanPatchResource,
     options?: AppServicePlansUpdateOptionalParams
   ): Promise<AppServicePlansUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      appServicePlan,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, appServicePlan, options },
       updateOperationSpec
-    ) as Promise<AppServicePlansUpdateResponse>;
+    );
   }
 
   /**
@@ -650,15 +641,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansListCapabilitiesOptionalParams
   ): Promise<AppServicePlansListCapabilitiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listCapabilitiesOperationSpec
-    ) as Promise<AppServicePlansListCapabilitiesResponse>;
+    );
   }
 
   /**
@@ -676,17 +662,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     relayName: string,
     options?: AppServicePlansGetHybridConnectionOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       getHybridConnectionOperationSpec
-    ) as Promise<AppServicePlansGetHybridConnectionResponse>;
+    );
   }
 
   /**
@@ -703,18 +682,11 @@ export class AppServicePlansImpl implements AppServicePlans {
     namespaceName: string,
     relayName: string,
     options?: AppServicePlansDeleteHybridConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       deleteHybridConnectionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -732,17 +704,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     relayName: string,
     options?: AppServicePlansListHybridConnectionKeysOptionalParams
   ): Promise<AppServicePlansListHybridConnectionKeysResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       listHybridConnectionKeysOperationSpec
-    ) as Promise<AppServicePlansListHybridConnectionKeysResponse>;
+    );
   }
 
   /**
@@ -760,17 +725,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     relayName: string,
     options?: AppServicePlansListWebAppsByHybridConnectionOptionalParams
   ): Promise<AppServicePlansListWebAppsByHybridConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       listWebAppsByHybridConnectionOperationSpec
-    ) as Promise<AppServicePlansListWebAppsByHybridConnectionResponse>;
+    );
   }
 
   /**
@@ -784,15 +742,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansGetHybridConnectionPlanLimitOptionalParams
   ): Promise<AppServicePlansGetHybridConnectionPlanLimitResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getHybridConnectionPlanLimitOperationSpec
-    ) as Promise<AppServicePlansGetHybridConnectionPlanLimitResponse>;
+    );
   }
 
   /**
@@ -806,15 +759,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansListHybridConnectionsOptionalParams
   ): Promise<AppServicePlansListHybridConnectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listHybridConnectionsOperationSpec
-    ) as Promise<AppServicePlansListHybridConnectionsResponse>;
+    );
   }
 
   /**
@@ -827,16 +775,11 @@ export class AppServicePlansImpl implements AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansRestartWebAppsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       restartWebAppsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -850,15 +793,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansListWebAppsOptionalParams
   ): Promise<AppServicePlansListWebAppsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listWebAppsOperationSpec
-    ) as Promise<AppServicePlansListWebAppsResponse>;
+    );
   }
 
   /**
@@ -872,15 +810,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansGetServerFarmSkusOptionalParams
   ): Promise<AppServicePlansGetServerFarmSkusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getServerFarmSkusOperationSpec
-    ) as Promise<AppServicePlansGetServerFarmSkusResponse>;
+    );
   }
 
   /**
@@ -894,15 +827,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansListUsagesOptionalParams
   ): Promise<AppServicePlansListUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listUsagesOperationSpec
-    ) as Promise<AppServicePlansListUsagesResponse>;
+    );
   }
 
   /**
@@ -916,15 +844,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     options?: AppServicePlansListVnetsOptionalParams
   ): Promise<AppServicePlansListVnetsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listVnetsOperationSpec
-    ) as Promise<AppServicePlansListVnetsResponse>;
+    );
   }
 
   /**
@@ -940,16 +863,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     options?: AppServicePlansGetVnetFromServerFarmOptionalParams
   ): Promise<AppServicePlansGetVnetFromServerFarmResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, options },
       getVnetFromServerFarmOperationSpec
-    ) as Promise<AppServicePlansGetVnetFromServerFarmResponse>;
+    );
   }
 
   /**
@@ -967,17 +884,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     gatewayName: string,
     options?: AppServicePlansGetVnetGatewayOptionalParams
   ): Promise<AppServicePlansGetVnetGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, gatewayName, options },
       getVnetGatewayOperationSpec
-    ) as Promise<AppServicePlansGetVnetGatewayResponse>;
+    );
   }
 
   /**
@@ -997,18 +907,17 @@ export class AppServicePlansImpl implements AppServicePlans {
     connectionEnvelope: VnetGateway,
     options?: AppServicePlansUpdateVnetGatewayOptionalParams
   ): Promise<AppServicePlansUpdateVnetGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        vnetName,
+        gatewayName,
+        connectionEnvelope,
+        options
+      },
       updateVnetGatewayOperationSpec
-    ) as Promise<AppServicePlansUpdateVnetGatewayResponse>;
+    );
   }
 
   /**
@@ -1024,16 +933,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     options?: AppServicePlansListRoutesForVnetOptionalParams
   ): Promise<AppServicePlansListRoutesForVnetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, options },
       listRoutesForVnetOperationSpec
-    ) as Promise<AppServicePlansListRoutesForVnetResponse>;
+    );
   }
 
   /**
@@ -1051,17 +954,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     routeName: string,
     options?: AppServicePlansGetRouteForVnetOptionalParams
   ): Promise<AppServicePlansGetRouteForVnetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      routeName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, routeName, options },
       getRouteForVnetOperationSpec
-    ) as Promise<AppServicePlansGetRouteForVnetResponse>;
+    );
   }
 
   /**
@@ -1081,18 +977,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     route: VnetRoute,
     options?: AppServicePlansCreateOrUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansCreateOrUpdateVnetRouteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      routeName,
-      route,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, routeName, route, options },
       createOrUpdateVnetRouteOperationSpec
-    ) as Promise<AppServicePlansCreateOrUpdateVnetRouteResponse>;
+    );
   }
 
   /**
@@ -1109,18 +997,11 @@ export class AppServicePlansImpl implements AppServicePlans {
     vnetName: string,
     routeName: string,
     options?: AppServicePlansDeleteVnetRouteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      routeName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, routeName, options },
       deleteVnetRouteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1140,18 +1021,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     route: VnetRoute,
     options?: AppServicePlansUpdateVnetRouteOptionalParams
   ): Promise<AppServicePlansUpdateVnetRouteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      routeName,
-      route,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, routeName, route, options },
       updateVnetRouteOperationSpec
-    ) as Promise<AppServicePlansUpdateVnetRouteResponse>;
+    );
   }
 
   /**
@@ -1166,17 +1039,11 @@ export class AppServicePlansImpl implements AppServicePlans {
     name: string,
     workerName: string,
     options?: AppServicePlansRebootWorkerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerName, options },
       rebootWorkerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -1188,14 +1055,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListNextOptionalParams
   ): Promise<AppServicePlansListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<AppServicePlansListNextResponse>;
+    );
   }
 
   /**
@@ -1209,15 +1072,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListByResourceGroupNextOptionalParams
   ): Promise<AppServicePlansListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<AppServicePlansListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -1238,18 +1096,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListWebAppsByHybridConnectionNextOptionalParams
   ): Promise<AppServicePlansListWebAppsByHybridConnectionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, nextLink, options },
       listWebAppsByHybridConnectionNextOperationSpec
-    ) as Promise<AppServicePlansListWebAppsByHybridConnectionNextResponse>;
+    );
   }
 
   /**
@@ -1265,16 +1115,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListHybridConnectionsNextOptionalParams
   ): Promise<AppServicePlansListHybridConnectionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listHybridConnectionsNextOperationSpec
-    ) as Promise<AppServicePlansListHybridConnectionsNextResponse>;
+    );
   }
 
   /**
@@ -1290,16 +1134,10 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListWebAppsNextOptionalParams
   ): Promise<AppServicePlansListWebAppsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listWebAppsNextOperationSpec
-    ) as Promise<AppServicePlansListWebAppsNextResponse>;
+    );
   }
 
   /**
@@ -1315,34 +1153,16 @@ export class AppServicePlansImpl implements AppServicePlans {
     nextLink: string,
     options?: AppServicePlansListUsagesNextOptionalParams
   ): Promise<AppServicePlansListUsagesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listUsagesNextOperationSpec
-    ) as Promise<AppServicePlansListUsagesNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/serverfarms",
   httpMethod: "GET",
   responses: {
@@ -1358,7 +1178,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms",
   httpMethod: "GET",
@@ -1379,7 +1199,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}",
   httpMethod: "GET",
@@ -1402,7 +1222,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}",
   httpMethod: "PUT",
@@ -1435,7 +1255,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}",
   httpMethod: "DELETE",
@@ -1456,7 +1276,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}",
   httpMethod: "PATCH",
@@ -1483,7 +1303,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listCapabilitiesOperationSpec: coreHttp.OperationSpec = {
+const listCapabilitiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/capabilities",
   httpMethod: "GET",
@@ -1510,7 +1330,7 @@ const listCapabilitiesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const getHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "GET",
@@ -1534,7 +1354,7 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const deleteHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "DELETE",
@@ -1557,7 +1377,7 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHybridConnectionKeysOperationSpec: coreHttp.OperationSpec = {
+const listHybridConnectionKeysOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}/listKeys",
   httpMethod: "POST",
@@ -1581,7 +1401,7 @@ const listHybridConnectionKeysOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsByHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsByHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}/sites",
   httpMethod: "GET",
@@ -1605,7 +1425,7 @@ const listWebAppsByHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHybridConnectionPlanLimitOperationSpec: coreHttp.OperationSpec = {
+const getHybridConnectionPlanLimitOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionPlanLimits/limit",
   httpMethod: "GET",
@@ -1627,7 +1447,7 @@ const getHybridConnectionPlanLimitOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
+const listHybridConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/hybridConnectionRelays",
   httpMethod: "GET",
@@ -1649,7 +1469,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const restartWebAppsOperationSpec: coreHttp.OperationSpec = {
+const restartWebAppsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/restartSites",
   httpMethod: "POST",
@@ -1669,7 +1489,7 @@ const restartWebAppsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/sites",
   httpMethod: "GET",
@@ -1696,7 +1516,7 @@ const listWebAppsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getServerFarmSkusOperationSpec: coreHttp.OperationSpec = {
+const getServerFarmSkusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/skus",
   httpMethod: "GET",
@@ -1718,7 +1538,7 @@ const getServerFarmSkusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesOperationSpec: coreHttp.OperationSpec = {
+const listUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/usages",
   httpMethod: "GET",
@@ -1740,7 +1560,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVnetsOperationSpec: coreHttp.OperationSpec = {
+const listVnetsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections",
   httpMethod: "GET",
@@ -1767,7 +1587,7 @@ const listVnetsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVnetFromServerFarmOperationSpec: coreHttp.OperationSpec = {
+const getVnetFromServerFarmOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}",
   httpMethod: "GET",
@@ -1791,7 +1611,7 @@ const getVnetFromServerFarmOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVnetGatewayOperationSpec: coreHttp.OperationSpec = {
+const getVnetGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "GET",
@@ -1815,7 +1635,7 @@ const getVnetGatewayOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
+const updateVnetGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "PUT",
@@ -1841,7 +1661,7 @@ const updateVnetGatewayOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listRoutesForVnetOperationSpec: coreHttp.OperationSpec = {
+const listRoutesForVnetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/routes",
   httpMethod: "GET",
@@ -1869,7 +1689,7 @@ const listRoutesForVnetOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getRouteForVnetOperationSpec: coreHttp.OperationSpec = {
+const getRouteForVnetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/routes/{routeName}",
   httpMethod: "GET",
@@ -1899,7 +1719,7 @@ const getRouteForVnetOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateVnetRouteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/routes/{routeName}",
   httpMethod: "PUT",
@@ -1927,7 +1747,7 @@ const createOrUpdateVnetRouteOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteVnetRouteOperationSpec: coreHttp.OperationSpec = {
+const deleteVnetRouteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/routes/{routeName}",
   httpMethod: "DELETE",
@@ -1950,7 +1770,7 @@ const deleteVnetRouteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
+const updateVnetRouteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/virtualNetworkConnections/{vnetName}/routes/{routeName}",
   httpMethod: "PATCH",
@@ -1978,7 +1798,7 @@ const updateVnetRouteOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const rebootWorkerOperationSpec: coreHttp.OperationSpec = {
+const rebootWorkerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/workers/{workerName}/reboot",
   httpMethod: "POST",
@@ -1999,7 +1819,7 @@ const rebootWorkerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2019,7 +1839,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2040,7 +1860,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsByHybridConnectionNextOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsByHybridConnectionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2064,7 +1884,7 @@ const listWebAppsByHybridConnectionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHybridConnectionsNextOperationSpec: coreHttp.OperationSpec = {
+const listHybridConnectionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2086,7 +1906,7 @@ const listHybridConnectionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2113,7 +1933,7 @@ const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
+const listUsagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

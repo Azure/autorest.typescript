@@ -7,7 +7,7 @@
  */
 
 import { XMsClientRequestId } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -33,8 +33,16 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(options?: XMsClientRequestIdGetOptionalParams): Promise<void> {
-    return this.client.sendOperationRequest({ options }, getOperationSpec);
+  get(
+    options?: XMsClientRequestIdGetOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -47,24 +55,28 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
   paramGet(
     xMsClientRequestId: string,
     options?: XMsClientRequestIdParamGetOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      xMsClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { xMsClientRequestId, options },
+      operationArguments,
       paramGetOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/overwrite/x-ms-client-request-id/method/",
   httpMethod: "GET",
   responses: { 200: {}, default: {} },
   urlParameters: [Parameters.$host],
   serializer
 };
-const paramGetOperationSpec: coreClient.OperationSpec = {
+const paramGetOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/overwrite/x-ms-client-request-id/via-param/method/",
   httpMethod: "GET",
   responses: {

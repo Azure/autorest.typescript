@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Metric,
@@ -282,9 +281,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -298,7 +295,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates an existing database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -415,9 +412,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesUpgradeDataWarehouseOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Upgrades a data warehouse.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -431,7 +426,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesUpgradeDataWarehouseOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Renames a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -447,7 +442,7 @@ export interface Databases {
     databaseName: string,
     parameters: ResourceMoveDefinition,
     options?: DatabasesRenameOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Failovers a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -461,9 +456,7 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Failovers a database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -477,5 +470,5 @@ export interface Databases {
     serverName: string,
     databaseName: string,
     options?: DatabasesFailoverOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

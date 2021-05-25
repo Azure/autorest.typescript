@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
-export class CustomUrlMoreOptionsClientContext extends coreClient.ServiceClient {
+const packageName = "custom-url-MoreOptions";
+const packageVersion = "1.0.0-preview1";
+
+export class CustomUrlMoreOptionsClientContext extends coreHttp.ServiceClient {
   dnsSuffix: string;
   subscriptionId: string;
 
@@ -30,16 +33,16 @@ export class CustomUrlMoreOptionsClientContext extends coreClient.ServiceClient 
     if (!options) {
       options = {};
     }
-    const defaults: CustomUrlMoreOptionsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "{vault}{secret}{dnsSuffix}"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "{vault}{secret}{dnsSuffix}";
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

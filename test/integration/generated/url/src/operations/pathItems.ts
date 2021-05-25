@@ -7,7 +7,7 @@
  */
 
 import { PathItems } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
@@ -42,11 +42,16 @@ export class PathItemsImpl implements PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetAllWithValuesOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      operationArguments,
       getAllWithValuesOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -61,11 +66,16 @@ export class PathItemsImpl implements PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalQueryNullOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      operationArguments,
       getGlobalQueryNullOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -80,11 +90,16 @@ export class PathItemsImpl implements PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      operationArguments,
       getGlobalAndLocalQueryNullOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -99,17 +114,22 @@ export class PathItemsImpl implements PathItems {
     pathItemStringPath: string,
     localStringPath: string,
     options?: PathItemsGetLocalPathItemQueryNullOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      pathItemStringPath,
+      localStringPath,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { pathItemStringPath, localStringPath, options },
+      operationArguments,
       getLocalPathItemQueryNullOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getAllWithValuesOperationSpec: coreClient.OperationSpec = {
+const getAllWithValuesOperationSpec: coreHttp.OperationSpec = {
   path:
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
@@ -133,7 +153,7 @@ const getAllWithValuesOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getGlobalQueryNullOperationSpec: coreClient.OperationSpec = {
+const getGlobalQueryNullOperationSpec: coreHttp.OperationSpec = {
   path:
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
   httpMethod: "GET",
@@ -157,7 +177,7 @@ const getGlobalQueryNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getGlobalAndLocalQueryNullOperationSpec: coreClient.OperationSpec = {
+const getGlobalAndLocalQueryNullOperationSpec: coreHttp.OperationSpec = {
   path:
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
   httpMethod: "GET",
@@ -181,7 +201,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLocalPathItemQueryNullOperationSpec: coreClient.OperationSpec = {
+const getLocalPathItemQueryNullOperationSpec: coreHttp.OperationSpec = {
   path:
     "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
   httpMethod: "GET",

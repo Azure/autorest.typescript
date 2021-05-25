@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Resource",
@@ -38,7 +38,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecoverableDatabaseListResult: coreHttp.CompositeMapper = {
+export const RecoverableDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoverableDatabaseListResult",
@@ -60,7 +60,7 @@ export const RecoverableDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const RestorableDroppedDatabaseListResult: coreHttp.CompositeMapper = {
+export const RestorableDroppedDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorableDroppedDatabaseListResult",
@@ -82,7 +82,7 @@ export const RestorableDroppedDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataMaskingRuleListResult: coreHttp.CompositeMapper = {
+export const DataMaskingRuleListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataMaskingRuleListResult",
@@ -103,7 +103,7 @@ export const DataMaskingRuleListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const FirewallRuleListResult: coreHttp.CompositeMapper = {
+export const FirewallRuleListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FirewallRuleListResult",
@@ -124,7 +124,7 @@ export const FirewallRuleListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeoBackupPolicyListResult: coreHttp.CompositeMapper = {
+export const GeoBackupPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GeoBackupPolicyListResult",
@@ -145,7 +145,7 @@ export const GeoBackupPolicyListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ExportRequest: coreHttp.CompositeMapper = {
+export const ExportRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExportRequest",
@@ -198,7 +198,7 @@ export const ExportRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImportExtensionRequest: coreHttp.CompositeMapper = {
+export const ImportExtensionRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImportExtensionRequest",
@@ -266,7 +266,7 @@ export const ImportExtensionRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricListResult: coreHttp.CompositeMapper = {
+export const MetricListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricListResult",
@@ -288,7 +288,7 @@ export const MetricListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Metric: coreHttp.CompositeMapper = {
+export const Metric: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Metric",
@@ -345,7 +345,7 @@ export const Metric: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricName: coreHttp.CompositeMapper = {
+export const MetricName: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricName",
@@ -368,7 +368,7 @@ export const MetricName: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricValue: coreHttp.CompositeMapper = {
+export const MetricValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricValue",
@@ -419,7 +419,7 @@ export const MetricValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricDefinitionListResult: coreHttp.CompositeMapper = {
+export const MetricDefinitionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricDefinitionListResult",
@@ -441,7 +441,7 @@ export const MetricDefinitionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricDefinition: coreHttp.CompositeMapper = {
+export const MetricDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricDefinition",
@@ -491,7 +491,7 @@ export const MetricDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricAvailability: coreHttp.CompositeMapper = {
+export const MetricAvailability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MetricAvailability",
@@ -514,7 +514,7 @@ export const MetricAvailability: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedElasticPoolMetric: coreHttp.CompositeMapper = {
+export const RecommendedElasticPoolMetric: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedElasticPoolMetric",
@@ -541,7 +541,7 @@ export const RecommendedElasticPoolMetric: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedElasticPoolListResult: coreHttp.CompositeMapper = {
+export const RecommendedElasticPoolListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedElasticPoolListResult",
@@ -563,7 +563,7 @@ export const RecommendedElasticPoolListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedElasticPoolListMetricsResult: coreHttp.CompositeMapper = {
+export const RecommendedElasticPoolListMetricsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedElasticPoolListMetricsResult",
@@ -585,7 +585,7 @@ export const RecommendedElasticPoolListMetricsResult: coreHttp.CompositeMapper =
   }
 };
 
-export const UnlinkParameters: coreHttp.CompositeMapper = {
+export const UnlinkParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UnlinkParameters",
@@ -600,7 +600,7 @@ export const UnlinkParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ReplicationLinkListResult: coreHttp.CompositeMapper = {
+export const ReplicationLinkListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ReplicationLinkListResult",
@@ -621,7 +621,7 @@ export const ReplicationLinkListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerCommunicationLinkListResult: coreHttp.CompositeMapper = {
+export const ServerCommunicationLinkListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerCommunicationLinkListResult",
@@ -642,7 +642,7 @@ export const ServerCommunicationLinkListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceObjectiveListResult: coreHttp.CompositeMapper = {
+export const ServiceObjectiveListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceObjectiveListResult",
@@ -664,7 +664,7 @@ export const ServiceObjectiveListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolActivityListResult: coreHttp.CompositeMapper = {
+export const ElasticPoolActivityListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolActivityListResult",
@@ -686,7 +686,7 @@ export const ElasticPoolActivityListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolDatabaseActivityListResult: coreHttp.CompositeMapper = {
+export const ElasticPoolDatabaseActivityListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolDatabaseActivityListResult",
@@ -708,7 +708,7 @@ export const ElasticPoolDatabaseActivityListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SloUsageMetric: coreHttp.CompositeMapper = {
+export const SloUsageMetric: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SloUsageMetric",
@@ -738,7 +738,7 @@ export const SloUsageMetric: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceTierAdvisorListResult: coreHttp.CompositeMapper = {
+export const ServiceTierAdvisorListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceTierAdvisorListResult",
@@ -760,7 +760,7 @@ export const ServiceTierAdvisorListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const TransparentDataEncryptionActivityListResult: coreHttp.CompositeMapper = {
+export const TransparentDataEncryptionActivityListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TransparentDataEncryptionActivityListResult",
@@ -782,7 +782,7 @@ export const TransparentDataEncryptionActivityListResult: coreHttp.CompositeMapp
   }
 };
 
-export const ServerUsageListResult: coreHttp.CompositeMapper = {
+export const ServerUsageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerUsageListResult",
@@ -804,7 +804,7 @@ export const ServerUsageListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerUsage: coreHttp.CompositeMapper = {
+export const ServerUsage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerUsage",
@@ -862,7 +862,7 @@ export const ServerUsage: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseUsageListResult: coreHttp.CompositeMapper = {
+export const DatabaseUsageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseUsageListResult",
@@ -884,7 +884,7 @@ export const DatabaseUsageListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseUsage: coreHttp.CompositeMapper = {
+export const DatabaseUsage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseUsage",
@@ -942,7 +942,7 @@ export const DatabaseUsage: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutomaticTuningOptions: coreHttp.CompositeMapper = {
+export const AutomaticTuningOptions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutomaticTuningOptions",
@@ -989,7 +989,7 @@ export const AutomaticTuningOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionProtectorListResult: coreHttp.CompositeMapper = {
+export const EncryptionProtectorListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionProtectorListResult",
@@ -1018,7 +1018,7 @@ export const EncryptionProtectorListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const FailoverGroupReadWriteEndpoint: coreHttp.CompositeMapper = {
+export const FailoverGroupReadWriteEndpoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FailoverGroupReadWriteEndpoint",
@@ -1040,7 +1040,7 @@ export const FailoverGroupReadWriteEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const FailoverGroupReadOnlyEndpoint: coreHttp.CompositeMapper = {
+export const FailoverGroupReadOnlyEndpoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FailoverGroupReadOnlyEndpoint",
@@ -1055,7 +1055,7 @@ export const FailoverGroupReadOnlyEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const PartnerInfo: coreHttp.CompositeMapper = {
+export const PartnerInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PartnerInfo",
@@ -1085,7 +1085,7 @@ export const PartnerInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const FailoverGroupUpdate: coreHttp.CompositeMapper = {
+export const FailoverGroupUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FailoverGroupUpdate",
@@ -1126,7 +1126,7 @@ export const FailoverGroupUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const FailoverGroupListResult: coreHttp.CompositeMapper = {
+export const FailoverGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FailoverGroupListResult",
@@ -1155,7 +1155,7 @@ export const FailoverGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -1184,7 +1184,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -1222,7 +1222,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -1259,7 +1259,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerKeyListResult: coreHttp.CompositeMapper = {
+export const ServerKeyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerKeyListResult",
@@ -1288,7 +1288,7 @@ export const ServerKeyListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncAgentListResult: coreHttp.CompositeMapper = {
+export const SyncAgentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncAgentListResult",
@@ -1317,7 +1317,7 @@ export const SyncAgentListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncAgentKeyProperties: coreHttp.CompositeMapper = {
+export const SyncAgentKeyProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncAgentKeyProperties",
@@ -1333,7 +1333,7 @@ export const SyncAgentKeyProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncAgentLinkedDatabaseListResult: coreHttp.CompositeMapper = {
+export const SyncAgentLinkedDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncAgentLinkedDatabaseListResult",
@@ -1362,7 +1362,7 @@ export const SyncAgentLinkedDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncDatabaseIdListResult: coreHttp.CompositeMapper = {
+export const SyncDatabaseIdListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncDatabaseIdListResult",
@@ -1391,7 +1391,7 @@ export const SyncDatabaseIdListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncDatabaseIdProperties: coreHttp.CompositeMapper = {
+export const SyncDatabaseIdProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncDatabaseIdProperties",
@@ -1407,7 +1407,7 @@ export const SyncDatabaseIdProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncFullSchemaPropertiesListResult: coreHttp.CompositeMapper = {
+export const SyncFullSchemaPropertiesListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncFullSchemaPropertiesListResult",
@@ -1436,7 +1436,7 @@ export const SyncFullSchemaPropertiesListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncFullSchemaProperties: coreHttp.CompositeMapper = {
+export const SyncFullSchemaProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncFullSchemaProperties",
@@ -1465,7 +1465,7 @@ export const SyncFullSchemaProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncFullSchemaTable: coreHttp.CompositeMapper = {
+export const SyncFullSchemaTable: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncFullSchemaTable",
@@ -1515,7 +1515,7 @@ export const SyncFullSchemaTable: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncFullSchemaTableColumn: coreHttp.CompositeMapper = {
+export const SyncFullSchemaTableColumn: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncFullSchemaTableColumn",
@@ -1573,7 +1573,7 @@ export const SyncFullSchemaTableColumn: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupLogListResult: coreHttp.CompositeMapper = {
+export const SyncGroupLogListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupLogListResult",
@@ -1602,7 +1602,7 @@ export const SyncGroupLogListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupLogProperties: coreHttp.CompositeMapper = {
+export const SyncGroupLogProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupLogProperties",
@@ -1653,7 +1653,7 @@ export const SyncGroupLogProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupSchema: coreHttp.CompositeMapper = {
+export const SyncGroupSchema: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupSchema",
@@ -1680,7 +1680,7 @@ export const SyncGroupSchema: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupSchemaTable: coreHttp.CompositeMapper = {
+export const SyncGroupSchemaTable: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupSchemaTable",
@@ -1707,7 +1707,7 @@ export const SyncGroupSchemaTable: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupSchemaTableColumn: coreHttp.CompositeMapper = {
+export const SyncGroupSchemaTableColumn: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupSchemaTableColumn",
@@ -1734,7 +1734,7 @@ export const SyncGroupSchemaTableColumn: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroupListResult: coreHttp.CompositeMapper = {
+export const SyncGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroupListResult",
@@ -1763,7 +1763,7 @@ export const SyncGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncMemberListResult: coreHttp.CompositeMapper = {
+export const SyncMemberListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncMemberListResult",
@@ -1792,7 +1792,7 @@ export const SyncMemberListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubscriptionUsageListResult: coreHttp.CompositeMapper = {
+export const SubscriptionUsageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubscriptionUsageListResult",
@@ -1821,7 +1821,7 @@ export const SubscriptionUsageListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualClusterListResult: coreHttp.CompositeMapper = {
+export const VirtualClusterListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualClusterListResult",
@@ -1850,7 +1850,7 @@ export const VirtualClusterListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualClusterUpdate: coreHttp.CompositeMapper = {
+export const VirtualClusterUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualClusterUpdate",
@@ -1891,7 +1891,7 @@ export const VirtualClusterUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualNetworkRuleListResult: coreHttp.CompositeMapper = {
+export const VirtualNetworkRuleListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualNetworkRuleListResult",
@@ -1920,7 +1920,7 @@ export const VirtualNetworkRuleListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ExtendedDatabaseBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
+export const ExtendedDatabaseBlobAuditingPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExtendedDatabaseBlobAuditingPolicyListResult",
@@ -1949,7 +1949,7 @@ export const ExtendedDatabaseBlobAuditingPolicyListResult: coreHttp.CompositeMap
   }
 };
 
-export const ExtendedServerBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
+export const ExtendedServerBlobAuditingPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExtendedServerBlobAuditingPolicyListResult",
@@ -1978,7 +1978,7 @@ export const ExtendedServerBlobAuditingPolicyListResult: coreHttp.CompositeMappe
   }
 };
 
-export const ServerBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
+export const ServerBlobAuditingPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerBlobAuditingPolicyListResult",
@@ -2007,7 +2007,7 @@ export const ServerBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
+export const DatabaseBlobAuditingPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseBlobAuditingPolicyListResult",
@@ -2036,7 +2036,7 @@ export const DatabaseBlobAuditingPolicyListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseVulnerabilityAssessmentRuleBaselineItem: coreHttp.CompositeMapper = {
+export const DatabaseVulnerabilityAssessmentRuleBaselineItem: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentRuleBaselineItem",
@@ -2057,7 +2057,7 @@ export const DatabaseVulnerabilityAssessmentRuleBaselineItem: coreHttp.Composite
   }
 };
 
-export const VulnerabilityAssessmentRecurringScansProperties: coreHttp.CompositeMapper = {
+export const VulnerabilityAssessmentRecurringScansProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VulnerabilityAssessmentRecurringScansProperties",
@@ -2090,7 +2090,7 @@ export const VulnerabilityAssessmentRecurringScansProperties: coreHttp.Composite
   }
 };
 
-export const DatabaseVulnerabilityAssessmentListResult: coreHttp.CompositeMapper = {
+export const DatabaseVulnerabilityAssessmentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentListResult",
@@ -2119,7 +2119,7 @@ export const DatabaseVulnerabilityAssessmentListResult: coreHttp.CompositeMapper
   }
 };
 
-export const JobAgentListResult: coreHttp.CompositeMapper = {
+export const JobAgentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobAgentListResult",
@@ -2148,7 +2148,7 @@ export const JobAgentListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Sku: coreHttp.CompositeMapper = {
+export const Sku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Sku",
@@ -2188,7 +2188,7 @@ export const Sku: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobAgentUpdate: coreHttp.CompositeMapper = {
+export const JobAgentUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobAgentUpdate",
@@ -2204,7 +2204,7 @@ export const JobAgentUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobCredentialListResult: coreHttp.CompositeMapper = {
+export const JobCredentialListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobCredentialListResult",
@@ -2233,7 +2233,7 @@ export const JobCredentialListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobExecutionListResult: coreHttp.CompositeMapper = {
+export const JobExecutionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobExecutionListResult",
@@ -2262,7 +2262,7 @@ export const JobExecutionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobExecutionTarget: coreHttp.CompositeMapper = {
+export const JobExecutionTarget: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobExecutionTarget",
@@ -2292,7 +2292,7 @@ export const JobExecutionTarget: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobListResult: coreHttp.CompositeMapper = {
+export const JobListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobListResult",
@@ -2321,7 +2321,7 @@ export const JobListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobSchedule: coreHttp.CompositeMapper = {
+export const JobSchedule: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobSchedule",
@@ -2364,7 +2364,7 @@ export const JobSchedule: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobStepListResult: coreHttp.CompositeMapper = {
+export const JobStepListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobStepListResult",
@@ -2393,7 +2393,7 @@ export const JobStepListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobStepAction: coreHttp.CompositeMapper = {
+export const JobStepAction: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobStepAction",
@@ -2423,7 +2423,7 @@ export const JobStepAction: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobStepOutput: coreHttp.CompositeMapper = {
+export const JobStepOutput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobStepOutput",
@@ -2486,7 +2486,7 @@ export const JobStepOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobStepExecutionOptions: coreHttp.CompositeMapper = {
+export const JobStepExecutionOptions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobStepExecutionOptions",
@@ -2530,7 +2530,7 @@ export const JobStepExecutionOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobTargetGroupListResult: coreHttp.CompositeMapper = {
+export const JobTargetGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobTargetGroupListResult",
@@ -2559,7 +2559,7 @@ export const JobTargetGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobTarget: coreHttp.CompositeMapper = {
+export const JobTarget: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobTarget",
@@ -2613,7 +2613,7 @@ export const JobTarget: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobVersionListResult: coreHttp.CompositeMapper = {
+export const JobVersionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobVersionListResult",
@@ -2642,7 +2642,7 @@ export const JobVersionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const LongTermRetentionBackupListResult: coreHttp.CompositeMapper = {
+export const LongTermRetentionBackupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LongTermRetentionBackupListResult",
@@ -2671,7 +2671,7 @@ export const LongTermRetentionBackupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedBackupShortTermRetentionPolicyListResult: coreHttp.CompositeMapper = {
+export const ManagedBackupShortTermRetentionPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedBackupShortTermRetentionPolicyListResult",
@@ -2700,7 +2700,7 @@ export const ManagedBackupShortTermRetentionPolicyListResult: coreHttp.Composite
   }
 };
 
-export const AutomaticTuningServerOptions: coreHttp.CompositeMapper = {
+export const AutomaticTuningServerOptions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutomaticTuningServerOptions",
@@ -2739,7 +2739,7 @@ export const AutomaticTuningServerOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerDnsAliasListResult: coreHttp.CompositeMapper = {
+export const ServerDnsAliasListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerDnsAliasListResult",
@@ -2768,7 +2768,7 @@ export const ServerDnsAliasListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerDnsAliasAcquisition: coreHttp.CompositeMapper = {
+export const ServerDnsAliasAcquisition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerDnsAliasAcquisition",
@@ -2783,7 +2783,7 @@ export const ServerDnsAliasAcquisition: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogicalServerSecurityAlertPolicyListResult: coreHttp.CompositeMapper = {
+export const LogicalServerSecurityAlertPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LogicalServerSecurityAlertPolicyListResult",
@@ -2812,7 +2812,7 @@ export const LogicalServerSecurityAlertPolicyListResult: coreHttp.CompositeMappe
   }
 };
 
-export const RestorableDroppedManagedDatabaseListResult: coreHttp.CompositeMapper = {
+export const RestorableDroppedManagedDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorableDroppedManagedDatabaseListResult",
@@ -2841,7 +2841,7 @@ export const RestorableDroppedManagedDatabaseListResult: coreHttp.CompositeMappe
   }
 };
 
-export const RestorePointListResult: coreHttp.CompositeMapper = {
+export const RestorePointListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorePointListResult",
@@ -2870,7 +2870,7 @@ export const RestorePointListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const CreateDatabaseRestorePointDefinition: coreHttp.CompositeMapper = {
+export const CreateDatabaseRestorePointDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CreateDatabaseRestorePointDefinition",
@@ -2886,7 +2886,7 @@ export const CreateDatabaseRestorePointDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabaseSecurityAlertPolicyListResult: coreHttp.CompositeMapper = {
+export const ManagedDatabaseSecurityAlertPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabaseSecurityAlertPolicyListResult",
@@ -2915,7 +2915,7 @@ export const ManagedDatabaseSecurityAlertPolicyListResult: coreHttp.CompositeMap
   }
 };
 
-export const ManagedServerSecurityAlertPolicyListResult: coreHttp.CompositeMapper = {
+export const ManagedServerSecurityAlertPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedServerSecurityAlertPolicyListResult",
@@ -2944,7 +2944,7 @@ export const ManagedServerSecurityAlertPolicyListResult: coreHttp.CompositeMappe
   }
 };
 
-export const SensitivityLabelListResult: coreHttp.CompositeMapper = {
+export const SensitivityLabelListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SensitivityLabelListResult",
@@ -2973,7 +2973,7 @@ export const SensitivityLabelListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceAdministratorListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceAdministratorListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceAdministratorListResult",
@@ -3002,7 +3002,7 @@ export const ManagedInstanceAdministratorListResult: coreHttp.CompositeMapper = 
   }
 };
 
-export const DatabaseOperationListResult: coreHttp.CompositeMapper = {
+export const DatabaseOperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseOperationListResult",
@@ -3031,7 +3031,7 @@ export const DatabaseOperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolOperationListResult: coreHttp.CompositeMapper = {
+export const ElasticPoolOperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolOperationListResult",
@@ -3060,7 +3060,7 @@ export const ElasticPoolOperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseListResult: coreHttp.CompositeMapper = {
+export const DatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseListResult",
@@ -3089,7 +3089,7 @@ export const DatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseUpdate: coreHttp.CompositeMapper = {
+export const DatabaseUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseUpdate",
@@ -3310,7 +3310,7 @@ export const DatabaseUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceMoveDefinition: coreHttp.CompositeMapper = {
+export const ResourceMoveDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceMoveDefinition",
@@ -3326,7 +3326,7 @@ export const ResourceMoveDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolListResult: coreHttp.CompositeMapper = {
+export const ElasticPoolListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolListResult",
@@ -3355,7 +3355,7 @@ export const ElasticPoolListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolPerDatabaseSettings: coreHttp.CompositeMapper = {
+export const ElasticPoolPerDatabaseSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolPerDatabaseSettings",
@@ -3376,7 +3376,7 @@ export const ElasticPoolPerDatabaseSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolUpdate: coreHttp.CompositeMapper = {
+export const ElasticPoolUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolUpdate",
@@ -3424,7 +3424,7 @@ export const ElasticPoolUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const VulnerabilityAssessmentScanRecordListResult: coreHttp.CompositeMapper = {
+export const VulnerabilityAssessmentScanRecordListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VulnerabilityAssessmentScanRecordListResult",
@@ -3453,7 +3453,7 @@ export const VulnerabilityAssessmentScanRecordListResult: coreHttp.CompositeMapp
   }
 };
 
-export const VulnerabilityAssessmentScanError: coreHttp.CompositeMapper = {
+export const VulnerabilityAssessmentScanError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VulnerabilityAssessmentScanError",
@@ -3476,7 +3476,7 @@ export const VulnerabilityAssessmentScanError: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstanceFailoverGroupReadWriteEndpoint: coreHttp.CompositeMapper = {
+export const InstanceFailoverGroupReadWriteEndpoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstanceFailoverGroupReadWriteEndpoint",
@@ -3498,7 +3498,7 @@ export const InstanceFailoverGroupReadWriteEndpoint: coreHttp.CompositeMapper = 
   }
 };
 
-export const InstanceFailoverGroupReadOnlyEndpoint: coreHttp.CompositeMapper = {
+export const InstanceFailoverGroupReadOnlyEndpoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstanceFailoverGroupReadOnlyEndpoint",
@@ -3513,7 +3513,7 @@ export const InstanceFailoverGroupReadOnlyEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const PartnerRegionInfo: coreHttp.CompositeMapper = {
+export const PartnerRegionInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PartnerRegionInfo",
@@ -3535,7 +3535,7 @@ export const PartnerRegionInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstancePairInfo: coreHttp.CompositeMapper = {
+export const ManagedInstancePairInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstancePairInfo",
@@ -3556,7 +3556,7 @@ export const ManagedInstancePairInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstanceFailoverGroupListResult: coreHttp.CompositeMapper = {
+export const InstanceFailoverGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstanceFailoverGroupListResult",
@@ -3585,7 +3585,7 @@ export const InstanceFailoverGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupShortTermRetentionPolicyListResult: coreHttp.CompositeMapper = {
+export const BackupShortTermRetentionPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BackupShortTermRetentionPolicyListResult",
@@ -3614,7 +3614,7 @@ export const BackupShortTermRetentionPolicyListResult: coreHttp.CompositeMapper 
   }
 };
 
-export const ManagedInstanceKeyListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceKeyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceKeyListResult",
@@ -3643,7 +3643,7 @@ export const ManagedInstanceKeyListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceEncryptionProtectorListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceEncryptionProtectorListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceEncryptionProtectorListResult",
@@ -3672,7 +3672,7 @@ export const ManagedInstanceEncryptionProtectorListResult: coreHttp.CompositeMap
   }
 };
 
-export const RecoverableManagedDatabaseListResult: coreHttp.CompositeMapper = {
+export const RecoverableManagedDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoverableManagedDatabaseListResult",
@@ -3701,7 +3701,7 @@ export const RecoverableManagedDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceVulnerabilityAssessmentListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceVulnerabilityAssessmentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceVulnerabilityAssessmentListResult",
@@ -3730,7 +3730,7 @@ export const ManagedInstanceVulnerabilityAssessmentListResult: coreHttp.Composit
   }
 };
 
-export const ServerVulnerabilityAssessmentListResult: coreHttp.CompositeMapper = {
+export const ServerVulnerabilityAssessmentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerVulnerabilityAssessmentListResult",
@@ -3759,7 +3759,7 @@ export const ServerVulnerabilityAssessmentListResult: coreHttp.CompositeMapper =
   }
 };
 
-export const InstancePoolUpdate: coreHttp.CompositeMapper = {
+export const InstancePoolUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePoolUpdate",
@@ -3775,7 +3775,7 @@ export const InstancePoolUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstancePoolListResult: coreHttp.CompositeMapper = {
+export const InstancePoolListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePoolListResult",
@@ -3804,7 +3804,7 @@ export const InstancePoolListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const UsageListResult: coreHttp.CompositeMapper = {
+export const UsageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UsageListResult",
@@ -3833,7 +3833,7 @@ export const UsageListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Usage: coreHttp.CompositeMapper = {
+export const Usage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Usage",
@@ -3891,7 +3891,7 @@ export const Usage: coreHttp.CompositeMapper = {
   }
 };
 
-export const Name: coreHttp.CompositeMapper = {
+export const Name: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Name",
@@ -3912,7 +3912,7 @@ export const Name: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceListResult",
@@ -3941,7 +3941,7 @@ export const ManagedInstanceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceIdentity: coreHttp.CompositeMapper = {
+export const ResourceIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceIdentity",
@@ -3970,7 +3970,7 @@ export const ResourceIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceUpdate: coreHttp.CompositeMapper = {
+export const ManagedInstanceUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceUpdate",
@@ -4110,7 +4110,7 @@ export const ManagedInstanceUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateEndpointProperty: coreHttp.CompositeMapper = {
+export const PrivateEndpointProperty: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateEndpointProperty",
@@ -4125,7 +4125,7 @@ export const PrivateEndpointProperty: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkServiceConnectionStateProperty: coreHttp.CompositeMapper = {
+export const PrivateLinkServiceConnectionStateProperty: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateLinkServiceConnectionStateProperty",
@@ -4155,7 +4155,7 @@ export const PrivateLinkServiceConnectionStateProperty: coreHttp.CompositeMapper
   }
 };
 
-export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
+export const PrivateEndpointConnectionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateEndpointConnectionListResult",
@@ -4184,7 +4184,7 @@ export const PrivateEndpointConnectionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
+export const PrivateLinkResourceListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateLinkResourceListResult",
@@ -4213,7 +4213,7 @@ export const PrivateLinkResourceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
+export const PrivateLinkResourceProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateLinkResourceProperties",
@@ -4241,7 +4241,7 @@ export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerListResult: coreHttp.CompositeMapper = {
+export const ServerListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerListResult",
@@ -4270,7 +4270,7 @@ export const ServerListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerPrivateEndpointConnection: coreHttp.CompositeMapper = {
+export const ServerPrivateEndpointConnection: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerPrivateEndpointConnection",
@@ -4293,7 +4293,7 @@ export const ServerPrivateEndpointConnection: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateEndpointConnectionProperties: coreHttp.CompositeMapper = {
+export const PrivateEndpointConnectionProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateEndpointConnectionProperties",
@@ -4323,7 +4323,7 @@ export const PrivateEndpointConnectionProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkServiceConnectionStatePropertyAutoGenerated: coreHttp.CompositeMapper = {
+export const PrivateLinkServiceConnectionStatePropertyAutoGenerated: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateLinkServiceConnectionStatePropertyAutoGenerated",
@@ -4353,7 +4353,7 @@ export const PrivateLinkServiceConnectionStatePropertyAutoGenerated: coreHttp.Co
   }
 };
 
-export const ServerUpdate: coreHttp.CompositeMapper = {
+export const ServerUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerUpdate",
@@ -4426,7 +4426,7 @@ export const ServerUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const CheckNameAvailabilityRequest: coreHttp.CompositeMapper = {
+export const CheckNameAvailabilityRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CheckNameAvailabilityRequest",
@@ -4450,7 +4450,7 @@ export const CheckNameAvailabilityRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const CheckNameAvailabilityResponse: coreHttp.CompositeMapper = {
+export const CheckNameAvailabilityResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CheckNameAvailabilityResponse",
@@ -4488,7 +4488,7 @@ export const CheckNameAvailabilityResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const LocationCapabilities: coreHttp.CompositeMapper = {
+export const LocationCapabilities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LocationCapabilities",
@@ -4544,7 +4544,7 @@ export const LocationCapabilities: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerVersionCapability: coreHttp.CompositeMapper = {
+export const ServerVersionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerVersionCapability",
@@ -4600,7 +4600,7 @@ export const ServerVersionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const EditionCapability: coreHttp.CompositeMapper = {
+export const EditionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EditionCapability",
@@ -4670,7 +4670,7 @@ export const EditionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceObjectiveCapability: coreHttp.CompositeMapper = {
+export const ServiceObjectiveCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceObjectiveCapability",
@@ -4788,7 +4788,7 @@ export const ServiceObjectiveCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const MaxSizeRangeCapability: coreHttp.CompositeMapper = {
+export const MaxSizeRangeCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MaxSizeRangeCapability",
@@ -4839,7 +4839,7 @@ export const MaxSizeRangeCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const MaxSizeCapability: coreHttp.CompositeMapper = {
+export const MaxSizeCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MaxSizeCapability",
@@ -4862,7 +4862,7 @@ export const MaxSizeCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogSizeCapability: coreHttp.CompositeMapper = {
+export const LogSizeCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LogSizeCapability",
@@ -4885,7 +4885,7 @@ export const LogSizeCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const PerformanceLevelCapability: coreHttp.CompositeMapper = {
+export const PerformanceLevelCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PerformanceLevelCapability",
@@ -4908,7 +4908,7 @@ export const PerformanceLevelCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const LicenseTypeCapability: coreHttp.CompositeMapper = {
+export const LicenseTypeCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LicenseTypeCapability",
@@ -4938,7 +4938,7 @@ export const LicenseTypeCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutoPauseDelayTimeRange: coreHttp.CompositeMapper = {
+export const AutoPauseDelayTimeRange: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutoPauseDelayTimeRange",
@@ -4989,7 +4989,7 @@ export const AutoPauseDelayTimeRange: coreHttp.CompositeMapper = {
   }
 };
 
-export const MinCapacityCapability: coreHttp.CompositeMapper = {
+export const MinCapacityCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MinCapacityCapability",
@@ -5019,7 +5019,7 @@ export const MinCapacityCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ReadScaleCapability: coreHttp.CompositeMapper = {
+export const ReadScaleCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ReadScaleCapability",
@@ -5049,7 +5049,7 @@ export const ReadScaleCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageCapability: coreHttp.CompositeMapper = {
+export const StorageCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StorageCapability",
@@ -5079,7 +5079,7 @@ export const StorageCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolEditionCapability: coreHttp.CompositeMapper = {
+export const ElasticPoolEditionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolEditionCapability",
@@ -5129,7 +5129,7 @@ export const ElasticPoolEditionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolPerformanceLevelCapability: coreHttp.CompositeMapper = {
+export const ElasticPoolPerformanceLevelCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolPerformanceLevelCapability",
@@ -5239,7 +5239,7 @@ export const ElasticPoolPerformanceLevelCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolPerDatabaseMaxPerformanceLevelCapability: coreHttp.CompositeMapper = {
+export const ElasticPoolPerDatabaseMaxPerformanceLevelCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolPerDatabaseMaxPerformanceLevelCapability",
@@ -5289,7 +5289,7 @@ export const ElasticPoolPerDatabaseMaxPerformanceLevelCapability: coreHttp.Compo
   }
 };
 
-export const ElasticPoolPerDatabaseMinPerformanceLevelCapability: coreHttp.CompositeMapper = {
+export const ElasticPoolPerDatabaseMinPerformanceLevelCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolPerDatabaseMinPerformanceLevelCapability",
@@ -5326,7 +5326,7 @@ export const ElasticPoolPerDatabaseMinPerformanceLevelCapability: coreHttp.Compo
   }
 };
 
-export const ManagedInstanceVersionCapability: coreHttp.CompositeMapper = {
+export const ManagedInstanceVersionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceVersionCapability",
@@ -5382,7 +5382,7 @@ export const ManagedInstanceVersionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceEditionCapability: coreHttp.CompositeMapper = {
+export const ManagedInstanceEditionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceEditionCapability",
@@ -5425,7 +5425,7 @@ export const ManagedInstanceEditionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceFamilyCapability: coreHttp.CompositeMapper = {
+export const ManagedInstanceFamilyCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceFamilyCapability",
@@ -5488,7 +5488,7 @@ export const ManagedInstanceFamilyCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceVcoresCapability: coreHttp.CompositeMapper = {
+export const ManagedInstanceVcoresCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceVcoresCapability",
@@ -5559,7 +5559,7 @@ export const ManagedInstanceVcoresCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstancePoolEditionCapability: coreHttp.CompositeMapper = {
+export const InstancePoolEditionCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePoolEditionCapability",
@@ -5602,7 +5602,7 @@ export const InstancePoolEditionCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstancePoolFamilyCapability: coreHttp.CompositeMapper = {
+export const InstancePoolFamilyCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePoolFamilyCapability",
@@ -5658,7 +5658,7 @@ export const InstancePoolFamilyCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstancePoolVcoresCapability: coreHttp.CompositeMapper = {
+export const InstancePoolVcoresCapability: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePoolVcoresCapability",
@@ -5702,7 +5702,7 @@ export const InstancePoolVcoresCapability: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceLongTermRetentionBackupListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceLongTermRetentionBackupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionBackupListResult",
@@ -5731,7 +5731,7 @@ export const ManagedInstanceLongTermRetentionBackupListResult: coreHttp.Composit
   }
 };
 
-export const ManagedInstanceLongTermRetentionPolicyListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceLongTermRetentionPolicyListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionPolicyListResult",
@@ -5760,7 +5760,7 @@ export const ManagedInstanceLongTermRetentionPolicyListResult: coreHttp.Composit
   }
 };
 
-export const WorkloadGroupListResult: coreHttp.CompositeMapper = {
+export const WorkloadGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WorkloadGroupListResult",
@@ -5789,7 +5789,7 @@ export const WorkloadGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const WorkloadClassifierListResult: coreHttp.CompositeMapper = {
+export const WorkloadClassifierListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WorkloadClassifierListResult",
@@ -5818,7 +5818,7 @@ export const WorkloadClassifierListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabaseListResult: coreHttp.CompositeMapper = {
+export const ManagedDatabaseListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabaseListResult",
@@ -5847,7 +5847,7 @@ export const ManagedDatabaseListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabaseUpdate: coreHttp.CompositeMapper = {
+export const ManagedDatabaseUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabaseUpdate",
@@ -5958,7 +5958,7 @@ export const ManagedDatabaseUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const CompleteDatabaseRestoreDefinition: coreHttp.CompositeMapper = {
+export const CompleteDatabaseRestoreDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CompleteDatabaseRestoreDefinition",
@@ -5974,7 +5974,7 @@ export const CompleteDatabaseRestoreDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const AdministratorListResult: coreHttp.CompositeMapper = {
+export const AdministratorListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AdministratorListResult",
@@ -6003,7 +6003,7 @@ export const AdministratorListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceOperationListResult: coreHttp.CompositeMapper = {
+export const ManagedInstanceOperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceOperationListResult",
@@ -6032,7 +6032,7 @@ export const ManagedInstanceOperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationImpact: coreHttp.CompositeMapper = {
+export const OperationImpact: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationImpact",
@@ -6069,7 +6069,7 @@ export const OperationImpact: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProxyResource: coreHttp.CompositeMapper = {
+export const ProxyResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProxyResource",
@@ -6079,7 +6079,7 @@ export const ProxyResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const TrackedResource: coreHttp.CompositeMapper = {
+export const TrackedResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TrackedResource",
@@ -6103,7 +6103,7 @@ export const TrackedResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImportRequest: coreHttp.CompositeMapper = {
+export const ImportRequest: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImportRequest",
@@ -6141,7 +6141,7 @@ export const ImportRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImportExtensionProperties: coreHttp.CompositeMapper = {
+export const ImportExtensionProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImportExtensionProperties",
@@ -6159,7 +6159,7 @@ export const ImportExtensionProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecoverableDatabase: coreHttp.CompositeMapper = {
+export const RecoverableDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoverableDatabase",
@@ -6197,7 +6197,7 @@ export const RecoverableDatabase: coreHttp.CompositeMapper = {
   }
 };
 
-export const RestorableDroppedDatabase: coreHttp.CompositeMapper = {
+export const RestorableDroppedDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorableDroppedDatabase",
@@ -6270,7 +6270,7 @@ export const RestorableDroppedDatabase: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerConnectionPolicy: coreHttp.CompositeMapper = {
+export const ServerConnectionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerConnectionPolicy",
@@ -6301,7 +6301,7 @@ export const ServerConnectionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
+export const DatabaseSecurityAlertPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseSecurityAlertPolicy",
@@ -6375,7 +6375,7 @@ export const DatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataMaskingPolicy: coreHttp.CompositeMapper = {
+export const DataMaskingPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataMaskingPolicy",
@@ -6426,7 +6426,7 @@ export const DataMaskingPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataMaskingRule: coreHttp.CompositeMapper = {
+export const DataMaskingRule: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataMaskingRule",
@@ -6525,7 +6525,7 @@ export const DataMaskingRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const FirewallRule: coreHttp.CompositeMapper = {
+export const FirewallRule: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FirewallRule",
@@ -6561,7 +6561,7 @@ export const FirewallRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeoBackupPolicy: coreHttp.CompositeMapper = {
+export const GeoBackupPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GeoBackupPolicy",
@@ -6600,7 +6600,7 @@ export const GeoBackupPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImportExportResponse: coreHttp.CompositeMapper = {
+export const ImportExportResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImportExportResponse",
@@ -6673,7 +6673,7 @@ export const ImportExportResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedElasticPool: coreHttp.CompositeMapper = {
+export const RecommendedElasticPool: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedElasticPool",
@@ -6768,7 +6768,7 @@ export const RecommendedElasticPool: coreHttp.CompositeMapper = {
   }
 };
 
-export const ReplicationLink: coreHttp.CompositeMapper = {
+export const ReplicationLink: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ReplicationLink",
@@ -6869,7 +6869,7 @@ export const ReplicationLink: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerCommunicationLink: coreHttp.CompositeMapper = {
+export const ServerCommunicationLink: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerCommunicationLink",
@@ -6906,7 +6906,7 @@ export const ServerCommunicationLink: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceObjective: coreHttp.CompositeMapper = {
+export const ServiceObjective: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceObjective",
@@ -6951,7 +6951,7 @@ export const ServiceObjective: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolActivity: coreHttp.CompositeMapper = {
+export const ElasticPoolActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolActivity",
@@ -7107,7 +7107,7 @@ export const ElasticPoolActivity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolDatabaseActivity: coreHttp.CompositeMapper = {
+export const ElasticPoolDatabaseActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolDatabaseActivity",
@@ -7228,7 +7228,7 @@ export const ElasticPoolDatabaseActivity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceTierAdvisor: coreHttp.CompositeMapper = {
+export const ServiceTierAdvisor: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServiceTierAdvisor",
@@ -7384,7 +7384,7 @@ export const ServiceTierAdvisor: coreHttp.CompositeMapper = {
   }
 };
 
-export const TransparentDataEncryption: coreHttp.CompositeMapper = {
+export const TransparentDataEncryption: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TransparentDataEncryption",
@@ -7408,7 +7408,7 @@ export const TransparentDataEncryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const TransparentDataEncryptionActivity: coreHttp.CompositeMapper = {
+export const TransparentDataEncryptionActivity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TransparentDataEncryptionActivity",
@@ -7439,7 +7439,7 @@ export const TransparentDataEncryptionActivity: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseAutomaticTuningDef: coreHttp.CompositeMapper = {
+export const DatabaseAutomaticTuningDef: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseAutomaticTuningDef",
@@ -7473,7 +7473,7 @@ export const DatabaseAutomaticTuningDef: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionProtector: coreHttp.CompositeMapper = {
+export const EncryptionProtector: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionProtector",
@@ -7530,7 +7530,7 @@ export const EncryptionProtector: coreHttp.CompositeMapper = {
   }
 };
 
-export const FailoverGroup: coreHttp.CompositeMapper = {
+export const FailoverGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FailoverGroup",
@@ -7605,7 +7605,7 @@ export const FailoverGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerKey: coreHttp.CompositeMapper = {
+export const ServerKey: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerKey",
@@ -7659,7 +7659,7 @@ export const ServerKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncAgent: coreHttp.CompositeMapper = {
+export const SyncAgent: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncAgent",
@@ -7717,7 +7717,7 @@ export const SyncAgent: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncAgentLinkedDatabase: coreHttp.CompositeMapper = {
+export const SyncAgentLinkedDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncAgentLinkedDatabase",
@@ -7769,7 +7769,7 @@ export const SyncAgentLinkedDatabase: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncGroup: coreHttp.CompositeMapper = {
+export const SyncGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncGroup",
@@ -7830,7 +7830,7 @@ export const SyncGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const SyncMember: coreHttp.CompositeMapper = {
+export const SyncMember: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SyncMember",
@@ -7895,7 +7895,7 @@ export const SyncMember: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubscriptionUsage: coreHttp.CompositeMapper = {
+export const SubscriptionUsage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubscriptionUsage",
@@ -7933,7 +7933,7 @@ export const SubscriptionUsage: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualNetworkRule: coreHttp.CompositeMapper = {
+export const VirtualNetworkRule: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualNetworkRule",
@@ -7962,7 +7962,7 @@ export const VirtualNetworkRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const ExtendedDatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
+export const ExtendedDatabaseBlobAuditingPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExtendedDatabaseBlobAuditingPolicy",
@@ -8038,7 +8038,7 @@ export const ExtendedDatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ExtendedServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
+export const ExtendedServerBlobAuditingPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ExtendedServerBlobAuditingPolicy",
@@ -8114,7 +8114,7 @@ export const ExtendedServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
+export const ServerBlobAuditingPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerBlobAuditingPolicy",
@@ -8184,7 +8184,7 @@ export const ServerBlobAuditingPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
+export const DatabaseBlobAuditingPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseBlobAuditingPolicy",
@@ -8261,7 +8261,7 @@ export const DatabaseBlobAuditingPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseVulnerabilityAssessmentRuleBaseline: coreHttp.CompositeMapper = {
+export const DatabaseVulnerabilityAssessmentRuleBaseline: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentRuleBaseline",
@@ -8283,7 +8283,7 @@ export const DatabaseVulnerabilityAssessmentRuleBaseline: coreHttp.CompositeMapp
   }
 };
 
-export const DatabaseVulnerabilityAssessment: coreHttp.CompositeMapper = {
+export const DatabaseVulnerabilityAssessment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessment",
@@ -8318,7 +8318,7 @@ export const DatabaseVulnerabilityAssessment: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobCredential: coreHttp.CompositeMapper = {
+export const JobCredential: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobCredential",
@@ -8340,7 +8340,7 @@ export const JobCredential: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobExecution: coreHttp.CompositeMapper = {
+export const JobExecution: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobExecution",
@@ -8440,7 +8440,7 @@ export const JobExecution: coreHttp.CompositeMapper = {
   }
 };
 
-export const Job: coreHttp.CompositeMapper = {
+export const Job: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Job",
@@ -8470,7 +8470,7 @@ export const Job: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobStep: coreHttp.CompositeMapper = {
+export const JobStep: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobStep",
@@ -8519,7 +8519,7 @@ export const JobStep: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobTargetGroup: coreHttp.CompositeMapper = {
+export const JobTargetGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobTargetGroup",
@@ -8541,7 +8541,7 @@ export const JobTargetGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobVersion: coreHttp.CompositeMapper = {
+export const JobVersion: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobVersion",
@@ -8551,7 +8551,7 @@ export const JobVersion: coreHttp.CompositeMapper = {
   }
 };
 
-export const LongTermRetentionBackup: coreHttp.CompositeMapper = {
+export const LongTermRetentionBackup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LongTermRetentionBackup",
@@ -8603,7 +8603,7 @@ export const LongTermRetentionBackup: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupLongTermRetentionPolicy: coreHttp.CompositeMapper = {
+export const BackupLongTermRetentionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BackupLongTermRetentionPolicy",
@@ -8637,7 +8637,7 @@ export const BackupLongTermRetentionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedBackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
+export const ManagedBackupShortTermRetentionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedBackupShortTermRetentionPolicy",
@@ -8653,7 +8653,7 @@ export const ManagedBackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerAutomaticTuningDef: coreHttp.CompositeMapper = {
+export const ServerAutomaticTuningDef: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerAutomaticTuningDef",
@@ -8690,7 +8690,7 @@ export const ServerAutomaticTuningDef: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerDnsAlias: coreHttp.CompositeMapper = {
+export const ServerDnsAlias: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerDnsAlias",
@@ -8707,7 +8707,7 @@ export const ServerDnsAlias: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
+export const ServerSecurityAlertPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerSecurityAlertPolicy",
@@ -8777,7 +8777,7 @@ export const ServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const RestorePoint: coreHttp.CompositeMapper = {
+export const RestorePoint: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorePoint",
@@ -8823,7 +8823,7 @@ export const RestorePoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
+export const ManagedDatabaseSecurityAlertPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabaseSecurityAlertPolicy",
@@ -8893,7 +8893,7 @@ export const ManagedDatabaseSecurityAlertPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
+export const ManagedServerSecurityAlertPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedServerSecurityAlertPolicy",
@@ -8963,7 +8963,7 @@ export const ManagedServerSecurityAlertPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const SensitivityLabel: coreHttp.CompositeMapper = {
+export const SensitivityLabel: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SensitivityLabel",
@@ -9011,7 +9011,7 @@ export const SensitivityLabel: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceAdministrator: coreHttp.CompositeMapper = {
+export const ManagedInstanceAdministrator: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceAdministrator",
@@ -9045,7 +9045,7 @@ export const ManagedInstanceAdministrator: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseOperation: coreHttp.CompositeMapper = {
+export const DatabaseOperation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseOperation",
@@ -9153,7 +9153,7 @@ export const DatabaseOperation: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPoolOperation: coreHttp.CompositeMapper = {
+export const ElasticPoolOperation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPoolOperation",
@@ -9261,7 +9261,7 @@ export const ElasticPoolOperation: coreHttp.CompositeMapper = {
   }
 };
 
-export const VulnerabilityAssessmentScanRecord: coreHttp.CompositeMapper = {
+export const VulnerabilityAssessmentScanRecord: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VulnerabilityAssessmentScanRecord",
@@ -9333,7 +9333,7 @@ export const VulnerabilityAssessmentScanRecord: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseVulnerabilityAssessmentScansExport: coreHttp.CompositeMapper = {
+export const DatabaseVulnerabilityAssessmentScansExport: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DatabaseVulnerabilityAssessmentScansExport",
@@ -9350,7 +9350,7 @@ export const DatabaseVulnerabilityAssessmentScansExport: coreHttp.CompositeMappe
   }
 };
 
-export const InstanceFailoverGroup: coreHttp.CompositeMapper = {
+export const InstanceFailoverGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstanceFailoverGroup",
@@ -9412,7 +9412,7 @@ export const InstanceFailoverGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
+export const BackupShortTermRetentionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BackupShortTermRetentionPolicy",
@@ -9428,7 +9428,7 @@ export const BackupShortTermRetentionPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const TdeCertificate: coreHttp.CompositeMapper = {
+export const TdeCertificate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TdeCertificate",
@@ -9450,7 +9450,7 @@ export const TdeCertificate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceKey: coreHttp.CompositeMapper = {
+export const ManagedInstanceKey: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceKey",
@@ -9493,7 +9493,7 @@ export const ManagedInstanceKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceEncryptionProtector: coreHttp.CompositeMapper = {
+export const ManagedInstanceEncryptionProtector: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceEncryptionProtector",
@@ -9536,7 +9536,7 @@ export const ManagedInstanceEncryptionProtector: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecoverableManagedDatabase: coreHttp.CompositeMapper = {
+export const RecoverableManagedDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoverableManagedDatabase",
@@ -9553,7 +9553,7 @@ export const RecoverableManagedDatabase: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceVulnerabilityAssessment: coreHttp.CompositeMapper = {
+export const ManagedInstanceVulnerabilityAssessment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceVulnerabilityAssessment",
@@ -9588,7 +9588,7 @@ export const ManagedInstanceVulnerabilityAssessment: coreHttp.CompositeMapper = 
   }
 };
 
-export const ServerVulnerabilityAssessment: coreHttp.CompositeMapper = {
+export const ServerVulnerabilityAssessment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerVulnerabilityAssessment",
@@ -9623,7 +9623,7 @@ export const ServerVulnerabilityAssessment: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
+export const PrivateEndpointConnection: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateEndpointConnection",
@@ -9654,7 +9654,7 @@ export const PrivateEndpointConnection: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResource: coreHttp.CompositeMapper = {
+export const PrivateLinkResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PrivateLinkResource",
@@ -9671,7 +9671,7 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceLongTermRetentionBackup: coreHttp.CompositeMapper = {
+export const ManagedInstanceLongTermRetentionBackup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionBackup",
@@ -9723,7 +9723,7 @@ export const ManagedInstanceLongTermRetentionBackup: coreHttp.CompositeMapper = 
   }
 };
 
-export const ManagedInstanceLongTermRetentionPolicy: coreHttp.CompositeMapper = {
+export const ManagedInstanceLongTermRetentionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceLongTermRetentionPolicy",
@@ -9757,7 +9757,7 @@ export const ManagedInstanceLongTermRetentionPolicy: coreHttp.CompositeMapper = 
   }
 };
 
-export const WorkloadGroup: coreHttp.CompositeMapper = {
+export const WorkloadGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WorkloadGroup",
@@ -9803,7 +9803,7 @@ export const WorkloadGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const WorkloadClassifier: coreHttp.CompositeMapper = {
+export const WorkloadClassifier: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WorkloadClassifier",
@@ -9849,7 +9849,7 @@ export const WorkloadClassifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabaseRestoreDetailsResult: coreHttp.CompositeMapper = {
+export const ManagedDatabaseRestoreDetailsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabaseRestoreDetailsResult",
@@ -9934,7 +9934,7 @@ export const ManagedDatabaseRestoreDetailsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServerAzureADAdministrator: coreHttp.CompositeMapper = {
+export const ServerAzureADAdministrator: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServerAzureADAdministrator",
@@ -9974,7 +9974,7 @@ export const ServerAzureADAdministrator: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstanceOperation: coreHttp.CompositeMapper = {
+export const ManagedInstanceOperation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstanceOperation",
@@ -10075,7 +10075,7 @@ export const ManagedInstanceOperation: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedIndex: coreHttp.CompositeMapper = {
+export const RecommendedIndex: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedIndex",
@@ -10211,7 +10211,7 @@ export const RecommendedIndex: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualCluster: coreHttp.CompositeMapper = {
+export const VirtualCluster: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualCluster",
@@ -10246,7 +10246,7 @@ export const VirtualCluster: coreHttp.CompositeMapper = {
   }
 };
 
-export const JobAgent: coreHttp.CompositeMapper = {
+export const JobAgent: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "JobAgent",
@@ -10276,7 +10276,7 @@ export const JobAgent: coreHttp.CompositeMapper = {
   }
 };
 
-export const RestorableDroppedManagedDatabase: coreHttp.CompositeMapper = {
+export const RestorableDroppedManagedDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RestorableDroppedManagedDatabase",
@@ -10314,7 +10314,7 @@ export const RestorableDroppedManagedDatabase: coreHttp.CompositeMapper = {
   }
 };
 
-export const Database: coreHttp.CompositeMapper = {
+export const Database: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Database",
@@ -10543,7 +10543,7 @@ export const Database: coreHttp.CompositeMapper = {
   }
 };
 
-export const ElasticPool: coreHttp.CompositeMapper = {
+export const ElasticPool: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ElasticPool",
@@ -10606,7 +10606,7 @@ export const ElasticPool: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstancePool: coreHttp.CompositeMapper = {
+export const InstancePool: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstancePool",
@@ -10641,7 +10641,7 @@ export const InstancePool: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedInstance: coreHttp.CompositeMapper = {
+export const ManagedInstance: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedInstance",
@@ -10782,7 +10782,7 @@ export const ManagedInstance: coreHttp.CompositeMapper = {
   }
 };
 
-export const Server: coreHttp.CompositeMapper = {
+export const Server: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Server",
@@ -10863,7 +10863,7 @@ export const Server: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDatabase: coreHttp.CompositeMapper = {
+export const ManagedDatabase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDatabase",

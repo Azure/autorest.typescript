@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -14,52 +14,86 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface ByteGetNullOptionalParams
-  extends coreClient.OperationOptions {}
+export interface ByteGetNullOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type ByteGetNullResponse = {
   /** The parsed response body. */
   body: Uint8Array;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array;
+  };
 };
 
 /** Optional parameters. */
-export interface ByteGetEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+export interface ByteGetEmptyOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmpty operation. */
 export type ByteGetEmptyResponse = {
   /** The parsed response body. */
   body: Uint8Array;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array;
+  };
 };
 
 /** Optional parameters. */
 export interface ByteGetNonAsciiOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNonAscii operation. */
 export type ByteGetNonAsciiResponse = {
   /** The parsed response body. */
   body: Uint8Array;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array;
+  };
 };
 
 /** Optional parameters. */
 export interface BytePutNonAsciiOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ByteGetInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type ByteGetInvalidResponse = {
   /** The parsed response body. */
   body: Uint8Array;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Uint8Array;
+  };
 };
 
 /** Optional parameters. */
 export interface BodyByteClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

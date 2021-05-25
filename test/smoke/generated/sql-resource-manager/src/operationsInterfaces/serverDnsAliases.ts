@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerDnsAlias,
@@ -97,9 +96,7 @@ export interface ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: ServerDnsAliasesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the server DNS alias with the given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -113,7 +110,7 @@ export interface ServerDnsAliases {
     serverName: string,
     dnsAliasName: string,
     options?: ServerDnsAliasesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Acquires server DNS alias from another server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -129,9 +126,7 @@ export interface ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Acquires server DNS alias from another server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -147,5 +142,5 @@ export interface ServerDnsAliases {
     dnsAliasName: string,
     parameters: ServerDnsAliasAcquisition,
     options?: ServerDnsAliasesAcquireOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

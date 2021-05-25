@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   CassandraKeyspaceGetResults,
@@ -130,9 +129,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Cassandra keyspace.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -145,7 +142,7 @@ export interface CassandraResources {
     accountName: string,
     keyspaceName: string,
     options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the RUs per second of the Cassandra Keyspace under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -269,9 +266,7 @@ export interface CassandraResources {
     keyspaceName: string,
     tableName: string,
     options?: CassandraResourcesDeleteCassandraTableOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB Cassandra table.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -286,7 +281,7 @@ export interface CassandraResources {
     keyspaceName: string,
     tableName: string,
     options?: CassandraResourcesDeleteCassandraTableOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the RUs per second of the Cassandra table under an existing Azure Cosmos DB database account
    * with the provided name.

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DeletedWebApps } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -139,13 +139,7 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
   private _list(
     options?: DeletedWebAppsListOptionalParams
   ): Promise<DeletedWebAppsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<DeletedWebAppsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -157,14 +151,10 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
     location: string,
     options?: DeletedWebAppsListByLocationOptionalParams
   ): Promise<DeletedWebAppsListByLocationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listByLocationOperationSpec
-    ) as Promise<DeletedWebAppsListByLocationResponse>;
+    );
   }
 
   /**
@@ -178,15 +168,10 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
     deletedSiteId: string,
     options?: DeletedWebAppsGetDeletedWebAppByLocationOptionalParams
   ): Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      deletedSiteId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, deletedSiteId, options },
       getDeletedWebAppByLocationOperationSpec
-    ) as Promise<DeletedWebAppsGetDeletedWebAppByLocationResponse>;
+    );
   }
 
   /**
@@ -198,14 +183,10 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
     nextLink: string,
     options?: DeletedWebAppsListNextOptionalParams
   ): Promise<DeletedWebAppsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<DeletedWebAppsListNextResponse>;
+    );
   }
 
   /**
@@ -219,21 +200,16 @@ export class DeletedWebAppsImpl implements DeletedWebApps {
     nextLink: string,
     options?: DeletedWebAppsListByLocationNextOptionalParams
   ): Promise<DeletedWebAppsListByLocationNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, nextLink, options },
       listByLocationNextOperationSpec
-    ) as Promise<DeletedWebAppsListByLocationNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/deletedSites",
   httpMethod: "GET",
   responses: {
@@ -249,7 +225,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByLocationOperationSpec: coreHttp.OperationSpec = {
+const listByLocationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/deletedSites",
   httpMethod: "GET",
@@ -270,7 +246,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDeletedWebAppByLocationOperationSpec: coreHttp.OperationSpec = {
+const getDeletedWebAppByLocationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/locations/{location}/deletedSites/{deletedSiteId}",
   httpMethod: "GET",
@@ -292,7 +268,7 @@ const getDeletedWebAppByLocationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -312,7 +288,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
+const listByLocationNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

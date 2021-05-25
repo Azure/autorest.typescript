@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { BlobContainers } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -137,15 +137,10 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     options?: BlobContainersListOptionalParams
   ): Promise<BlobContainersListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listOperationSpec
-    ) as Promise<BlobContainersListResponse>;
+    );
   }
 
   /**
@@ -171,17 +166,10 @@ export class BlobContainersImpl implements BlobContainers {
     blobContainer: BlobContainer,
     options?: BlobContainersCreateOptionalParams
   ): Promise<BlobContainersCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      blobContainer,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, blobContainer, options },
       createOperationSpec
-    ) as Promise<BlobContainersCreateResponse>;
+    );
   }
 
   /**
@@ -206,17 +194,10 @@ export class BlobContainersImpl implements BlobContainers {
     blobContainer: BlobContainer,
     options?: BlobContainersUpdateOptionalParams
   ): Promise<BlobContainersUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      blobContainer,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, blobContainer, options },
       updateOperationSpec
-    ) as Promise<BlobContainersUpdateResponse>;
+    );
   }
 
   /**
@@ -238,16 +219,10 @@ export class BlobContainersImpl implements BlobContainers {
     containerName: string,
     options?: BlobContainersGetOptionalParams
   ): Promise<BlobContainersGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, options },
       getOperationSpec
-    ) as Promise<BlobContainersGetResponse>;
+    );
   }
 
   /**
@@ -268,17 +243,11 @@ export class BlobContainersImpl implements BlobContainers {
     accountName: string,
     containerName: string,
     options?: BlobContainersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -303,17 +272,10 @@ export class BlobContainersImpl implements BlobContainers {
     legalHold: LegalHold,
     options?: BlobContainersSetLegalHoldOptionalParams
   ): Promise<BlobContainersSetLegalHoldResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      legalHold,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, legalHold, options },
       setLegalHoldOperationSpec
-    ) as Promise<BlobContainersSetLegalHoldResponse>;
+    );
   }
 
   /**
@@ -338,17 +300,10 @@ export class BlobContainersImpl implements BlobContainers {
     legalHold: LegalHold,
     options?: BlobContainersClearLegalHoldOptionalParams
   ): Promise<BlobContainersClearLegalHoldResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      legalHold,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, legalHold, options },
       clearLegalHoldOperationSpec
-    ) as Promise<BlobContainersClearLegalHoldResponse>;
+    );
   }
 
   /**
@@ -371,16 +326,10 @@ export class BlobContainersImpl implements BlobContainers {
     containerName: string,
     options?: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, options },
       createOrUpdateImmutabilityPolicyOperationSpec
-    ) as Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse>;
+    );
   }
 
   /**
@@ -403,16 +352,10 @@ export class BlobContainersImpl implements BlobContainers {
     containerName: string,
     options?: BlobContainersGetImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersGetImmutabilityPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, options },
       getImmutabilityPolicyOperationSpec
-    ) as Promise<BlobContainersGetImmutabilityPolicyResponse>;
+    );
   }
 
   /**
@@ -441,17 +384,10 @@ export class BlobContainersImpl implements BlobContainers {
     ifMatch: string,
     options?: BlobContainersDeleteImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersDeleteImmutabilityPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      ifMatch,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, ifMatch, options },
       deleteImmutabilityPolicyOperationSpec
-    ) as Promise<BlobContainersDeleteImmutabilityPolicyResponse>;
+    );
   }
 
   /**
@@ -478,17 +414,10 @@ export class BlobContainersImpl implements BlobContainers {
     ifMatch: string,
     options?: BlobContainersLockImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersLockImmutabilityPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      ifMatch,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, ifMatch, options },
       lockImmutabilityPolicyOperationSpec
-    ) as Promise<BlobContainersLockImmutabilityPolicyResponse>;
+    );
   }
 
   /**
@@ -515,17 +444,10 @@ export class BlobContainersImpl implements BlobContainers {
     ifMatch: string,
     options?: BlobContainersExtendImmutabilityPolicyOptionalParams
   ): Promise<BlobContainersExtendImmutabilityPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      ifMatch,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, ifMatch, options },
       extendImmutabilityPolicyOperationSpec
-    ) as Promise<BlobContainersExtendImmutabilityPolicyResponse>;
+    );
   }
 
   /**
@@ -548,16 +470,10 @@ export class BlobContainersImpl implements BlobContainers {
     containerName: string,
     options?: BlobContainersLeaseOptionalParams
   ): Promise<BlobContainersLeaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      containerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, containerName, options },
       leaseOperationSpec
-    ) as Promise<BlobContainersLeaseResponse>;
+    );
   }
 
   /**
@@ -576,22 +492,16 @@ export class BlobContainersImpl implements BlobContainers {
     nextLink: string,
     options?: BlobContainersListNextOptionalParams
   ): Promise<BlobContainersListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<BlobContainersListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers",
   httpMethod: "GET",
@@ -614,7 +524,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}",
   httpMethod: "PUT",
@@ -639,7 +549,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}",
   httpMethod: "PATCH",
@@ -661,7 +571,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}",
   httpMethod: "GET",
@@ -681,7 +591,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}",
   httpMethod: "DELETE",
@@ -696,7 +606,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const setLegalHoldOperationSpec: coreHttp.OperationSpec = {
+const setLegalHoldOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/setLegalHold",
   httpMethod: "POST",
@@ -718,7 +628,7 @@ const setLegalHoldOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
+const clearLegalHoldOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/clearLegalHold",
   httpMethod: "POST",
@@ -740,7 +650,7 @@ const clearLegalHoldOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateImmutabilityPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}",
   httpMethod: "PUT",
@@ -769,7 +679,7 @@ const createOrUpdateImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
+const getImmutabilityPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}",
   httpMethod: "GET",
@@ -791,7 +701,7 @@ const getImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.ifMatch],
   serializer
 };
-const deleteImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
+const deleteImmutabilityPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/{immutabilityPolicyName}",
   httpMethod: "DELETE",
@@ -813,7 +723,7 @@ const deleteImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.ifMatch1],
   serializer
 };
-const lockImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
+const lockImmutabilityPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/lock",
   httpMethod: "POST",
@@ -834,7 +744,7 @@ const lockImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.ifMatch1],
   serializer
 };
-const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
+const extendImmutabilityPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/immutabilityPolicies/default/extend",
   httpMethod: "POST",
@@ -861,7 +771,7 @@ const extendImmutabilityPolicyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const leaseOperationSpec: coreHttp.OperationSpec = {
+const leaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/default/containers/{containerName}/lease",
   httpMethod: "POST",
@@ -883,7 +793,7 @@ const leaseOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

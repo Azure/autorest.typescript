@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   QueriesArrayStringMultiNullOptionalParams,
   QueriesArrayStringMultiEmptyOptionalParams,
@@ -20,14 +21,14 @@ export interface Queries {
    */
   arrayStringMultiNull(
     options?: QueriesArrayStringMultiNullOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get an empty array [] of string using the multi-array format
    * @param options The options parameters.
    */
   arrayStringMultiEmpty(
     options?: QueriesArrayStringMultiEmptyOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
    * mult-array format
@@ -35,5 +36,5 @@ export interface Queries {
    */
   arrayStringMultiValid(
     options?: QueriesArrayStringMultiValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedInstanceOperations } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -123,17 +123,11 @@ export class ManagedInstanceOperationsImpl
     managedInstanceName: string,
     operationId: string,
     options?: ManagedInstanceOperationsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, operationId, options },
       cancelOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -148,15 +142,10 @@ export class ManagedInstanceOperationsImpl
     managedInstanceName: string,
     options?: ManagedInstanceOperationsListByManagedInstanceOptionalParams
   ): Promise<ManagedInstanceOperationsListByManagedInstanceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, options },
       listByManagedInstanceOperationSpec
-    ) as Promise<ManagedInstanceOperationsListByManagedInstanceResponse>;
+    );
   }
 
   /**
@@ -173,16 +162,10 @@ export class ManagedInstanceOperationsImpl
     operationId: string,
     options?: ManagedInstanceOperationsGetOptionalParams
   ): Promise<ManagedInstanceOperationsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, operationId, options },
       getOperationSpec
-    ) as Promise<ManagedInstanceOperationsGetResponse>;
+    );
   }
 
   /**
@@ -199,22 +182,16 @@ export class ManagedInstanceOperationsImpl
     nextLink: string,
     options?: ManagedInstanceOperationsListByManagedInstanceNextOptionalParams
   ): Promise<ManagedInstanceOperationsListByManagedInstanceNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, nextLink, options },
       listByManagedInstanceNextOperationSpec
-    ) as Promise<ManagedInstanceOperationsListByManagedInstanceNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const cancelOperationSpec: coreHttp.OperationSpec = {
+const cancelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations/{operationId}/cancel",
   httpMethod: "POST",
@@ -229,7 +206,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByManagedInstanceOperationSpec: coreHttp.OperationSpec = {
+const listByManagedInstanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations",
   httpMethod: "GET",
@@ -249,7 +226,7 @@ const listByManagedInstanceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/operations/{operationId}",
   httpMethod: "GET",
@@ -270,7 +247,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByManagedInstanceNextOperationSpec: coreHttp.OperationSpec = {
+const listByManagedInstanceNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AppServiceEnvironments } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -1608,13 +1608,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private _list(
     options?: AppServiceEnvironmentsListOptionalParams
   ): Promise<AppServiceEnvironmentsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<AppServiceEnvironmentsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -1626,14 +1620,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     options?: AppServiceEnvironmentsListByResourceGroupOptionalParams
   ): Promise<AppServiceEnvironmentsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<AppServiceEnvironmentsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -1647,15 +1637,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsGetOptionalParams
   ): Promise<AppServiceEnvironmentsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getOperationSpec
-    ) as Promise<AppServiceEnvironmentsGetResponse>;
+    );
   }
 
   /**
@@ -1676,24 +1661,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostingEnvironmentEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, hostingEnvironmentEnvelope, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -1731,26 +1733,42 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteOperationSpec,
       sendOperation
     );
@@ -1766,7 +1784,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(resourceGroupName, name, options);
     return poller.pollUntilDone();
   }
@@ -1784,16 +1802,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     hostingEnvironmentEnvelope: AppServiceEnvironmentPatchResource,
     options?: AppServiceEnvironmentsUpdateOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostingEnvironmentEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, hostingEnvironmentEnvelope, options },
       updateOperationSpec
-    ) as Promise<AppServiceEnvironmentsUpdateResponse>;
+    );
   }
 
   /**
@@ -1807,15 +1819,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListCapacitiesOptionalParams
   ): Promise<AppServiceEnvironmentsListCapacitiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listCapacitiesOperationSpec
-    ) as Promise<AppServiceEnvironmentsListCapacitiesResponse>;
+    );
   }
 
   /**
@@ -1829,15 +1836,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsGetVipInfoOptionalParams
   ): Promise<AppServiceEnvironmentsGetVipInfoResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getVipInfoOperationSpec
-    ) as Promise<AppServiceEnvironmentsGetVipInfoResponse>;
+    );
   }
 
   /**
@@ -1858,24 +1860,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsChangeVnetResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetInfo,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsChangeVnetResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsChangeVnetResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, vnetInfo, options },
       changeVnetOperationSpec,
       sendOperation
     );
@@ -1892,15 +1911,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListDiagnosticsOptionalParams
   ): Promise<AppServiceEnvironmentsListDiagnosticsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listDiagnosticsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListDiagnosticsResponse>;
+    );
   }
 
   /**
@@ -1916,16 +1930,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     diagnosticsName: string,
     options?: AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
   ): Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      diagnosticsName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, diagnosticsName, options },
       getDiagnosticsItemOperationSpec
-    ) as Promise<AppServiceEnvironmentsGetDiagnosticsItemResponse>;
+    );
   }
 
   /**
@@ -1941,17 +1949,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getInboundNetworkDependenciesEndpointsOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse
-    >;
+    );
   }
 
   /**
@@ -1965,15 +1966,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListMultiRolePoolsOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listMultiRolePoolsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRolePoolsResponse>;
+    );
   }
 
   /**
@@ -1987,15 +1983,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsGetMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetMultiRolePoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getMultiRolePoolOperationSpec
-    ) as Promise<AppServiceEnvironmentsGetMultiRolePoolResponse>;
+    );
   }
 
   /**
@@ -2018,24 +2009,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      multiRolePoolEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, multiRolePoolEnvelope, options },
       createOrUpdateMultiRolePoolOperationSpec,
       sendOperation
     );
@@ -2076,16 +2084,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     multiRolePoolEnvelope: WorkerPoolResource,
     options?: AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      multiRolePoolEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, multiRolePoolEnvelope, options },
       updateMultiRolePoolOperationSpec
-    ) as Promise<AppServiceEnvironmentsUpdateMultiRolePoolResponse>;
+    );
   }
 
   /**
@@ -2104,18 +2106,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instance,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instance, options },
       listMultiRolePoolInstanceMetricDefinitionsOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse
-    >;
+    );
   }
 
   /**
@@ -2129,15 +2123,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listMultiRoleMetricDefinitionsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse>;
+    );
   }
 
   /**
@@ -2151,15 +2140,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolSkusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listMultiRolePoolSkusOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRolePoolSkusResponse>;
+    );
   }
 
   /**
@@ -2173,15 +2157,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listMultiRoleUsagesOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRoleUsagesResponse>;
+    );
   }
 
   /**
@@ -2195,15 +2174,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListOperationsOptionalParams
   ): Promise<AppServiceEnvironmentsListOperationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listOperationsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListOperationsResponse>;
+    );
   }
 
   /**
@@ -2220,17 +2194,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getOutboundNetworkDependenciesEndpointsOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse
-    >;
+    );
   }
 
   /**
@@ -2243,16 +2210,11 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     resourceGroupName: string,
     name: string,
     options?: AppServiceEnvironmentsRebootOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       rebootOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -2271,23 +2233,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsResumeResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsResumeResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsResumeResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       resumeOperationSpec,
       sendOperation
     );
@@ -2304,15 +2284,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListAppServicePlansOptionalParams
   ): Promise<AppServiceEnvironmentsListAppServicePlansResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listAppServicePlansOperationSpec
-    ) as Promise<AppServiceEnvironmentsListAppServicePlansResponse>;
+    );
   }
 
   /**
@@ -2326,15 +2301,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListWebAppsOptionalParams
   ): Promise<AppServiceEnvironmentsListWebAppsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listWebAppsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWebAppsResponse>;
+    );
   }
 
   /**
@@ -2353,23 +2323,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsSuspendResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsSuspendResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsSuspendResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       suspendOperationSpec,
       sendOperation
     );
@@ -2386,15 +2374,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListUsagesOptionalParams
   ): Promise<AppServiceEnvironmentsListUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listUsagesOperationSpec
-    ) as Promise<AppServiceEnvironmentsListUsagesResponse>;
+    );
   }
 
   /**
@@ -2408,15 +2391,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     name: string,
     options?: AppServiceEnvironmentsListWorkerPoolsOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listWorkerPoolsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWorkerPoolsResponse>;
+    );
   }
 
   /**
@@ -2432,16 +2410,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolName: string,
     options?: AppServiceEnvironmentsGetWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsGetWorkerPoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, options },
       getWorkerPoolOperationSpec
-    ) as Promise<AppServiceEnvironmentsGetWorkerPoolResponse>;
+    );
   }
 
   /**
@@ -2466,25 +2438,41 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      workerPoolEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, workerPoolEnvelope, options },
       createOrUpdateWorkerPoolOperationSpec,
       sendOperation
     );
@@ -2530,17 +2518,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolEnvelope: WorkerPoolResource,
     options?: AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
   ): Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      workerPoolEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, workerPoolEnvelope, options },
       updateWorkerPoolOperationSpec
-    ) as Promise<AppServiceEnvironmentsUpdateWorkerPoolResponse>;
+    );
   }
 
   /**
@@ -2561,19 +2542,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      instance,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, instance, options },
       listWorkerPoolInstanceMetricDefinitionsOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse
-    >;
+    );
   }
 
   /**
@@ -2589,16 +2561,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolName: string,
     options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, options },
       listWebWorkerMetricDefinitionsOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse>;
+    );
   }
 
   /**
@@ -2614,16 +2580,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolName: string,
     options?: AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolSkusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, options },
       listWorkerPoolSkusOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWorkerPoolSkusResponse>;
+    );
   }
 
   /**
@@ -2639,16 +2599,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     workerPoolName: string,
     options?: AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, options },
       listWebWorkerUsagesOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWebWorkerUsagesResponse>;
+    );
   }
 
   /**
@@ -2660,14 +2614,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListNextOptionalParams
   ): Promise<AppServiceEnvironmentsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListNextResponse>;
+    );
   }
 
   /**
@@ -2681,15 +2631,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListByResourceGroupNextOptionalParams
   ): Promise<AppServiceEnvironmentsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -2705,16 +2650,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListCapacitiesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListCapacitiesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listCapacitiesNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListCapacitiesNextResponse>;
+    );
   }
 
   /**
@@ -2732,17 +2671,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsChangeVnetNextOptionalParams
   ): Promise<AppServiceEnvironmentsChangeVnetNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetInfo,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetInfo, nextLink, options },
       changeVnetNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsChangeVnetNextResponse>;
+    );
   }
 
   /**
@@ -2761,18 +2693,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       getInboundNetworkDependenciesEndpointsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse
-    >;
+    );
   }
 
   /**
@@ -2788,16 +2712,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listMultiRolePoolsNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRolePoolsNextResponse>;
+    );
   }
 
   /**
@@ -2818,19 +2736,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instance,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instance, nextLink, options },
       listMultiRolePoolInstanceMetricDefinitionsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse
-    >;
+    );
   }
 
   /**
@@ -2847,18 +2756,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listMultiRoleMetricDefinitionsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse
-    >;
+    );
   }
 
   /**
@@ -2874,16 +2775,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRolePoolSkusNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listMultiRolePoolSkusNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRolePoolSkusNextResponse>;
+    );
   }
 
   /**
@@ -2899,16 +2794,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListMultiRoleUsagesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listMultiRoleUsagesNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListMultiRoleUsagesNextResponse>;
+    );
   }
 
   /**
@@ -2927,18 +2816,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       getOutboundNetworkDependenciesEndpointsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse
-    >;
+    );
   }
 
   /**
@@ -2954,16 +2835,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsResumeNextOptionalParams
   ): Promise<AppServiceEnvironmentsResumeNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       resumeNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsResumeNextResponse>;
+    );
   }
 
   /**
@@ -2979,16 +2854,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListAppServicePlansNextOptionalParams
   ): Promise<AppServiceEnvironmentsListAppServicePlansNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listAppServicePlansNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListAppServicePlansNextResponse>;
+    );
   }
 
   /**
@@ -3004,16 +2873,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListWebAppsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWebAppsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listWebAppsNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWebAppsNextResponse>;
+    );
   }
 
   /**
@@ -3029,16 +2892,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsSuspendNextOptionalParams
   ): Promise<AppServiceEnvironmentsSuspendNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       suspendNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsSuspendNextResponse>;
+    );
   }
 
   /**
@@ -3054,16 +2911,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListUsagesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listUsagesNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListUsagesNextResponse>;
+    );
   }
 
   /**
@@ -3079,16 +2930,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListWorkerPoolsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listWorkerPoolsNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWorkerPoolsNextResponse>;
+    );
   }
 
   /**
@@ -3111,20 +2956,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   ): Promise<
     AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      instance,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, instance, nextLink, options },
       listWorkerPoolInstanceMetricDefinitionsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse
-    >;
+    );
   }
 
   /**
@@ -3143,19 +2978,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, nextLink, options },
       listWebWorkerMetricDefinitionsNextOperationSpec
-    ) as Promise<
-      AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse
-    >;
+    );
   }
 
   /**
@@ -3173,17 +2999,10 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWorkerPoolSkusNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, nextLink, options },
       listWorkerPoolSkusNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWorkerPoolSkusNextResponse>;
+    );
   }
 
   /**
@@ -3201,35 +3020,16 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
     nextLink: string,
     options?: AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams
   ): Promise<AppServiceEnvironmentsListWebWorkerUsagesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      workerPoolName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, workerPoolName, nextLink, options },
       listWebWorkerUsagesNextOperationSpec
-    ) as Promise<AppServiceEnvironmentsListWebWorkerUsagesNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/hostingEnvironments",
   httpMethod: "GET",
@@ -3246,7 +3046,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments",
   httpMethod: "GET",
@@ -3267,7 +3067,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}",
   httpMethod: "GET",
@@ -3289,7 +3089,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}",
   httpMethod: "PUT",
@@ -3322,7 +3122,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}",
   httpMethod: "DELETE",
@@ -3345,7 +3145,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}",
   httpMethod: "PATCH",
@@ -3375,7 +3175,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listCapacitiesOperationSpec: coreHttp.OperationSpec = {
+const listCapacitiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/capacities/compute",
   httpMethod: "GET",
@@ -3397,7 +3197,7 @@ const listCapacitiesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVipInfoOperationSpec: coreHttp.OperationSpec = {
+const getVipInfoOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/capacities/virtualip",
   httpMethod: "GET",
@@ -3419,7 +3219,7 @@ const getVipInfoOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const changeVnetOperationSpec: coreHttp.OperationSpec = {
+const changeVnetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/changeVirtualNetwork",
   httpMethod: "POST",
@@ -3452,7 +3252,7 @@ const changeVnetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listDiagnosticsOperationSpec: coreHttp.OperationSpec = {
+const listDiagnosticsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/diagnostics",
   httpMethod: "GET",
@@ -3484,7 +3284,7 @@ const listDiagnosticsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDiagnosticsItemOperationSpec: coreHttp.OperationSpec = {
+const getDiagnosticsItemOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/diagnostics/{diagnosticsName}",
   httpMethod: "GET",
@@ -3507,7 +3307,7 @@ const getDiagnosticsItemOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInboundNetworkDependenciesEndpointsOperationSpec: coreHttp.OperationSpec = {
+const getInboundNetworkDependenciesEndpointsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/inboundNetworkDependenciesEndpoints",
   httpMethod: "GET",
@@ -3529,7 +3329,7 @@ const getInboundNetworkDependenciesEndpointsOperationSpec: coreHttp.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRolePoolsOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools",
   httpMethod: "GET",
@@ -3551,7 +3351,7 @@ const listMultiRolePoolsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
+const getMultiRolePoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default",
   httpMethod: "GET",
@@ -3573,7 +3373,7 @@ const getMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateMultiRolePoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default",
   httpMethod: "PUT",
@@ -3606,7 +3406,7 @@ const createOrUpdateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
+const updateMultiRolePoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default",
   httpMethod: "PATCH",
@@ -3633,7 +3433,7 @@ const updateMultiRolePoolOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listMultiRolePoolInstanceMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolInstanceMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/instances/{instance}/metricdefinitions",
   httpMethod: "GET",
@@ -3656,7 +3456,7 @@ const listMultiRolePoolInstanceMetricDefinitionsOperationSpec: coreHttp.Operatio
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRoleMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listMultiRoleMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/metricdefinitions",
   httpMethod: "GET",
@@ -3678,7 +3478,7 @@ const listMultiRoleMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRolePoolSkusOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolSkusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/skus",
   httpMethod: "GET",
@@ -3700,7 +3500,7 @@ const listMultiRolePoolSkusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRoleUsagesOperationSpec: coreHttp.OperationSpec = {
+const listMultiRoleUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/multiRolePools/default/usages",
   httpMethod: "GET",
@@ -3722,7 +3522,7 @@ const listMultiRoleUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationsOperationSpec: coreHttp.OperationSpec = {
+const listOperationsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/operations",
   httpMethod: "GET",
@@ -3749,7 +3549,7 @@ const listOperationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOutboundNetworkDependenciesEndpointsOperationSpec: coreHttp.OperationSpec = {
+const getOutboundNetworkDependenciesEndpointsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/outboundNetworkDependenciesEndpoints",
   httpMethod: "GET",
@@ -3771,7 +3571,7 @@ const getOutboundNetworkDependenciesEndpointsOperationSpec: coreHttp.OperationSp
   headerParameters: [Parameters.accept],
   serializer
 };
-const rebootOperationSpec: coreHttp.OperationSpec = {
+const rebootOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/reboot",
   httpMethod: "POST",
@@ -3791,7 +3591,7 @@ const rebootOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const resumeOperationSpec: coreHttp.OperationSpec = {
+const resumeOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/resume",
   httpMethod: "POST",
@@ -3822,7 +3622,7 @@ const resumeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAppServicePlansOperationSpec: coreHttp.OperationSpec = {
+const listAppServicePlansOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/serverfarms",
   httpMethod: "GET",
@@ -3844,7 +3644,7 @@ const listAppServicePlansOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/sites",
   httpMethod: "GET",
@@ -3866,7 +3666,7 @@ const listWebAppsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const suspendOperationSpec: coreHttp.OperationSpec = {
+const suspendOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/suspend",
   httpMethod: "POST",
@@ -3897,7 +3697,7 @@ const suspendOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesOperationSpec: coreHttp.OperationSpec = {
+const listUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/usages",
   httpMethod: "GET",
@@ -3919,7 +3719,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWorkerPoolsOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools",
   httpMethod: "GET",
@@ -3941,7 +3741,7 @@ const listWorkerPoolsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getWorkerPoolOperationSpec: coreHttp.OperationSpec = {
+const getWorkerPoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}",
   httpMethod: "GET",
@@ -3964,7 +3764,7 @@ const getWorkerPoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateWorkerPoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}",
   httpMethod: "PUT",
@@ -3998,7 +3798,7 @@ const createOrUpdateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
+const updateWorkerPoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}",
   httpMethod: "PATCH",
@@ -4026,7 +3826,7 @@ const updateWorkerPoolOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listWorkerPoolInstanceMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolInstanceMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/instances/{instance}/metricdefinitions",
   httpMethod: "GET",
@@ -4050,7 +3850,7 @@ const listWorkerPoolInstanceMetricDefinitionsOperationSpec: coreHttp.OperationSp
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebWorkerMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listWebWorkerMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/metricdefinitions",
   httpMethod: "GET",
@@ -4073,7 +3873,7 @@ const listWebWorkerMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWorkerPoolSkusOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolSkusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/skus",
   httpMethod: "GET",
@@ -4096,7 +3896,7 @@ const listWorkerPoolSkusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebWorkerUsagesOperationSpec: coreHttp.OperationSpec = {
+const listWebWorkerUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/workerPools/{workerPoolName}/usages",
   httpMethod: "GET",
@@ -4119,7 +3919,7 @@ const listWebWorkerUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4139,7 +3939,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4160,7 +3960,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listCapacitiesNextOperationSpec: coreHttp.OperationSpec = {
+const listCapacitiesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4182,7 +3982,7 @@ const listCapacitiesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const changeVnetNextOperationSpec: coreHttp.OperationSpec = {
+const changeVnetNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4208,7 +4008,7 @@ const changeVnetNextOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getInboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.OperationSpec = {
+const getInboundNetworkDependenciesEndpointsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4230,7 +4030,7 @@ const getInboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.Operatio
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRolePoolsNextOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4252,7 +4052,7 @@ const listMultiRolePoolsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRolePoolInstanceMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolInstanceMetricDefinitionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4275,7 +4075,7 @@ const listMultiRolePoolInstanceMetricDefinitionsNextOperationSpec: coreHttp.Oper
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRoleMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = {
+const listMultiRoleMetricDefinitionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4297,7 +4097,7 @@ const listMultiRoleMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRolePoolSkusNextOperationSpec: coreHttp.OperationSpec = {
+const listMultiRolePoolSkusNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4319,7 +4119,7 @@ const listMultiRolePoolSkusNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMultiRoleUsagesNextOperationSpec: coreHttp.OperationSpec = {
+const listMultiRoleUsagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4341,7 +4141,7 @@ const listMultiRoleUsagesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOutboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.OperationSpec = {
+const getOutboundNetworkDependenciesEndpointsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4363,7 +4163,7 @@ const getOutboundNetworkDependenciesEndpointsNextOperationSpec: coreHttp.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const resumeNextOperationSpec: coreHttp.OperationSpec = {
+const resumeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4388,7 +4188,7 @@ const resumeNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAppServicePlansNextOperationSpec: coreHttp.OperationSpec = {
+const listAppServicePlansNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4410,7 +4210,7 @@ const listAppServicePlansNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
+const listWebAppsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4432,7 +4232,7 @@ const listWebAppsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const suspendNextOperationSpec: coreHttp.OperationSpec = {
+const suspendNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4457,7 +4257,7 @@ const suspendNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
+const listUsagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4479,7 +4279,7 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWorkerPoolsNextOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4501,7 +4301,7 @@ const listWorkerPoolsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWorkerPoolInstanceMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolInstanceMetricDefinitionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4525,7 +4325,7 @@ const listWorkerPoolInstanceMetricDefinitionsNextOperationSpec: coreHttp.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebWorkerMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = {
+const listWebWorkerMetricDefinitionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4548,7 +4348,7 @@ const listWebWorkerMetricDefinitionsNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWorkerPoolSkusNextOperationSpec: coreHttp.OperationSpec = {
+const listWorkerPoolSkusNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -4571,7 +4371,7 @@ const listWorkerPoolSkusNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebWorkerUsagesNextOperationSpec: coreHttp.OperationSpec = {
+const listWebWorkerUsagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

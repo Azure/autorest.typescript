@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   SshPublicKeyResource,
   SshPublicKeysListBySubscriptionOptionalParams,
@@ -82,7 +81,7 @@ export interface SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     options?: SshPublicKeysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves information about an SSH public key.
    * @param resourceGroupName The name of the resource group.

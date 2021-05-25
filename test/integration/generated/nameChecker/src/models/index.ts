@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** Describes an error condition for the Azure Cognitive Search API. */
 export interface SearchError {
@@ -373,7 +373,7 @@ export type AutocompleteMode = "oneTerm" | "twoTerms" | "oneTermWithContext";
 
 /** Optional parameters. */
 export interface DocumentsCountOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
 }
@@ -382,11 +382,20 @@ export interface DocumentsCountOptionalParams
 export type DocumentsCountResponse = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface DocumentsSearchGetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
   /** Parameter group */
@@ -396,21 +405,38 @@ export interface DocumentsSearchGetOptionalParams
 }
 
 /** Contains response data for the searchGet operation. */
-export type DocumentsSearchGetResponse = SearchDocumentsResult;
+export type DocumentsSearchGetResponse = SearchDocumentsResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SearchDocumentsResult;
+  };
+};
 
 /** Optional parameters. */
 export interface DocumentsSearchPostOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
 }
 
 /** Contains response data for the searchPost operation. */
-export type DocumentsSearchPostResponse = SearchDocumentsResult;
+export type DocumentsSearchPostResponse = SearchDocumentsResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SearchDocumentsResult;
+  };
+};
 
 /** Optional parameters. */
-export interface DocumentsGetOptionalParams
-  extends coreClient.OperationOptions {
+export interface DocumentsGetOptionalParams extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
   /** List of field names to retrieve for the document; Any field not retrieved will be missing from the returned document. */
@@ -421,11 +447,20 @@ export interface DocumentsGetOptionalParams
 export type DocumentsGetResponse = {
   /** The parsed response body. */
   body: any;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: any;
+  };
 };
 
 /** Optional parameters. */
 export interface DocumentsSuggestGetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
   /** Parameter group */
@@ -433,31 +468,58 @@ export interface DocumentsSuggestGetOptionalParams
 }
 
 /** Contains response data for the suggestGet operation. */
-export type DocumentsSuggestGetResponse = SuggestDocumentsResult;
+export type DocumentsSuggestGetResponse = SuggestDocumentsResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SuggestDocumentsResult;
+  };
+};
 
 /** Optional parameters. */
 export interface DocumentsSuggestPostOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
 }
 
 /** Contains response data for the suggestPost operation. */
-export type DocumentsSuggestPostResponse = SuggestDocumentsResult;
+export type DocumentsSuggestPostResponse = SuggestDocumentsResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SuggestDocumentsResult;
+  };
+};
 
 /** Optional parameters. */
 export interface DocumentsIndexOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
 }
 
 /** Contains response data for the index operation. */
-export type DocumentsIndexResponse = IndexDocumentsResult;
+export type DocumentsIndexResponse = IndexDocumentsResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: IndexDocumentsResult;
+  };
+};
 
 /** Optional parameters. */
 export interface DocumentsAutocompleteGetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
   /** Parameter group */
@@ -465,21 +527,39 @@ export interface DocumentsAutocompleteGetOptionalParams
 }
 
 /** Contains response data for the autocompleteGet operation. */
-export type DocumentsAutocompleteGetResponse = AutocompleteResult;
+export type DocumentsAutocompleteGetResponse = AutocompleteResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: AutocompleteResult;
+  };
+};
 
 /** Optional parameters. */
 export interface DocumentsAutocompletePostOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   requestOptionsParam?: RequestOptions;
 }
 
 /** Contains response data for the autocompletePost operation. */
-export type DocumentsAutocompletePostResponse = AutocompleteResult;
+export type DocumentsAutocompletePostResponse = AutocompleteResult & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: AutocompleteResult;
+  };
+};
 
 /** Optional parameters. */
 export interface SearchClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

@@ -7,7 +7,7 @@
  */
 
 import { Group } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SubscriptionIdApiVersionClientContext } from "../subscriptionIdApiVersionClientContext";
@@ -37,16 +37,20 @@ export class GroupImpl implements Group {
     resourceGroupName: string,
     options?: GroupGetSampleResourceGroupOptionalParams
   ): Promise<GroupGetSampleResourceGroupResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      resourceGroupName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { resourceGroupName, options },
+      operationArguments,
       getSampleResourceGroupOperationSpec
-    );
+    ) as Promise<GroupGetSampleResourceGroupResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getSampleResourceGroupOperationSpec: coreClient.OperationSpec = {
+const getSampleResourceGroupOperationSpec: coreHttp.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "GET",
   responses: {

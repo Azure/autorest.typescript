@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
@@ -25,7 +25,7 @@ export interface Formdata {
    * @param options The options parameters.
    */
   uploadFile(
-    fileContent: coreRestPipeline.RequestBodyType,
+    fileContent: coreHttp.HttpRequestBody,
     fileName: string,
     options?: FormdataUploadFileOptionalParams
   ): Promise<FormdataUploadFileResponse>;
@@ -35,7 +35,7 @@ export interface Formdata {
    * @param options The options parameters.
    */
   uploadFileViaBody(
-    fileContent: coreRestPipeline.RequestBodyType,
+    fileContent: coreHttp.HttpRequestBody,
     options?: FormdataUploadFileViaBodyOptionalParams
   ): Promise<FormdataUploadFileViaBodyResponse>;
   /**
@@ -44,7 +44,7 @@ export interface Formdata {
    * @param options The options parameters.
    */
   uploadFiles(
-    fileContent: coreRestPipeline.RequestBodyType[],
+    fileContent: coreHttp.HttpRequestBody[],
     options?: FormdataUploadFilesOptionalParams
   ): Promise<FormdataUploadFilesResponse>;
 }

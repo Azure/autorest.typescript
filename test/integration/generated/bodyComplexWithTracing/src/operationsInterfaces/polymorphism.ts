@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   PolymorphismGetValidOptionalParams,
   PolymorphismGetValidResponse,
@@ -75,7 +76,7 @@ export interface Polymorphism {
   putValid(
     complexBody: FishUnion,
     options?: PolymorphismPutValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types that are polymorphic, JSON key contains a dot
    * @param options The options parameters.
@@ -118,7 +119,7 @@ export interface Polymorphism {
   putComplicated(
     complexBody: SalmonUnion,
     options?: PolymorphismPutComplicatedOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put complex types that are polymorphic, omitting the discriminator
    * @param complexBody
@@ -163,5 +164,5 @@ export interface Polymorphism {
   putValidMissingRequired(
     complexBody: FishUnion,
     options?: PolymorphismPutValidMissingRequiredOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

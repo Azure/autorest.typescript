@@ -1031,16 +1031,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -1049,7 +1040,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -1597,21 +1588,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -1642,21 +1624,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -1706,12 +1688,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClient",
-              "canonicalReference": "@azure/core-http!ServiceClient:class"
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -1732,21 +1714,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -1777,21 +1750,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -1892,12 +1865,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClientOptions",
-              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+              "canonicalReference": "@azure/core-client!ServiceClientOptions:interface"
             },
             {
               "kind": "Content",
@@ -2001,12 +1974,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2090,28 +2063,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2119,7 +2070,7 @@
           "name": "DeploymentScriptsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2133,12 +2084,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2208,12 +2159,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2272,28 +2223,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ScriptLog",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2301,7 +2230,7 @@
           "name": "DeploymentScriptsGetLogsDefaultResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2315,12 +2244,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2353,28 +2282,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "ScriptLogsList",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2382,7 +2289,7 @@
           "name": "DeploymentScriptsGetLogsResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2396,12 +2303,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2434,28 +2341,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2463,7 +2348,7 @@
           "name": "DeploymentScriptsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2477,12 +2362,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2515,28 +2400,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2544,7 +2407,7 @@
           "name": "DeploymentScriptsListByResourceGroupNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2558,12 +2421,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2596,28 +2459,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2625,7 +2466,7 @@
           "name": "DeploymentScriptsListByResourceGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2639,12 +2480,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2677,28 +2518,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2706,7 +2525,7 @@
           "name": "DeploymentScriptsListBySubscriptionNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2720,12 +2539,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2758,28 +2577,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2787,7 +2584,7 @@
           "name": "DeploymentScriptsListBySubscriptionResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2801,12 +2598,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2866,28 +2663,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2895,7 +2670,7 @@
           "name": "DeploymentScriptsUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {

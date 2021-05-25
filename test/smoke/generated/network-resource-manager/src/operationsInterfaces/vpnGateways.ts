@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnGateway,
@@ -110,9 +109,7 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a virtual wan vpn gateway.
    * @param resourceGroupName The resource group name of the VpnGateway.
@@ -123,7 +120,7 @@ export interface VpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: VpnGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Resets the primary of the vpn gateway in the specified resource group.
    * @param resourceGroupName The resource group name of the VpnGateway.

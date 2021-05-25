@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Gallery,
@@ -130,9 +129,7 @@ export interface Galleries {
     resourceGroupName: string,
     galleryName: string,
     options?: GalleriesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Delete a Shared Image Gallery.
    * @param resourceGroupName The name of the resource group.
@@ -143,5 +140,5 @@ export interface Galleries {
     resourceGroupName: string,
     galleryName: string,
     options?: GalleriesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

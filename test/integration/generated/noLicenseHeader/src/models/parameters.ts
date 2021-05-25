@@ -1,4 +1,4 @@
-import { OperationParameter, OperationURLParameter } from "@azure/core-client";
+import { OperationParameter, OperationURLParameter } from "@azure/core-http";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

@@ -7,7 +7,7 @@
  */
 
 import { Get } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
 import { GetUrlOptionalParams, GetUrlResponse } from "../models";
@@ -32,16 +32,20 @@ export class GetImpl implements Get {
     testUrl: string,
     options?: GetUrlOptionalParams
   ): Promise<GetUrlResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      testUrl,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { testUrl, options },
+      operationArguments,
       urlOperationSpec
-    );
+    ) as Promise<GetUrlResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer({}, /* isXml */ false);
+const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
-const urlOperationSpec: coreClient.OperationSpec = {
+const urlOperationSpec: coreHttp.OperationSpec = {
   path: "/Url",
   httpMethod: "GET",
   responses: {

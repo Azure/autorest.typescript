@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreAuth from "@azure/core-auth";
 import { OperationsImpl, SubscriptionsImpl, TenantsImpl } from "./operations";
 import { Operations, Subscriptions, Tenants } from "./operationsInterfaces";
 import { SubscriptionClientContext } from "./subscriptionClientContext";
@@ -19,7 +19,7 @@ export class SubscriptionClient extends SubscriptionClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     options?: SubscriptionClientOptionalParams
   ) {
     super(credentials, options);

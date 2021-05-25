@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ExpressRouteLinks } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -120,16 +120,10 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
     linkName: string,
     options?: ExpressRouteLinksGetOptionalParams
   ): Promise<ExpressRouteLinksGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      expressRoutePortName,
-      linkName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, expressRoutePortName, linkName, options },
       getOperationSpec
-    ) as Promise<ExpressRouteLinksGetResponse>;
+    );
   }
 
   /**
@@ -143,15 +137,10 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
     expressRoutePortName: string,
     options?: ExpressRouteLinksListOptionalParams
   ): Promise<ExpressRouteLinksListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      expressRoutePortName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, expressRoutePortName, options },
       listOperationSpec
-    ) as Promise<ExpressRouteLinksListResponse>;
+    );
   }
 
   /**
@@ -167,22 +156,16 @@ export class ExpressRouteLinksImpl implements ExpressRouteLinks {
     nextLink: string,
     options?: ExpressRouteLinksListNextOptionalParams
   ): Promise<ExpressRouteLinksListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      expressRoutePortName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, expressRoutePortName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<ExpressRouteLinksListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}/links/{linkName}",
   httpMethod: "GET",
@@ -205,7 +188,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}/links",
   httpMethod: "GET",
@@ -227,7 +210,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

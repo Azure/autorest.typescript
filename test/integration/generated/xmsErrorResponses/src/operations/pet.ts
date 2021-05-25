@@ -7,7 +7,7 @@
  */
 
 import { Pet } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { XmsErrorResponsesClientContext } from "../xmsErrorResponsesClientContext";
@@ -40,10 +40,14 @@ export class PetImpl implements Pet {
     petId: string,
     options?: PetGetPetByIdOptionalParams
   ): Promise<PetGetPetByIdResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      petId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { petId, options },
+      operationArguments,
       getPetByIdOperationSpec
-    );
+    ) as Promise<PetGetPetByIdResponse>;
   }
 
   /**
@@ -55,10 +59,14 @@ export class PetImpl implements Pet {
     whatAction: string,
     options?: PetDoSomethingOptionalParams
   ): Promise<PetDoSomethingResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      whatAction,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { whatAction, options },
+      operationArguments,
       doSomethingOperationSpec
-    );
+    ) as Promise<PetDoSomethingResponse>;
   }
 
   /**
@@ -66,17 +74,22 @@ export class PetImpl implements Pet {
    * conflict with the input param name 'models'
    * @param options The options parameters.
    */
-  hasModelsParam(options?: PetHasModelsParamOptionalParams): Promise<void> {
+  hasModelsParam(
+    options?: PetHasModelsParamOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       hasModelsParamOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getPetByIdOperationSpec: coreClient.OperationSpec = {
+const getPetByIdOperationSpec: coreHttp.OperationSpec = {
   path: "/errorStatusCodes/Pets/{petId}/GetPet",
   httpMethod: "GET",
   responses: {
@@ -102,7 +115,7 @@ const getPetByIdOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const doSomethingOperationSpec: coreClient.OperationSpec = {
+const doSomethingOperationSpec: coreHttp.OperationSpec = {
   path: "/errorStatusCodes/Pets/doSomething/{whatAction}",
   httpMethod: "POST",
   responses: {
@@ -121,7 +134,7 @@ const doSomethingOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const hasModelsParamOperationSpec: coreClient.OperationSpec = {
+const hasModelsParamOperationSpec: coreHttp.OperationSpec = {
   path: "/errorStatusCodes/Pets/hasModelsParam",
   httpMethod: "POST",
   responses: {

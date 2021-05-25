@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -35,7 +35,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -57,7 +57,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -84,7 +84,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagementLockObject: coreHttp.CompositeMapper = {
+export const ManagementLockObject: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagementLockObject",
@@ -139,7 +139,7 @@ export const ManagementLockObject: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagementLockOwner: coreHttp.CompositeMapper = {
+export const ManagementLockOwner: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagementLockOwner",
@@ -154,7 +154,7 @@ export const ManagementLockOwner: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagementLockListResult: coreHttp.CompositeMapper = {
+export const ManagementLockListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagementLockListResult",

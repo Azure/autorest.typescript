@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import { ObjectTypeClientContext } from "./objectTypeClientContext";
 import {
@@ -33,7 +33,13 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   get(
     options?: ObjectTypeClientGetOptionalParams
   ): Promise<ObjectTypeClientGetResponse> {
-    return this.sendOperationRequest({ options }, getOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getOperationSpec
+    ) as Promise<ObjectTypeClientGetResponse>;
   }
 
   /**
@@ -45,14 +51,21 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
   put(
     putObject: any,
     options?: ObjectTypeClientPutOptionalParams
-  ): Promise<void> {
-    return this.sendOperationRequest({ putObject, options }, putOperationSpec);
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      putObject,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      putOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer({}, /* isXml */ false);
+const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
-const getOperationSpec: coreClient.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/objectType/get",
   httpMethod: "GET",
   responses: {
@@ -67,7 +80,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putOperationSpec: coreClient.OperationSpec = {
+const putOperationSpec: coreHttp.OperationSpec = {
   path: "/objectType/put",
   httpMethod: "PUT",
   responses: {

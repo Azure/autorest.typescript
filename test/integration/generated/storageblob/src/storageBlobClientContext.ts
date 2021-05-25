@@ -1,7 +1,10 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { StorageBlobClientOptionalParams } from "./models";
 
-export class StorageBlobClientContext extends coreClient.ServiceClient {
+const packageName = "storageblob";
+const packageVersion = "1.0.0-preview1";
+
+export class StorageBlobClientContext extends coreHttp.ServiceClient {
   url: string;
   version: string;
 
@@ -20,16 +23,16 @@ export class StorageBlobClientContext extends coreClient.ServiceClient {
     if (!options) {
       options = {};
     }
-    const defaults: StorageBlobClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "{url}"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "{url}";
     // Parameter assignments
     this.url = url;
 

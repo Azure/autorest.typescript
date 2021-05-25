@@ -7,8 +7,7 @@
  */
 
 import { Formdata } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyFormDataClientContext } from "../bodyFormDataClientContext";
@@ -40,14 +39,19 @@ export class FormdataImpl implements Formdata {
    * @param options The options parameters.
    */
   uploadFile(
-    fileContent: coreRestPipeline.RequestBodyType,
+    fileContent: coreHttp.HttpRequestBody,
     fileName: string,
     options?: FormdataUploadFileOptionalParams
   ): Promise<FormdataUploadFileResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      fileName,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, fileName, options },
+      operationArguments,
       uploadFileOperationSpec
-    );
+    ) as Promise<FormdataUploadFileResponse>;
   }
 
   /**
@@ -56,13 +60,17 @@ export class FormdataImpl implements Formdata {
    * @param options The options parameters.
    */
   uploadFileViaBody(
-    fileContent: coreRestPipeline.RequestBodyType,
+    fileContent: coreHttp.HttpRequestBody,
     options?: FormdataUploadFileViaBodyOptionalParams
   ): Promise<FormdataUploadFileViaBodyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, options },
+      operationArguments,
       uploadFileViaBodyOperationSpec
-    );
+    ) as Promise<FormdataUploadFileViaBodyResponse>;
   }
 
   /**
@@ -71,19 +79,23 @@ export class FormdataImpl implements Formdata {
    * @param options The options parameters.
    */
   uploadFiles(
-    fileContent: coreRestPipeline.RequestBodyType[],
+    fileContent: coreHttp.HttpRequestBody[],
     options?: FormdataUploadFilesOptionalParams
   ): Promise<FormdataUploadFilesResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      fileContent,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fileContent, options },
+      operationArguments,
       uploadFilesOperationSpec
-    );
+    ) as Promise<FormdataUploadFilesResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const uploadFileOperationSpec: coreClient.OperationSpec = {
+const uploadFileOperationSpec: coreHttp.OperationSpec = {
   path: "/formdata/stream/uploadfile",
   httpMethod: "POST",
   responses: {
@@ -99,7 +111,7 @@ const uploadFileOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };
-const uploadFileViaBodyOperationSpec: coreClient.OperationSpec = {
+const uploadFileViaBodyOperationSpec: coreHttp.OperationSpec = {
   path: "/formdata/stream/uploadfile",
   httpMethod: "PUT",
   responses: {
@@ -116,7 +128,7 @@ const uploadFileViaBodyOperationSpec: coreClient.OperationSpec = {
   mediaType: "binary",
   serializer
 };
-const uploadFilesOperationSpec: coreClient.OperationSpec = {
+const uploadFilesOperationSpec: coreHttp.OperationSpec = {
   path: "/formdata/stream/uploadfiles",
   httpMethod: "POST",
   responses: {

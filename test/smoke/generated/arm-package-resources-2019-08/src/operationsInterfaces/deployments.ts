@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentExtended,
@@ -144,9 +143,7 @@ export interface Deployments {
     scope: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -163,7 +160,7 @@ export interface Deployments {
     scope: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the deployment exists.
    * @param scope The scope of a deployment.
@@ -174,7 +171,7 @@ export interface Deployments {
     scope: string,
     deploymentName: string,
     options?: DeploymentsCheckExistenceAtScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
    * @param scope The scope of a deployment.
@@ -229,7 +226,7 @@ export interface Deployments {
     scope: string,
     deploymentName: string,
     options?: DeploymentsCancelAtScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
@@ -269,9 +266,7 @@ export interface Deployments {
   beginDeleteAtTenantScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -286,7 +281,7 @@ export interface Deployments {
   beginDeleteAtTenantScopeAndWait(
     deploymentName: string,
     options?: DeploymentsDeleteAtTenantScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
@@ -295,7 +290,7 @@ export interface Deployments {
   checkExistenceAtTenantScope(
     deploymentName: string,
     options?: DeploymentsCheckExistenceAtTenantScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
    * @param deploymentName The name of the deployment.
@@ -342,7 +337,7 @@ export interface Deployments {
   cancelAtTenantScope(
     deploymentName: string,
     options?: DeploymentsCancelAtTenantScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
@@ -380,9 +375,7 @@ export interface Deployments {
     groupId: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -399,7 +392,7 @@ export interface Deployments {
     groupId: string,
     deploymentName: string,
     options?: DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the deployment exists.
    * @param groupId The management group ID.
@@ -410,7 +403,7 @@ export interface Deployments {
     groupId: string,
     deploymentName: string,
     options?: DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
    * @param groupId The management group ID.
@@ -467,7 +460,7 @@ export interface Deployments {
     groupId: string,
     deploymentName: string,
     options?: DeploymentsCancelAtManagementGroupScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
@@ -507,9 +500,7 @@ export interface Deployments {
   beginDeleteAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. This is an asynchronous operation that returns a
@@ -524,7 +515,7 @@ export interface Deployments {
   beginDeleteAtSubscriptionScopeAndWait(
     deploymentName: string,
     options?: DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the deployment exists.
    * @param deploymentName The name of the deployment.
@@ -533,7 +524,7 @@ export interface Deployments {
   checkExistenceAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
    * @param deploymentName The name of the deployment.
@@ -580,7 +571,7 @@ export interface Deployments {
   cancelAtSubscriptionScope(
     deploymentName: string,
     options?: DeploymentsCancelAtSubscriptionScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..
@@ -647,9 +638,7 @@ export interface Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * A template deployment that is currently running cannot be deleted. Deleting a template deployment
    * removes the associated deployment operations. Deleting a template deployment does not affect the
@@ -668,7 +657,7 @@ export interface Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the deployment exists.
    * @param resourceGroupName The name of the resource group with the deployment to check. The name is
@@ -680,7 +669,7 @@ export interface Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsCheckExistenceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * You can provide the template and parameters directly in the request or link to JSON files.
    * @param resourceGroupName The name of the resource group to deploy the resources to. The name is case
@@ -737,7 +726,7 @@ export interface Deployments {
     resourceGroupName: string,
     deploymentName: string,
     options?: DeploymentsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Validates whether the specified template is syntactically correct and will be accepted by Azure
    * Resource Manager..

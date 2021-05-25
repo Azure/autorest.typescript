@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { HubVirtualNetworkConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -109,16 +109,10 @@ export class HubVirtualNetworkConnectionsImpl
     connectionName: string,
     options?: HubVirtualNetworkConnectionsGetOptionalParams
   ): Promise<HubVirtualNetworkConnectionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualHubName,
-      connectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualHubName, connectionName, options },
       getOperationSpec
-    ) as Promise<HubVirtualNetworkConnectionsGetResponse>;
+    );
   }
 
   /**
@@ -132,15 +126,10 @@ export class HubVirtualNetworkConnectionsImpl
     virtualHubName: string,
     options?: HubVirtualNetworkConnectionsListOptionalParams
   ): Promise<HubVirtualNetworkConnectionsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualHubName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualHubName, options },
       listOperationSpec
-    ) as Promise<HubVirtualNetworkConnectionsListResponse>;
+    );
   }
 
   /**
@@ -156,22 +145,16 @@ export class HubVirtualNetworkConnectionsImpl
     nextLink: string,
     options?: HubVirtualNetworkConnectionsListNextOptionalParams
   ): Promise<HubVirtualNetworkConnectionsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualHubName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualHubName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<HubVirtualNetworkConnectionsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/hubVirtualNetworkConnections/{connectionName}",
   httpMethod: "GET",
@@ -194,7 +177,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs/{virtualHubName}/hubVirtualNetworkConnections",
   httpMethod: "GET",
@@ -216,7 +199,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

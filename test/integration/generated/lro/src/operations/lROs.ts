@@ -7,7 +7,7 @@
  */
 
 import { LROs } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
@@ -122,41 +122,21 @@ export class LROsImpl implements LROs {
       LROsPut200SucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut200SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut200SucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put200SucceededOperationSpec,
       sendOperation
     );
@@ -187,41 +167,21 @@ export class LROsImpl implements LROs {
       LROsPut201SucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut201SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut201SucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put201SucceededOperationSpec,
       sendOperation
     );
@@ -252,41 +212,21 @@ export class LROsImpl implements LROs {
       LROsPost202ListResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPost202ListResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPost202ListResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202ListOperationSpec,
       sendOperation
     );
@@ -317,41 +257,21 @@ export class LROsImpl implements LROs {
       LROsPut200SucceededNoStateResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut200SucceededNoStateResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut200SucceededNoStateResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put200SucceededNoStateOperationSpec,
       sendOperation
     );
@@ -382,41 +302,21 @@ export class LROsImpl implements LROs {
       LROsPut202Retry200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut202Retry200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put202Retry200OperationSpec,
       sendOperation
     );
@@ -448,41 +348,21 @@ export class LROsImpl implements LROs {
       LROsPut201CreatingSucceeded200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut201CreatingSucceeded200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut201CreatingSucceeded200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put201CreatingSucceeded200OperationSpec,
       sendOperation
     );
@@ -515,41 +395,21 @@ export class LROsImpl implements LROs {
       LROsPut200UpdatingSucceeded204Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut200UpdatingSucceeded204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut200UpdatingSucceeded204Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put200UpdatingSucceeded204OperationSpec,
       sendOperation
     );
@@ -582,41 +442,21 @@ export class LROsImpl implements LROs {
       LROsPut201CreatingFailed200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut201CreatingFailed200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut201CreatingFailed200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put201CreatingFailed200OperationSpec,
       sendOperation
     );
@@ -649,41 +489,21 @@ export class LROsImpl implements LROs {
       LROsPut200Acceptedcanceled200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPut200Acceptedcanceled200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPut200Acceptedcanceled200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       put200Acceptedcanceled200OperationSpec,
       sendOperation
     );
@@ -715,41 +535,21 @@ export class LROsImpl implements LROs {
       LROsPutNoHeaderInRetryResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutNoHeaderInRetryResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putNoHeaderInRetryOperationSpec,
       sendOperation
     );
@@ -781,41 +581,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRetrySucceededOperationSpec,
       sendOperation
     );
@@ -848,41 +628,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncNoRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncNoRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncNoRetrySucceededOperationSpec,
       sendOperation
     );
@@ -915,41 +675,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncRetryFailedResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncRetryFailedResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncRetryFailedOperationSpec,
       sendOperation
     );
@@ -982,41 +722,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncNoRetrycanceledResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncNoRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncNoRetrycanceledResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncNoRetrycanceledOperationSpec,
       sendOperation
     );
@@ -1048,41 +768,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncNoHeaderInRetryResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncNoHeaderInRetryResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncNoHeaderInRetryOperationSpec,
       sendOperation
     );
@@ -1112,41 +812,21 @@ export class LROsImpl implements LROs {
       LROsPutNonResourceResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutNonResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutNonResourceResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putNonResourceOperationSpec,
       sendOperation
     );
@@ -1175,41 +855,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncNonResourceResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncNonResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncNonResourceResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncNonResourceOperationSpec,
       sendOperation
     );
@@ -1238,41 +898,21 @@ export class LROsImpl implements LROs {
       LROsPutSubResourceResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutSubResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutSubResourceResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putSubResourceOperationSpec,
       sendOperation
     );
@@ -1301,41 +941,21 @@ export class LROsImpl implements LROs {
       LROsPutAsyncSubResourceResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPutAsyncSubResourceResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPutAsyncSubResourceResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       putAsyncSubResourceOperationSpec,
       sendOperation
     );
@@ -1366,41 +986,21 @@ export class LROsImpl implements LROs {
       LROsDeleteProvisioning202Accepted200SucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteProvisioning202Accepted200SucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteProvisioning202Accepted200SucceededOperationSpec,
       sendOperation
     );
@@ -1435,41 +1035,21 @@ export class LROsImpl implements LROs {
       LROsDeleteProvisioning202DeletingFailed200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteProvisioning202DeletingFailed200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteProvisioning202DeletingFailed200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteProvisioning202DeletingFailed200OperationSpec,
       sendOperation
     );
@@ -1504,41 +1084,21 @@ export class LROsImpl implements LROs {
       LROsDeleteProvisioning202Deletingcanceled200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteProvisioning202Deletingcanceled200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteProvisioning202Deletingcanceled200OperationSpec,
       sendOperation
     );
@@ -1565,42 +1125,24 @@ export class LROsImpl implements LROs {
    */
   async beginDelete204Succeeded(
     options?: LROsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>> {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<void> => {
-      return this.client.sendOperationRequest(args, spec);
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  > {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        coreHttp.RestResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete204SucceededOperationSpec,
       sendOperation
     );
@@ -1612,7 +1154,7 @@ export class LROsImpl implements LROs {
    */
   async beginDelete204SucceededAndWait(
     options?: LROsDelete204SucceededOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
     const poller = await this.beginDelete204Succeeded(options);
     return poller.pollUntilDone();
   }
@@ -1630,41 +1172,21 @@ export class LROsImpl implements LROs {
       LROsDelete202Retry200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDelete202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDelete202Retry200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete202Retry200OperationSpec,
       sendOperation
     );
@@ -1695,41 +1217,21 @@ export class LROsImpl implements LROs {
       LROsDelete202NoRetry204Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDelete202NoRetry204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDelete202NoRetry204Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       delete202NoRetry204OperationSpec,
       sendOperation
     );
@@ -1760,41 +1262,21 @@ export class LROsImpl implements LROs {
       LROsDeleteNoHeaderInRetryResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteNoHeaderInRetryResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteNoHeaderInRetryOperationSpec,
       sendOperation
     );
@@ -1825,41 +1307,21 @@ export class LROsImpl implements LROs {
       LROsDeleteAsyncNoHeaderInRetryResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteAsyncNoHeaderInRetryResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncNoHeaderInRetryOperationSpec,
       sendOperation
     );
@@ -1890,41 +1352,21 @@ export class LROsImpl implements LROs {
       LROsDeleteAsyncRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteAsyncRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRetrySucceededOperationSpec,
       sendOperation
     );
@@ -1955,41 +1397,21 @@ export class LROsImpl implements LROs {
       LROsDeleteAsyncNoRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteAsyncNoRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncNoRetrySucceededOperationSpec,
       sendOperation
     );
@@ -2020,41 +1442,21 @@ export class LROsImpl implements LROs {
       LROsDeleteAsyncRetryFailedResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteAsyncRetryFailedResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRetryFailedOperationSpec,
       sendOperation
     );
@@ -2085,41 +1487,21 @@ export class LROsImpl implements LROs {
       LROsDeleteAsyncRetrycanceledResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsDeleteAsyncRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsDeleteAsyncRetrycanceledResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       deleteAsyncRetrycanceledOperationSpec,
       sendOperation
     );
@@ -2150,41 +1532,21 @@ export class LROsImpl implements LROs {
       LROsPost200WithPayloadResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPost200WithPayloadResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPost200WithPayloadResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post200WithPayloadOperationSpec,
       sendOperation
     );
@@ -2215,41 +1577,21 @@ export class LROsImpl implements LROs {
       LROsPost202Retry200Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPost202Retry200Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPost202Retry200Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202Retry200OperationSpec,
       sendOperation
     );
@@ -2280,41 +1622,21 @@ export class LROsImpl implements LROs {
       LROsPost202NoRetry204Response
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPost202NoRetry204Response> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPost202NoRetry204Response
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       post202NoRetry204OperationSpec,
       sendOperation
     );
@@ -2345,41 +1667,21 @@ export class LROsImpl implements LROs {
       LROsPostDoubleHeadersFinalLocationGetResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostDoubleHeadersFinalLocationGetResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postDoubleHeadersFinalLocationGetOperationSpec,
       sendOperation,
       "location"
@@ -2412,41 +1714,21 @@ export class LROsImpl implements LROs {
       LROsPostDoubleHeadersFinalAzureHeaderGetResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "azure-async-operation")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostDoubleHeadersFinalAzureHeaderGetResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postDoubleHeadersFinalAzureHeaderGetOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -2484,41 +1766,21 @@ export class LROsImpl implements LROs {
       LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec,
       sendOperation
     );
@@ -2553,41 +1815,21 @@ export class LROsImpl implements LROs {
       LROsPostAsyncRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostAsyncRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostAsyncRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRetrySucceededOperationSpec,
       sendOperation
     );
@@ -2620,41 +1862,21 @@ export class LROsImpl implements LROs {
       LROsPostAsyncNoRetrySucceededResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostAsyncNoRetrySucceededResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostAsyncNoRetrySucceededResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncNoRetrySucceededOperationSpec,
       sendOperation
     );
@@ -2687,41 +1909,21 @@ export class LROsImpl implements LROs {
       LROsPostAsyncRetryFailedResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostAsyncRetryFailedResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostAsyncRetryFailedResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRetryFailedOperationSpec,
       sendOperation
     );
@@ -2754,41 +1956,21 @@ export class LROsImpl implements LROs {
       LROsPostAsyncRetrycanceledResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LROsPostAsyncRetrycanceledResponse> => {
-      return this.client.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: this.getOperationOptions(options, "undefined")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.client.sendOperationRequest(args, spec) as Promise<
+        LROsPostAsyncRetrycanceledResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { options },
+      operationArguments,
       postAsyncRetrycanceledOperationSpec,
       sendOperation
     );
@@ -2806,11 +1988,23 @@ export class LROsImpl implements LROs {
     const poller = await this.beginPostAsyncRetrycanceled(options);
     return poller.pollUntilDone();
   }
+
+  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+    options: TOptions | undefined,
+    finalStateVia?: string
+  ): coreHttp.RequestOptionsBase {
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const put200SucceededOperationSpec: coreClient.OperationSpec = {
+const put200SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/200/succeeded",
   httpMethod: "PUT",
   responses: {
@@ -2836,7 +2030,7 @@ const put200SucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put201SucceededOperationSpec: coreClient.OperationSpec = {
+const put201SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/201/succeeded",
   httpMethod: "PUT",
   responses: {
@@ -2862,7 +2056,7 @@ const put201SucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const post202ListOperationSpec: coreClient.OperationSpec = {
+const post202ListOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/list",
   httpMethod: "POST",
   responses: {
@@ -2906,7 +2100,7 @@ const post202ListOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const put200SucceededNoStateOperationSpec: coreClient.OperationSpec = {
+const put200SucceededNoStateOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/200/succeeded/nostate",
   httpMethod: "PUT",
   responses: {
@@ -2932,7 +2126,7 @@ const put200SucceededNoStateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put202Retry200OperationSpec: coreClient.OperationSpec = {
+const put202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/202/retry/200",
   httpMethod: "PUT",
   responses: {
@@ -2958,7 +2152,7 @@ const put202Retry200OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
+const put201CreatingSucceeded200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/201/creating/succeeded/200",
   httpMethod: "PUT",
   responses: {
@@ -2984,7 +2178,7 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put200UpdatingSucceeded204OperationSpec: coreClient.OperationSpec = {
+const put200UpdatingSucceeded204OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/200/updating/succeeded/200",
   httpMethod: "PUT",
   responses: {
@@ -3010,7 +2204,7 @@ const put200UpdatingSucceeded204OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put201CreatingFailed200OperationSpec: coreClient.OperationSpec = {
+const put201CreatingFailed200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/201/created/failed/200",
   httpMethod: "PUT",
   responses: {
@@ -3036,7 +2230,7 @@ const put201CreatingFailed200OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const put200Acceptedcanceled200OperationSpec: coreClient.OperationSpec = {
+const put200Acceptedcanceled200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/200/accepted/canceled/200",
   httpMethod: "PUT",
   responses: {
@@ -3062,7 +2256,7 @@ const put200Acceptedcanceled200OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
+const putNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/put/noheader/202/200",
   httpMethod: "PUT",
   responses: {
@@ -3092,7 +2286,7 @@ const putNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const putAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/retry/succeeded",
   httpMethod: "PUT",
   responses: {
@@ -3122,7 +2316,7 @@ const putAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const putAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/noretry/succeeded",
   httpMethod: "PUT",
   responses: {
@@ -3152,7 +2346,7 @@ const putAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
+const putAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/retry/failed",
   httpMethod: "PUT",
   responses: {
@@ -3182,7 +2376,7 @@ const putAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncNoRetrycanceledOperationSpec: coreClient.OperationSpec = {
+const putAsyncNoRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/noretry/canceled",
   httpMethod: "PUT",
   responses: {
@@ -3212,7 +2406,7 @@ const putAsyncNoRetrycanceledOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
+const putAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putasync/noheader/201/200",
   httpMethod: "PUT",
   responses: {
@@ -3242,7 +2436,7 @@ const putAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putNonResourceOperationSpec: coreClient.OperationSpec = {
+const putNonResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putnonresource/202/200",
   httpMethod: "PUT",
   responses: {
@@ -3268,7 +2462,7 @@ const putNonResourceOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncNonResourceOperationSpec: coreClient.OperationSpec = {
+const putAsyncNonResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putnonresourceasync/202/200",
   httpMethod: "PUT",
   responses: {
@@ -3294,7 +2488,7 @@ const putAsyncNonResourceOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putSubResourceOperationSpec: coreClient.OperationSpec = {
+const putSubResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putsubresource/202/200",
   httpMethod: "PUT",
   responses: {
@@ -3320,7 +2514,7 @@ const putSubResourceOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putAsyncSubResourceOperationSpec: coreClient.OperationSpec = {
+const putAsyncSubResourceOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/putsubresourceasync/202/200",
   httpMethod: "PUT",
   responses: {
@@ -3346,7 +2540,7 @@ const putAsyncSubResourceOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.OperationSpec = {
+const deleteProvisioning202Accepted200SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/provisioning/202/accepted/200/succeeded",
   httpMethod: "DELETE",
   responses: {
@@ -3370,7 +2564,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteProvisioning202DeletingFailed200OperationSpec: coreClient.OperationSpec = {
+const deleteProvisioning202DeletingFailed200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/provisioning/202/deleting/200/failed",
   httpMethod: "DELETE",
   responses: {
@@ -3394,7 +2588,7 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreClient.OperationS
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteProvisioning202Deletingcanceled200OperationSpec: coreClient.OperationSpec = {
+const deleteProvisioning202Deletingcanceled200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/provisioning/202/deleting/200/canceled",
   httpMethod: "DELETE",
   responses: {
@@ -3418,7 +2612,7 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreClient.Operatio
   headerParameters: [Parameters.accept],
   serializer
 };
-const delete204SucceededOperationSpec: coreClient.OperationSpec = {
+const delete204SucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/204/succeeded",
   httpMethod: "DELETE",
   responses: {
@@ -3434,7 +2628,7 @@ const delete204SucceededOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const delete202Retry200OperationSpec: coreClient.OperationSpec = {
+const delete202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/202/retry/200",
   httpMethod: "DELETE",
   responses: {
@@ -3458,7 +2652,7 @@ const delete202Retry200OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const delete202NoRetry204OperationSpec: coreClient.OperationSpec = {
+const delete202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/202/noretry/204",
   httpMethod: "DELETE",
   responses: {
@@ -3482,7 +2676,7 @@ const delete202NoRetry204OperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
+const deleteNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/delete/noheader",
   httpMethod: "DELETE",
   responses: {
@@ -3506,7 +2700,7 @@ const deleteNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncNoHeaderInRetryOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/noheader/202/204",
   httpMethod: "DELETE",
   responses: {
@@ -3530,7 +2724,7 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/succeeded",
   httpMethod: "DELETE",
   responses: {
@@ -3554,7 +2748,7 @@ const deleteAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/noretry/succeeded",
   httpMethod: "DELETE",
   responses: {
@@ -3578,7 +2772,7 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/failed",
   httpMethod: "DELETE",
   responses: {
@@ -3602,7 +2796,7 @@ const deleteAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
+const deleteAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/deleteasync/retry/canceled",
   httpMethod: "DELETE",
   responses: {
@@ -3626,7 +2820,7 @@ const deleteAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const post200WithPayloadOperationSpec: coreClient.OperationSpec = {
+const post200WithPayloadOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/post/payload/200",
   httpMethod: "POST",
   responses: {
@@ -3650,7 +2844,7 @@ const post200WithPayloadOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const post202Retry200OperationSpec: coreClient.OperationSpec = {
+const post202Retry200OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/post/202/retry/200",
   httpMethod: "POST",
   responses: {
@@ -3676,7 +2870,7 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const post202NoRetry204OperationSpec: coreClient.OperationSpec = {
+const post202NoRetry204OperationSpec: coreHttp.OperationSpec = {
   path: "/lro/post/202/noretry/204",
   httpMethod: "POST",
   responses: {
@@ -3706,7 +2900,7 @@ const post202NoRetry204OperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postDoubleHeadersFinalLocationGetOperationSpec: coreClient.OperationSpec = {
+const postDoubleHeadersFinalLocationGetOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/LROPostDoubleHeadersFinalLocationGet",
   httpMethod: "POST",
   responses: {
@@ -3730,7 +2924,7 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreClient.OperationSpec =
   headerParameters: [Parameters.accept],
   serializer
 };
-const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreClient.OperationSpec = {
+const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGet",
   httpMethod: "POST",
   responses: {
@@ -3754,7 +2948,7 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreClient.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
-const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreClient.OperationSpec = {
+const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault",
   httpMethod: "POST",
   responses: {
@@ -3778,7 +2972,7 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreClient.Opera
   headerParameters: [Parameters.accept],
   serializer
 };
-const postAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const postAsyncRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/retry/succeeded",
   httpMethod: "POST",
   responses: {
@@ -3804,7 +2998,7 @@ const postAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
+const postAsyncNoRetrySucceededOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/noretry/succeeded",
   httpMethod: "POST",
   responses: {
@@ -3830,7 +3024,7 @@ const postAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
+const postAsyncRetryFailedOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/retry/failed",
   httpMethod: "POST",
   responses: {
@@ -3856,7 +3050,7 @@ const postAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
+const postAsyncRetrycanceledOperationSpec: coreHttp.OperationSpec = {
   path: "/lro/postasync/retry/canceled",
   httpMethod: "POST",
   responses: {

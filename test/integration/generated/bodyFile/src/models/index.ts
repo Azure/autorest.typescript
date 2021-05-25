@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -14,8 +14,7 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface FilesGetFileOptionalParams
-  extends coreClient.OperationOptions {}
+export interface FilesGetFileOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFile operation. */
 export type FilesGetFileResponse = {
@@ -33,11 +32,14 @@ export type FilesGetFileResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface FilesGetFileLargeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getFileLarge operation. */
 export type FilesGetFileLargeResponse = {
@@ -55,11 +57,14 @@ export type FilesGetFileLargeResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface FilesGetEmptyFileOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyFile operation. */
 export type FilesGetEmptyFileResponse = {
@@ -77,11 +82,14 @@ export type FilesGetEmptyFileResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface BodyFileClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

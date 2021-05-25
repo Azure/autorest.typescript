@@ -1,8 +1,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -57,5 +58,5 @@ export const pageRange: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };

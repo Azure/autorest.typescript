@@ -7,7 +7,7 @@
  */
 
 import { Float } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "../models/parameters";
 import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
 import {
@@ -34,7 +34,13 @@ export class FloatImpl implements Float {
    * @param options The options parameters.
    */
   put(options?: FloatPutOptionalParams): Promise<FloatPutResponse> {
-    return this.client.sendOperationRequest({ options }, putOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      putOperationSpec
+    ) as Promise<FloatPutResponse>;
   }
 
   /**
@@ -42,13 +48,19 @@ export class FloatImpl implements Float {
    * @param options The options parameters.
    */
   get(options?: FloatGetOptionalParams): Promise<FloatGetResponse> {
-    return this.client.sendOperationRequest({ options }, getOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getOperationSpec
+    ) as Promise<FloatGetResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer({}, /* isXml */ false);
+const serializer = new coreHttp.Serializer({}, /* isXml */ false);
 
-const putOperationSpec: coreClient.OperationSpec = {
+const putOperationSpec: coreHttp.OperationSpec = {
   path: "/nonStringEnums/float/put",
   httpMethod: "PUT",
   responses: {
@@ -62,7 +74,7 @@ const putOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/nonStringEnums/float/get",
   httpMethod: "GET",
   responses: {

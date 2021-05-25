@@ -7,7 +7,7 @@
  */
 
 import { Array } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyArrayClientContext } from "../bodyArrayClientContext";
@@ -154,7 +154,13 @@ export class ArrayImpl implements Array {
    * @param options The options parameters.
    */
   getNull(options?: ArrayGetNullOptionalParams): Promise<ArrayGetNullResponse> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getNullOperationSpec
+    ) as Promise<ArrayGetNullResponse>;
   }
 
   /**
@@ -164,10 +170,13 @@ export class ArrayImpl implements Array {
   getInvalid(
     options?: ArrayGetInvalidOptionalParams
   ): Promise<ArrayGetInvalidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidOperationSpec
-    );
+    ) as Promise<ArrayGetInvalidResponse>;
   }
 
   /**
@@ -177,7 +186,13 @@ export class ArrayImpl implements Array {
   getEmpty(
     options?: ArrayGetEmptyOptionalParams
   ): Promise<ArrayGetEmptyResponse> {
-    return this.client.sendOperationRequest({ options }, getEmptyOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getEmptyOperationSpec
+    ) as Promise<ArrayGetEmptyResponse>;
   }
 
   /**
@@ -188,11 +203,15 @@ export class ArrayImpl implements Array {
   putEmpty(
     arrayBody: string[],
     options?: ArrayPutEmptyOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putEmptyOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -202,10 +221,13 @@ export class ArrayImpl implements Array {
   getBooleanTfft(
     options?: ArrayGetBooleanTfftOptionalParams
   ): Promise<ArrayGetBooleanTfftResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBooleanTfftOperationSpec
-    );
+    ) as Promise<ArrayGetBooleanTfftResponse>;
   }
 
   /**
@@ -216,11 +238,15 @@ export class ArrayImpl implements Array {
   putBooleanTfft(
     arrayBody: boolean[],
     options?: ArrayPutBooleanTfftOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putBooleanTfftOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -230,10 +256,13 @@ export class ArrayImpl implements Array {
   getBooleanInvalidNull(
     options?: ArrayGetBooleanInvalidNullOptionalParams
   ): Promise<ArrayGetBooleanInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBooleanInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetBooleanInvalidNullResponse>;
   }
 
   /**
@@ -243,10 +272,13 @@ export class ArrayImpl implements Array {
   getBooleanInvalidString(
     options?: ArrayGetBooleanInvalidStringOptionalParams
   ): Promise<ArrayGetBooleanInvalidStringResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBooleanInvalidStringOperationSpec
-    );
+    ) as Promise<ArrayGetBooleanInvalidStringResponse>;
   }
 
   /**
@@ -256,10 +288,13 @@ export class ArrayImpl implements Array {
   getIntegerValid(
     options?: ArrayGetIntegerValidOptionalParams
   ): Promise<ArrayGetIntegerValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getIntegerValidOperationSpec
-    );
+    ) as Promise<ArrayGetIntegerValidResponse>;
   }
 
   /**
@@ -270,11 +305,15 @@ export class ArrayImpl implements Array {
   putIntegerValid(
     arrayBody: number[],
     options?: ArrayPutIntegerValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putIntegerValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -284,10 +323,13 @@ export class ArrayImpl implements Array {
   getIntInvalidNull(
     options?: ArrayGetIntInvalidNullOptionalParams
   ): Promise<ArrayGetIntInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getIntInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetIntInvalidNullResponse>;
   }
 
   /**
@@ -297,10 +339,13 @@ export class ArrayImpl implements Array {
   getIntInvalidString(
     options?: ArrayGetIntInvalidStringOptionalParams
   ): Promise<ArrayGetIntInvalidStringResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getIntInvalidStringOperationSpec
-    );
+    ) as Promise<ArrayGetIntInvalidStringResponse>;
   }
 
   /**
@@ -310,10 +355,13 @@ export class ArrayImpl implements Array {
   getLongValid(
     options?: ArrayGetLongValidOptionalParams
   ): Promise<ArrayGetLongValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getLongValidOperationSpec
-    );
+    ) as Promise<ArrayGetLongValidResponse>;
   }
 
   /**
@@ -324,11 +372,15 @@ export class ArrayImpl implements Array {
   putLongValid(
     arrayBody: number[],
     options?: ArrayPutLongValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putLongValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -338,10 +390,13 @@ export class ArrayImpl implements Array {
   getLongInvalidNull(
     options?: ArrayGetLongInvalidNullOptionalParams
   ): Promise<ArrayGetLongInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getLongInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetLongInvalidNullResponse>;
   }
 
   /**
@@ -351,10 +406,13 @@ export class ArrayImpl implements Array {
   getLongInvalidString(
     options?: ArrayGetLongInvalidStringOptionalParams
   ): Promise<ArrayGetLongInvalidStringResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getLongInvalidStringOperationSpec
-    );
+    ) as Promise<ArrayGetLongInvalidStringResponse>;
   }
 
   /**
@@ -364,10 +422,13 @@ export class ArrayImpl implements Array {
   getFloatValid(
     options?: ArrayGetFloatValidOptionalParams
   ): Promise<ArrayGetFloatValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getFloatValidOperationSpec
-    );
+    ) as Promise<ArrayGetFloatValidResponse>;
   }
 
   /**
@@ -378,11 +439,15 @@ export class ArrayImpl implements Array {
   putFloatValid(
     arrayBody: number[],
     options?: ArrayPutFloatValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putFloatValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -392,10 +457,13 @@ export class ArrayImpl implements Array {
   getFloatInvalidNull(
     options?: ArrayGetFloatInvalidNullOptionalParams
   ): Promise<ArrayGetFloatInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getFloatInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetFloatInvalidNullResponse>;
   }
 
   /**
@@ -405,10 +473,13 @@ export class ArrayImpl implements Array {
   getFloatInvalidString(
     options?: ArrayGetFloatInvalidStringOptionalParams
   ): Promise<ArrayGetFloatInvalidStringResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getFloatInvalidStringOperationSpec
-    );
+    ) as Promise<ArrayGetFloatInvalidStringResponse>;
   }
 
   /**
@@ -418,10 +489,13 @@ export class ArrayImpl implements Array {
   getDoubleValid(
     options?: ArrayGetDoubleValidOptionalParams
   ): Promise<ArrayGetDoubleValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDoubleValidOperationSpec
-    );
+    ) as Promise<ArrayGetDoubleValidResponse>;
   }
 
   /**
@@ -432,11 +506,15 @@ export class ArrayImpl implements Array {
   putDoubleValid(
     arrayBody: number[],
     options?: ArrayPutDoubleValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDoubleValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -446,10 +524,13 @@ export class ArrayImpl implements Array {
   getDoubleInvalidNull(
     options?: ArrayGetDoubleInvalidNullOptionalParams
   ): Promise<ArrayGetDoubleInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDoubleInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetDoubleInvalidNullResponse>;
   }
 
   /**
@@ -459,10 +540,13 @@ export class ArrayImpl implements Array {
   getDoubleInvalidString(
     options?: ArrayGetDoubleInvalidStringOptionalParams
   ): Promise<ArrayGetDoubleInvalidStringResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDoubleInvalidStringOperationSpec
-    );
+    ) as Promise<ArrayGetDoubleInvalidStringResponse>;
   }
 
   /**
@@ -472,10 +556,13 @@ export class ArrayImpl implements Array {
   getStringValid(
     options?: ArrayGetStringValidOptionalParams
   ): Promise<ArrayGetStringValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getStringValidOperationSpec
-    );
+    ) as Promise<ArrayGetStringValidResponse>;
   }
 
   /**
@@ -486,11 +573,15 @@ export class ArrayImpl implements Array {
   putStringValid(
     arrayBody: string[],
     options?: ArrayPutStringValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putStringValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -500,10 +591,13 @@ export class ArrayImpl implements Array {
   getEnumValid(
     options?: ArrayGetEnumValidOptionalParams
   ): Promise<ArrayGetEnumValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getEnumValidOperationSpec
-    );
+    ) as Promise<ArrayGetEnumValidResponse>;
   }
 
   /**
@@ -514,11 +608,15 @@ export class ArrayImpl implements Array {
   putEnumValid(
     arrayBody: FooEnum[],
     options?: ArrayPutEnumValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putEnumValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -528,10 +626,13 @@ export class ArrayImpl implements Array {
   getStringEnumValid(
     options?: ArrayGetStringEnumValidOptionalParams
   ): Promise<ArrayGetStringEnumValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getStringEnumValidOperationSpec
-    );
+    ) as Promise<ArrayGetStringEnumValidResponse>;
   }
 
   /**
@@ -542,11 +643,15 @@ export class ArrayImpl implements Array {
   putStringEnumValid(
     arrayBody: Enum1[],
     options?: ArrayPutStringEnumValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putStringEnumValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -556,10 +661,13 @@ export class ArrayImpl implements Array {
   getStringWithNull(
     options?: ArrayGetStringWithNullOptionalParams
   ): Promise<ArrayGetStringWithNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getStringWithNullOperationSpec
-    );
+    ) as Promise<ArrayGetStringWithNullResponse>;
   }
 
   /**
@@ -569,10 +677,13 @@ export class ArrayImpl implements Array {
   getStringWithInvalid(
     options?: ArrayGetStringWithInvalidOptionalParams
   ): Promise<ArrayGetStringWithInvalidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getStringWithInvalidOperationSpec
-    );
+    ) as Promise<ArrayGetStringWithInvalidResponse>;
   }
 
   /**
@@ -583,10 +694,13 @@ export class ArrayImpl implements Array {
   getUuidValid(
     options?: ArrayGetUuidValidOptionalParams
   ): Promise<ArrayGetUuidValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getUuidValidOperationSpec
-    );
+    ) as Promise<ArrayGetUuidValidResponse>;
   }
 
   /**
@@ -599,11 +713,15 @@ export class ArrayImpl implements Array {
   putUuidValid(
     arrayBody: string[],
     options?: ArrayPutUuidValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putUuidValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -613,10 +731,13 @@ export class ArrayImpl implements Array {
   getUuidInvalidChars(
     options?: ArrayGetUuidInvalidCharsOptionalParams
   ): Promise<ArrayGetUuidInvalidCharsResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getUuidInvalidCharsOperationSpec
-    );
+    ) as Promise<ArrayGetUuidInvalidCharsResponse>;
   }
 
   /**
@@ -626,10 +747,13 @@ export class ArrayImpl implements Array {
   getDateValid(
     options?: ArrayGetDateValidOptionalParams
   ): Promise<ArrayGetDateValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateValidOperationSpec
-    );
+    ) as Promise<ArrayGetDateValidResponse>;
   }
 
   /**
@@ -640,11 +764,15 @@ export class ArrayImpl implements Array {
   putDateValid(
     arrayBody: Date[],
     options?: ArrayPutDateValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDateValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -654,10 +782,13 @@ export class ArrayImpl implements Array {
   getDateInvalidNull(
     options?: ArrayGetDateInvalidNullOptionalParams
   ): Promise<ArrayGetDateInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetDateInvalidNullResponse>;
   }
 
   /**
@@ -667,10 +798,13 @@ export class ArrayImpl implements Array {
   getDateInvalidChars(
     options?: ArrayGetDateInvalidCharsOptionalParams
   ): Promise<ArrayGetDateInvalidCharsResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateInvalidCharsOperationSpec
-    );
+    ) as Promise<ArrayGetDateInvalidCharsResponse>;
   }
 
   /**
@@ -681,10 +815,13 @@ export class ArrayImpl implements Array {
   getDateTimeValid(
     options?: ArrayGetDateTimeValidOptionalParams
   ): Promise<ArrayGetDateTimeValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateTimeValidOperationSpec
-    );
+    ) as Promise<ArrayGetDateTimeValidResponse>;
   }
 
   /**
@@ -696,11 +833,15 @@ export class ArrayImpl implements Array {
   putDateTimeValid(
     arrayBody: Date[],
     options?: ArrayPutDateTimeValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDateTimeValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -710,10 +851,13 @@ export class ArrayImpl implements Array {
   getDateTimeInvalidNull(
     options?: ArrayGetDateTimeInvalidNullOptionalParams
   ): Promise<ArrayGetDateTimeInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateTimeInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetDateTimeInvalidNullResponse>;
   }
 
   /**
@@ -723,10 +867,13 @@ export class ArrayImpl implements Array {
   getDateTimeInvalidChars(
     options?: ArrayGetDateTimeInvalidCharsOptionalParams
   ): Promise<ArrayGetDateTimeInvalidCharsResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateTimeInvalidCharsOperationSpec
-    );
+    ) as Promise<ArrayGetDateTimeInvalidCharsResponse>;
   }
 
   /**
@@ -737,10 +884,13 @@ export class ArrayImpl implements Array {
   getDateTimeRfc1123Valid(
     options?: ArrayGetDateTimeRfc1123ValidOptionalParams
   ): Promise<ArrayGetDateTimeRfc1123ValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDateTimeRfc1123ValidOperationSpec
-    );
+    ) as Promise<ArrayGetDateTimeRfc1123ValidResponse>;
   }
 
   /**
@@ -753,11 +903,15 @@ export class ArrayImpl implements Array {
   putDateTimeRfc1123Valid(
     arrayBody: Date[],
     options?: ArrayPutDateTimeRfc1123ValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDateTimeRfc1123ValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -767,10 +921,13 @@ export class ArrayImpl implements Array {
   getDurationValid(
     options?: ArrayGetDurationValidOptionalParams
   ): Promise<ArrayGetDurationValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDurationValidOperationSpec
-    );
+    ) as Promise<ArrayGetDurationValidResponse>;
   }
 
   /**
@@ -781,11 +938,15 @@ export class ArrayImpl implements Array {
   putDurationValid(
     arrayBody: string[],
     options?: ArrayPutDurationValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDurationValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -796,10 +957,13 @@ export class ArrayImpl implements Array {
   getByteValid(
     options?: ArrayGetByteValidOptionalParams
   ): Promise<ArrayGetByteValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getByteValidOperationSpec
-    );
+    ) as Promise<ArrayGetByteValidResponse>;
   }
 
   /**
@@ -812,11 +976,15 @@ export class ArrayImpl implements Array {
   putByteValid(
     arrayBody: Uint8Array[],
     options?: ArrayPutByteValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putByteValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -826,10 +994,13 @@ export class ArrayImpl implements Array {
   getByteInvalidNull(
     options?: ArrayGetByteInvalidNullOptionalParams
   ): Promise<ArrayGetByteInvalidNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getByteInvalidNullOperationSpec
-    );
+    ) as Promise<ArrayGetByteInvalidNullResponse>;
   }
 
   /**
@@ -840,10 +1011,13 @@ export class ArrayImpl implements Array {
   getBase64Url(
     options?: ArrayGetBase64UrlOptionalParams
   ): Promise<ArrayGetBase64UrlResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBase64UrlOperationSpec
-    );
+    ) as Promise<ArrayGetBase64UrlResponse>;
   }
 
   /**
@@ -853,10 +1027,13 @@ export class ArrayImpl implements Array {
   getComplexNull(
     options?: ArrayGetComplexNullOptionalParams
   ): Promise<ArrayGetComplexNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplexNullOperationSpec
-    );
+    ) as Promise<ArrayGetComplexNullResponse>;
   }
 
   /**
@@ -866,10 +1043,13 @@ export class ArrayImpl implements Array {
   getComplexEmpty(
     options?: ArrayGetComplexEmptyOptionalParams
   ): Promise<ArrayGetComplexEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplexEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetComplexEmptyResponse>;
   }
 
   /**
@@ -880,10 +1060,13 @@ export class ArrayImpl implements Array {
   getComplexItemNull(
     options?: ArrayGetComplexItemNullOptionalParams
   ): Promise<ArrayGetComplexItemNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplexItemNullOperationSpec
-    );
+    ) as Promise<ArrayGetComplexItemNullResponse>;
   }
 
   /**
@@ -894,10 +1077,13 @@ export class ArrayImpl implements Array {
   getComplexItemEmpty(
     options?: ArrayGetComplexItemEmptyOptionalParams
   ): Promise<ArrayGetComplexItemEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplexItemEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetComplexItemEmptyResponse>;
   }
 
   /**
@@ -908,10 +1094,13 @@ export class ArrayImpl implements Array {
   getComplexValid(
     options?: ArrayGetComplexValidOptionalParams
   ): Promise<ArrayGetComplexValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getComplexValidOperationSpec
-    );
+    ) as Promise<ArrayGetComplexValidResponse>;
   }
 
   /**
@@ -924,11 +1113,15 @@ export class ArrayImpl implements Array {
   putComplexValid(
     arrayBody: Product[],
     options?: ArrayPutComplexValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putComplexValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -938,10 +1131,13 @@ export class ArrayImpl implements Array {
   getArrayNull(
     options?: ArrayGetArrayNullOptionalParams
   ): Promise<ArrayGetArrayNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getArrayNullOperationSpec
-    );
+    ) as Promise<ArrayGetArrayNullResponse>;
   }
 
   /**
@@ -951,10 +1147,13 @@ export class ArrayImpl implements Array {
   getArrayEmpty(
     options?: ArrayGetArrayEmptyOptionalParams
   ): Promise<ArrayGetArrayEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getArrayEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetArrayEmptyResponse>;
   }
 
   /**
@@ -964,10 +1163,13 @@ export class ArrayImpl implements Array {
   getArrayItemNull(
     options?: ArrayGetArrayItemNullOptionalParams
   ): Promise<ArrayGetArrayItemNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getArrayItemNullOperationSpec
-    );
+    ) as Promise<ArrayGetArrayItemNullResponse>;
   }
 
   /**
@@ -977,10 +1179,13 @@ export class ArrayImpl implements Array {
   getArrayItemEmpty(
     options?: ArrayGetArrayItemEmptyOptionalParams
   ): Promise<ArrayGetArrayItemEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getArrayItemEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetArrayItemEmptyResponse>;
   }
 
   /**
@@ -990,10 +1195,13 @@ export class ArrayImpl implements Array {
   getArrayValid(
     options?: ArrayGetArrayValidOptionalParams
   ): Promise<ArrayGetArrayValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getArrayValidOperationSpec
-    );
+    ) as Promise<ArrayGetArrayValidResponse>;
   }
 
   /**
@@ -1004,11 +1212,15 @@ export class ArrayImpl implements Array {
   putArrayValid(
     arrayBody: string[][],
     options?: ArrayPutArrayValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putArrayValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -1018,10 +1230,13 @@ export class ArrayImpl implements Array {
   getDictionaryNull(
     options?: ArrayGetDictionaryNullOptionalParams
   ): Promise<ArrayGetDictionaryNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDictionaryNullOperationSpec
-    );
+    ) as Promise<ArrayGetDictionaryNullResponse>;
   }
 
   /**
@@ -1031,10 +1246,13 @@ export class ArrayImpl implements Array {
   getDictionaryEmpty(
     options?: ArrayGetDictionaryEmptyOptionalParams
   ): Promise<ArrayGetDictionaryEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDictionaryEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetDictionaryEmptyResponse>;
   }
 
   /**
@@ -1045,10 +1263,13 @@ export class ArrayImpl implements Array {
   getDictionaryItemNull(
     options?: ArrayGetDictionaryItemNullOptionalParams
   ): Promise<ArrayGetDictionaryItemNullResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDictionaryItemNullOperationSpec
-    );
+    ) as Promise<ArrayGetDictionaryItemNullResponse>;
   }
 
   /**
@@ -1059,10 +1280,13 @@ export class ArrayImpl implements Array {
   getDictionaryItemEmpty(
     options?: ArrayGetDictionaryItemEmptyOptionalParams
   ): Promise<ArrayGetDictionaryItemEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDictionaryItemEmptyOperationSpec
-    );
+    ) as Promise<ArrayGetDictionaryItemEmptyResponse>;
   }
 
   /**
@@ -1073,10 +1297,13 @@ export class ArrayImpl implements Array {
   getDictionaryValid(
     options?: ArrayGetDictionaryValidOptionalParams
   ): Promise<ArrayGetDictionaryValidResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getDictionaryValidOperationSpec
-    );
+    ) as Promise<ArrayGetDictionaryValidResponse>;
   }
 
   /**
@@ -1090,17 +1317,21 @@ export class ArrayImpl implements Array {
   putDictionaryValid(
     arrayBody: { [propertyName: string]: string }[],
     options?: ArrayPutDictionaryValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       putDictionaryValidOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreClient.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/null",
   httpMethod: "GET",
   responses: {
@@ -1117,7 +1348,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidOperationSpec: coreClient.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/invalid",
   httpMethod: "GET",
   responses: {
@@ -1134,7 +1365,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getEmptyOperationSpec: coreClient.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/empty",
   httpMethod: "GET",
   responses: {
@@ -1151,7 +1382,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putEmptyOperationSpec: coreClient.OperationSpec = {
+const putEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/empty",
   httpMethod: "PUT",
   responses: {
@@ -1166,7 +1397,7 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
+const getBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/boolean/tfft",
   httpMethod: "GET",
   responses: {
@@ -1183,7 +1414,7 @@ const getBooleanTfftOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
+const putBooleanTfftOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/boolean/tfft",
   httpMethod: "PUT",
   responses: {
@@ -1198,7 +1429,7 @@ const putBooleanTfftOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getBooleanInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/boolean/true.null.false",
   httpMethod: "GET",
   responses: {
@@ -1215,7 +1446,7 @@ const getBooleanInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
+const getBooleanInvalidStringOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/boolean/true.boolean.false",
   httpMethod: "GET",
   responses: {
@@ -1232,7 +1463,7 @@ const getBooleanInvalidStringOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntegerValidOperationSpec: coreClient.OperationSpec = {
+const getIntegerValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/integer/1.-1.3.300",
   httpMethod: "GET",
   responses: {
@@ -1249,7 +1480,7 @@ const getIntegerValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putIntegerValidOperationSpec: coreClient.OperationSpec = {
+const putIntegerValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/integer/1.-1.3.300",
   httpMethod: "PUT",
   responses: {
@@ -1264,7 +1495,7 @@ const putIntegerValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getIntInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/integer/1.null.zero",
   httpMethod: "GET",
   responses: {
@@ -1281,7 +1512,7 @@ const getIntInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
+const getIntInvalidStringOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/integer/1.integer.0",
   httpMethod: "GET",
   responses: {
@@ -1298,7 +1529,7 @@ const getIntInvalidStringOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLongValidOperationSpec: coreClient.OperationSpec = {
+const getLongValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/long/1.-1.3.300",
   httpMethod: "GET",
   responses: {
@@ -1315,7 +1546,7 @@ const getLongValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putLongValidOperationSpec: coreClient.OperationSpec = {
+const putLongValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/long/1.-1.3.300",
   httpMethod: "PUT",
   responses: {
@@ -1330,7 +1561,7 @@ const putLongValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getLongInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/long/1.null.zero",
   httpMethod: "GET",
   responses: {
@@ -1347,7 +1578,7 @@ const getLongInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
+const getLongInvalidStringOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/long/1.integer.0",
   httpMethod: "GET",
   responses: {
@@ -1364,7 +1595,7 @@ const getLongInvalidStringOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getFloatValidOperationSpec: coreClient.OperationSpec = {
+const getFloatValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/float/0--0.01-1.2e20",
   httpMethod: "GET",
   responses: {
@@ -1381,7 +1612,7 @@ const getFloatValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putFloatValidOperationSpec: coreClient.OperationSpec = {
+const putFloatValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/float/0--0.01-1.2e20",
   httpMethod: "PUT",
   responses: {
@@ -1396,7 +1627,7 @@ const putFloatValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getFloatInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/float/0.0-null-1.2e20",
   httpMethod: "GET",
   responses: {
@@ -1413,7 +1644,7 @@ const getFloatInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
+const getFloatInvalidStringOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/float/1.number.0",
   httpMethod: "GET",
   responses: {
@@ -1430,7 +1661,7 @@ const getFloatInvalidStringOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDoubleValidOperationSpec: coreClient.OperationSpec = {
+const getDoubleValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/double/0--0.01-1.2e20",
   httpMethod: "GET",
   responses: {
@@ -1447,7 +1678,7 @@ const getDoubleValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDoubleValidOperationSpec: coreClient.OperationSpec = {
+const putDoubleValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/double/0--0.01-1.2e20",
   httpMethod: "PUT",
   responses: {
@@ -1462,7 +1693,7 @@ const putDoubleValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getDoubleInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/double/0.0-null-1.2e20",
   httpMethod: "GET",
   responses: {
@@ -1479,7 +1710,7 @@ const getDoubleInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
+const getDoubleInvalidStringOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/double/1.number.0",
   httpMethod: "GET",
   responses: {
@@ -1496,7 +1727,7 @@ const getDoubleInvalidStringOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStringValidOperationSpec: coreClient.OperationSpec = {
+const getStringValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string/foo1.foo2.foo3",
   httpMethod: "GET",
   responses: {
@@ -1513,7 +1744,7 @@ const getStringValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putStringValidOperationSpec: coreClient.OperationSpec = {
+const putStringValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string/foo1.foo2.foo3",
   httpMethod: "PUT",
   responses: {
@@ -1528,7 +1759,7 @@ const putStringValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getEnumValidOperationSpec: coreClient.OperationSpec = {
+const getEnumValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/enum/foo1.foo2.foo3",
   httpMethod: "GET",
   responses: {
@@ -1550,7 +1781,7 @@ const getEnumValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putEnumValidOperationSpec: coreClient.OperationSpec = {
+const putEnumValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/enum/foo1.foo2.foo3",
   httpMethod: "PUT",
   responses: {
@@ -1565,7 +1796,7 @@ const putEnumValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getStringEnumValidOperationSpec: coreClient.OperationSpec = {
+const getStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string-enum/foo1.foo2.foo3",
   httpMethod: "GET",
   responses: {
@@ -1582,7 +1813,7 @@ const getStringEnumValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putStringEnumValidOperationSpec: coreClient.OperationSpec = {
+const putStringEnumValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string-enum/foo1.foo2.foo3",
   httpMethod: "PUT",
   responses: {
@@ -1597,7 +1828,7 @@ const putStringEnumValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getStringWithNullOperationSpec: coreClient.OperationSpec = {
+const getStringWithNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string/foo.null.foo2",
   httpMethod: "GET",
   responses: {
@@ -1614,7 +1845,7 @@ const getStringWithNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
+const getStringWithInvalidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/string/foo.123.foo2",
   httpMethod: "GET",
   responses: {
@@ -1631,7 +1862,7 @@ const getStringWithInvalidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getUuidValidOperationSpec: coreClient.OperationSpec = {
+const getUuidValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/uuid/valid",
   httpMethod: "GET",
   responses: {
@@ -1648,7 +1879,7 @@ const getUuidValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putUuidValidOperationSpec: coreClient.OperationSpec = {
+const putUuidValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/uuid/valid",
   httpMethod: "PUT",
   responses: {
@@ -1663,7 +1894,7 @@ const putUuidValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getUuidInvalidCharsOperationSpec: coreClient.OperationSpec = {
+const getUuidInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/uuid/invalidchars",
   httpMethod: "GET",
   responses: {
@@ -1680,7 +1911,7 @@ const getUuidInvalidCharsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDateValidOperationSpec: coreClient.OperationSpec = {
+const getDateValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date/valid",
   httpMethod: "GET",
   responses: {
@@ -1697,7 +1928,7 @@ const getDateValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateValidOperationSpec: coreClient.OperationSpec = {
+const putDateValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date/valid",
   httpMethod: "PUT",
   responses: {
@@ -1712,7 +1943,7 @@ const putDateValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getDateInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date/invalidnull",
   httpMethod: "GET",
   responses: {
@@ -1729,7 +1960,7 @@ const getDateInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
+const getDateInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date/invalidchars",
   httpMethod: "GET",
   responses: {
@@ -1746,7 +1977,7 @@ const getDateInvalidCharsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
+const getDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time/valid",
   httpMethod: "GET",
   responses: {
@@ -1763,7 +1994,7 @@ const getDateTimeValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
+const putDateTimeValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time/valid",
   httpMethod: "PUT",
   responses: {
@@ -1778,7 +2009,7 @@ const putDateTimeValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getDateTimeInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time/invalidnull",
   httpMethod: "GET",
   responses: {
@@ -1795,7 +2026,7 @@ const getDateTimeInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
+const getDateTimeInvalidCharsOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time/invalidchars",
   httpMethod: "GET",
   responses: {
@@ -1812,7 +2043,7 @@ const getDateTimeInvalidCharsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
+const getDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time-rfc1123/valid",
   httpMethod: "GET",
   responses: {
@@ -1832,7 +2063,7 @@ const getDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
+const putDateTimeRfc1123ValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/date-time-rfc1123/valid",
   httpMethod: "PUT",
   responses: {
@@ -1847,7 +2078,7 @@ const putDateTimeRfc1123ValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDurationValidOperationSpec: coreClient.OperationSpec = {
+const getDurationValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/duration/valid",
   httpMethod: "GET",
   responses: {
@@ -1864,7 +2095,7 @@ const getDurationValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDurationValidOperationSpec: coreClient.OperationSpec = {
+const putDurationValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/duration/valid",
   httpMethod: "PUT",
   responses: {
@@ -1879,7 +2110,7 @@ const putDurationValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getByteValidOperationSpec: coreClient.OperationSpec = {
+const getByteValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/byte/valid",
   httpMethod: "GET",
   responses: {
@@ -1896,7 +2127,7 @@ const getByteValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putByteValidOperationSpec: coreClient.OperationSpec = {
+const putByteValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/byte/valid",
   httpMethod: "PUT",
   responses: {
@@ -1911,7 +2142,7 @@ const putByteValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
+const getByteInvalidNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/byte/invalidnull",
   httpMethod: "GET",
   responses: {
@@ -1928,7 +2159,7 @@ const getByteInvalidNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBase64UrlOperationSpec: coreClient.OperationSpec = {
+const getBase64UrlOperationSpec: coreHttp.OperationSpec = {
   path: "/array/prim/base64url/valid",
   httpMethod: "GET",
   responses: {
@@ -1945,7 +2176,7 @@ const getBase64UrlOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplexNullOperationSpec: coreClient.OperationSpec = {
+const getComplexNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/null",
   httpMethod: "GET",
   responses: {
@@ -1965,7 +2196,7 @@ const getComplexNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
+const getComplexEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/empty",
   httpMethod: "GET",
   responses: {
@@ -1985,7 +2216,7 @@ const getComplexEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
+const getComplexItemNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/itemnull",
   httpMethod: "GET",
   responses: {
@@ -2005,7 +2236,7 @@ const getComplexItemNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
+const getComplexItemEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/itemempty",
   httpMethod: "GET",
   responses: {
@@ -2025,7 +2256,7 @@ const getComplexItemEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getComplexValidOperationSpec: coreClient.OperationSpec = {
+const getComplexValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/valid",
   httpMethod: "GET",
   responses: {
@@ -2045,7 +2276,7 @@ const getComplexValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putComplexValidOperationSpec: coreClient.OperationSpec = {
+const putComplexValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/complex/valid",
   httpMethod: "PUT",
   responses: {
@@ -2060,7 +2291,7 @@ const putComplexValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getArrayNullOperationSpec: coreClient.OperationSpec = {
+const getArrayNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/null",
   httpMethod: "GET",
   responses: {
@@ -2082,7 +2313,7 @@ const getArrayNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
+const getArrayEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/empty",
   httpMethod: "GET",
   responses: {
@@ -2104,7 +2335,7 @@ const getArrayEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
+const getArrayItemNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/itemnull",
   httpMethod: "GET",
   responses: {
@@ -2126,7 +2357,7 @@ const getArrayItemNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
+const getArrayItemEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/itemempty",
   httpMethod: "GET",
   responses: {
@@ -2148,7 +2379,7 @@ const getArrayItemEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getArrayValidOperationSpec: coreClient.OperationSpec = {
+const getArrayValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/valid",
   httpMethod: "GET",
   responses: {
@@ -2170,7 +2401,7 @@ const getArrayValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putArrayValidOperationSpec: coreClient.OperationSpec = {
+const putArrayValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/array/valid",
   httpMethod: "PUT",
   responses: {
@@ -2185,7 +2416,7 @@ const putArrayValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
+const getDictionaryNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/null",
   httpMethod: "GET",
   responses: {
@@ -2207,7 +2438,7 @@ const getDictionaryNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
+const getDictionaryEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/empty",
   httpMethod: "GET",
   responses: {
@@ -2229,7 +2460,7 @@ const getDictionaryEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
+const getDictionaryItemNullOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/itemnull",
   httpMethod: "GET",
   responses: {
@@ -2251,7 +2482,7 @@ const getDictionaryItemNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
+const getDictionaryItemEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/itemempty",
   httpMethod: "GET",
   responses: {
@@ -2273,7 +2504,7 @@ const getDictionaryItemEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
+const getDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/valid",
   httpMethod: "GET",
   responses: {
@@ -2295,7 +2526,7 @@ const getDictionaryValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDictionaryValidOperationSpec: coreClient.OperationSpec = {
+const putDictionaryValidOperationSpec: coreHttp.OperationSpec = {
   path: "/array/dictionary/valid",
   httpMethod: "PUT",
   responses: {

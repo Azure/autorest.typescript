@@ -7,7 +7,7 @@
  */
 
 import { HttpFailure } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
@@ -39,10 +39,13 @@ export class HttpFailureImpl implements HttpFailure {
   getEmptyError(
     options?: HttpFailureGetEmptyErrorOptionalParams
   ): Promise<HttpFailureGetEmptyErrorResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getEmptyErrorOperationSpec
-    );
+    ) as Promise<HttpFailureGetEmptyErrorResponse>;
   }
 
   /**
@@ -52,10 +55,13 @@ export class HttpFailureImpl implements HttpFailure {
   getNoModelError(
     options?: HttpFailureGetNoModelErrorOptionalParams
   ): Promise<HttpFailureGetNoModelErrorResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getNoModelErrorOperationSpec
-    );
+    ) as Promise<HttpFailureGetNoModelErrorResponse>;
   }
 
   /**
@@ -65,16 +71,19 @@ export class HttpFailureImpl implements HttpFailure {
   getNoModelEmpty(
     options?: HttpFailureGetNoModelEmptyOptionalParams
   ): Promise<HttpFailureGetNoModelEmptyResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getNoModelEmptyOperationSpec
-    );
+    ) as Promise<HttpFailureGetNoModelEmptyResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getEmptyErrorOperationSpec: coreClient.OperationSpec = {
+const getEmptyErrorOperationSpec: coreHttp.OperationSpec = {
   path: "/http/failure/emptybody/error",
   httpMethod: "GET",
   responses: {
@@ -89,7 +98,7 @@ const getEmptyErrorOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNoModelErrorOperationSpec: coreClient.OperationSpec = {
+const getNoModelErrorOperationSpec: coreHttp.OperationSpec = {
   path: "/http/failure/nomodel/error",
   httpMethod: "GET",
   responses: {
@@ -101,7 +110,7 @@ const getNoModelErrorOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNoModelEmptyOperationSpec: coreClient.OperationSpec = {
+const getNoModelEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/http/failure/nomodel/empty",
   httpMethod: "GET",
   responses: {

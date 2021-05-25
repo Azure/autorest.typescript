@@ -1,5 +1,5 @@
 import { Documents } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { OptionalNullClientContext } from "../optionalNullClientContext";
@@ -21,17 +21,22 @@ export class DocumentsImpl implements Documents {
    * Searches for documents in the index.
    * @param options The options parameters.
    */
-  searchGet(options?: DocumentsSearchGetOptionalParams): Promise<void> {
+  searchGet(
+    options?: DocumentsSearchGetOptionalParams
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       searchGetOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const searchGetOperationSpec: coreClient.OperationSpec = {
+const searchGetOperationSpec: coreHttp.OperationSpec = {
   path: "/docs",
   httpMethod: "GET",
   responses: { 200: {} },

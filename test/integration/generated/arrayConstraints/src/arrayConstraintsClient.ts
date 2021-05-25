@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { ArrayConstraintsClientContext } from "./arrayConstraintsClientContext";
@@ -44,23 +44,33 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
     arrayBody: Product[],
     options?: ArrayConstraintsClientPostValueOptionalParams
   ): Promise<ArrayConstraintsClientPostValueResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      arrayBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { arrayBody, options },
+      operationArguments,
       postValueOperationSpec
-    );
+    ) as Promise<ArrayConstraintsClientPostValueResponse>;
   }
 
   /** @param options The options parameters. */
   apiV1ValueGet(
     options?: ArrayConstraintsClientApiV1ValueGetOptionalParams
   ): Promise<ArrayConstraintsClientApiV1ValueGetResponse> {
-    return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      apiV1ValueGetOperationSpec
+    ) as Promise<ArrayConstraintsClientApiV1ValueGetResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const postValueOperationSpec: coreClient.OperationSpec = {
+const postValueOperationSpec: coreHttp.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "POST",
   responses: {
@@ -81,7 +91,7 @@ const postValueOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
+const apiV1ValueGetOperationSpec: coreHttp.OperationSpec = {
   path: "/api/v1/value",
   httpMethod: "GET",
   responses: {

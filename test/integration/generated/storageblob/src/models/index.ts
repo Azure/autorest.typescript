@@ -1,4 +1,4 @@
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface StorageError {
   message?: string;
@@ -1086,7 +1086,7 @@ export type SequenceNumberActionType = "max" | "update" | "increment";
 
 /** Optional parameters. */
 export interface PageBlobUploadPagesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   leaseAccessConditions?: LeaseAccessConditions;
   /** Parameter group */
@@ -1110,11 +1110,17 @@ export interface PageBlobUploadPagesOptionalParams
 }
 
 /** Contains response data for the uploadPages operation. */
-export type PageBlobUploadPagesResponse = PageBlobUploadPagesHeaders;
+export type PageBlobUploadPagesResponse = PageBlobUploadPagesHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: PageBlobUploadPagesHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface BlockBlobStageBlockOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   leaseAccessConditions?: LeaseAccessConditions;
   /** Parameter group */
@@ -1132,11 +1138,17 @@ export interface BlockBlobStageBlockOptionalParams
 }
 
 /** Contains response data for the stageBlock operation. */
-export type BlockBlobStageBlockResponse = BlockBlobStageBlockHeaders;
+export type BlockBlobStageBlockResponse = BlockBlobStageBlockHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: BlockBlobStageBlockHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface BlockBlobUploadOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   leaseAccessConditions?: LeaseAccessConditions;
   /** Parameter group */
@@ -1162,11 +1174,17 @@ export interface BlockBlobUploadOptionalParams
 }
 
 /** Contains response data for the upload operation. */
-export type BlockBlobUploadResponse = BlockBlobUploadHeaders;
+export type BlockBlobUploadResponse = BlockBlobUploadHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: BlockBlobUploadHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface BlockBlobPutBlobFromUrlOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   leaseAccessConditions?: LeaseAccessConditions;
   /** Parameter group */
@@ -1198,11 +1216,17 @@ export interface BlockBlobPutBlobFromUrlOptionalParams
 }
 
 /** Contains response data for the putBlobFromUrl operation. */
-export type BlockBlobPutBlobFromUrlResponse = BlockBlobPutBlobFromUrlHeaders;
+export type BlockBlobPutBlobFromUrlResponse = BlockBlobPutBlobFromUrlHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: BlockBlobPutBlobFromUrlHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface AppendBlobAppendBlockOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   leaseAccessConditions?: LeaseAccessConditions;
   /** Parameter group */
@@ -1224,11 +1248,17 @@ export interface AppendBlobAppendBlockOptionalParams
 }
 
 /** Contains response data for the appendBlock operation. */
-export type AppendBlobAppendBlockResponse = AppendBlobAppendBlockHeaders;
+export type AppendBlobAppendBlockResponse = AppendBlobAppendBlockHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: AppendBlobAppendBlockHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface StorageBlobClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Specifies the version of the operation to use for this request. */
   version?: string;
   /** Overrides client endpoint. */

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   XmlGetComplexTypeRefNoMetaOptionalParams,
   XmlGetComplexTypeRefNoMetaResponse,
@@ -89,7 +90,7 @@ export interface Xml {
   putComplexTypeRefNoMeta(
     model: RootWithRefAndNoMeta,
     options?: XmlPutComplexTypeRefNoMetaOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get a complex type that has a ref to a complex type with XML node
    * @param options The options parameters.
@@ -105,7 +106,7 @@ export interface Xml {
   putComplexTypeRefWithMeta(
     model: RootWithRefAndMeta,
     options?: XmlPutComplexTypeRefWithMetaOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get a simple XML document
    * @param options The options parameters.
@@ -121,7 +122,7 @@ export interface Xml {
   putSimple(
     slideshow: Slideshow,
     options?: XmlPutSimpleOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get an XML document with multiple wrapped lists
    * @param options The options parameters.
@@ -137,7 +138,7 @@ export interface Xml {
   putWrappedLists(
     wrappedLists: AppleBarrel,
     options?: XmlPutWrappedListsOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get strongly-typed response headers.
    * @param options The options parameters.
@@ -160,7 +161,7 @@ export interface Xml {
   putEmptyList(
     slideshow: Slideshow,
     options?: XmlPutEmptyListOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets some empty wrapped lists.
    * @param options The options parameters.
@@ -176,7 +177,7 @@ export interface Xml {
   putEmptyWrappedLists(
     appleBarrel: AppleBarrel,
     options?: XmlPutEmptyWrappedListsOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a list as the root element.
    * @param options The options parameters.
@@ -192,7 +193,7 @@ export interface Xml {
   putRootList(
     bananas: Banana[],
     options?: XmlPutRootListOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets a list with a single item.
    * @param options The options parameters.
@@ -208,7 +209,7 @@ export interface Xml {
   putRootListSingleItem(
     bananas: Banana[],
     options?: XmlPutRootListSingleItemOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets an empty list as the root element.
    * @param options The options parameters.
@@ -224,7 +225,7 @@ export interface Xml {
   putEmptyRootList(
     bananas: Banana[],
     options?: XmlPutEmptyRootListOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets an XML document with an empty child element.
    * @param options The options parameters.
@@ -240,7 +241,7 @@ export interface Xml {
   putEmptyChildElement(
     banana: Banana,
     options?: XmlPutEmptyChildElementOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Lists containers in a storage account.
    * @param options The options parameters.
@@ -263,7 +264,7 @@ export interface Xml {
   putServiceProperties(
     properties: StorageServiceProperties,
     options?: XmlPutServicePropertiesOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Gets storage ACLs for a container.
    * @param options The options parameters.
@@ -277,7 +278,7 @@ export interface Xml {
   putAcls(
     properties: SignedIdentifier[],
     options?: XmlPutAclsOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Lists blobs in a storage container.
    * @param options The options parameters.
@@ -294,7 +295,7 @@ export interface Xml {
   jsonInput(
     properties: JsonInput,
     options?: XmlJsonInputOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * A Swagger with XML that has one operation that returns JSON. ID number 42
    * @param options The options parameters.
@@ -323,7 +324,7 @@ export interface Xml {
   putBinary(
     slideshow: ModelWithByteProperty,
     options?: XmlPutBinaryOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get an XML document with uri property
    * @param options The options parameters.
@@ -337,5 +338,5 @@ export interface Xml {
   putUri(
     model: ModelWithUrlProperty,
     options?: XmlPutUriOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Resource",
@@ -38,7 +38,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const CloudError: coreHttp.CompositeMapper = {
+export const CloudError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CloudError",
@@ -54,7 +54,7 @@ export const CloudError: coreHttp.CompositeMapper = {
   }
 };
 
-export const CloudErrorBody: coreHttp.CompositeMapper = {
+export const CloudErrorBody: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CloudErrorBody",
@@ -93,7 +93,7 @@ export const CloudErrorBody: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -120,7 +120,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -142,7 +142,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -175,7 +175,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserAssignedIdentitiesListResult: coreHttp.CompositeMapper = {
+export const UserAssignedIdentitiesListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserAssignedIdentitiesListResult",
@@ -202,7 +202,7 @@ export const UserAssignedIdentitiesListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProxyResource: coreHttp.CompositeMapper = {
+export const ProxyResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProxyResource",
@@ -212,7 +212,7 @@ export const ProxyResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const TrackedResource: coreHttp.CompositeMapper = {
+export const TrackedResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TrackedResource",
@@ -236,7 +236,7 @@ export const TrackedResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const IdentityUpdate: coreHttp.CompositeMapper = {
+export const IdentityUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "IdentityUpdate",
@@ -280,7 +280,7 @@ export const IdentityUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
+export const SystemAssignedIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SystemAssignedIdentity",
@@ -332,7 +332,7 @@ export const SystemAssignedIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Identity: coreHttp.CompositeMapper = {
+export const Identity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Identity",

@@ -7,7 +7,7 @@
  */
 
 import { Header } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
@@ -42,10 +42,14 @@ export class HeaderImpl implements Header {
     fooClientRequestId: string,
     options?: HeaderCustomNamedRequestIdOptionalParams
   ): Promise<HeaderCustomNamedRequestIdResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      fooClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fooClientRequestId, options },
+      operationArguments,
       customNamedRequestIdOperationSpec
-    );
+    ) as Promise<HeaderCustomNamedRequestIdResponse>;
   }
 
   /**
@@ -58,10 +62,14 @@ export class HeaderImpl implements Header {
     headerCustomNamedRequestIdParamGroupingParameters: HeaderCustomNamedRequestIdParamGroupingParameters,
     options?: HeaderCustomNamedRequestIdParamGroupingOptionalParams
   ): Promise<HeaderCustomNamedRequestIdParamGroupingResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      headerCustomNamedRequestIdParamGroupingParameters,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { headerCustomNamedRequestIdParamGroupingParameters, options },
+      operationArguments,
       customNamedRequestIdParamGroupingOperationSpec
-    );
+    ) as Promise<HeaderCustomNamedRequestIdParamGroupingResponse>;
   }
 
   /**
@@ -73,16 +81,20 @@ export class HeaderImpl implements Header {
     fooClientRequestId: string,
     options?: HeaderCustomNamedRequestIdHeadOptionalParams
   ): Promise<HeaderCustomNamedRequestIdHeadResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      fooClientRequestId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { fooClientRequestId, options },
+      operationArguments,
       customNamedRequestIdHeadOperationSpec
-    );
+    ) as Promise<HeaderCustomNamedRequestIdHeadResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const customNamedRequestIdOperationSpec: coreClient.OperationSpec = {
+const customNamedRequestIdOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/customNamedRequestId",
   httpMethod: "POST",
   responses: {
@@ -97,7 +109,7 @@ const customNamedRequestIdOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };
-const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec = {
+const customNamedRequestIdParamGroupingOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/customNamedRequestIdParamGrouping",
   httpMethod: "POST",
   responses: {
@@ -112,7 +124,7 @@ const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec =
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
   serializer
 };
-const customNamedRequestIdHeadOperationSpec: coreClient.OperationSpec = {
+const customNamedRequestIdHeadOperationSpec: coreHttp.OperationSpec = {
   path: "/azurespecials/customNamedRequestIdHead",
   httpMethod: "HEAD",
   responses: {

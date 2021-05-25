@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -71,7 +72,7 @@ export interface BlobContainers {
     clearLegalHold(resourceGroupName: string, accountName: string, containerName: string, legalHold: LegalHold, options?: BlobContainersClearLegalHoldOptionalParams): Promise<BlobContainersClearLegalHoldResponse>;
     create(resourceGroupName: string, accountName: string, containerName: string, blobContainer: BlobContainer, options?: BlobContainersCreateOptionalParams): Promise<BlobContainersCreateResponse>;
     createOrUpdateImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams): Promise<BlobContainersCreateOrUpdateImmutabilityPolicyResponse>;
-    delete(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersDeleteOptionalParams): Promise<void>;
     deleteImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: BlobContainersDeleteImmutabilityPolicyOptionalParams): Promise<BlobContainersDeleteImmutabilityPolicyResponse>;
     extendImmutabilityPolicy(resourceGroupName: string, accountName: string, containerName: string, ifMatch: string, options?: BlobContainersExtendImmutabilityPolicyOptionalParams): Promise<BlobContainersExtendImmutabilityPolicyResponse>;
     get(resourceGroupName: string, accountName: string, containerName: string, options?: BlobContainersGetOptionalParams): Promise<BlobContainersGetResponse>;
@@ -84,19 +85,14 @@ export interface BlobContainers {
 }
 
 // @public
-export interface BlobContainersClearLegalHoldOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersClearLegalHoldOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersClearLegalHoldResponse = LegalHold & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LegalHold;
-    };
-};
+export type BlobContainersClearLegalHoldResponse = LegalHold;
 
 // @public
-export interface BlobContainersCreateOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersCreateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
@@ -105,27 +101,16 @@ export interface BlobContainersCreateOrUpdateImmutabilityPolicyHeaders {
 }
 
 // @public
-export interface BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams extends coreClient.OperationOptions {
     ifMatch?: string;
     parameters?: ImmutabilityPolicy;
 }
 
 // @public
-export type BlobContainersCreateOrUpdateImmutabilityPolicyResponse = BlobContainersCreateOrUpdateImmutabilityPolicyHeaders & ImmutabilityPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImmutabilityPolicy;
-        parsedHeaders: BlobContainersCreateOrUpdateImmutabilityPolicyHeaders;
-    };
-};
+export type BlobContainersCreateOrUpdateImmutabilityPolicyResponse = BlobContainersCreateOrUpdateImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 // @public
-export type BlobContainersCreateResponse = BlobContainer & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobContainer;
-    };
-};
+export type BlobContainersCreateResponse = BlobContainer;
 
 // @public
 export interface BlobContainersDeleteImmutabilityPolicyHeaders {
@@ -133,20 +118,14 @@ export interface BlobContainersDeleteImmutabilityPolicyHeaders {
 }
 
 // @public
-export interface BlobContainersDeleteImmutabilityPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersDeleteImmutabilityPolicyOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDeleteImmutabilityPolicyHeaders & ImmutabilityPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImmutabilityPolicy;
-        parsedHeaders: BlobContainersDeleteImmutabilityPolicyHeaders;
-    };
-};
+export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDeleteImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 // @public
-export interface BlobContainersDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
@@ -155,18 +134,12 @@ export interface BlobContainersExtendImmutabilityPolicyHeaders {
 }
 
 // @public
-export interface BlobContainersExtendImmutabilityPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersExtendImmutabilityPolicyOptionalParams extends coreClient.OperationOptions {
     parameters?: ImmutabilityPolicy;
 }
 
 // @public
-export type BlobContainersExtendImmutabilityPolicyResponse = BlobContainersExtendImmutabilityPolicyHeaders & ImmutabilityPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImmutabilityPolicy;
-        parsedHeaders: BlobContainersExtendImmutabilityPolicyHeaders;
-    };
-};
+export type BlobContainersExtendImmutabilityPolicyResponse = BlobContainersExtendImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 // @public
 export interface BlobContainersGetImmutabilityPolicyHeaders {
@@ -174,71 +147,45 @@ export interface BlobContainersGetImmutabilityPolicyHeaders {
 }
 
 // @public
-export interface BlobContainersGetImmutabilityPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersGetImmutabilityPolicyOptionalParams extends coreClient.OperationOptions {
     ifMatch?: string;
 }
 
 // @public
-export type BlobContainersGetImmutabilityPolicyResponse = BlobContainersGetImmutabilityPolicyHeaders & ImmutabilityPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImmutabilityPolicy;
-        parsedHeaders: BlobContainersGetImmutabilityPolicyHeaders;
-    };
-};
+export type BlobContainersGetImmutabilityPolicyResponse = BlobContainersGetImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 // @public
-export interface BlobContainersGetOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersGetResponse = BlobContainer & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobContainer;
-    };
-};
+export type BlobContainersGetResponse = BlobContainer;
 
 // @public
-export interface BlobContainersLeaseOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersLeaseOptionalParams extends coreClient.OperationOptions {
     parameters?: LeaseContainerRequest;
 }
 
 // @public
-export type BlobContainersLeaseResponse = LeaseContainerResponse & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LeaseContainerResponse;
-    };
-};
+export type BlobContainersLeaseResponse = LeaseContainerResponse;
 
 // @public
-export interface BlobContainersListNextOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersListNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
     maxpagesize?: string;
 }
 
 // @public
-export type BlobContainersListNextResponse = ListContainerItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListContainerItems;
-    };
-};
+export type BlobContainersListNextResponse = ListContainerItems;
 
 // @public
-export interface BlobContainersListOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersListOptionalParams extends coreClient.OperationOptions {
     filter?: string;
     maxpagesize?: string;
 }
 
 // @public
-export type BlobContainersListResponse = ListContainerItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListContainerItems;
-    };
-};
+export type BlobContainersListResponse = ListContainerItems;
 
 // @public
 export interface BlobContainersLockImmutabilityPolicyHeaders {
@@ -246,41 +193,25 @@ export interface BlobContainersLockImmutabilityPolicyHeaders {
 }
 
 // @public
-export interface BlobContainersLockImmutabilityPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersLockImmutabilityPolicyOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersLockImmutabilityPolicyResponse = BlobContainersLockImmutabilityPolicyHeaders & ImmutabilityPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImmutabilityPolicy;
-        parsedHeaders: BlobContainersLockImmutabilityPolicyHeaders;
-    };
-};
+export type BlobContainersLockImmutabilityPolicyResponse = BlobContainersLockImmutabilityPolicyHeaders & ImmutabilityPolicy;
 
 // @public
-export interface BlobContainersSetLegalHoldOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersSetLegalHoldOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersSetLegalHoldResponse = LegalHold & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LegalHold;
-    };
-};
+export type BlobContainersSetLegalHoldResponse = LegalHold;
 
 // @public
-export interface BlobContainersUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface BlobContainersUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobContainersUpdateResponse = BlobContainer & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobContainer;
-    };
-};
+export type BlobContainersUpdateResponse = BlobContainer;
 
 // @public
 export interface BlobRestoreParameters {
@@ -331,40 +262,25 @@ export interface BlobServices {
 }
 
 // @public
-export interface BlobServicesGetServicePropertiesOptionalParams extends coreHttp.OperationOptions {
+export interface BlobServicesGetServicePropertiesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobServiceProperties;
-    };
-};
+export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties;
 
 // @public
-export interface BlobServicesListOptionalParams extends coreHttp.OperationOptions {
+export interface BlobServicesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobServicesListResponse = BlobServiceItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobServiceItems;
-    };
-};
+export type BlobServicesListResponse = BlobServiceItems;
 
 // @public
-export interface BlobServicesSetServicePropertiesOptionalParams extends coreHttp.OperationOptions {
+export interface BlobServicesSetServicePropertiesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobServiceProperties;
-    };
-};
+export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties;
 
 // @public
 export type Bypass = string;
@@ -490,67 +406,42 @@ export interface EncryptionScopes {
 }
 
 // @public
-export interface EncryptionScopesGetOptionalParams extends coreHttp.OperationOptions {
+export interface EncryptionScopesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type EncryptionScopesGetResponse = EncryptionScope & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: EncryptionScope;
-    };
-};
+export type EncryptionScopesGetResponse = EncryptionScope;
 
 // @public
-export interface EncryptionScopesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface EncryptionScopesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type EncryptionScopesListNextResponse = EncryptionScopeListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: EncryptionScopeListResult;
-    };
-};
+export type EncryptionScopesListNextResponse = EncryptionScopeListResult;
 
 // @public
-export interface EncryptionScopesListOptionalParams extends coreHttp.OperationOptions {
+export interface EncryptionScopesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type EncryptionScopesListResponse = EncryptionScopeListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: EncryptionScopeListResult;
-    };
-};
+export type EncryptionScopesListResponse = EncryptionScopeListResult;
 
 // @public
 export type EncryptionScopeSource = string;
 
 // @public
-export interface EncryptionScopesPatchOptionalParams extends coreHttp.OperationOptions {
+export interface EncryptionScopesPatchOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type EncryptionScopesPatchResponse = EncryptionScope & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: EncryptionScope;
-    };
-};
+export type EncryptionScopesPatchResponse = EncryptionScope;
 
 // @public
-export interface EncryptionScopesPutOptionalParams extends coreHttp.OperationOptions {
+export interface EncryptionScopesPutOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type EncryptionScopesPutResponse = EncryptionScope & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: EncryptionScope;
-    };
-};
+export type EncryptionScopesPutResponse = EncryptionScope;
 
 // @public
 export type EncryptionScopeState = string;
@@ -608,40 +499,25 @@ export interface FileServices {
 }
 
 // @public
-export interface FileServicesGetServicePropertiesOptionalParams extends coreHttp.OperationOptions {
+export interface FileServicesGetServicePropertiesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileServicesGetServicePropertiesResponse = FileServiceProperties & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileServiceProperties;
-    };
-};
+export type FileServicesGetServicePropertiesResponse = FileServiceProperties;
 
 // @public
-export interface FileServicesListOptionalParams extends coreHttp.OperationOptions {
+export interface FileServicesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileServicesListResponse = FileServiceItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileServiceItems;
-    };
-};
+export type FileServicesListResponse = FileServiceItems;
 
 // @public
-export interface FileServicesSetServicePropertiesOptionalParams extends coreHttp.OperationOptions {
+export interface FileServicesSetServicePropertiesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileServicesSetServicePropertiesResponse = FileServiceProperties & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileServiceProperties;
-    };
-};
+export type FileServicesSetServicePropertiesResponse = FileServiceProperties;
 
 // @public
 export type FileShare = AzureEntityResource & {
@@ -690,84 +566,59 @@ export interface FileShareItems {
 // @public
 export interface FileShares {
     create(resourceGroupName: string, accountName: string, shareName: string, fileShare: FileShare, options?: FileSharesCreateOptionalParams): Promise<FileSharesCreateResponse>;
-    delete(resourceGroupName: string, accountName: string, shareName: string, options?: FileSharesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, shareName: string, options?: FileSharesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, shareName: string, options?: FileSharesGetOptionalParams): Promise<FileSharesGetResponse>;
     list(resourceGroupName: string, accountName: string, options?: FileSharesListOptionalParams): PagedAsyncIterableIterator<FileShareItem>;
-    restore(resourceGroupName: string, accountName: string, shareName: string, deletedShare: DeletedShare, options?: FileSharesRestoreOptionalParams): Promise<coreHttp.RestResponse>;
+    restore(resourceGroupName: string, accountName: string, shareName: string, deletedShare: DeletedShare, options?: FileSharesRestoreOptionalParams): Promise<void>;
     update(resourceGroupName: string, accountName: string, shareName: string, fileShare: FileShare, options?: FileSharesUpdateOptionalParams): Promise<FileSharesUpdateResponse>;
 }
 
 // @public
-export interface FileSharesCreateOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesCreateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileSharesCreateResponse = FileShare & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileShare;
-    };
-};
+export type FileSharesCreateResponse = FileShare;
 
 // @public
-export interface FileSharesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface FileSharesGetOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileSharesGetResponse = FileShare & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileShare;
-    };
-};
+export type FileSharesGetResponse = FileShare;
 
 // @public
-export interface FileSharesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesListNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
     maxpagesize?: string;
 }
 
 // @public
-export type FileSharesListNextResponse = FileShareItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileShareItems;
-    };
-};
+export type FileSharesListNextResponse = FileShareItems;
 
 // @public
-export interface FileSharesListOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesListOptionalParams extends coreClient.OperationOptions {
     filter?: string;
     maxpagesize?: string;
 }
 
 // @public
-export type FileSharesListResponse = FileShareItems & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileShareItems;
-    };
-};
+export type FileSharesListResponse = FileShareItems;
 
 // @public
-export interface FileSharesRestoreOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesRestoreOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface FileSharesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface FileSharesUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FileSharesUpdateResponse = FileShare & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FileShare;
-    };
-};
+export type FileSharesUpdateResponse = FileShare;
 
 // @public
 export interface GeoReplicationStats {
@@ -1249,37 +1100,27 @@ export interface ListServiceSasResponse {
 // @public
 export interface ManagementPolicies {
     createOrUpdate(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, properties: ManagementPolicy, options?: ManagementPoliciesCreateOrUpdateOptionalParams): Promise<ManagementPoliciesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, options?: ManagementPoliciesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, options?: ManagementPoliciesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, managementPolicyName: ManagementPolicyName, options?: ManagementPoliciesGetOptionalParams): Promise<ManagementPoliciesGetResponse>;
 }
 
 // @public
-export interface ManagementPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementPolicy;
-    };
-};
+export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy;
 
 // @public
-export interface ManagementPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementPoliciesDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ManagementPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+export interface ManagementPoliciesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ManagementPoliciesGetResponse = ManagementPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ManagementPolicy;
-    };
-};
+export type ManagementPoliciesGetResponse = ManagementPolicy;
 
 // @public
 export type ManagementPolicy = Resource & {
@@ -1358,22 +1199,17 @@ export interface NetworkRuleSet {
 // @public
 export interface ObjectReplicationPolicies {
     createOrUpdate(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, properties: ObjectReplicationPolicy, options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesGetOptionalParams): Promise<ObjectReplicationPoliciesGetResponse>;
     list(resourceGroupName: string, accountName: string, options?: ObjectReplicationPoliciesListOptionalParams): PagedAsyncIterableIterator<ObjectReplicationPolicy>;
 }
 
 // @public
-export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ObjectReplicationPolicy;
-    };
-};
+export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
 
 // @public
 export interface ObjectReplicationPoliciesDef {
@@ -1381,32 +1217,22 @@ export interface ObjectReplicationPoliciesDef {
 }
 
 // @public
-export interface ObjectReplicationPoliciesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ObjectReplicationPoliciesDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ObjectReplicationPoliciesGetOptionalParams extends coreHttp.OperationOptions {
+export interface ObjectReplicationPoliciesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ObjectReplicationPolicy;
-    };
-};
+export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy;
 
 // @public
-export interface ObjectReplicationPoliciesListOptionalParams extends coreHttp.OperationOptions {
+export interface ObjectReplicationPoliciesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ObjectReplicationPoliciesDef;
-    };
-};
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef;
 
 // @public
 export type ObjectReplicationPolicy = Resource & {
@@ -1458,16 +1284,11 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 type Permissions_2 = string;
@@ -1496,51 +1317,36 @@ export type PrivateEndpointConnectionProvisioningState = string;
 
 // @public
 export interface PrivateEndpointConnections {
-    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
     list(resourceGroupName: string, accountName: string, options?: PrivateEndpointConnectionsListOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnection>;
     put(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, properties: PrivateEndpointConnection, options?: PrivateEndpointConnectionsPutOptionalParams): Promise<PrivateEndpointConnectionsPutResponse>;
 }
 
 // @public
-export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface PrivateEndpointConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnection;
-    };
-};
+export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection;
 
 // @public
-export interface PrivateEndpointConnectionsListOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnectionListResult;
-    };
-};
+export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult;
 
 // @public
-export interface PrivateEndpointConnectionsPutOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsPutOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnection;
-    };
-};
+export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection;
 
 // @public
 export type PrivateEndpointServiceConnectionStatus = string;
@@ -1563,16 +1369,11 @@ export interface PrivateLinkResources {
 }
 
 // @public
-export interface PrivateLinkResourcesListByStorageAccountOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateLinkResourcesListByStorageAccountOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateLinkResourceListResult;
-    };
-};
+export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult;
 
 // @public
 export interface PrivateLinkServiceConnectionState {
@@ -1701,16 +1502,11 @@ export interface Skus {
 }
 
 // @public
-export interface SkusListOptionalParams extends coreHttp.OperationOptions {
+export interface SkusListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SkusListResponse = StorageSkuListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageSkuListResult;
-    };
-};
+export type SkusListResponse = StorageSkuListResult;
 
 // @public
 export type SkuTier = "Standard" | "Premium";
@@ -1821,12 +1617,12 @@ export interface StorageAccountRegenerateKeyParameters {
 export interface StorageAccounts {
     beginCreate(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsCreateResponse>, StorageAccountsCreateResponse>>;
     beginCreateAndWait(resourceGroupName: string, accountName: string, parameters: StorageAccountCreateParameters, options?: StorageAccountsCreateOptionalParams): Promise<StorageAccountsCreateResponse>;
-    beginFailover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginFailoverAndWait(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<coreHttp.RestResponse>;
+    beginFailover(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginFailoverAndWait(resourceGroupName: string, accountName: string, options?: StorageAccountsFailoverOptionalParams): Promise<void>;
     beginRestoreBlobRanges(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<PollerLike<PollOperationState<StorageAccountsRestoreBlobRangesResponse>, StorageAccountsRestoreBlobRangesResponse>>;
     beginRestoreBlobRangesAndWait(resourceGroupName: string, accountName: string, parameters: BlobRestoreParameters, options?: StorageAccountsRestoreBlobRangesOptionalParams): Promise<StorageAccountsRestoreBlobRangesResponse>;
     checkNameAvailability(accountName: StorageAccountCheckNameAvailabilityParameters, options?: StorageAccountsCheckNameAvailabilityOptionalParams): Promise<StorageAccountsCheckNameAvailabilityResponse>;
-    delete(resourceGroupName: string, accountName: string, options?: StorageAccountsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, accountName: string, options?: StorageAccountsDeleteOptionalParams): Promise<void>;
     getProperties(resourceGroupName: string, accountName: string, options?: StorageAccountsGetPropertiesOptionalParams): Promise<StorageAccountsGetPropertiesResponse>;
     list(options?: StorageAccountsListOptionalParams): PagedAsyncIterableIterator<StorageAccount>;
     listAccountSAS(resourceGroupName: string, accountName: string, parameters: AccountSasParameters, options?: StorageAccountsListAccountSASOptionalParams): Promise<StorageAccountsListAccountSASResponse>;
@@ -1834,172 +1630,112 @@ export interface StorageAccounts {
     listKeys(resourceGroupName: string, accountName: string, options?: StorageAccountsListKeysOptionalParams): Promise<StorageAccountsListKeysResponse>;
     listServiceSAS(resourceGroupName: string, accountName: string, parameters: ServiceSasParameters, options?: StorageAccountsListServiceSASOptionalParams): Promise<StorageAccountsListServiceSASResponse>;
     regenerateKey(resourceGroupName: string, accountName: string, regenerateKey: StorageAccountRegenerateKeyParameters, options?: StorageAccountsRegenerateKeyOptionalParams): Promise<StorageAccountsRegenerateKeyResponse>;
-    revokeUserDelegationKeys(resourceGroupName: string, accountName: string, options?: StorageAccountsRevokeUserDelegationKeysOptionalParams): Promise<coreHttp.RestResponse>;
+    revokeUserDelegationKeys(resourceGroupName: string, accountName: string, options?: StorageAccountsRevokeUserDelegationKeysOptionalParams): Promise<void>;
     update(resourceGroupName: string, accountName: string, parameters: StorageAccountUpdateParameters, options?: StorageAccountsUpdateOptionalParams): Promise<StorageAccountsUpdateResponse>;
 }
 
 // @public
-export interface StorageAccountsCheckNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsCheckNameAvailabilityOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CheckNameAvailabilityResult;
-    };
-};
+export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
 
 // @public
-export interface StorageAccountsCreateOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsCreateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type StorageAccountsCreateResponse = StorageAccount & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccount;
-    };
-};
+export type StorageAccountsCreateResponse = StorageAccount;
 
 // @public
-export interface StorageAccountsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface StorageAccountsFailoverOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsFailoverOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface StorageAccountsGetPropertiesOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsGetPropertiesOptionalParams extends coreClient.OperationOptions {
     expand?: StorageAccountExpand;
 }
 
 // @public
-export type StorageAccountsGetPropertiesResponse = StorageAccount & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccount;
-    };
-};
+export type StorageAccountsGetPropertiesResponse = StorageAccount;
 
 // @public
-export interface StorageAccountsListAccountSASOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListAccountSASOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListAccountSASResponse = ListAccountSasResponse & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListAccountSasResponse;
-    };
-};
+export type StorageAccountsListAccountSASResponse = ListAccountSasResponse;
 
 // @public
-export interface StorageAccountsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccountListResult;
-    };
-};
+export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult;
 
 // @public
-export interface StorageAccountsListKeysOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListKeysOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListKeysResponse = StorageAccountListKeysResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccountListKeysResult;
-    };
-};
+export type StorageAccountsListKeysResponse = StorageAccountListKeysResult;
 
 // @public
-export interface StorageAccountsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListNextResponse = StorageAccountListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccountListResult;
-    };
-};
+export type StorageAccountsListNextResponse = StorageAccountListResult;
 
 // @public
-export interface StorageAccountsListOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListResponse = StorageAccountListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccountListResult;
-    };
-};
+export type StorageAccountsListResponse = StorageAccountListResult;
 
 // @public
-export interface StorageAccountsListServiceSASOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsListServiceSASOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsListServiceSASResponse = ListServiceSasResponse & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListServiceSasResponse;
-    };
-};
+export type StorageAccountsListServiceSASResponse = ListServiceSasResponse;
 
 // @public
-export interface StorageAccountsRegenerateKeyOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsRegenerateKeyOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccountListKeysResult;
-    };
-};
+export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult;
 
 // @public
-export interface StorageAccountsRestoreBlobRangesOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsRestoreBlobRangesOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: BlobRestoreStatus;
-    };
-};
+export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus;
 
 // @public
-export interface StorageAccountsRevokeUserDelegationKeysOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsRevokeUserDelegationKeysOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface StorageAccountsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface StorageAccountsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type StorageAccountsUpdateResponse = StorageAccount & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: StorageAccount;
-    };
-};
+export type StorageAccountsUpdateResponse = StorageAccount;
 
 // @public
 export interface StorageAccountUpdateParameters {
@@ -2021,7 +1757,7 @@ export interface StorageAccountUpdateParameters {
 
 // @public (undocumented)
 export class StorageManagementClient extends StorageManagementClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: StorageManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
     // (undocumented)
     blobContainers: BlobContainers;
     // (undocumented)
@@ -2051,10 +1787,10 @@ export class StorageManagementClient extends StorageManagementClientContext {
 }
 
 // @public (undocumented)
-export class StorageManagementClientContext extends coreHttp.ServiceClient {
+export class StorageManagementClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: StorageManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -2062,7 +1798,7 @@ export class StorageManagementClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface StorageManagementClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface StorageManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -2132,16 +1868,11 @@ export interface Usages {
 }
 
 // @public
-export interface UsagesListByLocationOptionalParams extends coreHttp.OperationOptions {
+export interface UsagesListByLocationOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UsagesListByLocationResponse = UsageListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UsageListResult;
-    };
-};
+export type UsagesListByLocationResponse = UsageListResult;
 
 // @public
 export type UsageUnit = "Count" | "Bytes" | "Seconds" | "Percent" | "CountsPerSecond" | "BytesPerSecond";

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { TopLevelDomains } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -150,13 +150,7 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
   private _list(
     options?: TopLevelDomainsListOptionalParams
   ): Promise<TopLevelDomainsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<TopLevelDomainsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -168,14 +162,10 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
     name: string,
     options?: TopLevelDomainsGetOptionalParams
   ): Promise<TopLevelDomainsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { name, options },
       getOperationSpec
-    ) as Promise<TopLevelDomainsGetResponse>;
+    );
   }
 
   /**
@@ -189,15 +179,10 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
     agreementOption: TopLevelDomainAgreementOption,
     options?: TopLevelDomainsListAgreementsOptionalParams
   ): Promise<TopLevelDomainsListAgreementsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      name,
-      agreementOption,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { name, agreementOption, options },
       listAgreementsOperationSpec
-    ) as Promise<TopLevelDomainsListAgreementsResponse>;
+    );
   }
 
   /**
@@ -209,14 +194,10 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
     nextLink: string,
     options?: TopLevelDomainsListNextOptionalParams
   ): Promise<TopLevelDomainsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<TopLevelDomainsListNextResponse>;
+    );
   }
 
   /**
@@ -232,22 +213,16 @@ export class TopLevelDomainsImpl implements TopLevelDomains {
     nextLink: string,
     options?: TopLevelDomainsListAgreementsNextOptionalParams
   ): Promise<TopLevelDomainsListAgreementsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      name,
-      agreementOption,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { name, agreementOption, nextLink, options },
       listAgreementsNextOperationSpec
-    ) as Promise<TopLevelDomainsListAgreementsNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains",
   httpMethod: "GET",
@@ -264,7 +239,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains/{name}",
   httpMethod: "GET",
@@ -281,7 +256,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAgreementsOperationSpec: coreHttp.OperationSpec = {
+const listAgreementsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/topLevelDomains/{name}/listAgreements",
   httpMethod: "POST",
@@ -300,7 +275,7 @@ const listAgreementsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -320,7 +295,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAgreementsNextOperationSpec: coreHttp.OperationSpec = {
+const listAgreementsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

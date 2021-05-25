@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Domain,
@@ -146,7 +145,7 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     options?: DomainsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates or updates a domain.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -201,7 +200,7 @@ export interface Domains {
     domainName: string,
     name: string,
     options?: DomainsDeleteOwnershipIdentifierOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates an ownership identifier for a domain or updates identifier details for an
    * existing identifer
@@ -228,5 +227,5 @@ export interface Domains {
     resourceGroupName: string,
     domainName: string,
     options?: DomainsRenewOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

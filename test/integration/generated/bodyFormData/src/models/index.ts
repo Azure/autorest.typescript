@@ -6,8 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -16,19 +15,19 @@ export interface ErrorModel {
 
 export interface Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema {
   /** File to upload. */
-  fileContent: coreRestPipeline.RequestBodyType;
+  fileContent: coreHttp.HttpRequestBody;
   /** File name to upload. Name has to be spelled exactly as written here. */
   fileName: string;
 }
 
 export interface Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema {
   /** Files to upload. */
-  fileContent: coreRestPipeline.RequestBodyType[];
+  fileContent: coreHttp.HttpRequestBody[];
 }
 
 /** Optional parameters. */
 export interface FormdataUploadFileOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the uploadFile operation. */
 export type FormdataUploadFileResponse = {
@@ -46,11 +45,14 @@ export type FormdataUploadFileResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface FormdataUploadFileViaBodyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the uploadFileViaBody operation. */
 export type FormdataUploadFileViaBodyResponse = {
@@ -68,11 +70,14 @@ export type FormdataUploadFileViaBodyResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface FormdataUploadFilesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the uploadFiles operation. */
 export type FormdataUploadFilesResponse = {
@@ -90,11 +95,14 @@ export type FormdataUploadFilesResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface BodyFormDataClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

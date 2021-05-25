@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const SourcePath: coreClient.CompositeMapper = {
+export const SourcePath: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SourcePath",

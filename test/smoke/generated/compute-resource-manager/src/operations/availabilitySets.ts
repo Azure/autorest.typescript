@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AvailabilitySets } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -215,16 +215,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     parameters: AvailabilitySet,
     options?: AvailabilitySetsCreateOrUpdateOptionalParams
   ): Promise<AvailabilitySetsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      availabilitySetName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, availabilitySetName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<AvailabilitySetsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -240,16 +234,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     parameters: AvailabilitySetUpdate,
     options?: AvailabilitySetsUpdateOptionalParams
   ): Promise<AvailabilitySetsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      availabilitySetName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, availabilitySetName, parameters, options },
       updateOperationSpec
-    ) as Promise<AvailabilitySetsUpdateResponse>;
+    );
   }
 
   /**
@@ -262,16 +250,11 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     resourceGroupName: string,
     availabilitySetName: string,
     options?: AvailabilitySetsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      availabilitySetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, availabilitySetName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -285,15 +268,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     availabilitySetName: string,
     options?: AvailabilitySetsGetOptionalParams
   ): Promise<AvailabilitySetsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      availabilitySetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, availabilitySetName, options },
       getOperationSpec
-    ) as Promise<AvailabilitySetsGetResponse>;
+    );
   }
 
   /**
@@ -303,13 +281,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
   private _listBySubscription(
     options?: AvailabilitySetsListBySubscriptionOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<AvailabilitySetsListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -321,14 +296,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     resourceGroupName: string,
     options?: AvailabilitySetsListOptionalParams
   ): Promise<AvailabilitySetsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listOperationSpec
-    ) as Promise<AvailabilitySetsListResponse>;
+    );
   }
 
   /**
@@ -343,15 +314,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     availabilitySetName: string,
     options?: AvailabilitySetsListAvailableSizesOptionalParams
   ): Promise<AvailabilitySetsListAvailableSizesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      availabilitySetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, availabilitySetName, options },
       listAvailableSizesOperationSpec
-    ) as Promise<AvailabilitySetsListAvailableSizesResponse>;
+    );
   }
 
   /**
@@ -363,14 +329,10 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     nextLink: string,
     options?: AvailabilitySetsListBySubscriptionNextOptionalParams
   ): Promise<AvailabilitySetsListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<AvailabilitySetsListBySubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -384,21 +346,16 @@ export class AvailabilitySetsImpl implements AvailabilitySets {
     nextLink: string,
     options?: AvailabilitySetsListNextOptionalParams
   ): Promise<AvailabilitySetsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<AvailabilitySetsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
   httpMethod: "PUT",
@@ -419,7 +376,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
   httpMethod: "PATCH",
@@ -440,7 +397,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
   httpMethod: "DELETE",
@@ -454,7 +411,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}",
   httpMethod: "GET",
@@ -473,7 +430,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/availabilitySets",
   httpMethod: "GET",
@@ -487,7 +444,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets",
   httpMethod: "GET",
@@ -505,7 +462,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableSizesOperationSpec: coreHttp.OperationSpec = {
+const listAvailableSizesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets/{availabilitySetName}/vmSizes",
   httpMethod: "GET",
@@ -524,7 +481,7 @@ const listAvailableSizesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -541,7 +498,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

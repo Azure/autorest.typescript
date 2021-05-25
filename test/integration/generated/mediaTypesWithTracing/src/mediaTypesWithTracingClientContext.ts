@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { MediaTypesWithTracingClientOptionalParams } from "./models";
 
-export class MediaTypesWithTracingClientContext extends coreClient.ServiceClient {
+const packageName = "media-types-service-tracing";
+const packageVersion = "1.0.0-preview1";
+
+export class MediaTypesWithTracingClientContext extends coreHttp.ServiceClient {
   $host: string;
 
   /**
@@ -21,16 +24,16 @@ export class MediaTypesWithTracingClientContext extends coreClient.ServiceClient
     if (!options) {
       options = {};
     }
-    const defaults: MediaTypesWithTracingClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "http://localhost:3000";
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";

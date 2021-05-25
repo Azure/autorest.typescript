@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
-export const ErrorModel: coreClient.CompositeMapper = {
+export const ErrorModel: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorModel",
@@ -29,7 +29,7 @@ export const ErrorModel: coreClient.CompositeMapper = {
   }
 };
 
-export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
+export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -53,7 +53,7 @@ export const Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipart
   }
 };
 
-export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema: coreClient.CompositeMapper = {
+export const Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
     className:

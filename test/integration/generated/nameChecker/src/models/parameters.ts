@@ -1,8 +1,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 import {
   SearchRequest as SearchRequestMapper,
   SuggestRequest as SuggestRequestMapper,
@@ -100,7 +101,7 @@ export const facets: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "Multi"
+  collectionFormat: QueryCollectionFormat.Multi
 };
 
 export const filter: OperationQueryParameter = {
@@ -126,7 +127,7 @@ export const highlightFields: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const highlightPostTag: OperationQueryParameter = {
@@ -172,7 +173,7 @@ export const orderBy: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const queryType: OperationQueryParameter = {
@@ -199,7 +200,7 @@ export const scoringParameters: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "Multi"
+  collectionFormat: QueryCollectionFormat.Multi
 };
 
 export const scoringProfile: OperationQueryParameter = {
@@ -225,7 +226,7 @@ export const searchFields: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const searchMode: OperationQueryParameter = {
@@ -273,7 +274,7 @@ export const select: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const skip: OperationQueryParameter = {
@@ -337,7 +338,7 @@ export const selectedFields: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const search$DONotNormalize$Text: OperationQueryParameter = {
@@ -425,7 +426,7 @@ export const orderBy1: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const searchFields1: OperationQueryParameter = {
@@ -441,7 +442,7 @@ export const searchFields1: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const select1: OperationQueryParameter = {
@@ -457,7 +458,7 @@ export const select1: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const top1: OperationQueryParameter = {
@@ -554,7 +555,7 @@ export const searchFields2: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const top2: OperationQueryParameter = {

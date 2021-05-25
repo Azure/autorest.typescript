@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { Enum0, ArrayConstraintsClientOptionalParams } from "./models";
 
-export class ArrayConstraintsClientContext extends coreClient.ServiceClient {
+const packageName = "array-constraints-client";
+const packageVersion = "1.0.0-preview1";
+
+export class ArrayConstraintsClientContext extends coreHttp.ServiceClient {
   $host: string;
   apiVersion: Enum0;
 
@@ -35,16 +38,16 @@ export class ArrayConstraintsClientContext extends coreClient.ServiceClient {
     if (!options) {
       options = {};
     }
-    const defaults: ArrayConstraintsClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "{$host}"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "{$host}";
     // Parameter assignments
     this.$host = $host;
     this.apiVersion = apiVersion;

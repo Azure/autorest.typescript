@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
-const packageName = "graphrbac-data-plane";
-const packageVersion = "1.0.0-beta.1";
-
-export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
+export class GraphRbacManagementClientContext extends coreClient.ServiceClient {
   $host: string;
   apiVersion: string;
   tenantID: string;
@@ -24,7 +22,7 @@ export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     tenantID: string,
     options?: GraphRbacManagementClientOptionalParams
   ) {
@@ -39,16 +37,17 @@ export class GraphRbacManagementClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: GraphRbacManagementClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(credentials, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://graph.windows.net";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "https://graph.windows.net"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.tenantID = tenantID;
 

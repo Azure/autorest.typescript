@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsPut200SucceededOptionalParams,
@@ -575,14 +576,16 @@ export interface LROs {
    */
   beginDelete204Succeeded(
     options?: LROsDelete204SucceededOptionalParams
-  ): Promise<PollerLike<PollOperationState<void>, void>>;
+  ): Promise<
+    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
+  >;
   /**
    * Long running delete succeeds and returns right away
    * @param options The options parameters.
    */
   beginDelete204SucceededAndWait(
     options?: LROsDelete204SucceededOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Long running delete request, service returns a 202 to the initial request. Polls return this value
    * until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’

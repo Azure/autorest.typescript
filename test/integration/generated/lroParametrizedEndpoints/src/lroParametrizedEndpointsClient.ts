@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { LROPoller, shouldDeserializeLRO } from "./lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import * as Parameters from "./models/parameters";
@@ -27,6 +27,18 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
     super(options);
   }
 
+  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
+    options: TOptions | undefined,
+    finalStateVia?: string
+  ): coreHttp.RequestOptionsBase {
+    const operationOptions: coreHttp.OperationOptions = options || {};
+    operationOptions.requestOptions = {
+      ...operationOptions.requestOptions,
+      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+    };
+    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+  }
+
   /**
    * Poll with method and client level parameters in endpoint
    * @param accountName Account Name. Pass in 'local' to pass test.
@@ -43,41 +55,22 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
       LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
     >
   > {
-    const directSendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
-    ): Promise<LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse> => {
-      return this.sendOperationRequest(args, spec);
+    const operationArguments: coreHttp.OperationArguments = {
+      accountName,
+      options: this.getOperationOptions(options, "location")
     };
     const sendOperation = async (
-      args: coreClient.OperationArguments,
-      spec: coreClient.OperationSpec
+      args: coreHttp.OperationArguments,
+      spec: coreHttp.OperationSpec
     ) => {
-      let currentRawResponse:
-        | coreClient.FullOperationResponse
-        | undefined = undefined;
-      const providedCallback = args.options?.onResponse;
-      const callback: coreClient.RawResponseCallback = (
-        rawResponse: coreClient.FullOperationResponse,
-        flatResponse: unknown
-      ) => {
-        currentRawResponse = rawResponse;
-        providedCallback?.(rawResponse, flatResponse);
-      };
-      const updatedArgs = {
-        ...args,
-        options: {
-          ...args.options,
-          onResponse: callback
-        }
-      };
-      const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return this.sendOperationRequest(args, spec) as Promise<
+        LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+      >;
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      { accountName, options },
+      operationArguments,
       pollWithParameterizedEndpointsOperationSpec,
       sendOperation,
       "location"
@@ -103,9 +96,9 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const pollWithParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
+const pollWithParameterizedEndpointsOperationSpec: coreHttp.OperationSpec = {
   path: "/lroParameterizedEndpoints",
   httpMethod: "POST",
   responses: {

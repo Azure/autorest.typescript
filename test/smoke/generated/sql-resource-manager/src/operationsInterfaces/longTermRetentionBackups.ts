@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LongTermRetentionBackup,
@@ -139,9 +138,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a long term retention backup.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -159,7 +156,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteByResourceGroupOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a long term retention backup.
    * @param locationName The location of the database.
@@ -189,9 +186,7 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a long term retention backup.
    * @param locationName The location of the database
@@ -206,5 +201,5 @@ export interface LongTermRetentionBackups {
     longTermRetentionDatabaseName: string,
     backupName: string,
     options?: LongTermRetentionBackupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

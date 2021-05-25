@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
@@ -48,8 +48,14 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putArray(
     options?: ModelFlatteningClientPutArrayOptionalParams
-  ): Promise<void> {
-    return this.sendOperationRequest({ options }, putArrayOperationSpec);
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      putArrayOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -59,7 +65,13 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   getArray(
     options?: ModelFlatteningClientGetArrayOptionalParams
   ): Promise<ModelFlatteningClientGetArrayResponse> {
-    return this.sendOperationRequest({ options }, getArrayOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getArrayOperationSpec
+    ) as Promise<ModelFlatteningClientGetArrayResponse>;
   }
 
   /**
@@ -69,8 +81,14 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putWrappedArray(
     options?: ModelFlatteningClientPutWrappedArrayOptionalParams
-  ): Promise<void> {
-    return this.sendOperationRequest({ options }, putWrappedArrayOperationSpec);
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      putWrappedArrayOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -81,7 +99,13 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   getWrappedArray(
     options?: ModelFlatteningClientGetWrappedArrayOptionalParams
   ): Promise<ModelFlatteningClientGetWrappedArrayResponse> {
-    return this.sendOperationRequest({ options }, getWrappedArrayOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getWrappedArrayOperationSpec
+    ) as Promise<ModelFlatteningClientGetWrappedArrayResponse>;
   }
 
   /**
@@ -90,8 +114,14 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putDictionary(
     options?: ModelFlatteningClientPutDictionaryOptionalParams
-  ): Promise<void> {
-    return this.sendOperationRequest({ options }, putDictionaryOperationSpec);
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      putDictionaryOperationSpec
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -101,7 +131,13 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   getDictionary(
     options?: ModelFlatteningClientGetDictionaryOptionalParams
   ): Promise<ModelFlatteningClientGetDictionaryResponse> {
-    return this.sendOperationRequest({ options }, getDictionaryOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getDictionaryOperationSpec
+    ) as Promise<ModelFlatteningClientGetDictionaryResponse>;
   }
 
   /**
@@ -110,11 +146,14 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putResourceCollection(
     options?: ModelFlatteningClientPutResourceCollectionOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options },
+      operationArguments,
       putResourceCollectionOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -124,10 +163,13 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   getResourceCollection(
     options?: ModelFlatteningClientGetResourceCollectionOptionalParams
   ): Promise<ModelFlatteningClientGetResourceCollectionResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options },
+      operationArguments,
       getResourceCollectionOperationSpec
-    );
+    ) as Promise<ModelFlatteningClientGetResourceCollectionResponse>;
   }
 
   /**
@@ -137,10 +179,13 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
   putSimpleProduct(
     options?: ModelFlatteningClientPutSimpleProductOptionalParams
   ): Promise<ModelFlatteningClientPutSimpleProductResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options },
+      operationArguments,
       putSimpleProductOperationSpec
-    );
+    ) as Promise<ModelFlatteningClientPutSimpleProductResponse>;
   }
 
   /**
@@ -153,10 +198,14 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
     productId: string,
     options?: ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
   ): Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      productId,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { productId, options },
+      operationArguments,
       postFlattenedSimpleProductOperationSpec
-    );
+    ) as Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse>;
   }
 
   /**
@@ -168,16 +217,20 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
     flattenParameterGroup: FlattenParameterGroup,
     options?: ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
   ): Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      flattenParameterGroup,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { flattenParameterGroup, options },
+      operationArguments,
       putSimpleProductWithGroupingOperationSpec
-    );
+    ) as Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const putArrayOperationSpec: coreClient.OperationSpec = {
+const putArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/array",
   httpMethod: "PUT",
   responses: {
@@ -192,7 +245,7 @@ const putArrayOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getArrayOperationSpec: coreClient.OperationSpec = {
+const getArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/array",
   httpMethod: "GET",
   responses: {
@@ -214,7 +267,7 @@ const getArrayOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putWrappedArrayOperationSpec: coreClient.OperationSpec = {
+const putWrappedArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/wrappedarray",
   httpMethod: "PUT",
   responses: {
@@ -229,7 +282,7 @@ const putWrappedArrayOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getWrappedArrayOperationSpec: coreClient.OperationSpec = {
+const getWrappedArrayOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/wrappedarray",
   httpMethod: "GET",
   responses: {
@@ -249,7 +302,7 @@ const getWrappedArrayOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putDictionaryOperationSpec: coreClient.OperationSpec = {
+const putDictionaryOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/dictionary",
   httpMethod: "PUT",
   responses: {
@@ -264,7 +317,7 @@ const putDictionaryOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getDictionaryOperationSpec: coreClient.OperationSpec = {
+const getDictionaryOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/dictionary",
   httpMethod: "GET",
   responses: {
@@ -284,7 +337,7 @@ const getDictionaryOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putResourceCollectionOperationSpec: coreClient.OperationSpec = {
+const putResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/resourcecollection",
   httpMethod: "PUT",
   responses: {
@@ -299,7 +352,7 @@ const putResourceCollectionOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getResourceCollectionOperationSpec: coreClient.OperationSpec = {
+const getResourceCollectionOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/resourcecollection",
   httpMethod: "GET",
   responses: {
@@ -314,7 +367,7 @@ const getResourceCollectionOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putSimpleProductOperationSpec: coreClient.OperationSpec = {
+const putSimpleProductOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/customFlattening",
   httpMethod: "PUT",
   responses: {
@@ -331,7 +384,7 @@ const putSimpleProductOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const postFlattenedSimpleProductOperationSpec: coreClient.OperationSpec = {
+const postFlattenedSimpleProductOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/customFlattening",
   httpMethod: "POST",
   responses: {
@@ -358,7 +411,7 @@ const postFlattenedSimpleProductOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const putSimpleProductWithGroupingOperationSpec: coreClient.OperationSpec = {
+const putSimpleProductWithGroupingOperationSpec: coreHttp.OperationSpec = {
   path: "/model-flatten/customFlattening/parametergrouping/{name}/",
   httpMethod: "PUT",
   responses: {

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** I am root, and I ref a model with no meta */
 export interface RootWithRefAndNoMeta {
@@ -356,196 +356,358 @@ export type CopyStatusType = "pending" | "success" | "aborted" | "failed";
 
 /** Optional parameters. */
 export interface XmlGetComplexTypeRefNoMetaOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexTypeRefNoMeta operation. */
-export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta;
+export type XmlGetComplexTypeRefNoMetaResponse = RootWithRefAndNoMeta & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: RootWithRefAndNoMeta;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutComplexTypeRefNoMetaOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetComplexTypeRefWithMetaOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getComplexTypeRefWithMeta operation. */
-export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta;
+export type XmlGetComplexTypeRefWithMetaResponse = RootWithRefAndMeta & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: RootWithRefAndMeta;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutComplexTypeRefWithMetaOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface XmlGetSimpleOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlGetSimpleOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getSimple operation. */
-export type XmlGetSimpleResponse = Slideshow;
+export type XmlGetSimpleResponse = Slideshow & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Slideshow;
+  };
+};
 
 /** Optional parameters. */
-export interface XmlPutSimpleOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlPutSimpleOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetWrappedListsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getWrappedLists operation. */
-export type XmlGetWrappedListsResponse = AppleBarrel;
+export type XmlGetWrappedListsResponse = AppleBarrel & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: AppleBarrel;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutWrappedListsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetHeadersOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getHeaders operation. */
-export type XmlGetHeadersResponse = XmlGetHeadersHeaders;
+export type XmlGetHeadersResponse = XmlGetHeadersHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: XmlGetHeadersHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlGetEmptyListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyList operation. */
-export type XmlGetEmptyListResponse = Slideshow;
+export type XmlGetEmptyListResponse = Slideshow & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Slideshow;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutEmptyListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetEmptyWrappedListsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyWrappedLists operation. */
-export type XmlGetEmptyWrappedListsResponse = AppleBarrel;
+export type XmlGetEmptyWrappedListsResponse = AppleBarrel & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: AppleBarrel;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutEmptyWrappedListsOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetRootListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getRootList operation. */
-export type XmlGetRootListResponse = Banana[];
+export type XmlGetRootListResponse = Banana[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Banana[];
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutRootListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetRootListSingleItemOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getRootListSingleItem operation. */
-export type XmlGetRootListSingleItemResponse = Banana[];
+export type XmlGetRootListSingleItemResponse = Banana[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Banana[];
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutRootListSingleItemOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetEmptyRootListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyRootList operation. */
-export type XmlGetEmptyRootListResponse = Banana[];
+export type XmlGetEmptyRootListResponse = Banana[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Banana[];
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutEmptyRootListOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlGetEmptyChildElementOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getEmptyChildElement operation. */
-export type XmlGetEmptyChildElementResponse = Banana;
+export type XmlGetEmptyChildElementResponse = Banana & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Banana;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutEmptyChildElementOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlListContainersOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listContainers operation. */
-export type XmlListContainersResponse = ListContainersResponse;
+export type XmlListContainersResponse = ListContainersResponse & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ListContainersResponse;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlGetServicePropertiesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getServiceProperties operation. */
-export type XmlGetServicePropertiesResponse = StorageServiceProperties;
+export type XmlGetServicePropertiesResponse = StorageServiceProperties & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: StorageServiceProperties;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlPutServicePropertiesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface XmlGetAclsOptionalParams extends coreClient.OperationOptions {}
+export interface XmlGetAclsOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getAcls operation. */
-export type XmlGetAclsResponse = SignedIdentifier[];
+export type XmlGetAclsResponse = SignedIdentifier[] & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: SignedIdentifier[];
+  };
+};
 
 /** Optional parameters. */
-export interface XmlPutAclsOptionalParams extends coreClient.OperationOptions {}
+export interface XmlPutAclsOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface XmlListBlobsOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlListBlobsOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the listBlobs operation. */
-export type XmlListBlobsResponse = ListBlobsResponse;
+export type XmlListBlobsResponse = ListBlobsResponse & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ListBlobsResponse;
+  };
+};
 
 /** Optional parameters. */
-export interface XmlJsonInputOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlJsonInputOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlJsonOutputOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the jsonOutput operation. */
-export type XmlJsonOutputResponse = JsonOutput;
+export type XmlJsonOutputResponse = JsonOutput & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: JsonOutput;
+  };
+};
 
 /** Optional parameters. */
 export interface XmlGetXMsTextOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getXMsText operation. */
-export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty;
+export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ObjectWithXMsTextProperty;
+  };
+};
 
 /** Optional parameters. */
-export interface XmlGetBytesOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlGetBytesOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getBytes operation. */
-export type XmlGetBytesResponse = ModelWithByteProperty;
+export type XmlGetBytesResponse = ModelWithByteProperty & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ModelWithByteProperty;
+  };
+};
 
 /** Optional parameters. */
-export interface XmlPutBinaryOptionalParams
-  extends coreClient.OperationOptions {}
+export interface XmlPutBinaryOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface XmlGetUriOptionalParams extends coreClient.OperationOptions {}
+export interface XmlGetUriOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUri operation. */
-export type XmlGetUriResponse = ModelWithUrlProperty;
+export type XmlGetUriResponse = ModelWithUrlProperty & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: ModelWithUrlProperty;
+  };
+};
 
 /** Optional parameters. */
-export interface XmlPutUriOptionalParams extends coreClient.OperationOptions {}
+export interface XmlPutUriOptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XmlServiceClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

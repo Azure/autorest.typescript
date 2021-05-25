@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   DedicatedHostGroup,
   DedicatedHostGroupsListByResourceGroupOptionalParams,
@@ -81,7 +80,7 @@ export interface DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     options?: DedicatedHostGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves information about a dedicated host group.
    * @param resourceGroupName The name of the resource group.

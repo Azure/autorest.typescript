@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { WebApps } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -5043,13 +5043,7 @@ export class WebAppsImpl implements WebApps {
   private _list(
     options?: WebAppsListOptionalParams
   ): Promise<WebAppsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<WebAppsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -5061,14 +5055,10 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     options?: WebAppsListByResourceGroupOptionalParams
   ): Promise<WebAppsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<WebAppsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -5082,15 +5072,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetOptionalParams
   ): Promise<WebAppsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getOperationSpec
-    ) as Promise<WebAppsGetResponse>;
+    );
   }
 
   /**
@@ -5113,24 +5098,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, siteEnvelope, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -5170,16 +5172,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -5197,16 +5194,10 @@ export class WebAppsImpl implements WebApps {
     siteEnvelope: SitePatchResource,
     options?: WebAppsUpdateOptionalParams
   ): Promise<WebAppsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteEnvelope, options },
       updateOperationSpec
-    ) as Promise<WebAppsUpdateResponse>;
+    );
   }
 
   /**
@@ -5220,15 +5211,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsAnalyzeCustomHostnameOptionalParams
   ): Promise<WebAppsAnalyzeCustomHostnameResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       analyzeCustomHostnameOperationSpec
-    ) as Promise<WebAppsAnalyzeCustomHostnameResponse>;
+    );
   }
 
   /**
@@ -5243,17 +5229,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsApplySlotConfigToProductionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slotSwapEntity,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slotSwapEntity, options },
       applySlotConfigToProductionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -5270,16 +5250,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsBackupOptionalParams
   ): Promise<WebAppsBackupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, request, options },
       backupOperationSpec
-    ) as Promise<WebAppsBackupResponse>;
+    );
   }
 
   /**
@@ -5293,15 +5267,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListBackupsOptionalParams
   ): Promise<WebAppsListBackupsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listBackupsOperationSpec
-    ) as Promise<WebAppsListBackupsResponse>;
+    );
   }
 
   /**
@@ -5317,16 +5286,10 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     options?: WebAppsGetBackupStatusOptionalParams
   ): Promise<WebAppsGetBackupStatusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, options },
       getBackupStatusOperationSpec
-    ) as Promise<WebAppsGetBackupStatusResponse>;
+    );
   }
 
   /**
@@ -5341,17 +5304,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     backupId: string,
     options?: WebAppsDeleteBackupOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, options },
       deleteBackupOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -5371,17 +5328,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsListBackupStatusSecretsOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, request, options },
       listBackupStatusSecretsOperationSpec
-    ) as Promise<WebAppsListBackupStatusSecretsResponse>;
+    );
   }
 
   /**
@@ -5398,28 +5348,42 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      request,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, backupId, request, options },
       restoreOperationSpec,
       sendOperation
     );
@@ -5439,7 +5403,7 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     request: RestoreRequest,
     options?: WebAppsRestoreOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestore(
       resourceGroupName,
       name,
@@ -5461,15 +5425,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListConfigurationsOptionalParams
   ): Promise<WebAppsListConfigurationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listConfigurationsOperationSpec
-    ) as Promise<WebAppsListConfigurationsResponse>;
+    );
   }
 
   /**
@@ -5485,16 +5444,10 @@ export class WebAppsImpl implements WebApps {
     appSettings: StringDictionary,
     options?: WebAppsUpdateApplicationSettingsOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      appSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, appSettings, options },
       updateApplicationSettingsOperationSpec
-    ) as Promise<WebAppsUpdateApplicationSettingsResponse>;
+    );
   }
 
   /**
@@ -5508,15 +5461,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListApplicationSettingsOptionalParams
   ): Promise<WebAppsListApplicationSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listApplicationSettingsOperationSpec
-    ) as Promise<WebAppsListApplicationSettingsResponse>;
+    );
   }
 
   /**
@@ -5532,16 +5480,10 @@ export class WebAppsImpl implements WebApps {
     siteAuthSettings: SiteAuthSettings,
     options?: WebAppsUpdateAuthSettingsOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteAuthSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteAuthSettings, options },
       updateAuthSettingsOperationSpec
-    ) as Promise<WebAppsUpdateAuthSettingsResponse>;
+    );
   }
 
   /**
@@ -5555,15 +5497,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetAuthSettingsOptionalParams
   ): Promise<WebAppsGetAuthSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getAuthSettingsOperationSpec
-    ) as Promise<WebAppsGetAuthSettingsResponse>;
+    );
   }
 
   /**
@@ -5579,16 +5516,10 @@ export class WebAppsImpl implements WebApps {
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
     options?: WebAppsUpdateAzureStorageAccountsOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      azureStorageAccounts,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, azureStorageAccounts, options },
       updateAzureStorageAccountsOperationSpec
-    ) as Promise<WebAppsUpdateAzureStorageAccountsResponse>;
+    );
   }
 
   /**
@@ -5602,15 +5533,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListAzureStorageAccountsOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listAzureStorageAccountsOperationSpec
-    ) as Promise<WebAppsListAzureStorageAccountsResponse>;
+    );
   }
 
   /**
@@ -5626,16 +5552,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsUpdateBackupConfigurationOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, request, options },
       updateBackupConfigurationOperationSpec
-    ) as Promise<WebAppsUpdateBackupConfigurationResponse>;
+    );
   }
 
   /**
@@ -5648,16 +5568,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteBackupConfigurationOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteBackupConfigurationOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -5671,15 +5586,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetBackupConfigurationOptionalParams
   ): Promise<WebAppsGetBackupConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getBackupConfigurationOperationSpec
-    ) as Promise<WebAppsGetBackupConfigurationResponse>;
+    );
   }
 
   /**
@@ -5693,15 +5603,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
   ): Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getAppSettingsKeyVaultReferencesOperationSpec
-    ) as Promise<WebAppsGetAppSettingsKeyVaultReferencesResponse>;
+    );
   }
 
   /**
@@ -5717,16 +5622,10 @@ export class WebAppsImpl implements WebApps {
     appSettingKey: string,
     options?: WebAppsGetAppSettingKeyVaultReferenceOptionalParams
   ): Promise<WebAppsGetAppSettingKeyVaultReferenceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      appSettingKey,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, appSettingKey, options },
       getAppSettingKeyVaultReferenceOperationSpec
-    ) as Promise<WebAppsGetAppSettingKeyVaultReferenceResponse>;
+    );
   }
 
   /**
@@ -5742,16 +5641,10 @@ export class WebAppsImpl implements WebApps {
     connectionStrings: ConnectionStringDictionary,
     options?: WebAppsUpdateConnectionStringsOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      connectionStrings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, connectionStrings, options },
       updateConnectionStringsOperationSpec
-    ) as Promise<WebAppsUpdateConnectionStringsResponse>;
+    );
   }
 
   /**
@@ -5765,15 +5658,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListConnectionStringsOptionalParams
   ): Promise<WebAppsListConnectionStringsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listConnectionStringsOperationSpec
-    ) as Promise<WebAppsListConnectionStringsResponse>;
+    );
   }
 
   /**
@@ -5787,15 +5675,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetDiagnosticLogsConfigurationOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getDiagnosticLogsConfigurationOperationSpec
-    ) as Promise<WebAppsGetDiagnosticLogsConfigurationResponse>;
+    );
   }
 
   /**
@@ -5812,16 +5695,10 @@ export class WebAppsImpl implements WebApps {
     siteLogsConfig: SiteLogsConfig,
     options?: WebAppsUpdateDiagnosticLogsConfigOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteLogsConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteLogsConfig, options },
       updateDiagnosticLogsConfigOperationSpec
-    ) as Promise<WebAppsUpdateDiagnosticLogsConfigResponse>;
+    );
   }
 
   /**
@@ -5837,16 +5714,10 @@ export class WebAppsImpl implements WebApps {
     metadata: StringDictionary,
     options?: WebAppsUpdateMetadataOptionalParams
   ): Promise<WebAppsUpdateMetadataResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      metadata,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, metadata, options },
       updateMetadataOperationSpec
-    ) as Promise<WebAppsUpdateMetadataResponse>;
+    );
   }
 
   /**
@@ -5860,15 +5731,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListMetadataOptionalParams
   ): Promise<WebAppsListMetadataResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listMetadataOperationSpec
-    ) as Promise<WebAppsListMetadataResponse>;
+    );
   }
 
   /**
@@ -5887,23 +5753,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsListPublishingCredentialsResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsListPublishingCredentialsResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsListPublishingCredentialsResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       listPublishingCredentialsOperationSpec,
       sendOperation
     );
@@ -5941,16 +5825,10 @@ export class WebAppsImpl implements WebApps {
     pushSettings: PushSettings,
     options?: WebAppsUpdateSitePushSettingsOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      pushSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, pushSettings, options },
       updateSitePushSettingsOperationSpec
-    ) as Promise<WebAppsUpdateSitePushSettingsResponse>;
+    );
   }
 
   /**
@@ -5964,15 +5842,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSitePushSettingsOptionalParams
   ): Promise<WebAppsListSitePushSettingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSitePushSettingsOperationSpec
-    ) as Promise<WebAppsListSitePushSettingsResponse>;
+    );
   }
 
   /**
@@ -5987,15 +5860,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsListSlotConfigurationNamesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSlotConfigurationNamesOperationSpec
-    ) as Promise<WebAppsListSlotConfigurationNamesResponse>;
+    );
   }
 
   /**
@@ -6012,16 +5880,10 @@ export class WebAppsImpl implements WebApps {
     slotConfigNames: SlotConfigNamesResource,
     options?: WebAppsUpdateSlotConfigurationNamesOptionalParams
   ): Promise<WebAppsUpdateSlotConfigurationNamesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slotConfigNames,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slotConfigNames, options },
       updateSlotConfigurationNamesOperationSpec
-    ) as Promise<WebAppsUpdateSlotConfigurationNamesResponse>;
+    );
   }
 
   /**
@@ -6036,15 +5898,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetConfigurationOptionalParams
   ): Promise<WebAppsGetConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getConfigurationOperationSpec
-    ) as Promise<WebAppsGetConfigurationResponse>;
+    );
   }
 
   /**
@@ -6060,16 +5917,10 @@ export class WebAppsImpl implements WebApps {
     siteConfig: SiteConfigResource,
     options?: WebAppsCreateOrUpdateConfigurationOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteConfig, options },
       createOrUpdateConfigurationOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateConfigurationResponse>;
+    );
   }
 
   /**
@@ -6085,16 +5936,10 @@ export class WebAppsImpl implements WebApps {
     siteConfig: SiteConfigResource,
     options?: WebAppsUpdateConfigurationOptionalParams
   ): Promise<WebAppsUpdateConfigurationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteConfig, options },
       updateConfigurationOperationSpec
-    ) as Promise<WebAppsUpdateConfigurationResponse>;
+    );
   }
 
   /**
@@ -6109,15 +5954,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListConfigurationSnapshotInfoOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listConfigurationSnapshotInfoOperationSpec
-    ) as Promise<WebAppsListConfigurationSnapshotInfoResponse>;
+    );
   }
 
   /**
@@ -6133,16 +5973,10 @@ export class WebAppsImpl implements WebApps {
     snapshotId: string,
     options?: WebAppsGetConfigurationSnapshotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      snapshotId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, snapshotId, options },
       getConfigurationSnapshotOperationSpec
-    ) as Promise<WebAppsGetConfigurationSnapshotResponse>;
+    );
   }
 
   /**
@@ -6157,17 +5991,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     snapshotId: string,
     options?: WebAppsRecoverSiteConfigurationSnapshotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      snapshotId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, snapshotId, options },
       recoverSiteConfigurationSnapshotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6181,15 +6009,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetWebSiteContainerLogsOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getWebSiteContainerLogsOperationSpec
-    ) as Promise<WebAppsGetWebSiteContainerLogsResponse>;
+    );
   }
 
   /**
@@ -6203,15 +6026,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetContainerLogsZipOptionalParams
   ): Promise<WebAppsGetContainerLogsZipResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getContainerLogsZipOperationSpec
-    ) as Promise<WebAppsGetContainerLogsZipResponse>;
+    );
   }
 
   /**
@@ -6225,15 +6043,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListContinuousWebJobsOptionalParams
   ): Promise<WebAppsListContinuousWebJobsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listContinuousWebJobsOperationSpec
-    ) as Promise<WebAppsListContinuousWebJobsResponse>;
+    );
   }
 
   /**
@@ -6249,16 +6062,10 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     options?: WebAppsGetContinuousWebJobOptionalParams
   ): Promise<WebAppsGetContinuousWebJobResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       getContinuousWebJobOperationSpec
-    ) as Promise<WebAppsGetContinuousWebJobResponse>;
+    );
   }
 
   /**
@@ -6273,17 +6080,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsDeleteContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       deleteContinuousWebJobOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6298,17 +6099,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsStartContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       startContinuousWebJobOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6323,17 +6118,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsStopContinuousWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       stopContinuousWebJobOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6347,15 +6136,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListDeploymentsOptionalParams
   ): Promise<WebAppsListDeploymentsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listDeploymentsOperationSpec
-    ) as Promise<WebAppsListDeploymentsResponse>;
+    );
   }
 
   /**
@@ -6371,16 +6155,10 @@ export class WebAppsImpl implements WebApps {
     id: string,
     options?: WebAppsGetDeploymentOptionalParams
   ): Promise<WebAppsGetDeploymentResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, options },
       getDeploymentOperationSpec
-    ) as Promise<WebAppsGetDeploymentResponse>;
+    );
   }
 
   /**
@@ -6398,17 +6176,10 @@ export class WebAppsImpl implements WebApps {
     deployment: Deployment,
     options?: WebAppsCreateDeploymentOptionalParams
   ): Promise<WebAppsCreateDeploymentResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      deployment,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, deployment, options },
       createDeploymentOperationSpec
-    ) as Promise<WebAppsCreateDeploymentResponse>;
+    );
   }
 
   /**
@@ -6423,17 +6194,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     id: string,
     options?: WebAppsDeleteDeploymentOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, options },
       deleteDeploymentOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6450,16 +6215,10 @@ export class WebAppsImpl implements WebApps {
     id: string,
     options?: WebAppsListDeploymentLogOptionalParams
   ): Promise<WebAppsListDeploymentLogResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, options },
       listDeploymentLogOperationSpec
-    ) as Promise<WebAppsListDeploymentLogResponse>;
+    );
   }
 
   /**
@@ -6477,16 +6236,10 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: WebAppsDiscoverBackupOptionalParams
   ): Promise<WebAppsDiscoverBackupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, request, options },
       discoverBackupOperationSpec
-    ) as Promise<WebAppsDiscoverBackupResponse>;
+    );
   }
 
   /**
@@ -6500,15 +6253,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListDomainOwnershipIdentifiersOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listDomainOwnershipIdentifiersOperationSpec
-    ) as Promise<WebAppsListDomainOwnershipIdentifiersResponse>;
+    );
   }
 
   /**
@@ -6524,16 +6272,10 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifierName: string,
     options?: WebAppsGetDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainOwnershipIdentifierName, options },
       getDomainOwnershipIdentifierOperationSpec
-    ) as Promise<WebAppsGetDomainOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -6552,17 +6294,16 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifier: Identifier,
     options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        domainOwnershipIdentifierName,
+        domainOwnershipIdentifier,
+        options
+      },
       createOrUpdateDomainOwnershipIdentifierOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -6577,17 +6318,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     domainOwnershipIdentifierName: string,
     options?: WebAppsDeleteDomainOwnershipIdentifierOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainOwnershipIdentifierName, options },
       deleteDomainOwnershipIdentifierOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6606,17 +6341,16 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifier: Identifier,
     options?: WebAppsUpdateDomainOwnershipIdentifierOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        domainOwnershipIdentifierName,
+        domainOwnershipIdentifier,
+        options
+      },
       updateDomainOwnershipIdentifierOperationSpec
-    ) as Promise<WebAppsUpdateDomainOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -6630,15 +6364,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetMSDeployStatusOptionalParams
   ): Promise<WebAppsGetMSDeployStatusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getMSDeployStatusOperationSpec
-    ) as Promise<WebAppsGetMSDeployStatusResponse>;
+    );
   }
 
   /**
@@ -6659,24 +6388,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateMSDeployOperationResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      mSDeploy,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateMSDeployOperationResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateMSDeployOperationResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, mSDeploy, options },
       createMSDeployOperationOperationSpec,
       sendOperation
     );
@@ -6715,15 +6461,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetMSDeployLogOptionalParams
   ): Promise<WebAppsGetMSDeployLogResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getMSDeployLogOperationSpec
-    ) as Promise<WebAppsGetMSDeployLogResponse>;
+    );
   }
 
   /**
@@ -6737,15 +6478,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListFunctionsOptionalParams
   ): Promise<WebAppsListFunctionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listFunctionsOperationSpec
-    ) as Promise<WebAppsListFunctionsResponse>;
+    );
   }
 
   /**
@@ -6759,15 +6495,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetFunctionsAdminTokenOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getFunctionsAdminTokenOperationSpec
-    ) as Promise<WebAppsGetFunctionsAdminTokenResponse>;
+    );
   }
 
   /**
@@ -6783,16 +6514,10 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     options?: WebAppsGetFunctionOptionalParams
   ): Promise<WebAppsGetFunctionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, options },
       getFunctionOperationSpec
-    ) as Promise<WebAppsGetFunctionResponse>;
+    );
   }
 
   /**
@@ -6815,25 +6540,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateFunctionResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      functionEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateFunctionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateFunctionResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, functionName, functionEnvelope, options },
       createFunctionOperationSpec,
       sendOperation
     );
@@ -6876,17 +6617,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     functionName: string,
     options?: WebAppsDeleteFunctionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, options },
       deleteFunctionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6906,18 +6641,10 @@ export class WebAppsImpl implements WebApps {
     key: KeyInfo,
     options?: WebAppsCreateOrUpdateFunctionSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      keyName,
-      key,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, keyName, key, options },
       createOrUpdateFunctionSecretOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateFunctionSecretResponse>;
+    );
   }
 
   /**
@@ -6934,18 +6661,11 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     keyName: string,
     options?: WebAppsDeleteFunctionSecretOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      keyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, keyName, options },
       deleteFunctionSecretOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -6961,16 +6681,10 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     options?: WebAppsListFunctionKeysOptionalParams
   ): Promise<WebAppsListFunctionKeysResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, options },
       listFunctionKeysOperationSpec
-    ) as Promise<WebAppsListFunctionKeysResponse>;
+    );
   }
 
   /**
@@ -6986,16 +6700,10 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     options?: WebAppsListFunctionSecretsOptionalParams
   ): Promise<WebAppsListFunctionSecretsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, options },
       listFunctionSecretsOperationSpec
-    ) as Promise<WebAppsListFunctionSecretsResponse>;
+    );
   }
 
   /**
@@ -7009,15 +6717,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListHostKeysOptionalParams
   ): Promise<WebAppsListHostKeysResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listHostKeysOperationSpec
-    ) as Promise<WebAppsListHostKeysResponse>;
+    );
   }
 
   /**
@@ -7030,16 +6733,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsListSyncStatusOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSyncStatusOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7052,16 +6750,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncFunctionsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       syncFunctionsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7081,18 +6774,10 @@ export class WebAppsImpl implements WebApps {
     key: KeyInfo,
     options?: WebAppsCreateOrUpdateHostSecretOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      keyType,
-      keyName,
-      key,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, keyType, keyName, key, options },
       createOrUpdateHostSecretOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHostSecretResponse>;
+    );
   }
 
   /**
@@ -7109,18 +6794,11 @@ export class WebAppsImpl implements WebApps {
     keyType: string,
     keyName: string,
     options?: WebAppsDeleteHostSecretOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      keyType,
-      keyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, keyType, keyName, options },
       deleteHostSecretOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7134,15 +6812,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListHostNameBindingsOptionalParams
   ): Promise<WebAppsListHostNameBindingsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listHostNameBindingsOperationSpec
-    ) as Promise<WebAppsListHostNameBindingsResponse>;
+    );
   }
 
   /**
@@ -7158,16 +6831,10 @@ export class WebAppsImpl implements WebApps {
     hostName: string,
     options?: WebAppsGetHostNameBindingOptionalParams
   ): Promise<WebAppsGetHostNameBindingResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, hostName, options },
       getHostNameBindingOperationSpec
-    ) as Promise<WebAppsGetHostNameBindingResponse>;
+    );
   }
 
   /**
@@ -7185,17 +6852,10 @@ export class WebAppsImpl implements WebApps {
     hostNameBinding: HostNameBinding,
     options?: WebAppsCreateOrUpdateHostNameBindingOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostName,
-      hostNameBinding,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, hostName, hostNameBinding, options },
       createOrUpdateHostNameBindingOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHostNameBindingResponse>;
+    );
   }
 
   /**
@@ -7210,17 +6870,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     hostName: string,
     options?: WebAppsDeleteHostNameBindingOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, hostName, options },
       deleteHostNameBindingOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7238,17 +6892,10 @@ export class WebAppsImpl implements WebApps {
     relayName: string,
     options?: WebAppsGetHybridConnectionOptionalParams
   ): Promise<WebAppsGetHybridConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       getHybridConnectionOperationSpec
-    ) as Promise<WebAppsGetHybridConnectionResponse>;
+    );
   }
 
   /**
@@ -7268,18 +6915,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: HybridConnection,
     options?: WebAppsCreateOrUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        namespaceName,
+        relayName,
+        connectionEnvelope,
+        options
+      },
       createOrUpdateHybridConnectionOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHybridConnectionResponse>;
+    );
   }
 
   /**
@@ -7296,18 +6942,11 @@ export class WebAppsImpl implements WebApps {
     namespaceName: string,
     relayName: string,
     options?: WebAppsDeleteHybridConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, options },
       deleteHybridConnectionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7327,18 +6966,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: HybridConnection,
     options?: WebAppsUpdateHybridConnectionOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        namespaceName,
+        relayName,
+        connectionEnvelope,
+        options
+      },
       updateHybridConnectionOperationSpec
-    ) as Promise<WebAppsUpdateHybridConnectionResponse>;
+    );
   }
 
   /**
@@ -7352,15 +6990,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListHybridConnectionsOptionalParams
   ): Promise<WebAppsListHybridConnectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listHybridConnectionsOperationSpec
-    ) as Promise<WebAppsListHybridConnectionsResponse>;
+    );
   }
 
   /**
@@ -7374,15 +7007,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListRelayServiceConnectionsOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listRelayServiceConnectionsOperationSpec
-    ) as Promise<WebAppsListRelayServiceConnectionsResponse>;
+    );
   }
 
   /**
@@ -7398,16 +7026,10 @@ export class WebAppsImpl implements WebApps {
     entityName: string,
     options?: WebAppsGetRelayServiceConnectionOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, options },
       getRelayServiceConnectionOperationSpec
-    ) as Promise<WebAppsGetRelayServiceConnectionResponse>;
+    );
   }
 
   /**
@@ -7426,17 +7048,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: RelayServiceConnectionEntity,
     options?: WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, connectionEnvelope, options },
       createOrUpdateRelayServiceConnectionOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateRelayServiceConnectionResponse>;
+    );
   }
 
   /**
@@ -7451,17 +7066,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     entityName: string,
     options?: WebAppsDeleteRelayServiceConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, options },
       deleteRelayServiceConnectionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7480,17 +7089,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: RelayServiceConnectionEntity,
     options?: WebAppsUpdateRelayServiceConnectionOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, connectionEnvelope, options },
       updateRelayServiceConnectionOperationSpec
-    ) as Promise<WebAppsUpdateRelayServiceConnectionResponse>;
+    );
   }
 
   /**
@@ -7504,15 +7106,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListInstanceIdentifiersOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listInstanceIdentifiersOperationSpec
-    ) as Promise<WebAppsListInstanceIdentifiersResponse>;
+    );
   }
 
   /**
@@ -7528,16 +7125,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceInfoOptionalParams
   ): Promise<WebAppsGetInstanceInfoResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, options },
       getInstanceInfoOperationSpec
-    ) as Promise<WebAppsGetInstanceInfoResponse>;
+    );
   }
 
   /**
@@ -7553,16 +7144,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceMsDeployStatusOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, options },
       getInstanceMsDeployStatusOperationSpec
-    ) as Promise<WebAppsGetInstanceMsDeployStatusResponse>;
+    );
   }
 
   /**
@@ -7585,25 +7170,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateInstanceMSDeployOperationResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      mSDeploy,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateInstanceMSDeployOperationResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateInstanceMSDeployOperationResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationOperationSpec,
       sendOperation
     );
@@ -7647,16 +7248,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceMSDeployLogOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, options },
       getInstanceMSDeployLogOperationSpec
-    ) as Promise<WebAppsGetInstanceMSDeployLogResponse>;
+    );
   }
 
   /**
@@ -7674,16 +7269,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessesOptionalParams
   ): Promise<WebAppsListInstanceProcessesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, options },
       listInstanceProcessesOperationSpec
-    ) as Promise<WebAppsListInstanceProcessesResponse>;
+    );
   }
 
   /**
@@ -7702,17 +7291,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessOptionalParams
   ): Promise<WebAppsGetInstanceProcessResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, options },
       getInstanceProcessOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessResponse>;
+    );
   }
 
   /**
@@ -7731,18 +7313,11 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     instanceId: string,
     options?: WebAppsDeleteInstanceProcessOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, options },
       deleteInstanceProcessOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -7762,17 +7337,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessDumpOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, options },
       getInstanceProcessDumpOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessDumpResponse>;
+    );
   }
 
   /**
@@ -7792,17 +7360,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessModulesOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, options },
       listInstanceProcessModulesOperationSpec
-    ) as Promise<WebAppsListInstanceProcessModulesResponse>;
+    );
   }
 
   /**
@@ -7823,18 +7384,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessModuleOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      baseAddress,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, baseAddress, instanceId, options },
       getInstanceProcessModuleOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessModuleResponse>;
+    );
   }
 
   /**
@@ -7854,17 +7407,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessThreadsOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, options },
       listInstanceProcessThreadsOperationSpec
-    ) as Promise<WebAppsListInstanceProcessThreadsResponse>;
+    );
   }
 
   /**
@@ -7878,15 +7424,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsIsCloneableOptionalParams
   ): Promise<WebAppsIsCloneableResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       isCloneableOperationSpec
-    ) as Promise<WebAppsIsCloneableResponse>;
+    );
   }
 
   /**
@@ -7900,15 +7441,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSiteBackupsOptionalParams
   ): Promise<WebAppsListSiteBackupsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSiteBackupsOperationSpec
-    ) as Promise<WebAppsListSiteBackupsResponse>;
+    );
   }
 
   /**
@@ -7922,15 +7458,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSyncFunctionTriggersOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSyncFunctionTriggersOperationSpec
-    ) as Promise<WebAppsListSyncFunctionTriggersResponse>;
+    );
   }
 
   /**
@@ -7953,25 +7484,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsMigrateStorageResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      subscriptionName,
-      resourceGroupName,
-      name,
-      migrationOptions,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsMigrateStorageResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsMigrateStorageResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { subscriptionName, resourceGroupName, name, migrationOptions, options },
       migrateStorageOperationSpec,
       sendOperation
     );
@@ -8020,24 +7567,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsMigrateMySqlResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      migrationRequestEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsMigrateMySqlResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsMigrateMySqlResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, migrationRequestEnvelope, options },
       migrateMySqlOperationSpec,
       sendOperation
     );
@@ -8077,15 +7641,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetMigrateMySqlStatusOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getMigrateMySqlStatusOperationSpec
-    ) as Promise<WebAppsGetMigrateMySqlStatusResponse>;
+    );
   }
 
   /**
@@ -8099,15 +7658,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getSwiftVirtualNetworkConnectionOperationSpec
-    ) as Promise<WebAppsGetSwiftVirtualNetworkConnectionResponse>;
+    );
   }
 
   /**
@@ -8126,16 +7680,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: SwiftVirtualNetwork,
     options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, connectionEnvelope, options },
       createOrUpdateSwiftVirtualNetworkConnectionOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse>;
+    );
   }
 
   /**
@@ -8148,16 +7696,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteSwiftVirtualNetworkOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteSwiftVirtualNetworkOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8176,16 +7719,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: SwiftVirtualNetwork,
     options?: WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, connectionEnvelope, options },
       updateSwiftVirtualNetworkConnectionOperationSpec
-    ) as Promise<WebAppsUpdateSwiftVirtualNetworkConnectionResponse>;
+    );
   }
 
   /**
@@ -8201,16 +7738,10 @@ export class WebAppsImpl implements WebApps {
     view: string,
     options?: WebAppsListNetworkFeaturesOptionalParams
   ): Promise<WebAppsListNetworkFeaturesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      view,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, view, options },
       listNetworkFeaturesOperationSpec
-    ) as Promise<WebAppsListNetworkFeaturesResponse>;
+    );
   }
 
   /**
@@ -8227,16 +7758,10 @@ export class WebAppsImpl implements WebApps {
     operationId: string,
     options?: WebAppsGetNetworkTraceOperationOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, options },
       getNetworkTraceOperationOperationSpec
-    ) as Promise<WebAppsGetNetworkTraceOperationResponse>;
+    );
   }
 
   /**
@@ -8250,15 +7775,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsStartWebSiteNetworkTraceOptionalParams
   ): Promise<WebAppsStartWebSiteNetworkTraceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       startWebSiteNetworkTraceOperationSpec
-    ) as Promise<WebAppsStartWebSiteNetworkTraceResponse>;
+    );
   }
 
   /**
@@ -8277,23 +7797,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsStartWebSiteNetworkTraceOperationResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsStartWebSiteNetworkTraceOperationResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsStartWebSiteNetworkTraceOperationResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       startWebSiteNetworkTraceOperationOperationSpec,
       sendOperation
     );
@@ -8328,16 +7866,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopWebSiteNetworkTraceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       stopWebSiteNetworkTraceOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8354,16 +7887,10 @@ export class WebAppsImpl implements WebApps {
     operationId: string,
     options?: WebAppsGetNetworkTracesOptionalParams
   ): Promise<WebAppsGetNetworkTracesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, options },
       getNetworkTracesOperationSpec
-    ) as Promise<WebAppsGetNetworkTracesResponse>;
+    );
   }
 
   /**
@@ -8380,16 +7907,10 @@ export class WebAppsImpl implements WebApps {
     operationId: string,
     options?: WebAppsGetNetworkTraceOperationV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationV2Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, options },
       getNetworkTraceOperationV2OperationSpec
-    ) as Promise<WebAppsGetNetworkTraceOperationV2Response>;
+    );
   }
 
   /**
@@ -8406,16 +7927,10 @@ export class WebAppsImpl implements WebApps {
     operationId: string,
     options?: WebAppsGetNetworkTracesV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesV2Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, options },
       getNetworkTracesV2OperationSpec
-    ) as Promise<WebAppsGetNetworkTracesV2Response>;
+    );
   }
 
   /**
@@ -8428,16 +7943,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsGenerateNewSitePublishingPasswordOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       generateNewSitePublishingPasswordOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8451,15 +7961,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListPerfMonCountersOptionalParams
   ): Promise<WebAppsListPerfMonCountersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listPerfMonCountersOperationSpec
-    ) as Promise<WebAppsListPerfMonCountersResponse>;
+    );
   }
 
   /**
@@ -8473,15 +7978,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetSitePhpErrorLogFlagOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getSitePhpErrorLogFlagOperationSpec
-    ) as Promise<WebAppsGetSitePhpErrorLogFlagResponse>;
+    );
   }
 
   /**
@@ -8495,15 +7995,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListPremierAddOnsOptionalParams
   ): Promise<WebAppsListPremierAddOnsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listPremierAddOnsOperationSpec
-    ) as Promise<WebAppsListPremierAddOnsResponse>;
+    );
   }
 
   /**
@@ -8519,16 +8014,10 @@ export class WebAppsImpl implements WebApps {
     premierAddOnName: string,
     options?: WebAppsGetPremierAddOnOptionalParams
   ): Promise<WebAppsGetPremierAddOnResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, options },
       getPremierAddOnOperationSpec
-    ) as Promise<WebAppsGetPremierAddOnResponse>;
+    );
   }
 
   /**
@@ -8546,17 +8035,10 @@ export class WebAppsImpl implements WebApps {
     premierAddOn: PremierAddOn,
     options?: WebAppsAddPremierAddOnOptionalParams
   ): Promise<WebAppsAddPremierAddOnResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      premierAddOn,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, premierAddOn, options },
       addPremierAddOnOperationSpec
-    ) as Promise<WebAppsAddPremierAddOnResponse>;
+    );
   }
 
   /**
@@ -8571,17 +8053,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     premierAddOnName: string,
     options?: WebAppsDeletePremierAddOnOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, options },
       deletePremierAddOnOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8599,17 +8075,10 @@ export class WebAppsImpl implements WebApps {
     premierAddOn: PremierAddOnPatchResource,
     options?: WebAppsUpdatePremierAddOnOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      premierAddOn,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, premierAddOn, options },
       updatePremierAddOnOperationSpec
-    ) as Promise<WebAppsUpdatePremierAddOnResponse>;
+    );
   }
 
   /**
@@ -8624,15 +8093,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetPrivateAccessOptionalParams
   ): Promise<WebAppsGetPrivateAccessResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getPrivateAccessOperationSpec
-    ) as Promise<WebAppsGetPrivateAccessResponse>;
+    );
   }
 
   /**
@@ -8649,16 +8113,10 @@ export class WebAppsImpl implements WebApps {
     access: PrivateAccess,
     options?: WebAppsPutPrivateAccessVnetOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      access,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, access, options },
       putPrivateAccessVnetOperationSpec
-    ) as Promise<WebAppsPutPrivateAccessVnetResponse>;
+    );
   }
 
   /**
@@ -8673,15 +8131,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListProcessesOptionalParams
   ): Promise<WebAppsListProcessesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listProcessesOperationSpec
-    ) as Promise<WebAppsListProcessesResponse>;
+    );
   }
 
   /**
@@ -8697,16 +8150,10 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     options?: WebAppsGetProcessOptionalParams
   ): Promise<WebAppsGetProcessResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, options },
       getProcessOperationSpec
-    ) as Promise<WebAppsGetProcessResponse>;
+    );
   }
 
   /**
@@ -8722,17 +8169,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     processId: string,
     options?: WebAppsDeleteProcessOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, options },
       deleteProcessOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8749,16 +8190,10 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     options?: WebAppsGetProcessDumpOptionalParams
   ): Promise<WebAppsGetProcessDumpResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, options },
       getProcessDumpOperationSpec
-    ) as Promise<WebAppsGetProcessDumpResponse>;
+    );
   }
 
   /**
@@ -8775,16 +8210,10 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     options?: WebAppsListProcessModulesOptionalParams
   ): Promise<WebAppsListProcessModulesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, options },
       listProcessModulesOperationSpec
-    ) as Promise<WebAppsListProcessModulesResponse>;
+    );
   }
 
   /**
@@ -8802,17 +8231,10 @@ export class WebAppsImpl implements WebApps {
     baseAddress: string,
     options?: WebAppsGetProcessModuleOptionalParams
   ): Promise<WebAppsGetProcessModuleResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      baseAddress,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, baseAddress, options },
       getProcessModuleOperationSpec
-    ) as Promise<WebAppsGetProcessModuleResponse>;
+    );
   }
 
   /**
@@ -8829,16 +8251,10 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     options?: WebAppsListProcessThreadsOptionalParams
   ): Promise<WebAppsListProcessThreadsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, options },
       listProcessThreadsOperationSpec
-    ) as Promise<WebAppsListProcessThreadsResponse>;
+    );
   }
 
   /**
@@ -8852,15 +8268,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListPublicCertificatesOptionalParams
   ): Promise<WebAppsListPublicCertificatesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listPublicCertificatesOperationSpec
-    ) as Promise<WebAppsListPublicCertificatesResponse>;
+    );
   }
 
   /**
@@ -8876,16 +8287,10 @@ export class WebAppsImpl implements WebApps {
     publicCertificateName: string,
     options?: WebAppsGetPublicCertificateOptionalParams
   ): Promise<WebAppsGetPublicCertificateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      publicCertificateName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, publicCertificateName, options },
       getPublicCertificateOperationSpec
-    ) as Promise<WebAppsGetPublicCertificateResponse>;
+    );
   }
 
   /**
@@ -8904,17 +8309,16 @@ export class WebAppsImpl implements WebApps {
     publicCertificate: PublicCertificate,
     options?: WebAppsCreateOrUpdatePublicCertificateOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      publicCertificateName,
-      publicCertificate,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        publicCertificateName,
+        publicCertificate,
+        options
+      },
       createOrUpdatePublicCertificateOperationSpec
-    ) as Promise<WebAppsCreateOrUpdatePublicCertificateResponse>;
+    );
   }
 
   /**
@@ -8929,17 +8333,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     publicCertificateName: string,
     options?: WebAppsDeletePublicCertificateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      publicCertificateName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, publicCertificateName, options },
       deletePublicCertificateOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -8956,16 +8354,10 @@ export class WebAppsImpl implements WebApps {
     publishingProfileOptions: CsmPublishingProfileOptions,
     options?: WebAppsListPublishingProfileXmlWithSecretsOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      publishingProfileOptions,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, publishingProfileOptions, options },
       listPublishingProfileXmlWithSecretsOperationSpec
-    ) as Promise<WebAppsListPublishingProfileXmlWithSecretsResponse>;
+    );
   }
 
   /**
@@ -8979,16 +8371,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsResetProductionSlotConfigOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       resetProductionSlotConfigOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9001,16 +8388,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsRestartOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       restartOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9025,27 +8407,42 @@ export class WebAppsImpl implements WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      request,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, request, options },
       restoreFromBackupBlobOperationSpec,
       sendOperation
     );
@@ -9063,7 +8460,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreFromBackupBlob(
       resourceGroupName,
       name,
@@ -9085,27 +8482,42 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      restoreRequest,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, restoreRequest, options },
       restoreFromDeletedAppOperationSpec,
       sendOperation
     );
@@ -9123,7 +8535,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreFromDeletedApp(
       resourceGroupName,
       name,
@@ -9146,27 +8558,42 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      restoreRequest,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, restoreRequest, options },
       restoreSnapshotOperationSpec,
       sendOperation
     );
@@ -9185,7 +8612,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreSnapshot(
       resourceGroupName,
       name,
@@ -9206,15 +8633,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSiteExtensionsOptionalParams
   ): Promise<WebAppsListSiteExtensionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSiteExtensionsOperationSpec
-    ) as Promise<WebAppsListSiteExtensionsResponse>;
+    );
   }
 
   /**
@@ -9230,16 +8652,10 @@ export class WebAppsImpl implements WebApps {
     siteExtensionId: string,
     options?: WebAppsGetSiteExtensionOptionalParams
   ): Promise<WebAppsGetSiteExtensionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, options },
       getSiteExtensionOperationSpec
-    ) as Promise<WebAppsGetSiteExtensionResponse>;
+    );
   }
 
   /**
@@ -9260,24 +8676,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsInstallSiteExtensionResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsInstallSiteExtensionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsInstallSiteExtensionResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, options },
       installSiteExtensionOperationSpec,
       sendOperation
     );
@@ -9317,17 +8750,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     siteExtensionId: string,
     options?: WebAppsDeleteSiteExtensionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, options },
       deleteSiteExtensionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9343,27 +8770,42 @@ export class WebAppsImpl implements WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      copySlotEntity,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, copySlotEntity, options },
       copyProductionSlotOperationSpec,
       sendOperation
     );
@@ -9382,7 +8824,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopyProductionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginCopyProductionSlot(
       resourceGroupName,
       name,
@@ -9403,15 +8845,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSlotsOptionalParams
   ): Promise<WebAppsListSlotsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSlotsOperationSpec
-    ) as Promise<WebAppsListSlotsResponse>;
+    );
   }
 
   /**
@@ -9427,16 +8864,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetSlotOptionalParams
   ): Promise<WebAppsGetSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getSlotOperationSpec
-    ) as Promise<WebAppsGetSlotResponse>;
+    );
   }
 
   /**
@@ -9462,25 +8893,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateOrUpdateSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateOrUpdateSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateOrUpdateSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, siteEnvelope, options },
       createOrUpdateSlotOperationSpec,
       sendOperation
     );
@@ -9526,17 +8973,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       deleteSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9557,17 +8998,10 @@ export class WebAppsImpl implements WebApps {
     siteEnvelope: SitePatchResource,
     options?: WebAppsUpdateSlotOptionalParams
   ): Promise<WebAppsUpdateSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteEnvelope, options },
       updateSlotOperationSpec
-    ) as Promise<WebAppsUpdateSlotResponse>;
+    );
   }
 
   /**
@@ -9583,16 +9017,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsAnalyzeCustomHostnameSlotOptionalParams
   ): Promise<WebAppsAnalyzeCustomHostnameSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       analyzeCustomHostnameSlotOperationSpec
-    ) as Promise<WebAppsAnalyzeCustomHostnameSlotResponse>;
+    );
   }
 
   /**
@@ -9610,18 +9038,11 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsApplySlotConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      slotSwapEntity,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, slotSwapEntity, options },
       applySlotConfigurationSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9641,17 +9062,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsBackupSlotOptionalParams
   ): Promise<WebAppsBackupSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, request, options },
       backupSlotOperationSpec
-    ) as Promise<WebAppsBackupSlotResponse>;
+    );
   }
 
   /**
@@ -9668,16 +9082,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListBackupsSlotOptionalParams
   ): Promise<WebAppsListBackupsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listBackupsSlotOperationSpec
-    ) as Promise<WebAppsListBackupsSlotResponse>;
+    );
   }
 
   /**
@@ -9696,17 +9104,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetBackupStatusSlotOptionalParams
   ): Promise<WebAppsGetBackupStatusSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, slot, options },
       getBackupStatusSlotOperationSpec
-    ) as Promise<WebAppsGetBackupStatusSlotResponse>;
+    );
   }
 
   /**
@@ -9724,18 +9125,11 @@ export class WebAppsImpl implements WebApps {
     backupId: string,
     slot: string,
     options?: WebAppsDeleteBackupSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, slot, options },
       deleteBackupSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -9757,18 +9151,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsListBackupStatusSecretsSlotOptionalParams
   ): Promise<WebAppsListBackupStatusSecretsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      slot,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, backupId, slot, request, options },
       listBackupStatusSecretsSlotOperationSpec
-    ) as Promise<WebAppsListBackupStatusSecretsSlotResponse>;
+    );
   }
 
   /**
@@ -9788,29 +9174,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      backupId,
-      slot,
-      request,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, backupId, slot, request, options },
       restoreSlotOperationSpec,
       sendOperation
     );
@@ -9833,7 +9232,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreSlot(
       resourceGroupName,
       name,
@@ -9859,16 +9258,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListConfigurationsSlotOptionalParams
   ): Promise<WebAppsListConfigurationsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listConfigurationsSlotOperationSpec
-    ) as Promise<WebAppsListConfigurationsSlotResponse>;
+    );
   }
 
   /**
@@ -9887,17 +9280,10 @@ export class WebAppsImpl implements WebApps {
     appSettings: StringDictionary,
     options?: WebAppsUpdateApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateApplicationSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      appSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, appSettings, options },
       updateApplicationSettingsSlotOperationSpec
-    ) as Promise<WebAppsUpdateApplicationSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -9914,16 +9300,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListApplicationSettingsSlotOptionalParams
   ): Promise<WebAppsListApplicationSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listApplicationSettingsSlotOperationSpec
-    ) as Promise<WebAppsListApplicationSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -9941,17 +9321,10 @@ export class WebAppsImpl implements WebApps {
     siteAuthSettings: SiteAuthSettings,
     options?: WebAppsUpdateAuthSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateAuthSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteAuthSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteAuthSettings, options },
       updateAuthSettingsSlotOperationSpec
-    ) as Promise<WebAppsUpdateAuthSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -9968,16 +9341,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetAuthSettingsSlotOptionalParams
   ): Promise<WebAppsGetAuthSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getAuthSettingsSlotOperationSpec
-    ) as Promise<WebAppsGetAuthSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -9996,17 +9363,10 @@ export class WebAppsImpl implements WebApps {
     azureStorageAccounts: AzureStoragePropertyDictionaryResource,
     options?: WebAppsUpdateAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsUpdateAzureStorageAccountsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      azureStorageAccounts,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, azureStorageAccounts, options },
       updateAzureStorageAccountsSlotOperationSpec
-    ) as Promise<WebAppsUpdateAzureStorageAccountsSlotResponse>;
+    );
   }
 
   /**
@@ -10023,16 +9383,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListAzureStorageAccountsSlotOptionalParams
   ): Promise<WebAppsListAzureStorageAccountsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listAzureStorageAccountsSlotOperationSpec
-    ) as Promise<WebAppsListAzureStorageAccountsSlotResponse>;
+    );
   }
 
   /**
@@ -10051,17 +9405,10 @@ export class WebAppsImpl implements WebApps {
     request: BackupRequest,
     options?: WebAppsUpdateBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateBackupConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, request, options },
       updateBackupConfigurationSlotOperationSpec
-    ) as Promise<WebAppsUpdateBackupConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10077,17 +9424,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteBackupConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       deleteBackupConfigurationSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10104,16 +9445,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetBackupConfigurationSlotOptionalParams
   ): Promise<WebAppsGetBackupConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getBackupConfigurationSlotOperationSpec
-    ) as Promise<WebAppsGetBackupConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10132,17 +9467,10 @@ export class WebAppsImpl implements WebApps {
     connectionStrings: ConnectionStringDictionary,
     options?: WebAppsUpdateConnectionStringsSlotOptionalParams
   ): Promise<WebAppsUpdateConnectionStringsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      connectionStrings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, connectionStrings, options },
       updateConnectionStringsSlotOperationSpec
-    ) as Promise<WebAppsUpdateConnectionStringsSlotResponse>;
+    );
   }
 
   /**
@@ -10159,16 +9487,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListConnectionStringsSlotOptionalParams
   ): Promise<WebAppsListConnectionStringsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listConnectionStringsSlotOperationSpec
-    ) as Promise<WebAppsListConnectionStringsSlotResponse>;
+    );
   }
 
   /**
@@ -10185,16 +9507,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams
   ): Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getDiagnosticLogsConfigurationSlotOperationSpec
-    ) as Promise<WebAppsGetDiagnosticLogsConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10214,17 +9530,10 @@ export class WebAppsImpl implements WebApps {
     siteLogsConfig: SiteLogsConfig,
     options?: WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams
   ): Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteLogsConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteLogsConfig, options },
       updateDiagnosticLogsConfigSlotOperationSpec
-    ) as Promise<WebAppsUpdateDiagnosticLogsConfigSlotResponse>;
+    );
   }
 
   /**
@@ -10243,17 +9552,10 @@ export class WebAppsImpl implements WebApps {
     metadata: StringDictionary,
     options?: WebAppsUpdateMetadataSlotOptionalParams
   ): Promise<WebAppsUpdateMetadataSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      metadata,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, metadata, options },
       updateMetadataSlotOperationSpec
-    ) as Promise<WebAppsUpdateMetadataSlotResponse>;
+    );
   }
 
   /**
@@ -10270,16 +9572,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListMetadataSlotOptionalParams
   ): Promise<WebAppsListMetadataSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listMetadataSlotOperationSpec
-    ) as Promise<WebAppsListMetadataSlotResponse>;
+    );
   }
 
   /**
@@ -10301,24 +9597,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsListPublishingCredentialsSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsListPublishingCredentialsSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsListPublishingCredentialsSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listPublishingCredentialsSlotOperationSpec,
       sendOperation
     );
@@ -10362,17 +9675,10 @@ export class WebAppsImpl implements WebApps {
     pushSettings: PushSettings,
     options?: WebAppsUpdateSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsUpdateSitePushSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      pushSettings,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, pushSettings, options },
       updateSitePushSettingsSlotOperationSpec
-    ) as Promise<WebAppsUpdateSitePushSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -10388,16 +9694,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSitePushSettingsSlotOptionalParams
   ): Promise<WebAppsListSitePushSettingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSitePushSettingsSlotOperationSpec
-    ) as Promise<WebAppsListSitePushSettingsSlotResponse>;
+    );
   }
 
   /**
@@ -10415,16 +9715,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetConfigurationSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getConfigurationSlotOperationSpec
-    ) as Promise<WebAppsGetConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10443,17 +9737,10 @@ export class WebAppsImpl implements WebApps {
     siteConfig: SiteConfigResource,
     options?: WebAppsCreateOrUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteConfig, options },
       createOrUpdateConfigurationSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10472,17 +9759,10 @@ export class WebAppsImpl implements WebApps {
     siteConfig: SiteConfigResource,
     options?: WebAppsUpdateConfigurationSlotOptionalParams
   ): Promise<WebAppsUpdateConfigurationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteConfig,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteConfig, options },
       updateConfigurationSlotOperationSpec
-    ) as Promise<WebAppsUpdateConfigurationSlotResponse>;
+    );
   }
 
   /**
@@ -10500,16 +9780,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListConfigurationSnapshotInfoSlotOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listConfigurationSnapshotInfoSlotOperationSpec
-    ) as Promise<WebAppsListConfigurationSnapshotInfoSlotResponse>;
+    );
   }
 
   /**
@@ -10528,17 +9802,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetConfigurationSnapshotSlotOptionalParams
   ): Promise<WebAppsGetConfigurationSnapshotSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      snapshotId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, snapshotId, slot, options },
       getConfigurationSnapshotSlotOperationSpec
-    ) as Promise<WebAppsGetConfigurationSnapshotSlotResponse>;
+    );
   }
 
   /**
@@ -10556,18 +9823,11 @@ export class WebAppsImpl implements WebApps {
     snapshotId: string,
     slot: string,
     options?: WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      snapshotId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, snapshotId, slot, options },
       recoverSiteConfigurationSnapshotSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10583,16 +9843,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetWebSiteContainerLogsSlotOptionalParams
   ): Promise<WebAppsGetWebSiteContainerLogsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getWebSiteContainerLogsSlotOperationSpec
-    ) as Promise<WebAppsGetWebSiteContainerLogsSlotResponse>;
+    );
   }
 
   /**
@@ -10608,16 +9862,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetContainerLogsZipSlotOptionalParams
   ): Promise<WebAppsGetContainerLogsZipSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getContainerLogsZipSlotOperationSpec
-    ) as Promise<WebAppsGetContainerLogsZipSlotResponse>;
+    );
   }
 
   /**
@@ -10634,16 +9882,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListContinuousWebJobsSlotOptionalParams
   ): Promise<WebAppsListContinuousWebJobsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listContinuousWebJobsSlotOperationSpec
-    ) as Promise<WebAppsListContinuousWebJobsSlotResponse>;
+    );
   }
 
   /**
@@ -10662,17 +9904,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetContinuousWebJobSlotOptionalParams
   ): Promise<WebAppsGetContinuousWebJobSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       getContinuousWebJobSlotOperationSpec
-    ) as Promise<WebAppsGetContinuousWebJobSlotResponse>;
+    );
   }
 
   /**
@@ -10690,18 +9925,11 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsDeleteContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       deleteContinuousWebJobSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10719,18 +9947,11 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsStartContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       startContinuousWebJobSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10748,18 +9969,11 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsStopContinuousWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       stopContinuousWebJobSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10776,16 +9990,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListDeploymentsSlotOptionalParams
   ): Promise<WebAppsListDeploymentsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listDeploymentsSlotOperationSpec
-    ) as Promise<WebAppsListDeploymentsSlotResponse>;
+    );
   }
 
   /**
@@ -10804,17 +10012,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetDeploymentSlotOptionalParams
   ): Promise<WebAppsGetDeploymentSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, slot, options },
       getDeploymentSlotOperationSpec
-    ) as Promise<WebAppsGetDeploymentSlotResponse>;
+    );
   }
 
   /**
@@ -10835,18 +10036,10 @@ export class WebAppsImpl implements WebApps {
     deployment: Deployment,
     options?: WebAppsCreateDeploymentSlotOptionalParams
   ): Promise<WebAppsCreateDeploymentSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      slot,
-      deployment,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, slot, deployment, options },
       createDeploymentSlotOperationSpec
-    ) as Promise<WebAppsCreateDeploymentSlotResponse>;
+    );
   }
 
   /**
@@ -10864,18 +10057,11 @@ export class WebAppsImpl implements WebApps {
     id: string,
     slot: string,
     options?: WebAppsDeleteDeploymentSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, slot, options },
       deleteDeploymentSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -10895,17 +10081,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListDeploymentLogSlotOptionalParams
   ): Promise<WebAppsListDeploymentLogSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      id,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, id, slot, options },
       listDeploymentLogSlotOperationSpec
-    ) as Promise<WebAppsListDeploymentLogSlotResponse>;
+    );
   }
 
   /**
@@ -10926,17 +10105,10 @@ export class WebAppsImpl implements WebApps {
     request: RestoreRequest,
     options?: WebAppsDiscoverBackupSlotOptionalParams
   ): Promise<WebAppsDiscoverBackupSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      request,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, request, options },
       discoverBackupSlotOperationSpec
-    ) as Promise<WebAppsDiscoverBackupSlotResponse>;
+    );
   }
 
   /**
@@ -10953,16 +10125,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listDomainOwnershipIdentifiersSlotOperationSpec
-    ) as Promise<WebAppsListDomainOwnershipIdentifiersSlotResponse>;
+    );
   }
 
   /**
@@ -10981,17 +10147,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainOwnershipIdentifierName, slot, options },
       getDomainOwnershipIdentifierSlotOperationSpec
-    ) as Promise<WebAppsGetDomainOwnershipIdentifierSlotResponse>;
+    );
   }
 
   /**
@@ -11013,18 +10172,17 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifier: Identifier,
     options?: WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      slot,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        domainOwnershipIdentifierName,
+        slot,
+        domainOwnershipIdentifier,
+        options
+      },
       createOrUpdateDomainOwnershipIdentifierSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse>;
+    );
   }
 
   /**
@@ -11042,18 +10200,11 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifierName: string,
     slot: string,
     options?: WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, domainOwnershipIdentifierName, slot, options },
       deleteDomainOwnershipIdentifierSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11075,18 +10226,17 @@ export class WebAppsImpl implements WebApps {
     domainOwnershipIdentifier: Identifier,
     options?: WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams
   ): Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      domainOwnershipIdentifierName,
-      slot,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        domainOwnershipIdentifierName,
+        slot,
+        domainOwnershipIdentifier,
+        options
+      },
       updateDomainOwnershipIdentifierSlotOperationSpec
-    ) as Promise<WebAppsUpdateDomainOwnershipIdentifierSlotResponse>;
+    );
   }
 
   /**
@@ -11102,16 +10252,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetMSDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetMSDeployStatusSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getMSDeployStatusSlotOperationSpec
-    ) as Promise<WebAppsGetMSDeployStatusSlotResponse>;
+    );
   }
 
   /**
@@ -11134,25 +10278,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateMSDeployOperationSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      mSDeploy,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateMSDeployOperationSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateMSDeployOperationSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, mSDeploy, options },
       createMSDeployOperationSlotOperationSpec,
       sendOperation
     );
@@ -11196,16 +10356,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetMSDeployLogSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getMSDeployLogSlotOperationSpec
-    ) as Promise<WebAppsGetMSDeployLogSlotResponse>;
+    );
   }
 
   /**
@@ -11221,16 +10375,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListInstanceFunctionsSlotOptionalParams
   ): Promise<WebAppsListInstanceFunctionsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listInstanceFunctionsSlotOperationSpec
-    ) as Promise<WebAppsListInstanceFunctionsSlotResponse>;
+    );
   }
 
   /**
@@ -11246,16 +10394,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetFunctionsAdminTokenSlotOptionalParams
   ): Promise<WebAppsGetFunctionsAdminTokenSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getFunctionsAdminTokenSlotOperationSpec
-    ) as Promise<WebAppsGetFunctionsAdminTokenSlotResponse>;
+    );
   }
 
   /**
@@ -11273,17 +10415,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetInstanceFunctionSlotOptionalParams
   ): Promise<WebAppsGetInstanceFunctionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, slot, options },
       getInstanceFunctionSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceFunctionSlotResponse>;
+    );
   }
 
   /**
@@ -11308,26 +10443,48 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateInstanceFunctionSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      slot,
-      functionEnvelope,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateInstanceFunctionSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateInstanceFunctionSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        functionName,
+        slot,
+        functionEnvelope,
+        options
+      },
       createInstanceFunctionSlotOperationSpec,
       sendOperation
     );
@@ -11375,18 +10532,11 @@ export class WebAppsImpl implements WebApps {
     functionName: string,
     slot: string,
     options?: WebAppsDeleteInstanceFunctionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, slot, options },
       deleteInstanceFunctionSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11408,19 +10558,10 @@ export class WebAppsImpl implements WebApps {
     key: KeyInfo,
     options?: WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      keyName,
-      slot,
-      key,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, keyName, slot, key, options },
       createOrUpdateFunctionSecretSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateFunctionSecretSlotResponse>;
+    );
   }
 
   /**
@@ -11439,19 +10580,11 @@ export class WebAppsImpl implements WebApps {
     keyName: string,
     slot: string,
     options?: WebAppsDeleteFunctionSecretSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      keyName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, keyName, slot, options },
       deleteFunctionSecretSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11469,17 +10602,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListFunctionKeysSlotOptionalParams
   ): Promise<WebAppsListFunctionKeysSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, slot, options },
       listFunctionKeysSlotOperationSpec
-    ) as Promise<WebAppsListFunctionKeysSlotResponse>;
+    );
   }
 
   /**
@@ -11497,17 +10623,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListFunctionSecretsSlotOptionalParams
   ): Promise<WebAppsListFunctionSecretsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      functionName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, functionName, slot, options },
       listFunctionSecretsSlotOperationSpec
-    ) as Promise<WebAppsListFunctionSecretsSlotResponse>;
+    );
   }
 
   /**
@@ -11523,16 +10642,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListHostKeysSlotOptionalParams
   ): Promise<WebAppsListHostKeysSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listHostKeysSlotOperationSpec
-    ) as Promise<WebAppsListHostKeysSlotResponse>;
+    );
   }
 
   /**
@@ -11547,17 +10660,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsListSyncStatusSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSyncStatusSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11572,17 +10679,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncFunctionsSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       syncFunctionsSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11604,19 +10705,10 @@ export class WebAppsImpl implements WebApps {
     key: KeyInfo,
     options?: WebAppsCreateOrUpdateHostSecretSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostSecretSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      keyType,
-      keyName,
-      slot,
-      key,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, keyType, keyName, slot, key, options },
       createOrUpdateHostSecretSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHostSecretSlotResponse>;
+    );
   }
 
   /**
@@ -11635,19 +10727,11 @@ export class WebAppsImpl implements WebApps {
     keyName: string,
     slot: string,
     options?: WebAppsDeleteHostSecretSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      keyType,
-      keyName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, keyType, keyName, slot, options },
       deleteHostSecretSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11664,16 +10748,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListHostNameBindingsSlotOptionalParams
   ): Promise<WebAppsListHostNameBindingsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listHostNameBindingsSlotOperationSpec
-    ) as Promise<WebAppsListHostNameBindingsSlotResponse>;
+    );
   }
 
   /**
@@ -11692,17 +10770,10 @@ export class WebAppsImpl implements WebApps {
     hostName: string,
     options?: WebAppsGetHostNameBindingSlotOptionalParams
   ): Promise<WebAppsGetHostNameBindingSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      hostName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, hostName, options },
       getHostNameBindingSlotOperationSpec
-    ) as Promise<WebAppsGetHostNameBindingSlotResponse>;
+    );
   }
 
   /**
@@ -11723,18 +10794,10 @@ export class WebAppsImpl implements WebApps {
     hostNameBinding: HostNameBinding,
     options?: WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      hostName,
-      slot,
-      hostNameBinding,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, hostName, slot, hostNameBinding, options },
       createOrUpdateHostNameBindingSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHostNameBindingSlotResponse>;
+    );
   }
 
   /**
@@ -11752,18 +10815,11 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     hostName: string,
     options?: WebAppsDeleteHostNameBindingSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      hostName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, hostName, options },
       deleteHostNameBindingSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11783,18 +10839,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetHybridConnectionSlotOptionalParams
   ): Promise<WebAppsGetHybridConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, slot, options },
       getHybridConnectionSlotOperationSpec
-    ) as Promise<WebAppsGetHybridConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -11816,19 +10864,18 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: HybridConnection,
     options?: WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        namespaceName,
+        relayName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       createOrUpdateHybridConnectionSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateHybridConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -11847,19 +10894,11 @@ export class WebAppsImpl implements WebApps {
     relayName: string,
     slot: string,
     options?: WebAppsDeleteHybridConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, namespaceName, relayName, slot, options },
       deleteHybridConnectionSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -11881,19 +10920,18 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: HybridConnection,
     options?: WebAppsUpdateHybridConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateHybridConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      namespaceName,
-      relayName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        namespaceName,
+        relayName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       updateHybridConnectionSlotOperationSpec
-    ) as Promise<WebAppsUpdateHybridConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -11909,16 +10947,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListHybridConnectionsSlotOptionalParams
   ): Promise<WebAppsListHybridConnectionsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listHybridConnectionsSlotOperationSpec
-    ) as Promise<WebAppsListHybridConnectionsSlotResponse>;
+    );
   }
 
   /**
@@ -11935,16 +10967,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListRelayServiceConnectionsSlotOptionalParams
   ): Promise<WebAppsListRelayServiceConnectionsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listRelayServiceConnectionsSlotOperationSpec
-    ) as Promise<WebAppsListRelayServiceConnectionsSlotResponse>;
+    );
   }
 
   /**
@@ -11963,17 +10989,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsGetRelayServiceConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, slot, options },
       getRelayServiceConnectionSlotOperationSpec
-    ) as Promise<WebAppsGetRelayServiceConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -11995,18 +11014,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: RelayServiceConnectionEntity,
     options?: WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        entityName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       createOrUpdateRelayServiceConnectionSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -12024,18 +11042,11 @@ export class WebAppsImpl implements WebApps {
     entityName: string,
     slot: string,
     options?: WebAppsDeleteRelayServiceConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, entityName, slot, options },
       deleteRelayServiceConnectionSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -12057,18 +11068,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: RelayServiceConnectionEntity,
     options?: WebAppsUpdateRelayServiceConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateRelayServiceConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      entityName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        entityName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       updateRelayServiceConnectionSlotOperationSpec
-    ) as Promise<WebAppsUpdateRelayServiceConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -12085,16 +11095,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListInstanceIdentifiersSlotOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listInstanceIdentifiersSlotOperationSpec
-    ) as Promise<WebAppsListInstanceIdentifiersSlotResponse>;
+    );
   }
 
   /**
@@ -12113,17 +11117,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetInstanceInfoSlotOptionalParams
   ): Promise<WebAppsGetInstanceInfoSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, slot, options },
       getInstanceInfoSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceInfoSlotResponse>;
+    );
   }
 
   /**
@@ -12141,17 +11138,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceMsDeployStatusSlotOptionalParams
   ): Promise<WebAppsGetInstanceMsDeployStatusSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, instanceId, options },
       getInstanceMsDeployStatusSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceMsDeployStatusSlotResponse>;
+    );
   }
 
   /**
@@ -12176,26 +11166,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateInstanceMSDeployOperationSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      instanceId,
-      mSDeploy,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateInstanceMSDeployOperationSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationSlotOperationSpec,
       sendOperation
     );
@@ -12244,17 +11249,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceMSDeployLogSlotOptionalParams
   ): Promise<WebAppsGetInstanceMSDeployLogSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, instanceId, options },
       getInstanceMSDeployLogSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceMSDeployLogSlotResponse>;
+    );
   }
 
   /**
@@ -12275,17 +11273,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessesSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, instanceId, options },
       listInstanceProcessesSlotOperationSpec
-    ) as Promise<WebAppsListInstanceProcessesSlotResponse>;
+    );
   }
 
   /**
@@ -12307,18 +11298,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, instanceId, options },
       getInstanceProcessSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessSlotResponse>;
+    );
   }
 
   /**
@@ -12340,19 +11323,11 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     instanceId: string,
     options?: WebAppsDeleteInstanceProcessSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, instanceId, options },
       deleteInstanceProcessSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -12375,18 +11350,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessDumpSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, instanceId, options },
       getInstanceProcessDumpSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessDumpSlotResponse>;
+    );
   }
 
   /**
@@ -12409,18 +11376,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessModulesSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, instanceId, options },
       listInstanceProcessModulesSlotOperationSpec
-    ) as Promise<WebAppsListInstanceProcessModulesSlotResponse>;
+    );
   }
 
   /**
@@ -12444,19 +11403,18 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsGetInstanceProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetInstanceProcessModuleSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      baseAddress,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        processId,
+        baseAddress,
+        slot,
+        instanceId,
+        options
+      },
       getInstanceProcessModuleSlotOperationSpec
-    ) as Promise<WebAppsGetInstanceProcessModuleSlotResponse>;
+    );
   }
 
   /**
@@ -12479,18 +11437,10 @@ export class WebAppsImpl implements WebApps {
     instanceId: string,
     options?: WebAppsListInstanceProcessThreadsSlotOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, instanceId, options },
       listInstanceProcessThreadsSlotOperationSpec
-    ) as Promise<WebAppsListInstanceProcessThreadsSlotResponse>;
+    );
   }
 
   /**
@@ -12507,16 +11457,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsIsCloneableSlotOptionalParams
   ): Promise<WebAppsIsCloneableSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       isCloneableSlotOperationSpec
-    ) as Promise<WebAppsIsCloneableSlotResponse>;
+    );
   }
 
   /**
@@ -12533,16 +11477,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSiteBackupsSlotOptionalParams
   ): Promise<WebAppsListSiteBackupsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSiteBackupsSlotOperationSpec
-    ) as Promise<WebAppsListSiteBackupsSlotResponse>;
+    );
   }
 
   /**
@@ -12558,16 +11496,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSyncFunctionTriggersSlotOptionalParams
   ): Promise<WebAppsListSyncFunctionTriggersSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSyncFunctionTriggersSlotOperationSpec
-    ) as Promise<WebAppsListSyncFunctionTriggersSlotResponse>;
+    );
   }
 
   /**
@@ -12584,16 +11516,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetMigrateMySqlStatusSlotOptionalParams
   ): Promise<WebAppsGetMigrateMySqlStatusSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getMigrateMySqlStatusSlotOperationSpec
-    ) as Promise<WebAppsGetMigrateMySqlStatusSlotResponse>;
+    );
   }
 
   /**
@@ -12610,16 +11536,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsGetSwiftVirtualNetworkConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getSwiftVirtualNetworkConnectionSlotOperationSpec
-    ) as Promise<WebAppsGetSwiftVirtualNetworkConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -12641,19 +11561,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: SwiftVirtualNetwork,
     options?: WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, connectionEnvelope, options },
       createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec
-    ) as Promise<
-      WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse
-    >;
+    );
   }
 
   /**
@@ -12669,17 +11580,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       deleteSwiftVirtualNetworkSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -12701,17 +11606,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: SwiftVirtualNetwork,
     options?: WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, connectionEnvelope, options },
       updateSwiftVirtualNetworkConnectionSlotOperationSpec
-    ) as Promise<WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -12730,17 +11628,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListNetworkFeaturesSlotOptionalParams
   ): Promise<WebAppsListNetworkFeaturesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      view,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, view, slot, options },
       listNetworkFeaturesSlotOperationSpec
-    ) as Promise<WebAppsListNetworkFeaturesSlotResponse>;
+    );
   }
 
   /**
@@ -12760,17 +11651,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetNetworkTraceOperationSlotOptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, slot, options },
       getNetworkTraceOperationSlotOperationSpec
-    ) as Promise<WebAppsGetNetworkTraceOperationSlotResponse>;
+    );
   }
 
   /**
@@ -12786,16 +11670,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsStartWebSiteNetworkTraceSlotOptionalParams
   ): Promise<WebAppsStartWebSiteNetworkTraceSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       startWebSiteNetworkTraceSlotOperationSpec
-    ) as Promise<WebAppsStartWebSiteNetworkTraceSlotResponse>;
+    );
   }
 
   /**
@@ -12816,24 +11694,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsStartWebSiteNetworkTraceOperationSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsStartWebSiteNetworkTraceOperationSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsStartWebSiteNetworkTraceOperationSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       startWebSiteNetworkTraceOperationSlotOperationSpec,
       sendOperation
     );
@@ -12873,17 +11768,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopWebSiteNetworkTraceSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       stopWebSiteNetworkTraceSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -12903,17 +11792,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetNetworkTracesSlotOptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, slot, options },
       getNetworkTracesSlotOperationSpec
-    ) as Promise<WebAppsGetNetworkTracesSlotResponse>;
+    );
   }
 
   /**
@@ -12933,17 +11815,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetNetworkTraceOperationSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTraceOperationSlotV2Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, slot, options },
       getNetworkTraceOperationSlotV2OperationSpec
-    ) as Promise<WebAppsGetNetworkTraceOperationSlotV2Response>;
+    );
   }
 
   /**
@@ -12963,17 +11838,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetNetworkTracesSlotV2OptionalParams
   ): Promise<WebAppsGetNetworkTracesSlotV2Response> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      operationId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, operationId, slot, options },
       getNetworkTracesSlotV2OperationSpec
-    ) as Promise<WebAppsGetNetworkTracesSlotV2Response>;
+    );
   }
 
   /**
@@ -12989,17 +11857,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       generateNewSitePublishingPasswordSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13015,16 +11877,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListPerfMonCountersSlotOptionalParams
   ): Promise<WebAppsListPerfMonCountersSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listPerfMonCountersSlotOperationSpec
-    ) as Promise<WebAppsListPerfMonCountersSlotResponse>;
+    );
   }
 
   /**
@@ -13040,16 +11896,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetSitePhpErrorLogFlagSlotOptionalParams
   ): Promise<WebAppsGetSitePhpErrorLogFlagSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getSitePhpErrorLogFlagSlotOperationSpec
-    ) as Promise<WebAppsGetSitePhpErrorLogFlagSlotResponse>;
+    );
   }
 
   /**
@@ -13066,16 +11916,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListPremierAddOnsSlotOptionalParams
   ): Promise<WebAppsListPremierAddOnsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listPremierAddOnsSlotOperationSpec
-    ) as Promise<WebAppsListPremierAddOnsSlotResponse>;
+    );
   }
 
   /**
@@ -13094,17 +11938,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetPremierAddOnSlotOptionalParams
   ): Promise<WebAppsGetPremierAddOnSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, slot, options },
       getPremierAddOnSlotOperationSpec
-    ) as Promise<WebAppsGetPremierAddOnSlotResponse>;
+    );
   }
 
   /**
@@ -13125,18 +11962,17 @@ export class WebAppsImpl implements WebApps {
     premierAddOn: PremierAddOn,
     options?: WebAppsAddPremierAddOnSlotOptionalParams
   ): Promise<WebAppsAddPremierAddOnSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      slot,
-      premierAddOn,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        premierAddOnName,
+        slot,
+        premierAddOn,
+        options
+      },
       addPremierAddOnSlotOperationSpec
-    ) as Promise<WebAppsAddPremierAddOnSlotResponse>;
+    );
   }
 
   /**
@@ -13154,18 +11990,11 @@ export class WebAppsImpl implements WebApps {
     premierAddOnName: string,
     slot: string,
     options?: WebAppsDeletePremierAddOnSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, premierAddOnName, slot, options },
       deletePremierAddOnSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13186,18 +12015,17 @@ export class WebAppsImpl implements WebApps {
     premierAddOn: PremierAddOnPatchResource,
     options?: WebAppsUpdatePremierAddOnSlotOptionalParams
   ): Promise<WebAppsUpdatePremierAddOnSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      premierAddOnName,
-      slot,
-      premierAddOn,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        premierAddOnName,
+        slot,
+        premierAddOn,
+        options
+      },
       updatePremierAddOnSlotOperationSpec
-    ) as Promise<WebAppsUpdatePremierAddOnSlotResponse>;
+    );
   }
 
   /**
@@ -13214,16 +12042,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetPrivateAccessSlotOptionalParams
   ): Promise<WebAppsGetPrivateAccessSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getPrivateAccessSlotOperationSpec
-    ) as Promise<WebAppsGetPrivateAccessSlotResponse>;
+    );
   }
 
   /**
@@ -13242,17 +12064,10 @@ export class WebAppsImpl implements WebApps {
     access: PrivateAccess,
     options?: WebAppsPutPrivateAccessVnetSlotOptionalParams
   ): Promise<WebAppsPutPrivateAccessVnetSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      access,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, access, options },
       putPrivateAccessVnetSlotOperationSpec
-    ) as Promise<WebAppsPutPrivateAccessVnetSlotResponse>;
+    );
   }
 
   /**
@@ -13268,16 +12083,10 @@ export class WebAppsImpl implements WebApps {
     privateEndpointConnectionName: string,
     options?: WebAppsGetPrivateEndpointConnectionOptionalParams
   ): Promise<WebAppsGetPrivateEndpointConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, privateEndpointConnectionName, options },
       getPrivateEndpointConnectionOperationSpec
-    ) as Promise<WebAppsGetPrivateEndpointConnectionResponse>;
+    );
   }
 
   /**
@@ -13302,25 +12111,47 @@ export class WebAppsImpl implements WebApps {
       WebAppsApproveOrRejectPrivateEndpointConnectionResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      privateEndpointWrapper,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsApproveOrRejectPrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsApproveOrRejectPrivateEndpointConnectionResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        privateEndpointConnectionName,
+        privateEndpointWrapper,
+        options
+      },
       approveOrRejectPrivateEndpointConnectionOperationSpec,
       sendOperation
     );
@@ -13369,24 +12200,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsDeletePrivateEndpointConnectionResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      privateEndpointConnectionName,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsDeletePrivateEndpointConnectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsDeletePrivateEndpointConnectionResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, privateEndpointConnectionName, options },
       deletePrivateEndpointConnectionOperationSpec,
       sendOperation
     );
@@ -13425,15 +12273,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetPrivateLinkResourcesOptionalParams
   ): Promise<WebAppsGetPrivateLinkResourcesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getPrivateLinkResourcesOperationSpec
-    ) as Promise<WebAppsGetPrivateLinkResourcesResponse>;
+    );
   }
 
   /**
@@ -13451,16 +12294,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListProcessesSlotOptionalParams
   ): Promise<WebAppsListProcessesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listProcessesSlotOperationSpec
-    ) as Promise<WebAppsListProcessesSlotResponse>;
+    );
   }
 
   /**
@@ -13479,17 +12316,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetProcessSlotOptionalParams
   ): Promise<WebAppsGetProcessSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, options },
       getProcessSlotOperationSpec
-    ) as Promise<WebAppsGetProcessSlotResponse>;
+    );
   }
 
   /**
@@ -13508,18 +12338,11 @@ export class WebAppsImpl implements WebApps {
     processId: string,
     slot: string,
     options?: WebAppsDeleteProcessSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, options },
       deleteProcessSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13539,17 +12362,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetProcessDumpSlotOptionalParams
   ): Promise<WebAppsGetProcessDumpSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, options },
       getProcessDumpSlotOperationSpec
-    ) as Promise<WebAppsGetProcessDumpSlotResponse>;
+    );
   }
 
   /**
@@ -13569,17 +12385,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListProcessModulesSlotOptionalParams
   ): Promise<WebAppsListProcessModulesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, options },
       listProcessModulesSlotOperationSpec
-    ) as Promise<WebAppsListProcessModulesSlotResponse>;
+    );
   }
 
   /**
@@ -13600,18 +12409,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetProcessModuleSlotOptionalParams
   ): Promise<WebAppsGetProcessModuleSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      baseAddress,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, baseAddress, slot, options },
       getProcessModuleSlotOperationSpec
-    ) as Promise<WebAppsGetProcessModuleSlotResponse>;
+    );
   }
 
   /**
@@ -13631,17 +12432,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListProcessThreadsSlotOptionalParams
   ): Promise<WebAppsListProcessThreadsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, options },
       listProcessThreadsSlotOperationSpec
-    ) as Promise<WebAppsListProcessThreadsSlotResponse>;
+    );
   }
 
   /**
@@ -13658,16 +12452,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListPublicCertificatesSlotOptionalParams
   ): Promise<WebAppsListPublicCertificatesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listPublicCertificatesSlotOperationSpec
-    ) as Promise<WebAppsListPublicCertificatesSlotResponse>;
+    );
   }
 
   /**
@@ -13686,17 +12474,10 @@ export class WebAppsImpl implements WebApps {
     publicCertificateName: string,
     options?: WebAppsGetPublicCertificateSlotOptionalParams
   ): Promise<WebAppsGetPublicCertificateSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      publicCertificateName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, publicCertificateName, options },
       getPublicCertificateSlotOperationSpec
-    ) as Promise<WebAppsGetPublicCertificateSlotResponse>;
+    );
   }
 
   /**
@@ -13718,18 +12499,17 @@ export class WebAppsImpl implements WebApps {
     publicCertificate: PublicCertificate,
     options?: WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      publicCertificateName,
-      slot,
-      publicCertificate,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        publicCertificateName,
+        slot,
+        publicCertificate,
+        options
+      },
       createOrUpdatePublicCertificateSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdatePublicCertificateSlotResponse>;
+    );
   }
 
   /**
@@ -13747,18 +12527,11 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     publicCertificateName: string,
     options?: WebAppsDeletePublicCertificateSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      publicCertificateName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, publicCertificateName, options },
       deletePublicCertificateSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13778,17 +12551,10 @@ export class WebAppsImpl implements WebApps {
     publishingProfileOptions: CsmPublishingProfileOptions,
     options?: WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams
   ): Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      publishingProfileOptions,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, publishingProfileOptions, options },
       listPublishingProfileXmlWithSecretsSlotOperationSpec
-    ) as Promise<WebAppsListPublishingProfileXmlWithSecretsSlotResponse>;
+    );
   }
 
   /**
@@ -13805,17 +12571,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsResetSlotConfigurationSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       resetSlotConfigurationSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13831,17 +12591,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsRestartSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       restartSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -13859,28 +12613,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      request,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, request, options },
       restoreFromBackupBlobSlotOperationSpec,
       sendOperation
     );
@@ -13901,7 +12669,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     request: RestoreRequest,
     options?: WebAppsRestoreFromBackupBlobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreFromBackupBlobSlot(
       resourceGroupName,
       name,
@@ -13926,28 +12694,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      restoreRequest,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, restoreRequest, options },
       restoreFromDeletedAppSlotOperationSpec,
       sendOperation
     );
@@ -13967,7 +12749,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: DeletedAppRestoreRequest,
     options?: WebAppsRestoreFromDeletedAppSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreFromDeletedAppSlot(
       resourceGroupName,
       name,
@@ -13993,28 +12775,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      restoreRequest,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, restoreRequest, options },
       restoreSnapshotSlotOperationSpec,
       sendOperation
     );
@@ -14035,7 +12831,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     restoreRequest: SnapshotRestoreRequest,
     options?: WebAppsRestoreSnapshotSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestoreSnapshotSlot(
       resourceGroupName,
       name,
@@ -14060,16 +12856,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSiteExtensionsSlotOptionalParams
   ): Promise<WebAppsListSiteExtensionsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSiteExtensionsSlotOperationSpec
-    ) as Promise<WebAppsListSiteExtensionsSlotResponse>;
+    );
   }
 
   /**
@@ -14088,17 +12878,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetSiteExtensionSlotOptionalParams
   ): Promise<WebAppsGetSiteExtensionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, slot, options },
       getSiteExtensionSlotOperationSpec
-    ) as Promise<WebAppsGetSiteExtensionSlotResponse>;
+    );
   }
 
   /**
@@ -14122,25 +12905,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsInstallSiteExtensionSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      slot,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsInstallSiteExtensionSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsInstallSiteExtensionSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, slot, options },
       installSiteExtensionSlotOperationSpec,
       sendOperation
     );
@@ -14187,18 +12986,11 @@ export class WebAppsImpl implements WebApps {
     siteExtensionId: string,
     slot: string,
     options?: WebAppsDeleteSiteExtensionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteExtensionId,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteExtensionId, slot, options },
       deleteSiteExtensionSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14217,28 +13009,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopySlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      copySlotEntity,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, copySlotEntity, options },
       copySlotOperationSpec,
       sendOperation
     );
@@ -14260,7 +13066,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     copySlotEntity: CsmCopySlotEntity,
     options?: WebAppsCopySlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginCopySlot(
       resourceGroupName,
       name,
@@ -14287,17 +13093,10 @@ export class WebAppsImpl implements WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsListSlotDifferencesSlotOptionalParams
   ): Promise<WebAppsListSlotDifferencesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      slotSwapEntity,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, slotSwapEntity, options },
       listSlotDifferencesSlotOperationSpec
-    ) as Promise<WebAppsListSlotDifferencesSlotResponse>;
+    );
   }
 
   /**
@@ -14315,28 +13114,42 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      slotSwapEntity,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, slotSwapEntity, options },
       swapSlotOperationSpec,
       sendOperation
     );
@@ -14357,7 +13170,7 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginSwapSlot(
       resourceGroupName,
       name,
@@ -14381,16 +13194,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSnapshotsSlotOptionalParams
   ): Promise<WebAppsListSnapshotsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSnapshotsSlotOperationSpec
-    ) as Promise<WebAppsListSnapshotsSlotResponse>;
+    );
   }
 
   /**
@@ -14406,16 +13213,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondarySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listSnapshotsFromDRSecondarySlotOperationSpec
-    ) as Promise<WebAppsListSnapshotsFromDRSecondarySlotResponse>;
+    );
   }
 
   /**
@@ -14432,16 +13233,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetSourceControlSlotOptionalParams
   ): Promise<WebAppsGetSourceControlSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getSourceControlSlotOperationSpec
-    ) as Promise<WebAppsGetSourceControlSlotResponse>;
+    );
   }
 
   /**
@@ -14465,25 +13260,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateOrUpdateSourceControlSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteSourceControl,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateOrUpdateSourceControlSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateOrUpdateSourceControlSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, siteSourceControl, options },
       createOrUpdateSourceControlSlotOperationSpec,
       sendOperation
     );
@@ -14528,17 +13339,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsDeleteSourceControlSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       deleteSourceControlSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14557,17 +13362,10 @@ export class WebAppsImpl implements WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsUpdateSourceControlSlotOptionalParams
   ): Promise<WebAppsUpdateSourceControlSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      siteSourceControl,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, siteSourceControl, options },
       updateSourceControlSlotOperationSpec
-    ) as Promise<WebAppsUpdateSourceControlSlotResponse>;
+    );
   }
 
   /**
@@ -14583,17 +13381,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStartSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       startSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14614,24 +13406,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsStartNetworkTraceSlotResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsStartNetworkTraceSlotResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsStartNetworkTraceSlotResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       startNetworkTraceSlotOperationSpec,
       sendOperation
     );
@@ -14672,17 +13481,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       stopSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14697,17 +13500,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsStopNetworkTraceSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       stopNetworkTraceSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14722,17 +13519,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncRepositorySlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       syncRepositorySlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14747,17 +13538,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     options?: WebAppsSyncFunctionTriggersSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       syncFunctionTriggersSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14774,16 +13559,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListTriggeredWebJobsSlotOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listTriggeredWebJobsSlotOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobsSlotResponse>;
+    );
   }
 
   /**
@@ -14802,17 +13581,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetTriggeredWebJobSlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       getTriggeredWebJobSlotOperationSpec
-    ) as Promise<WebAppsGetTriggeredWebJobSlotResponse>;
+    );
   }
 
   /**
@@ -14830,18 +13602,11 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsDeleteTriggeredWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       deleteTriggeredWebJobSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14860,17 +13625,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListTriggeredWebJobHistorySlotOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistorySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       listTriggeredWebJobHistorySlotOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobHistorySlotResponse>;
+    );
   }
 
   /**
@@ -14891,18 +13649,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetTriggeredWebJobHistorySlotOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistorySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      id,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, id, slot, options },
       getTriggeredWebJobHistorySlotOperationSpec
-    ) as Promise<WebAppsGetTriggeredWebJobHistorySlotResponse>;
+    );
   }
 
   /**
@@ -14920,18 +13670,11 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     slot: string,
     options?: WebAppsRunTriggeredWebJobSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       runTriggeredWebJobSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -14948,16 +13691,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListUsagesSlotOptionalParams
   ): Promise<WebAppsListUsagesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listUsagesSlotOperationSpec
-    ) as Promise<WebAppsListUsagesSlotResponse>;
+    );
   }
 
   /**
@@ -14974,16 +13711,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListVnetConnectionsSlotOptionalParams
   ): Promise<WebAppsListVnetConnectionsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listVnetConnectionsSlotOperationSpec
-    ) as Promise<WebAppsListVnetConnectionsSlotResponse>;
+    );
   }
 
   /**
@@ -15002,17 +13733,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetVnetConnectionSlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, slot, options },
       getVnetConnectionSlotOperationSpec
-    ) as Promise<WebAppsGetVnetConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -15034,18 +13758,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetInfo,
     options?: WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, slot, connectionEnvelope, options },
       createOrUpdateVnetConnectionSlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateVnetConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -15063,18 +13779,11 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     slot: string,
     options?: WebAppsDeleteVnetConnectionSlotOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, slot, options },
       deleteVnetConnectionSlotOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15096,18 +13805,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetInfo,
     options?: WebAppsUpdateVnetConnectionSlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, slot, connectionEnvelope, options },
       updateVnetConnectionSlotOperationSpec
-    ) as Promise<WebAppsUpdateVnetConnectionSlotResponse>;
+    );
   }
 
   /**
@@ -15128,18 +13829,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewaySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, gatewayName, slot, options },
       getVnetConnectionGatewaySlotOperationSpec
-    ) as Promise<WebAppsGetVnetConnectionGatewaySlotResponse>;
+    );
   }
 
   /**
@@ -15162,19 +13855,18 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetGateway,
     options?: WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        vnetName,
+        gatewayName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       createOrUpdateVnetConnectionGatewaySlotOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse>;
+    );
   }
 
   /**
@@ -15197,19 +13889,18 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetGateway,
     options?: WebAppsUpdateVnetConnectionGatewaySlotOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      slot,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        vnetName,
+        gatewayName,
+        slot,
+        connectionEnvelope,
+        options
+      },
       updateVnetConnectionGatewaySlotOperationSpec
-    ) as Promise<WebAppsUpdateVnetConnectionGatewaySlotResponse>;
+    );
   }
 
   /**
@@ -15226,16 +13917,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsListWebJobsSlotOptionalParams
   ): Promise<WebAppsListWebJobsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listWebJobsSlotOperationSpec
-    ) as Promise<WebAppsListWebJobsSlotResponse>;
+    );
   }
 
   /**
@@ -15254,17 +13939,10 @@ export class WebAppsImpl implements WebApps {
     slot: string,
     options?: WebAppsGetWebJobSlotOptionalParams
   ): Promise<WebAppsGetWebJobSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, options },
       getWebJobSlotOperationSpec
-    ) as Promise<WebAppsGetWebJobSlotResponse>;
+    );
   }
 
   /**
@@ -15280,16 +13958,10 @@ export class WebAppsImpl implements WebApps {
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsListSlotDifferencesFromProductionOptionalParams
   ): Promise<WebAppsListSlotDifferencesFromProductionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slotSwapEntity,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slotSwapEntity, options },
       listSlotDifferencesFromProductionOperationSpec
-    ) as Promise<WebAppsListSlotDifferencesFromProductionResponse>;
+    );
   }
 
   /**
@@ -15304,27 +13976,42 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slotSwapEntity,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, slotSwapEntity, options },
       swapSlotWithProductionOperationSpec,
       sendOperation
     );
@@ -15342,7 +14029,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slotSwapEntity: CsmSlotEntity,
     options?: WebAppsSwapSlotWithProductionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginSwapSlotWithProduction(
       resourceGroupName,
       name,
@@ -15363,15 +14050,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSnapshotsOptionalParams
   ): Promise<WebAppsListSnapshotsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSnapshotsOperationSpec
-    ) as Promise<WebAppsListSnapshotsResponse>;
+    );
   }
 
   /**
@@ -15385,15 +14067,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListSnapshotsFromDRSecondaryOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondaryResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listSnapshotsFromDRSecondaryOperationSpec
-    ) as Promise<WebAppsListSnapshotsFromDRSecondaryResponse>;
+    );
   }
 
   /**
@@ -15407,15 +14084,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsGetSourceControlOptionalParams
   ): Promise<WebAppsGetSourceControlResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getSourceControlOperationSpec
-    ) as Promise<WebAppsGetSourceControlResponse>;
+    );
   }
 
   /**
@@ -15436,24 +14108,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsCreateOrUpdateSourceControlResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteSourceControl,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsCreateOrUpdateSourceControlResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsCreateOrUpdateSourceControlResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, siteSourceControl, options },
       createOrUpdateSourceControlOperationSpec,
       sendOperation
     );
@@ -15491,16 +14180,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsDeleteSourceControlOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       deleteSourceControlOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15516,16 +14200,10 @@ export class WebAppsImpl implements WebApps {
     siteSourceControl: SiteSourceControl,
     options?: WebAppsUpdateSourceControlOptionalParams
   ): Promise<WebAppsUpdateSourceControlResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      siteSourceControl,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, siteSourceControl, options },
       updateSourceControlOperationSpec
-    ) as Promise<WebAppsUpdateSourceControlResponse>;
+    );
   }
 
   /**
@@ -15538,16 +14216,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStartOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       startOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15566,23 +14239,41 @@ export class WebAppsImpl implements WebApps {
       WebAppsStartNetworkTraceResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<WebAppsStartNetworkTraceResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        WebAppsStartNetworkTraceResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, name, options },
       startNetworkTraceOperationSpec,
       sendOperation
     );
@@ -15617,16 +14308,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       stopOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15639,16 +14325,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsStopNetworkTraceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       stopNetworkTraceOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15661,16 +14342,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncRepositoryOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       syncRepositoryOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15683,16 +14359,11 @@ export class WebAppsImpl implements WebApps {
     resourceGroupName: string,
     name: string,
     options?: WebAppsSyncFunctionTriggersOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       syncFunctionTriggersOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15706,15 +14377,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListTriggeredWebJobsOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listTriggeredWebJobsOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobsResponse>;
+    );
   }
 
   /**
@@ -15730,16 +14396,10 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     options?: WebAppsGetTriggeredWebJobOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       getTriggeredWebJobOperationSpec
-    ) as Promise<WebAppsGetTriggeredWebJobResponse>;
+    );
   }
 
   /**
@@ -15754,17 +14414,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsDeleteTriggeredWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       deleteTriggeredWebJobOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15780,16 +14434,10 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     options?: WebAppsListTriggeredWebJobHistoryOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistoryResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       listTriggeredWebJobHistoryOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobHistoryResponse>;
+    );
   }
 
   /**
@@ -15807,17 +14455,10 @@ export class WebAppsImpl implements WebApps {
     id: string,
     options?: WebAppsGetTriggeredWebJobHistoryOptionalParams
   ): Promise<WebAppsGetTriggeredWebJobHistoryResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      id,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, id, options },
       getTriggeredWebJobHistoryOperationSpec
-    ) as Promise<WebAppsGetTriggeredWebJobHistoryResponse>;
+    );
   }
 
   /**
@@ -15832,17 +14473,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     webJobName: string,
     options?: WebAppsRunTriggeredWebJobOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       runTriggeredWebJobOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15856,15 +14491,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListUsagesOptionalParams
   ): Promise<WebAppsListUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listUsagesOperationSpec
-    ) as Promise<WebAppsListUsagesResponse>;
+    );
   }
 
   /**
@@ -15878,15 +14508,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListVnetConnectionsOptionalParams
   ): Promise<WebAppsListVnetConnectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listVnetConnectionsOperationSpec
-    ) as Promise<WebAppsListVnetConnectionsResponse>;
+    );
   }
 
   /**
@@ -15902,16 +14527,10 @@ export class WebAppsImpl implements WebApps {
     vnetName: string,
     options?: WebAppsGetVnetConnectionOptionalParams
   ): Promise<WebAppsGetVnetConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, options },
       getVnetConnectionOperationSpec
-    ) as Promise<WebAppsGetVnetConnectionResponse>;
+    );
   }
 
   /**
@@ -15930,17 +14549,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetInfo,
     options?: WebAppsCreateOrUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, connectionEnvelope, options },
       createOrUpdateVnetConnectionOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateVnetConnectionResponse>;
+    );
   }
 
   /**
@@ -15955,17 +14567,11 @@ export class WebAppsImpl implements WebApps {
     name: string,
     vnetName: string,
     options?: WebAppsDeleteVnetConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, options },
       deleteVnetConnectionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -15984,17 +14590,10 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetInfo,
     options?: WebAppsUpdateVnetConnectionOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, connectionEnvelope, options },
       updateVnetConnectionOperationSpec
-    ) as Promise<WebAppsUpdateVnetConnectionResponse>;
+    );
   }
 
   /**
@@ -16012,17 +14611,10 @@ export class WebAppsImpl implements WebApps {
     gatewayName: string,
     options?: WebAppsGetVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsGetVnetConnectionGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, vnetName, gatewayName, options },
       getVnetConnectionGatewayOperationSpec
-    ) as Promise<WebAppsGetVnetConnectionGatewayResponse>;
+    );
   }
 
   /**
@@ -16042,18 +14634,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetGateway,
     options?: WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        vnetName,
+        gatewayName,
+        connectionEnvelope,
+        options
+      },
       createOrUpdateVnetConnectionGatewayOperationSpec
-    ) as Promise<WebAppsCreateOrUpdateVnetConnectionGatewayResponse>;
+    );
   }
 
   /**
@@ -16073,18 +14664,17 @@ export class WebAppsImpl implements WebApps {
     connectionEnvelope: VnetGateway,
     options?: WebAppsUpdateVnetConnectionGatewayOptionalParams
   ): Promise<WebAppsUpdateVnetConnectionGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      vnetName,
-      gatewayName,
-      connectionEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        vnetName,
+        gatewayName,
+        connectionEnvelope,
+        options
+      },
       updateVnetConnectionGatewayOperationSpec
-    ) as Promise<WebAppsUpdateVnetConnectionGatewayResponse>;
+    );
   }
 
   /**
@@ -16098,15 +14688,10 @@ export class WebAppsImpl implements WebApps {
     name: string,
     options?: WebAppsListWebJobsOptionalParams
   ): Promise<WebAppsListWebJobsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listWebJobsOperationSpec
-    ) as Promise<WebAppsListWebJobsResponse>;
+    );
   }
 
   /**
@@ -16122,16 +14707,10 @@ export class WebAppsImpl implements WebApps {
     webJobName: string,
     options?: WebAppsGetWebJobOptionalParams
   ): Promise<WebAppsGetWebJobResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, options },
       getWebJobOperationSpec
-    ) as Promise<WebAppsGetWebJobResponse>;
+    );
   }
 
   /**
@@ -16143,14 +14722,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListNextOptionalParams
   ): Promise<WebAppsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<WebAppsListNextResponse>;
+    );
   }
 
   /**
@@ -16164,15 +14739,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListByResourceGroupNextOptionalParams
   ): Promise<WebAppsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<WebAppsListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -16188,16 +14758,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListBackupsNextOptionalParams
   ): Promise<WebAppsListBackupsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listBackupsNextOperationSpec
-    ) as Promise<WebAppsListBackupsNextResponse>;
+    );
   }
 
   /**
@@ -16213,16 +14777,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListConfigurationsNextOptionalParams
   ): Promise<WebAppsListConfigurationsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listConfigurationsNextOperationSpec
-    ) as Promise<WebAppsListConfigurationsNextResponse>;
+    );
   }
 
   /**
@@ -16239,16 +14797,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListConfigurationSnapshotInfoNextOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listConfigurationSnapshotInfoNextOperationSpec
-    ) as Promise<WebAppsListConfigurationSnapshotInfoNextResponse>;
+    );
   }
 
   /**
@@ -16264,16 +14816,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListContinuousWebJobsNextOptionalParams
   ): Promise<WebAppsListContinuousWebJobsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listContinuousWebJobsNextOperationSpec
-    ) as Promise<WebAppsListContinuousWebJobsNextResponse>;
+    );
   }
 
   /**
@@ -16289,16 +14835,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListDeploymentsNextOptionalParams
   ): Promise<WebAppsListDeploymentsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listDeploymentsNextOperationSpec
-    ) as Promise<WebAppsListDeploymentsNextResponse>;
+    );
   }
 
   /**
@@ -16315,16 +14855,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListDomainOwnershipIdentifiersNextOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listDomainOwnershipIdentifiersNextOperationSpec
-    ) as Promise<WebAppsListDomainOwnershipIdentifiersNextResponse>;
+    );
   }
 
   /**
@@ -16340,16 +14874,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListFunctionsNextOptionalParams
   ): Promise<WebAppsListFunctionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listFunctionsNextOperationSpec
-    ) as Promise<WebAppsListFunctionsNextResponse>;
+    );
   }
 
   /**
@@ -16365,16 +14893,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListHostNameBindingsNextOptionalParams
   ): Promise<WebAppsListHostNameBindingsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listHostNameBindingsNextOperationSpec
-    ) as Promise<WebAppsListHostNameBindingsNextResponse>;
+    );
   }
 
   /**
@@ -16391,16 +14913,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceIdentifiersNextOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listInstanceIdentifiersNextOperationSpec
-    ) as Promise<WebAppsListInstanceIdentifiersNextResponse>;
+    );
   }
 
   /**
@@ -16419,17 +14935,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessesNextOptionalParams
   ): Promise<WebAppsListInstanceProcessesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, instanceId, nextLink, options },
       listInstanceProcessesNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessesNextResponse>;
+    );
   }
 
   /**
@@ -16451,18 +14960,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessModulesNextOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, nextLink, options },
       listInstanceProcessModulesNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessModulesNextResponse>;
+    );
   }
 
   /**
@@ -16484,18 +14985,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessThreadsNextOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, instanceId, nextLink, options },
       listInstanceProcessThreadsNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessThreadsNextResponse>;
+    );
   }
 
   /**
@@ -16511,16 +15004,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSiteBackupsNextOptionalParams
   ): Promise<WebAppsListSiteBackupsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listSiteBackupsNextOperationSpec
-    ) as Promise<WebAppsListSiteBackupsNextResponse>;
+    );
   }
 
   /**
@@ -16536,16 +15023,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListPerfMonCountersNextOptionalParams
   ): Promise<WebAppsListPerfMonCountersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listPerfMonCountersNextOperationSpec
-    ) as Promise<WebAppsListPerfMonCountersNextResponse>;
+    );
   }
 
   /**
@@ -16561,16 +15042,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessesNextOptionalParams
   ): Promise<WebAppsListProcessesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listProcessesNextOperationSpec
-    ) as Promise<WebAppsListProcessesNextResponse>;
+    );
   }
 
   /**
@@ -16588,17 +15063,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessModulesNextOptionalParams
   ): Promise<WebAppsListProcessModulesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, nextLink, options },
       listProcessModulesNextOperationSpec
-    ) as Promise<WebAppsListProcessModulesNextResponse>;
+    );
   }
 
   /**
@@ -16616,17 +15084,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessThreadsNextOptionalParams
   ): Promise<WebAppsListProcessThreadsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, nextLink, options },
       listProcessThreadsNextOperationSpec
-    ) as Promise<WebAppsListProcessThreadsNextResponse>;
+    );
   }
 
   /**
@@ -16642,16 +15103,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListPublicCertificatesNextOptionalParams
   ): Promise<WebAppsListPublicCertificatesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listPublicCertificatesNextOperationSpec
-    ) as Promise<WebAppsListPublicCertificatesNextResponse>;
+    );
   }
 
   /**
@@ -16667,16 +15122,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSiteExtensionsNextOptionalParams
   ): Promise<WebAppsListSiteExtensionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listSiteExtensionsNextOperationSpec
-    ) as Promise<WebAppsListSiteExtensionsNextResponse>;
+    );
   }
 
   /**
@@ -16692,16 +15141,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSlotsNextOptionalParams
   ): Promise<WebAppsListSlotsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listSlotsNextOperationSpec
-    ) as Promise<WebAppsListSlotsNextResponse>;
+    );
   }
 
   /**
@@ -16720,17 +15163,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListBackupsSlotNextOptionalParams
   ): Promise<WebAppsListBackupsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listBackupsSlotNextOperationSpec
-    ) as Promise<WebAppsListBackupsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16749,17 +15185,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListConfigurationsSlotNextOptionalParams
   ): Promise<WebAppsListConfigurationsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listConfigurationsSlotNextOperationSpec
-    ) as Promise<WebAppsListConfigurationsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16779,17 +15208,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams
   ): Promise<WebAppsListConfigurationSnapshotInfoSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listConfigurationSnapshotInfoSlotNextOperationSpec
-    ) as Promise<WebAppsListConfigurationSnapshotInfoSlotNextResponse>;
+    );
   }
 
   /**
@@ -16809,17 +15231,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListContinuousWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListContinuousWebJobsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listContinuousWebJobsSlotNextOperationSpec
-    ) as Promise<WebAppsListContinuousWebJobsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16838,17 +15253,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListDeploymentsSlotNextOptionalParams
   ): Promise<WebAppsListDeploymentsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listDeploymentsSlotNextOperationSpec
-    ) as Promise<WebAppsListDeploymentsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16868,17 +15276,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams
   ): Promise<WebAppsListDomainOwnershipIdentifiersSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listDomainOwnershipIdentifiersSlotNextOperationSpec
-    ) as Promise<WebAppsListDomainOwnershipIdentifiersSlotNextResponse>;
+    );
   }
 
   /**
@@ -16897,17 +15298,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceFunctionsSlotNextOptionalParams
   ): Promise<WebAppsListInstanceFunctionsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listInstanceFunctionsSlotNextOperationSpec
-    ) as Promise<WebAppsListInstanceFunctionsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16927,17 +15321,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListHostNameBindingsSlotNextOptionalParams
   ): Promise<WebAppsListHostNameBindingsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listHostNameBindingsSlotNextOperationSpec
-    ) as Promise<WebAppsListHostNameBindingsSlotNextResponse>;
+    );
   }
 
   /**
@@ -16957,17 +15344,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceIdentifiersSlotNextOptionalParams
   ): Promise<WebAppsListInstanceIdentifiersSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listInstanceIdentifiersSlotNextOperationSpec
-    ) as Promise<WebAppsListInstanceIdentifiersSlotNextResponse>;
+    );
   }
 
   /**
@@ -16990,18 +15370,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessesSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, instanceId, nextLink, options },
       listInstanceProcessesSlotNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17026,19 +15398,18 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessModulesSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessModulesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        instanceId,
+        nextLink,
+        options
+      },
       listInstanceProcessModulesSlotNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessModulesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17063,19 +15434,18 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListInstanceProcessThreadsSlotNextOptionalParams
   ): Promise<WebAppsListInstanceProcessThreadsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      instanceId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        name,
+        processId,
+        slot,
+        instanceId,
+        nextLink,
+        options
+      },
       listInstanceProcessThreadsSlotNextOperationSpec
-    ) as Promise<WebAppsListInstanceProcessThreadsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17094,17 +15464,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSiteBackupsSlotNextOptionalParams
   ): Promise<WebAppsListSiteBackupsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listSiteBackupsSlotNextOperationSpec
-    ) as Promise<WebAppsListSiteBackupsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17123,17 +15486,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListPerfMonCountersSlotNextOptionalParams
   ): Promise<WebAppsListPerfMonCountersSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listPerfMonCountersSlotNextOperationSpec
-    ) as Promise<WebAppsListPerfMonCountersSlotNextResponse>;
+    );
   }
 
   /**
@@ -17152,17 +15508,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessesSlotNextOptionalParams
   ): Promise<WebAppsListProcessesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listProcessesSlotNextOperationSpec
-    ) as Promise<WebAppsListProcessesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17183,18 +15532,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessModulesSlotNextOptionalParams
   ): Promise<WebAppsListProcessModulesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, nextLink, options },
       listProcessModulesSlotNextOperationSpec
-    ) as Promise<WebAppsListProcessModulesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17215,18 +15556,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListProcessThreadsSlotNextOptionalParams
   ): Promise<WebAppsListProcessThreadsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      processId,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, processId, slot, nextLink, options },
       listProcessThreadsSlotNextOperationSpec
-    ) as Promise<WebAppsListProcessThreadsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17246,17 +15579,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListPublicCertificatesSlotNextOptionalParams
   ): Promise<WebAppsListPublicCertificatesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listPublicCertificatesSlotNextOperationSpec
-    ) as Promise<WebAppsListPublicCertificatesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17275,17 +15601,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSiteExtensionsSlotNextOptionalParams
   ): Promise<WebAppsListSiteExtensionsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listSiteExtensionsSlotNextOperationSpec
-    ) as Promise<WebAppsListSiteExtensionsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17307,18 +15626,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSlotDifferencesSlotNextOptionalParams
   ): Promise<WebAppsListSlotDifferencesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      slotSwapEntity,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, slotSwapEntity, nextLink, options },
       listSlotDifferencesSlotNextOperationSpec
-    ) as Promise<WebAppsListSlotDifferencesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17336,17 +15647,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSnapshotsSlotNextOptionalParams
   ): Promise<WebAppsListSnapshotsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listSnapshotsSlotNextOperationSpec
-    ) as Promise<WebAppsListSnapshotsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17365,17 +15669,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondarySlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listSnapshotsFromDRSecondarySlotNextOperationSpec
-    ) as Promise<WebAppsListSnapshotsFromDRSecondarySlotNextResponse>;
+    );
   }
 
   /**
@@ -17395,17 +15692,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListTriggeredWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listTriggeredWebJobsSlotNextOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17427,18 +15717,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListTriggeredWebJobHistorySlotNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistorySlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, slot, nextLink, options },
       listTriggeredWebJobHistorySlotNextOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobHistorySlotNextResponse>;
+    );
   }
 
   /**
@@ -17457,17 +15739,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListUsagesSlotNextOptionalParams
   ): Promise<WebAppsListUsagesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listUsagesSlotNextOperationSpec
-    ) as Promise<WebAppsListUsagesSlotNextResponse>;
+    );
   }
 
   /**
@@ -17486,17 +15761,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListWebJobsSlotNextOptionalParams
   ): Promise<WebAppsListWebJobsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listWebJobsSlotNextOperationSpec
-    ) as Promise<WebAppsListWebJobsSlotNextResponse>;
+    );
   }
 
   /**
@@ -17515,17 +15783,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSlotDifferencesFromProductionNextOptionalParams
   ): Promise<WebAppsListSlotDifferencesFromProductionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slotSwapEntity,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slotSwapEntity, nextLink, options },
       listSlotDifferencesFromProductionNextOperationSpec
-    ) as Promise<WebAppsListSlotDifferencesFromProductionNextResponse>;
+    );
   }
 
   /**
@@ -17541,16 +15802,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSnapshotsNextOptionalParams
   ): Promise<WebAppsListSnapshotsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listSnapshotsNextOperationSpec
-    ) as Promise<WebAppsListSnapshotsNextResponse>;
+    );
   }
 
   /**
@@ -17567,16 +15822,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListSnapshotsFromDRSecondaryNextOptionalParams
   ): Promise<WebAppsListSnapshotsFromDRSecondaryNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listSnapshotsFromDRSecondaryNextOperationSpec
-    ) as Promise<WebAppsListSnapshotsFromDRSecondaryNextResponse>;
+    );
   }
 
   /**
@@ -17592,16 +15841,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListTriggeredWebJobsNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listTriggeredWebJobsNextOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobsNextResponse>;
+    );
   }
 
   /**
@@ -17620,17 +15863,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListTriggeredWebJobHistoryNextOptionalParams
   ): Promise<WebAppsListTriggeredWebJobHistoryNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      webJobName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, webJobName, nextLink, options },
       listTriggeredWebJobHistoryNextOperationSpec
-    ) as Promise<WebAppsListTriggeredWebJobHistoryNextResponse>;
+    );
   }
 
   /**
@@ -17646,16 +15882,10 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListUsagesNextOptionalParams
   ): Promise<WebAppsListUsagesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listUsagesNextOperationSpec
-    ) as Promise<WebAppsListUsagesNextResponse>;
+    );
   }
 
   /**
@@ -17671,34 +15901,16 @@ export class WebAppsImpl implements WebApps {
     nextLink: string,
     options?: WebAppsListWebJobsNextOptionalParams
   ): Promise<WebAppsListWebJobsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listWebJobsNextOperationSpec
-    ) as Promise<WebAppsListWebJobsNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/sites",
   httpMethod: "GET",
   responses: {
@@ -17714,7 +15926,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites",
   httpMethod: "GET",
@@ -17735,7 +15947,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}",
   httpMethod: "GET",
@@ -17758,7 +15970,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}",
   httpMethod: "PUT",
@@ -17791,7 +16003,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}",
   httpMethod: "DELETE",
@@ -17817,7 +16029,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}",
   httpMethod: "PATCH",
@@ -17844,7 +16056,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const analyzeCustomHostnameOperationSpec: coreHttp.OperationSpec = {
+const analyzeCustomHostnameOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/analyzeCustomHostname",
   httpMethod: "GET",
@@ -17866,7 +16078,7 @@ const analyzeCustomHostnameOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
+const applySlotConfigToProductionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/applySlotConfig",
   httpMethod: "POST",
@@ -17888,7 +16100,7 @@ const applySlotConfigToProductionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const backupOperationSpec: coreHttp.OperationSpec = {
+const backupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backup",
   httpMethod: "POST",
@@ -17912,7 +16124,7 @@ const backupOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listBackupsOperationSpec: coreHttp.OperationSpec = {
+const listBackupsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups",
   httpMethod: "GET",
@@ -17934,7 +16146,7 @@ const listBackupsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBackupStatusOperationSpec: coreHttp.OperationSpec = {
+const getBackupStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}",
   httpMethod: "GET",
@@ -17957,7 +16169,7 @@ const getBackupStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteBackupOperationSpec: coreHttp.OperationSpec = {
+const deleteBackupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}",
   httpMethod: "DELETE",
@@ -17979,7 +16191,7 @@ const deleteBackupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
+const listBackupStatusSecretsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/list",
   httpMethod: "POST",
@@ -18004,7 +16216,7 @@ const listBackupStatusSecretsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreOperationSpec: coreHttp.OperationSpec = {
+const restoreOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/backups/{backupId}/restore",
   httpMethod: "POST",
@@ -18030,7 +16242,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConfigurationsOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config",
   httpMethod: "GET",
@@ -18052,7 +16264,7 @@ const listConfigurationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
+const updateApplicationSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/appsettings",
   httpMethod: "PUT",
@@ -18076,7 +16288,7 @@ const updateApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
+const listApplicationSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/appsettings/list",
   httpMethod: "POST",
@@ -18098,7 +16310,7 @@ const listApplicationSettingsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
+const updateAuthSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettings",
   httpMethod: "PUT",
@@ -18122,7 +16334,7 @@ const updateAuthSettingsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getAuthSettingsOperationSpec: coreHttp.OperationSpec = {
+const getAuthSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/authsettings/list",
   httpMethod: "POST",
@@ -18144,7 +16356,7 @@ const getAuthSettingsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
+const updateAzureStorageAccountsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/azurestorageaccounts",
   httpMethod: "PUT",
@@ -18168,7 +16380,7 @@ const updateAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
+const listAzureStorageAccountsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/azurestorageaccounts/list",
   httpMethod: "POST",
@@ -18190,7 +16402,7 @@ const listAzureStorageAccountsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
+const updateBackupConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/backup",
   httpMethod: "PUT",
@@ -18214,7 +16426,7 @@ const updateBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
+const deleteBackupConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/backup",
   httpMethod: "DELETE",
@@ -18234,7 +16446,7 @@ const deleteBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
+const getBackupConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/backup/list",
   httpMethod: "POST",
@@ -18256,7 +16468,7 @@ const getBackupConfigurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAppSettingsKeyVaultReferencesOperationSpec: coreHttp.OperationSpec = {
+const getAppSettingsKeyVaultReferencesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/appsettings",
   httpMethod: "GET",
@@ -18278,7 +16490,7 @@ const getAppSettingsKeyVaultReferencesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAppSettingKeyVaultReferenceOperationSpec: coreHttp.OperationSpec = {
+const getAppSettingKeyVaultReferenceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/configreferences/appsettings/{appSettingKey}",
   httpMethod: "GET",
@@ -18301,7 +16513,7 @@ const getAppSettingKeyVaultReferenceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
+const updateConnectionStringsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/connectionstrings",
   httpMethod: "PUT",
@@ -18325,7 +16537,7 @@ const updateConnectionStringsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
+const listConnectionStringsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/connectionstrings/list",
   httpMethod: "POST",
@@ -18347,7 +16559,7 @@ const listConnectionStringsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDiagnosticLogsConfigurationOperationSpec: coreHttp.OperationSpec = {
+const getDiagnosticLogsConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/logs",
   httpMethod: "GET",
@@ -18369,7 +16581,7 @@ const getDiagnosticLogsConfigurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
+const updateDiagnosticLogsConfigOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/logs",
   httpMethod: "PUT",
@@ -18393,7 +16605,7 @@ const updateDiagnosticLogsConfigOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateMetadataOperationSpec: coreHttp.OperationSpec = {
+const updateMetadataOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/metadata",
   httpMethod: "PUT",
@@ -18417,7 +16629,7 @@ const updateMetadataOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listMetadataOperationSpec: coreHttp.OperationSpec = {
+const listMetadataOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/metadata/list",
   httpMethod: "POST",
@@ -18439,7 +16651,7 @@ const listMetadataOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublishingCredentialsOperationSpec: coreHttp.OperationSpec = {
+const listPublishingCredentialsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/publishingcredentials/list",
   httpMethod: "POST",
@@ -18470,7 +16682,7 @@ const listPublishingCredentialsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
+const updateSitePushSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/pushsettings",
   httpMethod: "PUT",
@@ -18494,7 +16706,7 @@ const updateSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
+const listSitePushSettingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/pushsettings/list",
   httpMethod: "POST",
@@ -18516,7 +16728,7 @@ const listSitePushSettingsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
+const listSlotConfigurationNamesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/slotConfigNames",
   httpMethod: "GET",
@@ -18538,7 +16750,7 @@ const listSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
+const updateSlotConfigurationNamesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/slotConfigNames",
   httpMethod: "PUT",
@@ -18562,7 +16774,7 @@ const updateSlotConfigurationNamesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getConfigurationOperationSpec: coreHttp.OperationSpec = {
+const getConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web",
   httpMethod: "GET",
@@ -18584,7 +16796,7 @@ const getConfigurationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web",
   httpMethod: "PUT",
@@ -18608,7 +16820,7 @@ const createOrUpdateConfigurationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
+const updateConfigurationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web",
   httpMethod: "PATCH",
@@ -18632,7 +16844,7 @@ const updateConfigurationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConfigurationSnapshotInfoOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationSnapshotInfoOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web/snapshots",
   httpMethod: "GET",
@@ -18654,7 +16866,7 @@ const listConfigurationSnapshotInfoOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
+const getConfigurationSnapshotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web/snapshots/{snapshotId}",
   httpMethod: "GET",
@@ -18677,7 +16889,7 @@ const getConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const recoverSiteConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
+const recoverSiteConfigurationSnapshotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/config/web/snapshots/{snapshotId}/recover",
   httpMethod: "POST",
@@ -18698,7 +16910,7 @@ const recoverSiteConfigurationSnapshotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
+const getWebSiteContainerLogsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/containerlogs",
   httpMethod: "POST",
@@ -18719,7 +16931,7 @@ const getWebSiteContainerLogsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept1],
   serializer
 };
-const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
+const getContainerLogsZipOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/containerlogs/zip/download",
   httpMethod: "POST",
@@ -18740,7 +16952,7 @@ const getContainerLogsZipOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept2],
   serializer
 };
-const listContinuousWebJobsOperationSpec: coreHttp.OperationSpec = {
+const listContinuousWebJobsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/continuouswebjobs",
   httpMethod: "GET",
@@ -18762,7 +16974,7 @@ const listContinuousWebJobsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
+const getContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/continuouswebjobs/{webJobName}",
   httpMethod: "GET",
@@ -18786,7 +16998,7 @@ const getContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
+const deleteContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/continuouswebjobs/{webJobName}",
   httpMethod: "DELETE",
@@ -18808,7 +17020,7 @@ const deleteContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
+const startContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/continuouswebjobs/{webJobName}/start",
   httpMethod: "POST",
@@ -18830,7 +17042,7 @@ const startContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
+const stopContinuousWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/continuouswebjobs/{webJobName}/stop",
   httpMethod: "POST",
@@ -18852,7 +17064,7 @@ const stopContinuousWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentsOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/deployments",
   httpMethod: "GET",
@@ -18874,7 +17086,7 @@ const listDeploymentsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDeploymentOperationSpec: coreHttp.OperationSpec = {
+const getDeploymentOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/deployments/{id}",
   httpMethod: "GET",
@@ -18897,7 +17109,7 @@ const getDeploymentOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createDeploymentOperationSpec: coreHttp.OperationSpec = {
+const createDeploymentOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/deployments/{id}",
   httpMethod: "PUT",
@@ -18922,7 +17134,7 @@ const createDeploymentOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteDeploymentOperationSpec: coreHttp.OperationSpec = {
+const deleteDeploymentOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/deployments/{id}",
   httpMethod: "DELETE",
@@ -18944,7 +17156,7 @@ const deleteDeploymentOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentLogOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentLogOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/deployments/{id}/log",
   httpMethod: "GET",
@@ -18967,7 +17179,7 @@ const listDeploymentLogOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const discoverBackupOperationSpec: coreHttp.OperationSpec = {
+const discoverBackupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/discoverbackup",
   httpMethod: "POST",
@@ -18991,7 +17203,7 @@ const discoverBackupOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listDomainOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
+const listDomainOwnershipIdentifiersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/domainOwnershipIdentifiers",
   httpMethod: "GET",
@@ -19013,7 +17225,7 @@ const listDomainOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const getDomainOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "GET",
@@ -19036,7 +17248,7 @@ const getDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "PUT",
@@ -19061,7 +17273,7 @@ const createOrUpdateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSp
   mediaType: "json",
   serializer
 };
-const deleteDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const deleteDomainOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "DELETE",
@@ -19083,7 +17295,7 @@ const deleteDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const updateDomainOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "PATCH",
@@ -19108,7 +17320,7 @@ const updateDomainOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getMSDeployStatusOperationSpec: coreHttp.OperationSpec = {
+const getMSDeployStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/extensions/MSDeploy",
   httpMethod: "GET",
@@ -19130,7 +17342,7 @@ const getMSDeployStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
+const createMSDeployOperationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/extensions/MSDeploy",
   httpMethod: "PUT",
@@ -19163,7 +17375,7 @@ const createMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getMSDeployLogOperationSpec: coreHttp.OperationSpec = {
+const getMSDeployLogOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/extensions/MSDeploy/log",
   httpMethod: "GET",
@@ -19186,7 +17398,7 @@ const getMSDeployLogOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionsOperationSpec: coreHttp.OperationSpec = {
+const listFunctionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions",
   httpMethod: "GET",
@@ -19209,7 +17421,7 @@ const listFunctionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getFunctionsAdminTokenOperationSpec: coreHttp.OperationSpec = {
+const getFunctionsAdminTokenOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/admin/token",
   httpMethod: "GET",
@@ -19231,7 +17443,7 @@ const getFunctionsAdminTokenOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getFunctionOperationSpec: coreHttp.OperationSpec = {
+const getFunctionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}",
   httpMethod: "GET",
@@ -19255,7 +17467,7 @@ const getFunctionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createFunctionOperationSpec: coreHttp.OperationSpec = {
+const createFunctionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}",
   httpMethod: "PUT",
@@ -19289,7 +17501,7 @@ const createFunctionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteFunctionOperationSpec: coreHttp.OperationSpec = {
+const deleteFunctionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}",
   httpMethod: "DELETE",
@@ -19311,7 +17523,7 @@ const deleteFunctionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateFunctionSecretOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}/keys/{keyName}",
   httpMethod: "PUT",
@@ -19340,7 +17552,7 @@ const createOrUpdateFunctionSecretOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteFunctionSecretOperationSpec: coreHttp.OperationSpec = {
+const deleteFunctionSecretOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}/keys/{keyName}",
   httpMethod: "DELETE",
@@ -19363,7 +17575,7 @@ const deleteFunctionSecretOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionKeysOperationSpec: coreHttp.OperationSpec = {
+const listFunctionKeysOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}/listkeys",
   httpMethod: "POST",
@@ -19386,7 +17598,7 @@ const listFunctionKeysOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionSecretsOperationSpec: coreHttp.OperationSpec = {
+const listFunctionSecretsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/functions/{functionName}/listsecrets",
   httpMethod: "POST",
@@ -19409,7 +17621,7 @@ const listFunctionSecretsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostKeysOperationSpec: coreHttp.OperationSpec = {
+const listHostKeysOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/host/default/listkeys",
   httpMethod: "POST",
@@ -19431,7 +17643,7 @@ const listHostKeysOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSyncStatusOperationSpec: coreHttp.OperationSpec = {
+const listSyncStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/host/default/listsyncstatus",
   httpMethod: "POST",
@@ -19451,7 +17663,7 @@ const listSyncStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncFunctionsOperationSpec: coreHttp.OperationSpec = {
+const syncFunctionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/host/default/sync",
   httpMethod: "POST",
@@ -19471,7 +17683,7 @@ const syncFunctionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHostSecretOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/host/default/{keyType}/{keyName}",
   httpMethod: "PUT",
@@ -19500,7 +17712,7 @@ const createOrUpdateHostSecretOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteHostSecretOperationSpec: coreHttp.OperationSpec = {
+const deleteHostSecretOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/host/default/{keyType}/{keyName}",
   httpMethod: "DELETE",
@@ -19523,7 +17735,7 @@ const deleteHostSecretOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostNameBindingsOperationSpec: coreHttp.OperationSpec = {
+const listHostNameBindingsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings",
   httpMethod: "GET",
@@ -19545,7 +17757,7 @@ const listHostNameBindingsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHostNameBindingOperationSpec: coreHttp.OperationSpec = {
+const getHostNameBindingOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings/{hostName}",
   httpMethod: "GET",
@@ -19568,7 +17780,7 @@ const getHostNameBindingOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHostNameBindingOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings/{hostName}",
   httpMethod: "PUT",
@@ -19593,7 +17805,7 @@ const createOrUpdateHostNameBindingOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteHostNameBindingOperationSpec: coreHttp.OperationSpec = {
+const deleteHostNameBindingOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hostNameBindings/{hostName}",
   httpMethod: "DELETE",
@@ -19615,7 +17827,7 @@ const deleteHostNameBindingOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const getHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "GET",
@@ -19639,7 +17851,7 @@ const getHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "PUT",
@@ -19665,7 +17877,7 @@ const createOrUpdateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const deleteHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "DELETE",
@@ -19688,7 +17900,7 @@ const deleteHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
+const updateHybridConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "PATCH",
@@ -19714,7 +17926,7 @@ const updateHybridConnectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
+const listHybridConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridConnectionRelays",
   httpMethod: "GET",
@@ -19736,7 +17948,7 @@ const listHybridConnectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRelayServiceConnectionsOperationSpec: coreHttp.OperationSpec = {
+const listRelayServiceConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridconnection",
   httpMethod: "GET",
@@ -19758,7 +17970,7 @@ const listRelayServiceConnectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
+const getRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridconnection/{entityName}",
   httpMethod: "GET",
@@ -19781,7 +17993,7 @@ const getRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridconnection/{entityName}",
   httpMethod: "PUT",
@@ -19806,7 +18018,7 @@ const createOrUpdateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec 
   mediaType: "json",
   serializer
 };
-const deleteRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
+const deleteRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridconnection/{entityName}",
   httpMethod: "DELETE",
@@ -19828,7 +18040,7 @@ const deleteRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
+const updateRelayServiceConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/hybridconnection/{entityName}",
   httpMethod: "PATCH",
@@ -19853,7 +18065,7 @@ const updateRelayServiceConnectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listInstanceIdentifiersOperationSpec: coreHttp.OperationSpec = {
+const listInstanceIdentifiersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances",
   httpMethod: "GET",
@@ -19875,7 +18087,7 @@ const listInstanceIdentifiersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceInfoOperationSpec: coreHttp.OperationSpec = {
+const getInstanceInfoOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}",
   httpMethod: "GET",
@@ -19898,7 +18110,7 @@ const getInstanceInfoOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceMsDeployStatusOperationSpec: coreHttp.OperationSpec = {
+const getInstanceMsDeployStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/extensions/MSDeploy",
   httpMethod: "GET",
@@ -19921,7 +18133,7 @@ const getInstanceMsDeployStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
+const createInstanceMSDeployOperationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/extensions/MSDeploy",
   httpMethod: "PUT",
@@ -19955,7 +18167,7 @@ const createInstanceMSDeployOperationOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getInstanceMSDeployLogOperationSpec: coreHttp.OperationSpec = {
+const getInstanceMSDeployLogOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/extensions/MSDeploy/log",
   httpMethod: "GET",
@@ -19979,7 +18191,7 @@ const getInstanceMSDeployLogOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessesOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes",
   httpMethod: "GET",
@@ -20003,7 +18215,7 @@ const listInstanceProcessesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}",
   httpMethod: "GET",
@@ -20028,7 +18240,7 @@ const getInstanceProcessOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteInstanceProcessOperationSpec: coreHttp.OperationSpec = {
+const deleteInstanceProcessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}",
   httpMethod: "DELETE",
@@ -20051,7 +18263,7 @@ const deleteInstanceProcessOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessDumpOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}/dump",
   httpMethod: "GET",
@@ -20076,7 +18288,7 @@ const getInstanceProcessDumpOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessModulesOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessModulesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}/modules",
   httpMethod: "GET",
@@ -20101,7 +18313,7 @@ const listInstanceProcessModulesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessModuleOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessModuleOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}/modules/{baseAddress}",
   httpMethod: "GET",
@@ -20127,7 +18339,7 @@ const getInstanceProcessModuleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessThreadsOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessThreadsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/instances/{instanceId}/processes/{processId}/threads",
   httpMethod: "GET",
@@ -20152,7 +18364,7 @@ const listInstanceProcessThreadsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const isCloneableOperationSpec: coreHttp.OperationSpec = {
+const isCloneableOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/iscloneable",
   httpMethod: "POST",
@@ -20174,7 +18386,7 @@ const isCloneableOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteBackupsOperationSpec: coreHttp.OperationSpec = {
+const listSiteBackupsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/listbackups",
   httpMethod: "POST",
@@ -20196,7 +18408,7 @@ const listSiteBackupsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSyncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
+const listSyncFunctionTriggersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/listsyncfunctiontriggerstatus",
   httpMethod: "POST",
@@ -20218,7 +18430,7 @@ const listSyncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const migrateStorageOperationSpec: coreHttp.OperationSpec = {
+const migrateStorageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/migrate",
   httpMethod: "PUT",
@@ -20251,7 +18463,7 @@ const migrateStorageOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
+const migrateMySqlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/migratemysql",
   httpMethod: "POST",
@@ -20284,7 +18496,7 @@ const migrateMySqlOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getMigrateMySqlStatusOperationSpec: coreHttp.OperationSpec = {
+const getMigrateMySqlStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/migratemysql/status",
   httpMethod: "GET",
@@ -20306,7 +18518,7 @@ const getMigrateMySqlStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
+const getSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "GET",
@@ -20328,7 +18540,7 @@ const getSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "PUT",
@@ -20352,7 +18564,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.Operati
   mediaType: "json",
   serializer
 };
-const deleteSwiftVirtualNetworkOperationSpec: coreHttp.OperationSpec = {
+const deleteSwiftVirtualNetworkOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "DELETE",
@@ -20373,7 +18585,7 @@ const deleteSwiftVirtualNetworkOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec = {
+const updateSwiftVirtualNetworkConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkConfig/virtualNetwork",
   httpMethod: "PATCH",
@@ -20397,7 +18609,7 @@ const updateSwiftVirtualNetworkConnectionOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const listNetworkFeaturesOperationSpec: coreHttp.OperationSpec = {
+const listNetworkFeaturesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkFeatures/{view}",
   httpMethod: "GET",
@@ -20421,7 +18633,7 @@ const listNetworkFeaturesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
+const getNetworkTraceOperationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTrace/operationresults/{operationId}",
   httpMethod: "GET",
@@ -20457,7 +18669,7 @@ const getNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
+const startWebSiteNetworkTraceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTrace/start",
   httpMethod: "POST",
@@ -20484,7 +18696,7 @@ const startWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
+const startWebSiteNetworkTraceOperationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTrace/startOperation",
   httpMethod: "POST",
@@ -20540,7 +18752,7 @@ const startWebSiteNetworkTraceOperationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
+const stopWebSiteNetworkTraceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTrace/stop",
   httpMethod: "POST",
@@ -20561,7 +18773,7 @@ const stopWebSiteNetworkTraceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTracesOperationSpec: coreHttp.OperationSpec = {
+const getNetworkTracesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTrace/{operationId}",
   httpMethod: "GET",
@@ -20589,7 +18801,7 @@ const getNetworkTracesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTraceOperationV2OperationSpec: coreHttp.OperationSpec = {
+const getNetworkTraceOperationV2OperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTraces/current/operationresults/{operationId}",
   httpMethod: "GET",
@@ -20625,7 +18837,7 @@ const getNetworkTraceOperationV2OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTracesV2OperationSpec: coreHttp.OperationSpec = {
+const getNetworkTracesV2OperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/networkTraces/{operationId}",
   httpMethod: "GET",
@@ -20653,7 +18865,7 @@ const getNetworkTracesV2OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const generateNewSitePublishingPasswordOperationSpec: coreHttp.OperationSpec = {
+const generateNewSitePublishingPasswordOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/newpassword",
   httpMethod: "POST",
@@ -20674,7 +18886,7 @@ const generateNewSitePublishingPasswordOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPerfMonCountersOperationSpec: coreHttp.OperationSpec = {
+const listPerfMonCountersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/perfcounters",
   httpMethod: "GET",
@@ -20696,7 +18908,7 @@ const listPerfMonCountersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSitePhpErrorLogFlagOperationSpec: coreHttp.OperationSpec = {
+const getSitePhpErrorLogFlagOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/phplogging",
   httpMethod: "GET",
@@ -20718,7 +18930,7 @@ const getSitePhpErrorLogFlagOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPremierAddOnsOperationSpec: coreHttp.OperationSpec = {
+const listPremierAddOnsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/premieraddons",
   httpMethod: "GET",
@@ -20740,7 +18952,7 @@ const listPremierAddOnsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPremierAddOnOperationSpec: coreHttp.OperationSpec = {
+const getPremierAddOnOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/premieraddons/{premierAddOnName}",
   httpMethod: "GET",
@@ -20763,7 +18975,7 @@ const getPremierAddOnOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
+const addPremierAddOnOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/premieraddons/{premierAddOnName}",
   httpMethod: "PUT",
@@ -20788,7 +19000,7 @@ const addPremierAddOnOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deletePremierAddOnOperationSpec: coreHttp.OperationSpec = {
+const deletePremierAddOnOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/premieraddons/{premierAddOnName}",
   httpMethod: "DELETE",
@@ -20809,7 +19021,7 @@ const deletePremierAddOnOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
+const updatePremierAddOnOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/premieraddons/{premierAddOnName}",
   httpMethod: "PATCH",
@@ -20834,7 +19046,7 @@ const updatePremierAddOnOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPrivateAccessOperationSpec: coreHttp.OperationSpec = {
+const getPrivateAccessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateAccess/virtualNetworks",
   httpMethod: "GET",
@@ -20856,7 +19068,7 @@ const getPrivateAccessOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
+const putPrivateAccessVnetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateAccess/virtualNetworks",
   httpMethod: "PUT",
@@ -20880,7 +19092,7 @@ const putPrivateAccessVnetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listProcessesOperationSpec: coreHttp.OperationSpec = {
+const listProcessesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes",
   httpMethod: "GET",
@@ -20903,7 +19115,7 @@ const listProcessesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessOperationSpec: coreHttp.OperationSpec = {
+const getProcessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}",
   httpMethod: "GET",
@@ -20927,7 +19139,7 @@ const getProcessOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteProcessOperationSpec: coreHttp.OperationSpec = {
+const deleteProcessOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}",
   httpMethod: "DELETE",
@@ -20949,7 +19161,7 @@ const deleteProcessOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
+const getProcessDumpOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}/dump",
   httpMethod: "GET",
@@ -20973,7 +19185,7 @@ const getProcessDumpOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessModulesOperationSpec: coreHttp.OperationSpec = {
+const listProcessModulesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}/modules",
   httpMethod: "GET",
@@ -20997,7 +19209,7 @@ const listProcessModulesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessModuleOperationSpec: coreHttp.OperationSpec = {
+const getProcessModuleOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}/modules/{baseAddress}",
   httpMethod: "GET",
@@ -21022,7 +19234,7 @@ const getProcessModuleOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessThreadsOperationSpec: coreHttp.OperationSpec = {
+const listProcessThreadsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/processes/{processId}/threads",
   httpMethod: "GET",
@@ -21046,7 +19258,7 @@ const listProcessThreadsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublicCertificatesOperationSpec: coreHttp.OperationSpec = {
+const listPublicCertificatesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publicCertificates",
   httpMethod: "GET",
@@ -21068,7 +19280,7 @@ const listPublicCertificatesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPublicCertificateOperationSpec: coreHttp.OperationSpec = {
+const getPublicCertificateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publicCertificates/{publicCertificateName}",
   httpMethod: "GET",
@@ -21091,7 +19303,7 @@ const getPublicCertificateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdatePublicCertificateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publicCertificates/{publicCertificateName}",
   httpMethod: "PUT",
@@ -21116,7 +19328,7 @@ const createOrUpdatePublicCertificateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deletePublicCertificateOperationSpec: coreHttp.OperationSpec = {
+const deletePublicCertificateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publicCertificates/{publicCertificateName}",
   httpMethod: "DELETE",
@@ -21138,7 +19350,7 @@ const deletePublicCertificateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec = {
+const listPublishingProfileXmlWithSecretsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/publishxml",
   httpMethod: "POST",
@@ -21162,7 +19374,7 @@ const listPublishingProfileXmlWithSecretsOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const resetProductionSlotConfigOperationSpec: coreHttp.OperationSpec = {
+const resetProductionSlotConfigOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/resetSlotConfig",
   httpMethod: "POST",
@@ -21182,7 +19394,7 @@ const resetProductionSlotConfigOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const restartOperationSpec: coreHttp.OperationSpec = {
+const restartOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restart",
   httpMethod: "POST",
@@ -21206,7 +19418,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
+const restoreFromBackupBlobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreFromBackupBlob",
   httpMethod: "POST",
@@ -21231,7 +19443,7 @@ const restoreFromBackupBlobOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
+const restoreFromDeletedAppOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreFromDeletedApp",
   httpMethod: "POST",
@@ -21256,7 +19468,7 @@ const restoreFromDeletedAppOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
+const restoreSnapshotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/restoreSnapshot",
   httpMethod: "POST",
@@ -21281,7 +19493,7 @@ const restoreSnapshotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSiteExtensionsOperationSpec: coreHttp.OperationSpec = {
+const listSiteExtensionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/siteextensions",
   httpMethod: "GET",
@@ -21304,7 +19516,7 @@ const listSiteExtensionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteExtensionOperationSpec: coreHttp.OperationSpec = {
+const getSiteExtensionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/siteextensions/{siteExtensionId}",
   httpMethod: "GET",
@@ -21328,7 +19540,7 @@ const getSiteExtensionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
+const installSiteExtensionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/siteextensions/{siteExtensionId}",
   httpMethod: "PUT",
@@ -21360,7 +19572,7 @@ const installSiteExtensionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteSiteExtensionOperationSpec: coreHttp.OperationSpec = {
+const deleteSiteExtensionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/siteextensions/{siteExtensionId}",
   httpMethod: "DELETE",
@@ -21382,7 +19594,7 @@ const deleteSiteExtensionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
+const copyProductionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotcopy",
   httpMethod: "POST",
@@ -21407,7 +19619,7 @@ const copyProductionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSlotsOperationSpec: coreHttp.OperationSpec = {
+const listSlotsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots",
   httpMethod: "GET",
@@ -21429,7 +19641,7 @@ const listSlotsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSlotOperationSpec: coreHttp.OperationSpec = {
+const getSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}",
   httpMethod: "GET",
@@ -21453,7 +19665,7 @@ const getSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}",
   httpMethod: "PUT",
@@ -21487,7 +19699,7 @@ const createOrUpdateSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}",
   httpMethod: "DELETE",
@@ -21514,7 +19726,7 @@ const deleteSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSlotOperationSpec: coreHttp.OperationSpec = {
+const updateSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}",
   httpMethod: "PATCH",
@@ -21542,7 +19754,7 @@ const updateSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const analyzeCustomHostnameSlotOperationSpec: coreHttp.OperationSpec = {
+const analyzeCustomHostnameSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/analyzeCustomHostname",
   httpMethod: "GET",
@@ -21565,7 +19777,7 @@ const analyzeCustomHostnameSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const applySlotConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/applySlotConfig",
   httpMethod: "POST",
@@ -21588,7 +19800,7 @@ const applySlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const backupSlotOperationSpec: coreHttp.OperationSpec = {
+const backupSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backup",
   httpMethod: "POST",
@@ -21613,7 +19825,7 @@ const backupSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listBackupsSlotOperationSpec: coreHttp.OperationSpec = {
+const listBackupsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups",
   httpMethod: "GET",
@@ -21636,7 +19848,7 @@ const listBackupsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBackupStatusSlotOperationSpec: coreHttp.OperationSpec = {
+const getBackupStatusSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}",
   httpMethod: "GET",
@@ -21660,7 +19872,7 @@ const getBackupStatusSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteBackupSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteBackupSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}",
   httpMethod: "DELETE",
@@ -21683,7 +19895,7 @@ const deleteBackupSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
+const listBackupStatusSecretsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}/list",
   httpMethod: "POST",
@@ -21709,7 +19921,7 @@ const listBackupStatusSecretsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreSlotOperationSpec: coreHttp.OperationSpec = {
+const restoreSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/backups/{backupId}/restore",
   httpMethod: "POST",
@@ -21736,7 +19948,7 @@ const restoreSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConfigurationsSlotOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config",
   httpMethod: "GET",
@@ -21759,7 +19971,7 @@ const listConfigurationsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const updateApplicationSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/appsettings",
   httpMethod: "PUT",
@@ -21784,7 +19996,7 @@ const updateApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const listApplicationSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/appsettings/list",
   httpMethod: "POST",
@@ -21807,7 +20019,7 @@ const listApplicationSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const updateAuthSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/authsettings",
   httpMethod: "PUT",
@@ -21832,7 +20044,7 @@ const updateAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const getAuthSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/authsettings/list",
   httpMethod: "POST",
@@ -21855,7 +20067,7 @@ const getAuthSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
+const updateAzureStorageAccountsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/azurestorageaccounts",
   httpMethod: "PUT",
@@ -21880,7 +20092,7 @@ const updateAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
+const listAzureStorageAccountsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/azurestorageaccounts/list",
   httpMethod: "POST",
@@ -21903,7 +20115,7 @@ const listAzureStorageAccountsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const updateBackupConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/backup",
   httpMethod: "PUT",
@@ -21928,7 +20140,7 @@ const updateBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteBackupConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/backup",
   httpMethod: "DELETE",
@@ -21949,7 +20161,7 @@ const deleteBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const getBackupConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/backup/list",
   httpMethod: "POST",
@@ -21972,7 +20184,7 @@ const getBackupConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
+const updateConnectionStringsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/connectionstrings",
   httpMethod: "PUT",
@@ -21997,7 +20209,7 @@ const updateConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
+const listConnectionStringsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/connectionstrings/list",
   httpMethod: "POST",
@@ -22020,7 +20232,7 @@ const listConnectionStringsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDiagnosticLogsConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const getDiagnosticLogsConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/logs",
   httpMethod: "GET",
@@ -22043,7 +20255,7 @@ const getDiagnosticLogsConfigurationSlotOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
+const updateDiagnosticLogsConfigSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/logs",
   httpMethod: "PUT",
@@ -22068,7 +20280,7 @@ const updateDiagnosticLogsConfigSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
+const updateMetadataSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/metadata",
   httpMethod: "PUT",
@@ -22093,7 +20305,7 @@ const updateMetadataSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listMetadataSlotOperationSpec: coreHttp.OperationSpec = {
+const listMetadataSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/metadata/list",
   httpMethod: "POST",
@@ -22116,7 +20328,7 @@ const listMetadataSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublishingCredentialsSlotOperationSpec: coreHttp.OperationSpec = {
+const listPublishingCredentialsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/publishingcredentials/list",
   httpMethod: "POST",
@@ -22148,7 +20360,7 @@ const listPublishingCredentialsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const updateSitePushSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/pushsettings",
   httpMethod: "PUT",
@@ -22173,7 +20385,7 @@ const updateSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
+const listSitePushSettingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/pushsettings/list",
   httpMethod: "POST",
@@ -22196,7 +20408,7 @@ const listSitePushSettingsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const getConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web",
   httpMethod: "GET",
@@ -22219,7 +20431,7 @@ const getConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web",
   httpMethod: "PUT",
@@ -22244,7 +20456,7 @@ const createOrUpdateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const updateConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web",
   httpMethod: "PATCH",
@@ -22269,7 +20481,7 @@ const updateConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listConfigurationSnapshotInfoSlotOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationSnapshotInfoSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web/snapshots",
   httpMethod: "GET",
@@ -22292,7 +20504,7 @@ const listConfigurationSnapshotInfoSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
+const getConfigurationSnapshotSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web/snapshots/{snapshotId}",
   httpMethod: "GET",
@@ -22316,7 +20528,7 @@ const getConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const recoverSiteConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
+const recoverSiteConfigurationSnapshotSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/config/web/snapshots/{snapshotId}/recover",
   httpMethod: "POST",
@@ -22338,7 +20550,7 @@ const recoverSiteConfigurationSnapshotSlotOperationSpec: coreHttp.OperationSpec 
   headerParameters: [Parameters.accept],
   serializer
 };
-const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
+const getWebSiteContainerLogsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/containerlogs",
   httpMethod: "POST",
@@ -22360,7 +20572,7 @@ const getWebSiteContainerLogsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept1],
   serializer
 };
-const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
+const getContainerLogsZipSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/containerlogs/zip/download",
   httpMethod: "POST",
@@ -22382,7 +20594,7 @@ const getContainerLogsZipSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept2],
   serializer
 };
-const listContinuousWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
+const listContinuousWebJobsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/continuouswebjobs",
   httpMethod: "GET",
@@ -22405,7 +20617,7 @@ const listContinuousWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const getContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/continuouswebjobs/{webJobName}",
   httpMethod: "GET",
@@ -22430,7 +20642,7 @@ const getContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/continuouswebjobs/{webJobName}",
   httpMethod: "DELETE",
@@ -22453,7 +20665,7 @@ const deleteContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const startContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/continuouswebjobs/{webJobName}/start",
   httpMethod: "POST",
@@ -22476,7 +20688,7 @@ const startContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const stopContinuousWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/continuouswebjobs/{webJobName}/stop",
   httpMethod: "POST",
@@ -22499,7 +20711,7 @@ const stopContinuousWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentsSlotOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/deployments",
   httpMethod: "GET",
@@ -22522,7 +20734,7 @@ const listDeploymentsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
+const getDeploymentSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/deployments/{id}",
   httpMethod: "GET",
@@ -22546,7 +20758,7 @@ const getDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
+const createDeploymentSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/deployments/{id}",
   httpMethod: "PUT",
@@ -22572,7 +20784,7 @@ const createDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteDeploymentSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/deployments/{id}",
   httpMethod: "DELETE",
@@ -22595,7 +20807,7 @@ const deleteDeploymentSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentLogSlotOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentLogSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/deployments/{id}/log",
   httpMethod: "GET",
@@ -22619,7 +20831,7 @@ const listDeploymentLogSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
+const discoverBackupSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/discoverbackup",
   httpMethod: "POST",
@@ -22644,7 +20856,7 @@ const discoverBackupSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listDomainOwnershipIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
+const listDomainOwnershipIdentifiersSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/domainOwnershipIdentifiers",
   httpMethod: "GET",
@@ -22667,7 +20879,7 @@ const listDomainOwnershipIdentifiersSlotOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const getDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
+const getDomainOwnershipIdentifierSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "GET",
@@ -22691,7 +20903,7 @@ const getDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "PUT",
@@ -22717,7 +20929,7 @@ const createOrUpdateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.Operati
   mediaType: "json",
   serializer
 };
-const deleteDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteDomainOwnershipIdentifierSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "DELETE",
@@ -22740,7 +20952,7 @@ const deleteDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec = {
+const updateDomainOwnershipIdentifierSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/domainOwnershipIdentifiers/{domainOwnershipIdentifierName}",
   httpMethod: "PATCH",
@@ -22766,7 +20978,7 @@ const updateDomainOwnershipIdentifierSlotOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const getMSDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
+const getMSDeployStatusSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/extensions/MSDeploy",
   httpMethod: "GET",
@@ -22789,7 +21001,7 @@ const getMSDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
+const createMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/extensions/MSDeploy",
   httpMethod: "PUT",
@@ -22823,7 +21035,7 @@ const createMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
+const getMSDeployLogSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/extensions/MSDeploy/log",
   httpMethod: "GET",
@@ -22847,7 +21059,7 @@ const getMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
+const listInstanceFunctionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions",
   httpMethod: "GET",
@@ -22871,7 +21083,7 @@ const listInstanceFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getFunctionsAdminTokenSlotOperationSpec: coreHttp.OperationSpec = {
+const getFunctionsAdminTokenSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/admin/token",
   httpMethod: "GET",
@@ -22894,7 +21106,7 @@ const getFunctionsAdminTokenSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}",
   httpMethod: "GET",
@@ -22919,7 +21131,7 @@ const getInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
+const createInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}",
   httpMethod: "PUT",
@@ -22954,7 +21166,7 @@ const createInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteInstanceFunctionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}",
   httpMethod: "DELETE",
@@ -22977,7 +21189,7 @@ const deleteInstanceFunctionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateFunctionSecretSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}/keys/{keyName}",
   httpMethod: "PUT",
@@ -23007,7 +21219,7 @@ const createOrUpdateFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteFunctionSecretSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}/keys/{keyName}",
   httpMethod: "DELETE",
@@ -23031,7 +21243,7 @@ const deleteFunctionSecretSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionKeysSlotOperationSpec: coreHttp.OperationSpec = {
+const listFunctionKeysSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}/listkeys",
   httpMethod: "POST",
@@ -23055,7 +21267,7 @@ const listFunctionKeysSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionSecretsSlotOperationSpec: coreHttp.OperationSpec = {
+const listFunctionSecretsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/functions/{functionName}/listsecrets",
   httpMethod: "POST",
@@ -23079,7 +21291,7 @@ const listFunctionSecretsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostKeysSlotOperationSpec: coreHttp.OperationSpec = {
+const listHostKeysSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/host/default/listkeys",
   httpMethod: "POST",
@@ -23102,7 +21314,7 @@ const listHostKeysSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSyncStatusSlotOperationSpec: coreHttp.OperationSpec = {
+const listSyncStatusSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/host/default/listsyncstatus",
   httpMethod: "POST",
@@ -23123,7 +21335,7 @@ const listSyncStatusSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
+const syncFunctionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/host/default/sync",
   httpMethod: "POST",
@@ -23144,7 +21356,7 @@ const syncFunctionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHostSecretSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/host/default/{keyType}/{keyName}",
   httpMethod: "PUT",
@@ -23174,7 +21386,7 @@ const createOrUpdateHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteHostSecretSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/host/default/{keyType}/{keyName}",
   httpMethod: "DELETE",
@@ -23198,7 +21410,7 @@ const deleteHostSecretSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostNameBindingsSlotOperationSpec: coreHttp.OperationSpec = {
+const listHostNameBindingsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hostNameBindings",
   httpMethod: "GET",
@@ -23221,7 +21433,7 @@ const listHostNameBindingsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
+const getHostNameBindingSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hostNameBindings/{hostName}",
   httpMethod: "GET",
@@ -23245,7 +21457,7 @@ const getHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHostNameBindingSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hostNameBindings/{hostName}",
   httpMethod: "PUT",
@@ -23271,7 +21483,7 @@ const createOrUpdateHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteHostNameBindingSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hostNameBindings/{hostName}",
   httpMethod: "DELETE",
@@ -23294,7 +21506,7 @@ const deleteHostNameBindingSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const getHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "GET",
@@ -23319,7 +21531,7 @@ const getHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "PUT",
@@ -23346,7 +21558,7 @@ const createOrUpdateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = 
   mediaType: "json",
   serializer
 };
-const deleteHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "DELETE",
@@ -23370,7 +21582,7 @@ const deleteHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const updateHybridConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridConnectionNamespaces/{namespaceName}/relays/{relayName}",
   httpMethod: "PATCH",
@@ -23397,7 +21609,7 @@ const updateHybridConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listHybridConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
+const listHybridConnectionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridConnectionRelays",
   httpMethod: "GET",
@@ -23420,7 +21632,7 @@ const listHybridConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRelayServiceConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
+const listRelayServiceConnectionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridconnection",
   httpMethod: "GET",
@@ -23443,7 +21655,7 @@ const listRelayServiceConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const getRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridconnection/{entityName}",
   httpMethod: "GET",
@@ -23467,7 +21679,7 @@ const getRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridconnection/{entityName}",
   httpMethod: "PUT",
@@ -23493,7 +21705,7 @@ const createOrUpdateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationS
   mediaType: "json",
   serializer
 };
-const deleteRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridconnection/{entityName}",
   httpMethod: "DELETE",
@@ -23516,7 +21728,7 @@ const deleteRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const updateRelayServiceConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/hybridconnection/{entityName}",
   httpMethod: "PATCH",
@@ -23542,7 +21754,7 @@ const updateRelayServiceConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listInstanceIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
+const listInstanceIdentifiersSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances",
   httpMethod: "GET",
@@ -23565,7 +21777,7 @@ const listInstanceIdentifiersSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceInfoSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceInfoSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}",
   httpMethod: "GET",
@@ -23589,7 +21801,7 @@ const getInstanceInfoSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceMsDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceMsDeployStatusSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/extensions/MSDeploy",
   httpMethod: "GET",
@@ -23613,7 +21825,7 @@ const getInstanceMsDeployStatusSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec = {
+const createInstanceMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/extensions/MSDeploy",
   httpMethod: "PUT",
@@ -23648,7 +21860,7 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const getInstanceMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceMSDeployLogSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/extensions/MSDeploy/log",
   httpMethod: "GET",
@@ -23673,7 +21885,7 @@ const getInstanceMSDeployLogSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessesSlotOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes",
   httpMethod: "GET",
@@ -23698,7 +21910,7 @@ const listInstanceProcessesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}",
   httpMethod: "GET",
@@ -23724,7 +21936,7 @@ const getInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteInstanceProcessSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}",
   httpMethod: "DELETE",
@@ -23748,7 +21960,7 @@ const deleteInstanceProcessSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessDumpSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}/dump",
   httpMethod: "GET",
@@ -23774,7 +21986,7 @@ const getInstanceProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessModulesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}/modules",
   httpMethod: "GET",
@@ -23800,7 +22012,7 @@ const listInstanceProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
+const getInstanceProcessModuleSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}/modules/{baseAddress}",
   httpMethod: "GET",
@@ -23827,7 +22039,7 @@ const getInstanceProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessThreadsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/instances/{instanceId}/processes/{processId}/threads",
   httpMethod: "GET",
@@ -23853,7 +22065,7 @@ const listInstanceProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const isCloneableSlotOperationSpec: coreHttp.OperationSpec = {
+const isCloneableSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/iscloneable",
   httpMethod: "POST",
@@ -23876,7 +22088,7 @@ const isCloneableSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteBackupsSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteBackupsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/listbackups",
   httpMethod: "POST",
@@ -23899,7 +22111,7 @@ const listSiteBackupsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSyncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
+const listSyncFunctionTriggersSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/listsyncfunctiontriggerstatus",
   httpMethod: "POST",
@@ -23922,7 +22134,7 @@ const listSyncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMigrateMySqlStatusSlotOperationSpec: coreHttp.OperationSpec = {
+const getMigrateMySqlStatusSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/migratemysql/status",
   httpMethod: "GET",
@@ -23945,7 +22157,7 @@ const getMigrateMySqlStatusSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "GET",
@@ -23968,7 +22180,7 @@ const getSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec 
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "PUT",
@@ -23993,7 +22205,7 @@ const createOrUpdateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.Ope
   mediaType: "json",
   serializer
 };
-const deleteSwiftVirtualNetworkSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteSwiftVirtualNetworkSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "DELETE",
@@ -24015,7 +22227,7 @@ const deleteSwiftVirtualNetworkSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkConfig/virtualNetwork",
   httpMethod: "PATCH",
@@ -24040,7 +22252,7 @@ const updateSwiftVirtualNetworkConnectionSlotOperationSpec: coreHttp.OperationSp
   mediaType: "json",
   serializer
 };
-const listNetworkFeaturesSlotOperationSpec: coreHttp.OperationSpec = {
+const listNetworkFeaturesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkFeatures/{view}",
   httpMethod: "GET",
@@ -24065,7 +22277,7 @@ const listNetworkFeaturesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
+const getNetworkTraceOperationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTrace/operationresults/{operationId}",
   httpMethod: "GET",
@@ -24102,7 +22314,7 @@ const getNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
+const startWebSiteNetworkTraceSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTrace/start",
   httpMethod: "POST",
@@ -24130,7 +22342,7 @@ const startWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec = {
+const startWebSiteNetworkTraceOperationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTrace/startOperation",
   httpMethod: "POST",
@@ -24187,7 +22399,7 @@ const startWebSiteNetworkTraceOperationSlotOperationSpec: coreHttp.OperationSpec
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
+const stopWebSiteNetworkTraceSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTrace/stop",
   httpMethod: "POST",
@@ -24209,7 +22421,7 @@ const stopWebSiteNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTracesSlotOperationSpec: coreHttp.OperationSpec = {
+const getNetworkTracesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTrace/{operationId}",
   httpMethod: "GET",
@@ -24238,7 +22450,7 @@ const getNetworkTracesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTraceOperationSlotV2OperationSpec: coreHttp.OperationSpec = {
+const getNetworkTraceOperationSlotV2OperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTraces/current/operationresults/{operationId}",
   httpMethod: "GET",
@@ -24275,7 +22487,7 @@ const getNetworkTraceOperationSlotV2OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNetworkTracesSlotV2OperationSpec: coreHttp.OperationSpec = {
+const getNetworkTracesSlotV2OperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/networkTraces/{operationId}",
   httpMethod: "GET",
@@ -24304,7 +22516,7 @@ const getNetworkTracesSlotV2OperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const generateNewSitePublishingPasswordSlotOperationSpec: coreHttp.OperationSpec = {
+const generateNewSitePublishingPasswordSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/newpassword",
   httpMethod: "POST",
@@ -24326,7 +22538,7 @@ const generateNewSitePublishingPasswordSlotOperationSpec: coreHttp.OperationSpec
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPerfMonCountersSlotOperationSpec: coreHttp.OperationSpec = {
+const listPerfMonCountersSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/perfcounters",
   httpMethod: "GET",
@@ -24349,7 +22561,7 @@ const listPerfMonCountersSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSitePhpErrorLogFlagSlotOperationSpec: coreHttp.OperationSpec = {
+const getSitePhpErrorLogFlagSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/phplogging",
   httpMethod: "GET",
@@ -24372,7 +22584,7 @@ const getSitePhpErrorLogFlagSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPremierAddOnsSlotOperationSpec: coreHttp.OperationSpec = {
+const listPremierAddOnsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/premieraddons",
   httpMethod: "GET",
@@ -24395,7 +22607,7 @@ const listPremierAddOnsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
+const getPremierAddOnSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/premieraddons/{premierAddOnName}",
   httpMethod: "GET",
@@ -24419,7 +22631,7 @@ const getPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
+const addPremierAddOnSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/premieraddons/{premierAddOnName}",
   httpMethod: "PUT",
@@ -24445,7 +22657,7 @@ const addPremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deletePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
+const deletePremierAddOnSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/premieraddons/{premierAddOnName}",
   httpMethod: "DELETE",
@@ -24467,7 +22679,7 @@ const deletePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
+const updatePremierAddOnSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/premieraddons/{premierAddOnName}",
   httpMethod: "PATCH",
@@ -24493,7 +22705,7 @@ const updatePremierAddOnSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPrivateAccessSlotOperationSpec: coreHttp.OperationSpec = {
+const getPrivateAccessSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateAccess/virtualNetworks",
   httpMethod: "GET",
@@ -24516,7 +22728,7 @@ const getPrivateAccessSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
+const putPrivateAccessVnetSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/privateAccess/virtualNetworks",
   httpMethod: "PUT",
@@ -24541,7 +22753,7 @@ const putPrivateAccessVnetSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
+const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "GET",
@@ -24564,7 +22776,7 @@ const getPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
+const approveOrRejectPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "PUT",
@@ -24598,7 +22810,7 @@ const approveOrRejectPrivateEndpointConnectionOperationSpec: coreHttp.OperationS
   mediaType: "json",
   serializer
 };
-const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
+const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "DELETE",
@@ -24630,7 +22842,7 @@ const deletePrivateEndpointConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPrivateLinkResourcesOperationSpec: coreHttp.OperationSpec = {
+const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/privateLinkResources",
   httpMethod: "GET",
@@ -24652,7 +22864,7 @@ const getPrivateLinkResourcesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessesSlotOperationSpec: coreHttp.OperationSpec = {
+const listProcessesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes",
   httpMethod: "GET",
@@ -24676,7 +22888,7 @@ const listProcessesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessSlotOperationSpec: coreHttp.OperationSpec = {
+const getProcessSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}",
   httpMethod: "GET",
@@ -24701,7 +22913,7 @@ const getProcessSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteProcessSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteProcessSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}",
   httpMethod: "DELETE",
@@ -24724,7 +22936,7 @@ const deleteProcessSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
+const getProcessDumpSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}/dump",
   httpMethod: "GET",
@@ -24749,7 +22961,7 @@ const getProcessDumpSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
+const listProcessModulesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}/modules",
   httpMethod: "GET",
@@ -24774,7 +22986,7 @@ const listProcessModulesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
+const getProcessModuleSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}/modules/{baseAddress}",
   httpMethod: "GET",
@@ -24800,7 +23012,7 @@ const getProcessModuleSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
+const listProcessThreadsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/processes/{processId}/threads",
   httpMethod: "GET",
@@ -24825,7 +23037,7 @@ const listProcessThreadsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublicCertificatesSlotOperationSpec: coreHttp.OperationSpec = {
+const listPublicCertificatesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publicCertificates",
   httpMethod: "GET",
@@ -24848,7 +23060,7 @@ const listPublicCertificatesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
+const getPublicCertificateSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publicCertificates/{publicCertificateName}",
   httpMethod: "GET",
@@ -24872,7 +23084,7 @@ const getPublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdatePublicCertificateSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publicCertificates/{publicCertificateName}",
   httpMethod: "PUT",
@@ -24898,7 +23110,7 @@ const createOrUpdatePublicCertificateSlotOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const deletePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
+const deletePublicCertificateSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publicCertificates/{publicCertificateName}",
   httpMethod: "DELETE",
@@ -24921,7 +23133,7 @@ const deletePublicCertificateSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSpec = {
+const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/publishxml",
   httpMethod: "POST",
@@ -24946,7 +23158,7 @@ const listPublishingProfileXmlWithSecretsSlotOperationSpec: coreHttp.OperationSp
   mediaType: "json",
   serializer
 };
-const resetSlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
+const resetSlotConfigurationSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/resetSlotConfig",
   httpMethod: "POST",
@@ -24967,7 +23179,7 @@ const resetSlotConfigurationSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const restartSlotOperationSpec: coreHttp.OperationSpec = {
+const restartSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restart",
   httpMethod: "POST",
@@ -24992,7 +23204,7 @@ const restartSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
+const restoreFromBackupBlobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreFromBackupBlob",
   httpMethod: "POST",
@@ -25018,7 +23230,7 @@ const restoreFromBackupBlobSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
+const restoreFromDeletedAppSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreFromDeletedApp",
   httpMethod: "POST",
@@ -25044,7 +23256,7 @@ const restoreFromDeletedAppSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
+const restoreSnapshotSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/restoreSnapshot",
   httpMethod: "POST",
@@ -25070,7 +23282,7 @@ const restoreSnapshotSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSiteExtensionsSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteExtensionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/siteextensions",
   httpMethod: "GET",
@@ -25094,7 +23306,7 @@ const listSiteExtensionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
+const getSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/siteextensions/{siteExtensionId}",
   httpMethod: "GET",
@@ -25119,7 +23331,7 @@ const getSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
+const installSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/siteextensions/{siteExtensionId}",
   httpMethod: "PUT",
@@ -25152,7 +23364,7 @@ const installSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteSiteExtensionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/siteextensions/{siteExtensionId}",
   httpMethod: "DELETE",
@@ -25175,7 +23387,7 @@ const deleteSiteExtensionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const copySlotOperationSpec: coreHttp.OperationSpec = {
+const copySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotcopy",
   httpMethod: "POST",
@@ -25201,7 +23413,7 @@ const copySlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
+const listSlotDifferencesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotsdiffs",
   httpMethod: "POST",
@@ -25226,7 +23438,7 @@ const listSlotDifferencesSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const swapSlotOperationSpec: coreHttp.OperationSpec = {
+const swapSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/slotsswap",
   httpMethod: "POST",
@@ -25252,7 +23464,7 @@ const swapSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSnapshotsSlotOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/snapshots",
   httpMethod: "GET",
@@ -25275,7 +23487,7 @@ const listSnapshotsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSnapshotsFromDRSecondarySlotOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsFromDRSecondarySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/snapshotsdr",
   httpMethod: "GET",
@@ -25298,7 +23510,7 @@ const listSnapshotsFromDRSecondarySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
+const getSourceControlSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/sourcecontrols/web",
   httpMethod: "GET",
@@ -25327,7 +23539,7 @@ const getSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateSourceControlSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/sourcecontrols/web",
   httpMethod: "PUT",
@@ -25361,7 +23573,7 @@ const createOrUpdateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteSourceControlSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/sourcecontrols/web",
   httpMethod: "DELETE",
@@ -25384,7 +23596,7 @@ const deleteSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
+const updateSourceControlSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/sourcecontrols/web",
   httpMethod: "PATCH",
@@ -25415,7 +23627,7 @@ const updateSourceControlSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const startSlotOperationSpec: coreHttp.OperationSpec = {
+const startSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/start",
   httpMethod: "POST",
@@ -25436,7 +23648,7 @@ const startSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
+const startNetworkTraceSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/startNetworkTrace",
   httpMethod: "POST",
@@ -25493,7 +23705,7 @@ const startNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopSlotOperationSpec: coreHttp.OperationSpec = {
+const stopSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/stop",
   httpMethod: "POST",
@@ -25514,7 +23726,7 @@ const stopSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
+const stopNetworkTraceSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/stopNetworkTrace",
   httpMethod: "POST",
@@ -25536,7 +23748,7 @@ const stopNetworkTraceSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncRepositorySlotOperationSpec: coreHttp.OperationSpec = {
+const syncRepositorySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/sync",
   httpMethod: "POST",
@@ -25557,7 +23769,7 @@ const syncRepositorySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
+const syncFunctionTriggersSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/syncfunctiontriggers",
   httpMethod: "POST",
@@ -25578,7 +23790,7 @@ const syncFunctionTriggersSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs",
   httpMethod: "GET",
@@ -25601,7 +23813,7 @@ const listTriggeredWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const getTriggeredWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs/{webJobName}",
   httpMethod: "GET",
@@ -25626,7 +23838,7 @@ const getTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteTriggeredWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs/{webJobName}",
   httpMethod: "DELETE",
@@ -25649,7 +23861,7 @@ const deleteTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobHistorySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs/{webJobName}/history",
   httpMethod: "GET",
@@ -25674,7 +23886,7 @@ const listTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
+const getTriggeredWebJobHistorySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs/{webJobName}/history/{id}",
   httpMethod: "GET",
@@ -25700,7 +23912,7 @@ const getTriggeredWebJobHistorySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const runTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const runTriggeredWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/triggeredwebjobs/{webJobName}/run",
   httpMethod: "POST",
@@ -25723,7 +23935,7 @@ const runTriggeredWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesSlotOperationSpec: coreHttp.OperationSpec = {
+const listUsagesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/usages",
   httpMethod: "GET",
@@ -25746,7 +23958,7 @@ const listUsagesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVnetConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
+const listVnetConnectionsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections",
   httpMethod: "GET",
@@ -25774,7 +23986,7 @@ const listVnetConnectionsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const getVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}",
   httpMethod: "GET",
@@ -25798,7 +24010,7 @@ const getVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}",
   httpMethod: "PUT",
@@ -25824,7 +24036,7 @@ const createOrUpdateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const deleteVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}",
   httpMethod: "DELETE",
@@ -25847,7 +24059,7 @@ const deleteVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
+const updateVnetConnectionSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}",
   httpMethod: "PATCH",
@@ -25873,7 +24085,7 @@ const updateVnetConnectionSlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
+const getVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "GET",
@@ -25899,7 +24111,7 @@ const getVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "PUT",
@@ -25926,7 +24138,7 @@ const createOrUpdateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSp
   mediaType: "json",
   serializer
 };
-const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
+const updateVnetConnectionGatewaySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "PATCH",
@@ -25953,7 +24165,7 @@ const updateVnetConnectionGatewaySlotOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
+const listWebJobsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/webjobs",
   httpMethod: "GET",
@@ -25976,7 +24188,7 @@ const listWebJobsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getWebJobSlotOperationSpec: coreHttp.OperationSpec = {
+const getWebJobSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/webjobs/{webJobName}",
   httpMethod: "GET",
@@ -26000,7 +24212,7 @@ const getWebJobSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
+const listSlotDifferencesFromProductionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotsdiffs",
   httpMethod: "POST",
@@ -26024,7 +24236,7 @@ const listSlotDifferencesFromProductionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
+const swapSlotWithProductionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slotsswap",
   httpMethod: "POST",
@@ -26049,7 +24261,7 @@ const swapSlotWithProductionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSnapshotsOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/snapshots",
   httpMethod: "GET",
@@ -26071,7 +24283,7 @@ const listSnapshotsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSnapshotsFromDRSecondaryOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsFromDRSecondaryOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/snapshotsdr",
   httpMethod: "GET",
@@ -26093,7 +24305,7 @@ const listSnapshotsFromDRSecondaryOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSourceControlOperationSpec: coreHttp.OperationSpec = {
+const getSourceControlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/sourcecontrols/web",
   httpMethod: "GET",
@@ -26121,7 +24333,7 @@ const getSourceControlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateSourceControlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/sourcecontrols/web",
   httpMethod: "PUT",
@@ -26154,7 +24366,7 @@ const createOrUpdateSourceControlOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteSourceControlOperationSpec: coreHttp.OperationSpec = {
+const deleteSourceControlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/sourcecontrols/web",
   httpMethod: "DELETE",
@@ -26176,7 +24388,7 @@ const deleteSourceControlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
+const updateSourceControlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/sourcecontrols/web",
   httpMethod: "PATCH",
@@ -26206,7 +24418,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const startOperationSpec: coreHttp.OperationSpec = {
+const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/start",
   httpMethod: "POST",
@@ -26226,7 +24438,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
+const startNetworkTraceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/startNetworkTrace",
   httpMethod: "POST",
@@ -26282,7 +24494,7 @@ const startNetworkTraceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopOperationSpec: coreHttp.OperationSpec = {
+const stopOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/stop",
   httpMethod: "POST",
@@ -26302,7 +24514,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopNetworkTraceOperationSpec: coreHttp.OperationSpec = {
+const stopNetworkTraceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/stopNetworkTrace",
   httpMethod: "POST",
@@ -26323,7 +24535,7 @@ const stopNetworkTraceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncRepositoryOperationSpec: coreHttp.OperationSpec = {
+const syncRepositoryOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/sync",
   httpMethod: "POST",
@@ -26343,7 +24555,7 @@ const syncRepositoryOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const syncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
+const syncFunctionTriggersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/syncfunctiontriggers",
   httpMethod: "POST",
@@ -26363,7 +24575,7 @@ const syncFunctionTriggersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobsOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs",
   httpMethod: "GET",
@@ -26385,7 +24597,7 @@ const listTriggeredWebJobsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
+const getTriggeredWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs/{webJobName}",
   httpMethod: "GET",
@@ -26409,7 +24621,7 @@ const getTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
+const deleteTriggeredWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs/{webJobName}",
   httpMethod: "DELETE",
@@ -26431,7 +24643,7 @@ const deleteTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobHistoryOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs/{webJobName}/history",
   httpMethod: "GET",
@@ -26455,7 +24667,7 @@ const listTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
+const getTriggeredWebJobHistoryOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs/{webJobName}/history/{id}",
   httpMethod: "GET",
@@ -26480,7 +24692,7 @@ const getTriggeredWebJobHistoryOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const runTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
+const runTriggeredWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/triggeredwebjobs/{webJobName}/run",
   httpMethod: "POST",
@@ -26502,7 +24714,7 @@ const runTriggeredWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesOperationSpec: coreHttp.OperationSpec = {
+const listUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/usages",
   httpMethod: "GET",
@@ -26524,7 +24736,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVnetConnectionsOperationSpec: coreHttp.OperationSpec = {
+const listVnetConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections",
   httpMethod: "GET",
@@ -26551,7 +24763,7 @@ const listVnetConnectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVnetConnectionOperationSpec: coreHttp.OperationSpec = {
+const getVnetConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}",
   httpMethod: "GET",
@@ -26574,7 +24786,7 @@ const getVnetConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateVnetConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}",
   httpMethod: "PUT",
@@ -26599,7 +24811,7 @@ const createOrUpdateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteVnetConnectionOperationSpec: coreHttp.OperationSpec = {
+const deleteVnetConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}",
   httpMethod: "DELETE",
@@ -26621,7 +24833,7 @@ const deleteVnetConnectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
+const updateVnetConnectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}",
   httpMethod: "PATCH",
@@ -26646,7 +24858,7 @@ const updateVnetConnectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
+const getVnetConnectionGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "GET",
@@ -26671,7 +24883,7 @@ const getVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateVnetConnectionGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "PUT",
@@ -26697,7 +24909,7 @@ const createOrUpdateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec =
   mediaType: "json",
   serializer
 };
-const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
+const updateVnetConnectionGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/virtualNetworkConnections/{vnetName}/gateways/{gatewayName}",
   httpMethod: "PATCH",
@@ -26723,7 +24935,7 @@ const updateVnetConnectionGatewayOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listWebJobsOperationSpec: coreHttp.OperationSpec = {
+const listWebJobsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/webjobs",
   httpMethod: "GET",
@@ -26745,7 +24957,7 @@ const listWebJobsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getWebJobOperationSpec: coreHttp.OperationSpec = {
+const getWebJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/webjobs/{webJobName}",
   httpMethod: "GET",
@@ -26768,7 +24980,7 @@ const getWebJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26788,7 +25000,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26809,7 +25021,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBackupsNextOperationSpec: coreHttp.OperationSpec = {
+const listBackupsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26831,7 +25043,7 @@ const listBackupsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26853,7 +25065,7 @@ const listConfigurationsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConfigurationSnapshotInfoNextOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationSnapshotInfoNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26875,7 +25087,7 @@ const listConfigurationSnapshotInfoNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listContinuousWebJobsNextOperationSpec: coreHttp.OperationSpec = {
+const listContinuousWebJobsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26897,7 +25109,7 @@ const listContinuousWebJobsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentsNextOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26919,7 +25131,7 @@ const listDeploymentsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDomainOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
+const listDomainOwnershipIdentifiersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26941,7 +25153,7 @@ const listDomainOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listFunctionsNextOperationSpec: coreHttp.OperationSpec = {
+const listFunctionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26964,7 +25176,7 @@ const listFunctionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostNameBindingsNextOperationSpec: coreHttp.OperationSpec = {
+const listHostNameBindingsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -26986,7 +25198,7 @@ const listHostNameBindingsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceIdentifiersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27008,7 +25220,7 @@ const listInstanceIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessesNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27032,7 +25244,7 @@ const listInstanceProcessesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessModulesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27057,7 +25269,7 @@ const listInstanceProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessThreadsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27082,7 +25294,7 @@ const listInstanceProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteBackupsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27104,7 +25316,7 @@ const listSiteBackupsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPerfMonCountersNextOperationSpec: coreHttp.OperationSpec = {
+const listPerfMonCountersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27126,7 +25338,7 @@ const listPerfMonCountersNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessesNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27149,7 +25361,7 @@ const listProcessesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessModulesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27173,7 +25385,7 @@ const listProcessModulesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessThreadsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27197,7 +25409,7 @@ const listProcessThreadsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublicCertificatesNextOperationSpec: coreHttp.OperationSpec = {
+const listPublicCertificatesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27219,7 +25431,7 @@ const listPublicCertificatesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteExtensionsNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteExtensionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27242,7 +25454,7 @@ const listSiteExtensionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSlotsNextOperationSpec: coreHttp.OperationSpec = {
+const listSlotsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27264,7 +25476,7 @@ const listSlotsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listBackupsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27287,7 +25499,7 @@ const listBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConfigurationsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27310,7 +25522,7 @@ const listConfigurationsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConfigurationSnapshotInfoSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listConfigurationSnapshotInfoSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27333,7 +25545,7 @@ const listConfigurationSnapshotInfoSlotNextOperationSpec: coreHttp.OperationSpec
   headerParameters: [Parameters.accept],
   serializer
 };
-const listContinuousWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listContinuousWebJobsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27356,7 +25568,7 @@ const listContinuousWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDeploymentsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listDeploymentsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27379,7 +25591,7 @@ const listDeploymentsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27402,7 +25614,7 @@ const listDomainOwnershipIdentifiersSlotNextOperationSpec: coreHttp.OperationSpe
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceFunctionsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceFunctionsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27426,7 +25638,7 @@ const listInstanceFunctionsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostNameBindingsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listHostNameBindingsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27449,7 +25661,7 @@ const listHostNameBindingsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceIdentifiersSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27472,7 +25684,7 @@ const listInstanceIdentifiersSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27497,7 +25709,7 @@ const listInstanceProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessModulesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27523,7 +25735,7 @@ const listInstanceProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listInstanceProcessThreadsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27549,7 +25761,7 @@ const listInstanceProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteBackupsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27572,7 +25784,7 @@ const listSiteBackupsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPerfMonCountersSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listPerfMonCountersSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27595,7 +25807,7 @@ const listPerfMonCountersSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27619,7 +25831,7 @@ const listProcessesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessModulesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27644,7 +25856,7 @@ const listProcessModulesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listProcessThreadsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27669,7 +25881,7 @@ const listProcessThreadsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublicCertificatesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listPublicCertificatesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27692,7 +25904,7 @@ const listPublicCertificatesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteExtensionsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27716,7 +25928,7 @@ const listSiteExtensionsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSlotDifferencesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27740,7 +25952,7 @@ const listSlotDifferencesSlotNextOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSnapshotsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27763,7 +25975,7 @@ const listSnapshotsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27786,7 +25998,7 @@ const listSnapshotsFromDRSecondarySlotNextOperationSpec: coreHttp.OperationSpec 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27809,7 +26021,7 @@ const listTriggeredWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobHistorySlotNextOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobHistorySlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27834,7 +26046,7 @@ const listTriggeredWebJobHistorySlotNextOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listUsagesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27857,7 +26069,7 @@ const listUsagesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listWebJobsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27880,7 +26092,7 @@ const listWebJobsSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec = {
+const listSlotDifferencesFromProductionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27903,7 +26115,7 @@ const listSlotDifferencesFromProductionNextOperationSpec: coreHttp.OperationSpec
   mediaType: "json",
   serializer
 };
-const listSnapshotsNextOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27925,7 +26137,7 @@ const listSnapshotsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSnapshotsFromDRSecondaryNextOperationSpec: coreHttp.OperationSpec = {
+const listSnapshotsFromDRSecondaryNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27947,7 +26159,7 @@ const listSnapshotsFromDRSecondaryNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobsNextOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27969,7 +26181,7 @@ const listTriggeredWebJobsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listTriggeredWebJobHistoryNextOperationSpec: coreHttp.OperationSpec = {
+const listTriggeredWebJobHistoryNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -27993,7 +26205,7 @@ const listTriggeredWebJobHistoryNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
+const listUsagesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -28015,7 +26227,7 @@ const listUsagesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listWebJobsNextOperationSpec: coreHttp.OperationSpec = {
+const listWebJobsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -7,7 +7,7 @@
  */
 
 import { TransparentDataEncryptions } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -52,18 +52,17 @@ export class TransparentDataEncryptionsImpl
     parameters: TransparentDataEncryption,
     options?: TransparentDataEncryptionsCreateOrUpdateOptionalParams
   ): Promise<TransparentDataEncryptionsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      transparentDataEncryptionName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        transparentDataEncryptionName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<TransparentDataEncryptionsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -82,23 +81,22 @@ export class TransparentDataEncryptionsImpl
     transparentDataEncryptionName: TransparentDataEncryptionName,
     options?: TransparentDataEncryptionsGetOptionalParams
   ): Promise<TransparentDataEncryptionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      transparentDataEncryptionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        transparentDataEncryptionName,
+        options
+      },
       getOperationSpec
-    ) as Promise<TransparentDataEncryptionsGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/transparentDataEncryption/{transparentDataEncryptionName}",
   httpMethod: "PUT",
@@ -124,7 +122,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/transparentDataEncryption/{transparentDataEncryptionName}",
   httpMethod: "GET",

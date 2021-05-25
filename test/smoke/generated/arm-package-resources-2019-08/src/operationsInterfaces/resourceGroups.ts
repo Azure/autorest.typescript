@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ResourceGroup,
@@ -45,7 +44,7 @@ export interface ResourceGroups {
   checkExistence(
     resourceGroupName: string,
     options?: ResourceGroupsCheckExistenceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates or updates a resource group.
    * @param resourceGroupName The name of the resource group to create or update. Can include
@@ -68,9 +67,7 @@ export interface ResourceGroups {
   beginDelete(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * When you delete a resource group, all of its resources are also deleted. Deleting a resource group
    * deletes all of its template deployments and currently stored operations.
@@ -80,7 +77,7 @@ export interface ResourceGroups {
   beginDeleteAndWait(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a resource group.
    * @param resourceGroupName The name of the resource group to get. The name is case insensitive.

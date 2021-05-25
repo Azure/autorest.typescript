@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   FileShareItem,
   FileSharesListOptionalParams,
@@ -119,7 +118,7 @@ export interface FileShares {
     accountName: string,
     shareName: string,
     options?: FileSharesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Restore a file share within a valid retention days if share soft delete is enabled
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -139,5 +138,5 @@ export interface FileShares {
     shareName: string,
     deletedShare: DeletedShare,
     options?: FileSharesRestoreOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

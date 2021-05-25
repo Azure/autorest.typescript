@@ -10,7 +10,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-http";
+} from "@azure/core-client";
 import {
   ApplicationCreateParameters as ApplicationCreateParametersMapper,
   ApplicationUpdateParameters as ApplicationUpdateParametersMapper,

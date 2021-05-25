@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface Product {
   integer?: number;
@@ -31,7 +31,7 @@ export type Enum0 = string;
 
 /** Optional parameters. */
 export interface ArrayConstraintsClientPostValueOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
@@ -40,11 +40,20 @@ export interface ArrayConstraintsClientPostValueOptionalParams
 export type ArrayConstraintsClientPostValueResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayConstraintsClientApiV1ValueGetOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
@@ -53,11 +62,20 @@ export interface ArrayConstraintsClientApiV1ValueGetOptionalParams
 export type ArrayConstraintsClientApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string[];
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string[];
+  };
 };
 
 /** Optional parameters. */
 export interface ArrayConstraintsClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import {
   ManagementPolicyName,
   ManagementPoliciesGetOptionalParams,
@@ -71,5 +70,5 @@ export interface ManagementPolicies {
     accountName: string,
     managementPolicyName: ManagementPolicyName,
     options?: ManagementPoliciesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

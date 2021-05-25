@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   DurationGetNullOptionalParams,
   DurationGetNullResponse,
@@ -33,7 +34,7 @@ export interface Duration {
   putPositiveDuration(
     durationBody: string,
     options?: DurationPutPositiveDurationOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get a positive duration value
    * @param options The options parameters.

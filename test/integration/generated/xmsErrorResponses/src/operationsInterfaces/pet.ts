@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   PetGetPetByIdOptionalParams,
   PetGetPetByIdResponse,
@@ -39,5 +40,7 @@ export interface Pet {
    * conflict with the input param name 'models'
    * @param options The options parameters.
    */
-  hasModelsParam(options?: PetHasModelsParamOptionalParams): Promise<void>;
+  hasModelsParam(
+    options?: PetHasModelsParamOptionalParams
+  ): Promise<coreHttp.RestResponse>;
 }

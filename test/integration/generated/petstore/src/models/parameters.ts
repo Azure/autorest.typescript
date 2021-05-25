@@ -1,8 +1,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 import {
   Pet as PetMapper,
   PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema as PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchemaMapper,
@@ -91,7 +92,7 @@ export const status: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const tags: OperationQueryParameter = {
@@ -109,7 +110,7 @@ export const tags: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const petId: OperationURLParameter = {

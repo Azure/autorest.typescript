@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { MultipleInheritanceClientOptionalParams } from "./models";
 
-export class MultipleInheritanceClientContext extends coreClient.ServiceClient {
+const packageName = "multiple-inheritance";
+const packageVersion = "1.0.0-preview1";
+
+export class MultipleInheritanceClientContext extends coreHttp.ServiceClient {
   $host: string;
 
   /**
@@ -21,16 +24,16 @@ export class MultipleInheritanceClientContext extends coreClient.ServiceClient {
     if (!options) {
       options = {};
     }
-    const defaults: MultipleInheritanceClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "http://localhost:3000";
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";

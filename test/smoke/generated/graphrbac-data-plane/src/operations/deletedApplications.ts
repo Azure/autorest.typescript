@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DeletedApplications } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -134,14 +134,10 @@ export class DeletedApplicationsImpl implements DeletedApplications {
     objectId: string,
     options?: DeletedApplicationsRestoreOptionalParams
   ): Promise<DeletedApplicationsRestoreResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       restoreOperationSpec
-    ) as Promise<DeletedApplicationsRestoreResponse>;
+    );
   }
 
   /**
@@ -151,13 +147,7 @@ export class DeletedApplicationsImpl implements DeletedApplications {
   private _list(
     options?: DeletedApplicationsListOptionalParams
   ): Promise<DeletedApplicationsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<DeletedApplicationsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -168,15 +158,11 @@ export class DeletedApplicationsImpl implements DeletedApplications {
   hardDelete(
     applicationObjectId: string,
     options?: DeletedApplicationsHardDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       hardDeleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -188,20 +174,16 @@ export class DeletedApplicationsImpl implements DeletedApplications {
     nextLink: string,
     options?: DeletedApplicationsListNextOptionalParams
   ): Promise<DeletedApplicationsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<DeletedApplicationsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const restoreOperationSpec: coreHttp.OperationSpec = {
+const restoreOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/deletedApplications/{objectId}/restore",
   httpMethod: "POST",
   responses: {
@@ -217,7 +199,7 @@ const restoreOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/deletedApplications",
   httpMethod: "GET",
   responses: {
@@ -233,7 +215,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const hardDeleteOperationSpec: coreHttp.OperationSpec = {
+const hardDeleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/deletedApplications/{applicationObjectId}",
   httpMethod: "DELETE",
   responses: {
@@ -251,7 +233,7 @@ const hardDeleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {

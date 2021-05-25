@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface PetAPTrue {
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
@@ -67,49 +67,103 @@ export type CatAPTrue = PetAPTrue & {
 
 /** Optional parameters. */
 export interface PetsCreateAPTrueOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPTrue operation. */
-export type PetsCreateAPTrueResponse = PetAPTrue;
+export type PetsCreateAPTrueResponse = PetAPTrue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAPTrue;
+  };
+};
 
 /** Optional parameters. */
 export interface PetsCreateCatAPTrueOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createCatAPTrue operation. */
-export type PetsCreateCatAPTrueResponse = CatAPTrue;
+export type PetsCreateCatAPTrueResponse = CatAPTrue & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: CatAPTrue;
+  };
+};
 
 /** Optional parameters. */
 export interface PetsCreateAPObjectOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPObject operation. */
-export type PetsCreateAPObjectResponse = PetAPObject;
+export type PetsCreateAPObjectResponse = PetAPObject & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAPObject;
+  };
+};
 
 /** Optional parameters. */
 export interface PetsCreateAPStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPString operation. */
-export type PetsCreateAPStringResponse = PetAPString;
+export type PetsCreateAPStringResponse = PetAPString & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAPString;
+  };
+};
 
 /** Optional parameters. */
 export interface PetsCreateAPInPropertiesOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPInProperties operation. */
-export type PetsCreateAPInPropertiesResponse = PetAPInProperties;
+export type PetsCreateAPInPropertiesResponse = PetAPInProperties & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAPInProperties;
+  };
+};
 
 /** Optional parameters. */
 export interface PetsCreateAPInPropertiesWithAPStringOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the createAPInPropertiesWithAPString operation. */
-export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString;
+export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: PetAPInPropertiesWithAPString;
+  };
+};
 
 /** Optional parameters. */
 export interface AdditionalPropertiesClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

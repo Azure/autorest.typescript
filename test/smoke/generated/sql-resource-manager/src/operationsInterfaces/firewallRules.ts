@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   FirewallRule,
   FirewallRulesListByServerOptionalParams,
@@ -63,7 +62,7 @@ export interface FirewallRules {
     serverName: string,
     firewallRuleName: string,
     options?: FirewallRulesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a firewall rule.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

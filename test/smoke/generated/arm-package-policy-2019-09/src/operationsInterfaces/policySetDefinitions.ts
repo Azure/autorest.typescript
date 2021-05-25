@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   PolicySetDefinition,
   PolicySetDefinitionsListOptionalParams,
@@ -74,7 +73,7 @@ export interface PolicySetDefinitions {
   delete(
     policySetDefinitionName: string,
     options?: PolicySetDefinitionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * This operation retrieves the policy set definition in the given subscription with the given name.
    * @param policySetDefinitionName The name of the policy set definition to get.
@@ -117,7 +116,7 @@ export interface PolicySetDefinitions {
     policySetDefinitionName: string,
     managementGroupId: string,
     options?: PolicySetDefinitionsDeleteAtManagementGroupOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * This operation retrieves the policy set definition in the given management group with the given
    * name.

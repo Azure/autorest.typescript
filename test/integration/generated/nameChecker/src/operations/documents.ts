@@ -1,5 +1,5 @@
 import { Documents } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SearchClientContext } from "../searchClientContext";
@@ -47,7 +47,13 @@ export class DocumentsImpl implements Documents {
   count(
     options?: DocumentsCountOptionalParams
   ): Promise<DocumentsCountResponse> {
-    return this.client.sendOperationRequest({ options }, countOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      countOperationSpec
+    ) as Promise<DocumentsCountResponse>;
   }
 
   /**
@@ -57,10 +63,13 @@ export class DocumentsImpl implements Documents {
   searchGet(
     options?: DocumentsSearchGetOptionalParams
   ): Promise<DocumentsSearchGetResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       searchGetOperationSpec
-    );
+    ) as Promise<DocumentsSearchGetResponse>;
   }
 
   /**
@@ -72,10 +81,14 @@ export class DocumentsImpl implements Documents {
     searchRequest: SearchRequest,
     options?: DocumentsSearchPostOptionalParams
   ): Promise<DocumentsSearchPostResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      searchRequest,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { searchRequest, options },
+      operationArguments,
       searchPostOperationSpec
-    );
+    ) as Promise<DocumentsSearchPostResponse>;
   }
 
   /**
@@ -87,7 +100,14 @@ export class DocumentsImpl implements Documents {
     key: string,
     options?: DocumentsGetOptionalParams
   ): Promise<DocumentsGetResponse> {
-    return this.client.sendOperationRequest({ key, options }, getOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      key,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getOperationSpec
+    ) as Promise<DocumentsGetResponse>;
   }
 
   /**
@@ -103,10 +123,15 @@ export class DocumentsImpl implements Documents {
     search$DONotNormalize$Text: string,
     options?: DocumentsSuggestGetOptionalParams
   ): Promise<DocumentsSuggestGetResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      suggesterName,
+      search$DONotNormalize$Text,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { suggesterName, search$DONotNormalize$Text, options },
+      operationArguments,
       suggestGetOperationSpec
-    );
+    ) as Promise<DocumentsSuggestGetResponse>;
   }
 
   /**
@@ -118,10 +143,14 @@ export class DocumentsImpl implements Documents {
     suggestRequest: SuggestRequest,
     options?: DocumentsSuggestPostOptionalParams
   ): Promise<DocumentsSuggestPostResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      suggestRequest,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { suggestRequest, options },
+      operationArguments,
       suggestPostOperationSpec
-    );
+    ) as Promise<DocumentsSuggestPostResponse>;
   }
 
   /**
@@ -133,10 +162,14 @@ export class DocumentsImpl implements Documents {
     batch: IndexBatch,
     options?: DocumentsIndexOptionalParams
   ): Promise<DocumentsIndexResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      batch,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { batch, options },
+      operationArguments,
       indexOperationSpec
-    );
+    ) as Promise<DocumentsIndexResponse>;
   }
 
   /**
@@ -151,10 +184,15 @@ export class DocumentsImpl implements Documents {
     search$DONotNormalize$Text: string,
     options?: DocumentsAutocompleteGetOptionalParams
   ): Promise<DocumentsAutocompleteGetResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      suggesterName,
+      search$DONotNormalize$Text,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { suggesterName, search$DONotNormalize$Text, options },
+      operationArguments,
       autocompleteGetOperationSpec
-    );
+    ) as Promise<DocumentsAutocompleteGetResponse>;
   }
 
   /**
@@ -166,16 +204,20 @@ export class DocumentsImpl implements Documents {
     autocompleteRequest: AutocompleteRequest,
     options?: DocumentsAutocompletePostOptionalParams
   ): Promise<DocumentsAutocompletePostResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      autocompleteRequest,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { autocompleteRequest, options },
+      operationArguments,
       autocompletePostOperationSpec
-    );
+    ) as Promise<DocumentsAutocompletePostResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const countOperationSpec: coreClient.OperationSpec = {
+const countOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/$count",
   httpMethod: "GET",
   responses: {
@@ -191,7 +233,7 @@ const countOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };
-const searchGetOperationSpec: coreClient.OperationSpec = {
+const searchGetOperationSpec: coreHttp.OperationSpec = {
   path: "/docs",
   httpMethod: "GET",
   responses: {
@@ -228,7 +270,7 @@ const searchGetOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };
-const searchPostOperationSpec: coreClient.OperationSpec = {
+const searchPostOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.post.search",
   httpMethod: "POST",
   responses: {
@@ -250,7 +292,7 @@ const searchPostOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreClient.OperationSpec = {
+const getOperationSpec: coreHttp.OperationSpec = {
   path: "/docs('{key}')",
   httpMethod: "GET",
   responses: {
@@ -266,7 +308,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };
-const suggestGetOperationSpec: coreClient.OperationSpec = {
+const suggestGetOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.suggest",
   httpMethod: "GET",
   responses: {
@@ -295,7 +337,7 @@ const suggestGetOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };
-const suggestPostOperationSpec: coreClient.OperationSpec = {
+const suggestPostOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.post.suggest",
   httpMethod: "POST",
   responses: {
@@ -317,7 +359,7 @@ const suggestPostOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const indexOperationSpec: coreClient.OperationSpec = {
+const indexOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.index",
   httpMethod: "POST",
   responses: {
@@ -342,7 +384,7 @@ const indexOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const autocompleteGetOperationSpec: coreClient.OperationSpec = {
+const autocompleteGetOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.autocomplete",
   httpMethod: "GET",
   responses: {
@@ -370,7 +412,7 @@ const autocompleteGetOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
   serializer
 };
-const autocompletePostOperationSpec: coreClient.OperationSpec = {
+const autocompletePostOperationSpec: coreHttp.OperationSpec = {
   path: "/docs/search.post.autocomplete",
   httpMethod: "POST",
   responses: {

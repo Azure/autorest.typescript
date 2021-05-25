@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { JobCredentials } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -134,16 +134,10 @@ export class JobCredentialsImpl implements JobCredentials {
     jobAgentName: string,
     options?: JobCredentialsListByAgentOptionalParams
   ): Promise<JobCredentialsListByAgentResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, options },
       listByAgentOperationSpec
-    ) as Promise<JobCredentialsListByAgentResponse>;
+    );
   }
 
   /**
@@ -162,17 +156,10 @@ export class JobCredentialsImpl implements JobCredentials {
     credentialName: string,
     options?: JobCredentialsGetOptionalParams
   ): Promise<JobCredentialsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      credentialName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, credentialName, options },
       getOperationSpec
-    ) as Promise<JobCredentialsGetResponse>;
+    );
   }
 
   /**
@@ -193,18 +180,17 @@ export class JobCredentialsImpl implements JobCredentials {
     parameters: JobCredential,
     options?: JobCredentialsCreateOrUpdateOptionalParams
   ): Promise<JobCredentialsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      credentialName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        credentialName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<JobCredentialsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -222,18 +208,11 @@ export class JobCredentialsImpl implements JobCredentials {
     jobAgentName: string,
     credentialName: string,
     options?: JobCredentialsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      credentialName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, credentialName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -252,23 +231,16 @@ export class JobCredentialsImpl implements JobCredentials {
     nextLink: string,
     options?: JobCredentialsListByAgentNextOptionalParams
   ): Promise<JobCredentialsListByAgentNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, nextLink, options },
       listByAgentNextOperationSpec
-    ) as Promise<JobCredentialsListByAgentNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByAgentOperationSpec: coreHttp.OperationSpec = {
+const listByAgentOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials",
   httpMethod: "GET",
@@ -289,7 +261,7 @@ const listByAgentOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
   httpMethod: "GET",
@@ -311,7 +283,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
   httpMethod: "PUT",
@@ -338,7 +310,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/credentials/{credentialName}",
   httpMethod: "DELETE",
@@ -354,7 +326,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByAgentNextOperationSpec: coreHttp.OperationSpec = {
+const listByAgentNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

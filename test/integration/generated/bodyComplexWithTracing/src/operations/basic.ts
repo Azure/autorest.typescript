@@ -8,7 +8,7 @@
 
 import { createSpan } from "../tracing";
 import { Basic } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -51,9 +51,12 @@ export class BasicImpl implements Basic {
       "BodyComplexWithTracing-getValid",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { options },
+        operationArguments,
         getValidOperationSpec
       );
       return result as BasicGetValidResponse;
@@ -76,17 +79,21 @@ export class BasicImpl implements Basic {
   async putValid(
     complexBody: BasicDef,
     options?: BasicPutValidOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
     const { span } = createSpan(
       "BodyComplexWithTracing-putValid",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      complexBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { complexBody, options },
+        operationArguments,
         putValidOperationSpec
       );
-      return result as void;
+      return result as coreHttp.RestResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -109,9 +116,12 @@ export class BasicImpl implements Basic {
       "BodyComplexWithTracing-getInvalid",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { options },
+        operationArguments,
         getInvalidOperationSpec
       );
       return result as BasicGetInvalidResponse;
@@ -137,9 +147,12 @@ export class BasicImpl implements Basic {
       "BodyComplexWithTracing-getEmpty",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { options },
+        operationArguments,
         getEmptyOperationSpec
       );
       return result as BasicGetEmptyResponse;
@@ -165,9 +178,12 @@ export class BasicImpl implements Basic {
       "BodyComplexWithTracing-getNull",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { options },
+        operationArguments,
         getNullOperationSpec
       );
       return result as BasicGetNullResponse;
@@ -193,9 +209,12 @@ export class BasicImpl implements Basic {
       "BodyComplexWithTracing-getNotProvided",
       options || {}
     );
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     try {
       const result = await this.client.sendOperationRequest(
-        { options },
+        operationArguments,
         getNotProvidedOperationSpec
       );
       return result as BasicGetNotProvidedResponse;
@@ -211,9 +230,9 @@ export class BasicImpl implements Basic {
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getValidOperationSpec: coreClient.OperationSpec = {
+const getValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/valid",
   httpMethod: "GET",
   responses: {
@@ -228,7 +247,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putValidOperationSpec: coreClient.OperationSpec = {
+const putValidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/valid",
   httpMethod: "PUT",
   responses: {
@@ -244,7 +263,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getInvalidOperationSpec: coreClient.OperationSpec = {
+const getInvalidOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/invalid",
   httpMethod: "GET",
   responses: {
@@ -259,7 +278,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getEmptyOperationSpec: coreClient.OperationSpec = {
+const getEmptyOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/empty",
   httpMethod: "GET",
   responses: {
@@ -274,7 +293,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNullOperationSpec: coreClient.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/null",
   httpMethod: "GET",
   responses: {
@@ -289,7 +308,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getNotProvidedOperationSpec: coreClient.OperationSpec = {
+const getNotProvidedOperationSpec: coreHttp.OperationSpec = {
   path: "/complex/basic/notprovided",
   httpMethod: "GET",
   responses: {

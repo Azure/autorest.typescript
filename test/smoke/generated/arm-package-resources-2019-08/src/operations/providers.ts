@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Providers } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
@@ -139,14 +139,10 @@ export class ProvidersImpl implements Providers {
     resourceProviderNamespace: string,
     options?: ProvidersUnregisterOptionalParams
   ): Promise<ProvidersUnregisterResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, options },
       unregisterOperationSpec
-    ) as Promise<ProvidersUnregisterResponse>;
+    );
   }
 
   /**
@@ -158,14 +154,10 @@ export class ProvidersImpl implements Providers {
     resourceProviderNamespace: string,
     options?: ProvidersRegisterOptionalParams
   ): Promise<ProvidersRegisterResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, options },
       registerOperationSpec
-    ) as Promise<ProvidersRegisterResponse>;
+    );
   }
 
   /**
@@ -175,13 +167,7 @@ export class ProvidersImpl implements Providers {
   private _list(
     options?: ProvidersListOptionalParams
   ): Promise<ProvidersListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ProvidersListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -191,13 +177,10 @@ export class ProvidersImpl implements Providers {
   private _listAtTenantScope(
     options?: ProvidersListAtTenantScopeOptionalParams
   ): Promise<ProvidersListAtTenantScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAtTenantScopeOperationSpec
-    ) as Promise<ProvidersListAtTenantScopeResponse>;
+    );
   }
 
   /**
@@ -209,14 +192,10 @@ export class ProvidersImpl implements Providers {
     resourceProviderNamespace: string,
     options?: ProvidersGetOptionalParams
   ): Promise<ProvidersGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, options },
       getOperationSpec
-    ) as Promise<ProvidersGetResponse>;
+    );
   }
 
   /**
@@ -228,14 +207,10 @@ export class ProvidersImpl implements Providers {
     resourceProviderNamespace: string,
     options?: ProvidersGetAtTenantScopeOptionalParams
   ): Promise<ProvidersGetAtTenantScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceProviderNamespace,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceProviderNamespace, options },
       getAtTenantScopeOperationSpec
-    ) as Promise<ProvidersGetAtTenantScopeResponse>;
+    );
   }
 
   /**
@@ -247,14 +222,10 @@ export class ProvidersImpl implements Providers {
     nextLink: string,
     options?: ProvidersListNextOptionalParams
   ): Promise<ProvidersListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ProvidersListNextResponse>;
+    );
   }
 
   /**
@@ -266,20 +237,16 @@ export class ProvidersImpl implements Providers {
     nextLink: string,
     options?: ProvidersListAtTenantScopeNextOptionalParams
   ): Promise<ProvidersListAtTenantScopeNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAtTenantScopeNextOperationSpec
-    ) as Promise<ProvidersListAtTenantScopeNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const unregisterOperationSpec: coreHttp.OperationSpec = {
+const unregisterOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/unregister",
   httpMethod: "POST",
@@ -300,7 +267,7 @@ const unregisterOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const registerOperationSpec: coreHttp.OperationSpec = {
+const registerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}/register",
   httpMethod: "POST",
@@ -321,7 +288,7 @@ const registerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers",
   httpMethod: "GET",
   responses: {
@@ -337,7 +304,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
+const listAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers",
   httpMethod: "GET",
   responses: {
@@ -353,7 +320,7 @@ const listAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/{resourceProviderNamespace}",
   httpMethod: "GET",
   responses: {
@@ -373,7 +340,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
+const getAtTenantScopeOperationSpec: coreClient.OperationSpec = {
   path: "/providers/{resourceProviderNamespace}",
   httpMethod: "GET",
   responses: {
@@ -389,7 +356,7 @@ const getAtTenantScopeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -409,7 +376,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtTenantScopeNextOperationSpec: coreHttp.OperationSpec = {
+const listAtTenantScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

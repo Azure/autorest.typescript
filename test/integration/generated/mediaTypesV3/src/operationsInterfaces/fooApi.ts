@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
@@ -26,7 +26,7 @@ export interface FooApi {
     ...args:
       | [
           "application/octet-stream",
-          coreRestPipeline.RequestBodyType,
+          coreHttp.HttpRequestBody,
           FooApiPostSendOnDefault$binaryOptionalParams?
         ]
       | ["text/plain", string, FooApiPostSendOnDefault$textOptionalParams?]
@@ -40,7 +40,7 @@ export interface FooApi {
       | [
           string,
           "application/octet-stream",
-          coreRestPipeline.RequestBodyType,
+          coreHttp.HttpRequestBody,
           FooApiPostSend$binaryOptionalParams?
         ]
       | [string, "text/plain", string, FooApiPostSend$textOptionalParams?]

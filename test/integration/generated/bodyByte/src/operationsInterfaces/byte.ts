@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   ByteGetNullOptionalParams,
   ByteGetNullResponse,
@@ -45,7 +46,7 @@ export interface Byte {
   putNonAscii(
     byteBody: Uint8Array,
     options?: BytePutNonAsciiOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get invalid byte value ':::SWAGGER::::'
    * @param options The options parameters.

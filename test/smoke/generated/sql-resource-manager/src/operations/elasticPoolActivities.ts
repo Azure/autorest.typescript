@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ElasticPoolActivities } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -115,22 +115,16 @@ export class ElasticPoolActivitiesImpl implements ElasticPoolActivities {
     elasticPoolName: string,
     options?: ElasticPoolActivitiesListByElasticPoolOptionalParams
   ): Promise<ElasticPoolActivitiesListByElasticPoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, elasticPoolName, options },
       listByElasticPoolOperationSpec
-    ) as Promise<ElasticPoolActivitiesListByElasticPoolResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
+const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/elasticPoolActivity",
   httpMethod: "GET",

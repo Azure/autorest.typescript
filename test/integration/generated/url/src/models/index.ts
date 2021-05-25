@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -18,312 +18,312 @@ export type UriColor = "red color" | "green color" | "blue color";
 
 /** Optional parameters. */
 export interface PathsGetBooleanTrueOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsGetBooleanFalseOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsGetIntOneMillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsGetIntNegativeOneMillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsGetTenBillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsGetNegativeTenBillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsFloatScientificPositiveOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsFloatScientificNegativeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDoubleDecimalPositiveOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDoubleDecimalNegativeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsStringUnicodeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsStringUrlEncodedOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsStringUrlNonEncodedOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsStringEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsStringNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsEnumValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsEnumNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsByteMultiByteOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsByteEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsByteNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDateValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDateNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDateTimeValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsDateTimeNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsBase64UrlOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsArrayCsvInPathOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface PathsUnixTimeUrlOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetBooleanTrueOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetBooleanFalseOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetBooleanNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null boolean value */
   boolQuery?: boolean;
 }
 
 /** Optional parameters. */
 export interface QueriesGetIntOneMillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetIntNegativeOneMillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetIntNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null integer value */
   intQuery?: number;
 }
 
 /** Optional parameters. */
 export interface QueriesGetTenBillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetNegativeTenBillionOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesGetLongNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null 64 bit integer value */
   longQuery?: number;
 }
 
 /** Optional parameters. */
 export interface QueriesFloatScientificPositiveOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesFloatScientificNegativeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesFloatNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null numeric value */
   floatQuery?: number;
 }
 
 /** Optional parameters. */
 export interface QueriesDoubleDecimalPositiveOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesDoubleDecimalNegativeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesDoubleNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null numeric value */
   doubleQuery?: number;
 }
 
 /** Optional parameters. */
 export interface QueriesStringUnicodeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesStringUrlEncodedOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesStringEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesStringNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null string value */
   stringQuery?: string;
 }
 
 /** Optional parameters. */
 export interface QueriesEnumValidOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** 'green color' enum value */
   enumQuery?: UriColor;
 }
 
 /** Optional parameters. */
 export interface QueriesEnumNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null string value */
   enumQuery?: UriColor;
 }
 
 /** Optional parameters. */
 export interface QueriesByteMultiByteOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   byteQuery?: Uint8Array;
 }
 
 /** Optional parameters. */
 export interface QueriesByteEmptyOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesByteNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null as byte array (no query parameters in uri) */
   byteQuery?: Uint8Array;
 }
 
 /** Optional parameters. */
 export interface QueriesDateValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesDateNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null as date (no query parameters in uri) */
   dateQuery?: Date;
 }
 
 /** Optional parameters. */
 export interface QueriesDateTimeValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface QueriesDateTimeNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** null as date-time (no query parameters) */
   dateTimeQuery?: Date;
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringCsvValidOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringCsvNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** a null array of string using the csv-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringCsvEmptyOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** an empty array [] of string using the csv-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringNoCollectionFormatEmptyOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour']. */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringSsvValidOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringTsvValidOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface QueriesArrayStringPipesValidOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
   arrayQuery?: string[];
 }
 
 /** Optional parameters. */
 export interface PathItemsGetAllWithValuesOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
   /** should contain value 'localStringQuery' */
@@ -332,7 +332,7 @@ export interface PathItemsGetAllWithValuesOptionalParams
 
 /** Optional parameters. */
 export interface PathItemsGetGlobalQueryNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
   /** should contain value 'localStringQuery' */
@@ -341,7 +341,7 @@ export interface PathItemsGetGlobalQueryNullOptionalParams
 
 /** Optional parameters. */
 export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** A string value 'pathItemStringQuery' that appears as a query parameter */
   pathItemStringQuery?: string;
   /** should contain null value */
@@ -350,7 +350,7 @@ export interface PathItemsGetGlobalAndLocalQueryNullOptionalParams
 
 /** Optional parameters. */
 export interface PathItemsGetLocalPathItemQueryNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** should contain value null */
   pathItemStringQuery?: string;
   /** should contain value null */
@@ -358,8 +358,7 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams
 }
 
 /** Optional parameters. */
-export interface UrlClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+export interface UrlClientOptionalParams extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** should contain value null */

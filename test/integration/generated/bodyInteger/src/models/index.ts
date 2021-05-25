@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -14,117 +14,194 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface IntGetNullOptionalParams extends coreClient.OperationOptions {}
+export interface IntGetNullOptionalParams extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type IntGetNullResponse = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type IntGetInvalidResponse = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetOverflowInt32OptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOverflowInt32 operation. */
 export type IntGetOverflowInt32Response = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetUnderflowInt32OptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflowInt32 operation. */
 export type IntGetUnderflowInt32Response = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetOverflowInt64OptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOverflowInt64 operation. */
 export type IntGetOverflowInt64Response = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetUnderflowInt64OptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflowInt64 operation. */
 export type IntGetUnderflowInt64Response = {
   /** The parsed response body. */
   body: number;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: number;
+  };
 };
 
 /** Optional parameters. */
-export interface IntPutMax32OptionalParams
-  extends coreClient.OperationOptions {}
+export interface IntPutMax32OptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface IntPutMax64OptionalParams
-  extends coreClient.OperationOptions {}
+export interface IntPutMax64OptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface IntPutMin32OptionalParams
-  extends coreClient.OperationOptions {}
+export interface IntPutMin32OptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
-export interface IntPutMin64OptionalParams
-  extends coreClient.OperationOptions {}
+export interface IntPutMin64OptionalParams extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface IntGetUnixTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnixTime operation. */
 export type IntGetUnixTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface IntPutUnixTimeDateOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface IntGetInvalidUnixTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalidUnixTime operation. */
 export type IntGetInvalidUnixTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface IntGetNullUnixTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNullUnixTime operation. */
 export type IntGetNullUnixTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface BodyIntegerClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

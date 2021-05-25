@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { EncryptionScopes } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -125,17 +125,16 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     encryptionScope: EncryptionScope,
     options?: EncryptionScopesPutOptionalParams
   ): Promise<EncryptionScopesPutResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      encryptionScopeName,
-      encryptionScope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        encryptionScopeName,
+        encryptionScope,
+        options
+      },
       putOperationSpec
-    ) as Promise<EncryptionScopesPutResponse>;
+    );
   }
 
   /**
@@ -160,17 +159,16 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     encryptionScope: EncryptionScope,
     options?: EncryptionScopesPatchOptionalParams
   ): Promise<EncryptionScopesPatchResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      encryptionScopeName,
-      encryptionScope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        encryptionScopeName,
+        encryptionScope,
+        options
+      },
       patchOperationSpec
-    ) as Promise<EncryptionScopesPatchResponse>;
+    );
   }
 
   /**
@@ -192,16 +190,10 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     encryptionScopeName: string,
     options?: EncryptionScopesGetOptionalParams
   ): Promise<EncryptionScopesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      encryptionScopeName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, encryptionScopeName, options },
       getOperationSpec
-    ) as Promise<EncryptionScopesGetResponse>;
+    );
   }
 
   /**
@@ -218,15 +210,10 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     accountName: string,
     options?: EncryptionScopesListOptionalParams
   ): Promise<EncryptionScopesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listOperationSpec
-    ) as Promise<EncryptionScopesListResponse>;
+    );
   }
 
   /**
@@ -245,22 +232,16 @@ export class EncryptionScopesImpl implements EncryptionScopes {
     nextLink: string,
     options?: EncryptionScopesListNextOptionalParams
   ): Promise<EncryptionScopesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<EncryptionScopesListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const putOperationSpec: coreHttp.OperationSpec = {
+const putOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/encryptionScopes/{encryptionScopeName}",
   httpMethod: "PUT",
@@ -288,7 +269,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const patchOperationSpec: coreHttp.OperationSpec = {
+const patchOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/encryptionScopes/{encryptionScopeName}",
   httpMethod: "PATCH",
@@ -313,7 +294,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/encryptionScopes/{encryptionScopeName}",
   httpMethod: "GET",
@@ -336,7 +317,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/encryptionScopes",
   httpMethod: "GET",
@@ -355,7 +336,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

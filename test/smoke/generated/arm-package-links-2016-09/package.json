@@ -5,7 +5,8 @@
   "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/core-paging": "^1.1.1",
-    "@azure/core-http": "^1.2.4",
+    "@azure/core-client": "^1.1.2",
+    "@azure/core-rest-pipeline": "1.0.0-beta.2",
     "tslib": "^1.9.3"
   },
   "keywords": [

@@ -6,8 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
-import * as coreRestPipeline from "@azure/core-rest-pipeline";
+import * as coreHttp from "@azure/core-http";
 
 /** Uri or local path to source data. */
 export interface SourcePath {
@@ -24,14 +23,14 @@ export type ContentType =
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Input parameter. */
-  input?: coreRestPipeline.RequestBodyType;
+  input?: coreHttp.HttpRequestBody;
 }
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Input parameter. */
   input?: SourcePath;
 }
@@ -40,11 +39,20 @@ export interface MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams
 export type MediaTypesWithTracingClientAnalyzeBodyResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Input parameter. */
   input?: string;
 }
@@ -53,11 +61,20 @@ export interface MediaTypesWithTracingClientContentTypeWithEncodingOptionalParam
 export type MediaTypesWithTracingClientContentTypeWithEncodingResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesWithTracingClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { SensitivityLabels } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -222,16 +222,10 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     databaseName: string,
     options?: SensitivityLabelsListCurrentByDatabaseOptionalParams
   ): Promise<SensitivityLabelsListCurrentByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       listCurrentByDatabaseOperationSpec
-    ) as Promise<SensitivityLabelsListCurrentByDatabaseResponse>;
+    );
   }
 
   /**
@@ -248,16 +242,10 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     databaseName: string,
     options?: SensitivityLabelsListRecommendedByDatabaseOptionalParams
   ): Promise<SensitivityLabelsListRecommendedByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       listRecommendedByDatabaseOperationSpec
-    ) as Promise<SensitivityLabelsListRecommendedByDatabaseResponse>;
+    );
   }
 
   /**
@@ -280,20 +268,19 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     tableName: string,
     columnName: string,
     options?: SensitivityLabelsEnableRecommendationOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        schemaName,
+        tableName,
+        columnName,
+        options
+      },
       enableRecommendationOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -315,20 +302,19 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     tableName: string,
     columnName: string,
     options?: SensitivityLabelsDisableRecommendationOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        schemaName,
+        tableName,
+        columnName,
+        options
+      },
       disableRecommendationOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -353,20 +339,19 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     sensitivityLabelSource: SensitivityLabelSource,
     options?: SensitivityLabelsGetOptionalParams
   ): Promise<SensitivityLabelsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      sensitivityLabelSource,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        schemaName,
+        tableName,
+        columnName,
+        sensitivityLabelSource,
+        options
+      },
       getOperationSpec
-    ) as Promise<SensitivityLabelsGetResponse>;
+    );
   }
 
   /**
@@ -391,20 +376,19 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     parameters: SensitivityLabel,
     options?: SensitivityLabelsCreateOrUpdateOptionalParams
   ): Promise<SensitivityLabelsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        schemaName,
+        tableName,
+        columnName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<SensitivityLabelsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -426,20 +410,19 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     tableName: string,
     columnName: string,
     options?: SensitivityLabelsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      schemaName,
-      tableName,
-      columnName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        schemaName,
+        tableName,
+        columnName,
+        options
+      },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -458,17 +441,10 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     nextLink: string,
     options?: SensitivityLabelsListCurrentByDatabaseNextOptionalParams
   ): Promise<SensitivityLabelsListCurrentByDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, nextLink, options },
       listCurrentByDatabaseNextOperationSpec
-    ) as Promise<SensitivityLabelsListCurrentByDatabaseNextResponse>;
+    );
   }
 
   /**
@@ -488,23 +464,16 @@ export class SensitivityLabelsImpl implements SensitivityLabels {
     nextLink: string,
     options?: SensitivityLabelsListRecommendedByDatabaseNextOptionalParams
   ): Promise<SensitivityLabelsListRecommendedByDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, nextLink, options },
       listRecommendedByDatabaseNextOperationSpec
-    ) as Promise<SensitivityLabelsListRecommendedByDatabaseNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listCurrentByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listCurrentByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/currentSensitivityLabels",
   httpMethod: "GET",
@@ -525,7 +494,7 @@ const listCurrentByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRecommendedByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listRecommendedByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/recommendedSensitivityLabels",
   httpMethod: "GET",
@@ -551,7 +520,7 @@ const listRecommendedByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const enableRecommendationOperationSpec: coreHttp.OperationSpec = {
+const enableRecommendationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/enable",
   httpMethod: "POST",
@@ -570,7 +539,7 @@ const enableRecommendationOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const disableRecommendationOperationSpec: coreHttp.OperationSpec = {
+const disableRecommendationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}/disable",
   httpMethod: "POST",
@@ -589,7 +558,7 @@ const disableRecommendationOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
   httpMethod: "GET",
@@ -614,7 +583,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
   httpMethod: "PUT",
@@ -644,7 +613,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/schemas/{schemaName}/tables/{tableName}/columns/{columnName}/sensitivityLabels/{sensitivityLabelSource}",
   httpMethod: "DELETE",
@@ -663,7 +632,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listCurrentByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listCurrentByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -684,7 +653,7 @@ const listCurrentByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRecommendedByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listRecommendedByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

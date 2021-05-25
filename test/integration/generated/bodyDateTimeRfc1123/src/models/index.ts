@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -15,85 +15,148 @@ export interface ErrorModel {
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getNull operation. */
 export type Datetimerfc1123GetNullResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetInvalidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getInvalid operation. */
 export type Datetimerfc1123GetInvalidResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetOverflowOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getOverflow operation. */
 export type Datetimerfc1123GetOverflowResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetUnderflowOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUnderflow operation. */
 export type Datetimerfc1123GetUnderflowResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123PutUtcMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetUtcLowercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcLowercaseMaxDateTime operation. */
 export type Datetimerfc1123GetUtcLowercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetUtcUppercaseMaxDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcUppercaseMaxDateTime operation. */
 export type Datetimerfc1123GetUtcUppercaseMaxDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface Datetimerfc1123PutUtcMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface Datetimerfc1123GetUtcMinDateTimeOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the getUtcMinDateTime operation. */
 export type Datetimerfc1123GetUtcMinDateTimeResponse = {
   /** The parsed response body. */
   body: Date;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: Date;
+  };
 };
 
 /** Optional parameters. */
 export interface BodyDateTimeRfc1123ClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

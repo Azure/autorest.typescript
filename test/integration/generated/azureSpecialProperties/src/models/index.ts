@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -45,117 +45,117 @@ export interface HeaderCustomNamedRequestIdParamGroupingParameters {
 
 /** Optional parameters. */
 export interface XMsClientRequestIdGetOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface XMsClientRequestIdParamGetOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInCredentialsPostMethodGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInCredentialsPostMethodGlobalNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInCredentialsPostMethodGlobalNotProvidedValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInCredentialsPostPathGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInMethodPostMethodLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInMethodPostMethodLocalNullOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInMethodPostPathLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SubscriptionInMethodPostSwaggerLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionDefaultGetMethodGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionDefaultGetMethodGlobalNotProvidedValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionDefaultGetPathGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionLocalGetMethodLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionLocalGetMethodLocalNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** This should appear as a method parameter, use value null, this should result in no serialized parameter */
   apiVersion?: string;
 }
 
 /** Optional parameters. */
 export interface ApiVersionLocalGetPathLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApiVersionLocalGetSwaggerLocalValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetMethodPathValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetPathValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetSwaggerPathValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetMethodQueryValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetMethodQueryNullOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Unencoded query parameter with value null */
   q1?: string;
 }
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetPathQueryValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface SkipUrlEncodingGetSwaggerQueryValidOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Optional parameters. */
 export interface OdataGetWithFilterOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** The filter parameter with value '$filter=id gt 5 and name eq 'foo''. */
   filter?: string;
   /** The top parameter with value 10. */
@@ -166,28 +166,46 @@ export interface OdataGetWithFilterOptionalParams
 
 /** Optional parameters. */
 export interface HeaderCustomNamedRequestIdOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the customNamedRequestId operation. */
-export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders;
+export type HeaderCustomNamedRequestIdResponse = HeaderCustomNamedRequestIdHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: HeaderCustomNamedRequestIdHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface HeaderCustomNamedRequestIdParamGroupingOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the customNamedRequestIdParamGrouping operation. */
-export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders;
+export type HeaderCustomNamedRequestIdParamGroupingResponse = HeaderCustomNamedRequestIdParamGroupingHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: HeaderCustomNamedRequestIdParamGroupingHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface HeaderCustomNamedRequestIdHeadOptionalParams
-  extends coreClient.OperationOptions {}
+  extends coreHttp.OperationOptions {}
 
 /** Contains response data for the customNamedRequestIdHead operation. */
-export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders;
+export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdHeadHeaders & {
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The parsed HTTP response headers. */
+    parsedHeaders: HeaderCustomNamedRequestIdHeadHeaders;
+  };
+};
 
 /** Optional parameters. */
 export interface AzureSpecialPropertiesClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

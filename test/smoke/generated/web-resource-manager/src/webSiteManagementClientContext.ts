@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { WebSiteManagementClientOptionalParams } from "./models";
 
-const packageName = "web-resource-manager";
-const packageVersion = "1.0.0-beta.1";
-
-export class WebSiteManagementClientContext extends coreHttp.ServiceClient {
+export class WebSiteManagementClientContext extends coreClient.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
@@ -25,7 +23,7 @@ export class WebSiteManagementClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: WebSiteManagementClientOptionalParams
   ) {
@@ -40,16 +38,17 @@ export class WebSiteManagementClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: WebSiteManagementClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(credentials, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://management.azure.com";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "https://management.azure.com"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

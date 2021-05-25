@@ -7,7 +7,7 @@
  */
 
 import { FileServices } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -47,15 +47,10 @@ export class FileServicesImpl implements FileServices {
     accountName: string,
     options?: FileServicesListOptionalParams
   ): Promise<FileServicesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listOperationSpec
-    ) as Promise<FileServicesListResponse>;
+    );
   }
 
   /**
@@ -76,16 +71,10 @@ export class FileServicesImpl implements FileServices {
     parameters: FileServiceProperties,
     options?: FileServicesSetServicePropertiesOptionalParams
   ): Promise<FileServicesSetServicePropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       setServicePropertiesOperationSpec
-    ) as Promise<FileServicesSetServicePropertiesResponse>;
+    );
   }
 
   /**
@@ -103,21 +92,16 @@ export class FileServicesImpl implements FileServices {
     accountName: string,
     options?: FileServicesGetServicePropertiesOptionalParams
   ): Promise<FileServicesGetServicePropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       getServicePropertiesOperationSpec
-    ) as Promise<FileServicesGetServicePropertiesResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices",
   httpMethod: "GET",
@@ -139,7 +123,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const setServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/{FileServicesName}",
   httpMethod: "PUT",
@@ -164,7 +148,7 @@ const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const getServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/fileServices/{FileServicesName}",
   httpMethod: "GET",

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
@@ -21,26 +22,26 @@ export interface ApiVersionLocal {
    */
   getMethodLocalValid(
     options?: ApiVersionLocalGetMethodLocalValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = null to succeed
    * @param options The options parameters.
    */
   getMethodLocalNull(
     options?: ApiVersionLocalGetMethodLocalNullOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    * @param options The options parameters.
    */
   getPathLocalValid(
     options?: ApiVersionLocalGetPathLocalValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed
    * @param options The options parameters.
    */
   getSwaggerLocalValid(
     options?: ApiVersionLocalGetSwaggerLocalValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
 }

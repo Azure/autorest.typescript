@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 export interface ErrorModel {
   status?: number;
@@ -46,7 +46,7 @@ export interface ParameterGroupingPostMultiParamGroupsSecondParamGroup {
 
 /** Optional parameters. */
 export interface ParameterGroupingPostRequiredOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   customHeader?: string;
   /** Query parameter with default */
   query?: number;
@@ -54,14 +54,14 @@ export interface ParameterGroupingPostRequiredOptionalParams
 
 /** Optional parameters. */
 export interface ParameterGroupingPostOptionalOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters;
 }
 
 /** Optional parameters. */
 export interface ParameterGroupingPostMultiParamGroupsOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   firstParameterGroup?: FirstParameterGroup;
   /** Parameter group */
@@ -70,14 +70,14 @@ export interface ParameterGroupingPostMultiParamGroupsOptionalParams
 
 /** Optional parameters. */
 export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Parameter group */
   firstParameterGroup?: FirstParameterGroup;
 }
 
 /** Optional parameters. */
 export interface AzureParameterGroupingClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   User,
   UsersListNextOptionalParams,
@@ -81,7 +80,7 @@ export interface Users {
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
     options?: UsersUpdateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Delete a user.
    * @param upnOrObjectId The object ID or principal name of the user to delete.
@@ -90,5 +89,5 @@ export interface Users {
   delete(
     upnOrObjectId: string,
     options?: UsersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

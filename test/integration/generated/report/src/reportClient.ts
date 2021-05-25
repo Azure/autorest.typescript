@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
@@ -34,7 +34,13 @@ export class ReportClient extends ReportClientContext {
   getReport(
     options?: ReportClientGetReportOptionalParams
   ): Promise<ReportClientGetReportResponse> {
-    return this.sendOperationRequest({ options }, getReportOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.sendOperationRequest(
+      operationArguments,
+      getReportOperationSpec
+    ) as Promise<ReportClientGetReportResponse>;
   }
 
   /**
@@ -44,16 +50,19 @@ export class ReportClient extends ReportClientContext {
   getOptionalReport(
     options?: ReportClientGetOptionalReportOptionalParams
   ): Promise<ReportClientGetOptionalReportResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.sendOperationRequest(
-      { options },
+      operationArguments,
       getOptionalReportOperationSpec
-    );
+    ) as Promise<ReportClientGetOptionalReportResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getReportOperationSpec: coreClient.OperationSpec = {
+const getReportOperationSpec: coreHttp.OperationSpec = {
   path: "/report",
   httpMethod: "GET",
   responses: {
@@ -71,7 +80,7 @@ const getReportOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOptionalReportOperationSpec: coreClient.OperationSpec = {
+const getOptionalReportOperationSpec: coreHttp.OperationSpec = {
   path: "/report/optional",
   httpMethod: "GET",
   responses: {

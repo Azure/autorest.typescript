@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Disk,
@@ -137,9 +136,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: DisksDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a disk.
    * @param resourceGroupName The name of the resource group.
@@ -152,7 +149,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: DisksDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Grants access to a disk.
    * @param resourceGroupName The name of the resource group.
@@ -200,9 +197,7 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: DisksRevokeAccessOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Revokes access to a disk.
    * @param resourceGroupName The name of the resource group.
@@ -215,5 +210,5 @@ export interface Disks {
     resourceGroupName: string,
     diskName: string,
     options?: DisksRevokeAccessOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

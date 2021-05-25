@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   JobCredential,
   JobCredentialsListByAgentOptionalParams,
@@ -85,5 +84,5 @@ export interface JobCredentials {
     jobAgentName: string,
     credentialName: string,
     options?: JobCredentialsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

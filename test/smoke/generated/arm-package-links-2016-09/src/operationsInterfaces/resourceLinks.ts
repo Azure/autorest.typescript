@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ResourceLink,
   ResourceLinksListAtSubscriptionOptionalParams,
@@ -52,7 +51,7 @@ export interface ResourceLinks {
   delete(
     linkId: string,
     options?: ResourceLinksDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates or updates a resource link between the specified resources.
    * @param linkId The fully qualified ID of the resource link. Use the format,

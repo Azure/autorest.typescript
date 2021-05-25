@@ -10,7 +10,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-client";
+} from "@azure/core-http";
 import { Product as ProductMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   AvailabilitySet,
   AvailabilitySetsListBySubscriptionOptionalParams,
@@ -92,7 +91,7 @@ export interface AvailabilitySets {
     resourceGroupName: string,
     availabilitySetName: string,
     options?: AvailabilitySetsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves information about an availability set.
    * @param resourceGroupName The name of the resource group.

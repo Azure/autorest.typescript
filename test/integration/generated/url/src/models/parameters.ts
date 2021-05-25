@@ -9,8 +9,9 @@
 import {
   OperationParameter,
   OperationURLParameter,
-  OperationQueryParameter
-} from "@azure/core-client";
+  OperationQueryParameter,
+  QueryCollectionFormat
+} from "@azure/core-http";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -641,7 +642,7 @@ export const arrayQuery: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "CSV"
+  collectionFormat: QueryCollectionFormat.Csv
 };
 
 export const arrayQuery1: OperationQueryParameter = {
@@ -657,7 +658,7 @@ export const arrayQuery1: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "SSV"
+  collectionFormat: QueryCollectionFormat.Ssv
 };
 
 export const arrayQuery2: OperationQueryParameter = {
@@ -673,7 +674,7 @@ export const arrayQuery2: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "TSV"
+  collectionFormat: QueryCollectionFormat.Tsv
 };
 
 export const arrayQuery3: OperationQueryParameter = {
@@ -689,7 +690,7 @@ export const arrayQuery3: OperationQueryParameter = {
       }
     }
   },
-  collectionFormat: "Pipes"
+  collectionFormat: QueryCollectionFormat.Pipes
 };
 
 export const pathItemStringPath: OperationURLParameter = {

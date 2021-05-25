@@ -7,7 +7,7 @@
  */
 
 import { PrivateLinkResources } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -42,21 +42,16 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     accountName: string,
     options?: PrivateLinkResourcesListByStorageAccountOptionalParams
   ): Promise<PrivateLinkResourcesListByStorageAccountResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listByStorageAccountOperationSpec
-    ) as Promise<PrivateLinkResourcesListByStorageAccountResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByStorageAccountOperationSpec: coreHttp.OperationSpec = {
+const listByStorageAccountOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/privateLinkResources",
   httpMethod: "GET",

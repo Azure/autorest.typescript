@@ -7,7 +7,7 @@
  */
 
 import { NumberOperations } from "../operationsInterfaces";
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { BodyNumberClientContext } from "../bodyNumberClientContext";
@@ -71,7 +71,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getNull(
     options?: NumberGetNullOptionalParams
   ): Promise<NumberGetNullResponse> {
-    return this.client.sendOperationRequest({ options }, getNullOperationSpec);
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
+    return this.client.sendOperationRequest(
+      operationArguments,
+      getNullOperationSpec
+    ) as Promise<NumberGetNullResponse>;
   }
 
   /**
@@ -81,10 +87,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getInvalidFloat(
     options?: NumberGetInvalidFloatOptionalParams
   ): Promise<NumberGetInvalidFloatResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidFloatOperationSpec
-    );
+    ) as Promise<NumberGetInvalidFloatResponse>;
   }
 
   /**
@@ -94,10 +103,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getInvalidDouble(
     options?: NumberGetInvalidDoubleOptionalParams
   ): Promise<NumberGetInvalidDoubleResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidDoubleOperationSpec
-    );
+    ) as Promise<NumberGetInvalidDoubleResponse>;
   }
 
   /**
@@ -107,10 +119,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getInvalidDecimal(
     options?: NumberGetInvalidDecimalOptionalParams
   ): Promise<NumberGetInvalidDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getInvalidDecimalOperationSpec
-    );
+    ) as Promise<NumberGetInvalidDecimalResponse>;
   }
 
   /**
@@ -121,11 +136,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putBigFloat(
     numberBody: number,
     options?: NumberPutBigFloatOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putBigFloatOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -135,10 +154,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigFloat(
     options?: NumberGetBigFloatOptionalParams
   ): Promise<NumberGetBigFloatResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigFloatOperationSpec
-    );
+    ) as Promise<NumberGetBigFloatResponse>;
   }
 
   /**
@@ -149,11 +171,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putBigDouble(
     numberBody: number,
     options?: NumberPutBigDoubleOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putBigDoubleOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -163,10 +189,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDouble(
     options?: NumberGetBigDoubleOptionalParams
   ): Promise<NumberGetBigDoubleResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDoubleOperationSpec
-    );
+    ) as Promise<NumberGetBigDoubleResponse>;
   }
 
   /**
@@ -175,11 +204,14 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDoublePositiveDecimal(
     options?: NumberPutBigDoublePositiveDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       putBigDoublePositiveDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -189,10 +221,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDoublePositiveDecimal(
     options?: NumberGetBigDoublePositiveDecimalOptionalParams
   ): Promise<NumberGetBigDoublePositiveDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDoublePositiveDecimalOperationSpec
-    );
+    ) as Promise<NumberGetBigDoublePositiveDecimalResponse>;
   }
 
   /**
@@ -201,11 +236,14 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDoubleNegativeDecimal(
     options?: NumberPutBigDoubleNegativeDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       putBigDoubleNegativeDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -215,10 +253,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDoubleNegativeDecimal(
     options?: NumberGetBigDoubleNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDoubleNegativeDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDoubleNegativeDecimalOperationSpec
-    );
+    ) as Promise<NumberGetBigDoubleNegativeDecimalResponse>;
   }
 
   /**
@@ -229,11 +270,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putBigDecimal(
     numberBody: number,
     options?: NumberPutBigDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putBigDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -243,10 +288,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDecimal(
     options?: NumberGetBigDecimalOptionalParams
   ): Promise<NumberGetBigDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDecimalOperationSpec
-    );
+    ) as Promise<NumberGetBigDecimalResponse>;
   }
 
   /**
@@ -255,11 +303,14 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDecimalPositiveDecimal(
     options?: NumberPutBigDecimalPositiveDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       putBigDecimalPositiveDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -269,10 +320,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDecimalPositiveDecimal(
     options?: NumberGetBigDecimalPositiveDecimalOptionalParams
   ): Promise<NumberGetBigDecimalPositiveDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDecimalPositiveDecimalOperationSpec
-    );
+    ) as Promise<NumberGetBigDecimalPositiveDecimalResponse>;
   }
 
   /**
@@ -281,11 +335,14 @@ export class NumberOperationsImpl implements NumberOperations {
    */
   putBigDecimalNegativeDecimal(
     options?: NumberPutBigDecimalNegativeDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       putBigDecimalNegativeDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -295,10 +352,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getBigDecimalNegativeDecimal(
     options?: NumberGetBigDecimalNegativeDecimalOptionalParams
   ): Promise<NumberGetBigDecimalNegativeDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getBigDecimalNegativeDecimalOperationSpec
-    );
+    ) as Promise<NumberGetBigDecimalNegativeDecimalResponse>;
   }
 
   /**
@@ -309,11 +369,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putSmallFloat(
     numberBody: number,
     options?: NumberPutSmallFloatOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putSmallFloatOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -323,10 +387,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getSmallFloat(
     options?: NumberGetSmallFloatOptionalParams
   ): Promise<NumberGetSmallFloatResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSmallFloatOperationSpec
-    );
+    ) as Promise<NumberGetSmallFloatResponse>;
   }
 
   /**
@@ -337,11 +404,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putSmallDouble(
     numberBody: number,
     options?: NumberPutSmallDoubleOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putSmallDoubleOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -351,10 +422,13 @@ export class NumberOperationsImpl implements NumberOperations {
   getSmallDouble(
     options?: NumberGetSmallDoubleOptionalParams
   ): Promise<NumberGetSmallDoubleResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSmallDoubleOperationSpec
-    );
+    ) as Promise<NumberGetSmallDoubleResponse>;
   }
 
   /**
@@ -365,11 +439,15 @@ export class NumberOperationsImpl implements NumberOperations {
   putSmallDecimal(
     numberBody: number,
     options?: NumberPutSmallDecimalOptionalParams
-  ): Promise<void> {
+  ): Promise<coreHttp.RestResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      numberBody,
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { numberBody, options },
+      operationArguments,
       putSmallDecimalOperationSpec
-    );
+    ) as Promise<coreHttp.RestResponse>;
   }
 
   /**
@@ -379,16 +457,19 @@ export class NumberOperationsImpl implements NumberOperations {
   getSmallDecimal(
     options?: NumberGetSmallDecimalOptionalParams
   ): Promise<NumberGetSmallDecimalResponse> {
+    const operationArguments: coreHttp.OperationArguments = {
+      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
+    };
     return this.client.sendOperationRequest(
-      { options },
+      operationArguments,
       getSmallDecimalOperationSpec
-    );
+    ) as Promise<NumberGetSmallDecimalResponse>;
   }
 }
 // Operation Specifications
-const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
+const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
 
-const getNullOperationSpec: coreClient.OperationSpec = {
+const getNullOperationSpec: coreHttp.OperationSpec = {
   path: "/number/null",
   httpMethod: "GET",
   responses: {
@@ -403,7 +484,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidFloatOperationSpec: coreClient.OperationSpec = {
+const getInvalidFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/number/invalidfloat",
   httpMethod: "GET",
   responses: {
@@ -418,7 +499,7 @@ const getInvalidFloatOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidDoubleOperationSpec: coreClient.OperationSpec = {
+const getInvalidDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/number/invaliddouble",
   httpMethod: "GET",
   responses: {
@@ -433,7 +514,7 @@ const getInvalidDoubleOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInvalidDecimalOperationSpec: coreClient.OperationSpec = {
+const getInvalidDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/invaliddecimal",
   httpMethod: "GET",
   responses: {
@@ -448,7 +529,7 @@ const getInvalidDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigFloatOperationSpec: coreClient.OperationSpec = {
+const putBigFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/float/3.402823e+20",
   httpMethod: "PUT",
   responses: {
@@ -463,7 +544,7 @@ const putBigFloatOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigFloatOperationSpec: coreClient.OperationSpec = {
+const getBigFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/float/3.402823e+20",
   httpMethod: "GET",
   responses: {
@@ -478,7 +559,7 @@ const getBigFloatOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDoubleOperationSpec: coreClient.OperationSpec = {
+const putBigDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/2.5976931e+101",
   httpMethod: "PUT",
   responses: {
@@ -493,7 +574,7 @@ const putBigDoubleOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDoubleOperationSpec: coreClient.OperationSpec = {
+const getBigDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/2.5976931e+101",
   httpMethod: "GET",
   responses: {
@@ -508,7 +589,7 @@ const getBigDoubleOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
+const putBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/99999999.99",
   httpMethod: "PUT",
   responses: {
@@ -523,7 +604,7 @@ const putBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
+const getBigDoublePositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/99999999.99",
   httpMethod: "GET",
   responses: {
@@ -538,7 +619,7 @@ const getBigDoublePositiveDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
+const putBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/-99999999.99",
   httpMethod: "PUT",
   responses: {
@@ -553,7 +634,7 @@ const putBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
+const getBigDoubleNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/double/-99999999.99",
   httpMethod: "GET",
   responses: {
@@ -568,7 +649,7 @@ const getBigDoubleNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDecimalOperationSpec: coreClient.OperationSpec = {
+const putBigDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/2.5976931e+101",
   httpMethod: "PUT",
   responses: {
@@ -583,7 +664,7 @@ const putBigDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDecimalOperationSpec: coreClient.OperationSpec = {
+const getBigDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/2.5976931e+101",
   httpMethod: "GET",
   responses: {
@@ -598,7 +679,7 @@ const getBigDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
+const putBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/99999999.99",
   httpMethod: "PUT",
   responses: {
@@ -613,7 +694,7 @@ const putBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
+const getBigDecimalPositiveDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/99999999.99",
   httpMethod: "GET",
   responses: {
@@ -628,7 +709,7 @@ const getBigDecimalPositiveDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
+const putBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/-99999999.99",
   httpMethod: "PUT",
   responses: {
@@ -643,7 +724,7 @@ const putBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
+const getBigDecimalNegativeDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/big/decimal/-99999999.99",
   httpMethod: "GET",
   responses: {
@@ -658,7 +739,7 @@ const getBigDecimalNegativeDecimalOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putSmallFloatOperationSpec: coreClient.OperationSpec = {
+const putSmallFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/float/3.402823e-20",
   httpMethod: "PUT",
   responses: {
@@ -673,7 +754,7 @@ const putSmallFloatOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getSmallFloatOperationSpec: coreClient.OperationSpec = {
+const getSmallFloatOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/float/3.402823e-20",
   httpMethod: "GET",
   responses: {
@@ -688,7 +769,7 @@ const getSmallFloatOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putSmallDoubleOperationSpec: coreClient.OperationSpec = {
+const putSmallDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/double/2.5976931e-101",
   httpMethod: "PUT",
   responses: {
@@ -703,7 +784,7 @@ const putSmallDoubleOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getSmallDoubleOperationSpec: coreClient.OperationSpec = {
+const getSmallDoubleOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/double/2.5976931e-101",
   httpMethod: "GET",
   responses: {
@@ -718,7 +799,7 @@ const getSmallDoubleOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putSmallDecimalOperationSpec: coreClient.OperationSpec = {
+const putSmallDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/decimal/2.5976931e-101",
   httpMethod: "PUT",
   responses: {
@@ -733,7 +814,7 @@ const putSmallDecimalOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getSmallDecimalOperationSpec: coreClient.OperationSpec = {
+const getSmallDecimalOperationSpec: coreHttp.OperationSpec = {
   path: "/number/small/decimal/2.5976931e-101",
   httpMethod: "GET",
   responses: {

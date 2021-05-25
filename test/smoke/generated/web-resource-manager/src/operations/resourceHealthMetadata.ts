@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ResourceHealthMetadata } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -294,13 +294,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private _list(
     options?: ResourceHealthMetadataListOptionalParams
   ): Promise<ResourceHealthMetadataListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ResourceHealthMetadataListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -313,14 +307,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     options?: ResourceHealthMetadataListByResourceGroupOptionalParams
   ): Promise<ResourceHealthMetadataListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<ResourceHealthMetadataListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -335,15 +325,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     options?: ResourceHealthMetadataListBySiteOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listBySiteOperationSpec
-    ) as Promise<ResourceHealthMetadataListBySiteResponse>;
+    );
   }
 
   /**
@@ -357,15 +342,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     options?: ResourceHealthMetadataGetBySiteOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       getBySiteOperationSpec
-    ) as Promise<ResourceHealthMetadataGetBySiteResponse>;
+    );
   }
 
   /**
@@ -382,16 +362,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     slot: string,
     options?: ResourceHealthMetadataListBySiteSlotOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       listBySiteSlotOperationSpec
-    ) as Promise<ResourceHealthMetadataListBySiteSlotResponse>;
+    );
   }
 
   /**
@@ -407,16 +381,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     slot: string,
     options?: ResourceHealthMetadataGetBySiteSlotOptionalParams
   ): Promise<ResourceHealthMetadataGetBySiteSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, options },
       getBySiteSlotOperationSpec
-    ) as Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
+    );
   }
 
   /**
@@ -428,14 +396,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     nextLink: string,
     options?: ResourceHealthMetadataListNextOptionalParams
   ): Promise<ResourceHealthMetadataListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ResourceHealthMetadataListNextResponse>;
+    );
   }
 
   /**
@@ -449,15 +413,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     nextLink: string,
     options?: ResourceHealthMetadataListByResourceGroupNextOptionalParams
   ): Promise<ResourceHealthMetadataListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<ResourceHealthMetadataListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -473,16 +432,10 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     nextLink: string,
     options?: ResourceHealthMetadataListBySiteNextOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listBySiteNextOperationSpec
-    ) as Promise<ResourceHealthMetadataListBySiteNextResponse>;
+    );
   }
 
   /**
@@ -500,23 +453,16 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     nextLink: string,
     options?: ResourceHealthMetadataListBySiteSlotNextOptionalParams
   ): Promise<ResourceHealthMetadataListBySiteSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, slot, nextLink, options },
       listBySiteSlotNextOperationSpec
-    ) as Promise<ResourceHealthMetadataListBySiteSlotNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/resourceHealthMetadata",
   httpMethod: "GET",
@@ -533,7 +479,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/resourceHealthMetadata",
   httpMethod: "GET",
@@ -554,7 +500,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySiteOperationSpec: coreHttp.OperationSpec = {
+const listBySiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/resourceHealthMetadata",
   httpMethod: "GET",
@@ -576,7 +522,7 @@ const listBySiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBySiteOperationSpec: coreHttp.OperationSpec = {
+const getBySiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/resourceHealthMetadata/default",
   httpMethod: "GET",
@@ -598,7 +544,7 @@ const getBySiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySiteSlotOperationSpec: coreHttp.OperationSpec = {
+const listBySiteSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/resourceHealthMetadata",
   httpMethod: "GET",
@@ -621,7 +567,7 @@ const listBySiteSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBySiteSlotOperationSpec: coreHttp.OperationSpec = {
+const getBySiteSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/resourceHealthMetadata/default",
   httpMethod: "GET",
@@ -644,7 +590,7 @@ const getBySiteSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -664,7 +610,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -685,7 +631,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySiteNextOperationSpec: coreHttp.OperationSpec = {
+const listBySiteNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -707,7 +653,7 @@ const listBySiteNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySiteSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listBySiteSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

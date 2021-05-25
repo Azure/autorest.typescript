@@ -6,10 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 import { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
-export class SubscriptionIdApiVersionClientContext extends coreClient.ServiceClient {
+const packageName = "subscriptionid-apiversion";
+const packageVersion = "1.0.0-preview1";
+
+export class SubscriptionIdApiVersionClientContext extends coreHttp.ServiceClient {
   $host: string;
   subscriptionId: string;
   apiVersion: string;
@@ -31,16 +34,16 @@ export class SubscriptionIdApiVersionClientContext extends coreClient.ServiceCli
     if (!options) {
       options = {};
     }
-    const defaults: SubscriptionIdApiVersionClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
-    };
 
-    const optionsWithDefaults = {
-      ...defaults,
-      ...options,
-      baseUri: options.endpoint || "http://localhost:3000"
-    };
-    super(optionsWithDefaults);
+    if (!options.userAgent) {
+      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
+    }
+
+    super(undefined, options);
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "http://localhost:3000";
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

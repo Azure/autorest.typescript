@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { StorageAccounts } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -165,14 +165,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     accountName: StorageAccountCheckNameAvailabilityParameters,
     options?: StorageAccountsCheckNameAvailabilityOptionalParams
   ): Promise<StorageAccountsCheckNameAvailabilityResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { accountName, options },
       checkNameAvailabilityOperationSpec
-    ) as Promise<StorageAccountsCheckNameAvailabilityResponse>;
+    );
   }
 
   /**
@@ -199,24 +195,41 @@ export class StorageAccountsImpl implements StorageAccounts {
       StorageAccountsCreateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StorageAccountsCreateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        StorageAccountsCreateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       createOperationSpec,
       sendOperation
     );
@@ -263,16 +276,11 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -290,15 +298,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     accountName: string,
     options?: StorageAccountsGetPropertiesOptionalParams
   ): Promise<StorageAccountsGetPropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       getPropertiesOperationSpec
-    ) as Promise<StorageAccountsGetPropertiesResponse>;
+    );
   }
 
   /**
@@ -323,16 +326,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     parameters: StorageAccountUpdateParameters,
     options?: StorageAccountsUpdateOptionalParams
   ): Promise<StorageAccountsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       updateOperationSpec
-    ) as Promise<StorageAccountsUpdateResponse>;
+    );
   }
 
   /**
@@ -343,13 +340,7 @@ export class StorageAccountsImpl implements StorageAccounts {
   private _list(
     options?: StorageAccountsListOptionalParams
   ): Promise<StorageAccountsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<StorageAccountsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -363,14 +354,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     options?: StorageAccountsListByResourceGroupOptionalParams
   ): Promise<StorageAccountsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<StorageAccountsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -388,15 +375,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     accountName: string,
     options?: StorageAccountsListKeysOptionalParams
   ): Promise<StorageAccountsListKeysResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listKeysOperationSpec
-    ) as Promise<StorageAccountsListKeysResponse>;
+    );
   }
 
   /**
@@ -416,16 +398,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     regenerateKey: StorageAccountRegenerateKeyParameters,
     options?: StorageAccountsRegenerateKeyOptionalParams
   ): Promise<StorageAccountsRegenerateKeyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      regenerateKey,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, regenerateKey, options },
       regenerateKeyOperationSpec
-    ) as Promise<StorageAccountsRegenerateKeyResponse>;
+    );
   }
 
   /**
@@ -444,16 +420,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     parameters: AccountSasParameters,
     options?: StorageAccountsListAccountSASOptionalParams
   ): Promise<StorageAccountsListAccountSASResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       listAccountSASOperationSpec
-    ) as Promise<StorageAccountsListAccountSASResponse>;
+    );
   }
 
   /**
@@ -472,16 +442,10 @@ export class StorageAccountsImpl implements StorageAccounts {
     parameters: ServiceSasParameters,
     options?: StorageAccountsListServiceSASOptionalParams
   ): Promise<StorageAccountsListServiceSASResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       listServiceSASOperationSpec
-    ) as Promise<StorageAccountsListServiceSASResponse>;
+    );
   }
 
   /**
@@ -499,26 +463,42 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, accountName, options },
       failoverOperationSpec,
       sendOperation,
       "location"
@@ -540,7 +520,7 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginFailover(
       resourceGroupName,
       accountName,
@@ -570,24 +550,41 @@ export class StorageAccountsImpl implements StorageAccounts {
       StorageAccountsRestoreBlobRangesResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<StorageAccountsRestoreBlobRangesResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        StorageAccountsRestoreBlobRangesResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       restoreBlobRangesOperationSpec,
       sendOperation,
       "location"
@@ -632,16 +629,11 @@ export class StorageAccountsImpl implements StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsRevokeUserDelegationKeysOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       revokeUserDelegationKeysOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -653,32 +645,16 @@ export class StorageAccountsImpl implements StorageAccounts {
     nextLink: string,
     options?: StorageAccountsListNextOptionalParams
   ): Promise<StorageAccountsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<StorageAccountsListNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
+const checkNameAvailabilityOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/checkNameAvailability",
   httpMethod: "POST",
@@ -694,7 +670,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   httpMethod: "PUT",
@@ -724,7 +700,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   httpMethod: "DELETE",
@@ -738,7 +714,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getPropertiesOperationSpec: coreHttp.OperationSpec = {
+const getPropertiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   httpMethod: "GET",
@@ -757,7 +733,7 @@ const getPropertiesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}",
   httpMethod: "PATCH",
@@ -778,7 +754,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Storage/storageAccounts",
   httpMethod: "GET",
@@ -792,7 +768,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts",
   httpMethod: "GET",
@@ -810,7 +786,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listKeysOperationSpec: coreHttp.OperationSpec = {
+const listKeysOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys",
   httpMethod: "POST",
@@ -829,7 +805,7 @@ const listKeysOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
+const regenerateKeyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey",
   httpMethod: "POST",
@@ -850,7 +826,7 @@ const regenerateKeyOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listAccountSASOperationSpec: coreHttp.OperationSpec = {
+const listAccountSASOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/ListAccountSas",
   httpMethod: "POST",
@@ -871,7 +847,7 @@ const listAccountSASOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listServiceSASOperationSpec: coreHttp.OperationSpec = {
+const listServiceSASOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/ListServiceSas",
   httpMethod: "POST",
@@ -892,7 +868,7 @@ const listServiceSASOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const failoverOperationSpec: coreHttp.OperationSpec = {
+const failoverOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/failover",
   httpMethod: "POST",
@@ -906,7 +882,7 @@ const failoverOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const restoreBlobRangesOperationSpec: coreHttp.OperationSpec = {
+const restoreBlobRangesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/restoreBlobRanges",
   httpMethod: "POST",
@@ -936,7 +912,7 @@ const restoreBlobRangesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const revokeUserDelegationKeysOperationSpec: coreHttp.OperationSpec = {
+const revokeUserDelegationKeysOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/revokeUserDelegationKeys",
   httpMethod: "POST",
@@ -950,7 +926,7 @@ const revokeUserDelegationKeysOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

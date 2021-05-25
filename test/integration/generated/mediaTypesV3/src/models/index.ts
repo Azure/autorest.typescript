@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreClient from "@azure/core-client";
+import * as coreHttp from "@azure/core-http";
 
 /** Optional parameters. */
 export interface BarApiPostSendOnDefaultOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
@@ -19,18 +19,27 @@ export interface BarApiPostSendOnDefaultOptionalParams
 export type BarApiPostSendOnDefaultResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface FooApiPostSendOnDefault$binaryOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Optional parameters. */
 export interface FooApiPostSendOnDefault$textOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
@@ -39,18 +48,27 @@ export interface FooApiPostSendOnDefault$textOptionalParams
 export type FooApiPostSendOnDefaultResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface FooApiPostSend$binaryOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Optional parameters. */
 export interface FooApiPostSend$textOptionalParams
-  extends coreClient.OperationOptions {
+  extends coreHttp.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
@@ -59,11 +77,20 @@ export interface FooApiPostSend$textOptionalParams
 export type FooApiPostSendResponse = {
   /** The parsed response body. */
   body: string;
+
+  /** The underlying HTTP response. */
+  _response: coreHttp.HttpResponse & {
+    /** The response body as text (string format) */
+    bodyAsText: string;
+
+    /** The response body as parsed JSON or XML */
+    parsedBody: string;
+  };
 };
 
 /** Optional parameters. */
 export interface MediaTypesV3ClientOptionalParams
-  extends coreClient.ServiceClientOptions {
+  extends coreHttp.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;
 }

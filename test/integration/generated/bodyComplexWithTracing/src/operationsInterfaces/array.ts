@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
@@ -36,7 +37,7 @@ export interface Array {
   putValid(
     complexBody: ArrayWrapper,
     options?: ArrayPutValidOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with array property which is empty
    * @param options The options parameters.
@@ -52,7 +53,7 @@ export interface Array {
   putEmpty(
     complexBody: ArrayWrapper,
     options?: ArrayPutEmptyOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get complex types with array property while server doesn't provide a response payload
    * @param options The options parameters.

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ListContainerItem,
   BlobContainersListOptionalParams,
@@ -139,7 +138,7 @@ export interface BlobContainers {
     accountName: string,
     containerName: string,
     options?: BlobContainersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Sets legal hold tags. Setting the same tag results in an idempotent operation. SetLegalHold follows
    * an append pattern and does not clear out the existing tags that are not specified in the request.

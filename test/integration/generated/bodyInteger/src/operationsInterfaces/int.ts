@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import {
   IntGetNullOptionalParams,
   IntGetNullResponse,
@@ -79,25 +80,37 @@ export interface Int {
    * @param intBody int body
    * @param options The options parameters.
    */
-  putMax32(intBody: number, options?: IntPutMax32OptionalParams): Promise<void>;
+  putMax32(
+    intBody: number,
+    options?: IntPutMax32OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put max int64 value
    * @param intBody int body
    * @param options The options parameters.
    */
-  putMax64(intBody: number, options?: IntPutMax64OptionalParams): Promise<void>;
+  putMax64(
+    intBody: number,
+    options?: IntPutMax64OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put min int32 value
    * @param intBody int body
    * @param options The options parameters.
    */
-  putMin32(intBody: number, options?: IntPutMin32OptionalParams): Promise<void>;
+  putMin32(
+    intBody: number,
+    options?: IntPutMin32OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Put min int64 value
    * @param intBody int body
    * @param options The options parameters.
    */
-  putMin64(intBody: number, options?: IntPutMin64OptionalParams): Promise<void>;
+  putMin64(
+    intBody: number,
+    options?: IntPutMin64OptionalParams
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get datetime encoded as Unix time value
    * @param options The options parameters.
@@ -113,7 +126,7 @@ export interface Int {
   putUnixTimeDate(
     intBody: Date,
     options?: IntPutUnixTimeDateOptionalParams
-  ): Promise<void>;
+  ): Promise<coreHttp.RestResponse>;
   /**
    * Get invalid Unix time value
    * @param options The options parameters.
