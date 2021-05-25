@@ -300,9 +300,9 @@ function transformPolymorphicObject(
   }
 
   return {
+    ...objectDetails,
     discriminatorValues,
     discriminatorPath,
-    unionName,
-    ...objectDetails
+    unionName
   } as PolymorphicObjectDetails;
 }
