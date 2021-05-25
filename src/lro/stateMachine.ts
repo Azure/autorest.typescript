@@ -20,7 +20,7 @@ import {
   ResumablePollOperationState,
   SendOperationFn
 } from "./models";
-import { processPassthroughOperationResult } from "./passthroughStrategy";
+import { processPassthroughOperationResult } from "./passthrough";
 import {
   createPollingMethod,
   createRetrieveAzureAsyncResource
