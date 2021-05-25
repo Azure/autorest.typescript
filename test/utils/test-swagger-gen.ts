@@ -1,5 +1,4 @@
 import { spawn } from "child_process";
-import * as dirTree from "directory-tree";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
 
