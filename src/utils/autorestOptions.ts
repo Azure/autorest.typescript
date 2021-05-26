@@ -84,7 +84,7 @@ async function getLicenseHeader(host: Host): Promise<boolean> {
 }
 
 async function getTitle(host: Host): Promise<string | undefined> {
-  return await host.GetValue("title");
+  return (await host.GetValue("title")) || undefined;
 }
 
 async function getSrcPath(host: Host): Promise<string> {
@@ -92,13 +92,13 @@ async function getSrcPath(host: Host): Promise<string> {
 }
 
 async function getOutputPath(host: Host): Promise<string | undefined> {
-  return await host.GetValue("output-folder");
+  return (await host.GetValue("output-folder")) || undefined;
 }
 
 async function getKeyCredentialHeaderName(
   host: Host
 ): Promise<string | undefined> {
-  return await host.GetValue("credential-key-header-name");
+  return (await host.GetValue("credential-key-header-name")) || undefined;
 }
 
 async function getAddCredentials(host: Host): Promise<boolean> {
@@ -125,7 +125,7 @@ async function getRestLevelClient(host: Host): Promise<boolean> {
 
 async function getUseCoreV2(host: Host): Promise<boolean> {
   const useCoreV2Option: boolean = await host.GetValue("use-core-v2");
-  return useCoreV2Option === undefined ? true : Boolean(useCoreV2Option);
+  return useCoreV2Option === null ? true : Boolean(useCoreV2Option);
 }
 
 async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
