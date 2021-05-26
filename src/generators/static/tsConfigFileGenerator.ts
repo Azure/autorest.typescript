@@ -27,8 +27,9 @@ const highLevelTsConfig = {
 
 const restLevelTsConfig = {
   compilerOptions: {
-    module: "commonjs",
+    module: "es6",
     target: "es2015",
+    moduleResolution: "node",
     declaration: true,
     declarationMap: true,
     outDir: "./esm"

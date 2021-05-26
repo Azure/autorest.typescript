@@ -53,8 +53,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
     main: "esm/index.js",
     types: "esm/index.d.ts",
     scripts: {
-      regenerate:
-        "autorest --reset && autorest --typescript --use=https://aka.ms/azsdk/typescript/rlc --rest-level-client=true https://raw.githubusercontent.com/Azure/azure-rest-api-specs/master/specification/iothub/resource-manager/readme.md --credential-scopes=https://management.azure.com/.default --add-credentials=true --output-folder=. --generate-metadata=false",
       test: 'echo "Error: no test specified" && exit 1',
       build: "tsc --build && npm run extract-api",
       "extract-api": "mkdirp ./review && api-extractor run --local"
@@ -64,11 +62,8 @@ function restLevelPackage(packageDetails: PackageDetails) {
     license: "ISC",
     dependencies: {
       "@azure-rest/core-client": "1.0.0-beta.2",
-      "@azure/ai-text-analytics": "^5.0.1",
       "@azure/core-auth": "^1.1.4",
-      "@azure/core-rest-pipeline": "^1.0.3",
-      "@azure/identity": "^1.2.2",
-      "@azure/storage-blob": "^12.5.0"
+      "@azure/core-rest-pipeline": "^1.0.3"
     },
     devDependencies: {
       autorest: "latest",
