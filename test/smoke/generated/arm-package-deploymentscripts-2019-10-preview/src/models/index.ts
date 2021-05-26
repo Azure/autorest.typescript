@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export type DeploymentScriptUnion =
   | DeploymentScript
@@ -456,7 +456,7 @@ export type ScriptProvisioningState = string;
 
 /** Optional parameters. */
 export interface DeploymentScriptsCreateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -464,158 +464,77 @@ export interface DeploymentScriptsCreateOptionalParams
 }
 
 /** Contains response data for the create operation. */
-export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptUnion;
-  };
-};
+export type DeploymentScriptsCreateResponse = DeploymentScriptUnion;
 
 /** Optional parameters. */
 export interface DeploymentScriptsUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Deployment script resource with the tags to be updated. */
   deploymentScript?: DeploymentScriptUpdateParameter;
 }
 
 /** Contains response data for the update operation. */
-export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptUnion;
-  };
-};
+export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion;
 
 /** Optional parameters. */
 export interface DeploymentScriptsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptUnion;
-  };
-};
+export type DeploymentScriptsGetResponse = DeploymentScriptUnion;
 
 /** Optional parameters. */
 export interface DeploymentScriptsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentScriptsListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptListResult;
-  };
-};
+export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsGetLogsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getLogs operation. */
-export type DeploymentScriptsGetLogsResponse = ScriptLogsList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ScriptLogsList;
-  };
-};
+export type DeploymentScriptsGetLogsResponse = ScriptLogsList;
 
 /** Optional parameters. */
 export interface DeploymentScriptsGetLogsDefaultOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb. */
   tail?: number;
 }
 
 /** Contains response data for the getLogsDefault operation. */
-export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ScriptLog;
-  };
-};
+export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog;
 
 /** Optional parameters. */
 export interface DeploymentScriptsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptListResult;
-  };
-};
+export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptListResult;
-  };
-};
+export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentScriptListResult;
-  };
-};
+export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult;
 
 /** Optional parameters. */
 export interface DeploymentScriptsClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

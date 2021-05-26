@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Domains } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -299,14 +299,10 @@ export class DomainsImpl implements Domains {
     identifier: NameIdentifier,
     options?: DomainsCheckAvailabilityOptionalParams
   ): Promise<DomainsCheckAvailabilityResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      identifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { identifier, options },
       checkAvailabilityOperationSpec
-    ) as Promise<DomainsCheckAvailabilityResponse>;
+    );
   }
 
   /**
@@ -316,13 +312,7 @@ export class DomainsImpl implements Domains {
   private _list(
     options?: DomainsListOptionalParams
   ): Promise<DomainsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<DomainsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -332,13 +322,10 @@ export class DomainsImpl implements Domains {
   getControlCenterSsoRequest(
     options?: DomainsGetControlCenterSsoRequestOptionalParams
   ): Promise<DomainsGetControlCenterSsoRequestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getControlCenterSsoRequestOperationSpec
-    ) as Promise<DomainsGetControlCenterSsoRequestResponse>;
+    );
   }
 
   /**
@@ -350,14 +337,10 @@ export class DomainsImpl implements Domains {
     parameters: DomainRecommendationSearchParameters,
     options?: DomainsListRecommendationsOptionalParams
   ): Promise<DomainsListRecommendationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       listRecommendationsOperationSpec
-    ) as Promise<DomainsListRecommendationsResponse>;
+    );
   }
 
   /**
@@ -369,14 +352,10 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     options?: DomainsListByResourceGroupOptionalParams
   ): Promise<DomainsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<DomainsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -390,15 +369,10 @@ export class DomainsImpl implements Domains {
     domainName: string,
     options?: DomainsGetOptionalParams
   ): Promise<DomainsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, options },
       getOperationSpec
-    ) as Promise<DomainsGetResponse>;
+    );
   }
 
   /**
@@ -419,24 +393,41 @@ export class DomainsImpl implements Domains {
       DomainsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      domain,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<DomainsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        DomainsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, domainName, domain, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -474,16 +465,11 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     options?: DomainsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -499,16 +485,10 @@ export class DomainsImpl implements Domains {
     domain: DomainPatchResource,
     options?: DomainsUpdateOptionalParams
   ): Promise<DomainsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      domain,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, domain, options },
       updateOperationSpec
-    ) as Promise<DomainsUpdateResponse>;
+    );
   }
 
   /**
@@ -522,15 +502,10 @@ export class DomainsImpl implements Domains {
     domainName: string,
     options?: DomainsListOwnershipIdentifiersOptionalParams
   ): Promise<DomainsListOwnershipIdentifiersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, options },
       listOwnershipIdentifiersOperationSpec
-    ) as Promise<DomainsListOwnershipIdentifiersResponse>;
+    );
   }
 
   /**
@@ -546,16 +521,10 @@ export class DomainsImpl implements Domains {
     name: string,
     options?: DomainsGetOwnershipIdentifierOptionalParams
   ): Promise<DomainsGetOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, name, options },
       getOwnershipIdentifierOperationSpec
-    ) as Promise<DomainsGetOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -574,17 +543,16 @@ export class DomainsImpl implements Domains {
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
     options?: DomainsCreateOrUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      name,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        domainName,
+        name,
+        domainOwnershipIdentifier,
+        options
+      },
       createOrUpdateOwnershipIdentifierOperationSpec
-    ) as Promise<DomainsCreateOrUpdateOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -599,17 +567,11 @@ export class DomainsImpl implements Domains {
     domainName: string,
     name: string,
     options?: DomainsDeleteOwnershipIdentifierOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, name, options },
       deleteOwnershipIdentifierOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -628,17 +590,16 @@ export class DomainsImpl implements Domains {
     domainOwnershipIdentifier: DomainOwnershipIdentifier,
     options?: DomainsUpdateOwnershipIdentifierOptionalParams
   ): Promise<DomainsUpdateOwnershipIdentifierResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      name,
-      domainOwnershipIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        domainName,
+        name,
+        domainOwnershipIdentifier,
+        options
+      },
       updateOwnershipIdentifierOperationSpec
-    ) as Promise<DomainsUpdateOwnershipIdentifierResponse>;
+    );
   }
 
   /**
@@ -651,16 +612,11 @@ export class DomainsImpl implements Domains {
     resourceGroupName: string,
     domainName: string,
     options?: DomainsRenewOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, options },
       renewOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -672,14 +628,10 @@ export class DomainsImpl implements Domains {
     nextLink: string,
     options?: DomainsListNextOptionalParams
   ): Promise<DomainsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<DomainsListNextResponse>;
+    );
   }
 
   /**
@@ -693,15 +645,10 @@ export class DomainsImpl implements Domains {
     nextLink: string,
     options?: DomainsListRecommendationsNextOptionalParams
   ): Promise<DomainsListRecommendationsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, nextLink, options },
       listRecommendationsNextOperationSpec
-    ) as Promise<DomainsListRecommendationsNextResponse>;
+    );
   }
 
   /**
@@ -715,15 +662,10 @@ export class DomainsImpl implements Domains {
     nextLink: string,
     options?: DomainsListByResourceGroupNextOptionalParams
   ): Promise<DomainsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<DomainsListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -740,34 +682,16 @@ export class DomainsImpl implements Domains {
     nextLink: string,
     options?: DomainsListOwnershipIdentifiersNextOptionalParams
   ): Promise<DomainsListOwnershipIdentifiersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      domainName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, domainName, nextLink, options },
       listOwnershipIdentifiersNextOperationSpec
-    ) as Promise<DomainsListOwnershipIdentifiersNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const checkAvailabilityOperationSpec: coreHttp.OperationSpec = {
+const checkAvailabilityOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/checkDomainAvailability",
   httpMethod: "POST",
@@ -786,7 +710,7 @@ const checkAvailabilityOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/domains",
   httpMethod: "GET",
@@ -803,7 +727,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getControlCenterSsoRequestOperationSpec: coreHttp.OperationSpec = {
+const getControlCenterSsoRequestOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/generateSsoRequest",
   httpMethod: "POST",
@@ -820,7 +744,7 @@ const getControlCenterSsoRequestOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRecommendationsOperationSpec: coreHttp.OperationSpec = {
+const listRecommendationsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.DomainRegistration/listDomainRecommendations",
   httpMethod: "POST",
@@ -839,7 +763,7 @@ const listRecommendationsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains",
   httpMethod: "GET",
@@ -860,7 +784,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
   httpMethod: "GET",
@@ -882,7 +806,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
   httpMethod: "PUT",
@@ -915,7 +839,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
   httpMethod: "DELETE",
@@ -936,7 +860,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}",
   httpMethod: "PATCH",
@@ -963,7 +887,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
+const listOwnershipIdentifiersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers",
   httpMethod: "GET",
@@ -985,7 +909,7 @@ const listOwnershipIdentifiersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const getOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
   httpMethod: "GET",
@@ -1008,7 +932,7 @@ const getOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
   httpMethod: "PUT",
@@ -1033,7 +957,7 @@ const createOrUpdateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const deleteOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
   httpMethod: "DELETE",
@@ -1055,7 +979,7 @@ const deleteOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
+const updateOwnershipIdentifierOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/domainOwnershipIdentifiers/{name}",
   httpMethod: "PATCH",
@@ -1080,7 +1004,7 @@ const updateOwnershipIdentifierOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const renewOperationSpec: coreHttp.OperationSpec = {
+const renewOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DomainRegistration/domains/{domainName}/renew",
   httpMethod: "POST",
@@ -1102,7 +1026,7 @@ const renewOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1122,7 +1046,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
+const listRecommendationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1143,7 +1067,7 @@ const listRecommendationsNextOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1164,7 +1088,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnershipIdentifiersNextOperationSpec: coreHttp.OperationSpec = {
+const listOwnershipIdentifiersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

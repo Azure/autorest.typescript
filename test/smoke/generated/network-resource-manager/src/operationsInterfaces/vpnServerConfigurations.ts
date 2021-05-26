@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnServerConfiguration,
@@ -112,9 +111,7 @@ export interface VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: VpnServerConfigurationsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a VpnServerConfiguration.
    * @param resourceGroupName The resource group name of the VpnServerConfiguration.
@@ -125,5 +122,5 @@ export interface VpnServerConfigurations {
     resourceGroupName: string,
     vpnServerConfigurationName: string,
     options?: VpnServerConfigurationsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

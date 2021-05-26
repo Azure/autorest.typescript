@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { SubscriptionUsages } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -98,14 +98,10 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
     locationName: string,
     options?: SubscriptionUsagesListByLocationOptionalParams
   ): Promise<SubscriptionUsagesListByLocationResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, options },
       listByLocationOperationSpec
-    ) as Promise<SubscriptionUsagesListByLocationResponse>;
+    );
   }
 
   /**
@@ -119,15 +115,10 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
     usageName: string,
     options?: SubscriptionUsagesGetOptionalParams
   ): Promise<SubscriptionUsagesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      usageName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, usageName, options },
       getOperationSpec
-    ) as Promise<SubscriptionUsagesGetResponse>;
+    );
   }
 
   /**
@@ -141,21 +132,16 @@ export class SubscriptionUsagesImpl implements SubscriptionUsages {
     nextLink: string,
     options?: SubscriptionUsagesListByLocationNextOptionalParams
   ): Promise<SubscriptionUsagesListByLocationNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      locationName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { locationName, nextLink, options },
       listByLocationNextOperationSpec
-    ) as Promise<SubscriptionUsagesListByLocationNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByLocationOperationSpec: coreHttp.OperationSpec = {
+const listByLocationOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/usages",
   httpMethod: "GET",
@@ -174,7 +160,7 @@ const listByLocationOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Sql/locations/{locationName}/usages/{usageName}",
   httpMethod: "GET",
@@ -194,7 +180,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByLocationNextOperationSpec: coreHttp.OperationSpec = {
+const listByLocationNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

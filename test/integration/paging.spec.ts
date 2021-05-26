@@ -1,17 +1,20 @@
+import { ServiceClientOptions } from "@azure/core-client";
 import { assert } from "chai";
 import { PagingClient, Product } from "./generated/paging/src";
-import { InternalPipelineOptions } from "@azure/core-http";
+import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
 
-describe.skip("Integration tests for Paging", () => {
+describe("Integration tests for Paging", () => {
   let client: PagingClient;
 
   beforeEach(() => {
-    const pipelineOptions: InternalPipelineOptions = {
+    const pipelineOptions: ServiceClientOptions = {
+      httpClient: new HttpClientWithCookieSupport(),
+      allowInsecureConnection: true,
       retryOptions: {
         retryDelayInMs: 0
       }
     };
-    client = new PagingClient();
+    client = new PagingClient(pipelineOptions);
   });
 
   describe("getMultiplePagesRetrySecond", () => {

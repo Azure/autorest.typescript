@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Vault,
@@ -127,7 +126,7 @@ export interface Vaults {
     resourceGroupName: string,
     vaultName: string,
     options?: VaultsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified Azure key vault.
    * @param resourceGroupName The name of the Resource Group to which the vault belongs.
@@ -175,9 +174,7 @@ export interface Vaults {
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Permanently deletes the specified vault. aka Purges the deleted Azure key vault.
    * @param vaultName The name of the soft-deleted vault.
@@ -188,7 +185,7 @@ export interface Vaults {
     vaultName: string,
     location: string,
     options?: VaultsPurgeDeletedOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks that the vault name is valid and is not already in use.
    * @param vaultName The name of the vault.

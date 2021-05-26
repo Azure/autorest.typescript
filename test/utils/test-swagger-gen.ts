@@ -1,5 +1,4 @@
 import { spawn } from "child_process";
-import * as dirTree from "directory-tree";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
 
@@ -267,7 +266,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "LROClient",
     packageName: "lro",
     licenseHeader: true,
-    useCoreV2: false,
+    useCoreV2: true,
+    allowInsecureConnection: true,
     addCredentials: false
   },
   lroParametrizedEndpoints: {
@@ -275,7 +275,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "LroParametrizedEndpointsClient",
     packageName: "lro-parameterized-endpoints",
     licenseHeader: true,
-    useCoreV2: false,
+    useCoreV2: true,
+    allowInsecureConnection: true,
     addCredentials: false
   },
   mediaTypes: {
@@ -314,7 +315,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypesV3LROClient",
     packageName: "media-types-v3-lro-client",
     licenseHeader: true,
-    useCoreV2: false,
+    useCoreV2: true,
     addCredentials: false
   },
   modelFlattening: {
@@ -380,7 +381,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
       namespace: "Microsoft.Media.Types",
       packagePrefix: "Azure.Media.Types"
     },
-    useCoreV2: false,
+    useCoreV2: true,
     addCredentials: false
   },
   pagingNoIterators: {
@@ -389,7 +390,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "paging-no-iterators",
     licenseHeader: true,
     disableAsyncIterators: true,
-    useCoreV2: false,
+    useCoreV2: true,
     addCredentials: false
   },
   requiredOptional: {

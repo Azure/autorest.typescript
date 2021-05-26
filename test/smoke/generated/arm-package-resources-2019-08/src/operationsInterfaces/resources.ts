@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   GenericResourceExpanded,
@@ -68,9 +67,7 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The resources to move must be in the same source resource group. The target resource group may be in
    * a different subscription. When moving resources, both the source group and the target group are
@@ -84,7 +81,7 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
    * move must be in the same source resource group. The target resource group may be in a different
@@ -100,9 +97,7 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * This operation checks whether the specified resources can be moved to the target. The resources to
    * move must be in the same source resource group. The target resource group may be in a different
@@ -118,7 +113,7 @@ export interface Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether a resource exists.
    * @param resourceGroupName The name of the resource group containing the resource to check. The name
@@ -138,7 +133,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesCheckExistenceOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Deletes a resource.
    * @param resourceGroupName The name of the resource group that contains the resource to delete. The
@@ -158,9 +153,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a resource.
    * @param resourceGroupName The name of the resource group that contains the resource to delete. The
@@ -180,7 +173,7 @@ export interface Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a resource.
    * @param resourceGroupName The name of the resource group for the resource. The name is case
@@ -311,7 +304,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesCheckExistenceByIdOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Deletes a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
@@ -324,9 +317,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource
@@ -339,7 +330,7 @@ export interface Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Create a resource by ID.
    * @param resourceId The fully qualified ID of the resource, including the resource name and resource

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreAuth from "@azure/core-auth";
 import { MetricsImpl } from "./operations";
 import { Metrics } from "./operationsInterfaces";
 import { MonitorClientContext } from "./monitorClientContext";
@@ -19,7 +19,7 @@ export class MonitorClient extends MonitorClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     options?: MonitorClientOptionalParams
   ) {
     super(credentials, options);

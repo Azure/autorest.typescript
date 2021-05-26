@@ -7,7 +7,7 @@
  */
 
 import { VirtualMachineImages } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -53,18 +53,10 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     version: string,
     options?: VirtualMachineImagesGetOptionalParams
   ): Promise<VirtualMachineImagesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      publisherName,
-      offer,
-      skus,
-      version,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, publisherName, offer, skus, version, options },
       getOperationSpec
-    ) as Promise<VirtualMachineImagesGetResponse>;
+    );
   }
 
   /**
@@ -83,17 +75,10 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     skus: string,
     options?: VirtualMachineImagesListOptionalParams
   ): Promise<VirtualMachineImagesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      publisherName,
-      offer,
-      skus,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, publisherName, offer, skus, options },
       listOperationSpec
-    ) as Promise<VirtualMachineImagesListResponse>;
+    );
   }
 
   /**
@@ -107,15 +92,10 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     publisherName: string,
     options?: VirtualMachineImagesListOffersOptionalParams
   ): Promise<VirtualMachineImagesListOffersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      publisherName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, publisherName, options },
       listOffersOperationSpec
-    ) as Promise<VirtualMachineImagesListOffersResponse>;
+    );
   }
 
   /**
@@ -127,14 +107,10 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     location: string,
     options?: VirtualMachineImagesListPublishersOptionalParams
   ): Promise<VirtualMachineImagesListPublishersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listPublishersOperationSpec
-    ) as Promise<VirtualMachineImagesListPublishersResponse>;
+    );
   }
 
   /**
@@ -150,22 +126,16 @@ export class VirtualMachineImagesImpl implements VirtualMachineImages {
     offer: string,
     options?: VirtualMachineImagesListSkusOptionalParams
   ): Promise<VirtualMachineImagesListSkusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      publisherName,
-      offer,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, publisherName, offer, options },
       listSkusOperationSpec
-    ) as Promise<VirtualMachineImagesListSkusResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions/{version}",
   httpMethod: "GET",
@@ -187,7 +157,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus/{skus}/versions",
   httpMethod: "GET",
@@ -223,7 +193,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOffersOperationSpec: coreHttp.OperationSpec = {
+const listOffersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers",
   httpMethod: "GET",
@@ -252,7 +222,7 @@ const listOffersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listPublishersOperationSpec: coreHttp.OperationSpec = {
+const listPublishersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers",
   httpMethod: "GET",
@@ -280,7 +250,7 @@ const listPublishersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSkusOperationSpec: coreHttp.OperationSpec = {
+const listSkusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/publishers/{publisherName}/artifacttypes/vmimage/offers/{offer}/skus",
   httpMethod: "GET",

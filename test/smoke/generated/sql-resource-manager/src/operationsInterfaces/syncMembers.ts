@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncMember,
@@ -142,9 +141,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: SyncMembersDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a sync member.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -162,7 +159,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: SyncMembersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates an existing sync member.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -225,9 +222,7 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: SyncMembersRefreshMemberSchemaOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Refreshes a sync member database schema.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -245,5 +240,5 @@ export interface SyncMembers {
     syncGroupName: string,
     syncMemberName: string,
     options?: SyncMembersRefreshMemberSchemaOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

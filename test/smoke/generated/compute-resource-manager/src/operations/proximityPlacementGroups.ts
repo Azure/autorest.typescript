@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ProximityPlacementGroups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -154,16 +154,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     parameters: ProximityPlacementGroup,
     options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      proximityPlacementGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, proximityPlacementGroupName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -179,16 +173,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     parameters: ProximityPlacementGroupUpdate,
     options?: ProximityPlacementGroupsUpdateOptionalParams
   ): Promise<ProximityPlacementGroupsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      proximityPlacementGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, proximityPlacementGroupName, parameters, options },
       updateOperationSpec
-    ) as Promise<ProximityPlacementGroupsUpdateResponse>;
+    );
   }
 
   /**
@@ -201,16 +189,11 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     options?: ProximityPlacementGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      proximityPlacementGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, proximityPlacementGroupName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -224,15 +207,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     proximityPlacementGroupName: string,
     options?: ProximityPlacementGroupsGetOptionalParams
   ): Promise<ProximityPlacementGroupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      proximityPlacementGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, proximityPlacementGroupName, options },
       getOperationSpec
-    ) as Promise<ProximityPlacementGroupsGetResponse>;
+    );
   }
 
   /**
@@ -242,13 +220,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
   private _listBySubscription(
     options?: ProximityPlacementGroupsListBySubscriptionOptionalParams
   ): Promise<ProximityPlacementGroupsListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<ProximityPlacementGroupsListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -260,14 +235,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     resourceGroupName: string,
     options?: ProximityPlacementGroupsListByResourceGroupOptionalParams
   ): Promise<ProximityPlacementGroupsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<ProximityPlacementGroupsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -279,14 +250,10 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     nextLink: string,
     options?: ProximityPlacementGroupsListBySubscriptionNextOptionalParams
   ): Promise<ProximityPlacementGroupsListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<ProximityPlacementGroupsListBySubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -300,21 +267,16 @@ export class ProximityPlacementGroupsImpl implements ProximityPlacementGroups {
     nextLink: string,
     options?: ProximityPlacementGroupsListByResourceGroupNextOptionalParams
   ): Promise<ProximityPlacementGroupsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<ProximityPlacementGroupsListByResourceGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
   httpMethod: "PUT",
@@ -338,7 +300,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
   httpMethod: "PATCH",
@@ -359,7 +321,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
   httpMethod: "DELETE",
@@ -373,7 +335,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups/{proximityPlacementGroupName}",
   httpMethod: "GET",
@@ -392,7 +354,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/proximityPlacementGroups",
   httpMethod: "GET",
@@ -406,7 +368,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups",
   httpMethod: "GET",
@@ -424,7 +386,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -441,7 +403,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

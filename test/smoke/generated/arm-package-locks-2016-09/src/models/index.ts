@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list Microsoft.Authorization operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -93,335 +93,173 @@ export type LockLevel = string;
 
 /** Optional parameters. */
 export interface AuthorizationOperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AuthorizationOperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type AuthorizationOperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface AuthorizationOperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AuthorizationOperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type AuthorizationOperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtResourceGroupLevel operation. */
-export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtResourceGroupLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ManagementLocksGetAtResourceGroupLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtResourceGroupLevel operation. */
-export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksGetAtResourceGroupLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksCreateOrUpdateByScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateByScope operation. */
-export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksCreateOrUpdateByScopeResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteByScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ManagementLocksGetByScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByScope operation. */
-export type ManagementLocksGetByScopeResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksGetByScopeResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtResourceLevel operation. */
-export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksCreateOrUpdateAtResourceLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtResourceLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ManagementLocksGetAtResourceLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtResourceLevel operation. */
-export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksGetAtResourceLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateAtSubscriptionLevel operation. */
-export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksDeleteAtSubscriptionLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ManagementLocksGetAtSubscriptionLevelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionLevel operation. */
-export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockObject;
-  };
-};
+export type ManagementLocksGetAtSubscriptionLevelResponse = ManagementLockObject;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceGroupLevelOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtResourceGroupLevel operation. */
-export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtResourceGroupLevelResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceLevelOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtResourceLevel operation. */
-export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtResourceLevelResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtSubscriptionLevelOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtSubscriptionLevel operation. */
-export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtSubscriptionLevelResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListByScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listByScope operation. */
-export type ManagementLocksListByScopeResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListByScopeResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceGroupLevelNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtResourceGroupLevelNext operation. */
-export type ManagementLocksListAtResourceGroupLevelNextResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtResourceGroupLevelNextResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtResourceLevelNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtResourceLevelNext operation. */
-export type ManagementLocksListAtResourceLevelNextResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtResourceLevelNextResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListAtSubscriptionLevelNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listAtSubscriptionLevelNext operation. */
-export type ManagementLocksListAtSubscriptionLevelNextResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListAtSubscriptionLevelNextResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLocksListByScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. */
   filter?: string;
 }
 
 /** Contains response data for the listByScopeNext operation. */
-export type ManagementLocksListByScopeNextResponse = ManagementLockListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementLockListResult;
-  };
-};
+export type ManagementLocksListByScopeNextResponse = ManagementLockListResult;
 
 /** Optional parameters. */
 export interface ManagementLockClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

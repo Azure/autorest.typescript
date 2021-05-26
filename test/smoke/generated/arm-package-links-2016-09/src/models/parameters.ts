@@ -10,7 +10,7 @@ import {
   OperationParameter,
   OperationURLParameter,
   OperationQueryParameter
-} from "@azure/core-http";
+} from "@azure/core-client";
 import { ResourceLink as ResourceLinkMapper } from "../models/mappers";
 
 export const accept: OperationParameter = {

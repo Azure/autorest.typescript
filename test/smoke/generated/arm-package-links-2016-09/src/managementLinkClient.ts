@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreAuth from "@azure/core-auth";
 import { OperationsImpl, ResourceLinksImpl } from "./operations";
 import { Operations, ResourceLinks } from "./operationsInterfaces";
 import { ManagementLinkClientContext } from "./managementLinkClientContext";
@@ -20,7 +20,7 @@ export class ManagementLinkClient extends ManagementLinkClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: ManagementLinkClientOptionalParams
   ) {

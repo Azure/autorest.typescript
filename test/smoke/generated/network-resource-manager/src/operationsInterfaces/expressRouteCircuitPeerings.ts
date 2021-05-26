@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteCircuitPeering,
@@ -46,9 +45,7 @@ export interface ExpressRouteCircuitPeerings {
     circuitName: string,
     peeringName: string,
     options?: ExpressRouteCircuitPeeringsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified peering from the specified express route circuit.
    * @param resourceGroupName The name of the resource group.
@@ -61,7 +58,7 @@ export interface ExpressRouteCircuitPeerings {
     circuitName: string,
     peeringName: string,
     options?: ExpressRouteCircuitPeeringsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified peering for the express route circuit.
    * @param resourceGroupName The name of the resource group.

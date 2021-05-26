@@ -6,7 +6,8 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
@@ -111,7 +112,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: WebSiteManagementClientOptionalParams
   ) {
@@ -377,13 +378,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   getPublishingUser(
     options?: WebSiteManagementClientGetPublishingUserOptionalParams
   ): Promise<WebSiteManagementClientGetPublishingUserResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       getPublishingUserOperationSpec
-    ) as Promise<WebSiteManagementClientGetPublishingUserResponse>;
+    );
   }
 
   /**
@@ -395,14 +393,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     userDetails: User,
     options?: WebSiteManagementClientUpdatePublishingUserOptionalParams
   ): Promise<WebSiteManagementClientUpdatePublishingUserResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      userDetails,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { userDetails, options },
       updatePublishingUserOperationSpec
-    ) as Promise<WebSiteManagementClientUpdatePublishingUserResponse>;
+    );
   }
 
   /**
@@ -412,13 +406,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   private _listSourceControls(
     options?: WebSiteManagementClientListSourceControlsOptionalParams
   ): Promise<WebSiteManagementClientListSourceControlsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       listSourceControlsOperationSpec
-    ) as Promise<WebSiteManagementClientListSourceControlsResponse>;
+    );
   }
 
   /**
@@ -430,14 +421,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     sourceControlType: string,
     options?: WebSiteManagementClientGetSourceControlOptionalParams
   ): Promise<WebSiteManagementClientGetSourceControlResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      sourceControlType,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { sourceControlType, options },
       getSourceControlOperationSpec
-    ) as Promise<WebSiteManagementClientGetSourceControlResponse>;
+    );
   }
 
   /**
@@ -451,15 +438,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     requestMessage: SourceControl,
     options?: WebSiteManagementClientUpdateSourceControlOptionalParams
   ): Promise<WebSiteManagementClientUpdateSourceControlResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      sourceControlType,
-      requestMessage,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { sourceControlType, requestMessage, options },
       updateSourceControlOperationSpec
-    ) as Promise<WebSiteManagementClientUpdateSourceControlResponse>;
+    );
   }
 
   /**
@@ -469,13 +451,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   private _listBillingMeters(
     options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       listBillingMetersOperationSpec
-    ) as Promise<WebSiteManagementClientListBillingMetersResponse>;
+    );
   }
 
   /**
@@ -489,15 +468,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     typeParam: CheckNameResourceTypes,
     options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams
   ): Promise<WebSiteManagementClientCheckNameAvailabilityResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      name,
-      typeParam,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { name, typeParam, options },
       checkNameAvailabilityOperationSpec
-    ) as Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
+    );
   }
 
   /**
@@ -509,15 +483,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       getSubscriptionDeploymentLocationsOperationSpec
-    ) as Promise<
-      WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse
-    >;
+    );
   }
 
   /**
@@ -527,13 +496,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   private _listGeoRegions(
     options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      listGeoRegionsOperationSpec
-    ) as Promise<WebSiteManagementClientListGeoRegionsResponse>;
+    return this.sendOperationRequest({ options }, listGeoRegionsOperationSpec);
   }
 
   /**
@@ -547,16 +510,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      nameIdentifier,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nameIdentifier, options },
       listSiteIdentifiersAssignedToHostNameOperationSpec
-    ) as Promise<
-      WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
-    >;
+    );
   }
 
   /**
@@ -566,13 +523,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   private _listPremierAddOnOffers(
     options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams
   ): Promise<WebSiteManagementClientListPremierAddOnOffersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { options },
       listPremierAddOnOffersOperationSpec
-    ) as Promise<WebSiteManagementClientListPremierAddOnOffersResponse>;
+    );
   }
 
   /**
@@ -582,13 +536,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   listSkus(
     options?: WebSiteManagementClientListSkusOptionalParams
   ): Promise<WebSiteManagementClientListSkusResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.sendOperationRequest(
-      operationArguments,
-      listSkusOperationSpec
-    ) as Promise<WebSiteManagementClientListSkusResponse>;
+    return this.sendOperationRequest({ options }, listSkusOperationSpec);
   }
 
   /**
@@ -601,14 +549,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     parameters: VnetParameters,
     options?: WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams
   ): Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       verifyHostingEnvironmentVnetOperationSpec
-    ) as Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse>;
+    );
   }
 
   /**
@@ -621,16 +565,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     resourceGroupName: string,
     moveResourceEnvelope: CsmMoveResourceEnvelope,
     options?: WebSiteManagementClientMoveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      moveResourceEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, moveResourceEnvelope, options },
       moveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -644,15 +583,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     validateRequest: ValidateRequest,
     options?: WebSiteManagementClientValidateOptionalParams
   ): Promise<WebSiteManagementClientValidateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      validateRequest,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, validateRequest, options },
       validateOperationSpec
-    ) as Promise<WebSiteManagementClientValidateResponse>;
+    );
   }
 
   /**
@@ -665,16 +599,11 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     resourceGroupName: string,
     moveResourceEnvelope: CsmMoveResourceEnvelope,
     options?: WebSiteManagementClientValidateMoveOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      moveResourceEnvelope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, moveResourceEnvelope, options },
       validateMoveOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -686,14 +615,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListSourceControlsNextOptionalParams
   ): Promise<WebSiteManagementClientListSourceControlsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listSourceControlsNextOperationSpec
-    ) as Promise<WebSiteManagementClientListSourceControlsNextResponse>;
+    );
   }
 
   /**
@@ -705,14 +630,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListBillingMetersNextOptionalParams
   ): Promise<WebSiteManagementClientListBillingMetersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBillingMetersNextOperationSpec
-    ) as Promise<WebSiteManagementClientListBillingMetersNextResponse>;
+    );
   }
 
   /**
@@ -724,14 +645,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListGeoRegionsNextOptionalParams
   ): Promise<WebSiteManagementClientListGeoRegionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listGeoRegionsNextOperationSpec
-    ) as Promise<WebSiteManagementClientListGeoRegionsNextResponse>;
+    );
   }
 
   /**
@@ -748,17 +665,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   ): Promise<
     WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      nameIdentifier,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nameIdentifier, nextLink, options },
       listSiteIdentifiersAssignedToHostNameNextOperationSpec
-    ) as Promise<
-      WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse
-    >;
+    );
   }
 
   /**
@@ -770,14 +680,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     nextLink: string,
     options?: WebSiteManagementClientListPremierAddOnOffersNextOptionalParams
   ): Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listPremierAddOnOffersNextOperationSpec
-    ) as Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse>;
+    );
   }
 
   appServiceCertificateOrders: AppServiceCertificateOrders;
@@ -797,9 +703,9 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   resourceHealthMetadata: ResourceHealthMetadata;
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getPublishingUserOperationSpec: coreHttp.OperationSpec = {
+const getPublishingUserOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/publishingUsers/web",
   httpMethod: "GET",
   responses: {
@@ -815,7 +721,7 @@ const getPublishingUserOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updatePublishingUserOperationSpec: coreHttp.OperationSpec = {
+const updatePublishingUserOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/publishingUsers/web",
   httpMethod: "PUT",
   responses: {
@@ -833,7 +739,7 @@ const updatePublishingUserOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSourceControlsOperationSpec: coreHttp.OperationSpec = {
+const listSourceControlsOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/sourcecontrols",
   httpMethod: "GET",
   responses: {
@@ -849,7 +755,7 @@ const listSourceControlsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSourceControlOperationSpec: coreHttp.OperationSpec = {
+const getSourceControlOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/sourcecontrols/{sourceControlType}",
   httpMethod: "GET",
   responses: {
@@ -865,7 +771,7 @@ const getSourceControlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
+const updateSourceControlOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/sourcecontrols/{sourceControlType}",
   httpMethod: "PUT",
   responses: {
@@ -883,7 +789,7 @@ const updateSourceControlOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listBillingMetersOperationSpec: coreHttp.OperationSpec = {
+const listBillingMetersOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/billingMeters",
   httpMethod: "GET",
   responses: {
@@ -903,7 +809,7 @@ const listBillingMetersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
+const checkNameAvailabilityOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/checknameavailability",
   httpMethod: "POST",
@@ -929,7 +835,7 @@ const checkNameAvailabilityOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getSubscriptionDeploymentLocationsOperationSpec: coreHttp.OperationSpec = {
+const getSubscriptionDeploymentLocationsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/deploymentLocations",
   httpMethod: "GET",
@@ -946,7 +852,7 @@ const getSubscriptionDeploymentLocationsOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listGeoRegionsOperationSpec: coreHttp.OperationSpec = {
+const listGeoRegionsOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/geoRegions",
   httpMethod: "GET",
   responses: {
@@ -968,7 +874,7 @@ const listGeoRegionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteIdentifiersAssignedToHostNameOperationSpec: coreHttp.OperationSpec = {
+const listSiteIdentifiersAssignedToHostNameOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/listSitesAssignedToHostName",
   httpMethod: "POST",
@@ -987,7 +893,7 @@ const listSiteIdentifiersAssignedToHostNameOperationSpec: coreHttp.OperationSpec
   mediaType: "json",
   serializer
 };
-const listPremierAddOnOffersOperationSpec: coreHttp.OperationSpec = {
+const listPremierAddOnOffersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/premieraddonoffers",
   httpMethod: "GET",
@@ -1004,7 +910,7 @@ const listPremierAddOnOffersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSkusOperationSpec: coreHttp.OperationSpec = {
+const listSkusOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Web/skus",
   httpMethod: "GET",
   responses: {
@@ -1020,7 +926,7 @@ const listSkusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const verifyHostingEnvironmentVnetOperationSpec: coreHttp.OperationSpec = {
+const verifyHostingEnvironmentVnetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/verifyHostingEnvironmentVnet",
   httpMethod: "POST",
@@ -1039,7 +945,7 @@ const verifyHostingEnvironmentVnetOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const moveOperationSpec: coreHttp.OperationSpec = {
+const moveOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/moveResources",
   httpMethod: "POST",
@@ -1060,7 +966,7 @@ const moveOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const validateOperationSpec: coreHttp.OperationSpec = {
+const validateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/validate",
   httpMethod: "POST",
@@ -1083,7 +989,7 @@ const validateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const validateMoveOperationSpec: coreHttp.OperationSpec = {
+const validateMoveOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/validateMoveResources",
   httpMethod: "POST",
@@ -1104,7 +1010,7 @@ const validateMoveOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listSourceControlsNextOperationSpec: coreHttp.OperationSpec = {
+const listSourceControlsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1120,7 +1026,7 @@ const listSourceControlsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBillingMetersNextOperationSpec: coreHttp.OperationSpec = {
+const listBillingMetersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1144,7 +1050,7 @@ const listBillingMetersNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listGeoRegionsNextOperationSpec: coreHttp.OperationSpec = {
+const listGeoRegionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1170,7 +1076,7 @@ const listGeoRegionsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1191,7 +1097,7 @@ const listSiteIdentifiersAssignedToHostNameNextOperationSpec: coreHttp.Operation
   mediaType: "json",
   serializer
 };
-const listPremierAddOnOffersNextOperationSpec: coreHttp.OperationSpec = {
+const listPremierAddOnOffersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

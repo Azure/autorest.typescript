@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PolicyAssignments } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PolicyClientContext } from "../policyClientContext";
@@ -385,15 +385,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     policyAssignmentName: string,
     options?: PolicyAssignmentsDeleteOptionalParams
   ): Promise<PolicyAssignmentsDeleteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      policyAssignmentName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, policyAssignmentName, options },
       deleteOperationSpec
-    ) as Promise<PolicyAssignmentsDeleteResponse>;
+    );
   }
 
   /**
@@ -415,16 +410,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     parameters: PolicyAssignment,
     options?: PolicyAssignmentsCreateOptionalParams
   ): Promise<PolicyAssignmentsCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      policyAssignmentName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, policyAssignmentName, parameters, options },
       createOperationSpec
-    ) as Promise<PolicyAssignmentsCreateResponse>;
+    );
   }
 
   /**
@@ -442,15 +431,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     policyAssignmentName: string,
     options?: PolicyAssignmentsGetOptionalParams
   ): Promise<PolicyAssignmentsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      policyAssignmentName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, policyAssignmentName, options },
       getOperationSpec
-    ) as Promise<PolicyAssignmentsGetResponse>;
+    );
   }
 
   /**
@@ -471,14 +455,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     resourceGroupName: string,
     options?: PolicyAssignmentsListForResourceGroupOptionalParams
   ): Promise<PolicyAssignmentsListForResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listForResourceGroupOperationSpec
-    ) as Promise<PolicyAssignmentsListForResourceGroupResponse>;
+    );
   }
 
   /**
@@ -519,18 +499,17 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     resourceName: string,
     options?: PolicyAssignmentsListForResourceOptionalParams
   ): Promise<PolicyAssignmentsListForResourceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        options
+      },
       listForResourceOperationSpec
-    ) as Promise<PolicyAssignmentsListForResourceResponse>;
+    );
   }
 
   /**
@@ -551,15 +530,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     filter: string,
     options?: PolicyAssignmentsListForManagementGroupOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      managementGroupId,
-      filter,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { managementGroupId, filter, options },
       listForManagementGroupOperationSpec
-    ) as Promise<PolicyAssignmentsListForManagementGroupResponse>;
+    );
   }
 
   /**
@@ -578,13 +552,7 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
   private _list(
     options?: PolicyAssignmentsListOptionalParams
   ): Promise<PolicyAssignmentsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<PolicyAssignmentsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -603,14 +571,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     policyAssignmentId: string,
     options?: PolicyAssignmentsDeleteByIdOptionalParams
   ): Promise<PolicyAssignmentsDeleteByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policyAssignmentId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policyAssignmentId, options },
       deleteByIdOperationSpec
-    ) as Promise<PolicyAssignmentsDeleteByIdResponse>;
+    );
   }
 
   /**
@@ -633,15 +597,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     parameters: PolicyAssignment,
     options?: PolicyAssignmentsCreateByIdOptionalParams
   ): Promise<PolicyAssignmentsCreateByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policyAssignmentId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policyAssignmentId, parameters, options },
       createByIdOperationSpec
-    ) as Promise<PolicyAssignmentsCreateByIdResponse>;
+    );
   }
 
   /**
@@ -660,14 +619,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     policyAssignmentId: string,
     options?: PolicyAssignmentsGetByIdOptionalParams
   ): Promise<PolicyAssignmentsGetByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      policyAssignmentId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { policyAssignmentId, options },
       getByIdOperationSpec
-    ) as Promise<PolicyAssignmentsGetByIdResponse>;
+    );
   }
 
   /**
@@ -681,15 +636,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListForResourceGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listForResourceGroupNextOperationSpec
-    ) as Promise<PolicyAssignmentsListForResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -713,19 +663,18 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListForResourceNextOptionalParams
   ): Promise<PolicyAssignmentsListForResourceNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        nextLink,
+        options
+      },
       listForResourceNextOperationSpec
-    ) as Promise<PolicyAssignmentsListForResourceNextResponse>;
+    );
   }
 
   /**
@@ -743,16 +692,10 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListForManagementGroupNextOptionalParams
   ): Promise<PolicyAssignmentsListForManagementGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      managementGroupId,
-      filter,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { managementGroupId, filter, nextLink, options },
       listForManagementGroupNextOperationSpec
-    ) as Promise<PolicyAssignmentsListForManagementGroupNextResponse>;
+    );
   }
 
   /**
@@ -764,20 +707,16 @@ export class PolicyAssignmentsImpl implements PolicyAssignments {
     nextLink: string,
     options?: PolicyAssignmentsListNextOptionalParams
   ): Promise<PolicyAssignmentsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<PolicyAssignmentsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
   httpMethod: "DELETE",
@@ -799,7 +738,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
   httpMethod: "PUT",
@@ -822,7 +761,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}",
   httpMethod: "GET",
@@ -843,7 +782,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listForResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/policyAssignments",
   httpMethod: "GET",
@@ -864,7 +803,7 @@ const listForResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForResourceOperationSpec: coreHttp.OperationSpec = {
+const listForResourceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/policyAssignments",
   httpMethod: "GET",
@@ -889,7 +828,7 @@ const listForResourceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForManagementGroupOperationSpec: coreHttp.OperationSpec = {
+const listForManagementGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/providers/Microsoft.Management/managementgroups/{managementGroupId}/providers/Microsoft.Authorization/policyAssignments",
   httpMethod: "GET",
@@ -906,7 +845,7 @@ const listForManagementGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyAssignments",
   httpMethod: "GET",
@@ -923,7 +862,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteByIdOperationSpec: coreHttp.OperationSpec = {
+const deleteByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{policyAssignmentId}",
   httpMethod: "DELETE",
   responses: {
@@ -940,7 +879,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createByIdOperationSpec: coreHttp.OperationSpec = {
+const createByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{policyAssignmentId}",
   httpMethod: "PUT",
   responses: {
@@ -958,7 +897,7 @@ const createByIdOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getByIdOperationSpec: coreHttp.OperationSpec = {
+const getByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{policyAssignmentId}",
   httpMethod: "GET",
   responses: {
@@ -974,7 +913,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listForResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -995,7 +934,7 @@ const listForResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForResourceNextOperationSpec: coreHttp.OperationSpec = {
+const listForResourceNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1020,7 +959,7 @@ const listForResourceNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listForManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listForManagementGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1040,7 +979,7 @@ const listForManagementGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

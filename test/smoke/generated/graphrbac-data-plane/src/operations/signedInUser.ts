@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { SignedInUser } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -134,13 +134,7 @@ export class SignedInUserImpl implements SignedInUser {
   get(
     options?: SignedInUserGetOptionalParams
   ): Promise<SignedInUserGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      getOperationSpec
-    ) as Promise<SignedInUserGetResponse>;
+    return this.client.sendOperationRequest({ options }, getOperationSpec);
   }
 
   /**
@@ -150,13 +144,10 @@ export class SignedInUserImpl implements SignedInUser {
   private _listOwnedObjects(
     options?: SignedInUserListOwnedObjectsOptionalParams
   ): Promise<SignedInUserListOwnedObjectsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listOwnedObjectsOperationSpec
-    ) as Promise<SignedInUserListOwnedObjectsResponse>;
+    );
   }
 
   /**
@@ -168,20 +159,16 @@ export class SignedInUserImpl implements SignedInUser {
     nextLink: string,
     options?: SignedInUserListOwnedObjectsNextOptionalParams
   ): Promise<SignedInUserListOwnedObjectsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listOwnedObjectsNextOperationSpec
-    ) as Promise<SignedInUserListOwnedObjectsNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/me",
   httpMethod: "GET",
   responses: {
@@ -197,7 +184,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnedObjectsOperationSpec: coreHttp.OperationSpec = {
+const listOwnedObjectsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/me/ownedObjects",
   httpMethod: "GET",
   responses: {
@@ -213,7 +200,7 @@ const listOwnedObjectsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnedObjectsNextOperationSpec: coreHttp.OperationSpec = {
+const listOwnedObjectsNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {

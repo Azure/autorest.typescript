@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncDatabaseIdProperties,
@@ -111,9 +110,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsRefreshHubSchemaOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Refreshes a hub database schema.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -129,7 +126,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsRefreshHubSchemaOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Cancels a sync group synchronization.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -145,7 +142,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsCancelSyncOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Triggers a sync group synchronization.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -161,7 +158,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsTriggerSyncOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a sync group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -234,9 +231,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a sync group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -252,7 +247,7 @@ export interface SyncGroups {
     databaseName: string,
     syncGroupName: string,
     options?: SyncGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates a sync group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

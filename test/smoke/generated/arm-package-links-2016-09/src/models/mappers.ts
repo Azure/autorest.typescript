@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -35,7 +35,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -57,7 +57,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -90,7 +90,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceLink: coreHttp.CompositeMapper = {
+export const ResourceLink: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceLink",
@@ -127,7 +127,7 @@ export const ResourceLink: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceLinkProperties: coreHttp.CompositeMapper = {
+export const ResourceLinkProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceLinkProperties",
@@ -156,7 +156,7 @@ export const ResourceLinkProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceLinkResult: coreHttp.CompositeMapper = {
+export const ResourceLinkResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceLinkResult",
@@ -185,7 +185,7 @@ export const ResourceLinkResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceLinkFilter: coreHttp.CompositeMapper = {
+export const ResourceLinkFilter: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceLinkFilter",

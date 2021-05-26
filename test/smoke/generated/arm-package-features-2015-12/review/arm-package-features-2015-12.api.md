@@ -4,22 +4,23 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public (undocumented)
 export class FeatureClient extends FeatureClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: FeatureClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
     // (undocumented)
     features: Features;
     listOperations(options?: FeatureClientListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
     }
 
 // @public (undocumented)
-export class FeatureClientContext extends coreHttp.ServiceClient {
+export class FeatureClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: FeatureClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -27,31 +28,21 @@ export class FeatureClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface FeatureClientListOperationsNextOptionalParams extends coreHttp.OperationOptions {
+export interface FeatureClientListOperationsNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeatureClientListOperationsNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type FeatureClientListOperationsNextResponse = OperationListResult;
 
 // @public
-export interface FeatureClientListOperationsOptionalParams extends coreHttp.OperationOptions {
+export interface FeatureClientListOperationsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeatureClientListOperationsResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type FeatureClientListOperationsResponse = OperationListResult;
 
 // @public
-export interface FeatureClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface FeatureClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -86,88 +77,53 @@ export interface Features {
 }
 
 // @public
-export interface FeaturesGetOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesGetResponse = FeatureResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureResult;
-    };
-};
+export type FeaturesGetResponse = FeatureResult;
 
 // @public
-export interface FeaturesListAllNextOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesListAllNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureOperationsListResult;
-    };
-};
+export type FeaturesListAllNextResponse = FeatureOperationsListResult;
 
 // @public
-export interface FeaturesListAllOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesListAllOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesListAllResponse = FeatureOperationsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureOperationsListResult;
-    };
-};
+export type FeaturesListAllResponse = FeatureOperationsListResult;
 
 // @public
-export interface FeaturesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesListNextResponse = FeatureOperationsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureOperationsListResult;
-    };
-};
+export type FeaturesListNextResponse = FeatureOperationsListResult;
 
 // @public
-export interface FeaturesListOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesListResponse = FeatureOperationsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureOperationsListResult;
-    };
-};
+export type FeaturesListResponse = FeatureOperationsListResult;
 
 // @public
-export interface FeaturesRegisterOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesRegisterOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesRegisterResponse = FeatureResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureResult;
-    };
-};
+export type FeaturesRegisterResponse = FeatureResult;
 
 // @public
-export interface FeaturesUnregisterOptionalParams extends coreHttp.OperationOptions {
+export interface FeaturesUnregisterOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type FeaturesUnregisterResponse = FeatureResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: FeatureResult;
-    };
-};
+export type FeaturesUnregisterResponse = FeatureResult;
 
 // @public
 export interface Operation {

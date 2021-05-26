@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { BlobServices } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -101,15 +101,10 @@ export class BlobServicesImpl implements BlobServices {
     accountName: string,
     options?: BlobServicesListOptionalParams
   ): Promise<BlobServicesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listOperationSpec
-    ) as Promise<BlobServicesListResponse>;
+    );
   }
 
   /**
@@ -130,16 +125,10 @@ export class BlobServicesImpl implements BlobServices {
     parameters: BlobServiceProperties,
     options?: BlobServicesSetServicePropertiesOptionalParams
   ): Promise<BlobServicesSetServicePropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, parameters, options },
       setServicePropertiesOperationSpec
-    ) as Promise<BlobServicesSetServicePropertiesResponse>;
+    );
   }
 
   /**
@@ -157,21 +146,16 @@ export class BlobServicesImpl implements BlobServices {
     accountName: string,
     options?: BlobServicesGetServicePropertiesOptionalParams
   ): Promise<BlobServicesGetServicePropertiesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       getServicePropertiesOperationSpec
-    ) as Promise<BlobServicesGetServicePropertiesResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices",
   httpMethod: "GET",
@@ -190,7 +174,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const setServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/{BlobServicesName}",
   httpMethod: "PUT",
@@ -212,7 +196,7 @@ const setServicePropertiesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getServicePropertiesOperationSpec: coreHttp.OperationSpec = {
+const getServicePropertiesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/blobServices/{BlobServicesName}",
   httpMethod: "GET",

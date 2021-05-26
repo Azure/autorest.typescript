@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ObjectReplicationPolicy,
   ObjectReplicationPoliciesListOptionalParams,
@@ -89,5 +88,5 @@ export interface ObjectReplicationPolicies {
     accountName: string,
     objectReplicationPolicyId: string,
     options?: ObjectReplicationPoliciesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

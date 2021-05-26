@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NotebookWorkspace,
@@ -102,9 +101,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the notebook workspace for a Cosmos DB account.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -117,7 +114,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves the connection info for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -143,9 +140,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Regenerates the auth token for the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -158,7 +153,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -171,9 +166,7 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts the notebook workspace
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -186,5 +179,5 @@ export interface NotebookWorkspaces {
     accountName: string,
     notebookWorkspaceName: NotebookWorkspaceName,
     options?: NotebookWorkspacesStartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

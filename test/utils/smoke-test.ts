@@ -39,14 +39,14 @@ const generateFromReadme = async ({
   const childProcess = spawn(
     autorestCmd,
     [
-      `--version="3.0.6267"`,
       `--require=${path}`,
       `--typescript`,
       `--package-name=${projectName}`,
       `--output-folder=${output}`,
       `--license-header=true`,
       `--use=.`,
-      `--use-core-v2=false`,
+      `--use-core-v2=true`,
+      `--allow-insecure-connection=true`,
       ...(params || [])
     ],
     {

@@ -931,21 +931,39 @@ function writeLROOperationBody(
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
 
   const finalStateStr = finalStateVia ? `"${finalStateVia.toLowerCase()}"` : "";
-  const asyncKeyword = isTracingEnabled ? "async" : "";
   let sendOperationStatement = !useCoreV2
-    ? `const sendOperation = ${asyncKeyword} (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
+    ? `const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
     ${getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
       isTracingEnabled
     )}
   }`
-    : `const sendOperation = ${asyncKeyword} (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
+    : `const directSendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec): Promise<${responseName}> => {
     ${getTracingTryCatchStatement(
       sendRequestStatement,
       responseName,
       isTracingEnabled
     )}
+    };
+    const sendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec) => {
+      let currentRawResponse: coreClient.FullOperationResponse | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options, onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
   }`;
 
   methodDeclaration.addStatements([

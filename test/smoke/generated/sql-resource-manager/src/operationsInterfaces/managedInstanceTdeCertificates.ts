@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   TdeCertificate,
@@ -28,9 +27,7 @@ export interface ManagedInstanceTdeCertificates {
     managedInstanceName: string,
     parameters: TdeCertificate,
     options?: ManagedInstanceTdeCertificatesCreateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Creates a TDE certificate for a given server.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -44,5 +41,5 @@ export interface ManagedInstanceTdeCertificates {
     managedInstanceName: string,
     parameters: TdeCertificate,
     options?: ManagedInstanceTdeCertificatesCreateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

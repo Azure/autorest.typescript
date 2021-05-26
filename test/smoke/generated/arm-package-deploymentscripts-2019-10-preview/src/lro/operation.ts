@@ -6,73 +6,23 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { AbortSignalLike } from "@azure/abort-controller";
-import { OperationArguments, OperationSpec } from "@azure/core-http";
+import { OperationArguments, OperationSpec } from "@azure/core-client";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
-import { createAzureAsyncOperationStrategy } from "./azureAsyncOperationStrategy";
-import { createBodyPollingStrategy } from "./bodyPollingStrategy";
-import { createLocationStrategy } from "./locationStrategy";
 import {
-  BaseResult,
   FinalStateVia,
-  LROConfig,
-  LROResult,
+  ResumablePollOperationState,
   SendOperationFn
 } from "./models";
-import { createPassthroughStrategy } from "./passthroughStrategy";
-import {
-  createPollOnce,
-  getPollingURL,
-  createRetrieveAzureAsyncResource,
-  inferLROMode,
-  isBodyPollingDone,
-  getSpecPath
-} from "./requestUtils";
+import { getPollingURL } from "./requestUtils";
+import { createGetLROState, initializeState, LROState } from "./stateMachine";
 
-/**
- * This function determines which strategy to use based on the response from
- * the last operation executed, this last operation can be an initial operation
- * or a polling operation. The 3 possible strategies are described below:
- *
- * A) Azure-AsyncOperation
- * B) Location or Operation-Location
- * C) BodyPolling (provisioningState)
- *  - This strategy is used when:
- *    - Response doesn't contain any of the following headers Location, Azure-AsyncOperation or Operation-Location
- *    - Last operation method is PUT
- */
-function createPollingMethod<TResult extends BaseResult>(
-  sendOperationFn: SendOperationFn<TResult>,
-  args: OperationArguments,
-  spec: OperationSpec,
-  config: LROConfig,
-  finalStateVia?: FinalStateVia
-): (pollingURL: string) => Promise<LROResult<TResult>> {
-  const pollOnce = createPollOnce(sendOperationFn, args, spec, config.mode);
-  switch (config.mode) {
-    case "AzureAsync": {
-      return createAzureAsyncOperationStrategy(
-        pollOnce,
-        createRetrieveAzureAsyncResource(sendOperationFn, args, spec),
-        config.resourceLocation,
-        finalStateVia
-      );
-    }
-    case "Location": {
-      return createLocationStrategy(pollOnce);
-    }
-    case "Body": {
-      return createBodyPollingStrategy(pollOnce);
-    }
-  }
-  return createPassthroughStrategy(pollOnce);
-}
-
-export class GenericPollOperation<TResult extends BaseResult>
+export class GenericPollOperation<TResult>
   implements PollOperation<PollOperationState<TResult>, TResult> {
-  private poll?: (pollingURL: string) => Promise<LROResult<TResult>>;
-  private pollingURL?: string;
-  private config?: LROConfig;
+  private getLROState?: (pollingURL: string) => Promise<LROState<TResult>>;
   constructor(
     public state: PollOperationState<TResult>,
     private initialOperationArguments: OperationArguments,
@@ -91,7 +41,7 @@ export class GenericPollOperation<TResult extends BaseResult>
    *      send final GET request and return result from operation. If no final GET
    *      is required, just return the result from operation.
    *      - Determining what to call for final request is responsibility of each strategy
-   *  2.2 If it is not terminal state, call the polling operation call it and go to step 1
+   *  2.2 If it is not terminal state, call the polling operation and go to step 1
    *      - Determining what to call for polling is responsibility of each strategy
    *      - Strategies will always use the latest URI for polling if provided otherwise
    *        the last known one
@@ -100,72 +50,53 @@ export class GenericPollOperation<TResult extends BaseResult>
     abortSignal?: AbortSignalLike | undefined;
     fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
   }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
-    const state = this.state as PollOperationState<TResult> & {
-      initialRawResponse: TResult;
-    };
+    const state = this.state as ResumablePollOperationState<TResult>;
+    const { onResponse, ...restOptions } =
+      this.initialOperationArguments.options || {};
     if (!state.isStarted) {
-      state.initialRawResponse = await this.sendOperation(
-        this.initialOperationArguments,
+      await this.sendOperation(
+        {
+          ...this.initialOperationArguments,
+          options: {
+            ...restOptions,
+            onResponse: initializeState(
+              state,
+              this.initialOperationSpec,
+              onResponse
+            )
+          }
+        },
         this.initialOperationSpec
       );
-      state.isStarted = true;
-      this.pollingURL = getPollingURL(
-        state.initialRawResponse,
-        getSpecPath(this.initialOperationSpec)
-      );
-      this.config = inferLROMode(
-        this.initialOperationSpec,
-        state.initialRawResponse
-      );
-      /** short circuit polling if body polling is done in the initial request */
-      if (
-        this.config.mode === undefined ||
-        (this.config.mode === "Body" &&
-          isBodyPollingDone(state.initialRawResponse))
-      ) {
-        state.result = state.initialRawResponse;
-        state.isCompleted = true;
-      }
     }
 
     if (!state.isCompleted) {
-      if (this.pollingURL === undefined) {
-        if (state.initialRawResponse === undefined) {
-          throw new Error(
-            "Bad state: initial raw response could not be found!"
-          );
+      if (this.getLROState === undefined) {
+        if (state.config === undefined) {
+          throw new Error("Bad state: LRO mode is undefined");
         }
-        this.pollingURL = getPollingURL(
-          state.initialRawResponse!,
-          getSpecPath(this.initialOperationSpec)
-        );
-      }
-      if (this.poll === undefined) {
-        if (this.config === undefined) {
-          if (state.initialRawResponse === undefined) {
-            throw new Error(
-              "Bad state: initial raw response could not be found!"
-            );
-          }
-          this.config = inferLROMode(
-            this.initialOperationSpec,
-            state.initialRawResponse
-          );
-        }
-        this.poll = await createPollingMethod(
+        this.getLROState = createGetLROState(
           this.sendOperation,
           this.initialOperationArguments,
           this.initialOperationSpec,
-          this.config,
+          state.config,
           this.finalStateVia
         );
       }
-      const { result, done } = await this.poll(this.pollingURL);
-      if (done) {
-        state.result = result;
-        state.isCompleted = true;
+      if (state.pollingURL === undefined) {
+        throw new Error("Bad state: polling URL is undefined");
       }
-      this.pollingURL = getPollingURL(result, this.pollingURL);
+      const currentState = await this.getLROState(state.pollingURL);
+      if (currentState.done) {
+        state.result = currentState.flatResponse;
+        state.isCompleted = true;
+      } else {
+        this.getLROState = currentState.next ?? this.getLROState;
+        state.pollingURL = getPollingURL(
+          currentState.rawResponse,
+          state.pollingURL
+        );
+      }
     }
     if (options?.fireProgress !== undefined) {
       options.fireProgress(state);

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VpnSiteLinks } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -120,16 +120,10 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
     vpnSiteLinkName: string,
     options?: VpnSiteLinksGetOptionalParams
   ): Promise<VpnSiteLinksGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vpnSiteName,
-      vpnSiteLinkName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vpnSiteName, vpnSiteLinkName, options },
       getOperationSpec
-    ) as Promise<VpnSiteLinksGetResponse>;
+    );
   }
 
   /**
@@ -143,15 +137,10 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
     vpnSiteName: string,
     options?: VpnSiteLinksListByVpnSiteOptionalParams
   ): Promise<VpnSiteLinksListByVpnSiteResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vpnSiteName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vpnSiteName, options },
       listByVpnSiteOperationSpec
-    ) as Promise<VpnSiteLinksListByVpnSiteResponse>;
+    );
   }
 
   /**
@@ -167,22 +156,16 @@ export class VpnSiteLinksImpl implements VpnSiteLinks {
     nextLink: string,
     options?: VpnSiteLinksListByVpnSiteNextOptionalParams
   ): Promise<VpnSiteLinksListByVpnSiteNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vpnSiteName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vpnSiteName, nextLink, options },
       listByVpnSiteNextOperationSpec
-    ) as Promise<VpnSiteLinksListByVpnSiteNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnSites/{vpnSiteName}/vpnSiteLinks/{vpnSiteLinkName}",
   httpMethod: "GET",
@@ -205,7 +188,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByVpnSiteOperationSpec: coreHttp.OperationSpec = {
+const listByVpnSiteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnSites/{vpnSiteName}/vpnSiteLinks",
   httpMethod: "GET",
@@ -227,7 +210,7 @@ const listByVpnSiteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByVpnSiteNextOperationSpec: coreHttp.OperationSpec = {
+const listByVpnSiteNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -90,7 +91,7 @@ export interface AvailabilitySetListResult {
 // @public
 export interface AvailabilitySets {
     createOrUpdate(resourceGroupName: string, availabilitySetName: string, parameters: AvailabilitySet, options?: AvailabilitySetsCreateOrUpdateOptionalParams): Promise<AvailabilitySetsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsGetOptionalParams): Promise<AvailabilitySetsGetResponse>;
     list(resourceGroupName: string, options?: AvailabilitySetsListOptionalParams): PagedAsyncIterableIterator<AvailabilitySet>;
     listAvailableSizes(resourceGroupName: string, availabilitySetName: string, options?: AvailabilitySetsListAvailableSizesOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
@@ -99,109 +100,69 @@ export interface AvailabilitySets {
 }
 
 // @public
-export interface AvailabilitySetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySet;
-    };
-};
+export type AvailabilitySetsCreateOrUpdateResponse = AvailabilitySet;
 
 // @public
-export interface AvailabilitySetsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface AvailabilitySetsGetOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsGetResponse = AvailabilitySet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySet;
-    };
-};
+export type AvailabilitySetsGetResponse = AvailabilitySet;
 
 // @public
 export type AvailabilitySetSkuTypes = string;
 
 // @public
-export interface AvailabilitySetsListAvailableSizesOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsListAvailableSizesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineSizeListResult;
-    };
-};
+export type AvailabilitySetsListAvailableSizesResponse = VirtualMachineSizeListResult;
 
 // @public
-export interface AvailabilitySetsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type AvailabilitySetsListBySubscriptionNextResponse = AvailabilitySetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySetListResult;
-    };
-};
+export type AvailabilitySetsListBySubscriptionNextResponse = AvailabilitySetListResult;
 
 // @public
-export interface AvailabilitySetsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type AvailabilitySetsListBySubscriptionResponse = AvailabilitySetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySetListResult;
-    };
-};
+export type AvailabilitySetsListBySubscriptionResponse = AvailabilitySetListResult;
 
 // @public
-export interface AvailabilitySetsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsListNextResponse = AvailabilitySetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySetListResult;
-    };
-};
+export type AvailabilitySetsListNextResponse = AvailabilitySetListResult;
 
 // @public
-export interface AvailabilitySetsListOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsListResponse = AvailabilitySetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySetListResult;
-    };
-};
+export type AvailabilitySetsListResponse = AvailabilitySetListResult;
 
 // @public
-export interface AvailabilitySetsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface AvailabilitySetsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type AvailabilitySetsUpdateResponse = AvailabilitySet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AvailabilitySet;
-    };
-};
+export type AvailabilitySetsUpdateResponse = AvailabilitySet;
 
 // @public
 export type AvailabilitySetUpdate = UpdateResource & {
@@ -253,7 +214,7 @@ export interface ComponentsNj115SSchemasVirtualmachinescalesetidentityProperties
 
 // @public (undocumented)
 export class ComputeManagementClient extends ComputeManagementClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
     // (undocumented)
     availabilitySets: AvailabilitySets;
     // (undocumented)
@@ -317,16 +278,16 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
 }
 
 // @public (undocumented)
-export class ComputeManagementClientContext extends coreHttp.ServiceClient {
+export class ComputeManagementClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
     // (undocumented)
     subscriptionId: string;
 }
 
 // @public
-export interface ComputeManagementClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface ComputeManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     endpoint?: string;
 }
@@ -392,10 +353,13 @@ export interface ContainerServiceListResult {
 
 // @public
 export interface ContainerServiceMasterProfile {
-    count?: Enum31;
+    count?: ContainerServiceMasterProfileCount;
     dnsPrefix: string;
     readonly fqdn?: string;
 }
+
+// @public
+export type ContainerServiceMasterProfileCount = number;
 
 // @public
 export interface ContainerServiceOrchestratorProfile {
@@ -415,92 +379,62 @@ export interface ContainerServicePrincipalProfile {
 export interface ContainerServices {
     beginCreateOrUpdate(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: ContainerServicesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ContainerServicesCreateOrUpdateResponse>, ContainerServicesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, containerServiceName: string, parameters: ContainerService, options?: ContainerServicesCreateOrUpdateOptionalParams): Promise<ContainerServicesCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, containerServiceName: string, options?: ContainerServicesGetOptionalParams): Promise<ContainerServicesGetResponse>;
     list(options?: ContainerServicesListOptionalParams): PagedAsyncIterableIterator<ContainerService>;
     listByResourceGroup(resourceGroupName: string, options?: ContainerServicesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ContainerService>;
 }
 
 // @public
-export interface ContainerServicesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ContainerServicesCreateOrUpdateResponse = ContainerService & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerService;
-    };
-};
+export type ContainerServicesCreateOrUpdateResponse = ContainerService;
 
 // @public
-export interface ContainerServicesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ContainerServicesGetOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ContainerServicesGetResponse = ContainerService & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerService;
-    };
-};
+export type ContainerServicesGetResponse = ContainerService;
 
 // @public
-export interface ContainerServicesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ContainerServicesListByResourceGroupNextResponse = ContainerServiceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerServiceListResult;
-    };
-};
+export type ContainerServicesListByResourceGroupNextResponse = ContainerServiceListResult;
 
 // @public
-export interface ContainerServicesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ContainerServicesListByResourceGroupResponse = ContainerServiceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerServiceListResult;
-    };
-};
+export type ContainerServicesListByResourceGroupResponse = ContainerServiceListResult;
 
 // @public
-export interface ContainerServicesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ContainerServicesListNextResponse = ContainerServiceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerServiceListResult;
-    };
-};
+export type ContainerServicesListNextResponse = ContainerServiceListResult;
 
 // @public
-export interface ContainerServicesListOptionalParams extends coreHttp.OperationOptions {
+export interface ContainerServicesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ContainerServicesListResponse = ContainerServiceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ContainerServiceListResult;
-    };
-};
+export type ContainerServicesListResponse = ContainerServiceListResult;
 
 // @public
 export interface ContainerServiceSshConfiguration {
@@ -605,7 +539,7 @@ export interface DedicatedHostGroupListResult {
 // @public
 export interface DedicatedHostGroups {
     createOrUpdate(resourceGroupName: string, hostGroupName: string, parameters: DedicatedHostGroup, options?: DedicatedHostGroupsCreateOrUpdateOptionalParams): Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostGroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostGroupsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, hostGroupName: string, options?: DedicatedHostGroupsGetOptionalParams): Promise<DedicatedHostGroupsGetResponse>;
     listByResourceGroup(resourceGroupName: string, options?: DedicatedHostGroupsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<DedicatedHostGroup>;
     listBySubscription(options?: DedicatedHostGroupsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<DedicatedHostGroup>;
@@ -613,92 +547,57 @@ export interface DedicatedHostGroups {
 }
 
 // @public
-export interface DedicatedHostGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroup;
-    };
-};
+export type DedicatedHostGroupsCreateOrUpdateResponse = DedicatedHostGroup;
 
 // @public
-export interface DedicatedHostGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface DedicatedHostGroupsGetOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsGetResponse = DedicatedHostGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroup;
-    };
-};
+export type DedicatedHostGroupsGetResponse = DedicatedHostGroup;
 
 // @public
-export interface DedicatedHostGroupsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroupListResult;
-    };
-};
+export type DedicatedHostGroupsListByResourceGroupNextResponse = DedicatedHostGroupListResult;
 
 // @public
-export interface DedicatedHostGroupsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsListByResourceGroupResponse = DedicatedHostGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroupListResult;
-    };
-};
+export type DedicatedHostGroupsListByResourceGroupResponse = DedicatedHostGroupListResult;
 
 // @public
-export interface DedicatedHostGroupsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroupListResult;
-    };
-};
+export type DedicatedHostGroupsListBySubscriptionNextResponse = DedicatedHostGroupListResult;
 
 // @public
-export interface DedicatedHostGroupsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsListBySubscriptionResponse = DedicatedHostGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroupListResult;
-    };
-};
+export type DedicatedHostGroupsListBySubscriptionResponse = DedicatedHostGroupListResult;
 
 // @public
-export interface DedicatedHostGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostGroupsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostGroupsUpdateResponse = DedicatedHostGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostGroup;
-    };
-};
+export type DedicatedHostGroupsUpdateResponse = DedicatedHostGroup;
 
 // @public
 export type DedicatedHostGroupUpdate = UpdateResource & {
@@ -727,8 +626,8 @@ export interface DedicatedHostListResult {
 export interface DedicatedHosts {
     beginCreateOrUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: DedicatedHostsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsCreateOrUpdateResponse>, DedicatedHostsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHost, options?: DedicatedHostsCreateOrUpdateOptionalParams): Promise<DedicatedHostsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: DedicatedHostsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DedicatedHostsUpdateResponse>, DedicatedHostsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, hostGroupName: string, hostName: string, parameters: DedicatedHostUpdate, options?: DedicatedHostsUpdateOptionalParams): Promise<DedicatedHostsUpdateResponse>;
     get(resourceGroupName: string, hostGroupName: string, hostName: string, options?: DedicatedHostsGetOptionalParams): Promise<DedicatedHostsGetResponse>;
@@ -736,74 +635,49 @@ export interface DedicatedHosts {
 }
 
 // @public
-export interface DedicatedHostsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHost;
-    };
-};
+export type DedicatedHostsCreateOrUpdateResponse = DedicatedHost;
 
 // @public
-export interface DedicatedHostsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DedicatedHostsGetOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostsGetResponse = DedicatedHost & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHost;
-    };
-};
+export type DedicatedHostsGetResponse = DedicatedHost;
 
 // @public
-export interface DedicatedHostsListByHostGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsListByHostGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostsListByHostGroupNextResponse = DedicatedHostListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostListResult;
-    };
-};
+export type DedicatedHostsListByHostGroupNextResponse = DedicatedHostListResult;
 
 // @public
-export interface DedicatedHostsListByHostGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsListByHostGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHostListResult;
-    };
-};
+export type DedicatedHostsListByHostGroupResponse = DedicatedHostListResult;
 
 // @public
-export interface DedicatedHostsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DedicatedHostsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DedicatedHostsUpdateResponse = DedicatedHost & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DedicatedHost;
-    };
-};
+export type DedicatedHostsUpdateResponse = DedicatedHost;
 
 // @public
 export type DedicatedHostUpdate = UpdateResource & {
@@ -894,8 +768,8 @@ export type DiskEncryptionSetParameters = SubResource & {};
 export interface DiskEncryptionSets {
     beginCreateOrUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: DiskEncryptionSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsCreateOrUpdateResponse>, DiskEncryptionSetsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSet, options?: DiskEncryptionSetsCreateOrUpdateOptionalParams): Promise<DiskEncryptionSetsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: DiskEncryptionSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DiskEncryptionSetsUpdateResponse>, DiskEncryptionSetsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, diskEncryptionSetName: string, diskEncryptionSet: DiskEncryptionSetUpdate, options?: DiskEncryptionSetsUpdateOptionalParams): Promise<DiskEncryptionSetsUpdateResponse>;
     get(resourceGroupName: string, diskEncryptionSetName: string, options?: DiskEncryptionSetsGetOptionalParams): Promise<DiskEncryptionSetsGetResponse>;
@@ -904,98 +778,63 @@ export interface DiskEncryptionSets {
 }
 
 // @public
-export interface DiskEncryptionSetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSet;
-    };
-};
+export type DiskEncryptionSetsCreateOrUpdateResponse = DiskEncryptionSet;
 
 // @public
-export interface DiskEncryptionSetsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DiskEncryptionSetsGetOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DiskEncryptionSetsGetResponse = DiskEncryptionSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSet;
-    };
-};
+export type DiskEncryptionSetsGetResponse = DiskEncryptionSet;
 
 // @public
-export interface DiskEncryptionSetsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DiskEncryptionSetsListByResourceGroupNextResponse = DiskEncryptionSetList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSetList;
-    };
-};
+export type DiskEncryptionSetsListByResourceGroupNextResponse = DiskEncryptionSetList;
 
 // @public
-export interface DiskEncryptionSetsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSetList;
-    };
-};
+export type DiskEncryptionSetsListByResourceGroupResponse = DiskEncryptionSetList;
 
 // @public
-export interface DiskEncryptionSetsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DiskEncryptionSetsListNextResponse = DiskEncryptionSetList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSetList;
-    };
-};
+export type DiskEncryptionSetsListNextResponse = DiskEncryptionSetList;
 
 // @public
-export interface DiskEncryptionSetsListOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DiskEncryptionSetsListResponse = DiskEncryptionSetList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSetList;
-    };
-};
+export type DiskEncryptionSetsListResponse = DiskEncryptionSetList;
 
 // @public
-export interface DiskEncryptionSetsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DiskEncryptionSetsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskEncryptionSet;
-    };
-};
+export type DiskEncryptionSetsUpdateResponse = DiskEncryptionSet;
 
 // @public
 export interface DiskEncryptionSettings {
@@ -1034,12 +873,12 @@ export interface DiskList {
 export interface Disks {
     beginCreateOrUpdate(resourceGroupName: string, diskName: string, disk: Disk, options?: DisksCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksCreateOrUpdateResponse>, DisksCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, diskName: string, disk: Disk, options?: DisksCreateOrUpdateOptionalParams): Promise<DisksCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, diskName: string, options?: DisksDeleteOptionalParams): Promise<void>;
     beginGrantAccess(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: DisksGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<DisksGrantAccessResponse>, DisksGrantAccessResponse>>;
     beginGrantAccessAndWait(resourceGroupName: string, diskName: string, grantAccessData: GrantAccessData, options?: DisksGrantAccessOptionalParams): Promise<DisksGrantAccessResponse>;
-    beginRevokeAccess(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRevokeAccessAndWait(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<coreHttp.RestResponse>;
+    beginRevokeAccess(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRevokeAccessAndWait(resourceGroupName: string, diskName: string, options?: DisksRevokeAccessOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: DisksUpdateOptionalParams): Promise<PollerLike<PollOperationState<DisksUpdateResponse>, DisksUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, diskName: string, disk: DiskUpdate, options?: DisksUpdateOptionalParams): Promise<DisksUpdateResponse>;
     get(resourceGroupName: string, diskName: string, options?: DisksGetOptionalParams): Promise<DisksGetResponse>;
@@ -1048,50 +887,35 @@ export interface Disks {
 }
 
 // @public
-export interface DisksCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DisksCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DisksCreateOrUpdateResponse = Disk & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Disk;
-    };
-};
+export type DisksCreateOrUpdateResponse = Disk;
 
 // @public
-export interface DisksDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DisksDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DisksGetOptionalParams extends coreHttp.OperationOptions {
+export interface DisksGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DisksGetResponse = Disk & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Disk;
-    };
-};
+export type DisksGetResponse = Disk;
 
 // @public
-export interface DisksGrantAccessOptionalParams extends coreHttp.OperationOptions {
+export interface DisksGrantAccessOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DisksGrantAccessResponse = AccessUri & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AccessUri;
-    };
-};
+export type DisksGrantAccessResponse = AccessUri;
 
 // @public
 export interface DiskSku {
@@ -1100,55 +924,35 @@ export interface DiskSku {
 }
 
 // @public
-export interface DisksListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface DisksListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DisksListByResourceGroupNextResponse = DiskList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskList;
-    };
-};
+export type DisksListByResourceGroupNextResponse = DiskList;
 
 // @public
-export interface DisksListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DisksListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DisksListByResourceGroupResponse = DiskList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskList;
-    };
-};
+export type DisksListByResourceGroupResponse = DiskList;
 
 // @public
-export interface DisksListNextOptionalParams extends coreHttp.OperationOptions {
+export interface DisksListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DisksListNextResponse = DiskList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskList;
-    };
-};
+export type DisksListNextResponse = DiskList;
 
 // @public
-export interface DisksListOptionalParams extends coreHttp.OperationOptions {
+export interface DisksListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DisksListResponse = DiskList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DiskList;
-    };
-};
+export type DisksListResponse = DiskList;
 
 // @public
-export interface DisksRevokeAccessOptionalParams extends coreHttp.OperationOptions {
+export interface DisksRevokeAccessOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -1160,18 +964,13 @@ export type DiskState = string;
 export type DiskStorageAccountTypes = string;
 
 // @public
-export interface DisksUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DisksUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DisksUpdateResponse = Disk & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Disk;
-    };
-};
+export type DisksUpdateResponse = Disk;
 
 // @public
 export interface DiskUpdate {
@@ -1226,14 +1025,11 @@ export interface EncryptionSettingsElement {
 export type EncryptionType = string;
 
 // @public
-export type Enum31 = number;
-
-// @public
 export interface Galleries {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<GalleriesCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, galleryName: string, options?: GalleriesDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: GalleriesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesUpdateResponse>, GalleriesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, galleryName: string, gallery: GalleryUpdate, options?: GalleriesUpdateOptionalParams): Promise<GalleriesUpdateResponse>;
     get(resourceGroupName: string, galleryName: string, options?: GalleriesGetOptionalParams): Promise<GalleriesGetResponse>;
@@ -1242,98 +1038,63 @@ export interface Galleries {
 }
 
 // @public
-export interface GalleriesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleriesCreateOrUpdateResponse = Gallery & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Gallery;
-    };
-};
+export type GalleriesCreateOrUpdateResponse = Gallery;
 
 // @public
-export interface GalleriesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GalleriesGetOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleriesGetResponse = Gallery & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Gallery;
-    };
-};
+export type GalleriesGetResponse = Gallery;
 
 // @public
-export interface GalleriesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleriesListByResourceGroupNextResponse = GalleryList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryList;
-    };
-};
+export type GalleriesListByResourceGroupNextResponse = GalleryList;
 
 // @public
-export interface GalleriesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleriesListByResourceGroupResponse = GalleryList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryList;
-    };
-};
+export type GalleriesListByResourceGroupResponse = GalleryList;
 
 // @public
-export interface GalleriesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleriesListNextResponse = GalleryList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryList;
-    };
-};
+export type GalleriesListNextResponse = GalleryList;
 
 // @public
-export interface GalleriesListOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleriesListResponse = GalleryList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryList;
-    };
-};
+export type GalleriesListResponse = GalleryList;
 
 // @public
-export interface GalleriesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleriesUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleriesUpdateResponse = Gallery & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Gallery;
-    };
-};
+export type GalleriesUpdateResponse = Gallery;
 
 // @public
 export type Gallery = Resource & {
@@ -1362,8 +1123,8 @@ export interface GalleryApplicationList {
 export interface GalleryApplications {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: GalleryApplicationsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsCreateOrUpdateResponse>, GalleryApplicationsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplication, options?: GalleryApplicationsCreateOrUpdateOptionalParams): Promise<GalleryApplicationsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: GalleryApplicationsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationsUpdateResponse>, GalleryApplicationsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplication: GalleryApplicationUpdate, options?: GalleryApplicationsUpdateOptionalParams): Promise<GalleryApplicationsUpdateResponse>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, options?: GalleryApplicationsGetOptionalParams): Promise<GalleryApplicationsGetResponse>;
@@ -1371,74 +1132,49 @@ export interface GalleryApplications {
 }
 
 // @public
-export interface GalleryApplicationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplication;
-    };
-};
+export type GalleryApplicationsCreateOrUpdateResponse = GalleryApplication;
 
 // @public
-export interface GalleryApplicationsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GalleryApplicationsGetOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryApplicationsGetResponse = GalleryApplication & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplication;
-    };
-};
+export type GalleryApplicationsGetResponse = GalleryApplication;
 
 // @public
-export interface GalleryApplicationsListByGalleryNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsListByGalleryNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryApplicationsListByGalleryNextResponse = GalleryApplicationList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationList;
-    };
-};
+export type GalleryApplicationsListByGalleryNextResponse = GalleryApplicationList;
 
 // @public
-export interface GalleryApplicationsListByGalleryOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsListByGalleryOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationList;
-    };
-};
+export type GalleryApplicationsListByGalleryResponse = GalleryApplicationList;
 
 // @public
-export interface GalleryApplicationsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryApplicationsUpdateResponse = GalleryApplication & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplication;
-    };
-};
+export type GalleryApplicationsUpdateResponse = GalleryApplication;
 
 // @public
 export type GalleryApplicationUpdate = UpdateResourceDefinition & {
@@ -1477,8 +1213,8 @@ export type GalleryApplicationVersionPublishingProfile = GalleryArtifactPublishi
 export interface GalleryApplicationVersions {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsCreateOrUpdateResponse>, GalleryApplicationVersionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersion, options?: GalleryApplicationVersionsCreateOrUpdateOptionalParams): Promise<GalleryApplicationVersionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: GalleryApplicationVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryApplicationVersionsUpdateResponse>, GalleryApplicationVersionsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, galleryApplicationVersion: GalleryApplicationVersionUpdate, options?: GalleryApplicationVersionsUpdateOptionalParams): Promise<GalleryApplicationVersionsUpdateResponse>;
     get(resourceGroupName: string, galleryName: string, galleryApplicationName: string, galleryApplicationVersionName: string, options?: GalleryApplicationVersionsGetOptionalParams): Promise<GalleryApplicationVersionsGetResponse>;
@@ -1486,75 +1222,50 @@ export interface GalleryApplicationVersions {
 }
 
 // @public
-export interface GalleryApplicationVersionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicationVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationVersion;
-    };
-};
+export type GalleryApplicationVersionsCreateOrUpdateResponse = GalleryApplicationVersion;
 
 // @public
-export interface GalleryApplicationVersionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GalleryApplicationVersionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsGetOptionalParams extends coreClient.OperationOptions {
     expand?: ReplicationStatusTypes;
 }
 
 // @public
-export type GalleryApplicationVersionsGetResponse = GalleryApplicationVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationVersion;
-    };
-};
+export type GalleryApplicationVersionsGetResponse = GalleryApplicationVersion;
 
 // @public
-export interface GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsListByGalleryApplicationNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryApplicationVersionsListByGalleryApplicationNextResponse = GalleryApplicationVersionList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationVersionList;
-    };
-};
+export type GalleryApplicationVersionsListByGalleryApplicationNextResponse = GalleryApplicationVersionList;
 
 // @public
-export interface GalleryApplicationVersionsListByGalleryApplicationOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsListByGalleryApplicationOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryApplicationVersionsListByGalleryApplicationResponse = GalleryApplicationVersionList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationVersionList;
-    };
-};
+export type GalleryApplicationVersionsListByGalleryApplicationResponse = GalleryApplicationVersionList;
 
 // @public
-export interface GalleryApplicationVersionsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryApplicationVersionsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryApplicationVersion;
-    };
-};
+export type GalleryApplicationVersionsUpdateResponse = GalleryApplicationVersion;
 
 // @public
 export type GalleryApplicationVersionUpdate = UpdateResourceDefinition & {
@@ -1637,8 +1348,8 @@ export type GalleryImagePropertiesProvisioningState = string;
 export interface GalleryImages {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: GalleryImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesCreateOrUpdateResponse>, GalleryImagesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImage, options?: GalleryImagesCreateOrUpdateOptionalParams): Promise<GalleryImagesCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: GalleryImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImagesUpdateResponse>, GalleryImagesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImage: GalleryImageUpdate, options?: GalleryImagesUpdateOptionalParams): Promise<GalleryImagesUpdateResponse>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, options?: GalleryImagesGetOptionalParams): Promise<GalleryImagesGetResponse>;
@@ -1646,74 +1357,49 @@ export interface GalleryImages {
 }
 
 // @public
-export interface GalleryImagesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryImagesCreateOrUpdateResponse = GalleryImage & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImage;
-    };
-};
+export type GalleryImagesCreateOrUpdateResponse = GalleryImage;
 
 // @public
-export interface GalleryImagesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GalleryImagesGetOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryImagesGetResponse = GalleryImage & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImage;
-    };
-};
+export type GalleryImagesGetResponse = GalleryImage;
 
 // @public
-export interface GalleryImagesListByGalleryNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesListByGalleryNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryImagesListByGalleryNextResponse = GalleryImageList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageList;
-    };
-};
+export type GalleryImagesListByGalleryNextResponse = GalleryImageList;
 
 // @public
-export interface GalleryImagesListByGalleryOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesListByGalleryOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryImagesListByGalleryResponse = GalleryImageList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageList;
-    };
-};
+export type GalleryImagesListByGalleryResponse = GalleryImageList;
 
 // @public
-export interface GalleryImagesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImagesUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryImagesUpdateResponse = GalleryImage & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImage;
-    };
-};
+export type GalleryImagesUpdateResponse = GalleryImage;
 
 // @public
 export type GalleryImageUpdate = UpdateResourceDefinition & {
@@ -1756,8 +1442,8 @@ export type GalleryImageVersionPublishingProfile = GalleryArtifactPublishingProf
 export interface GalleryImageVersions {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: GalleryImageVersionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsCreateOrUpdateResponse>, GalleryImageVersionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersion, options?: GalleryImageVersionsCreateOrUpdateOptionalParams): Promise<GalleryImageVersionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: GalleryImageVersionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleryImageVersionsUpdateResponse>, GalleryImageVersionsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, galleryImageVersion: GalleryImageVersionUpdate, options?: GalleryImageVersionsUpdateOptionalParams): Promise<GalleryImageVersionsUpdateResponse>;
     get(resourceGroupName: string, galleryName: string, galleryImageName: string, galleryImageVersionName: string, options?: GalleryImageVersionsGetOptionalParams): Promise<GalleryImageVersionsGetResponse>;
@@ -1765,61 +1451,41 @@ export interface GalleryImageVersions {
 }
 
 // @public
-export interface GalleryImageVersionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageVersion;
-    };
-};
+export type GalleryImageVersionsCreateOrUpdateResponse = GalleryImageVersion;
 
 // @public
-export interface GalleryImageVersionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GalleryImageVersionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsGetOptionalParams extends coreClient.OperationOptions {
     expand?: ReplicationStatusTypes;
 }
 
 // @public
-export type GalleryImageVersionsGetResponse = GalleryImageVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageVersion;
-    };
-};
+export type GalleryImageVersionsGetResponse = GalleryImageVersion;
 
 // @public
-export interface GalleryImageVersionsListByGalleryImageNextOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsListByGalleryImageNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryImageVersionsListByGalleryImageNextResponse = GalleryImageVersionList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageVersionList;
-    };
-};
+export type GalleryImageVersionsListByGalleryImageNextResponse = GalleryImageVersionList;
 
 // @public
-export interface GalleryImageVersionsListByGalleryImageOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsListByGalleryImageOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersionList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageVersionList;
-    };
-};
+export type GalleryImageVersionsListByGalleryImageResponse = GalleryImageVersionList;
 
 // @public
 export interface GalleryImageVersionStorageProfile {
@@ -1829,18 +1495,13 @@ export interface GalleryImageVersionStorageProfile {
 }
 
 // @public
-export interface GalleryImageVersionsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface GalleryImageVersionsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GalleryImageVersionsUpdateResponse = GalleryImageVersion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GalleryImageVersion;
-    };
-};
+export type GalleryImageVersionsUpdateResponse = GalleryImageVersion;
 
 // @public
 export type GalleryImageVersionUpdate = UpdateResourceDefinition & {
@@ -1957,8 +1618,8 @@ export type ImageReference = SubResource & {
 export interface Images {
     beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<ImagesCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<ImagesUpdateResponse>;
     get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
@@ -1967,85 +1628,55 @@ export interface Images {
 }
 
 // @public
-export interface ImagesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ImagesCreateOrUpdateResponse = Image_2 & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Image_2;
-    };
-};
+export type ImagesCreateOrUpdateResponse = Image_2;
 
 // @public
-export interface ImagesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ImagesGetOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesGetOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type ImagesGetResponse = Image_2 & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Image_2;
-    };
-};
+export type ImagesGetResponse = Image_2;
 
 // @public
-export interface ImagesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ImagesListByResourceGroupNextResponse = ImageListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImageListResult;
-    };
-};
+export type ImagesListByResourceGroupNextResponse = ImageListResult;
 
 // @public
-export interface ImagesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ImagesListByResourceGroupResponse = ImageListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImageListResult;
-    };
-};
+export type ImagesListByResourceGroupResponse = ImageListResult;
 
 // @public
-export interface ImagesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ImagesListNextResponse = ImageListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImageListResult;
-    };
-};
+export type ImagesListNextResponse = ImageListResult;
 
 // @public
-export interface ImagesListOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ImagesListResponse = ImageListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ImageListResult;
-    };
-};
+export type ImagesListResponse = ImageListResult;
 
 // @public
 export interface ImageStorageProfile {
@@ -2055,18 +1686,13 @@ export interface ImageStorageProfile {
 }
 
 // @public
-export interface ImagesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ImagesUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ImagesUpdateResponse = Image_2 & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Image_2;
-    };
-};
+export type ImagesUpdateResponse = Image_2;
 
 // @public
 export type ImageUpdate = UpdateResource & {
@@ -2149,6 +1775,16 @@ export const enum KnownAvailabilitySetSkuTypes {
     Aligned = "Aligned",
     // (undocumented)
     Classic = "Classic"
+}
+
+// @public
+export const enum KnownContainerServiceMasterProfileCount {
+    // (undocumented)
+    Five = 5,
+    // (undocumented)
+    One = 1,
+    // (undocumented)
+    Three = 3
 }
 
 // @public
@@ -2312,16 +1948,6 @@ export const enum KnownDiskStorageAccountTypes {
 export const enum KnownEncryptionType {
     EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey",
     EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey"
-}
-
-// @public
-export const enum KnownEnum31 {
-    // (undocumented)
-    Five = 5,
-    // (undocumented)
-    One = 1,
-    // (undocumented)
-    Three = 3
 }
 
 // @public
@@ -2885,32 +2511,22 @@ export interface LogAnalytics {
 }
 
 // @public
-export interface LogAnalyticsExportRequestRateByIntervalOptionalParams extends coreHttp.OperationOptions {
+export interface LogAnalyticsExportRequestRateByIntervalOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperationResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LogAnalyticsOperationResult;
-    };
-};
+export type LogAnalyticsExportRequestRateByIntervalResponse = LogAnalyticsOperationResult;
 
 // @public
-export interface LogAnalyticsExportThrottledRequestsOptionalParams extends coreHttp.OperationOptions {
+export interface LogAnalyticsExportThrottledRequestsOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LogAnalyticsOperationResult;
-    };
-};
+export type LogAnalyticsExportThrottledRequestsResponse = LogAnalyticsOperationResult;
 
 // @public
 export interface LogAnalyticsInputBase {
@@ -2979,16 +2595,11 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = ComputeOperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ComputeOperationListResult;
-    };
-};
+export type OperationsListResponse = ComputeOperationListResult;
 
 // @public
 export type OrchestrationServiceNames = string;
@@ -3076,7 +2687,7 @@ export interface ProximityPlacementGroupListResult {
 // @public
 export interface ProximityPlacementGroups {
     createOrUpdate(resourceGroupName: string, proximityPlacementGroupName: string, parameters: ProximityPlacementGroup, options?: ProximityPlacementGroupsCreateOrUpdateOptionalParams): Promise<ProximityPlacementGroupsCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, proximityPlacementGroupName: string, options?: ProximityPlacementGroupsGetOptionalParams): Promise<ProximityPlacementGroupsGetResponse>;
     listByResourceGroup(resourceGroupName: string, options?: ProximityPlacementGroupsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ProximityPlacementGroup>;
     listBySubscription(options?: ProximityPlacementGroupsListBySubscriptionOptionalParams): PagedAsyncIterableIterator<ProximityPlacementGroup>;
@@ -3084,93 +2695,58 @@ export interface ProximityPlacementGroups {
 }
 
 // @public
-export interface ProximityPlacementGroupsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsCreateOrUpdateResponse = ProximityPlacementGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroup;
-    };
-};
+export type ProximityPlacementGroupsCreateOrUpdateResponse = ProximityPlacementGroup;
 
 // @public
-export interface ProximityPlacementGroupsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface ProximityPlacementGroupsGetOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsGetOptionalParams extends coreClient.OperationOptions {
     includeColocationStatus?: string;
 }
 
 // @public
-export type ProximityPlacementGroupsGetResponse = ProximityPlacementGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroup;
-    };
-};
+export type ProximityPlacementGroupsGetResponse = ProximityPlacementGroup;
 
 // @public
-export interface ProximityPlacementGroupsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsListByResourceGroupNextResponse = ProximityPlacementGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroupListResult;
-    };
-};
+export type ProximityPlacementGroupsListByResourceGroupNextResponse = ProximityPlacementGroupListResult;
 
 // @public
-export interface ProximityPlacementGroupsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlacementGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroupListResult;
-    };
-};
+export type ProximityPlacementGroupsListByResourceGroupResponse = ProximityPlacementGroupListResult;
 
 // @public
-export interface ProximityPlacementGroupsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPlacementGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroupListResult;
-    };
-};
+export type ProximityPlacementGroupsListBySubscriptionNextResponse = ProximityPlacementGroupListResult;
 
 // @public
-export interface ProximityPlacementGroupsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsListBySubscriptionResponse = ProximityPlacementGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroupListResult;
-    };
-};
+export type ProximityPlacementGroupsListBySubscriptionResponse = ProximityPlacementGroupListResult;
 
 // @public
-export interface ProximityPlacementGroupsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ProximityPlacementGroupsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ProximityPlacementGroup;
-    };
-};
+export type ProximityPlacementGroupsUpdateResponse = ProximityPlacementGroup;
 
 // @public
 export type ProximityPlacementGroupType = string;
@@ -3316,30 +2892,20 @@ export interface ResourceSkus {
 }
 
 // @public
-export interface ResourceSkusListNextOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceSkusListNextOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ResourceSkusListNextResponse = ResourceSkusResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceSkusResult;
-    };
-};
+export type ResourceSkusListNextResponse = ResourceSkusResult;
 
 // @public
-export interface ResourceSkusListOptionalParams extends coreHttp.OperationOptions {
+export interface ResourceSkusListOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type ResourceSkusListResponse = ResourceSkusResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceSkusResult;
-    };
-};
+export type ResourceSkusListResponse = ResourceSkusResult;
 
 // @public
 export interface ResourceSkusResult {
@@ -3497,12 +3063,12 @@ export interface SnapshotList {
 export interface Snapshots {
     beginCreateOrUpdate(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: SnapshotsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsCreateOrUpdateResponse>, SnapshotsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, snapshotName: string, snapshot: Snapshot, options?: SnapshotsCreateOrUpdateOptionalParams): Promise<SnapshotsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, snapshotName: string, options?: SnapshotsDeleteOptionalParams): Promise<void>;
     beginGrantAccess(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: SnapshotsGrantAccessOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsGrantAccessResponse>, SnapshotsGrantAccessResponse>>;
     beginGrantAccessAndWait(resourceGroupName: string, snapshotName: string, grantAccessData: GrantAccessData, options?: SnapshotsGrantAccessOptionalParams): Promise<SnapshotsGrantAccessResponse>;
-    beginRevokeAccess(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRevokeAccessAndWait(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<coreHttp.RestResponse>;
+    beginRevokeAccess(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRevokeAccessAndWait(resourceGroupName: string, snapshotName: string, options?: SnapshotsRevokeAccessOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: SnapshotsUpdateOptionalParams): Promise<PollerLike<PollOperationState<SnapshotsUpdateResponse>, SnapshotsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, snapshotName: string, snapshot: SnapshotUpdate, options?: SnapshotsUpdateOptionalParams): Promise<SnapshotsUpdateResponse>;
     get(resourceGroupName: string, snapshotName: string, options?: SnapshotsGetOptionalParams): Promise<SnapshotsGetResponse>;
@@ -3511,50 +3077,35 @@ export interface Snapshots {
 }
 
 // @public
-export interface SnapshotsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SnapshotsCreateOrUpdateResponse = Snapshot & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Snapshot;
-    };
-};
+export type SnapshotsCreateOrUpdateResponse = Snapshot;
 
 // @public
-export interface SnapshotsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SnapshotsGetOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SnapshotsGetResponse = Snapshot & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Snapshot;
-    };
-};
+export type SnapshotsGetResponse = Snapshot;
 
 // @public
-export interface SnapshotsGrantAccessOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsGrantAccessOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SnapshotsGrantAccessResponse = AccessUri & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: AccessUri;
-    };
-};
+export type SnapshotsGrantAccessResponse = AccessUri;
 
 // @public
 export interface SnapshotSku {
@@ -3563,55 +3114,35 @@ export interface SnapshotSku {
 }
 
 // @public
-export interface SnapshotsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SnapshotsListByResourceGroupNextResponse = SnapshotList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SnapshotList;
-    };
-};
+export type SnapshotsListByResourceGroupNextResponse = SnapshotList;
 
 // @public
-export interface SnapshotsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SnapshotsListByResourceGroupResponse = SnapshotList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SnapshotList;
-    };
-};
+export type SnapshotsListByResourceGroupResponse = SnapshotList;
 
 // @public
-export interface SnapshotsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SnapshotsListNextResponse = SnapshotList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SnapshotList;
-    };
-};
+export type SnapshotsListNextResponse = SnapshotList;
 
 // @public
-export interface SnapshotsListOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SnapshotsListResponse = SnapshotList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SnapshotList;
-    };
-};
+export type SnapshotsListResponse = SnapshotList;
 
 // @public
-export interface SnapshotsRevokeAccessOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsRevokeAccessOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -3620,18 +3151,13 @@ export interface SnapshotsRevokeAccessOptionalParams extends coreHttp.OperationO
 export type SnapshotStorageAccountTypes = string;
 
 // @public
-export interface SnapshotsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface SnapshotsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SnapshotsUpdateResponse = Snapshot & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Snapshot;
-    };
-};
+export type SnapshotsUpdateResponse = Snapshot;
 
 // @public
 export interface SnapshotUpdate {
@@ -3676,7 +3202,7 @@ export type SshPublicKeyResource = Resource & {
 // @public
 export interface SshPublicKeys {
     create(resourceGroupName: string, sshPublicKeyName: string, parameters: SshPublicKeyResource, options?: SshPublicKeysCreateOptionalParams): Promise<SshPublicKeysCreateResponse>;
-    delete(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysDeleteOptionalParams): Promise<void>;
     generateKeyPair(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysGenerateKeyPairOptionalParams): Promise<SshPublicKeysGenerateKeyPairResponse>;
     get(resourceGroupName: string, sshPublicKeyName: string, options?: SshPublicKeysGetOptionalParams): Promise<SshPublicKeysGetResponse>;
     listByResourceGroup(resourceGroupName: string, options?: SshPublicKeysListByResourceGroupOptionalParams): PagedAsyncIterableIterator<SshPublicKeyResource>;
@@ -3685,44 +3211,29 @@ export interface SshPublicKeys {
 }
 
 // @public
-export interface SshPublicKeysCreateOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysCreateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysCreateResponse = SshPublicKeyResource & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeyResource;
-    };
-};
+export type SshPublicKeysCreateResponse = SshPublicKeyResource;
 
 // @public
-export interface SshPublicKeysDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface SshPublicKeysGenerateKeyPairOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysGenerateKeyPairOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysGenerateKeyPairResponse = SshPublicKeyGenerateKeyPairResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeyGenerateKeyPairResult;
-    };
-};
+export type SshPublicKeysGenerateKeyPairResponse = SshPublicKeyGenerateKeyPairResult;
 
 // @public
-export interface SshPublicKeysGetOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysGetResponse = SshPublicKeyResource & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeyResource;
-    };
-};
+export type SshPublicKeysGetResponse = SshPublicKeyResource;
 
 // @public
 export interface SshPublicKeysGroupListResult {
@@ -3731,64 +3242,39 @@ export interface SshPublicKeysGroupListResult {
 }
 
 // @public
-export interface SshPublicKeysListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysListByResourceGroupNextResponse = SshPublicKeysGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeysGroupListResult;
-    };
-};
+export type SshPublicKeysListByResourceGroupNextResponse = SshPublicKeysGroupListResult;
 
 // @public
-export interface SshPublicKeysListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeysGroupListResult;
-    };
-};
+export type SshPublicKeysListByResourceGroupResponse = SshPublicKeysGroupListResult;
 
 // @public
-export interface SshPublicKeysListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeysGroupListResult;
-    };
-};
+export type SshPublicKeysListBySubscriptionNextResponse = SshPublicKeysGroupListResult;
 
 // @public
-export interface SshPublicKeysListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysListBySubscriptionResponse = SshPublicKeysGroupListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeysGroupListResult;
-    };
-};
+export type SshPublicKeysListBySubscriptionResponse = SshPublicKeysGroupListResult;
 
 // @public
-export interface SshPublicKeysUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface SshPublicKeysUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SshPublicKeysUpdateResponse = SshPublicKeyResource & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SshPublicKeyResource;
-    };
-};
+export type SshPublicKeysUpdateResponse = SshPublicKeyResource;
 
 // @public
 export type SshPublicKeyUpdateResource = UpdateResource & {
@@ -3914,28 +3400,18 @@ export interface UsageDef {
 }
 
 // @public
-export interface UsageListNextOptionalParams extends coreHttp.OperationOptions {
+export interface UsageListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UsageListNextResponse = ListUsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListUsagesResult;
-    };
-};
+export type UsageListNextResponse = ListUsagesResult;
 
 // @public
-export interface UsageListOptionalParams extends coreHttp.OperationOptions {
+export interface UsageListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UsageListResponse = ListUsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ListUsagesResult;
-    };
-};
+export type UsageListResponse = ListUsagesResult;
 
 // @public
 export interface UsageName {
@@ -4053,31 +3529,21 @@ export interface VirtualMachineExtensionImages {
 }
 
 // @public
-export interface VirtualMachineExtensionImagesGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionImagesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionImage & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtensionImage;
-    };
-};
+export type VirtualMachineExtensionImagesGetResponse = VirtualMachineExtensionImage;
 
 // @public
-export interface VirtualMachineExtensionImagesListTypesOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionImagesListTypesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineExtensionImagesListTypesResponse = VirtualMachineExtensionImage[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtensionImage[];
-    };
-};
+export type VirtualMachineExtensionImagesListTypesResponse = VirtualMachineExtensionImage[];
 
 // @public
-export interface VirtualMachineExtensionImagesListVersionsOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionImagesListVersionsOptionalParams extends coreClient.OperationOptions {
     filter?: string;
     // (undocumented)
     orderby?: string;
@@ -4086,12 +3552,7 @@ export interface VirtualMachineExtensionImagesListVersionsOptionalParams extends
 }
 
 // @public
-export type VirtualMachineExtensionImagesListVersionsResponse = VirtualMachineExtensionImage[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtensionImage[];
-    };
-};
+export type VirtualMachineExtensionImagesListVersionsResponse = VirtualMachineExtensionImage[];
 
 // @public
 export interface VirtualMachineExtensionInstanceView {
@@ -4106,8 +3567,8 @@ export interface VirtualMachineExtensionInstanceView {
 export interface VirtualMachineExtensions {
     beginCreateOrUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsCreateOrUpdateResponse>, VirtualMachineExtensionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineExtensionsCreateOrUpdateOptionalParams): Promise<VirtualMachineExtensionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineExtensionsUpdateResponse>, VirtualMachineExtensionsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmName: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineExtensionsUpdateOptionalParams): Promise<VirtualMachineExtensionsUpdateResponse>;
     get(resourceGroupName: string, vmName: string, vmExtensionName: string, options?: VirtualMachineExtensionsGetOptionalParams): Promise<VirtualMachineExtensionsGetResponse>;
@@ -4115,50 +3576,35 @@ export interface VirtualMachineExtensions {
 }
 
 // @public
-export interface VirtualMachineExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineExtensionsCreateOrUpdateResponse = VirtualMachineExtension;
 
 // @public
-export interface VirtualMachineExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineExtensionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionsGetOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type VirtualMachineExtensionsGetResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineExtensionsGetResponse = VirtualMachineExtension;
 
 // @public
-export interface VirtualMachineExtensionsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionsListOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type VirtualMachineExtensionsListResponse = VirtualMachineExtensionsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtensionsListResult;
-    };
-};
+export type VirtualMachineExtensionsListResponse = VirtualMachineExtensionsListResult;
 
 // @public
 export interface VirtualMachineExtensionsListResult {
@@ -4166,18 +3612,13 @@ export interface VirtualMachineExtensionsListResult {
 }
 
 // @public
-export interface VirtualMachineExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineExtensionsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineExtensionsUpdateResponse = VirtualMachineExtension;
 
 // @public
 export type VirtualMachineExtensionUpdate = UpdateResource & {
@@ -4233,31 +3674,21 @@ export interface VirtualMachineImages {
 }
 
 // @public
-export interface VirtualMachineImagesGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineImagesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineImagesGetResponse = VirtualMachineImage & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineImage;
-    };
-};
+export type VirtualMachineImagesGetResponse = VirtualMachineImage;
 
 // @public
-export interface VirtualMachineImagesListOffersOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineImagesListOffersOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineImagesListOffersResponse = VirtualMachineImageResource[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineImageResource[];
-    };
-};
+export type VirtualMachineImagesListOffersResponse = VirtualMachineImageResource[];
 
 // @public
-export interface VirtualMachineImagesListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineImagesListOptionalParams extends coreClient.OperationOptions {
     expand?: string;
     // (undocumented)
     orderby?: string;
@@ -4266,36 +3697,21 @@ export interface VirtualMachineImagesListOptionalParams extends coreHttp.Operati
 }
 
 // @public
-export interface VirtualMachineImagesListPublishersOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineImagesListPublishersOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineImagesListPublishersResponse = VirtualMachineImageResource[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineImageResource[];
-    };
-};
+export type VirtualMachineImagesListPublishersResponse = VirtualMachineImageResource[];
 
 // @public
-export type VirtualMachineImagesListResponse = VirtualMachineImageResource[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineImageResource[];
-    };
-};
+export type VirtualMachineImagesListResponse = VirtualMachineImageResource[];
 
 // @public
-export interface VirtualMachineImagesListSkusOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineImagesListSkusOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineImagesListSkusResponse = VirtualMachineImageResource[] & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineImageResource[];
-    };
-};
+export type VirtualMachineImagesListSkusResponse = VirtualMachineImageResource[];
 
 // @public
 export interface VirtualMachineInstanceView {
@@ -4335,79 +3751,64 @@ export interface VirtualMachineRunCommands {
 }
 
 // @public
-export interface VirtualMachineRunCommandsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineRunCommandsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineRunCommandsGetResponse = RunCommandDocument & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RunCommandDocument;
-    };
-};
+export type VirtualMachineRunCommandsGetResponse = RunCommandDocument;
 
 // @public
-export interface VirtualMachineRunCommandsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineRunCommandsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineRunCommandsListNextResponse = RunCommandListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RunCommandListResult;
-    };
-};
+export type VirtualMachineRunCommandsListNextResponse = RunCommandListResult;
 
 // @public
-export interface VirtualMachineRunCommandsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineRunCommandsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineRunCommandsListResponse = RunCommandListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RunCommandListResult;
-    };
-};
+export type VirtualMachineRunCommandsListResponse = RunCommandListResult;
 
 // @public
 export interface VirtualMachines {
     beginCapture(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: VirtualMachinesCaptureOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCaptureResponse>, VirtualMachinesCaptureResponse>>;
     beginCaptureAndWait(resourceGroupName: string, vmName: string, parameters: VirtualMachineCaptureParameters, options?: VirtualMachinesCaptureOptionalParams): Promise<VirtualMachinesCaptureResponse>;
-    beginConvertToManagedDisks(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginConvertToManagedDisksAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<coreHttp.RestResponse>;
+    beginConvertToManagedDisks(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginConvertToManagedDisksAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesConvertToManagedDisksOptionalParams): Promise<void>;
     beginCreateOrUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesCreateOrUpdateResponse>, VirtualMachinesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vmName: string, parameters: VirtualMachine, options?: VirtualMachinesCreateOrUpdateOptionalParams): Promise<VirtualMachinesCreateOrUpdateResponse>;
-    beginDeallocate(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeallocateAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDelete(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPerformMaintenance(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPerformMaintenanceAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPowerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPowerOffAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReapply(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReapplyAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRedeploy(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRedeployAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReimageAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRestart(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRestartAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeallocate(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeallocateAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeallocateOptionalParams): Promise<void>;
+    beginDelete(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesDeleteOptionalParams): Promise<void>;
+    beginPerformMaintenance(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPerformMaintenanceAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesPerformMaintenanceOptionalParams): Promise<void>;
+    beginPowerOff(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPowerOffAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesPowerOffOptionalParams): Promise<void>;
+    beginReapply(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReapplyAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesReapplyOptionalParams): Promise<void>;
+    beginRedeploy(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRedeployAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesRedeployOptionalParams): Promise<void>;
+    beginReimage(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReimageAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesReimageOptionalParams): Promise<void>;
+    beginRestart(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRestartAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesRestartOptionalParams): Promise<void>;
     beginRunCommand(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: VirtualMachinesRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesRunCommandResponse>, VirtualMachinesRunCommandResponse>>;
     beginRunCommandAndWait(resourceGroupName: string, vmName: string, parameters: RunCommandInput, options?: VirtualMachinesRunCommandOptionalParams): Promise<VirtualMachinesRunCommandResponse>;
-    beginStart(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginStart(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartAndWait(resourceGroupName: string, vmName: string, options?: VirtualMachinesStartOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: VirtualMachinesUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachinesUpdateResponse>, VirtualMachinesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmName: string, parameters: VirtualMachineUpdate, options?: VirtualMachinesUpdateOptionalParams): Promise<VirtualMachinesUpdateResponse>;
-    generalize(resourceGroupName: string, vmName: string, options?: VirtualMachinesGeneralizeOptionalParams): Promise<coreHttp.RestResponse>;
+    generalize(resourceGroupName: string, vmName: string, options?: VirtualMachinesGeneralizeOptionalParams): Promise<void>;
     get(resourceGroupName: string, vmName: string, options?: VirtualMachinesGetOptionalParams): Promise<VirtualMachinesGetResponse>;
     instanceView(resourceGroupName: string, vmName: string, options?: VirtualMachinesInstanceViewOptionalParams): Promise<VirtualMachinesInstanceViewResponse>;
     list(resourceGroupName: string, options?: VirtualMachinesListOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
     listAll(options?: VirtualMachinesListAllOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
     listAvailableSizes(resourceGroupName: string, vmName: string, options?: VirtualMachinesListAvailableSizesOptionalParams): PagedAsyncIterableIterator<VirtualMachineSize>;
     listByLocation(location: string, options?: VirtualMachinesListByLocationOptionalParams): PagedAsyncIterableIterator<VirtualMachine>;
-    simulateEviction(resourceGroupName: string, vmName: string, options?: VirtualMachinesSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
+    simulateEviction(resourceGroupName: string, vmName: string, options?: VirtualMachinesSimulateEvictionOptionalParams): Promise<void>;
 }
 
 // @public
@@ -4474,8 +3875,8 @@ export interface VirtualMachineScaleSetExtensionProfile {
 export interface VirtualMachineScaleSetExtensions {
     beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtension, options?: VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams): Promise<VirtualMachineScaleSetExtensionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetExtensionsUpdateResponse>, VirtualMachineScaleSetExtensionsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, extensionParameters: VirtualMachineScaleSetExtensionUpdate, options?: VirtualMachineScaleSetExtensionsUpdateOptionalParams): Promise<VirtualMachineScaleSetExtensionsUpdateResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, vmssExtensionName: string, options?: VirtualMachineScaleSetExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetExtensionsGetResponse>;
@@ -4483,75 +3884,50 @@ export interface VirtualMachineScaleSetExtensions {
 }
 
 // @public
-export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMachineScaleSetExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetExtension;
-    };
-};
+export type VirtualMachineScaleSetExtensionsCreateOrUpdateResponse = VirtualMachineScaleSetExtension;
 
 // @public
-export interface VirtualMachineScaleSetExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetExtensionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsGetOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type VirtualMachineScaleSetExtensionsGetResponse = VirtualMachineScaleSetExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetExtension;
-    };
-};
+export type VirtualMachineScaleSetExtensionsGetResponse = VirtualMachineScaleSetExtension;
 
 // @public
-export interface VirtualMachineScaleSetExtensionsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetExtensionsListNextResponse = VirtualMachineScaleSetExtensionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetExtensionListResult;
-    };
-};
+export type VirtualMachineScaleSetExtensionsListNextResponse = VirtualMachineScaleSetExtensionListResult;
 
 // @public
-export interface VirtualMachineScaleSetExtensionsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSetExtensionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetExtensionListResult;
-    };
-};
+export type VirtualMachineScaleSetExtensionsListResponse = VirtualMachineScaleSetExtensionListResult;
 
 // @public
-export interface VirtualMachineScaleSetExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetExtensionsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScaleSetExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetExtension;
-    };
-};
+export type VirtualMachineScaleSetExtensionsUpdateResponse = VirtualMachineScaleSetExtension;
 
 // @public
 export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
@@ -4709,41 +4085,36 @@ export type VirtualMachineScaleSetReimageParameters = VirtualMachineScaleSetVMRe
 
 // @public
 export interface VirtualMachineScaleSetRollingUpgrades {
-    beginCancel(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginCancelAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<coreHttp.RestResponse>;
-    beginStartExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartExtensionUpgradeAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<coreHttp.RestResponse>;
-    beginStartOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartOSUpgradeAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<coreHttp.RestResponse>;
+    beginCancel(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginCancelAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams): Promise<void>;
+    beginStartExtensionUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartExtensionUpgradeAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams): Promise<void>;
+    beginStartOSUpgrade(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartOSUpgradeAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams): Promise<void>;
     getLatest(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
 }
 
 // @public
-export interface VirtualMachineScaleSetRollingUpgradesCancelOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetRollingUpgradesCancelOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgradeStatusInfo & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RollingUpgradeStatusInfo;
-    };
-};
+export type VirtualMachineScaleSetRollingUpgradesGetLatestResponse = RollingUpgradeStatusInfo;
 
 // @public
-export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -4752,33 +4123,33 @@ export interface VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalPara
 export interface VirtualMachineScaleSets {
     beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsCreateOrUpdateResponse>, VirtualMachineScaleSetsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSet, options?: VirtualMachineScaleSetsCreateOrUpdateOptionalParams): Promise<VirtualMachineScaleSetsCreateOrUpdateResponse>;
-    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeallocateAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDelete(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteInstancesAndWait(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPerformMaintenanceAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPowerOffAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRedeployAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReimageAllAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReimageAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRestart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRestartAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<coreHttp.RestResponse>;
-    beginSetOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginSetOrchestrationServiceStateAndWait(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<coreHttp.RestResponse>;
-    beginStart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeallocateAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeallocateOptionalParams): Promise<void>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsDeleteOptionalParams): Promise<void>;
+    beginDeleteInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteInstancesAndWait(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsDeleteInstancesOptionalParams): Promise<void>;
+    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPerformMaintenanceAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPerformMaintenanceOptionalParams): Promise<void>;
+    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPowerOffAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsPowerOffOptionalParams): Promise<void>;
+    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRedeployAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRedeployOptionalParams): Promise<void>;
+    beginReimage(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReimageAllAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageAllOptionalParams): Promise<void>;
+    beginReimageAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsReimageOptionalParams): Promise<void>;
+    beginRestart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRestartAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsRestartOptionalParams): Promise<void>;
+    beginSetOrchestrationServiceState(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginSetOrchestrationServiceStateAndWait(resourceGroupName: string, vmScaleSetName: string, parameters: OrchestrationServiceStateInput, options?: VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams): Promise<void>;
+    beginStart(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartAndWait(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsStartOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: VirtualMachineScaleSetsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetsUpdateResponse>, VirtualMachineScaleSetsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, parameters: VirtualMachineScaleSetUpdate, options?: VirtualMachineScaleSetsUpdateOptionalParams): Promise<VirtualMachineScaleSetsUpdateResponse>;
-    beginUpdateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginUpdateInstancesAndWait(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<coreHttp.RestResponse>;
-    convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams): Promise<coreHttp.RestResponse>;
+    beginUpdateInstances(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginUpdateInstancesAndWait(resourceGroupName: string, vmScaleSetName: string, vmInstanceIDs: VirtualMachineScaleSetVMInstanceRequiredIDs, options?: VirtualMachineScaleSetsUpdateInstancesOptionalParams): Promise<void>;
+    convertToSinglePlacementGroup(resourceGroupName: string, vmScaleSetName: string, parameters: VMScaleSetConvertToSinglePlacementGroupInput, options?: VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams): Promise<void>;
     forceRecoveryServiceFabricPlatformUpdateDomainWalk(resourceGroupName: string, vmScaleSetName: string, platformUpdateDomain: number, options?: VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams): Promise<VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetOptionalParams): Promise<VirtualMachineScaleSetsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, options?: VirtualMachineScaleSetsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetsGetInstanceViewResponse>;
@@ -4792,101 +4163,71 @@ export interface VirtualMachineScaleSets {
 export type VirtualMachineScaleSetScaleInRules = string;
 
 // @public
-export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsConvertToSinglePlacementGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VirtualMachineScaleSetsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSet;
-    };
-};
+export type VirtualMachineScaleSetsCreateOrUpdateResponse = VirtualMachineScaleSet;
 
 // @public
-export interface VirtualMachineScaleSetsDeallocateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsDeallocateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
-export interface VirtualMachineScaleSetsDeleteInstancesOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsDeleteInstancesOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse = RecoveryWalkResponse & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RecoveryWalkResponse;
-    };
-};
+export type VirtualMachineScaleSetsForceRecoveryServiceFabricPlatformUpdateDomainWalkResponse = RecoveryWalkResponse;
 
 // @public
-export interface VirtualMachineScaleSetsGetInstanceViewOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsGetInstanceViewOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScaleSetInstanceView & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetInstanceView;
-    };
-};
+export type VirtualMachineScaleSetsGetInstanceViewResponse = VirtualMachineScaleSetInstanceView;
 
 // @public
-export interface VirtualMachineScaleSetsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListOSUpgradeHistory;
-    };
-};
+export type VirtualMachineScaleSetsGetOSUpgradeHistoryNextResponse = VirtualMachineScaleSetListOSUpgradeHistory;
 
 // @public
-export interface VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsGetOSUpgradeHistoryOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsGetOSUpgradeHistoryResponse = VirtualMachineScaleSetListOSUpgradeHistory & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListOSUpgradeHistory;
-    };
-};
+export type VirtualMachineScaleSetsGetOSUpgradeHistoryResponse = VirtualMachineScaleSetListOSUpgradeHistory;
 
 // @public
-export type VirtualMachineScaleSetsGetResponse = VirtualMachineScaleSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSet;
-    };
-};
+export type VirtualMachineScaleSetsGetResponse = VirtualMachineScaleSet;
 
 // @public
 export interface VirtualMachineScaleSetSku {
@@ -4907,86 +4248,56 @@ export interface VirtualMachineScaleSetSkuCapacity {
 export type VirtualMachineScaleSetSkuScaleType = "Automatic" | "None";
 
 // @public
-export interface VirtualMachineScaleSetsListAllNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListAllNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListAllNextResponse = VirtualMachineScaleSetListWithLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListWithLinkResult;
-    };
-};
+export type VirtualMachineScaleSetsListAllNextResponse = VirtualMachineScaleSetListWithLinkResult;
 
 // @public
-export interface VirtualMachineScaleSetsListAllOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListAllOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListWithLinkResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListWithLinkResult;
-    };
-};
+export type VirtualMachineScaleSetsListAllResponse = VirtualMachineScaleSetListWithLinkResult;
 
 // @public
-export interface VirtualMachineScaleSetsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListNextResponse = VirtualMachineScaleSetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListResult;
-    };
-};
+export type VirtualMachineScaleSetsListNextResponse = VirtualMachineScaleSetListResult;
 
 // @public
-export interface VirtualMachineScaleSetsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListResult;
-    };
-};
+export type VirtualMachineScaleSetsListResponse = VirtualMachineScaleSetListResult;
 
 // @public
-export interface VirtualMachineScaleSetsListSkusNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListSkusNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListSkusNextResponse = VirtualMachineScaleSetListSkusResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListSkusResult;
-    };
-};
+export type VirtualMachineScaleSetsListSkusNextResponse = VirtualMachineScaleSetListSkusResult;
 
 // @public
-export interface VirtualMachineScaleSetsListSkusOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsListSkusOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetListSkusResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetListSkusResult;
-    };
-};
+export type VirtualMachineScaleSetsListSkusResponse = VirtualMachineScaleSetListSkusResult;
 
 // @public
-export interface VirtualMachineScaleSetsPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsPerformMaintenanceOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
-export interface VirtualMachineScaleSetsPowerOffOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsPowerOffOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     skipShutdown?: boolean;
     updateIntervalInMs?: number;
@@ -4994,41 +4305,41 @@ export interface VirtualMachineScaleSetsPowerOffOptionalParams extends coreHttp.
 }
 
 // @public
-export interface VirtualMachineScaleSetsRedeployOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsRedeployOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
-export interface VirtualMachineScaleSetsReimageAllOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsReimageAllOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
-export interface VirtualMachineScaleSetsReimageOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsReimageOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmScaleSetReimageInput?: VirtualMachineScaleSetReimageParameters;
 }
 
 // @public
-export interface VirtualMachineScaleSetsRestartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsRestartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
 }
 
 // @public
-export interface VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsSetOrchestrationServiceStateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetsStartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsStartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmInstanceIDs?: VirtualMachineScaleSetVMInstanceIDs;
@@ -5042,24 +4353,19 @@ export interface VirtualMachineScaleSetStorageProfile {
 }
 
 // @public
-export interface VirtualMachineScaleSetsUpdateInstancesOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsUpdateInstancesOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSet;
-    };
-};
+export type VirtualMachineScaleSetsUpdateResponse = VirtualMachineScaleSet;
 
 // @public
 export type VirtualMachineScaleSetUpdate = UpdateResource & {
@@ -5179,8 +4485,8 @@ export type VirtualMachineScaleSetVM = Resource & {
 export interface VirtualMachineScaleSetVMExtensions {
     beginCreateOrUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>, VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtension, options?: VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMExtensionsUpdateResponse>, VirtualMachineScaleSetVMExtensionsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, extensionParameters: VirtualMachineExtensionUpdate, options?: VirtualMachineScaleSetVMExtensionsUpdateOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsUpdateResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, vmExtensionName: string, options?: VirtualMachineScaleSetVMExtensionsGetOptionalParams): Promise<VirtualMachineScaleSetVMExtensionsGetResponse>;
@@ -5188,50 +4494,35 @@ export interface VirtualMachineScaleSetVMExtensions {
 }
 
 // @public
-export interface VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMExtensionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineScaleSetVMExtensionsCreateOrUpdateResponse = VirtualMachineExtension;
 
 // @public
-export interface VirtualMachineScaleSetVMExtensionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMExtensionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMExtensionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMExtensionsGetOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type VirtualMachineScaleSetVMExtensionsGetResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineScaleSetVMExtensionsGetResponse = VirtualMachineExtension;
 
 // @public
-export interface VirtualMachineScaleSetVMExtensionsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMExtensionsListOptionalParams extends coreClient.OperationOptions {
     expand?: string;
 }
 
 // @public
-export type VirtualMachineScaleSetVMExtensionsListResponse = VirtualMachineExtensionsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtensionsListResult;
-    };
-};
+export type VirtualMachineScaleSetVMExtensionsListResponse = VirtualMachineExtensionsListResult;
 
 // @public
 export interface VirtualMachineScaleSetVMExtensionsSummary {
@@ -5240,18 +4531,13 @@ export interface VirtualMachineScaleSetVMExtensionsSummary {
 }
 
 // @public
-export interface VirtualMachineScaleSetVMExtensionsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMExtensionsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExtension & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineExtension;
-    };
-};
+export type VirtualMachineScaleSetVMExtensionsUpdateResponse = VirtualMachineExtension;
 
 // @public
 export interface VirtualMachineScaleSetVMInstanceIDs {
@@ -5314,249 +4600,199 @@ export type VirtualMachineScaleSetVMReimageParameters = VirtualMachineReimagePar
 
 // @public
 export interface VirtualMachineScaleSetVMs {
-    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeallocateAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPerformMaintenanceAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<coreHttp.RestResponse>;
-    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPowerOffAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRedeployAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginReimageAllAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<coreHttp.RestResponse>;
-    beginReimageAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRestart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRestartAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeallocate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeallocateAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeallocateOptionalParams): Promise<void>;
+    beginDelete(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsDeleteOptionalParams): Promise<void>;
+    beginPerformMaintenance(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPerformMaintenanceAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams): Promise<void>;
+    beginPowerOff(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPowerOffAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsPowerOffOptionalParams): Promise<void>;
+    beginRedeploy(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRedeployAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRedeployOptionalParams): Promise<void>;
+    beginReimage(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReimageAll(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginReimageAllAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageAllOptionalParams): Promise<void>;
+    beginReimageAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsReimageOptionalParams): Promise<void>;
+    beginRestart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRestartAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsRestartOptionalParams): Promise<void>;
     beginRunCommand(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: VirtualMachineScaleSetVMsRunCommandOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsRunCommandResponse>, VirtualMachineScaleSetVMsRunCommandResponse>>;
     beginRunCommandAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: RunCommandInput, options?: VirtualMachineScaleSetVMsRunCommandOptionalParams): Promise<VirtualMachineScaleSetVMsRunCommandResponse>;
-    beginStart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginStart(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsStartOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: VirtualMachineScaleSetVMsUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualMachineScaleSetVMsUpdateResponse>, VirtualMachineScaleSetVMsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, vmScaleSetName: string, instanceId: string, parameters: VirtualMachineScaleSetVM, options?: VirtualMachineScaleSetVMsUpdateOptionalParams): Promise<VirtualMachineScaleSetVMsUpdateResponse>;
     get(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetOptionalParams): Promise<VirtualMachineScaleSetVMsGetResponse>;
     getInstanceView(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
     list(resourceGroupName: string, virtualMachineScaleSetName: string, options?: VirtualMachineScaleSetVMsListOptionalParams): PagedAsyncIterableIterator<VirtualMachineScaleSetVM>;
-    simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams): Promise<coreHttp.RestResponse>;
+    simulateEviction(resourceGroupName: string, vmScaleSetName: string, instanceId: string, options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams): Promise<void>;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsDeallocateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsDeallocateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsGetInstanceViewOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsGetInstanceViewOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetVMsGetInstanceViewResponse = VirtualMachineScaleSetVMInstanceView & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetVMInstanceView;
-    };
-};
+export type VirtualMachineScaleSetVMsGetInstanceViewResponse = VirtualMachineScaleSetVMInstanceView;
 
 // @public
-export interface VirtualMachineScaleSetVMsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetVM;
-    };
-};
+export type VirtualMachineScaleSetVMsGetResponse = VirtualMachineScaleSetVM;
 
 // @public
-export interface VirtualMachineScaleSetVMsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsListNextOptionalParams extends coreClient.OperationOptions {
     expand?: string;
     filter?: string;
     select?: string;
 }
 
 // @public
-export type VirtualMachineScaleSetVMsListNextResponse = VirtualMachineScaleSetVMListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetVMListResult;
-    };
-};
+export type VirtualMachineScaleSetVMsListNextResponse = VirtualMachineScaleSetVMListResult;
 
 // @public
-export interface VirtualMachineScaleSetVMsListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsListOptionalParams extends coreClient.OperationOptions {
     expand?: string;
     filter?: string;
     select?: string;
 }
 
 // @public
-export type VirtualMachineScaleSetVMsListResponse = VirtualMachineScaleSetVMListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetVMListResult;
-    };
-};
+export type VirtualMachineScaleSetVMsListResponse = VirtualMachineScaleSetVMListResult;
 
 // @public
-export interface VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsPowerOffOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsPowerOffOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     skipShutdown?: boolean;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsRedeployOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsRedeployOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsReimageAllOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsReimageAllOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsReimageOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsReimageOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
     vmScaleSetVMReimageInput?: VirtualMachineScaleSetVMReimageParameters;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsRestartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsRestartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsRunCommandOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsRunCommandOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RunCommandResult;
-    };
-};
+export type VirtualMachineScaleSetVMsRunCommandResponse = RunCommandResult;
 
 // @public
-export interface VirtualMachineScaleSetVMsSimulateEvictionOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsSimulateEvictionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsStartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsStartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachineScaleSetVMsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineScaleSetVMsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineScaleSetVM;
-    };
-};
+export type VirtualMachineScaleSetVMsUpdateResponse = VirtualMachineScaleSetVM;
 
 // @public
-export interface VirtualMachinesCaptureOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesCaptureOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineCaptureResult;
-    };
-};
+export type VirtualMachinesCaptureResponse = VirtualMachineCaptureResult;
 
 // @public
-export interface VirtualMachinesConvertToManagedDisksOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesConvertToManagedDisksOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachine;
-    };
-};
+export type VirtualMachinesCreateOrUpdateResponse = VirtualMachine;
 
 // @public
-export interface VirtualMachinesDeallocateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesDeallocateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesGeneralizeOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesGeneralizeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VirtualMachinesGetOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesGetResponse = VirtualMachine & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachine;
-    };
-};
+export type VirtualMachinesGetResponse = VirtualMachine;
 
 // @public
-export interface VirtualMachinesInstanceViewOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesInstanceViewOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesInstanceViewResponse = VirtualMachineInstanceView & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineInstanceView;
-    };
-};
+export type VirtualMachinesInstanceViewResponse = VirtualMachineInstanceView;
 
 // @public
 export interface VirtualMachineSize {
@@ -5579,164 +4815,119 @@ export interface VirtualMachineSizes {
 }
 
 // @public
-export interface VirtualMachineSizesListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachineSizesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachineSizesListResponse = VirtualMachineSizeListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineSizeListResult;
-    };
-};
+export type VirtualMachineSizesListResponse = VirtualMachineSizeListResult;
 
 // @public
 export type VirtualMachineSizeTypes = string;
 
 // @public
-export interface VirtualMachinesListAllNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListAllNextOptionalParams extends coreClient.OperationOptions {
     statusOnly?: string;
 }
 
 // @public
-export type VirtualMachinesListAllNextResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListAllNextResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesListAllOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListAllOptionalParams extends coreClient.OperationOptions {
     statusOnly?: string;
 }
 
 // @public
-export type VirtualMachinesListAllResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListAllResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesListAvailableSizesOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListAvailableSizesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesListAvailableSizesResponse = VirtualMachineSizeListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineSizeListResult;
-    };
-};
+export type VirtualMachinesListAvailableSizesResponse = VirtualMachineSizeListResult;
 
 // @public
-export interface VirtualMachinesListByLocationNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListByLocationNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListByLocationNextResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesListByLocationOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListByLocationOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesListByLocationResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListByLocationResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesListNextResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListNextResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesListOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VirtualMachinesListResponse = VirtualMachineListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachineListResult;
-    };
-};
+export type VirtualMachinesListResponse = VirtualMachineListResult;
 
 // @public
-export interface VirtualMachinesPerformMaintenanceOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesPerformMaintenanceOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesPowerOffOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesPowerOffOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     skipShutdown?: boolean;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesReapplyOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesReapplyOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesRedeployOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesRedeployOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesReimageOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesReimageOptionalParams extends coreClient.OperationOptions {
     parameters?: VirtualMachineReimageParameters;
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesRestartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesRestartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VirtualMachinesRunCommandOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesRunCommandOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachinesRunCommandResponse = RunCommandResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: RunCommandResult;
-    };
-};
+export type VirtualMachinesRunCommandResponse = RunCommandResult;
 
 // @public
-export interface VirtualMachinesSimulateEvictionOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesSimulateEvictionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VirtualMachinesStartOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesStartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -5748,18 +4939,13 @@ export interface VirtualMachineStatusCodeCount {
 }
 
 // @public
-export interface VirtualMachinesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VirtualMachinesUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VirtualMachinesUpdateResponse = VirtualMachine & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VirtualMachine;
-    };
-};
+export type VirtualMachinesUpdateResponse = VirtualMachine;
 
 // @public
 export type VirtualMachineUpdate = UpdateResource & {

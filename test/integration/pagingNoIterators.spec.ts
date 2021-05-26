@@ -1,3 +1,4 @@
+import { ServiceClientOptions } from "@azure/core-client";
 import { expect, assert } from "chai";
 import {
   PagingNoIteratorsClient,
@@ -8,18 +9,20 @@ import {
   PagingGetMultiplePagesLROResponse,
   PagingGetMultiplePagesLRONextResponse
 } from "./generated/pagingNoIterators/src";
-import { InternalPipelineOptions } from "@azure/core-http";
+import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
 
-describe.skip("Integration tests for Paging", () => {
+describe("Integration tests for Paging", () => {
   let client: PagingNoIteratorsClient;
 
   beforeEach(() => {
-    const pipelineOptions: InternalPipelineOptions = {
+    const pipelineOptions: ServiceClientOptions = {
+      allowInsecureConnection: true,
+      httpClient: new HttpClientWithCookieSupport(),
       retryOptions: {
         retryDelayInMs: 0
       }
     };
-    client = new PagingNoIteratorsClient();
+    client = new PagingNoIteratorsClient(pipelineOptions);
   });
 
   describe("getMultiplePagesRetrySecond", () => {

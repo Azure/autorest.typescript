@@ -7,7 +7,7 @@
  */
 
 import { PrivateLinkResources } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
@@ -39,21 +39,16 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     vaultName: string,
     options?: PrivateLinkResourcesListByVaultOptionalParams
   ): Promise<PrivateLinkResourcesListByVaultResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vaultName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vaultName, options },
       listByVaultOperationSpec
-    ) as Promise<PrivateLinkResourcesListByVaultResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByVaultOperationSpec: coreHttp.OperationSpec = {
+const listByVaultOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateLinkResources",
   httpMethod: "GET",

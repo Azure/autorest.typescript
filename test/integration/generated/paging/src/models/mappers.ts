@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ProductResultValue: coreHttp.CompositeMapper = {
+export const ProductResultValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductResultValue",
@@ -35,7 +35,7 @@ export const ProductResultValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const Product: coreHttp.CompositeMapper = {
+export const Product: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Product",
@@ -51,7 +51,7 @@ export const Product: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductProperties: coreHttp.CompositeMapper = {
+export const ProductProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductProperties",
@@ -72,7 +72,7 @@ export const ProductProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductResult: coreHttp.CompositeMapper = {
+export const ProductResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductResult",
@@ -99,7 +99,7 @@ export const ProductResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const OdataProductResult: coreHttp.CompositeMapper = {
+export const OdataProductResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OdataProductResult",
@@ -126,7 +126,7 @@ export const OdataProductResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProductResultValueWithXMSClientName: coreHttp.CompositeMapper = {
+export const ProductResultValueWithXMSClientName: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProductResultValueWithXMSClientName",
@@ -153,7 +153,7 @@ export const ProductResultValueWithXMSClientName: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationResult: coreHttp.CompositeMapper = {
+export const OperationResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationResult",

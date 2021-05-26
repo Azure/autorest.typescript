@@ -1,18 +1,23 @@
 import { assert } from "chai";
 import { LroParametrizedEndpointsClient } from "./generated/lroParametrizedEndpoints/src";
 
-describe.skip("lroParametrizedEndpoints", () => {
+describe("lroParametrizedEndpoints", () => {
   let client: LroParametrizedEndpointsClient;
 
   beforeEach(() => {
-    client = new LroParametrizedEndpointsClient({ host: "host:3000" });
+    client = new LroParametrizedEndpointsClient({
+      host: "host:3000",
+      allowInsecureConnection: true
+    });
   });
 
   it("should pollWithParameterizedEndpoints", async () => {
-    const poller = await client.beginPollWithParameterizedEndpoints("local", {
-      updateIntervalInMs: 0
-    });
-    const result = await poller.pollUntilDone();
+    const result = await client.beginPollWithParameterizedEndpointsAndWait(
+      "local",
+      {
+        updateIntervalInMs: 0
+      }
+    );
     assert.equal(result.body, "success");
   });
 });

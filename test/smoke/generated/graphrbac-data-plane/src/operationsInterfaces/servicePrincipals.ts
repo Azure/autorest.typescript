@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ServicePrincipal,
   ServicePrincipalsListNextOptionalParams,
@@ -98,7 +97,7 @@ export interface ServicePrincipals {
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
     options?: ServicePrincipalsUpdateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Deletes a service principal from the directory.
    * @param objectId The object ID of the service principal to delete.
@@ -107,7 +106,7 @@ export interface ServicePrincipals {
   delete(
     objectId: string,
     options?: ServicePrincipalsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets service principal information from the directory. Query by objectId or pass a filter to query
    * by appId
@@ -128,7 +127,7 @@ export interface ServicePrincipals {
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates the passwordCredentials associated with a service principal.
    * @param objectId The object ID of the service principal.
@@ -139,5 +138,5 @@ export interface ServicePrincipals {
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -32,7 +33,7 @@ export type ApplicationArtifactType = "Template" | "Custom";
 
 // @public (undocumented)
 export class ApplicationClient extends ApplicationClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ApplicationClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
     // (undocumented)
     applicationDefinitions: ApplicationDefinitions;
     // (undocumented)
@@ -40,10 +41,10 @@ export class ApplicationClient extends ApplicationClientContext {
 }
 
 // @public (undocumented)
-export class ApplicationClientContext extends coreHttp.ServiceClient {
+export class ApplicationClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ApplicationClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -51,7 +52,7 @@ export class ApplicationClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface ApplicationClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface ApplicationClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -82,102 +83,72 @@ export interface ApplicationDefinitions {
     beginCreateOrUpdateAndWait(resourceGroupName: string, applicationDefinitionName: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateOptionalParams): Promise<ApplicationDefinitionsCreateOrUpdateResponse>;
     beginCreateOrUpdateById(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationDefinitionsCreateOrUpdateByIdResponse>, ApplicationDefinitionsCreateOrUpdateByIdResponse>>;
     beginCreateOrUpdateByIdAndWait(applicationDefinitionId: string, parameters: ApplicationDefinition, options?: ApplicationDefinitionsCreateOrUpdateByIdOptionalParams): Promise<ApplicationDefinitionsCreateOrUpdateByIdResponse>;
-    beginDelete(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteById(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteByIdAndWait(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsDeleteOptionalParams): Promise<void>;
+    beginDeleteById(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteByIdAndWait(applicationDefinitionId: string, options?: ApplicationDefinitionsDeleteByIdOptionalParams): Promise<void>;
     get(resourceGroupName: string, applicationDefinitionName: string, options?: ApplicationDefinitionsGetOptionalParams): Promise<ApplicationDefinitionsGetResponse>;
     getById(applicationDefinitionId: string, options?: ApplicationDefinitionsGetByIdOptionalParams): Promise<ApplicationDefinitionsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: ApplicationDefinitionsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ApplicationDefinition>;
 }
 
 // @public
-export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsCreateOrUpdateByIdOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinition;
-    };
-};
+export type ApplicationDefinitionsCreateOrUpdateByIdResponse = ApplicationDefinition;
 
 // @public
-export interface ApplicationDefinitionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinition;
-    };
-};
+export type ApplicationDefinitionsCreateOrUpdateResponse = ApplicationDefinition;
 
 // @public
-export interface ApplicationDefinitionsDeleteByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsDeleteByIdOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ApplicationDefinitionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ApplicationDefinitionsGetByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsGetByIdOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinition;
-    };
-};
+export type ApplicationDefinitionsGetByIdResponse = ApplicationDefinition;
 
 // @public
-export interface ApplicationDefinitionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationDefinitionsGetResponse = ApplicationDefinition & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinition;
-    };
-};
+export type ApplicationDefinitionsGetResponse = ApplicationDefinition;
 
 // @public
-export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinitionListResult;
-    };
-};
+export type ApplicationDefinitionsListByResourceGroupNextResponse = ApplicationDefinitionListResult;
 
 // @public
-export interface ApplicationDefinitionsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationDefinitionsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationDefinitionListResult;
-    };
-};
+export type ApplicationDefinitionsListByResourceGroupResponse = ApplicationDefinitionListResult;
 
 // @public
 export interface ApplicationListResult {
@@ -211,10 +182,10 @@ export interface Applications {
     beginCreateOrUpdateAndWait(resourceGroupName: string, applicationName: string, parameters: Application, options?: ApplicationsCreateOrUpdateOptionalParams): Promise<ApplicationsCreateOrUpdateResponse>;
     beginCreateOrUpdateById(applicationId: string, parameters: Application, options?: ApplicationsCreateOrUpdateByIdOptionalParams): Promise<PollerLike<PollOperationState<ApplicationsCreateOrUpdateByIdResponse>, ApplicationsCreateOrUpdateByIdResponse>>;
     beginCreateOrUpdateByIdAndWait(applicationId: string, parameters: Application, options?: ApplicationsCreateOrUpdateByIdOptionalParams): Promise<ApplicationsCreateOrUpdateByIdResponse>;
-    beginDelete(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteById(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteByIdAndWait(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, applicationName: string, options?: ApplicationsDeleteOptionalParams): Promise<void>;
+    beginDeleteById(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteByIdAndWait(applicationId: string, options?: ApplicationsDeleteByIdOptionalParams): Promise<void>;
     get(resourceGroupName: string, applicationName: string, options?: ApplicationsGetOptionalParams): Promise<ApplicationsGetResponse>;
     getById(applicationId: string, options?: ApplicationsGetByIdOptionalParams): Promise<ApplicationsGetByIdResponse>;
     listByResourceGroup(resourceGroupName: string, options?: ApplicationsListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Application>;
@@ -224,142 +195,92 @@ export interface Applications {
 }
 
 // @public
-export interface ApplicationsCreateOrUpdateByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsCreateOrUpdateByIdOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ApplicationsCreateOrUpdateByIdResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsCreateOrUpdateByIdResponse = Application;
 
 // @public
-export interface ApplicationsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type ApplicationsCreateOrUpdateResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsCreateOrUpdateResponse = Application;
 
 // @public
-export interface ApplicationsDeleteByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsDeleteByIdOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ApplicationsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface ApplicationsGetByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsGetByIdOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsGetByIdResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsGetByIdResponse = Application;
 
 // @public
-export interface ApplicationsGetOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsGetResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsGetResponse = Application;
 
 // @public
-export interface ApplicationsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationListResult;
-    };
-};
+export type ApplicationsListByResourceGroupNextResponse = ApplicationListResult;
 
 // @public
-export interface ApplicationsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsListByResourceGroupResponse = ApplicationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationListResult;
-    };
-};
+export type ApplicationsListByResourceGroupResponse = ApplicationListResult;
 
 // @public
-export interface ApplicationsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationListResult;
-    };
-};
+export type ApplicationsListBySubscriptionNextResponse = ApplicationListResult;
 
 // @public
-export interface ApplicationsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ApplicationsListBySubscriptionResponse = ApplicationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ApplicationListResult;
-    };
-};
+export type ApplicationsListBySubscriptionResponse = ApplicationListResult;
 
 // @public
-export interface ApplicationsUpdateByIdOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsUpdateByIdOptionalParams extends coreClient.OperationOptions {
     parameters?: Application;
 }
 
 // @public
-export type ApplicationsUpdateByIdResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsUpdateByIdResponse = Application;
 
 // @public
-export interface ApplicationsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface ApplicationsUpdateOptionalParams extends coreClient.OperationOptions {
     parameters?: Application;
 }
 
 // @public
-export type ApplicationsUpdateResponse = Application & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Application;
-    };
-};
+export type ApplicationsUpdateResponse = Application;
 
 // @public
 export interface ErrorResponse {

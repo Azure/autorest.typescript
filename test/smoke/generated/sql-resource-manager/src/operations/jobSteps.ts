@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { JobSteps } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -252,18 +252,17 @@ export class JobStepsImpl implements JobSteps {
     jobVersion: number,
     options?: JobStepsListByVersionOptionalParams
   ): Promise<JobStepsListByVersionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobVersion,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobVersion,
+        options
+      },
       listByVersionOperationSpec
-    ) as Promise<JobStepsListByVersionResponse>;
+    );
   }
 
   /**
@@ -286,19 +285,18 @@ export class JobStepsImpl implements JobSteps {
     stepName: string,
     options?: JobStepsGetByVersionOptionalParams
   ): Promise<JobStepsGetByVersionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobVersion,
-      stepName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobVersion,
+        stepName,
+        options
+      },
       getByVersionOperationSpec
-    ) as Promise<JobStepsGetByVersionResponse>;
+    );
   }
 
   /**
@@ -317,17 +315,10 @@ export class JobStepsImpl implements JobSteps {
     jobName: string,
     options?: JobStepsListByJobOptionalParams
   ): Promise<JobStepsListByJobResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, jobName, options },
       listByJobOperationSpec
-    ) as Promise<JobStepsListByJobResponse>;
+    );
   }
 
   /**
@@ -348,18 +339,17 @@ export class JobStepsImpl implements JobSteps {
     stepName: string,
     options?: JobStepsGetOptionalParams
   ): Promise<JobStepsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      stepName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        stepName,
+        options
+      },
       getOperationSpec
-    ) as Promise<JobStepsGetResponse>;
+    );
   }
 
   /**
@@ -382,19 +372,18 @@ export class JobStepsImpl implements JobSteps {
     parameters: JobStep,
     options?: JobStepsCreateOrUpdateOptionalParams
   ): Promise<JobStepsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      stepName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        stepName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<JobStepsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -414,19 +403,18 @@ export class JobStepsImpl implements JobSteps {
     jobName: string,
     stepName: string,
     options?: JobStepsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      stepName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        stepName,
+        options
+      },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -449,19 +437,18 @@ export class JobStepsImpl implements JobSteps {
     nextLink: string,
     options?: JobStepsListByVersionNextOptionalParams
   ): Promise<JobStepsListByVersionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      jobVersion,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        jobVersion,
+        nextLink,
+        options
+      },
       listByVersionNextOperationSpec
-    ) as Promise<JobStepsListByVersionNextResponse>;
+    );
   }
 
   /**
@@ -482,24 +469,23 @@ export class JobStepsImpl implements JobSteps {
     nextLink: string,
     options?: JobStepsListByJobNextOptionalParams
   ): Promise<JobStepsListByJobNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      jobName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        jobName,
+        nextLink,
+        options
+      },
       listByJobNextOperationSpec
-    ) as Promise<JobStepsListByJobNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByVersionOperationSpec: coreHttp.OperationSpec = {
+const listByVersionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/versions/{jobVersion}/steps",
   httpMethod: "GET",
@@ -522,7 +508,7 @@ const listByVersionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getByVersionOperationSpec: coreHttp.OperationSpec = {
+const getByVersionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/versions/{jobVersion}/steps/{stepName}",
   httpMethod: "GET",
@@ -546,7 +532,7 @@ const getByVersionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByJobOperationSpec: coreHttp.OperationSpec = {
+const listByJobOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/steps",
   httpMethod: "GET",
@@ -568,7 +554,7 @@ const listByJobOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/steps/{stepName}",
   httpMethod: "GET",
@@ -591,7 +577,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/steps/{stepName}",
   httpMethod: "PUT",
@@ -619,7 +605,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/jobs/{jobName}/steps/{stepName}",
   httpMethod: "DELETE",
@@ -636,7 +622,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByVersionNextOperationSpec: coreHttp.OperationSpec = {
+const listByVersionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -659,7 +645,7 @@ const listByVersionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByJobNextOperationSpec: coreHttp.OperationSpec = {
+const listByJobNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

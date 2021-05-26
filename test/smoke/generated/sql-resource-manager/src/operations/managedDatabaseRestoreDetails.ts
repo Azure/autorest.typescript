@@ -7,7 +7,7 @@
  */
 
 import { ManagedDatabaseRestoreDetails } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -46,23 +46,22 @@ export class ManagedDatabaseRestoreDetailsImpl
     restoreDetailsName: RestoreDetailsName,
     options?: ManagedDatabaseRestoreDetailsGetOptionalParams
   ): Promise<ManagedDatabaseRestoreDetailsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      restoreDetailsName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        restoreDetailsName,
+        options
+      },
       getOperationSpec
-    ) as Promise<ManagedDatabaseRestoreDetailsGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/restoreDetails/{restoreDetailsName}",
   httpMethod: "GET",

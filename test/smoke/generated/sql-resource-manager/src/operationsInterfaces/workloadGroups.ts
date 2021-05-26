@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   WorkloadGroup,
@@ -109,9 +108,7 @@ export interface WorkloadGroups {
     databaseName: string,
     workloadGroupName: string,
     options?: WorkloadGroupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a workload group.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -127,5 +124,5 @@ export interface WorkloadGroups {
     databaseName: string,
     workloadGroupName: string,
     options?: WorkloadGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

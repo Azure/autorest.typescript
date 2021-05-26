@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AvailableServiceAliases } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -164,14 +164,10 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
     location: string,
     options?: AvailableServiceAliasesListOptionalParams
   ): Promise<AvailableServiceAliasesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listOperationSpec
-    ) as Promise<AvailableServiceAliasesListResponse>;
+    );
   }
 
   /**
@@ -185,15 +181,10 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
     location: string,
     options?: AvailableServiceAliasesListByResourceGroupOptionalParams
   ): Promise<AvailableServiceAliasesListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, location, options },
       listByResourceGroupOperationSpec
-    ) as Promise<AvailableServiceAliasesListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -207,15 +198,10 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
     nextLink: string,
     options?: AvailableServiceAliasesListNextOptionalParams
   ): Promise<AvailableServiceAliasesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, nextLink, options },
       listNextOperationSpec
-    ) as Promise<AvailableServiceAliasesListNextResponse>;
+    );
   }
 
   /**
@@ -231,22 +217,16 @@ export class AvailableServiceAliasesImpl implements AvailableServiceAliases {
     nextLink: string,
     options?: AvailableServiceAliasesListByResourceGroupNextOptionalParams
   ): Promise<AvailableServiceAliasesListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, location, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<AvailableServiceAliasesListByResourceGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/availableServiceAliases",
   httpMethod: "GET",
@@ -267,7 +247,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/locations/{location}/availableServiceAliases",
   httpMethod: "GET",
@@ -289,7 +269,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -310,7 +290,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

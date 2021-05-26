@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ComputeOperationListResult: coreHttp.CompositeMapper = {
+export const ComputeOperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ComputeOperationListResult",
@@ -30,7 +30,7 @@ export const ComputeOperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ComputeOperationValue: coreHttp.CompositeMapper = {
+export const ComputeOperationValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ComputeOperationValue",
@@ -81,7 +81,7 @@ export const ComputeOperationValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubResource: coreHttp.CompositeMapper = {
+export const SubResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubResource",
@@ -96,7 +96,7 @@ export const SubResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const InstanceViewStatus: coreHttp.CompositeMapper = {
+export const InstanceViewStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InstanceViewStatus",
@@ -136,7 +136,7 @@ export const InstanceViewStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const Sku: coreHttp.CompositeMapper = {
+export const Sku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Sku",
@@ -163,7 +163,7 @@ export const Sku: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Resource",
@@ -207,7 +207,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const UpdateResource: coreHttp.CompositeMapper = {
+export const UpdateResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpdateResource",
@@ -223,7 +223,7 @@ export const UpdateResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AvailabilitySetListResult: coreHttp.CompositeMapper = {
+export const AvailabilitySetListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AvailabilitySetListResult",
@@ -251,7 +251,7 @@ export const AvailabilitySetListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineSizeListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineSizeListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineSizeListResult",
@@ -272,7 +272,7 @@ export const VirtualMachineSizeListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineSize: coreHttp.CompositeMapper = {
+export const VirtualMachineSize: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineSize",
@@ -317,7 +317,7 @@ export const VirtualMachineSize: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProximityPlacementGroupListResult: coreHttp.CompositeMapper = {
+export const ProximityPlacementGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProximityPlacementGroupListResult",
@@ -345,7 +345,7 @@ export const ProximityPlacementGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubResourceReadOnly: coreHttp.CompositeMapper = {
+export const SubResourceReadOnly: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubResourceReadOnly",
@@ -361,7 +361,7 @@ export const SubResourceReadOnly: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostGroupListResult: coreHttp.CompositeMapper = {
+export const DedicatedHostGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostGroupListResult",
@@ -389,7 +389,7 @@ export const DedicatedHostGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostInstanceView: coreHttp.CompositeMapper = {
+export const DedicatedHostInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostInstanceView",
@@ -424,7 +424,7 @@ export const DedicatedHostInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostAvailableCapacity: coreHttp.CompositeMapper = {
+export const DedicatedHostAvailableCapacity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostAvailableCapacity",
@@ -445,7 +445,7 @@ export const DedicatedHostAvailableCapacity: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostAllocatableVM: coreHttp.CompositeMapper = {
+export const DedicatedHostAllocatableVM: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostAllocatableVM",
@@ -466,7 +466,7 @@ export const DedicatedHostAllocatableVM: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostListResult: coreHttp.CompositeMapper = {
+export const DedicatedHostListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostListResult",
@@ -494,7 +494,7 @@ export const DedicatedHostListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshPublicKeysGroupListResult: coreHttp.CompositeMapper = {
+export const SshPublicKeysGroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshPublicKeysGroupListResult",
@@ -522,7 +522,7 @@ export const SshPublicKeysGroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshPublicKeyGenerateKeyPairResult: coreHttp.CompositeMapper = {
+export const SshPublicKeyGenerateKeyPairResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshPublicKeyGenerateKeyPairResult",
@@ -552,7 +552,7 @@ export const SshPublicKeyGenerateKeyPairResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtensionInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineExtensionInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtensionInstanceView",
@@ -603,7 +603,7 @@ export const VirtualMachineExtensionInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtensionsListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineExtensionsListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtensionsListResult",
@@ -624,7 +624,7 @@ export const VirtualMachineExtensionsListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PurchasePlan: coreHttp.CompositeMapper = {
+export const PurchasePlan: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PurchasePlan",
@@ -654,7 +654,7 @@ export const PurchasePlan: coreHttp.CompositeMapper = {
   }
 };
 
-export const OSDiskImage: coreHttp.CompositeMapper = {
+export const OSDiskImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OSDiskImage",
@@ -671,7 +671,7 @@ export const OSDiskImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataDiskImage: coreHttp.CompositeMapper = {
+export const DataDiskImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataDiskImage",
@@ -687,7 +687,7 @@ export const DataDiskImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutomaticOSUpgradeProperties: coreHttp.CompositeMapper = {
+export const AutomaticOSUpgradeProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutomaticOSUpgradeProperties",
@@ -703,7 +703,7 @@ export const AutomaticOSUpgradeProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ListUsagesResult: coreHttp.CompositeMapper = {
+export const ListUsagesResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ListUsagesResult",
@@ -731,7 +731,7 @@ export const ListUsagesResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const UsageDef: coreHttp.CompositeMapper = {
+export const UsageDef: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UsageDef",
@@ -769,7 +769,7 @@ export const UsageDef: coreHttp.CompositeMapper = {
   }
 };
 
-export const UsageName: coreHttp.CompositeMapper = {
+export const UsageName: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UsageName",
@@ -790,7 +790,7 @@ export const UsageName: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineListResult",
@@ -818,7 +818,7 @@ export const VirtualMachineListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Plan: coreHttp.CompositeMapper = {
+export const Plan: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Plan",
@@ -851,7 +851,7 @@ export const Plan: coreHttp.CompositeMapper = {
   }
 };
 
-export const HardwareProfile: coreHttp.CompositeMapper = {
+export const HardwareProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "HardwareProfile",
@@ -866,7 +866,7 @@ export const HardwareProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageProfile: coreHttp.CompositeMapper = {
+export const StorageProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StorageProfile",
@@ -901,7 +901,7 @@ export const StorageProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const OSDisk: coreHttp.CompositeMapper = {
+export const OSDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OSDisk",
@@ -984,7 +984,7 @@ export const OSDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskEncryptionSettings: coreHttp.CompositeMapper = {
+export const DiskEncryptionSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskEncryptionSettings",
@@ -1013,7 +1013,7 @@ export const DiskEncryptionSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultSecretReference: coreHttp.CompositeMapper = {
+export const KeyVaultSecretReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyVaultSecretReference",
@@ -1036,7 +1036,7 @@ export const KeyVaultSecretReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultKeyReference: coreHttp.CompositeMapper = {
+export const KeyVaultKeyReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyVaultKeyReference",
@@ -1059,7 +1059,7 @@ export const KeyVaultKeyReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualHardDisk: coreHttp.CompositeMapper = {
+export const VirtualHardDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualHardDisk",
@@ -1074,7 +1074,7 @@ export const VirtualHardDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiffDiskSettings: coreHttp.CompositeMapper = {
+export const DiffDiskSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiffDiskSettings",
@@ -1095,7 +1095,7 @@ export const DiffDiskSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataDisk: coreHttp.CompositeMapper = {
+export const DataDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataDisk",
@@ -1184,7 +1184,7 @@ export const DataDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const AdditionalCapabilities: coreHttp.CompositeMapper = {
+export const AdditionalCapabilities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AdditionalCapabilities",
@@ -1199,7 +1199,7 @@ export const AdditionalCapabilities: coreHttp.CompositeMapper = {
   }
 };
 
-export const OSProfile: coreHttp.CompositeMapper = {
+export const OSProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OSProfile",
@@ -1270,7 +1270,7 @@ export const OSProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const WindowsConfiguration: coreHttp.CompositeMapper = {
+export const WindowsConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WindowsConfiguration",
@@ -1316,7 +1316,7 @@ export const WindowsConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const AdditionalUnattendContent: coreHttp.CompositeMapper = {
+export const AdditionalUnattendContent: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AdditionalUnattendContent",
@@ -1354,7 +1354,7 @@ export const AdditionalUnattendContent: coreHttp.CompositeMapper = {
   }
 };
 
-export const WinRMConfiguration: coreHttp.CompositeMapper = {
+export const WinRMConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WinRMConfiguration",
@@ -1375,7 +1375,7 @@ export const WinRMConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const WinRMListener: coreHttp.CompositeMapper = {
+export const WinRMListener: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "WinRMListener",
@@ -1397,7 +1397,7 @@ export const WinRMListener: coreHttp.CompositeMapper = {
   }
 };
 
-export const LinuxConfiguration: coreHttp.CompositeMapper = {
+export const LinuxConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LinuxConfiguration",
@@ -1425,7 +1425,7 @@ export const LinuxConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshConfiguration: coreHttp.CompositeMapper = {
+export const SshConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshConfiguration",
@@ -1446,7 +1446,7 @@ export const SshConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshPublicKey: coreHttp.CompositeMapper = {
+export const SshPublicKey: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshPublicKey",
@@ -1467,7 +1467,7 @@ export const SshPublicKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const VaultSecretGroup: coreHttp.CompositeMapper = {
+export const VaultSecretGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VaultSecretGroup",
@@ -1495,7 +1495,7 @@ export const VaultSecretGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const VaultCertificate: coreHttp.CompositeMapper = {
+export const VaultCertificate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VaultCertificate",
@@ -1516,7 +1516,7 @@ export const VaultCertificate: coreHttp.CompositeMapper = {
   }
 };
 
-export const NetworkProfile: coreHttp.CompositeMapper = {
+export const NetworkProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "NetworkProfile",
@@ -1537,7 +1537,7 @@ export const NetworkProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticsProfile: coreHttp.CompositeMapper = {
+export const DiagnosticsProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiagnosticsProfile",
@@ -1553,7 +1553,7 @@ export const DiagnosticsProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const BootDiagnostics: coreHttp.CompositeMapper = {
+export const BootDiagnostics: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BootDiagnostics",
@@ -1574,7 +1574,7 @@ export const BootDiagnostics: coreHttp.CompositeMapper = {
   }
 };
 
-export const BillingProfile: coreHttp.CompositeMapper = {
+export const BillingProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BillingProfile",
@@ -1589,7 +1589,7 @@ export const BillingProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineInstanceView",
@@ -1697,7 +1697,7 @@ export const VirtualMachineInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineAgentInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineAgentInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineAgentInstanceView",
@@ -1736,7 +1736,7 @@ export const VirtualMachineAgentInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtensionHandlerInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineExtensionHandlerInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtensionHandlerInstanceView",
@@ -1764,7 +1764,7 @@ export const VirtualMachineExtensionHandlerInstanceView: coreHttp.CompositeMappe
   }
 };
 
-export const MaintenanceRedeployStatus: coreHttp.CompositeMapper = {
+export const MaintenanceRedeployStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "MaintenanceRedeployStatus",
@@ -1821,7 +1821,7 @@ export const MaintenanceRedeployStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskInstanceView: coreHttp.CompositeMapper = {
+export const DiskInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskInstanceView",
@@ -1860,7 +1860,7 @@ export const DiskInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const BootDiagnosticsInstanceView: coreHttp.CompositeMapper = {
+export const BootDiagnosticsInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "BootDiagnosticsInstanceView",
@@ -1890,7 +1890,7 @@ export const BootDiagnosticsInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineIdentity: coreHttp.CompositeMapper = {
+export const VirtualMachineIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineIdentity",
@@ -1938,7 +1938,7 @@ export const VirtualMachineIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassignedidentitiesAdditionalproperties: coreHttp.CompositeMapper = {
+export const Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassignedidentitiesAdditionalproperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -1962,7 +1962,7 @@ export const Components1H8M3EpSchemasVirtualmachineidentityPropertiesUserassigne
   }
 };
 
-export const ImageStorageProfile: coreHttp.CompositeMapper = {
+export const ImageStorageProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageStorageProfile",
@@ -1996,7 +1996,7 @@ export const ImageStorageProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageDisk: coreHttp.CompositeMapper = {
+export const ImageDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageDisk",
@@ -2051,7 +2051,7 @@ export const ImageDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageListResult: coreHttp.CompositeMapper = {
+export const ImageListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageListResult",
@@ -2079,7 +2079,7 @@ export const ImageListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineCaptureParameters: coreHttp.CompositeMapper = {
+export const VirtualMachineCaptureParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineCaptureParameters",
@@ -2109,7 +2109,7 @@ export const VirtualMachineCaptureParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const CloudError: coreHttp.CompositeMapper = {
+export const CloudError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CloudError",
@@ -2125,7 +2125,7 @@ export const CloudError: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiError: coreHttp.CompositeMapper = {
+export const ApiError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApiError",
@@ -2171,7 +2171,7 @@ export const ApiError: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiErrorBase: coreHttp.CompositeMapper = {
+export const ApiErrorBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApiErrorBase",
@@ -2198,7 +2198,7 @@ export const ApiErrorBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const InnerError: coreHttp.CompositeMapper = {
+export const InnerError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InnerError",
@@ -2219,7 +2219,7 @@ export const InnerError: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineReimageParameters: coreHttp.CompositeMapper = {
+export const VirtualMachineReimageParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineReimageParameters",
@@ -2234,7 +2234,7 @@ export const VirtualMachineReimageParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const UpgradePolicy: coreHttp.CompositeMapper = {
+export const UpgradePolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpgradePolicy",
@@ -2264,7 +2264,7 @@ export const UpgradePolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const RollingUpgradePolicy: coreHttp.CompositeMapper = {
+export const RollingUpgradePolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RollingUpgradePolicy",
@@ -2309,7 +2309,7 @@ export const RollingUpgradePolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutomaticOSUpgradePolicy: coreHttp.CompositeMapper = {
+export const AutomaticOSUpgradePolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutomaticOSUpgradePolicy",
@@ -2330,7 +2330,7 @@ export const AutomaticOSUpgradePolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutomaticRepairsPolicy: coreHttp.CompositeMapper = {
+export const AutomaticRepairsPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AutomaticRepairsPolicy",
@@ -2351,7 +2351,7 @@ export const AutomaticRepairsPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMProfile",
@@ -2427,7 +2427,7 @@ export const VirtualMachineScaleSetVMProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetOSProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetOSProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetOSProfile",
@@ -2486,7 +2486,7 @@ export const VirtualMachineScaleSetOSProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetStorageProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetStorageProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetStorageProfile",
@@ -2521,7 +2521,7 @@ export const VirtualMachineScaleSetStorageProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetOSDisk: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetOSDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetOSDisk",
@@ -2601,7 +2601,7 @@ export const VirtualMachineScaleSetOSDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetManagedDiskParameters: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetManagedDiskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetManagedDiskParameters",
@@ -2623,7 +2623,7 @@ export const VirtualMachineScaleSetManagedDiskParameters: coreHttp.CompositeMapp
   }
 };
 
-export const VirtualMachineScaleSetDataDisk: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetDataDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetDataDisk",
@@ -2690,7 +2690,7 @@ export const VirtualMachineScaleSetDataDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetNetworkProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetNetworkProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetNetworkProfile",
@@ -2718,7 +2718,7 @@ export const VirtualMachineScaleSetNetworkProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiEntityReference: coreHttp.CompositeMapper = {
+export const ApiEntityReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApiEntityReference",
@@ -2733,7 +2733,7 @@ export const ApiEntityReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetNetworkConfigurationDnsSettings: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetNetworkConfigurationDnsSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetNetworkConfigurationDnsSettings",
@@ -2753,7 +2753,7 @@ export const VirtualMachineScaleSetNetworkConfigurationDnsSettings: coreHttp.Com
   }
 };
 
-export const VirtualMachineScaleSetPublicIPAddressConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetPublicIPAddressConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetPublicIPAddressConfiguration",
@@ -2808,7 +2808,7 @@ export const VirtualMachineScaleSetPublicIPAddressConfiguration: coreHttp.Compos
   }
 };
 
-export const VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings",
@@ -2824,7 +2824,7 @@ export const VirtualMachineScaleSetPublicIPAddressConfigurationDnsSettings: core
   }
 };
 
-export const VirtualMachineScaleSetIpTag: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetIpTag: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetIpTag",
@@ -2845,7 +2845,7 @@ export const VirtualMachineScaleSetIpTag: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetExtensionProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetExtensionProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetExtensionProfile",
@@ -2866,7 +2866,7 @@ export const VirtualMachineScaleSetExtensionProfile: coreHttp.CompositeMapper = 
   }
 };
 
-export const ScheduledEventsProfile: coreHttp.CompositeMapper = {
+export const ScheduledEventsProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScheduledEventsProfile",
@@ -2882,7 +2882,7 @@ export const ScheduledEventsProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const TerminateNotificationProfile: coreHttp.CompositeMapper = {
+export const TerminateNotificationProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TerminateNotificationProfile",
@@ -2903,7 +2903,7 @@ export const TerminateNotificationProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ScaleInPolicy: coreHttp.CompositeMapper = {
+export const ScaleInPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScaleInPolicy",
@@ -2923,7 +2923,7 @@ export const ScaleInPolicy: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetIdentity: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetIdentity",
@@ -2971,7 +2971,7 @@ export const VirtualMachineScaleSetIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUserassignedidentitiesAdditionalproperties: coreHttp.CompositeMapper = {
+export const ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUserassignedidentitiesAdditionalproperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className:
@@ -2995,7 +2995,7 @@ export const ComponentsNj115SSchemasVirtualmachinescalesetidentityPropertiesUser
   }
 };
 
-export const VirtualMachineScaleSetUpdateVMProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateVMProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateVMProfile",
@@ -3059,7 +3059,7 @@ export const VirtualMachineScaleSetUpdateVMProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetUpdateOSProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateOSProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateOSProfile",
@@ -3100,7 +3100,7 @@ export const VirtualMachineScaleSetUpdateOSProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetUpdateStorageProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateStorageProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateStorageProfile",
@@ -3135,7 +3135,7 @@ export const VirtualMachineScaleSetUpdateStorageProfile: coreHttp.CompositeMappe
   }
 };
 
-export const VirtualMachineScaleSetUpdateOSDisk: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateOSDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateOSDisk",
@@ -3188,7 +3188,7 @@ export const VirtualMachineScaleSetUpdateOSDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetUpdateNetworkProfile: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateNetworkProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateNetworkProfile",
@@ -3216,7 +3216,7 @@ export const VirtualMachineScaleSetUpdateNetworkProfile: coreHttp.CompositeMappe
   }
 };
 
-export const VirtualMachineScaleSetUpdatePublicIPAddressConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdatePublicIPAddressConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdatePublicIPAddressConfiguration",
@@ -3245,7 +3245,7 @@ export const VirtualMachineScaleSetUpdatePublicIPAddressConfiguration: coreHttp.
   }
 };
 
-export const VirtualMachineScaleSetVMInstanceIDs: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMInstanceIDs: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMInstanceIDs",
@@ -3265,7 +3265,7 @@ export const VirtualMachineScaleSetVMInstanceIDs: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMInstanceRequiredIDs: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMInstanceRequiredIDs: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMInstanceRequiredIDs",
@@ -3286,7 +3286,7 @@ export const VirtualMachineScaleSetVMInstanceRequiredIDs: coreHttp.CompositeMapp
   }
 };
 
-export const VirtualMachineScaleSetInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetInstanceView",
@@ -3340,7 +3340,7 @@ export const VirtualMachineScaleSetInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetInstanceViewStatusesSummary: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetInstanceViewStatusesSummary: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetInstanceViewStatusesSummary",
@@ -3362,7 +3362,7 @@ export const VirtualMachineScaleSetInstanceViewStatusesSummary: coreHttp.Composi
   }
 };
 
-export const VirtualMachineStatusCodeCount: coreHttp.CompositeMapper = {
+export const VirtualMachineStatusCodeCount: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineStatusCodeCount",
@@ -3385,7 +3385,7 @@ export const VirtualMachineStatusCodeCount: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMExtensionsSummary: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMExtensionsSummary: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMExtensionsSummary",
@@ -3414,7 +3414,7 @@ export const VirtualMachineScaleSetVMExtensionsSummary: coreHttp.CompositeMapper
   }
 };
 
-export const OrchestrationServiceSummary: coreHttp.CompositeMapper = {
+export const OrchestrationServiceSummary: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OrchestrationServiceSummary",
@@ -3437,7 +3437,7 @@ export const OrchestrationServiceSummary: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetListResult",
@@ -3465,7 +3465,7 @@ export const VirtualMachineScaleSetListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetExtensionListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetExtensionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetExtensionListResult",
@@ -3493,7 +3493,7 @@ export const VirtualMachineScaleSetExtensionListResult: coreHttp.CompositeMapper
   }
 };
 
-export const VirtualMachineScaleSetListWithLinkResult: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetListWithLinkResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetListWithLinkResult",
@@ -3521,7 +3521,7 @@ export const VirtualMachineScaleSetListWithLinkResult: coreHttp.CompositeMapper 
   }
 };
 
-export const VirtualMachineScaleSetListSkusResult: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetListSkusResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetListSkusResult",
@@ -3549,7 +3549,7 @@ export const VirtualMachineScaleSetListSkusResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetSku: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetSku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetSku",
@@ -3579,7 +3579,7 @@ export const VirtualMachineScaleSetSku: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetSkuCapacity: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetSkuCapacity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetSkuCapacity",
@@ -3617,7 +3617,7 @@ export const VirtualMachineScaleSetSkuCapacity: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetListOSUpgradeHistory: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetListOSUpgradeHistory: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetListOSUpgradeHistory",
@@ -3645,7 +3645,7 @@ export const VirtualMachineScaleSetListOSUpgradeHistory: coreHttp.CompositeMappe
   }
 };
 
-export const UpgradeOperationHistoricalStatusInfo: coreHttp.CompositeMapper = {
+export const UpgradeOperationHistoricalStatusInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpgradeOperationHistoricalStatusInfo",
@@ -3675,7 +3675,7 @@ export const UpgradeOperationHistoricalStatusInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const UpgradeOperationHistoricalStatusInfoProperties: coreHttp.CompositeMapper = {
+export const UpgradeOperationHistoricalStatusInfoProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpgradeOperationHistoricalStatusInfoProperties",
@@ -3727,7 +3727,7 @@ export const UpgradeOperationHistoricalStatusInfoProperties: coreHttp.CompositeM
   }
 };
 
-export const UpgradeOperationHistoryStatus: coreHttp.CompositeMapper = {
+export const UpgradeOperationHistoryStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpgradeOperationHistoryStatus",
@@ -3758,7 +3758,7 @@ export const UpgradeOperationHistoryStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const RollingUpgradeProgressInfo: coreHttp.CompositeMapper = {
+export const RollingUpgradeProgressInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RollingUpgradeProgressInfo",
@@ -3795,7 +3795,7 @@ export const RollingUpgradeProgressInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const RollbackStatusInfo: coreHttp.CompositeMapper = {
+export const RollbackStatusInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RollbackStatusInfo",
@@ -3825,7 +3825,7 @@ export const RollbackStatusInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const RollingUpgradeRunningStatus: coreHttp.CompositeMapper = {
+export const RollingUpgradeRunningStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RollingUpgradeRunningStatus",
@@ -3864,7 +3864,7 @@ export const RollingUpgradeRunningStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecoveryWalkResponse: coreHttp.CompositeMapper = {
+export const RecoveryWalkResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecoveryWalkResponse",
@@ -3887,7 +3887,7 @@ export const RecoveryWalkResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const VMScaleSetConvertToSinglePlacementGroupInput: coreHttp.CompositeMapper = {
+export const VMScaleSetConvertToSinglePlacementGroupInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VMScaleSetConvertToSinglePlacementGroupInput",
@@ -3902,7 +3902,7 @@ export const VMScaleSetConvertToSinglePlacementGroupInput: coreHttp.CompositeMap
   }
 };
 
-export const OrchestrationServiceStateInput: coreHttp.CompositeMapper = {
+export const OrchestrationServiceStateInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OrchestrationServiceStateInput",
@@ -3925,7 +3925,7 @@ export const OrchestrationServiceStateInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMInstanceView: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMInstanceView: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMInstanceView",
@@ -4022,7 +4022,7 @@ export const VirtualMachineScaleSetVMInstanceView: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineHealthStatus: coreHttp.CompositeMapper = {
+export const VirtualMachineHealthStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineHealthStatus",
@@ -4038,7 +4038,7 @@ export const VirtualMachineHealthStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMNetworkProfileConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMNetworkProfileConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMNetworkProfileConfiguration",
@@ -4059,7 +4059,7 @@ export const VirtualMachineScaleSetVMNetworkProfileConfiguration: coreHttp.Compo
   }
 };
 
-export const VirtualMachineScaleSetVMProtectionPolicy: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMProtectionPolicy: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMProtectionPolicy",
@@ -4080,7 +4080,7 @@ export const VirtualMachineScaleSetVMProtectionPolicy: coreHttp.CompositeMapper 
   }
 };
 
-export const VirtualMachineScaleSetVMListResult: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMListResult",
@@ -4108,7 +4108,7 @@ export const VirtualMachineScaleSetVMListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogAnalyticsInputBase: coreHttp.CompositeMapper = {
+export const LogAnalyticsInputBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LogAnalyticsInputBase",
@@ -4156,7 +4156,7 @@ export const LogAnalyticsInputBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogAnalyticsOperationResult: coreHttp.CompositeMapper = {
+export const LogAnalyticsOperationResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LogAnalyticsOperationResult",
@@ -4172,7 +4172,7 @@ export const LogAnalyticsOperationResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogAnalyticsOutput: coreHttp.CompositeMapper = {
+export const LogAnalyticsOutput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LogAnalyticsOutput",
@@ -4188,7 +4188,7 @@ export const LogAnalyticsOutput: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandListResult: coreHttp.CompositeMapper = {
+export const RunCommandListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandListResult",
@@ -4216,7 +4216,7 @@ export const RunCommandListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandDocumentBase: coreHttp.CompositeMapper = {
+export const RunCommandDocumentBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandDocumentBase",
@@ -4261,7 +4261,7 @@ export const RunCommandDocumentBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandParameterDefinition: coreHttp.CompositeMapper = {
+export const RunCommandParameterDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandParameterDefinition",
@@ -4296,7 +4296,7 @@ export const RunCommandParameterDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandInput: coreHttp.CompositeMapper = {
+export const RunCommandInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandInput",
@@ -4335,7 +4335,7 @@ export const RunCommandInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandInputParameter: coreHttp.CompositeMapper = {
+export const RunCommandInputParameter: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandInputParameter",
@@ -4358,7 +4358,7 @@ export const RunCommandInputParameter: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandResult: coreHttp.CompositeMapper = {
+export const RunCommandResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandResult",
@@ -4379,7 +4379,7 @@ export const RunCommandResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkusResult: coreHttp.CompositeMapper = {
+export const ResourceSkusResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkusResult",
@@ -4407,7 +4407,7 @@ export const ResourceSkusResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSku: coreHttp.CompositeMapper = {
+export const ResourceSku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSku",
@@ -4541,7 +4541,7 @@ export const ResourceSku: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuCapacity: coreHttp.CompositeMapper = {
+export const ResourceSkuCapacity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuCapacity",
@@ -4579,7 +4579,7 @@ export const ResourceSkuCapacity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuLocationInfo: coreHttp.CompositeMapper = {
+export const ResourceSkuLocationInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuLocationInfo",
@@ -4620,7 +4620,7 @@ export const ResourceSkuLocationInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuZoneDetails: coreHttp.CompositeMapper = {
+export const ResourceSkuZoneDetails: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuZoneDetails",
@@ -4654,7 +4654,7 @@ export const ResourceSkuZoneDetails: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuCapabilities: coreHttp.CompositeMapper = {
+export const ResourceSkuCapabilities: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuCapabilities",
@@ -4677,7 +4677,7 @@ export const ResourceSkuCapabilities: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuCosts: coreHttp.CompositeMapper = {
+export const ResourceSkuCosts: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuCosts",
@@ -4707,7 +4707,7 @@ export const ResourceSkuCosts: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuRestrictions: coreHttp.CompositeMapper = {
+export const ResourceSkuRestrictions: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuRestrictions",
@@ -4751,7 +4751,7 @@ export const ResourceSkuRestrictions: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceSkuRestrictionInfo: coreHttp.CompositeMapper = {
+export const ResourceSkuRestrictionInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceSkuRestrictionInfo",
@@ -4784,7 +4784,7 @@ export const ResourceSkuRestrictionInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskSku: coreHttp.CompositeMapper = {
+export const DiskSku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskSku",
@@ -4806,7 +4806,7 @@ export const DiskSku: coreHttp.CompositeMapper = {
   }
 };
 
-export const CreationData: coreHttp.CompositeMapper = {
+export const CreationData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CreationData",
@@ -4867,7 +4867,7 @@ export const CreationData: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageDiskReference: coreHttp.CompositeMapper = {
+export const ImageDiskReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageDiskReference",
@@ -4889,7 +4889,7 @@ export const ImageDiskReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionSettingsCollection: coreHttp.CompositeMapper = {
+export const EncryptionSettingsCollection: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionSettingsCollection",
@@ -4923,7 +4923,7 @@ export const EncryptionSettingsCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionSettingsElement: coreHttp.CompositeMapper = {
+export const EncryptionSettingsElement: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionSettingsElement",
@@ -4946,7 +4946,7 @@ export const EncryptionSettingsElement: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultAndSecretReference: coreHttp.CompositeMapper = {
+export const KeyVaultAndSecretReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyVaultAndSecretReference",
@@ -4969,7 +4969,7 @@ export const KeyVaultAndSecretReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const SourceVault: coreHttp.CompositeMapper = {
+export const SourceVault: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SourceVault",
@@ -4984,7 +4984,7 @@ export const SourceVault: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultAndKeyReference: coreHttp.CompositeMapper = {
+export const KeyVaultAndKeyReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyVaultAndKeyReference",
@@ -5007,7 +5007,7 @@ export const KeyVaultAndKeyReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const Encryption: coreHttp.CompositeMapper = {
+export const Encryption: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Encryption",
@@ -5028,7 +5028,7 @@ export const Encryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const ShareInfoElement: coreHttp.CompositeMapper = {
+export const ShareInfoElement: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ShareInfoElement",
@@ -5044,7 +5044,7 @@ export const ShareInfoElement: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskUpdate: coreHttp.CompositeMapper = {
+export const DiskUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskUpdate",
@@ -5124,7 +5124,7 @@ export const DiskUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskList: coreHttp.CompositeMapper = {
+export const DiskList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskList",
@@ -5152,7 +5152,7 @@ export const DiskList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GrantAccessData: coreHttp.CompositeMapper = {
+export const GrantAccessData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GrantAccessData",
@@ -5175,7 +5175,7 @@ export const GrantAccessData: coreHttp.CompositeMapper = {
   }
 };
 
-export const AccessUri: coreHttp.CompositeMapper = {
+export const AccessUri: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AccessUri",
@@ -5191,7 +5191,7 @@ export const AccessUri: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotSku: coreHttp.CompositeMapper = {
+export const SnapshotSku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SnapshotSku",
@@ -5213,7 +5213,7 @@ export const SnapshotSku: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotUpdate: coreHttp.CompositeMapper = {
+export const SnapshotUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SnapshotUpdate",
@@ -5263,7 +5263,7 @@ export const SnapshotUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotList: coreHttp.CompositeMapper = {
+export const SnapshotList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SnapshotList",
@@ -5291,7 +5291,7 @@ export const SnapshotList: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionSetIdentity: coreHttp.CompositeMapper = {
+export const EncryptionSetIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionSetIdentity",
@@ -5320,7 +5320,7 @@ export const EncryptionSetIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskEncryptionSetUpdate: coreHttp.CompositeMapper = {
+export const DiskEncryptionSetUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskEncryptionSetUpdate",
@@ -5343,7 +5343,7 @@ export const DiskEncryptionSetUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskEncryptionSetList: coreHttp.CompositeMapper = {
+export const DiskEncryptionSetList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskEncryptionSetList",
@@ -5371,7 +5371,7 @@ export const DiskEncryptionSetList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryIdentifier: coreHttp.CompositeMapper = {
+export const GalleryIdentifier: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryIdentifier",
@@ -5387,7 +5387,7 @@ export const GalleryIdentifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const UpdateResourceDefinition: coreHttp.CompositeMapper = {
+export const UpdateResourceDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UpdateResourceDefinition",
@@ -5424,7 +5424,7 @@ export const UpdateResourceDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageIdentifier: coreHttp.CompositeMapper = {
+export const GalleryImageIdentifier: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageIdentifier",
@@ -5454,7 +5454,7 @@ export const GalleryImageIdentifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendedMachineConfiguration: coreHttp.CompositeMapper = {
+export const RecommendedMachineConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RecommendedMachineConfiguration",
@@ -5477,7 +5477,7 @@ export const RecommendedMachineConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceRange: coreHttp.CompositeMapper = {
+export const ResourceRange: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceRange",
@@ -5498,7 +5498,7 @@ export const ResourceRange: coreHttp.CompositeMapper = {
   }
 };
 
-export const Disallowed: coreHttp.CompositeMapper = {
+export const Disallowed: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Disallowed",
@@ -5518,7 +5518,7 @@ export const Disallowed: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImagePurchasePlan: coreHttp.CompositeMapper = {
+export const ImagePurchasePlan: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImagePurchasePlan",
@@ -5545,7 +5545,7 @@ export const ImagePurchasePlan: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryArtifactPublishingProfileBase: coreHttp.CompositeMapper = {
+export const GalleryArtifactPublishingProfileBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryArtifactPublishingProfileBase",
@@ -5597,7 +5597,7 @@ export const GalleryArtifactPublishingProfileBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const TargetRegion: coreHttp.CompositeMapper = {
+export const TargetRegion: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TargetRegion",
@@ -5632,7 +5632,7 @@ export const TargetRegion: coreHttp.CompositeMapper = {
   }
 };
 
-export const EncryptionImages: coreHttp.CompositeMapper = {
+export const EncryptionImages: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EncryptionImages",
@@ -5660,7 +5660,7 @@ export const EncryptionImages: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskImageEncryption: coreHttp.CompositeMapper = {
+export const DiskImageEncryption: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskImageEncryption",
@@ -5675,7 +5675,7 @@ export const DiskImageEncryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageVersionStorageProfile: coreHttp.CompositeMapper = {
+export const GalleryImageVersionStorageProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageVersionStorageProfile",
@@ -5710,7 +5710,7 @@ export const GalleryImageVersionStorageProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryArtifactVersionSource: coreHttp.CompositeMapper = {
+export const GalleryArtifactVersionSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryArtifactVersionSource",
@@ -5725,7 +5725,7 @@ export const GalleryArtifactVersionSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryDiskImage: coreHttp.CompositeMapper = {
+export const GalleryDiskImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryDiskImage",
@@ -5755,7 +5755,7 @@ export const GalleryDiskImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const ReplicationStatus: coreHttp.CompositeMapper = {
+export const ReplicationStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ReplicationStatus",
@@ -5784,7 +5784,7 @@ export const ReplicationStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const RegionalReplicationStatus: coreHttp.CompositeMapper = {
+export const RegionalReplicationStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RegionalReplicationStatus",
@@ -5821,7 +5821,7 @@ export const RegionalReplicationStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserArtifactSource: coreHttp.CompositeMapper = {
+export const UserArtifactSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserArtifactSource",
@@ -5844,7 +5844,7 @@ export const UserArtifactSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryList: coreHttp.CompositeMapper = {
+export const GalleryList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryList",
@@ -5872,7 +5872,7 @@ export const GalleryList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageList: coreHttp.CompositeMapper = {
+export const GalleryImageList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageList",
@@ -5900,7 +5900,7 @@ export const GalleryImageList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageVersionList: coreHttp.CompositeMapper = {
+export const GalleryImageVersionList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageVersionList",
@@ -5928,7 +5928,7 @@ export const GalleryImageVersionList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationList: coreHttp.CompositeMapper = {
+export const GalleryApplicationList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationList",
@@ -5956,7 +5956,7 @@ export const GalleryApplicationList: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationVersionList: coreHttp.CompositeMapper = {
+export const GalleryApplicationVersionList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationVersionList",
@@ -5984,7 +5984,7 @@ export const GalleryApplicationVersionList: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceListResult: coreHttp.CompositeMapper = {
+export const ContainerServiceListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceListResult",
@@ -6011,7 +6011,7 @@ export const ContainerServiceListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceOrchestratorProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceOrchestratorProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceOrchestratorProfile",
@@ -6028,7 +6028,7 @@ export const ContainerServiceOrchestratorProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceCustomProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceCustomProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceCustomProfile",
@@ -6044,7 +6044,7 @@ export const ContainerServiceCustomProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServicePrincipalProfile: coreHttp.CompositeMapper = {
+export const ContainerServicePrincipalProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServicePrincipalProfile",
@@ -6067,7 +6067,7 @@ export const ContainerServicePrincipalProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceMasterProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceMasterProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceMasterProfile",
@@ -6097,7 +6097,7 @@ export const ContainerServiceMasterProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceAgentPoolProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceAgentPoolProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceAgentPoolProfile",
@@ -6146,7 +6146,7 @@ export const ContainerServiceAgentPoolProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceWindowsProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceWindowsProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceWindowsProfile",
@@ -6177,7 +6177,7 @@ export const ContainerServiceWindowsProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceLinuxProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceLinuxProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceLinuxProfile",
@@ -6203,7 +6203,7 @@ export const ContainerServiceLinuxProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceSshConfiguration: coreHttp.CompositeMapper = {
+export const ContainerServiceSshConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceSshConfiguration",
@@ -6225,7 +6225,7 @@ export const ContainerServiceSshConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceSshPublicKey: coreHttp.CompositeMapper = {
+export const ContainerServiceSshPublicKey: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceSshPublicKey",
@@ -6241,7 +6241,7 @@ export const ContainerServiceSshPublicKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceDiagnosticsProfile: coreHttp.CompositeMapper = {
+export const ContainerServiceDiagnosticsProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceDiagnosticsProfile",
@@ -6257,7 +6257,7 @@ export const ContainerServiceDiagnosticsProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerServiceVMDiagnostics: coreHttp.CompositeMapper = {
+export const ContainerServiceVMDiagnostics: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerServiceVMDiagnostics",
@@ -6280,7 +6280,7 @@ export const ContainerServiceVMDiagnostics: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryArtifactSource: coreHttp.CompositeMapper = {
+export const GalleryArtifactSource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryArtifactSource",
@@ -6296,7 +6296,7 @@ export const GalleryArtifactSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedArtifact: coreHttp.CompositeMapper = {
+export const ManagedArtifact: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedArtifact",
@@ -6312,7 +6312,7 @@ export const ManagedArtifact: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubResourceWithColocationStatus: coreHttp.CompositeMapper = {
+export const SubResourceWithColocationStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubResourceWithColocationStatus",
@@ -6329,7 +6329,7 @@ export const SubResourceWithColocationStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineImageResource: coreHttp.CompositeMapper = {
+export const VirtualMachineImageResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineImageResource",
@@ -6360,7 +6360,7 @@ export const VirtualMachineImageResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageReference: coreHttp.CompositeMapper = {
+export const ImageReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageReference",
@@ -6401,7 +6401,7 @@ export const ImageReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskEncryptionSetParameters: coreHttp.CompositeMapper = {
+export const DiskEncryptionSetParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskEncryptionSetParameters",
@@ -6411,7 +6411,7 @@ export const DiskEncryptionSetParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedDiskParameters: coreHttp.CompositeMapper = {
+export const ManagedDiskParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedDiskParameters",
@@ -6434,7 +6434,7 @@ export const ManagedDiskParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const NetworkInterfaceReference: coreHttp.CompositeMapper = {
+export const NetworkInterfaceReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "NetworkInterfaceReference",
@@ -6450,7 +6450,7 @@ export const NetworkInterfaceReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineCaptureResult: coreHttp.CompositeMapper = {
+export const VirtualMachineCaptureResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineCaptureResult",
@@ -6493,7 +6493,7 @@ export const VirtualMachineCaptureResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetIPConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetIPConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetIPConfiguration",
@@ -6584,7 +6584,7 @@ export const VirtualMachineScaleSetIPConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetNetworkConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetNetworkConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetNetworkConfiguration",
@@ -6645,7 +6645,7 @@ export const VirtualMachineScaleSetNetworkConfiguration: coreHttp.CompositeMappe
   }
 };
 
-export const VirtualMachineScaleSetUpdateIPConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateIPConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateIPConfiguration",
@@ -6735,7 +6735,7 @@ export const VirtualMachineScaleSetUpdateIPConfiguration: coreHttp.CompositeMapp
   }
 };
 
-export const VirtualMachineScaleSetUpdateNetworkConfiguration: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdateNetworkConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdateNetworkConfiguration",
@@ -6795,7 +6795,7 @@ export const VirtualMachineScaleSetUpdateNetworkConfiguration: coreHttp.Composit
   }
 };
 
-export const AvailabilitySet: coreHttp.CompositeMapper = {
+export const AvailabilitySet: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AvailabilitySet",
@@ -6856,7 +6856,7 @@ export const AvailabilitySet: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProximityPlacementGroup: coreHttp.CompositeMapper = {
+export const ProximityPlacementGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProximityPlacementGroup",
@@ -6918,7 +6918,7 @@ export const ProximityPlacementGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostGroup: coreHttp.CompositeMapper = {
+export const DedicatedHostGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostGroup",
@@ -6962,7 +6962,7 @@ export const DedicatedHostGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHost: coreHttp.CompositeMapper = {
+export const DedicatedHost: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHost",
@@ -7047,7 +7047,7 @@ export const DedicatedHost: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshPublicKeyResource: coreHttp.CompositeMapper = {
+export const SshPublicKeyResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshPublicKeyResource",
@@ -7063,7 +7063,7 @@ export const SshPublicKeyResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtensionImage: coreHttp.CompositeMapper = {
+export const VirtualMachineExtensionImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtensionImage",
@@ -7103,7 +7103,7 @@ export const VirtualMachineExtensionImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtension: coreHttp.CompositeMapper = {
+export const VirtualMachineExtension: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtension",
@@ -7169,7 +7169,7 @@ export const VirtualMachineExtension: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachine: coreHttp.CompositeMapper = {
+export const VirtualMachine: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachine",
@@ -7333,7 +7333,7 @@ export const VirtualMachine: coreHttp.CompositeMapper = {
   }
 };
 
-export const Image: coreHttp.CompositeMapper = {
+export const Image: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Image",
@@ -7370,7 +7370,7 @@ export const Image: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSet: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSet: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSet",
@@ -7498,7 +7498,7 @@ export const VirtualMachineScaleSet: coreHttp.CompositeMapper = {
   }
 };
 
-export const RollingUpgradeStatusInfo: coreHttp.CompositeMapper = {
+export const RollingUpgradeStatusInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RollingUpgradeStatusInfo",
@@ -7536,7 +7536,7 @@ export const RollingUpgradeStatusInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVM: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVM",
@@ -7696,7 +7696,7 @@ export const VirtualMachineScaleSetVM: coreHttp.CompositeMapper = {
   }
 };
 
-export const Disk: coreHttp.CompositeMapper = {
+export const Disk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Disk",
@@ -7861,7 +7861,7 @@ export const Disk: coreHttp.CompositeMapper = {
   }
 };
 
-export const Snapshot: coreHttp.CompositeMapper = {
+export const Snapshot: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Snapshot",
@@ -7959,7 +7959,7 @@ export const Snapshot: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiskEncryptionSet: coreHttp.CompositeMapper = {
+export const DiskEncryptionSet: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DiskEncryptionSet",
@@ -8003,7 +8003,7 @@ export const DiskEncryptionSet: coreHttp.CompositeMapper = {
   }
 };
 
-export const Gallery: coreHttp.CompositeMapper = {
+export const Gallery: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Gallery",
@@ -8033,7 +8033,7 @@ export const Gallery: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImage: coreHttp.CompositeMapper = {
+export const GalleryImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImage",
@@ -8128,7 +8128,7 @@ export const GalleryImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageVersion: coreHttp.CompositeMapper = {
+export const GalleryImageVersion: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageVersion",
@@ -8166,7 +8166,7 @@ export const GalleryImageVersion: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplication: coreHttp.CompositeMapper = {
+export const GalleryApplication: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplication",
@@ -8213,7 +8213,7 @@ export const GalleryApplication: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationVersion: coreHttp.CompositeMapper = {
+export const GalleryApplicationVersion: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationVersion",
@@ -8244,7 +8244,7 @@ export const GalleryApplicationVersion: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerService: coreHttp.CompositeMapper = {
+export const ContainerService: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerService",
@@ -8322,7 +8322,7 @@ export const ContainerService: coreHttp.CompositeMapper = {
   }
 };
 
-export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
+export const AvailabilitySetUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AvailabilitySetUpdate",
@@ -8383,7 +8383,7 @@ export const AvailabilitySetUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProximityPlacementGroupUpdate: coreHttp.CompositeMapper = {
+export const ProximityPlacementGroupUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ProximityPlacementGroupUpdate",
@@ -8393,7 +8393,7 @@ export const ProximityPlacementGroupUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostGroupUpdate: coreHttp.CompositeMapper = {
+export const DedicatedHostGroupUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostGroupUpdate",
@@ -8437,7 +8437,7 @@ export const DedicatedHostGroupUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const DedicatedHostUpdate: coreHttp.CompositeMapper = {
+export const DedicatedHostUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DedicatedHostUpdate",
@@ -8515,7 +8515,7 @@ export const DedicatedHostUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const SshPublicKeyUpdateResource: coreHttp.CompositeMapper = {
+export const SshPublicKeyUpdateResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SshPublicKeyUpdateResource",
@@ -8531,7 +8531,7 @@ export const SshPublicKeyUpdateResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineExtensionUpdate: coreHttp.CompositeMapper = {
+export const VirtualMachineExtensionUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineExtensionUpdate",
@@ -8583,7 +8583,7 @@ export const VirtualMachineExtensionUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageUpdate: coreHttp.CompositeMapper = {
+export const ImageUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageUpdate",
@@ -8620,7 +8620,7 @@ export const ImageUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
+export const VirtualMachineUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineUpdate",
@@ -8771,7 +8771,7 @@ export const VirtualMachineUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetUpdate: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetUpdate",
@@ -8862,7 +8862,7 @@ export const VirtualMachineScaleSetUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetExtension: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetExtension: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetExtension",
@@ -8945,7 +8945,7 @@ export const VirtualMachineScaleSetExtension: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetExtensionUpdate: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetExtensionUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetExtensionUpdate",
@@ -9029,7 +9029,7 @@ export const VirtualMachineScaleSetExtensionUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageOSDisk: coreHttp.CompositeMapper = {
+export const ImageOSDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageOSDisk",
@@ -9055,7 +9055,7 @@ export const ImageOSDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const ImageDataDisk: coreHttp.CompositeMapper = {
+export const ImageDataDisk: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ImageDataDisk",
@@ -9072,7 +9072,7 @@ export const ImageDataDisk: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetVMReimageParameters: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetVMReimageParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetVMReimageParameters",
@@ -9082,7 +9082,7 @@ export const VirtualMachineScaleSetVMReimageParameters: coreHttp.CompositeMapper
   }
 };
 
-export const RequestRateByIntervalInput: coreHttp.CompositeMapper = {
+export const RequestRateByIntervalInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RequestRateByIntervalInput",
@@ -9100,7 +9100,7 @@ export const RequestRateByIntervalInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const ThrottledRequestsInput: coreHttp.CompositeMapper = {
+export const ThrottledRequestsInput: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ThrottledRequestsInput",
@@ -9110,7 +9110,7 @@ export const ThrottledRequestsInput: coreHttp.CompositeMapper = {
   }
 };
 
-export const RunCommandDocument: coreHttp.CompositeMapper = {
+export const RunCommandDocument: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RunCommandDocument",
@@ -9144,7 +9144,7 @@ export const RunCommandDocument: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryUpdate: coreHttp.CompositeMapper = {
+export const GalleryUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryUpdate",
@@ -9174,7 +9174,7 @@ export const GalleryUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageUpdate: coreHttp.CompositeMapper = {
+export const GalleryImageUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageUpdate",
@@ -9269,7 +9269,7 @@ export const GalleryImageUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageVersionUpdate: coreHttp.CompositeMapper = {
+export const GalleryImageVersionUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageVersionUpdate",
@@ -9307,7 +9307,7 @@ export const GalleryImageVersionUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationUpdate: coreHttp.CompositeMapper = {
+export const GalleryApplicationUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationUpdate",
@@ -9354,7 +9354,7 @@ export const GalleryApplicationUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationVersionUpdate: coreHttp.CompositeMapper = {
+export const GalleryApplicationVersionUpdate: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationVersionUpdate",
@@ -9385,7 +9385,7 @@ export const GalleryApplicationVersionUpdate: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryImageVersionPublishingProfile: coreHttp.CompositeMapper = {
+export const GalleryImageVersionPublishingProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryImageVersionPublishingProfile",
@@ -9395,7 +9395,7 @@ export const GalleryImageVersionPublishingProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryApplicationVersionPublishingProfile: coreHttp.CompositeMapper = {
+export const GalleryApplicationVersionPublishingProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryApplicationVersionPublishingProfile",
@@ -9424,7 +9424,7 @@ export const GalleryApplicationVersionPublishingProfile: coreHttp.CompositeMappe
   }
 };
 
-export const OSDiskImageEncryption: coreHttp.CompositeMapper = {
+export const OSDiskImageEncryption: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OSDiskImageEncryption",
@@ -9434,7 +9434,7 @@ export const OSDiskImageEncryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataDiskImageEncryption: coreHttp.CompositeMapper = {
+export const DataDiskImageEncryption: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DataDiskImageEncryption",
@@ -9451,7 +9451,7 @@ export const DataDiskImageEncryption: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryOSDiskImage: coreHttp.CompositeMapper = {
+export const GalleryOSDiskImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryOSDiskImage",
@@ -9461,7 +9461,7 @@ export const GalleryOSDiskImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const GalleryDataDiskImage: coreHttp.CompositeMapper = {
+export const GalleryDataDiskImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GalleryDataDiskImage",
@@ -9478,7 +9478,7 @@ export const GalleryDataDiskImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineImage: coreHttp.CompositeMapper = {
+export const VirtualMachineImage: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineImage",
@@ -9527,7 +9527,7 @@ export const VirtualMachineImage: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualMachineScaleSetReimageParameters: coreHttp.CompositeMapper = {
+export const VirtualMachineScaleSetReimageParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "VirtualMachineScaleSetReimageParameters",

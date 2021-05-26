@@ -7,7 +7,7 @@
  */
 
 import { DatabaseThreatDetectionPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -49,17 +49,16 @@ export class DatabaseThreatDetectionPoliciesImpl
     securityAlertPolicyName: SecurityAlertPolicyName,
     options?: DatabaseThreatDetectionPoliciesGetOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      securityAlertPolicyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        securityAlertPolicyName,
+        options
+      },
       getOperationSpec
-    ) as Promise<DatabaseThreatDetectionPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -80,24 +79,23 @@ export class DatabaseThreatDetectionPoliciesImpl
     parameters: DatabaseSecurityAlertPolicy,
     options?: DatabaseThreatDetectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      securityAlertPolicyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        securityAlertPolicyName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<DatabaseThreatDetectionPoliciesCreateOrUpdateResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/securityAlertPolicies/{securityAlertPolicyName}",
   httpMethod: "GET",
@@ -119,7 +117,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/securityAlertPolicies/{securityAlertPolicyName}",
   httpMethod: "PUT",

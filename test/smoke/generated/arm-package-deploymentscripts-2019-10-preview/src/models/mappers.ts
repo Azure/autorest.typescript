@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
+export const ManagedServiceIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedServiceIdentity",
@@ -32,7 +32,7 @@ export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserAssignedIdentity: coreHttp.CompositeMapper = {
+export const UserAssignedIdentity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserAssignedIdentity",
@@ -53,7 +53,7 @@ export const UserAssignedIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const SystemData: coreHttp.CompositeMapper = {
+export const SystemData: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SystemData",
@@ -98,7 +98,7 @@ export const SystemData: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureResourceBase: coreHttp.CompositeMapper = {
+export const AzureResourceBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureResourceBase",
@@ -128,7 +128,7 @@ export const AzureResourceBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScriptsError: coreHttp.CompositeMapper = {
+export const DeploymentScriptsError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeploymentScriptsError",
@@ -144,7 +144,7 @@ export const DeploymentScriptsError: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorResponse: coreHttp.CompositeMapper = {
+export const ErrorResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorResponse",
@@ -200,7 +200,7 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorAdditionalInfo: coreHttp.CompositeMapper = {
+export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorAdditionalInfo",
@@ -223,7 +223,7 @@ export const ErrorAdditionalInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScriptListResult: coreHttp.CompositeMapper = {
+export const DeploymentScriptListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeploymentScriptListResult",
@@ -251,7 +251,7 @@ export const DeploymentScriptListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ScriptLogsList: coreHttp.CompositeMapper = {
+export const ScriptLogsList: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScriptLogsList",
@@ -272,7 +272,7 @@ export const ScriptLogsList: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScriptPropertiesBase: coreHttp.CompositeMapper = {
+export const DeploymentScriptPropertiesBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeploymentScriptPropertiesBase",
@@ -323,7 +323,7 @@ export const DeploymentScriptPropertiesBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerConfiguration: coreHttp.CompositeMapper = {
+export const ContainerConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ContainerConfiguration",
@@ -342,7 +342,7 @@ export const ContainerConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageAccountConfiguration: coreHttp.CompositeMapper = {
+export const StorageAccountConfiguration: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "StorageAccountConfiguration",
@@ -363,7 +363,7 @@ export const StorageAccountConfiguration: coreHttp.CompositeMapper = {
   }
 };
 
-export const ScriptStatus: coreHttp.CompositeMapper = {
+export const ScriptStatus: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScriptStatus",
@@ -414,7 +414,7 @@ export const ScriptStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const ScriptConfigurationBase: coreHttp.CompositeMapper = {
+export const ScriptConfigurationBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScriptConfigurationBase",
@@ -486,7 +486,7 @@ export const ScriptConfigurationBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const EnvironmentVariable: coreHttp.CompositeMapper = {
+export const EnvironmentVariable: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "EnvironmentVariable",
@@ -514,7 +514,7 @@ export const EnvironmentVariable: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScript: coreHttp.CompositeMapper = {
+export const DeploymentScript: coreClient.CompositeMapper = {
   serializedName: "DeploymentScript",
   type: {
     name: "Composite",
@@ -565,7 +565,7 @@ export const DeploymentScript: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentScriptUpdateParameter: coreHttp.CompositeMapper = {
+export const DeploymentScriptUpdateParameter: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DeploymentScriptUpdateParameter",
@@ -582,7 +582,7 @@ export const DeploymentScriptUpdateParameter: coreHttp.CompositeMapper = {
   }
 };
 
-export const ScriptLog: coreHttp.CompositeMapper = {
+export const ScriptLog: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ScriptLog",
@@ -599,7 +599,7 @@ export const ScriptLog: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzurePowerShellScriptProperties: coreHttp.CompositeMapper = {
+export const AzurePowerShellScriptProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzurePowerShellScriptProperties",
@@ -617,7 +617,7 @@ export const AzurePowerShellScriptProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureCliScriptProperties: coreHttp.CompositeMapper = {
+export const AzureCliScriptProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AzureCliScriptProperties",
@@ -635,7 +635,7 @@ export const AzureCliScriptProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzurePowerShellScript: coreHttp.CompositeMapper = {
+export const AzurePowerShellScript: coreClient.CompositeMapper = {
   serializedName: "AzurePowerShell",
   type: {
     name: "Composite",
@@ -760,7 +760,7 @@ export const AzurePowerShellScript: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureCliScript: coreHttp.CompositeMapper = {
+export const AzureCliScript: coreClient.CompositeMapper = {
   serializedName: "AzureCLI",
   type: {
     name: "Composite",

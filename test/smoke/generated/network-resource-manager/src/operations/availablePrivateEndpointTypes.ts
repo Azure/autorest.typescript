@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AvailablePrivateEndpointTypes } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -168,14 +168,10 @@ export class AvailablePrivateEndpointTypesImpl
     location: string,
     options?: AvailablePrivateEndpointTypesListOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listOperationSpec
-    ) as Promise<AvailablePrivateEndpointTypesListResponse>;
+    );
   }
 
   /**
@@ -190,15 +186,10 @@ export class AvailablePrivateEndpointTypesImpl
     resourceGroupName: string,
     options?: AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -212,15 +203,10 @@ export class AvailablePrivateEndpointTypesImpl
     nextLink: string,
     options?: AvailablePrivateEndpointTypesListNextOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, nextLink, options },
       listNextOperationSpec
-    ) as Promise<AvailablePrivateEndpointTypesListNextResponse>;
+    );
   }
 
   /**
@@ -236,22 +222,16 @@ export class AvailablePrivateEndpointTypesImpl
     nextLink: string,
     options?: AvailablePrivateEndpointTypesListByResourceGroupNextOptionalParams
   ): Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<AvailablePrivateEndpointTypesListByResourceGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/locations/{location}/availablePrivateEndpointTypes",
   httpMethod: "GET",
@@ -272,7 +252,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/locations/{location}/availablePrivateEndpointTypes",
   httpMethod: "GET",
@@ -294,7 +274,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -315,7 +295,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

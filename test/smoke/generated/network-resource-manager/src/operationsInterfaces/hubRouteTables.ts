@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   HubRouteTable,
@@ -94,9 +93,7 @@ export interface HubRouteTables {
     virtualHubName: string,
     routeTableName: string,
     options?: HubRouteTablesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a RouteTable.
    * @param resourceGroupName The resource group name of the RouteTable.
@@ -109,5 +106,5 @@ export interface HubRouteTables {
     virtualHubName: string,
     routeTableName: string,
     options?: HubRouteTablesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

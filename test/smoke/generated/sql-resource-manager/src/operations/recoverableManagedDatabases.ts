@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { RecoverableManagedDatabases } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -121,15 +121,10 @@ export class RecoverableManagedDatabasesImpl
     managedInstanceName: string,
     options?: RecoverableManagedDatabasesListByInstanceOptionalParams
   ): Promise<RecoverableManagedDatabasesListByInstanceResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, options },
       listByInstanceOperationSpec
-    ) as Promise<RecoverableManagedDatabasesListByInstanceResponse>;
+    );
   }
 
   /**
@@ -146,16 +141,15 @@ export class RecoverableManagedDatabasesImpl
     recoverableDatabaseName: string,
     options?: RecoverableManagedDatabasesGetOptionalParams
   ): Promise<RecoverableManagedDatabasesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      recoverableDatabaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        recoverableDatabaseName,
+        options
+      },
       getOperationSpec
-    ) as Promise<RecoverableManagedDatabasesGetResponse>;
+    );
   }
 
   /**
@@ -172,22 +166,16 @@ export class RecoverableManagedDatabasesImpl
     nextLink: string,
     options?: RecoverableManagedDatabasesListByInstanceNextOptionalParams
   ): Promise<RecoverableManagedDatabasesListByInstanceNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, nextLink, options },
       listByInstanceNextOperationSpec
-    ) as Promise<RecoverableManagedDatabasesListByInstanceNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByInstanceOperationSpec: coreHttp.OperationSpec = {
+const listByInstanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/recoverableDatabases",
   httpMethod: "GET",
@@ -207,7 +195,7 @@ const listByInstanceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/recoverableDatabases/{recoverableDatabaseName}",
   httpMethod: "GET",
@@ -228,7 +216,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByInstanceNextOperationSpec: coreHttp.OperationSpec = {
+const listByInstanceNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

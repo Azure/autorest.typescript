@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -76,10 +77,10 @@ export interface CassandraResources {
     beginCreateUpdateCassandraKeyspaceAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, createUpdateCassandraKeyspaceParameters: CassandraKeyspaceCreateUpdateParameters, options?: CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams): Promise<CassandraResourcesCreateUpdateCassandraKeyspaceResponse>;
     beginCreateUpdateCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters, options?: CassandraResourcesCreateUpdateCassandraTableOptionalParams): Promise<PollerLike<PollOperationState<CassandraResourcesCreateUpdateCassandraTableResponse>, CassandraResourcesCreateUpdateCassandraTableResponse>>;
     beginCreateUpdateCassandraTableAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, createUpdateCassandraTableParameters: CassandraTableCreateUpdateParameters, options?: CassandraResourcesCreateUpdateCassandraTableOptionalParams): Promise<CassandraResourcesCreateUpdateCassandraTableResponse>;
-    beginDeleteCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteCassandraKeyspaceAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: CassandraResourcesDeleteCassandraTableOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteCassandraTableAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: CassandraResourcesDeleteCassandraTableOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeleteCassandraKeyspace(resourceGroupName: string, accountName: string, keyspaceName: string, options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteCassandraKeyspaceAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, options?: CassandraResourcesDeleteCassandraKeyspaceOptionalParams): Promise<void>;
+    beginDeleteCassandraTable(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: CassandraResourcesDeleteCassandraTableOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteCassandraTableAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, options?: CassandraResourcesDeleteCassandraTableOptionalParams): Promise<void>;
     beginUpdateCassandraKeyspaceThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams): Promise<PollerLike<PollOperationState<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>, CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>>;
     beginUpdateCassandraKeyspaceThroughputAndWait(resourceGroupName: string, accountName: string, keyspaceName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams): Promise<CassandraResourcesUpdateCassandraKeyspaceThroughputResponse>;
     beginUpdateCassandraTableThroughput(resourceGroupName: string, accountName: string, keyspaceName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: CassandraResourcesUpdateCassandraTableThroughputOptionalParams): Promise<PollerLike<PollOperationState<CassandraResourcesUpdateCassandraTableThroughputResponse>, CassandraResourcesUpdateCassandraTableThroughputResponse>>;
@@ -93,144 +94,94 @@ export interface CassandraResources {
 }
 
 // @public
-export interface CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesCreateUpdateCassandraKeyspaceOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse = CassandraKeyspaceGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraKeyspaceGetResults;
-    };
-};
+export type CassandraResourcesCreateUpdateCassandraKeyspaceResponse = CassandraKeyspaceGetResults;
 
 // @public
-export interface CassandraResourcesCreateUpdateCassandraTableOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesCreateUpdateCassandraTableOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type CassandraResourcesCreateUpdateCassandraTableResponse = CassandraTableGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraTableGetResults;
-    };
-};
+export type CassandraResourcesCreateUpdateCassandraTableResponse = CassandraTableGetResults;
 
 // @public
-export interface CassandraResourcesDeleteCassandraKeyspaceOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesDeleteCassandraKeyspaceOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface CassandraResourcesDeleteCassandraTableOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesDeleteCassandraTableOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface CassandraResourcesGetCassandraKeyspaceOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesGetCassandraKeyspaceOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesGetCassandraKeyspaceResponse = CassandraKeyspaceGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraKeyspaceGetResults;
-    };
-};
+export type CassandraResourcesGetCassandraKeyspaceResponse = CassandraKeyspaceGetResults;
 
 // @public
-export interface CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesGetCassandraKeyspaceThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesGetCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type CassandraResourcesGetCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface CassandraResourcesGetCassandraTableOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesGetCassandraTableOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesGetCassandraTableResponse = CassandraTableGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraTableGetResults;
-    };
-};
+export type CassandraResourcesGetCassandraTableResponse = CassandraTableGetResults;
 
 // @public
-export interface CassandraResourcesGetCassandraTableThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesGetCassandraTableThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesGetCassandraTableThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type CassandraResourcesGetCassandraTableThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface CassandraResourcesListCassandraKeyspacesOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesListCassandraKeyspacesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesListCassandraKeyspacesResponse = CassandraKeyspaceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraKeyspaceListResult;
-    };
-};
+export type CassandraResourcesListCassandraKeyspacesResponse = CassandraKeyspaceListResult;
 
 // @public
-export interface CassandraResourcesListCassandraTablesOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesListCassandraTablesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CassandraResourcesListCassandraTablesResponse = CassandraTableListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CassandraTableListResult;
-    };
-};
+export type CassandraResourcesListCassandraTablesResponse = CassandraTableListResult;
 
 // @public
-export interface CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesUpdateCassandraKeyspaceThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type CassandraResourcesUpdateCassandraKeyspaceThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface CassandraResourcesUpdateCassandraTableThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface CassandraResourcesUpdateCassandraTableThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type CassandraResourcesUpdateCassandraTableThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type CassandraResourcesUpdateCassandraTableThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
 export interface CassandraSchema {
@@ -283,41 +234,26 @@ export interface Collection {
 }
 
 // @public
-export interface CollectionListMetricDefinitionsOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionListMetricDefinitionsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CollectionListMetricDefinitionsResponse = MetricDefinitionsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricDefinitionsListResult;
-    };
-};
+export type CollectionListMetricDefinitionsResponse = MetricDefinitionsListResult;
 
 // @public
-export interface CollectionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CollectionListMetricsResponse = MetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricListResult;
-    };
-};
+export type CollectionListMetricsResponse = MetricListResult;
 
 // @public
-export interface CollectionListUsagesOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionListUsagesOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type CollectionListUsagesResponse = UsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UsagesResult;
-    };
-};
+export type CollectionListUsagesResponse = UsagesResult;
 
 // @public
 export interface CollectionPartition {
@@ -326,29 +262,19 @@ export interface CollectionPartition {
 }
 
 // @public
-export interface CollectionPartitionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionPartitionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CollectionPartitionListMetricsResponse = PartitionMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PartitionMetricListResult;
-    };
-};
+export type CollectionPartitionListMetricsResponse = PartitionMetricListResult;
 
 // @public
-export interface CollectionPartitionListUsagesOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionPartitionListUsagesOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type CollectionPartitionListUsagesResponse = PartitionUsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PartitionUsagesResult;
-    };
-};
+export type CollectionPartitionListUsagesResponse = PartitionUsagesResult;
 
 // @public
 export interface CollectionPartitionRegion {
@@ -356,16 +282,11 @@ export interface CollectionPartitionRegion {
 }
 
 // @public
-export interface CollectionPartitionRegionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionPartitionRegionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CollectionPartitionRegionListMetricsResponse = PartitionMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PartitionMetricListResult;
-    };
-};
+export type CollectionPartitionRegionListMetricsResponse = PartitionMetricListResult;
 
 // @public
 export interface CollectionRegion {
@@ -373,16 +294,11 @@ export interface CollectionRegion {
 }
 
 // @public
-export interface CollectionRegionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface CollectionRegionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type CollectionRegionListMetricsResponse = MetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricListResult;
-    };
-};
+export type CollectionRegionListMetricsResponse = MetricListResult;
 
 // @public
 export interface Column {
@@ -428,7 +344,7 @@ export interface ContainerPartitionKey {
 
 // @public (undocumented)
 export class CosmosDBManagementClient extends CosmosDBManagementClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
     // (undocumented)
     cassandraResources: CassandraResources;
     // (undocumented)
@@ -474,16 +390,16 @@ export class CosmosDBManagementClient extends CosmosDBManagementClientContext {
 }
 
 // @public (undocumented)
-export class CosmosDBManagementClientContext extends coreHttp.ServiceClient {
+export class CosmosDBManagementClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
     // (undocumented)
     subscriptionId: string;
 }
 
 // @public
-export interface CosmosDBManagementClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface CosmosDBManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     endpoint?: string;
 }
@@ -582,34 +498,29 @@ export interface DatabaseAccountRegion {
 }
 
 // @public
-export interface DatabaseAccountRegionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountRegionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountRegionListMetricsResponse = MetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricListResult;
-    };
-};
+export type DatabaseAccountRegionListMetricsResponse = MetricListResult;
 
 // @public
 export interface DatabaseAccounts {
     beginCreateOrUpdate(resourceGroupName: string, accountName: string, createUpdateParameters: DatabaseAccountCreateUpdateParameters, options?: DatabaseAccountsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabaseAccountsCreateOrUpdateResponse>, DatabaseAccountsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, accountName: string, createUpdateParameters: DatabaseAccountCreateUpdateParameters, options?: DatabaseAccountsCreateOrUpdateOptionalParams): Promise<DatabaseAccountsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, accountName: string, options?: DatabaseAccountsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, accountName: string, options?: DatabaseAccountsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginFailoverPriorityChange(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: DatabaseAccountsFailoverPriorityChangeOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginFailoverPriorityChangeAndWait(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: DatabaseAccountsFailoverPriorityChangeOptionalParams): Promise<coreHttp.RestResponse>;
-    beginOfflineRegion(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: DatabaseAccountsOfflineRegionOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginOfflineRegionAndWait(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: DatabaseAccountsOfflineRegionOptionalParams): Promise<coreHttp.RestResponse>;
-    beginOnlineRegion(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: DatabaseAccountsOnlineRegionOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginOnlineRegionAndWait(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: DatabaseAccountsOnlineRegionOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRegenerateKey(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: DatabaseAccountsRegenerateKeyOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRegenerateKeyAndWait(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: DatabaseAccountsRegenerateKeyOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, accountName: string, options?: DatabaseAccountsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, accountName: string, options?: DatabaseAccountsDeleteOptionalParams): Promise<void>;
+    beginFailoverPriorityChange(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: DatabaseAccountsFailoverPriorityChangeOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginFailoverPriorityChangeAndWait(resourceGroupName: string, accountName: string, failoverParameters: FailoverPolicies, options?: DatabaseAccountsFailoverPriorityChangeOptionalParams): Promise<void>;
+    beginOfflineRegion(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: DatabaseAccountsOfflineRegionOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginOfflineRegionAndWait(resourceGroupName: string, accountName: string, regionParameterForOffline: RegionForOnlineOffline, options?: DatabaseAccountsOfflineRegionOptionalParams): Promise<void>;
+    beginOnlineRegion(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: DatabaseAccountsOnlineRegionOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginOnlineRegionAndWait(resourceGroupName: string, accountName: string, regionParameterForOnline: RegionForOnlineOffline, options?: DatabaseAccountsOnlineRegionOptionalParams): Promise<void>;
+    beginRegenerateKey(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: DatabaseAccountsRegenerateKeyOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRegenerateKeyAndWait(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: DatabaseAccountsRegenerateKeyOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: DatabaseAccountsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabaseAccountsUpdateResponse>, DatabaseAccountsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: DatabaseAccountsUpdateOptionalParams): Promise<DatabaseAccountsUpdateResponse>;
-    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<coreHttp.RestResponse>;
+    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, options?: DatabaseAccountsGetOptionalParams): Promise<DatabaseAccountsGetResponse>;
     getReadOnlyKeys(resourceGroupName: string, accountName: string, options?: DatabaseAccountsGetReadOnlyKeysOptionalParams): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
     list(options?: DatabaseAccountsListOptionalParams): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
@@ -623,142 +534,92 @@ export interface DatabaseAccounts {
 }
 
 // @public
-export interface DatabaseAccountsCheckNameExistsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsCheckNameExistsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface DatabaseAccountsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DatabaseAccountsCreateOrUpdateResponse = DatabaseAccountGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountGetResults;
-    };
-};
+export type DatabaseAccountsCreateOrUpdateResponse = DatabaseAccountGetResults;
 
 // @public
-export interface DatabaseAccountsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DatabaseAccountsFailoverPriorityChangeOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsFailoverPriorityChangeOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DatabaseAccountsGetOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface DatabaseAccountsGetReadOnlyKeysOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsGetReadOnlyKeysOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsGetReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountListReadOnlyKeysResult;
-    };
-};
+export type DatabaseAccountsGetReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult;
 
 // @public
-export type DatabaseAccountsGetResponse = DatabaseAccountGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountGetResults;
-    };
-};
+export type DatabaseAccountsGetResponse = DatabaseAccountGetResults;
 
 // @public
-export interface DatabaseAccountsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListByResourceGroupResponse = DatabaseAccountsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountsListResult;
-    };
-};
+export type DatabaseAccountsListByResourceGroupResponse = DatabaseAccountsListResult;
 
 // @public
-export interface DatabaseAccountsListConnectionStringsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListConnectionStringsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListConnectionStringsResponse = DatabaseAccountListConnectionStringsResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountListConnectionStringsResult;
-    };
-};
+export type DatabaseAccountsListConnectionStringsResponse = DatabaseAccountListConnectionStringsResult;
 
 // @public
-export interface DatabaseAccountsListKeysOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListKeysOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListKeysResponse = DatabaseAccountListKeysResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountListKeysResult;
-    };
-};
+export type DatabaseAccountsListKeysResponse = DatabaseAccountListKeysResult;
 
 // @public
-export interface DatabaseAccountsListMetricDefinitionsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListMetricDefinitionsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListMetricDefinitionsResponse = MetricDefinitionsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricDefinitionsListResult;
-    };
-};
+export type DatabaseAccountsListMetricDefinitionsResponse = MetricDefinitionsListResult;
 
 // @public
-export interface DatabaseAccountsListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListMetricsResponse = MetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricListResult;
-    };
-};
+export type DatabaseAccountsListMetricsResponse = MetricListResult;
 
 // @public
-export interface DatabaseAccountsListOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface DatabaseAccountsListReadOnlyKeysOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListReadOnlyKeysOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAccountsListReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountListReadOnlyKeysResult;
-    };
-};
+export type DatabaseAccountsListReadOnlyKeysResponse = DatabaseAccountListReadOnlyKeysResult;
 
 // @public
-export type DatabaseAccountsListResponse = DatabaseAccountsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountsListResult;
-    };
-};
+export type DatabaseAccountsListResponse = DatabaseAccountsListResult;
 
 // @public
 export interface DatabaseAccountsListResult {
@@ -766,49 +627,39 @@ export interface DatabaseAccountsListResult {
 }
 
 // @public
-export interface DatabaseAccountsListUsagesOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsListUsagesOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type DatabaseAccountsListUsagesResponse = UsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UsagesResult;
-    };
-};
+export type DatabaseAccountsListUsagesResponse = UsagesResult;
 
 // @public
-export interface DatabaseAccountsOfflineRegionOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsOfflineRegionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DatabaseAccountsOnlineRegionOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsOnlineRegionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DatabaseAccountsRegenerateKeyOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsRegenerateKeyOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface DatabaseAccountsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseAccountsUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DatabaseAccountsUpdateResponse = DatabaseAccountGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DatabaseAccountGetResults;
-    };
-};
+export type DatabaseAccountsUpdateResponse = DatabaseAccountGetResults;
 
 // @public
 export interface DatabaseAccountUpdateParameters {
@@ -832,41 +683,26 @@ export interface DatabaseAccountUpdateParameters {
 }
 
 // @public
-export interface DatabaseListMetricDefinitionsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseListMetricDefinitionsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseListMetricDefinitionsResponse = MetricDefinitionsListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricDefinitionsListResult;
-    };
-};
+export type DatabaseListMetricDefinitionsResponse = MetricDefinitionsListResult;
 
 // @public
-export interface DatabaseListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseListMetricsResponse = MetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MetricListResult;
-    };
-};
+export type DatabaseListMetricsResponse = MetricListResult;
 
 // @public
-export interface DatabaseListUsagesOptionalParams extends coreHttp.OperationOptions {
+export interface DatabaseListUsagesOptionalParams extends coreClient.OperationOptions {
     filter?: string;
 }
 
 // @public
-export type DatabaseListUsagesResponse = UsagesResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UsagesResult;
-    };
-};
+export type DatabaseListUsagesResponse = UsagesResult;
 
 // @public
 export type DataType = string;
@@ -971,10 +807,10 @@ export interface GremlinResources {
     beginCreateUpdateGremlinDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, createUpdateGremlinDatabaseParameters: GremlinDatabaseCreateUpdateParameters, options?: GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams): Promise<GremlinResourcesCreateUpdateGremlinDatabaseResponse>;
     beginCreateUpdateGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters, options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams): Promise<PollerLike<PollOperationState<GremlinResourcesCreateUpdateGremlinGraphResponse>, GremlinResourcesCreateUpdateGremlinGraphResponse>>;
     beginCreateUpdateGremlinGraphAndWait(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, createUpdateGremlinGraphParameters: GremlinGraphCreateUpdateParameters, options?: GremlinResourcesCreateUpdateGremlinGraphOptionalParams): Promise<GremlinResourcesCreateUpdateGremlinGraphResponse>;
-    beginDeleteGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteGremlinDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: GremlinResourcesDeleteGremlinGraphOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteGremlinGraphAndWait(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: GremlinResourcesDeleteGremlinGraphOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeleteGremlinDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteGremlinDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: GremlinResourcesDeleteGremlinDatabaseOptionalParams): Promise<void>;
+    beginDeleteGremlinGraph(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: GremlinResourcesDeleteGremlinGraphOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteGremlinGraphAndWait(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, options?: GremlinResourcesDeleteGremlinGraphOptionalParams): Promise<void>;
     beginUpdateGremlinDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams): Promise<PollerLike<PollOperationState<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>, GremlinResourcesUpdateGremlinDatabaseThroughputResponse>>;
     beginUpdateGremlinDatabaseThroughputAndWait(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams): Promise<GremlinResourcesUpdateGremlinDatabaseThroughputResponse>;
     beginUpdateGremlinGraphThroughput(resourceGroupName: string, accountName: string, databaseName: string, graphName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: GremlinResourcesUpdateGremlinGraphThroughputOptionalParams): Promise<PollerLike<PollOperationState<GremlinResourcesUpdateGremlinGraphThroughputResponse>, GremlinResourcesUpdateGremlinGraphThroughputResponse>>;
@@ -988,144 +824,94 @@ export interface GremlinResources {
 }
 
 // @public
-export interface GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesCreateUpdateGremlinDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GremlinResourcesCreateUpdateGremlinDatabaseResponse = GremlinDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinDatabaseGetResults;
-    };
-};
+export type GremlinResourcesCreateUpdateGremlinDatabaseResponse = GremlinDatabaseGetResults;
 
 // @public
-export interface GremlinResourcesCreateUpdateGremlinGraphOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesCreateUpdateGremlinGraphOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GremlinResourcesCreateUpdateGremlinGraphResponse = GremlinGraphGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinGraphGetResults;
-    };
-};
+export type GremlinResourcesCreateUpdateGremlinGraphResponse = GremlinGraphGetResults;
 
 // @public
-export interface GremlinResourcesDeleteGremlinDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesDeleteGremlinDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GremlinResourcesDeleteGremlinGraphOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesDeleteGremlinGraphOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface GremlinResourcesGetGremlinDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesGetGremlinDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesGetGremlinDatabaseResponse = GremlinDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinDatabaseGetResults;
-    };
-};
+export type GremlinResourcesGetGremlinDatabaseResponse = GremlinDatabaseGetResults;
 
 // @public
-export interface GremlinResourcesGetGremlinDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesGetGremlinDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesGetGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type GremlinResourcesGetGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface GremlinResourcesGetGremlinGraphOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesGetGremlinGraphOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesGetGremlinGraphResponse = GremlinGraphGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinGraphGetResults;
-    };
-};
+export type GremlinResourcesGetGremlinGraphResponse = GremlinGraphGetResults;
 
 // @public
-export interface GremlinResourcesGetGremlinGraphThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesGetGremlinGraphThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesGetGremlinGraphThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type GremlinResourcesGetGremlinGraphThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface GremlinResourcesListGremlinDatabasesOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesListGremlinDatabasesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesListGremlinDatabasesResponse = GremlinDatabaseListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinDatabaseListResult;
-    };
-};
+export type GremlinResourcesListGremlinDatabasesResponse = GremlinDatabaseListResult;
 
 // @public
-export interface GremlinResourcesListGremlinGraphsOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesListGremlinGraphsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type GremlinResourcesListGremlinGraphsResponse = GremlinGraphListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: GremlinGraphListResult;
-    };
-};
+export type GremlinResourcesListGremlinGraphsResponse = GremlinGraphListResult;
 
 // @public
-export interface GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesUpdateGremlinDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GremlinResourcesUpdateGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type GremlinResourcesUpdateGremlinDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface GremlinResourcesUpdateGremlinGraphThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface GremlinResourcesUpdateGremlinGraphThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type GremlinResourcesUpdateGremlinGraphThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type GremlinResourcesUpdateGremlinGraphThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
 export interface IncludedPath {
@@ -1458,10 +1244,10 @@ export interface MongoDBResources {
     beginCreateUpdateMongoDBCollectionAndWait(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, createUpdateMongoDBCollectionParameters: MongoDBCollectionCreateUpdateParameters, options?: MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams): Promise<MongoDBResourcesCreateUpdateMongoDBCollectionResponse>;
     beginCreateUpdateMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters, options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams): Promise<PollerLike<PollOperationState<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>, MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>>;
     beginCreateUpdateMongoDBDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, createUpdateMongoDBDatabaseParameters: MongoDBDatabaseCreateUpdateParameters, options?: MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams): Promise<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse>;
-    beginDeleteMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteMongoDBCollectionAndWait(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteMongoDBDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeleteMongoDBCollection(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteMongoDBCollectionAndWait(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams): Promise<void>;
+    beginDeleteMongoDBDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteMongoDBDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams): Promise<void>;
     beginUpdateMongoDBCollectionThroughput(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams): Promise<PollerLike<PollOperationState<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>, MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>>;
     beginUpdateMongoDBCollectionThroughputAndWait(resourceGroupName: string, accountName: string, databaseName: string, collectionName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams): Promise<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse>;
     beginUpdateMongoDBDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams): Promise<PollerLike<PollOperationState<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>, MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse>>;
@@ -1475,144 +1261,94 @@ export interface MongoDBResources {
 }
 
 // @public
-export interface MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesCreateUpdateMongoDBCollectionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type MongoDBResourcesCreateUpdateMongoDBCollectionResponse = MongoDBCollectionGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBCollectionGetResults;
-    };
-};
+export type MongoDBResourcesCreateUpdateMongoDBCollectionResponse = MongoDBCollectionGetResults;
 
 // @public
-export interface MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesCreateUpdateMongoDBDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type MongoDBResourcesCreateUpdateMongoDBDatabaseResponse = MongoDBDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBDatabaseGetResults;
-    };
-};
+export type MongoDBResourcesCreateUpdateMongoDBDatabaseResponse = MongoDBDatabaseGetResults;
 
 // @public
-export interface MongoDBResourcesDeleteMongoDBCollectionOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesDeleteMongoDBCollectionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface MongoDBResourcesDeleteMongoDBDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesDeleteMongoDBDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface MongoDBResourcesGetMongoDBCollectionOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesGetMongoDBCollectionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesGetMongoDBCollectionResponse = MongoDBCollectionGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBCollectionGetResults;
-    };
-};
+export type MongoDBResourcesGetMongoDBCollectionResponse = MongoDBCollectionGetResults;
 
 // @public
-export interface MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesGetMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type MongoDBResourcesGetMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface MongoDBResourcesGetMongoDBDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesGetMongoDBDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesGetMongoDBDatabaseResponse = MongoDBDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBDatabaseGetResults;
-    };
-};
+export type MongoDBResourcesGetMongoDBDatabaseResponse = MongoDBDatabaseGetResults;
 
 // @public
-export interface MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesGetMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type MongoDBResourcesGetMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface MongoDBResourcesListMongoDBCollectionsOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesListMongoDBCollectionsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesListMongoDBCollectionsResponse = MongoDBCollectionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBCollectionListResult;
-    };
-};
+export type MongoDBResourcesListMongoDBCollectionsResponse = MongoDBCollectionListResult;
 
 // @public
-export interface MongoDBResourcesListMongoDBDatabasesOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesListMongoDBDatabasesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type MongoDBResourcesListMongoDBDatabasesResponse = MongoDBDatabaseListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: MongoDBDatabaseListResult;
-    };
-};
+export type MongoDBResourcesListMongoDBDatabasesResponse = MongoDBDatabaseListResult;
 
 // @public
-export interface MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesUpdateMongoDBCollectionThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type MongoDBResourcesUpdateMongoDBCollectionThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface MongoDBResourcesUpdateMongoDBDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
 export interface MongoIndex {
@@ -1658,81 +1394,61 @@ export type NotebookWorkspaceName = string;
 export interface NotebookWorkspaces {
     beginCreateOrUpdate(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters, options?: NotebookWorkspacesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<NotebookWorkspacesCreateOrUpdateResponse>, NotebookWorkspacesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, notebookCreateUpdateParameters: NotebookWorkspaceCreateUpdateParameters, options?: NotebookWorkspacesCreateOrUpdateOptionalParams): Promise<NotebookWorkspacesCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
-    beginRegenerateAuthToken(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginRegenerateAuthTokenAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams): Promise<coreHttp.RestResponse>;
-    beginStart(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesStartOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginStartAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesStartOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesDeleteOptionalParams): Promise<void>;
+    beginRegenerateAuthToken(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginRegenerateAuthTokenAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesRegenerateAuthTokenOptionalParams): Promise<void>;
+    beginStart(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesStartOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginStartAndWait(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesStartOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesGetOptionalParams): Promise<NotebookWorkspacesGetResponse>;
     listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: NotebookWorkspacesListByDatabaseAccountOptionalParams): PagedAsyncIterableIterator<NotebookWorkspace>;
     listConnectionInfo(resourceGroupName: string, accountName: string, notebookWorkspaceName: NotebookWorkspaceName, options?: NotebookWorkspacesListConnectionInfoOptionalParams): Promise<NotebookWorkspacesListConnectionInfoResponse>;
 }
 
 // @public
-export interface NotebookWorkspacesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: NotebookWorkspace;
-    };
-};
+export type NotebookWorkspacesCreateOrUpdateResponse = NotebookWorkspace;
 
 // @public
-export interface NotebookWorkspacesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface NotebookWorkspacesGetOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type NotebookWorkspacesGetResponse = NotebookWorkspace & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: NotebookWorkspace;
-    };
-};
+export type NotebookWorkspacesGetResponse = NotebookWorkspace;
 
 // @public
-export interface NotebookWorkspacesListByDatabaseAccountOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesListByDatabaseAccountOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type NotebookWorkspacesListByDatabaseAccountResponse = NotebookWorkspaceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: NotebookWorkspaceListResult;
-    };
-};
+export type NotebookWorkspacesListByDatabaseAccountResponse = NotebookWorkspaceListResult;
 
 // @public
-export interface NotebookWorkspacesListConnectionInfoOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesListConnectionInfoOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type NotebookWorkspacesListConnectionInfoResponse = NotebookWorkspaceConnectionInfoResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: NotebookWorkspaceConnectionInfoResult;
-    };
-};
+export type NotebookWorkspacesListConnectionInfoResponse = NotebookWorkspaceConnectionInfoResult;
 
 // @public
-export interface NotebookWorkspacesRegenerateAuthTokenOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesRegenerateAuthTokenOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface NotebookWorkspacesStartOptionalParams extends coreHttp.OperationOptions {
+export interface NotebookWorkspacesStartOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
@@ -1763,28 +1479,18 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 export interface OptionsResource {
@@ -1797,16 +1503,11 @@ export interface PartitionKeyRangeId {
 }
 
 // @public
-export interface PartitionKeyRangeIdListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface PartitionKeyRangeIdListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PartitionKeyRangeIdListMetricsResponse = PartitionMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PartitionMetricListResult;
-    };
-};
+export type PartitionKeyRangeIdListMetricsResponse = PartitionMetricListResult;
 
 // @public
 export interface PartitionKeyRangeIdRegion {
@@ -1814,16 +1515,11 @@ export interface PartitionKeyRangeIdRegion {
 }
 
 // @public
-export interface PartitionKeyRangeIdRegionListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface PartitionKeyRangeIdRegionListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PartitionMetricListResult;
-    };
-};
+export type PartitionKeyRangeIdRegionListMetricsResponse = PartitionMetricListResult;
 
 // @public
 export type PartitionKind = string;
@@ -1856,16 +1552,11 @@ export interface Percentile {
 }
 
 // @public
-export interface PercentileListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface PercentileListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PercentileListMetricsResponse = PercentileMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PercentileMetricListResult;
-    };
-};
+export type PercentileListMetricsResponse = PercentileMetricListResult;
 
 // @public
 export interface PercentileMetric {
@@ -1899,16 +1590,11 @@ export interface PercentileSourceTarget {
 }
 
 // @public
-export interface PercentileSourceTargetListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface PercentileSourceTargetListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PercentileSourceTargetListMetricsResponse = PercentileMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PercentileMetricListResult;
-    };
-};
+export type PercentileSourceTargetListMetricsResponse = PercentileMetricListResult;
 
 // @public
 export interface PercentileTarget {
@@ -1916,16 +1602,11 @@ export interface PercentileTarget {
 }
 
 // @public
-export interface PercentileTargetListMetricsOptionalParams extends coreHttp.OperationOptions {
+export interface PercentileTargetListMetricsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PercentileTargetListMetricsResponse = PercentileMetricListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PercentileMetricListResult;
-    };
-};
+export type PercentileTargetListMetricsResponse = PercentileMetricListResult;
 
 // @public
 export type PrimaryAggregationType = string;
@@ -1953,55 +1634,40 @@ export interface PrivateEndpointConnectionListResult {
 export interface PrivateEndpointConnections {
     beginCreateOrUpdate(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnectionAutoGenerated, options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<PrivateEndpointConnectionsCreateOrUpdateResponse>, PrivateEndpointConnectionsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, parameters: PrivateEndpointConnectionAutoGenerated, options?: PrivateEndpointConnectionsCreateOrUpdateOptionalParams): Promise<PrivateEndpointConnectionsCreateOrUpdateResponse>;
-    beginDelete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteAndWait(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDelete(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteAndWait(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, privateEndpointConnectionName: string, options?: PrivateEndpointConnectionsGetOptionalParams): Promise<PrivateEndpointConnectionsGetResponse>;
     listByDatabaseAccount(resourceGroupName: string, accountName: string, options?: PrivateEndpointConnectionsListByDatabaseAccountOptionalParams): PagedAsyncIterableIterator<PrivateEndpointConnectionAutoGenerated>;
 }
 
 // @public
-export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnectionAutoGenerated & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnectionAutoGenerated;
-    };
-};
+export type PrivateEndpointConnectionsCreateOrUpdateResponse = PrivateEndpointConnectionAutoGenerated;
 
 // @public
-export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface PrivateEndpointConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnectionAutoGenerated & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnectionAutoGenerated;
-    };
-};
+export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnectionAutoGenerated;
 
 // @public
-export interface PrivateEndpointConnectionsListByDatabaseAccountOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsListByDatabaseAccountOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsListByDatabaseAccountResponse = PrivateEndpointConnectionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnectionListResult;
-    };
-};
+export type PrivateEndpointConnectionsListByDatabaseAccountResponse = PrivateEndpointConnectionListResult;
 
 // @public
 export interface PrivateEndpointProperty {
@@ -2027,28 +1693,18 @@ export interface PrivateLinkResources {
 }
 
 // @public
-export interface PrivateLinkResourcesGetOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateLinkResourcesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateLinkResourcesGetResponse = PrivateLinkResource & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateLinkResource;
-    };
-};
+export type PrivateLinkResourcesGetResponse = PrivateLinkResource;
 
 // @public
-export interface PrivateLinkResourcesListByDatabaseAccountOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateLinkResourcesListByDatabaseAccountOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateLinkResourcesListByDatabaseAccountResponse = PrivateLinkResourceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateLinkResourceListResult;
-    };
-};
+export type PrivateLinkResourcesListByDatabaseAccountResponse = PrivateLinkResourceListResult;
 
 // @public
 export interface PrivateLinkServiceConnectionStateProperty {
@@ -2173,16 +1829,16 @@ export interface SqlResources {
     beginCreateUpdateSqlTriggerAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, createUpdateSqlTriggerParameters: SqlTriggerCreateUpdateParameters, options?: SqlResourcesCreateUpdateSqlTriggerOptionalParams): Promise<SqlResourcesCreateUpdateSqlTriggerResponse>;
     beginCreateUpdateSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters, options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams): Promise<PollerLike<PollOperationState<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>, SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>>;
     beginCreateUpdateSqlUserDefinedFunctionAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, createUpdateSqlUserDefinedFunctionParameters: SqlUserDefinedFunctionCreateUpdateParameters, options?: SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams): Promise<SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse>;
-    beginDeleteSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: SqlResourcesDeleteSqlContainerOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteSqlContainerAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: SqlResourcesDeleteSqlContainerOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: SqlResourcesDeleteSqlDatabaseOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteSqlDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: SqlResourcesDeleteSqlDatabaseOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteSqlStoredProcedureAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: SqlResourcesDeleteSqlTriggerOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteSqlTriggerAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: SqlResourcesDeleteSqlTriggerOptionalParams): Promise<coreHttp.RestResponse>;
-    beginDeleteSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteSqlUserDefinedFunctionAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeleteSqlContainer(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: SqlResourcesDeleteSqlContainerOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteSqlContainerAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, options?: SqlResourcesDeleteSqlContainerOptionalParams): Promise<void>;
+    beginDeleteSqlDatabase(resourceGroupName: string, accountName: string, databaseName: string, options?: SqlResourcesDeleteSqlDatabaseOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteSqlDatabaseAndWait(resourceGroupName: string, accountName: string, databaseName: string, options?: SqlResourcesDeleteSqlDatabaseOptionalParams): Promise<void>;
+    beginDeleteSqlStoredProcedure(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteSqlStoredProcedureAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, storedProcedureName: string, options?: SqlResourcesDeleteSqlStoredProcedureOptionalParams): Promise<void>;
+    beginDeleteSqlTrigger(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: SqlResourcesDeleteSqlTriggerOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteSqlTriggerAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, triggerName: string, options?: SqlResourcesDeleteSqlTriggerOptionalParams): Promise<void>;
+    beginDeleteSqlUserDefinedFunction(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteSqlUserDefinedFunctionAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, userDefinedFunctionName: string, options?: SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams): Promise<void>;
     beginUpdateSqlContainerThroughput(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams): Promise<PollerLike<PollOperationState<SqlResourcesUpdateSqlContainerThroughputResponse>, SqlResourcesUpdateSqlContainerThroughputResponse>>;
     beginUpdateSqlContainerThroughputAndWait(resourceGroupName: string, accountName: string, databaseName: string, containerName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: SqlResourcesUpdateSqlContainerThroughputOptionalParams): Promise<SqlResourcesUpdateSqlContainerThroughputResponse>;
     beginUpdateSqlDatabaseThroughput(resourceGroupName: string, accountName: string, databaseName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: SqlResourcesUpdateSqlDatabaseThroughputOptionalParams): Promise<PollerLike<PollOperationState<SqlResourcesUpdateSqlDatabaseThroughputResponse>, SqlResourcesUpdateSqlDatabaseThroughputResponse>>;
@@ -2202,276 +1858,181 @@ export interface SqlResources {
 }
 
 // @public
-export interface SqlResourcesCreateUpdateSqlContainerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesCreateUpdateSqlContainerOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesCreateUpdateSqlContainerResponse = SqlContainerGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlContainerGetResults;
-    };
-};
+export type SqlResourcesCreateUpdateSqlContainerResponse = SqlContainerGetResults;
 
 // @public
-export interface SqlResourcesCreateUpdateSqlDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesCreateUpdateSqlDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesCreateUpdateSqlDatabaseResponse = SqlDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlDatabaseGetResults;
-    };
-};
+export type SqlResourcesCreateUpdateSqlDatabaseResponse = SqlDatabaseGetResults;
 
 // @public
-export interface SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesCreateUpdateSqlStoredProcedureOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesCreateUpdateSqlStoredProcedureResponse = SqlStoredProcedureGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlStoredProcedureGetResults;
-    };
-};
+export type SqlResourcesCreateUpdateSqlStoredProcedureResponse = SqlStoredProcedureGetResults;
 
 // @public
-export interface SqlResourcesCreateUpdateSqlTriggerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesCreateUpdateSqlTriggerOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesCreateUpdateSqlTriggerResponse = SqlTriggerGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlTriggerGetResults;
-    };
-};
+export type SqlResourcesCreateUpdateSqlTriggerResponse = SqlTriggerGetResults;
 
 // @public
-export interface SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesCreateUpdateSqlUserDefinedFunctionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlUserDefinedFunctionGetResults;
-    };
-};
+export type SqlResourcesCreateUpdateSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults;
 
 // @public
-export interface SqlResourcesDeleteSqlContainerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesDeleteSqlContainerOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SqlResourcesDeleteSqlDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesDeleteSqlDatabaseOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SqlResourcesDeleteSqlStoredProcedureOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesDeleteSqlStoredProcedureOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SqlResourcesDeleteSqlTriggerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesDeleteSqlTriggerOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesDeleteSqlUserDefinedFunctionOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface SqlResourcesGetSqlContainerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlContainerOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlContainerResponse = SqlContainerGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlContainerGetResults;
-    };
-};
+export type SqlResourcesGetSqlContainerResponse = SqlContainerGetResults;
 
 // @public
-export interface SqlResourcesGetSqlContainerThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlContainerThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlContainerThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type SqlResourcesGetSqlContainerThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface SqlResourcesGetSqlDatabaseOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlDatabaseOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlDatabaseResponse = SqlDatabaseGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlDatabaseGetResults;
-    };
-};
+export type SqlResourcesGetSqlDatabaseResponse = SqlDatabaseGetResults;
 
 // @public
-export interface SqlResourcesGetSqlDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type SqlResourcesGetSqlDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface SqlResourcesGetSqlStoredProcedureOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlStoredProcedureOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlStoredProcedureResponse = SqlStoredProcedureGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlStoredProcedureGetResults;
-    };
-};
+export type SqlResourcesGetSqlStoredProcedureResponse = SqlStoredProcedureGetResults;
 
 // @public
-export interface SqlResourcesGetSqlTriggerOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlTriggerOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlTriggerResponse = SqlTriggerGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlTriggerGetResults;
-    };
-};
+export type SqlResourcesGetSqlTriggerResponse = SqlTriggerGetResults;
 
 // @public
-export interface SqlResourcesGetSqlUserDefinedFunctionOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesGetSqlUserDefinedFunctionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesGetSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlUserDefinedFunctionGetResults;
-    };
-};
+export type SqlResourcesGetSqlUserDefinedFunctionResponse = SqlUserDefinedFunctionGetResults;
 
 // @public
-export interface SqlResourcesListSqlContainersOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesListSqlContainersOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesListSqlContainersResponse = SqlContainerListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlContainerListResult;
-    };
-};
+export type SqlResourcesListSqlContainersResponse = SqlContainerListResult;
 
 // @public
-export interface SqlResourcesListSqlDatabasesOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesListSqlDatabasesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesListSqlDatabasesResponse = SqlDatabaseListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlDatabaseListResult;
-    };
-};
+export type SqlResourcesListSqlDatabasesResponse = SqlDatabaseListResult;
 
 // @public
-export interface SqlResourcesListSqlStoredProceduresOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesListSqlStoredProceduresOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesListSqlStoredProceduresResponse = SqlStoredProcedureListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlStoredProcedureListResult;
-    };
-};
+export type SqlResourcesListSqlStoredProceduresResponse = SqlStoredProcedureListResult;
 
 // @public
-export interface SqlResourcesListSqlTriggersOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesListSqlTriggersOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesListSqlTriggersResponse = SqlTriggerListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlTriggerListResult;
-    };
-};
+export type SqlResourcesListSqlTriggersResponse = SqlTriggerListResult;
 
 // @public
-export interface SqlResourcesListSqlUserDefinedFunctionsOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesListSqlUserDefinedFunctionsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SqlResourcesListSqlUserDefinedFunctionsResponse = SqlUserDefinedFunctionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SqlUserDefinedFunctionListResult;
-    };
-};
+export type SqlResourcesListSqlUserDefinedFunctionsResponse = SqlUserDefinedFunctionListResult;
 
 // @public
-export interface SqlResourcesUpdateSqlContainerThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesUpdateSqlContainerThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesUpdateSqlContainerThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type SqlResourcesUpdateSqlContainerThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface SqlResourcesUpdateSqlDatabaseThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface SqlResourcesUpdateSqlDatabaseThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type SqlResourcesUpdateSqlDatabaseThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type SqlResourcesUpdateSqlDatabaseThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
 export type SqlStoredProcedureCreateUpdateParameters = ARMResourceProperties & {
@@ -2582,8 +2143,8 @@ export interface TableResource {
 export interface TableResources {
     beginCreateUpdateTable(resourceGroupName: string, accountName: string, tableName: string, createUpdateTableParameters: TableCreateUpdateParameters, options?: TableResourcesCreateUpdateTableOptionalParams): Promise<PollerLike<PollOperationState<TableResourcesCreateUpdateTableResponse>, TableResourcesCreateUpdateTableResponse>>;
     beginCreateUpdateTableAndWait(resourceGroupName: string, accountName: string, tableName: string, createUpdateTableParameters: TableCreateUpdateParameters, options?: TableResourcesCreateUpdateTableOptionalParams): Promise<TableResourcesCreateUpdateTableResponse>;
-    beginDeleteTable(resourceGroupName: string, accountName: string, tableName: string, options?: TableResourcesDeleteTableOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginDeleteTableAndWait(resourceGroupName: string, accountName: string, tableName: string, options?: TableResourcesDeleteTableOptionalParams): Promise<coreHttp.RestResponse>;
+    beginDeleteTable(resourceGroupName: string, accountName: string, tableName: string, options?: TableResourcesDeleteTableOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteTableAndWait(resourceGroupName: string, accountName: string, tableName: string, options?: TableResourcesDeleteTableOptionalParams): Promise<void>;
     beginUpdateTableThroughput(resourceGroupName: string, accountName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: TableResourcesUpdateTableThroughputOptionalParams): Promise<PollerLike<PollOperationState<TableResourcesUpdateTableThroughputResponse>, TableResourcesUpdateTableThroughputResponse>>;
     beginUpdateTableThroughputAndWait(resourceGroupName: string, accountName: string, tableName: string, updateThroughputParameters: ThroughputSettingsUpdateParameters, options?: TableResourcesUpdateTableThroughputOptionalParams): Promise<TableResourcesUpdateTableThroughputResponse>;
     getTable(resourceGroupName: string, accountName: string, tableName: string, options?: TableResourcesGetTableOptionalParams): Promise<TableResourcesGetTableResponse>;
@@ -2592,74 +2153,49 @@ export interface TableResources {
 }
 
 // @public
-export interface TableResourcesCreateUpdateTableOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesCreateUpdateTableOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type TableResourcesCreateUpdateTableResponse = TableGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: TableGetResults;
-    };
-};
+export type TableResourcesCreateUpdateTableResponse = TableGetResults;
 
 // @public
-export interface TableResourcesDeleteTableOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesDeleteTableOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface TableResourcesGetTableOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesGetTableOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TableResourcesGetTableResponse = TableGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: TableGetResults;
-    };
-};
+export type TableResourcesGetTableResponse = TableGetResults;
 
 // @public
-export interface TableResourcesGetTableThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesGetTableThroughputOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TableResourcesGetTableThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type TableResourcesGetTableThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
-export interface TableResourcesListTablesOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesListTablesOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TableResourcesListTablesResponse = TableListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: TableListResult;
-    };
-};
+export type TableResourcesListTablesResponse = TableListResult;
 
 // @public
-export interface TableResourcesUpdateTableThroughputOptionalParams extends coreHttp.OperationOptions {
+export interface TableResourcesUpdateTableThroughputOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type TableResourcesUpdateTableThroughputResponse = ThroughputSettingsGetResults & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ThroughputSettingsGetResults;
-    };
-};
+export type TableResourcesUpdateTableThroughputResponse = ThroughputSettingsGetResults;
 
 // @public
 export interface ThroughputPolicyResource {

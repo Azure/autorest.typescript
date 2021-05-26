@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ManagedInstanceOperation,
   ManagedInstanceOperationsListByManagedInstanceOptionalParams,
@@ -45,7 +44,7 @@ export interface ManagedInstanceOperations {
     managedInstanceName: string,
     operationId: string,
     options?: ManagedInstanceOperationsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a management operation on a managed instance.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

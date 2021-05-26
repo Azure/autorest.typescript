@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PeerExpressRouteCircuitConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -133,17 +133,10 @@ export class PeerExpressRouteCircuitConnectionsImpl
     connectionName: string,
     options?: PeerExpressRouteCircuitConnectionsGetOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      circuitName,
-      peeringName,
-      connectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, circuitName, peeringName, connectionName, options },
       getOperationSpec
-    ) as Promise<PeerExpressRouteCircuitConnectionsGetResponse>;
+    );
   }
 
   /**
@@ -160,16 +153,10 @@ export class PeerExpressRouteCircuitConnectionsImpl
     peeringName: string,
     options?: PeerExpressRouteCircuitConnectionsListOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      circuitName,
-      peeringName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, circuitName, peeringName, options },
       listOperationSpec
-    ) as Promise<PeerExpressRouteCircuitConnectionsListResponse>;
+    );
   }
 
   /**
@@ -187,23 +174,16 @@ export class PeerExpressRouteCircuitConnectionsImpl
     nextLink: string,
     options?: PeerExpressRouteCircuitConnectionsListNextOptionalParams
   ): Promise<PeerExpressRouteCircuitConnectionsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      circuitName,
-      peeringName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, circuitName, peeringName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<PeerExpressRouteCircuitConnectionsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/peerConnections/{connectionName}",
   httpMethod: "GET",
@@ -227,7 +207,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteCircuits/{circuitName}/peerings/{peeringName}/peerConnections",
   httpMethod: "GET",
@@ -250,7 +230,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

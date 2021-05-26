@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   TagDetails,
   TagsListOptionalParams,
@@ -40,7 +39,7 @@ export interface Tags {
     tagName: string,
     tagValue: string,
     options?: TagsDeleteValueOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a tag value. The name of the tag must already exist.
    * @param tagName The name of the tag.
@@ -68,8 +67,5 @@ export interface Tags {
    * @param tagName The name of the tag.
    * @param options The options parameters.
    */
-  delete(
-    tagName: string,
-    options?: TagsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<void>;
 }

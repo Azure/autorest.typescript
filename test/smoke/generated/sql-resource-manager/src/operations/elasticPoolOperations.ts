@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ElasticPoolOperations } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -131,18 +131,11 @@ export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
     elasticPoolName: string,
     operationId: string,
     options?: ElasticPoolOperationsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      operationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, elasticPoolName, operationId, options },
       cancelOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -159,16 +152,10 @@ export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
     elasticPoolName: string,
     options?: ElasticPoolOperationsListByElasticPoolOptionalParams
   ): Promise<ElasticPoolOperationsListByElasticPoolResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, elasticPoolName, options },
       listByElasticPoolOperationSpec
-    ) as Promise<ElasticPoolOperationsListByElasticPoolResponse>;
+    );
   }
 
   /**
@@ -187,23 +174,16 @@ export class ElasticPoolOperationsImpl implements ElasticPoolOperations {
     nextLink: string,
     options?: ElasticPoolOperationsListByElasticPoolNextOptionalParams
   ): Promise<ElasticPoolOperationsListByElasticPoolNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      elasticPoolName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, elasticPoolName, nextLink, options },
       listByElasticPoolNextOperationSpec
-    ) as Promise<ElasticPoolOperationsListByElasticPoolNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const cancelOperationSpec: coreHttp.OperationSpec = {
+const cancelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/operations/{operationId}/cancel",
   httpMethod: "POST",
@@ -219,7 +199,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
+const listByElasticPoolOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/elasticPools/{elasticPoolName}/operations",
   httpMethod: "GET",
@@ -240,7 +220,7 @@ const listByElasticPoolOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByElasticPoolNextOperationSpec: coreHttp.OperationSpec = {
+const listByElasticPoolNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

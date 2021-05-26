@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Job,
   JobsListByAgentOptionalParams,
@@ -85,5 +84,5 @@ export interface Jobs {
     jobAgentName: string,
     jobName: string,
     options?: JobsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

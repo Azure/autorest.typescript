@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   JobExecution,
@@ -73,7 +72,7 @@ export interface JobExecutions {
     jobName: string,
     jobExecutionId: string,
     options?: JobExecutionsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts an elastic job execution.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -35,7 +35,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -57,7 +57,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -84,7 +84,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const FeatureOperationsListResult: coreHttp.CompositeMapper = {
+export const FeatureOperationsListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FeatureOperationsListResult",
@@ -111,7 +111,7 @@ export const FeatureOperationsListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const FeatureResult: coreHttp.CompositeMapper = {
+export const FeatureResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FeatureResult",
@@ -145,7 +145,7 @@ export const FeatureResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const FeatureProperties: coreHttp.CompositeMapper = {
+export const FeatureProperties: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "FeatureProperties",

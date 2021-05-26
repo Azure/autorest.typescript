@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   OAuth2PermissionGrantDef,
   OAuth2PermissionGrantListNextOptionalParams,
@@ -52,5 +51,5 @@ export interface OAuth2PermissionGrant {
   delete(
     objectId: string,
     options?: OAuth2PermissionGrantDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

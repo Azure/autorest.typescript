@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LoadBalancerProbes } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -114,15 +114,10 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
     loadBalancerName: string,
     options?: LoadBalancerProbesListOptionalParams
   ): Promise<LoadBalancerProbesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      loadBalancerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, loadBalancerName, options },
       listOperationSpec
-    ) as Promise<LoadBalancerProbesListResponse>;
+    );
   }
 
   /**
@@ -138,16 +133,10 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
     probeName: string,
     options?: LoadBalancerProbesGetOptionalParams
   ): Promise<LoadBalancerProbesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      loadBalancerName,
-      probeName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, loadBalancerName, probeName, options },
       getOperationSpec
-    ) as Promise<LoadBalancerProbesGetResponse>;
+    );
   }
 
   /**
@@ -163,22 +152,16 @@ export class LoadBalancerProbesImpl implements LoadBalancerProbes {
     nextLink: string,
     options?: LoadBalancerProbesListNextOptionalParams
   ): Promise<LoadBalancerProbesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      loadBalancerName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, loadBalancerName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<LoadBalancerProbesListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes",
   httpMethod: "GET",
@@ -200,7 +183,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/probes/{probeName}",
   httpMethod: "GET",
@@ -223,7 +206,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

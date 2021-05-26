@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Snapshot,
@@ -142,9 +141,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -157,7 +154,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Grants access to a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -205,9 +202,7 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsRevokeAccessOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Revokes access to a snapshot.
    * @param resourceGroupName The name of the resource group.
@@ -220,5 +215,5 @@ export interface Snapshots {
     resourceGroupName: string,
     snapshotName: string,
     options?: SnapshotsRevokeAccessOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

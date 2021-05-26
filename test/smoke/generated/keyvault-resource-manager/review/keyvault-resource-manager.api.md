@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -79,7 +80,7 @@ export type KeyPermissions = string;
 
 // @public (undocumented)
 export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -91,10 +92,10 @@ export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
 }
 
 // @public (undocumented)
-export class KeyVaultManagementClientContext extends coreHttp.ServiceClient {
+export class KeyVaultManagementClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -102,7 +103,7 @@ export class KeyVaultManagementClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface KeyVaultManagementClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface KeyVaultManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -331,28 +332,18 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 interface Permissions_2 {
@@ -401,30 +392,20 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
 }
 
 // @public
-export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsDeleteOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnection;
-    };
-};
+export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection;
 
 // @public
-export interface PrivateEndpointConnectionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnection;
-    };
-};
+export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection;
 
 // @public
 export interface PrivateEndpointConnectionsPutHeaders {
@@ -433,17 +414,11 @@ export interface PrivateEndpointConnectionsPutHeaders {
 }
 
 // @public
-export interface PrivateEndpointConnectionsPutOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateEndpointConnectionsPutOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPutHeaders & PrivateEndpointConnection & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateEndpointConnection;
-        parsedHeaders: PrivateEndpointConnectionsPutHeaders;
-    };
-};
+export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPutHeaders & PrivateEndpointConnection;
 
 // @public
 export type PrivateEndpointServiceConnectionStatus = string;
@@ -466,16 +441,11 @@ export interface PrivateLinkResources {
 }
 
 // @public
-export interface PrivateLinkResourcesListByVaultOptionalParams extends coreHttp.OperationOptions {
+export interface PrivateLinkResourcesListByVaultOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: PrivateLinkResourceListResult;
-    };
-};
+export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListResult;
 
 // @public
 export interface PrivateLinkServiceConnectionState {
@@ -620,10 +590,10 @@ export interface VaultProperties {
 export interface Vaults {
     beginCreateOrUpdate(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VaultsCreateOrUpdateResponse>, VaultsCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, vaultName: string, parameters: VaultCreateOrUpdateParameters, options?: VaultsCreateOrUpdateOptionalParams): Promise<VaultsCreateOrUpdateResponse>;
-    beginPurgeDeleted(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>>;
-    beginPurgeDeletedAndWait(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<coreHttp.RestResponse>;
+    beginPurgeDeleted(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginPurgeDeletedAndWait(vaultName: string, location: string, options?: VaultsPurgeDeletedOptionalParams): Promise<void>;
     checkNameAvailability(vaultName: VaultCheckNameAvailabilityParameters, options?: VaultsCheckNameAvailabilityOptionalParams): Promise<VaultsCheckNameAvailabilityResponse>;
-    delete(resourceGroupName: string, vaultName: string, options?: VaultsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, vaultName: string, options?: VaultsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, vaultName: string, options?: VaultsGetOptionalParams): Promise<VaultsGetResponse>;
     getDeleted(vaultName: string, location: string, options?: VaultsGetDeletedOptionalParams): Promise<VaultsGetDeletedResponse>;
     list(options?: VaultsListOptionalParams): PagedAsyncIterableIterator<Resource>;
@@ -635,190 +605,120 @@ export interface Vaults {
 }
 
 // @public
-export interface VaultsCheckNameAvailabilityOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsCheckNameAvailabilityOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: CheckNameAvailabilityResult;
-    };
-};
+export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
 
 // @public
-export interface VaultsCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type VaultsCreateOrUpdateResponse = Vault & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Vault;
-    };
-};
+export type VaultsCreateOrUpdateResponse = Vault;
 
 // @public
-export interface VaultsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface VaultsGetDeletedOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsGetDeletedOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsGetDeletedResponse = DeletedVault & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeletedVault;
-    };
-};
+export type VaultsGetDeletedResponse = DeletedVault;
 
 // @public
-export interface VaultsGetOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsGetResponse = Vault & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Vault;
-    };
-};
+export type VaultsGetResponse = Vault;
 
 // @public
-export interface VaultsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListByResourceGroupNextResponse = VaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VaultListResult;
-    };
-};
+export type VaultsListByResourceGroupNextResponse = VaultListResult;
 
 // @public
-export interface VaultsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListByResourceGroupResponse = VaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VaultListResult;
-    };
-};
+export type VaultsListByResourceGroupResponse = VaultListResult;
 
 // @public
-export interface VaultsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListBySubscriptionNextResponse = VaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VaultListResult;
-    };
-};
+export type VaultsListBySubscriptionNextResponse = VaultListResult;
 
 // @public
-export interface VaultsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListBySubscriptionResponse = VaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VaultListResult;
-    };
-};
+export type VaultsListBySubscriptionResponse = VaultListResult;
 
 // @public
-export interface VaultsListDeletedNextOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListDeletedNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsListDeletedNextResponse = DeletedVaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeletedVaultListResult;
-    };
-};
+export type VaultsListDeletedNextResponse = DeletedVaultListResult;
 
 // @public
-export interface VaultsListDeletedOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListDeletedOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsListDeletedResponse = DeletedVaultListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeletedVaultListResult;
-    };
-};
+export type VaultsListDeletedResponse = DeletedVaultListResult;
 
 // @public
-export interface VaultsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListNextOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListNextResponse = ResourceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceListResult;
-    };
-};
+export type VaultsListNextResponse = ResourceListResult;
 
 // @public
-export interface VaultsListOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListOptionalParams extends coreClient.OperationOptions {
     top?: number;
 }
 
 // @public
-export type VaultsListResponse = ResourceListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ResourceListResult;
-    };
-};
+export type VaultsListResponse = ResourceListResult;
 
 // @public
-export interface VaultsPurgeDeletedOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsPurgeDeletedOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export interface VaultsUpdateAccessPolicyOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsUpdateAccessPolicyOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: VaultAccessPolicyParameters;
-    };
-};
+export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters;
 
 // @public
-export interface VaultsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type VaultsUpdateResponse = Vault & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Vault;
-    };
-};
+export type VaultsUpdateResponse = Vault;
 
 // @public
 export interface VirtualNetworkRule {

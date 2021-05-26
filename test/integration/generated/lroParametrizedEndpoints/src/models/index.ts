@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface ErrorModel {
   status?: number;
@@ -21,7 +21,7 @@ export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsHea
 
 /** Optional parameters. */
 export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -32,20 +32,11 @@ export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsOpt
 export type LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface LroParametrizedEndpointsClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** A string value that is used as a global part of the parameterized host. Pass in 'host:3000' to pass test. */
   host?: string;
   /** Overrides client endpoint. */

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Certificate,
   CertificatesListOptionalParams,
@@ -76,7 +75,7 @@ export interface Certificates {
     resourceGroupName: string,
     name: string,
     options?: CertificatesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Create or update a certificate.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

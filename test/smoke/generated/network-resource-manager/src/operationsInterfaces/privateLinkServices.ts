@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateLinkService,
@@ -98,9 +97,7 @@ export interface PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified private link service.
    * @param resourceGroupName The name of the resource group.
@@ -111,7 +108,7 @@ export interface PrivateLinkServices {
     resourceGroupName: string,
     serviceName: string,
     options?: PrivateLinkServicesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified private link service by resource group.
    * @param resourceGroupName The name of the resource group.
@@ -195,9 +192,7 @@ export interface PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Delete private end point connection for a private link service in a subscription.
    * @param resourceGroupName The name of the resource group.
@@ -210,7 +205,7 @@ export interface PrivateLinkServices {
     serviceName: string,
     peConnectionName: string,
     options?: PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Checks whether the subscription is visible to private link service.
    * @param location The location of the domain name.

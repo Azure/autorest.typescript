@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PollerLike } from '@azure/core-lro';
 import { PollOperationState } from '@azure/core-lro';
@@ -112,7 +113,7 @@ export interface DeploymentScriptPropertiesBase {
 export interface DeploymentScripts {
     beginCreate(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: DeploymentScriptsCreateOptionalParams): Promise<PollerLike<PollOperationState<DeploymentScriptsCreateResponse>, DeploymentScriptsCreateResponse>>;
     beginCreateAndWait(resourceGroupName: string, scriptName: string, deploymentScript: DeploymentScriptUnion, options?: DeploymentScriptsCreateOptionalParams): Promise<DeploymentScriptsCreateResponse>;
-    delete(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetOptionalParams): Promise<DeploymentScriptsGetResponse>;
     getLogs(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsOptionalParams): Promise<DeploymentScriptsGetLogsResponse>;
     getLogsDefault(resourceGroupName: string, scriptName: string, options?: DeploymentScriptsGetLogsDefaultOptionalParams): Promise<DeploymentScriptsGetLogsDefaultResponse>;
@@ -123,16 +124,16 @@ export interface DeploymentScripts {
 
 // @public (undocumented)
 export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
     // (undocumented)
     deploymentScripts: DeploymentScripts;
 }
 
 // @public (undocumented)
-export class DeploymentScriptsClientContext extends coreHttp.ServiceClient {
+export class DeploymentScriptsClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -140,28 +141,23 @@ export class DeploymentScriptsClientContext extends coreHttp.ServiceClient {
 }
 
 // @public
-export interface DeploymentScriptsClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface DeploymentScriptsClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
 }
 
 // @public
-export interface DeploymentScriptsCreateOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsCreateOptionalParams extends coreClient.OperationOptions {
     resumeFrom?: string;
     updateIntervalInMs?: number;
 }
 
 // @public
-export type DeploymentScriptsCreateResponse = DeploymentScriptUnion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptUnion;
-    };
-};
+export type DeploymentScriptsCreateResponse = DeploymentScriptUnion;
 
 // @public
-export interface DeploymentScriptsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
@@ -170,102 +166,62 @@ export interface DeploymentScriptsError {
 }
 
 // @public
-export interface DeploymentScriptsGetLogsDefaultOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsGetLogsDefaultOptionalParams extends coreClient.OperationOptions {
     tail?: number;
 }
 
 // @public
-export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ScriptLog;
-    };
-};
+export type DeploymentScriptsGetLogsDefaultResponse = ScriptLog;
 
 // @public
-export interface DeploymentScriptsGetLogsOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsGetLogsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsGetLogsResponse = ScriptLogsList & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: ScriptLogsList;
-    };
-};
+export type DeploymentScriptsGetLogsResponse = ScriptLogsList;
 
 // @public
-export interface DeploymentScriptsGetOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsGetResponse = DeploymentScriptUnion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptUnion;
-    };
-};
+export type DeploymentScriptsGetResponse = DeploymentScriptUnion;
 
 // @public
-export interface DeploymentScriptsListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptListResult;
-    };
-};
+export type DeploymentScriptsListByResourceGroupNextResponse = DeploymentScriptListResult;
 
 // @public
-export interface DeploymentScriptsListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptListResult;
-    };
-};
+export type DeploymentScriptsListByResourceGroupResponse = DeploymentScriptListResult;
 
 // @public
-export interface DeploymentScriptsListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptListResult;
-    };
-};
+export type DeploymentScriptsListBySubscriptionNextResponse = DeploymentScriptListResult;
 
 // @public
-export interface DeploymentScriptsListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptListResult;
-    };
-};
+export type DeploymentScriptsListBySubscriptionResponse = DeploymentScriptListResult;
 
 // @public
-export interface DeploymentScriptsUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface DeploymentScriptsUpdateOptionalParams extends coreClient.OperationOptions {
     deploymentScript?: DeploymentScriptUpdateParameter;
 }
 
 // @public
-export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: DeploymentScriptUnion;
-    };
-};
+export type DeploymentScriptsUpdateResponse = DeploymentScriptUnion;
 
 // @public (undocumented)
 export type DeploymentScriptUnion = DeploymentScript | AzurePowerShellScript | AzureCliScript;

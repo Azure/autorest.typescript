@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export type DirectoryObjectUnion =
   | DirectoryObject
@@ -796,621 +796,318 @@ export type ConsentType = string;
 
 /** Optional parameters. */
 export interface SignedInUserGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type SignedInUserGetResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type SignedInUserGetResponse = User;
 
 /** Optional parameters. */
 export interface SignedInUserListOwnedObjectsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnedObjects operation. */
-export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type SignedInUserListOwnedObjectsResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface SignedInUserListOwnedObjectsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnedObjectsNext operation. */
-export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type SignedInUserListOwnedObjectsNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ApplicationsCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type ApplicationsCreateResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsCreateResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filters to apply to the operation. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type ApplicationsListResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ApplicationsGetResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type ApplicationsGetResponse = Application;
 
 /** Optional parameters. */
 export interface ApplicationsPatchOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsListOwnersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
-export type ApplicationsListOwnersResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ApplicationsListOwnersResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ApplicationsAddOwnerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsRemoveOwnerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsListKeyCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listKeyCredentials operation. */
-export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyCredentialListResult;
-  };
-};
+export type ApplicationsListKeyCredentialsResponse = KeyCredentialListResult;
 
 /** Optional parameters. */
 export interface ApplicationsUpdateKeyCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsListPasswordCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
-export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PasswordCredentialListResult;
-  };
-};
+export type ApplicationsListPasswordCredentialsResponse = PasswordCredentialListResult;
 
 /** Optional parameters. */
 export interface ApplicationsUpdatePasswordCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServicePrincipalsIdByAppId operation. */
-export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServicePrincipalObjectResult;
-  };
-};
+export type ApplicationsGetServicePrincipalsIdByAppIdResponse = ServicePrincipalObjectResult;
 
 /** Optional parameters. */
 export interface ApplicationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ApplicationsListNextResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type ApplicationsListNextResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface ApplicationsListOwnersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnersNext operation. */
-export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ApplicationsListOwnersNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface DeletedApplicationsRestoreOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the restore operation. */
-export type DeletedApplicationsRestoreResponse = Application & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Application;
-  };
-};
+export type DeletedApplicationsRestoreResponse = Application;
 
 /** Optional parameters. */
 export interface DeletedApplicationsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply to the operation. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type DeletedApplicationsListResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type DeletedApplicationsListResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface DeletedApplicationsHardDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeletedApplicationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DeletedApplicationsListNextResponse = ApplicationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationListResult;
-  };
-};
+export type DeletedApplicationsListNextResponse = ApplicationListResult;
 
 /** Optional parameters. */
 export interface GroupsIsMemberOfOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the isMemberOf operation. */
-export type GroupsIsMemberOfResponse = CheckGroupMembershipResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CheckGroupMembershipResult;
-  };
-};
+export type GroupsIsMemberOfResponse = CheckGroupMembershipResult;
 
 /** Optional parameters. */
 export interface GroupsRemoveMemberOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface GroupsAddMemberOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface GroupsCreateOptionalParams extends coreHttp.OperationOptions {}
+export interface GroupsCreateOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type GroupsCreateResponse = ADGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ADGroup;
-  };
-};
+export type GroupsCreateResponse = ADGroup;
 
 /** Optional parameters. */
-export interface GroupsListOptionalParams extends coreHttp.OperationOptions {
+export interface GroupsListOptionalParams extends coreClient.OperationOptions {
   /** The filter to apply to the operation. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type GroupsListResponse = GroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GroupListResult;
-  };
-};
+export type GroupsListResponse = GroupListResult;
 
 /** Optional parameters. */
 export interface GroupsGetGroupMembersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getGroupMembers operation. */
-export type GroupsGetGroupMembersResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type GroupsGetGroupMembersResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
-export interface GroupsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface GroupsGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type GroupsGetResponse = ADGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ADGroup;
-  };
-};
+export type GroupsGetResponse = ADGroup;
 
 /** Optional parameters. */
-export interface GroupsDeleteOptionalParams extends coreHttp.OperationOptions {}
+export interface GroupsDeleteOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface GroupsGetMemberGroupsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMemberGroups operation. */
-export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GroupGetMemberGroupsResult;
-  };
-};
+export type GroupsGetMemberGroupsResponse = GroupGetMemberGroupsResult;
 
 /** Optional parameters. */
 export interface GroupsListOwnersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
-export type GroupsListOwnersResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type GroupsListOwnersResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface GroupsAddOwnerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface GroupsRemoveOwnerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface GroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type GroupsListNextResponse = GroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GroupListResult;
-  };
-};
+export type GroupsListNextResponse = GroupListResult;
 
 /** Optional parameters. */
 export interface GroupsGetGroupMembersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getGroupMembersNext operation. */
-export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type GroupsGetGroupMembersNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface GroupsListOwnersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnersNext operation. */
-export type GroupsListOwnersNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type GroupsListOwnersNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type ServicePrincipalsCreateResponse = ServicePrincipal & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServicePrincipal;
-  };
-};
+export type ServicePrincipalsCreateResponse = ServicePrincipal;
 
 /** Optional parameters. */
 export interface ServicePrincipalsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply to the operation. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type ServicePrincipalsListResponse = ServicePrincipalListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServicePrincipalListResult;
-  };
-};
+export type ServicePrincipalsListResponse = ServicePrincipalListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ServicePrincipalsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ServicePrincipalsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ServicePrincipalsGetResponse = ServicePrincipal & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServicePrincipal;
-  };
-};
+export type ServicePrincipalsGetResponse = ServicePrincipal;
 
 /** Optional parameters. */
 export interface ServicePrincipalsListOwnersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwners operation. */
-export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ServicePrincipalsListOwnersResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsListKeyCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listKeyCredentials operation. */
-export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyCredentialListResult;
-  };
-};
+export type ServicePrincipalsListKeyCredentialsResponse = KeyCredentialListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsUpdateKeyCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ServicePrincipalsListPasswordCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPasswordCredentials operation. */
-export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PasswordCredentialListResult;
-  };
-};
+export type ServicePrincipalsListPasswordCredentialsResponse = PasswordCredentialListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsUpdatePasswordCredentialsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ServicePrincipalsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ServicePrincipalsListNextResponse = ServicePrincipalListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServicePrincipalListResult;
-  };
-};
+export type ServicePrincipalsListNextResponse = ServicePrincipalListResult;
 
 /** Optional parameters. */
 export interface ServicePrincipalsListOwnersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnersNext operation. */
-export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ServicePrincipalsListOwnersNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
-export interface UsersCreateOptionalParams extends coreHttp.OperationOptions {}
+export interface UsersCreateOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type UsersCreateResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type UsersCreateResponse = User;
 
 /** Optional parameters. */
-export interface UsersListOptionalParams extends coreHttp.OperationOptions {
+export interface UsersListOptionalParams extends coreClient.OperationOptions {
   /** The filter to apply to the operation. */
   filter?: string;
   /** The expand value for the operation result. */
@@ -1418,196 +1115,99 @@ export interface UsersListOptionalParams extends coreHttp.OperationOptions {
 }
 
 /** Contains response data for the list operation. */
-export type UsersListResponse = UserListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserListResult;
-  };
-};
+export type UsersListResponse = UserListResult;
 
 /** Optional parameters. */
-export interface UsersGetOptionalParams extends coreHttp.OperationOptions {}
+export interface UsersGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type UsersGetResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type UsersGetResponse = User;
 
 /** Optional parameters. */
-export interface UsersUpdateOptionalParams extends coreHttp.OperationOptions {}
+export interface UsersUpdateOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface UsersDeleteOptionalParams extends coreHttp.OperationOptions {}
+export interface UsersDeleteOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface UsersGetMemberGroupsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMemberGroups operation. */
-export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserGetMemberGroupsResult;
-  };
-};
+export type UsersGetMemberGroupsResponse = UserGetMemberGroupsResult;
 
 /** Optional parameters. */
 export interface UsersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type UsersListNextResponse = UserListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserListResult;
-  };
-};
+export type UsersListNextResponse = UserListResult;
 
 /** Optional parameters. */
 export interface ObjectsGetObjectsByObjectIdsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getObjectsByObjectIds operation. */
-export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
 export interface ObjectsGetObjectsByObjectIdsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getObjectsByObjectIdsNext operation. */
-export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DirectoryObjectListResult;
-  };
-};
+export type ObjectsGetObjectsByObjectIdsNextResponse = DirectoryObjectListResult;
 
 /** Optional parameters. */
-export interface DomainsListOptionalParams extends coreHttp.OperationOptions {
+export interface DomainsListOptionalParams extends coreClient.OperationOptions {
   /** The filter to apply to the operation. */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type DomainsListResponse = DomainListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainListResult;
-  };
-};
+export type DomainsListResponse = DomainListResult;
 
 /** Optional parameters. */
-export interface DomainsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface DomainsGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DomainsGetResponse = Domain & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Domain;
-  };
-};
+export type DomainsGetResponse = Domain;
 
 /** Optional parameters. */
 export interface OAuth2PermissionGrantListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** This is the Service Principal ObjectId associated with the app */
   filter?: string;
 }
 
 /** Contains response data for the list operation. */
-export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OAuth2PermissionGrantListResult;
-  };
-};
+export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult;
 
 /** Optional parameters. */
 export interface OAuth2PermissionGrantCreateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant. */
   body?: OAuth2PermissionGrantDef;
 }
 
 /** Contains response data for the create operation. */
-export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OAuth2PermissionGrantDef;
-  };
-};
+export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef;
 
 /** Optional parameters. */
 export interface OAuth2PermissionGrantDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface OAuth2PermissionGrantListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OAuth2PermissionGrantListResult;
-  };
-};
+export type OAuth2PermissionGrantListNextResponse = OAuth2PermissionGrantListResult;
 
 /** Optional parameters. */
 export interface GraphRbacManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

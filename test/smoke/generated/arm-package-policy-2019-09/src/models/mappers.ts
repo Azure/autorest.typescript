@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const PolicyAssignment: coreHttp.CompositeMapper = {
+export const PolicyAssignment: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyAssignment",
@@ -114,7 +114,7 @@ export const PolicyAssignment: coreHttp.CompositeMapper = {
   }
 };
 
-export const ParameterValuesValue: coreHttp.CompositeMapper = {
+export const ParameterValuesValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterValuesValue",
@@ -129,7 +129,7 @@ export const ParameterValuesValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicySku: coreHttp.CompositeMapper = {
+export const PolicySku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicySku",
@@ -151,7 +151,7 @@ export const PolicySku: coreHttp.CompositeMapper = {
   }
 };
 
-export const Identity: coreHttp.CompositeMapper = {
+export const Identity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Identity",
@@ -181,7 +181,7 @@ export const Identity: coreHttp.CompositeMapper = {
   }
 };
 
-export const CloudError: coreHttp.CompositeMapper = {
+export const CloudError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CloudError",
@@ -197,7 +197,7 @@ export const CloudError: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorResponse: coreHttp.CompositeMapper = {
+export const ErrorResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorResponse",
@@ -253,7 +253,7 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorAdditionalInfo: coreHttp.CompositeMapper = {
+export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorAdditionalInfo",
@@ -276,7 +276,7 @@ export const ErrorAdditionalInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicyAssignmentListResult: coreHttp.CompositeMapper = {
+export const PolicyAssignmentListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyAssignmentListResult",
@@ -303,7 +303,7 @@ export const PolicyAssignmentListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicyDefinition: coreHttp.CompositeMapper = {
+export const PolicyDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyDefinition",
@@ -378,7 +378,7 @@ export const PolicyDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const ParameterDefinitionsValue: coreHttp.CompositeMapper = {
+export const ParameterDefinitionsValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterDefinitionsValue",
@@ -417,7 +417,7 @@ export const ParameterDefinitionsValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const ParameterDefinitionsValueMetadata: coreHttp.CompositeMapper = {
+export const ParameterDefinitionsValueMetadata: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ParameterDefinitionsValueMetadata",
@@ -439,7 +439,7 @@ export const ParameterDefinitionsValueMetadata: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicyDefinitionListResult: coreHttp.CompositeMapper = {
+export const PolicyDefinitionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyDefinitionListResult",
@@ -466,7 +466,7 @@ export const PolicyDefinitionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicySetDefinition: coreHttp.CompositeMapper = {
+export const PolicySetDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicySetDefinition",
@@ -553,7 +553,7 @@ export const PolicySetDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicyDefinitionReference: coreHttp.CompositeMapper = {
+export const PolicyDefinitionReference: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyDefinitionReference",
@@ -595,7 +595,7 @@ export const PolicyDefinitionReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicyDefinitionGroup: coreHttp.CompositeMapper = {
+export const PolicyDefinitionGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicyDefinitionGroup",
@@ -635,7 +635,7 @@ export const PolicyDefinitionGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const PolicySetDefinitionListResult: coreHttp.CompositeMapper = {
+export const PolicySetDefinitionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PolicySetDefinitionListResult",

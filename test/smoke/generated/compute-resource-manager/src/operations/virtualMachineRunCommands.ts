@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VirtualMachineRunCommands } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -92,14 +92,10 @@ export class VirtualMachineRunCommandsImpl
     location: string,
     options?: VirtualMachineRunCommandsListOptionalParams
   ): Promise<VirtualMachineRunCommandsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listOperationSpec
-    ) as Promise<VirtualMachineRunCommandsListResponse>;
+    );
   }
 
   /**
@@ -113,15 +109,10 @@ export class VirtualMachineRunCommandsImpl
     commandId: string,
     options?: VirtualMachineRunCommandsGetOptionalParams
   ): Promise<VirtualMachineRunCommandsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      commandId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, commandId, options },
       getOperationSpec
-    ) as Promise<VirtualMachineRunCommandsGetResponse>;
+    );
   }
 
   /**
@@ -135,21 +126,16 @@ export class VirtualMachineRunCommandsImpl
     nextLink: string,
     options?: VirtualMachineRunCommandsListNextOptionalParams
   ): Promise<VirtualMachineRunCommandsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, nextLink, options },
       listNextOperationSpec
-    ) as Promise<VirtualMachineRunCommandsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/runCommands",
   httpMethod: "GET",
@@ -167,7 +153,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept1],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/runCommands/{commandId}",
   httpMethod: "GET",
@@ -186,7 +172,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept1],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

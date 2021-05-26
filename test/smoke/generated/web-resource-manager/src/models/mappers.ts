@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const AppServiceCertificateOrderCollection: coreHttp.CompositeMapper = {
+export const AppServiceCertificateOrderCollection: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificateOrderCollection",
   type: {
     name: "Composite",
@@ -41,7 +41,7 @@ export const AppServiceCertificateOrderCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceCertificate: coreHttp.CompositeMapper = {
+export const AppServiceCertificate: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificate",
   type: {
     name: "Composite",
@@ -86,7 +86,7 @@ export const AppServiceCertificate: coreHttp.CompositeMapper = {
   }
 };
 
-export const CertificateDetails: coreHttp.CompositeMapper = {
+export const CertificateDetails: coreClient.CompositeMapper = {
   serializedName: "CertificateDetails",
   type: {
     name: "Composite",
@@ -168,7 +168,7 @@ export const CertificateDetails: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   serializedName: "Resource",
   type: {
     name: "Composite",
@@ -225,7 +225,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const DefaultErrorResponse: coreHttp.CompositeMapper = {
+export const DefaultErrorResponse: coreClient.CompositeMapper = {
   serializedName: "DefaultErrorResponse",
   type: {
     name: "Composite",
@@ -243,7 +243,7 @@ export const DefaultErrorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const DefaultErrorResponseError: coreHttp.CompositeMapper = {
+export const DefaultErrorResponseError: coreClient.CompositeMapper = {
   serializedName: "DefaultErrorResponseError",
   type: {
     name: "Composite",
@@ -299,7 +299,7 @@ export const DefaultErrorResponseError: coreHttp.CompositeMapper = {
   }
 };
 
-export const DefaultErrorResponseErrorDetailsItem: coreHttp.CompositeMapper = {
+export const DefaultErrorResponseErrorDetailsItem: coreClient.CompositeMapper = {
   serializedName: "DefaultErrorResponseErrorDetailsItem",
   type: {
     name: "Composite",
@@ -333,7 +333,7 @@ export const DefaultErrorResponseErrorDetailsItem: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProxyOnlyResource: coreHttp.CompositeMapper = {
+export const ProxyOnlyResource: coreClient.CompositeMapper = {
   serializedName: "ProxyOnlyResource",
   type: {
     name: "Composite",
@@ -374,7 +374,7 @@ export const ProxyOnlyResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceCertificateCollection: coreHttp.CompositeMapper = {
+export const AppServiceCertificateCollection: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificateCollection",
   type: {
     name: "Composite",
@@ -407,7 +407,7 @@ export const AppServiceCertificateCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const NameIdentifier: coreHttp.CompositeMapper = {
+export const NameIdentifier: coreClient.CompositeMapper = {
   serializedName: "NameIdentifier",
   type: {
     name: "Composite",
@@ -424,7 +424,7 @@ export const NameIdentifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteSealRequest: coreHttp.CompositeMapper = {
+export const SiteSealRequest: coreClient.CompositeMapper = {
   serializedName: "SiteSealRequest",
   type: {
     name: "Composite",
@@ -448,7 +448,7 @@ export const SiteSealRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteSeal: coreHttp.CompositeMapper = {
+export const SiteSeal: coreClient.CompositeMapper = {
   serializedName: "SiteSeal",
   type: {
     name: "Composite",
@@ -466,7 +466,7 @@ export const SiteSeal: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmOperationCollection: coreHttp.CompositeMapper = {
+export const CsmOperationCollection: coreClient.CompositeMapper = {
   serializedName: "CsmOperationCollection",
   type: {
     name: "Composite",
@@ -499,7 +499,7 @@ export const CsmOperationCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmOperationDescription: coreHttp.CompositeMapper = {
+export const CsmOperationDescription: coreClient.CompositeMapper = {
   serializedName: "CsmOperationDescription",
   type: {
     name: "Composite",
@@ -539,7 +539,7 @@ export const CsmOperationDescription: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmOperationDisplay: coreHttp.CompositeMapper = {
+export const CsmOperationDisplay: coreClient.CompositeMapper = {
   serializedName: "CsmOperationDisplay",
   type: {
     name: "Composite",
@@ -577,7 +577,7 @@ export const CsmOperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmOperationDescriptionProperties: coreHttp.CompositeMapper = {
+export const CsmOperationDescriptionProperties: coreClient.CompositeMapper = {
   serializedName: "CsmOperationDescriptionProperties",
   type: {
     name: "Composite",
@@ -595,7 +595,7 @@ export const CsmOperationDescriptionProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServiceSpecification: coreHttp.CompositeMapper = {
+export const ServiceSpecification: coreClient.CompositeMapper = {
   serializedName: "ServiceSpecification",
   type: {
     name: "Composite",
@@ -633,7 +633,7 @@ export const ServiceSpecification: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricSpecification: coreHttp.CompositeMapper = {
+export const MetricSpecification: coreClient.CompositeMapper = {
   serializedName: "MetricSpecification",
   type: {
     name: "Composite",
@@ -775,7 +775,7 @@ export const MetricSpecification: coreHttp.CompositeMapper = {
   }
 };
 
-export const Dimension: coreHttp.CompositeMapper = {
+export const Dimension: coreClient.CompositeMapper = {
   serializedName: "Dimension",
   type: {
     name: "Composite",
@@ -813,7 +813,7 @@ export const Dimension: coreHttp.CompositeMapper = {
   }
 };
 
-export const MetricAvailability: coreHttp.CompositeMapper = {
+export const MetricAvailability: coreClient.CompositeMapper = {
   serializedName: "MetricAvailability",
   type: {
     name: "Composite",
@@ -837,7 +837,7 @@ export const MetricAvailability: coreHttp.CompositeMapper = {
   }
 };
 
-export const LogSpecification: coreHttp.CompositeMapper = {
+export const LogSpecification: coreClient.CompositeMapper = {
   serializedName: "LogSpecification",
   type: {
     name: "Composite",
@@ -868,7 +868,7 @@ export const LogSpecification: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainAvailabilityCheckResult: coreHttp.CompositeMapper = {
+export const DomainAvailabilityCheckResult: coreClient.CompositeMapper = {
   serializedName: "DomainAvailabilityCheckResult",
   type: {
     name: "Composite",
@@ -900,7 +900,7 @@ export const DomainAvailabilityCheckResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainCollection: coreHttp.CompositeMapper = {
+export const DomainCollection: coreClient.CompositeMapper = {
   serializedName: "DomainCollection",
   type: {
     name: "Composite",
@@ -933,7 +933,7 @@ export const DomainCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const Contact: coreHttp.CompositeMapper = {
+export const Contact: coreClient.CompositeMapper = {
   serializedName: "Contact",
   type: {
     name: "Composite",
@@ -1011,7 +1011,7 @@ export const Contact: coreHttp.CompositeMapper = {
   }
 };
 
-export const Address: coreHttp.CompositeMapper = {
+export const Address: coreClient.CompositeMapper = {
   serializedName: "Address",
   type: {
     name: "Composite",
@@ -1068,7 +1068,7 @@ export const Address: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostName: coreHttp.CompositeMapper = {
+export const HostName: coreClient.CompositeMapper = {
   serializedName: "HostName",
   type: {
     name: "Composite",
@@ -1129,7 +1129,7 @@ export const HostName: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainPurchaseConsent: coreHttp.CompositeMapper = {
+export const DomainPurchaseConsent: coreClient.CompositeMapper = {
   serializedName: "DomainPurchaseConsent",
   type: {
     name: "Composite",
@@ -1166,7 +1166,7 @@ export const DomainPurchaseConsent: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainControlCenterSsoRequest: coreHttp.CompositeMapper = {
+export const DomainControlCenterSsoRequest: coreClient.CompositeMapper = {
   serializedName: "DomainControlCenterSsoRequest",
   type: {
     name: "Composite",
@@ -1200,7 +1200,7 @@ export const DomainControlCenterSsoRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainRecommendationSearchParameters: coreHttp.CompositeMapper = {
+export const DomainRecommendationSearchParameters: coreClient.CompositeMapper = {
   serializedName: "DomainRecommendationSearchParameters",
   type: {
     name: "Composite",
@@ -1224,7 +1224,7 @@ export const DomainRecommendationSearchParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const NameIdentifierCollection: coreHttp.CompositeMapper = {
+export const NameIdentifierCollection: coreClient.CompositeMapper = {
   serializedName: "NameIdentifierCollection",
   type: {
     name: "Composite",
@@ -1257,7 +1257,7 @@ export const NameIdentifierCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainOwnershipIdentifierCollection: coreHttp.CompositeMapper = {
+export const DomainOwnershipIdentifierCollection: coreClient.CompositeMapper = {
   serializedName: "DomainOwnershipIdentifierCollection",
   type: {
     name: "Composite",
@@ -1290,7 +1290,7 @@ export const DomainOwnershipIdentifierCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const TopLevelDomainCollection: coreHttp.CompositeMapper = {
+export const TopLevelDomainCollection: coreClient.CompositeMapper = {
   serializedName: "TopLevelDomainCollection",
   type: {
     name: "Composite",
@@ -1323,7 +1323,7 @@ export const TopLevelDomainCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const TopLevelDomainAgreementOption: coreHttp.CompositeMapper = {
+export const TopLevelDomainAgreementOption: coreClient.CompositeMapper = {
   serializedName: "TopLevelDomainAgreementOption",
   type: {
     name: "Composite",
@@ -1347,7 +1347,7 @@ export const TopLevelDomainAgreementOption: coreHttp.CompositeMapper = {
   }
 };
 
-export const TldLegalAgreementCollection: coreHttp.CompositeMapper = {
+export const TldLegalAgreementCollection: coreClient.CompositeMapper = {
   serializedName: "TldLegalAgreementCollection",
   type: {
     name: "Composite",
@@ -1380,7 +1380,7 @@ export const TldLegalAgreementCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const TldLegalAgreement: coreHttp.CompositeMapper = {
+export const TldLegalAgreement: coreClient.CompositeMapper = {
   serializedName: "TldLegalAgreement",
   type: {
     name: "Composite",
@@ -1421,7 +1421,7 @@ export const TldLegalAgreement: coreHttp.CompositeMapper = {
   }
 };
 
-export const CertificateCollection: coreHttp.CompositeMapper = {
+export const CertificateCollection: coreClient.CompositeMapper = {
   serializedName: "CertificateCollection",
   type: {
     name: "Composite",
@@ -1454,7 +1454,7 @@ export const CertificateCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostingEnvironmentProfile: coreHttp.CompositeMapper = {
+export const HostingEnvironmentProfile: coreClient.CompositeMapper = {
   serializedName: "HostingEnvironmentProfile",
   type: {
     name: "Composite",
@@ -1487,7 +1487,7 @@ export const HostingEnvironmentProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedWebAppCollection: coreHttp.CompositeMapper = {
+export const DeletedWebAppCollection: coreClient.CompositeMapper = {
   serializedName: "DeletedWebAppCollection",
   type: {
     name: "Composite",
@@ -1520,7 +1520,7 @@ export const DeletedWebAppCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectorResponseCollection: coreHttp.CompositeMapper = {
+export const DetectorResponseCollection: coreClient.CompositeMapper = {
   serializedName: "DetectorResponseCollection",
   type: {
     name: "Composite",
@@ -1553,7 +1553,7 @@ export const DetectorResponseCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectorInfo: coreHttp.CompositeMapper = {
+export const DetectorInfo: coreClient.CompositeMapper = {
   serializedName: "DetectorInfo",
   type: {
     name: "Composite",
@@ -1595,7 +1595,7 @@ export const DetectorInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticData: coreHttp.CompositeMapper = {
+export const DiagnosticData: coreClient.CompositeMapper = {
   serializedName: "DiagnosticData",
   type: {
     name: "Composite",
@@ -1621,7 +1621,7 @@ export const DiagnosticData: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataTableResponseObject: coreHttp.CompositeMapper = {
+export const DataTableResponseObject: coreClient.CompositeMapper = {
   serializedName: "DataTableResponseObject",
   type: {
     name: "Composite",
@@ -1670,7 +1670,7 @@ export const DataTableResponseObject: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataTableResponseColumn: coreHttp.CompositeMapper = {
+export const DataTableResponseColumn: coreClient.CompositeMapper = {
   serializedName: "DataTableResponseColumn",
   type: {
     name: "Composite",
@@ -1701,7 +1701,7 @@ export const DataTableResponseColumn: coreHttp.CompositeMapper = {
   }
 };
 
-export const Rendering: coreHttp.CompositeMapper = {
+export const Rendering: coreClient.CompositeMapper = {
   serializedName: "Rendering",
   type: {
     name: "Composite",
@@ -1738,7 +1738,7 @@ export const Rendering: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticCategoryCollection: coreHttp.CompositeMapper = {
+export const DiagnosticCategoryCollection: coreClient.CompositeMapper = {
   serializedName: "DiagnosticCategoryCollection",
   type: {
     name: "Composite",
@@ -1771,7 +1771,7 @@ export const DiagnosticCategoryCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticAnalysisCollection: coreHttp.CompositeMapper = {
+export const DiagnosticAnalysisCollection: coreClient.CompositeMapper = {
   serializedName: "DiagnosticAnalysisCollection",
   type: {
     name: "Composite",
@@ -1804,7 +1804,7 @@ export const DiagnosticAnalysisCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const AbnormalTimePeriod: coreHttp.CompositeMapper = {
+export const AbnormalTimePeriod: coreClient.CompositeMapper = {
   serializedName: "AbnormalTimePeriod",
   type: {
     name: "Composite",
@@ -1856,7 +1856,7 @@ export const AbnormalTimePeriod: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectorAbnormalTimePeriod: coreHttp.CompositeMapper = {
+export const DetectorAbnormalTimePeriod: coreClient.CompositeMapper = {
   serializedName: "DetectorAbnormalTimePeriod",
   type: {
     name: "Composite",
@@ -1951,7 +1951,7 @@ export const DetectorAbnormalTimePeriod: coreHttp.CompositeMapper = {
   }
 };
 
-export const NameValuePair: coreHttp.CompositeMapper = {
+export const NameValuePair: coreClient.CompositeMapper = {
   serializedName: "NameValuePair",
   type: {
     name: "Composite",
@@ -1975,7 +1975,7 @@ export const NameValuePair: coreHttp.CompositeMapper = {
   }
 };
 
-export const Solution: coreHttp.CompositeMapper = {
+export const Solution: coreClient.CompositeMapper = {
   serializedName: "Solution",
   type: {
     name: "Composite",
@@ -2059,7 +2059,7 @@ export const Solution: coreHttp.CompositeMapper = {
   }
 };
 
-export const AnalysisData: coreHttp.CompositeMapper = {
+export const AnalysisData: coreClient.CompositeMapper = {
   serializedName: "AnalysisData",
   type: {
     name: "Composite",
@@ -2125,7 +2125,7 @@ export const AnalysisData: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticMetricSet: coreHttp.CompositeMapper = {
+export const DiagnosticMetricSet: coreClient.CompositeMapper = {
   serializedName: "DiagnosticMetricSet",
   type: {
     name: "Composite",
@@ -2184,7 +2184,7 @@ export const DiagnosticMetricSet: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticMetricSample: coreHttp.CompositeMapper = {
+export const DiagnosticMetricSample: coreClient.CompositeMapper = {
   serializedName: "DiagnosticMetricSample",
   type: {
     name: "Composite",
@@ -2236,7 +2236,7 @@ export const DiagnosticMetricSample: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResponseMetaData: coreHttp.CompositeMapper = {
+export const ResponseMetaData: coreClient.CompositeMapper = {
   serializedName: "ResponseMetaData",
   type: {
     name: "Composite",
@@ -2254,7 +2254,7 @@ export const ResponseMetaData: coreHttp.CompositeMapper = {
   }
 };
 
-export const DataSource: coreHttp.CompositeMapper = {
+export const DataSource: coreClient.CompositeMapper = {
   serializedName: "DataSource",
   type: {
     name: "Composite",
@@ -2291,7 +2291,7 @@ export const DataSource: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticDetectorCollection: coreHttp.CompositeMapper = {
+export const DiagnosticDetectorCollection: coreClient.CompositeMapper = {
   serializedName: "DiagnosticDetectorCollection",
   type: {
     name: "Composite",
@@ -2324,7 +2324,7 @@ export const DiagnosticDetectorCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationStackCollection: coreHttp.CompositeMapper = {
+export const ApplicationStackCollection: coreClient.CompositeMapper = {
   serializedName: "ApplicationStackCollection",
   type: {
     name: "Composite",
@@ -2357,7 +2357,7 @@ export const ApplicationStackCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationStack: coreHttp.CompositeMapper = {
+export const ApplicationStack: coreClient.CompositeMapper = {
   serializedName: "ApplicationStack",
   type: {
     name: "Composite",
@@ -2416,7 +2416,7 @@ export const ApplicationStack: coreHttp.CompositeMapper = {
   }
 };
 
-export const StackMajorVersion: coreHttp.CompositeMapper = {
+export const StackMajorVersion: coreClient.CompositeMapper = {
   serializedName: "StackMajorVersion",
   type: {
     name: "Composite",
@@ -2489,7 +2489,7 @@ export const StackMajorVersion: coreHttp.CompositeMapper = {
   }
 };
 
-export const StackMinorVersion: coreHttp.CompositeMapper = {
+export const StackMinorVersion: coreClient.CompositeMapper = {
   serializedName: "StackMinorVersion",
   type: {
     name: "Composite",
@@ -2527,7 +2527,7 @@ export const StackMinorVersion: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendationCollection: coreHttp.CompositeMapper = {
+export const RecommendationCollection: coreClient.CompositeMapper = {
   serializedName: "RecommendationCollection",
   type: {
     name: "Composite",
@@ -2560,7 +2560,7 @@ export const RecommendationCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SourceControlCollection: coreHttp.CompositeMapper = {
+export const SourceControlCollection: coreClient.CompositeMapper = {
   serializedName: "SourceControlCollection",
   type: {
     name: "Composite",
@@ -2593,7 +2593,7 @@ export const SourceControlCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const BillingMeterCollection: coreHttp.CompositeMapper = {
+export const BillingMeterCollection: coreClient.CompositeMapper = {
   serializedName: "BillingMeterCollection",
   type: {
     name: "Composite",
@@ -2626,7 +2626,7 @@ export const BillingMeterCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceNameAvailabilityRequest: coreHttp.CompositeMapper = {
+export const ResourceNameAvailabilityRequest: coreClient.CompositeMapper = {
   serializedName: "ResourceNameAvailabilityRequest",
   type: {
     name: "Composite",
@@ -2659,7 +2659,7 @@ export const ResourceNameAvailabilityRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceNameAvailability: coreHttp.CompositeMapper = {
+export const ResourceNameAvailability: coreClient.CompositeMapper = {
   serializedName: "ResourceNameAvailability",
   type: {
     name: "Composite",
@@ -2690,7 +2690,7 @@ export const ResourceNameAvailability: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentLocations: coreHttp.CompositeMapper = {
+export const DeploymentLocations: coreClient.CompositeMapper = {
   serializedName: "DeploymentLocations",
   type: {
     name: "Composite",
@@ -2742,7 +2742,7 @@ export const DeploymentLocations: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceEnvironment: coreHttp.CompositeMapper = {
+export const AppServiceEnvironment: coreClient.CompositeMapper = {
   serializedName: "AppServiceEnvironment",
   type: {
     name: "Composite",
@@ -3096,7 +3096,7 @@ export const AppServiceEnvironment: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualNetworkProfile: coreHttp.CompositeMapper = {
+export const VirtualNetworkProfile: coreClient.CompositeMapper = {
   serializedName: "VirtualNetworkProfile",
   type: {
     name: "Composite",
@@ -3136,7 +3136,7 @@ export const VirtualNetworkProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const WorkerPool: coreHttp.CompositeMapper = {
+export const WorkerPool: coreClient.CompositeMapper = {
   serializedName: "WorkerPool",
   type: {
     name: "Composite",
@@ -3189,7 +3189,7 @@ export const WorkerPool: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualIPMapping: coreHttp.CompositeMapper = {
+export const VirtualIPMapping: coreClient.CompositeMapper = {
   serializedName: "VirtualIPMapping",
   type: {
     name: "Composite",
@@ -3234,7 +3234,7 @@ export const VirtualIPMapping: coreHttp.CompositeMapper = {
   }
 };
 
-export const StampCapacity: coreHttp.CompositeMapper = {
+export const StampCapacity: coreClient.CompositeMapper = {
   serializedName: "StampCapacity",
   type: {
     name: "Composite",
@@ -3332,7 +3332,7 @@ export const StampCapacity: coreHttp.CompositeMapper = {
   }
 };
 
-export const NetworkAccessControlEntry: coreHttp.CompositeMapper = {
+export const NetworkAccessControlEntry: coreClient.CompositeMapper = {
   serializedName: "NetworkAccessControlEntry",
   type: {
     name: "Composite",
@@ -3371,7 +3371,7 @@ export const NetworkAccessControlEntry: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostingEnvironmentDeploymentInfo: coreHttp.CompositeMapper = {
+export const HostingEnvironmentDeploymentInfo: coreClient.CompositeMapper = {
   serializedName: "HostingEnvironmentDeploymentInfo",
   type: {
     name: "Composite",
@@ -3395,7 +3395,7 @@ export const HostingEnvironmentDeploymentInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeoRegionCollection: coreHttp.CompositeMapper = {
+export const GeoRegionCollection: coreClient.CompositeMapper = {
   serializedName: "GeoRegionCollection",
   type: {
     name: "Composite",
@@ -3428,7 +3428,7 @@ export const GeoRegionCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const IdentifierCollection: coreHttp.CompositeMapper = {
+export const IdentifierCollection: coreClient.CompositeMapper = {
   serializedName: "IdentifierCollection",
   type: {
     name: "Composite",
@@ -3461,7 +3461,7 @@ export const IdentifierCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const PremierAddOnOfferCollection: coreHttp.CompositeMapper = {
+export const PremierAddOnOfferCollection: coreClient.CompositeMapper = {
   serializedName: "PremierAddOnOfferCollection",
   type: {
     name: "Composite",
@@ -3494,7 +3494,7 @@ export const PremierAddOnOfferCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SkuInfos: coreHttp.CompositeMapper = {
+export const SkuInfos: coreClient.CompositeMapper = {
   serializedName: "SkuInfos",
   type: {
     name: "Composite",
@@ -3525,7 +3525,7 @@ export const SkuInfos: coreHttp.CompositeMapper = {
   }
 };
 
-export const GlobalCsmSkuDescription: coreHttp.CompositeMapper = {
+export const GlobalCsmSkuDescription: coreClient.CompositeMapper = {
   serializedName: "GlobalCsmSkuDescription",
   type: {
     name: "Composite",
@@ -3598,7 +3598,7 @@ export const GlobalCsmSkuDescription: coreHttp.CompositeMapper = {
   }
 };
 
-export const SkuCapacity: coreHttp.CompositeMapper = {
+export const SkuCapacity: coreClient.CompositeMapper = {
   serializedName: "SkuCapacity",
   type: {
     name: "Composite",
@@ -3636,7 +3636,7 @@ export const SkuCapacity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Capability: coreHttp.CompositeMapper = {
+export const Capability: coreClient.CompositeMapper = {
   serializedName: "Capability",
   type: {
     name: "Composite",
@@ -3667,7 +3667,7 @@ export const Capability: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmMoveResourceEnvelope: coreHttp.CompositeMapper = {
+export const CsmMoveResourceEnvelope: coreClient.CompositeMapper = {
   serializedName: "CsmMoveResourceEnvelope",
   type: {
     name: "Composite",
@@ -3702,7 +3702,7 @@ export const CsmMoveResourceEnvelope: coreHttp.CompositeMapper = {
   }
 };
 
-export const ValidateRequest: coreHttp.CompositeMapper = {
+export const ValidateRequest: coreClient.CompositeMapper = {
   serializedName: "ValidateRequest",
   type: {
     name: "Composite",
@@ -3830,7 +3830,7 @@ export const ValidateRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const ValidateResponse: coreHttp.CompositeMapper = {
+export const ValidateResponse: coreClient.CompositeMapper = {
   serializedName: "ValidateResponse",
   type: {
     name: "Composite",
@@ -3855,7 +3855,7 @@ export const ValidateResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ValidateResponseError: coreHttp.CompositeMapper = {
+export const ValidateResponseError: coreClient.CompositeMapper = {
   serializedName: "ValidateResponseError",
   type: {
     name: "Composite",
@@ -3879,7 +3879,7 @@ export const ValidateResponseError: coreHttp.CompositeMapper = {
   }
 };
 
-export const WebAppCollection: coreHttp.CompositeMapper = {
+export const WebAppCollection: coreClient.CompositeMapper = {
   serializedName: "WebAppCollection",
   type: {
     name: "Composite",
@@ -3912,7 +3912,7 @@ export const WebAppCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostNameSslState: coreHttp.CompositeMapper = {
+export const HostNameSslState: coreClient.CompositeMapper = {
   serializedName: "HostNameSslState",
   type: {
     name: "Composite",
@@ -3966,7 +3966,7 @@ export const HostNameSslState: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteConfig: coreHttp.CompositeMapper = {
+export const SiteConfig: coreClient.CompositeMapper = {
   serializedName: "SiteConfig",
   type: {
     name: "Composite",
@@ -4431,7 +4431,7 @@ export const SiteConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const ConnStringInfo: coreHttp.CompositeMapper = {
+export const ConnStringInfo: coreClient.CompositeMapper = {
   serializedName: "ConnStringInfo",
   type: {
     name: "Composite",
@@ -4475,7 +4475,7 @@ export const ConnStringInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteMachineKey: coreHttp.CompositeMapper = {
+export const SiteMachineKey: coreClient.CompositeMapper = {
   serializedName: "SiteMachineKey",
   type: {
     name: "Composite",
@@ -4513,7 +4513,7 @@ export const SiteMachineKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const HandlerMapping: coreHttp.CompositeMapper = {
+export const HandlerMapping: coreClient.CompositeMapper = {
   serializedName: "HandlerMapping",
   type: {
     name: "Composite",
@@ -4544,7 +4544,7 @@ export const HandlerMapping: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualApplication: coreHttp.CompositeMapper = {
+export const VirtualApplication: coreClient.CompositeMapper = {
   serializedName: "VirtualApplication",
   type: {
     name: "Composite",
@@ -4589,7 +4589,7 @@ export const VirtualApplication: coreHttp.CompositeMapper = {
   }
 };
 
-export const VirtualDirectory: coreHttp.CompositeMapper = {
+export const VirtualDirectory: coreClient.CompositeMapper = {
   serializedName: "VirtualDirectory",
   type: {
     name: "Composite",
@@ -4613,7 +4613,7 @@ export const VirtualDirectory: coreHttp.CompositeMapper = {
   }
 };
 
-export const Experiments: coreHttp.CompositeMapper = {
+export const Experiments: coreClient.CompositeMapper = {
   serializedName: "Experiments",
   type: {
     name: "Composite",
@@ -4637,7 +4637,7 @@ export const Experiments: coreHttp.CompositeMapper = {
   }
 };
 
-export const RampUpRule: coreHttp.CompositeMapper = {
+export const RampUpRule: coreClient.CompositeMapper = {
   serializedName: "RampUpRule",
   type: {
     name: "Composite",
@@ -4703,7 +4703,7 @@ export const RampUpRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteLimits: coreHttp.CompositeMapper = {
+export const SiteLimits: coreClient.CompositeMapper = {
   serializedName: "SiteLimits",
   type: {
     name: "Composite",
@@ -4734,7 +4734,7 @@ export const SiteLimits: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutoHealRules: coreHttp.CompositeMapper = {
+export const AutoHealRules: coreClient.CompositeMapper = {
   serializedName: "AutoHealRules",
   type: {
     name: "Composite",
@@ -4760,7 +4760,7 @@ export const AutoHealRules: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutoHealTriggers: coreHttp.CompositeMapper = {
+export const AutoHealTriggers: coreClient.CompositeMapper = {
   serializedName: "AutoHealTriggers",
   type: {
     name: "Composite",
@@ -4807,7 +4807,7 @@ export const AutoHealTriggers: coreHttp.CompositeMapper = {
   }
 };
 
-export const RequestsBasedTrigger: coreHttp.CompositeMapper = {
+export const RequestsBasedTrigger: coreClient.CompositeMapper = {
   serializedName: "RequestsBasedTrigger",
   type: {
     name: "Composite",
@@ -4831,7 +4831,7 @@ export const RequestsBasedTrigger: coreHttp.CompositeMapper = {
   }
 };
 
-export const StatusCodesBasedTrigger: coreHttp.CompositeMapper = {
+export const StatusCodesBasedTrigger: coreClient.CompositeMapper = {
   serializedName: "StatusCodesBasedTrigger",
   type: {
     name: "Composite",
@@ -4876,7 +4876,7 @@ export const StatusCodesBasedTrigger: coreHttp.CompositeMapper = {
   }
 };
 
-export const SlowRequestsBasedTrigger: coreHttp.CompositeMapper = {
+export const SlowRequestsBasedTrigger: coreClient.CompositeMapper = {
   serializedName: "SlowRequestsBasedTrigger",
   type: {
     name: "Composite",
@@ -4907,7 +4907,7 @@ export const SlowRequestsBasedTrigger: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutoHealActions: coreHttp.CompositeMapper = {
+export const AutoHealActions: coreClient.CompositeMapper = {
   serializedName: "AutoHealActions",
   type: {
     name: "Composite",
@@ -4940,7 +4940,7 @@ export const AutoHealActions: coreHttp.CompositeMapper = {
   }
 };
 
-export const AutoHealCustomAction: coreHttp.CompositeMapper = {
+export const AutoHealCustomAction: coreClient.CompositeMapper = {
   serializedName: "AutoHealCustomAction",
   type: {
     name: "Composite",
@@ -4964,7 +4964,7 @@ export const AutoHealCustomAction: coreHttp.CompositeMapper = {
   }
 };
 
-export const CorsSettings: coreHttp.CompositeMapper = {
+export const CorsSettings: coreClient.CompositeMapper = {
   serializedName: "CorsSettings",
   type: {
     name: "Composite",
@@ -4994,7 +4994,7 @@ export const CorsSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiDefinitionInfo: coreHttp.CompositeMapper = {
+export const ApiDefinitionInfo: coreClient.CompositeMapper = {
   serializedName: "ApiDefinitionInfo",
   type: {
     name: "Composite",
@@ -5011,7 +5011,7 @@ export const ApiDefinitionInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiManagementConfig: coreHttp.CompositeMapper = {
+export const ApiManagementConfig: coreClient.CompositeMapper = {
   serializedName: "ApiManagementConfig",
   type: {
     name: "Composite",
@@ -5028,7 +5028,7 @@ export const ApiManagementConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const IpSecurityRestriction: coreHttp.CompositeMapper = {
+export const IpSecurityRestriction: coreClient.CompositeMapper = {
   serializedName: "IpSecurityRestriction",
   type: {
     name: "Composite",
@@ -5109,7 +5109,7 @@ export const IpSecurityRestriction: coreHttp.CompositeMapper = {
   }
 };
 
-export const CloningInfo: coreHttp.CompositeMapper = {
+export const CloningInfo: coreClient.CompositeMapper = {
   serializedName: "CloningInfo",
   type: {
     name: "Composite",
@@ -5198,7 +5198,7 @@ export const CloningInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const SlotSwapStatus: coreHttp.CompositeMapper = {
+export const SlotSwapStatus: coreClient.CompositeMapper = {
   serializedName: "SlotSwapStatus",
   type: {
     name: "Composite",
@@ -5232,7 +5232,7 @@ export const SlotSwapStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
+export const ManagedServiceIdentity: coreClient.CompositeMapper = {
   serializedName: "ManagedServiceIdentity",
   type: {
     name: "Composite",
@@ -5280,7 +5280,7 @@ export const ManagedServiceIdentity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties: coreHttp.CompositeMapper = {
+export const Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties: coreClient.CompositeMapper = {
   serializedName:
     "Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassignedidentitiesAdditionalproperties",
   type: {
@@ -5308,7 +5308,7 @@ export const Components1Jq1T4ISchemasManagedserviceidentityPropertiesUserassigne
   }
 };
 
-export const ErrorEntity: coreHttp.CompositeMapper = {
+export const ErrorEntity: coreClient.CompositeMapper = {
   serializedName: "ErrorEntity",
   type: {
     name: "Composite",
@@ -5373,7 +5373,7 @@ export const ErrorEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmSlotEntity: coreHttp.CompositeMapper = {
+export const CsmSlotEntity: coreClient.CompositeMapper = {
   serializedName: "CsmSlotEntity",
   type: {
     name: "Composite",
@@ -5399,7 +5399,7 @@ export const CsmSlotEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupSchedule: coreHttp.CompositeMapper = {
+export const BackupSchedule: coreClient.CompositeMapper = {
   serializedName: "BackupSchedule",
   type: {
     name: "Composite",
@@ -5461,7 +5461,7 @@ export const BackupSchedule: coreHttp.CompositeMapper = {
   }
 };
 
-export const DatabaseBackupSetting: coreHttp.CompositeMapper = {
+export const DatabaseBackupSetting: coreClient.CompositeMapper = {
   serializedName: "DatabaseBackupSetting",
   type: {
     name: "Composite",
@@ -5500,7 +5500,7 @@ export const DatabaseBackupSetting: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupItemCollection: coreHttp.CompositeMapper = {
+export const BackupItemCollection: coreClient.CompositeMapper = {
   serializedName: "BackupItemCollection",
   type: {
     name: "Composite",
@@ -5533,7 +5533,7 @@ export const BackupItemCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteConfigResourceCollection: coreHttp.CompositeMapper = {
+export const SiteConfigResourceCollection: coreClient.CompositeMapper = {
   serializedName: "SiteConfigResourceCollection",
   type: {
     name: "Composite",
@@ -5566,7 +5566,7 @@ export const SiteConfigResourceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureStorageInfoValue: coreHttp.CompositeMapper = {
+export const AzureStorageInfoValue: coreClient.CompositeMapper = {
   serializedName: "AzureStorageInfoValue",
   type: {
     name: "Composite",
@@ -5621,7 +5621,7 @@ export const AzureStorageInfoValue: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApiKVReference: coreHttp.CompositeMapper = {
+export const ApiKVReference: coreClient.CompositeMapper = {
   serializedName: "ApiKVReference",
   type: {
     name: "Composite",
@@ -5708,7 +5708,7 @@ export const ApiKVReference: coreHttp.CompositeMapper = {
   }
 };
 
-export const ConnStringValueTypePair: coreHttp.CompositeMapper = {
+export const ConnStringValueTypePair: coreClient.CompositeMapper = {
   serializedName: "ConnStringValueTypePair",
   type: {
     name: "Composite",
@@ -5747,7 +5747,7 @@ export const ConnStringValueTypePair: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationLogsConfig: coreHttp.CompositeMapper = {
+export const ApplicationLogsConfig: coreClient.CompositeMapper = {
   serializedName: "ApplicationLogsConfig",
   type: {
     name: "Composite",
@@ -5781,7 +5781,7 @@ export const ApplicationLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const FileSystemApplicationLogsConfig: coreHttp.CompositeMapper = {
+export const FileSystemApplicationLogsConfig: coreClient.CompositeMapper = {
   serializedName: "FileSystemApplicationLogsConfig",
   type: {
     name: "Composite",
@@ -5799,7 +5799,7 @@ export const FileSystemApplicationLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureTableStorageApplicationLogsConfig: coreHttp.CompositeMapper = {
+export const AzureTableStorageApplicationLogsConfig: coreClient.CompositeMapper = {
   serializedName: "AzureTableStorageApplicationLogsConfig",
   type: {
     name: "Composite",
@@ -5825,7 +5825,7 @@ export const AzureTableStorageApplicationLogsConfig: coreHttp.CompositeMapper = 
   }
 };
 
-export const AzureBlobStorageApplicationLogsConfig: coreHttp.CompositeMapper = {
+export const AzureBlobStorageApplicationLogsConfig: coreClient.CompositeMapper = {
   serializedName: "AzureBlobStorageApplicationLogsConfig",
   type: {
     name: "Composite",
@@ -5857,7 +5857,7 @@ export const AzureBlobStorageApplicationLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const HttpLogsConfig: coreHttp.CompositeMapper = {
+export const HttpLogsConfig: coreClient.CompositeMapper = {
   serializedName: "HttpLogsConfig",
   type: {
     name: "Composite",
@@ -5883,7 +5883,7 @@ export const HttpLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const FileSystemHttpLogsConfig: coreHttp.CompositeMapper = {
+export const FileSystemHttpLogsConfig: coreClient.CompositeMapper = {
   serializedName: "FileSystemHttpLogsConfig",
   type: {
     name: "Composite",
@@ -5918,7 +5918,7 @@ export const FileSystemHttpLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureBlobStorageHttpLogsConfig: coreHttp.CompositeMapper = {
+export const AzureBlobStorageHttpLogsConfig: coreClient.CompositeMapper = {
   serializedName: "AzureBlobStorageHttpLogsConfig",
   type: {
     name: "Composite",
@@ -5949,7 +5949,7 @@ export const AzureBlobStorageHttpLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const EnabledConfig: coreHttp.CompositeMapper = {
+export const EnabledConfig: coreClient.CompositeMapper = {
   serializedName: "EnabledConfig",
   type: {
     name: "Composite",
@@ -5966,7 +5966,7 @@ export const EnabledConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteConfigurationSnapshotInfoCollection: coreHttp.CompositeMapper = {
+export const SiteConfigurationSnapshotInfoCollection: coreClient.CompositeMapper = {
   serializedName: "SiteConfigurationSnapshotInfoCollection",
   type: {
     name: "Composite",
@@ -5999,7 +5999,7 @@ export const SiteConfigurationSnapshotInfoCollection: coreHttp.CompositeMapper =
   }
 };
 
-export const ContinuousWebJobCollection: coreHttp.CompositeMapper = {
+export const ContinuousWebJobCollection: coreClient.CompositeMapper = {
   serializedName: "ContinuousWebJobCollection",
   type: {
     name: "Composite",
@@ -6032,7 +6032,7 @@ export const ContinuousWebJobCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeploymentCollection: coreHttp.CompositeMapper = {
+export const DeploymentCollection: coreClient.CompositeMapper = {
   serializedName: "DeploymentCollection",
   type: {
     name: "Composite",
@@ -6065,7 +6065,7 @@ export const DeploymentCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const MSDeployLogEntry: coreHttp.CompositeMapper = {
+export const MSDeployLogEntry: coreClient.CompositeMapper = {
   serializedName: "MSDeployLogEntry",
   type: {
     name: "Composite",
@@ -6100,7 +6100,7 @@ export const MSDeployLogEntry: coreHttp.CompositeMapper = {
   }
 };
 
-export const FunctionEnvelopeCollection: coreHttp.CompositeMapper = {
+export const FunctionEnvelopeCollection: coreClient.CompositeMapper = {
   serializedName: "FunctionEnvelopeCollection",
   type: {
     name: "Composite",
@@ -6133,7 +6133,7 @@ export const FunctionEnvelopeCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyInfo: coreHttp.CompositeMapper = {
+export const KeyInfo: coreClient.CompositeMapper = {
   serializedName: "KeyInfo",
   type: {
     name: "Composite",
@@ -6157,7 +6157,7 @@ export const KeyInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostKeys: coreHttp.CompositeMapper = {
+export const HostKeys: coreClient.CompositeMapper = {
   serializedName: "HostKeys",
   type: {
     name: "Composite",
@@ -6190,7 +6190,7 @@ export const HostKeys: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostNameBindingCollection: coreHttp.CompositeMapper = {
+export const HostNameBindingCollection: coreClient.CompositeMapper = {
   serializedName: "HostNameBindingCollection",
   type: {
     name: "Composite",
@@ -6223,7 +6223,7 @@ export const HostNameBindingCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const WebAppInstanceCollection: coreHttp.CompositeMapper = {
+export const WebAppInstanceCollection: coreClient.CompositeMapper = {
   serializedName: "WebAppInstanceCollection",
   type: {
     name: "Composite",
@@ -6256,7 +6256,7 @@ export const WebAppInstanceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerInfo: coreHttp.CompositeMapper = {
+export const ContainerInfo: coreClient.CompositeMapper = {
   serializedName: "ContainerInfo",
   type: {
     name: "Composite",
@@ -6326,7 +6326,7 @@ export const ContainerInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerCpuStatistics: coreHttp.CompositeMapper = {
+export const ContainerCpuStatistics: coreClient.CompositeMapper = {
   serializedName: "ContainerCpuStatistics",
   type: {
     name: "Composite",
@@ -6366,7 +6366,7 @@ export const ContainerCpuStatistics: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerCpuUsage: coreHttp.CompositeMapper = {
+export const ContainerCpuUsage: coreClient.CompositeMapper = {
   serializedName: "ContainerCpuUsage",
   type: {
     name: "Composite",
@@ -6410,7 +6410,7 @@ export const ContainerCpuUsage: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerThrottlingData: coreHttp.CompositeMapper = {
+export const ContainerThrottlingData: coreClient.CompositeMapper = {
   serializedName: "ContainerThrottlingData",
   type: {
     name: "Composite",
@@ -6441,7 +6441,7 @@ export const ContainerThrottlingData: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerMemoryStatistics: coreHttp.CompositeMapper = {
+export const ContainerMemoryStatistics: coreClient.CompositeMapper = {
   serializedName: "ContainerMemoryStatistics",
   type: {
     name: "Composite",
@@ -6472,7 +6472,7 @@ export const ContainerMemoryStatistics: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContainerNetworkInterfaceStatistics: coreHttp.CompositeMapper = {
+export const ContainerNetworkInterfaceStatistics: coreClient.CompositeMapper = {
   serializedName: "ContainerNetworkInterfaceStatistics",
   type: {
     name: "Composite",
@@ -6538,7 +6538,7 @@ export const ContainerNetworkInterfaceStatistics: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessInfoCollection: coreHttp.CompositeMapper = {
+export const ProcessInfoCollection: coreClient.CompositeMapper = {
   serializedName: "ProcessInfoCollection",
   type: {
     name: "Composite",
@@ -6571,7 +6571,7 @@ export const ProcessInfoCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessModuleInfoCollection: coreHttp.CompositeMapper = {
+export const ProcessModuleInfoCollection: coreClient.CompositeMapper = {
   serializedName: "ProcessModuleInfoCollection",
   type: {
     name: "Composite",
@@ -6604,7 +6604,7 @@ export const ProcessModuleInfoCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessThreadInfoCollection: coreHttp.CompositeMapper = {
+export const ProcessThreadInfoCollection: coreClient.CompositeMapper = {
   serializedName: "ProcessThreadInfoCollection",
   type: {
     name: "Composite",
@@ -6637,7 +6637,7 @@ export const ProcessThreadInfoCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteCloneability: coreHttp.CompositeMapper = {
+export const SiteCloneability: coreClient.CompositeMapper = {
   serializedName: "SiteCloneability",
   type: {
     name: "Composite",
@@ -6697,7 +6697,7 @@ export const SiteCloneability: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteCloneabilityCriterion: coreHttp.CompositeMapper = {
+export const SiteCloneabilityCriterion: coreClient.CompositeMapper = {
   serializedName: "SiteCloneabilityCriterion",
   type: {
     name: "Composite",
@@ -6721,7 +6721,7 @@ export const SiteCloneabilityCriterion: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   serializedName: "Operation",
   type: {
     name: "Composite",
@@ -6801,7 +6801,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const NetworkTrace: coreHttp.CompositeMapper = {
+export const NetworkTrace: coreClient.CompositeMapper = {
   serializedName: "NetworkTrace",
   type: {
     name: "Composite",
@@ -6832,7 +6832,7 @@ export const NetworkTrace: coreHttp.CompositeMapper = {
   }
 };
 
-export const PerfMonCounterCollection: coreHttp.CompositeMapper = {
+export const PerfMonCounterCollection: coreClient.CompositeMapper = {
   serializedName: "PerfMonCounterCollection",
   type: {
     name: "Composite",
@@ -6865,7 +6865,7 @@ export const PerfMonCounterCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const PerfMonResponse: coreHttp.CompositeMapper = {
+export const PerfMonResponse: coreClient.CompositeMapper = {
   serializedName: "PerfMonResponse",
   type: {
     name: "Composite",
@@ -6897,7 +6897,7 @@ export const PerfMonResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const PerfMonSet: coreHttp.CompositeMapper = {
+export const PerfMonSet: coreClient.CompositeMapper = {
   serializedName: "PerfMonSet",
   type: {
     name: "Composite",
@@ -6949,7 +6949,7 @@ export const PerfMonSet: coreHttp.CompositeMapper = {
   }
 };
 
-export const PerfMonSample: coreHttp.CompositeMapper = {
+export const PerfMonSample: coreClient.CompositeMapper = {
   serializedName: "PerfMonSample",
   type: {
     name: "Composite",
@@ -6980,7 +6980,7 @@ export const PerfMonSample: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateAccessVirtualNetwork: coreHttp.CompositeMapper = {
+export const PrivateAccessVirtualNetwork: coreClient.CompositeMapper = {
   serializedName: "PrivateAccessVirtualNetwork",
   type: {
     name: "Composite",
@@ -7025,7 +7025,7 @@ export const PrivateAccessVirtualNetwork: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateAccessSubnet: coreHttp.CompositeMapper = {
+export const PrivateAccessSubnet: coreClient.CompositeMapper = {
   serializedName: "PrivateAccessSubnet",
   type: {
     name: "Composite",
@@ -7049,7 +7049,7 @@ export const PrivateAccessSubnet: coreHttp.CompositeMapper = {
   }
 };
 
-export const PublicCertificateCollection: coreHttp.CompositeMapper = {
+export const PublicCertificateCollection: coreClient.CompositeMapper = {
   serializedName: "PublicCertificateCollection",
   type: {
     name: "Composite",
@@ -7082,7 +7082,7 @@ export const PublicCertificateCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmPublishingProfileOptions: coreHttp.CompositeMapper = {
+export const CsmPublishingProfileOptions: coreClient.CompositeMapper = {
   serializedName: "CsmPublishingProfileOptions",
   type: {
     name: "Composite",
@@ -7106,7 +7106,7 @@ export const CsmPublishingProfileOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotRecoverySource: coreHttp.CompositeMapper = {
+export const SnapshotRecoverySource: coreClient.CompositeMapper = {
   serializedName: "SnapshotRecoverySource",
   type: {
     name: "Composite",
@@ -7130,7 +7130,7 @@ export const SnapshotRecoverySource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteExtensionInfoCollection: coreHttp.CompositeMapper = {
+export const SiteExtensionInfoCollection: coreClient.CompositeMapper = {
   serializedName: "SiteExtensionInfoCollection",
   type: {
     name: "Composite",
@@ -7163,7 +7163,7 @@ export const SiteExtensionInfoCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmCopySlotEntity: coreHttp.CompositeMapper = {
+export const CsmCopySlotEntity: coreClient.CompositeMapper = {
   serializedName: "CsmCopySlotEntity",
   type: {
     name: "Composite",
@@ -7189,7 +7189,7 @@ export const CsmCopySlotEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const ArmIdWrapper: coreHttp.CompositeMapper = {
+export const ArmIdWrapper: coreClient.CompositeMapper = {
   serializedName: "ArmIdWrapper",
   type: {
     name: "Composite",
@@ -7207,7 +7207,7 @@ export const ArmIdWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkConnectionState: coreHttp.CompositeMapper = {
+export const PrivateLinkConnectionState: coreClient.CompositeMapper = {
   serializedName: "PrivateLinkConnectionState",
   type: {
     name: "Composite",
@@ -7238,7 +7238,7 @@ export const PrivateLinkConnectionState: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResourcesWrapper: coreHttp.CompositeMapper = {
+export const PrivateLinkResourcesWrapper: coreClient.CompositeMapper = {
   serializedName: "PrivateLinkResourcesWrapper",
   type: {
     name: "Composite",
@@ -7263,7 +7263,7 @@ export const PrivateLinkResourcesWrapper: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResource: coreHttp.CompositeMapper = {
+export const PrivateLinkResource: coreClient.CompositeMapper = {
   serializedName: "PrivateLinkResource",
   type: {
     name: "Composite",
@@ -7305,7 +7305,7 @@ export const PrivateLinkResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
+export const PrivateLinkResourceProperties: coreClient.CompositeMapper = {
   serializedName: "PrivateLinkResourceProperties",
   type: {
     name: "Composite",
@@ -7351,7 +7351,7 @@ export const PrivateLinkResourceProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SlotDifferenceCollection: coreHttp.CompositeMapper = {
+export const SlotDifferenceCollection: coreClient.CompositeMapper = {
   serializedName: "SlotDifferenceCollection",
   type: {
     name: "Composite",
@@ -7384,7 +7384,7 @@ export const SlotDifferenceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotCollection: coreHttp.CompositeMapper = {
+export const SnapshotCollection: coreClient.CompositeMapper = {
   serializedName: "SnapshotCollection",
   type: {
     name: "Composite",
@@ -7417,7 +7417,7 @@ export const SnapshotCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const TriggeredWebJobCollection: coreHttp.CompositeMapper = {
+export const TriggeredWebJobCollection: coreClient.CompositeMapper = {
   serializedName: "TriggeredWebJobCollection",
   type: {
     name: "Composite",
@@ -7450,7 +7450,7 @@ export const TriggeredWebJobCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const TriggeredJobHistoryCollection: coreHttp.CompositeMapper = {
+export const TriggeredJobHistoryCollection: coreClient.CompositeMapper = {
   serializedName: "TriggeredJobHistoryCollection",
   type: {
     name: "Composite",
@@ -7483,7 +7483,7 @@ export const TriggeredJobHistoryCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmUsageQuotaCollection: coreHttp.CompositeMapper = {
+export const CsmUsageQuotaCollection: coreClient.CompositeMapper = {
   serializedName: "CsmUsageQuotaCollection",
   type: {
     name: "Composite",
@@ -7516,7 +7516,7 @@ export const CsmUsageQuotaCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const CsmUsageQuota: coreHttp.CompositeMapper = {
+export const CsmUsageQuota: coreClient.CompositeMapper = {
   serializedName: "CsmUsageQuota",
   type: {
     name: "Composite",
@@ -7562,7 +7562,7 @@ export const CsmUsageQuota: coreHttp.CompositeMapper = {
   }
 };
 
-export const LocalizableString: coreHttp.CompositeMapper = {
+export const LocalizableString: coreClient.CompositeMapper = {
   serializedName: "LocalizableString",
   type: {
     name: "Composite",
@@ -7586,7 +7586,7 @@ export const LocalizableString: coreHttp.CompositeMapper = {
   }
 };
 
-export const WebJobCollection: coreHttp.CompositeMapper = {
+export const WebJobCollection: coreClient.CompositeMapper = {
   serializedName: "WebJobCollection",
   type: {
     name: "Composite",
@@ -7619,7 +7619,7 @@ export const WebJobCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteCollection: coreHttp.CompositeMapper = {
+export const StaticSiteCollection: coreClient.CompositeMapper = {
   serializedName: "StaticSiteCollection",
   type: {
     name: "Composite",
@@ -7652,7 +7652,7 @@ export const StaticSiteCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteBuildProperties: coreHttp.CompositeMapper = {
+export const StaticSiteBuildProperties: coreClient.CompositeMapper = {
   serializedName: "StaticSiteBuildProperties",
   type: {
     name: "Composite",
@@ -7683,7 +7683,7 @@ export const StaticSiteBuildProperties: coreHttp.CompositeMapper = {
   }
 };
 
-export const SkuDescription: coreHttp.CompositeMapper = {
+export const SkuDescription: coreClient.CompositeMapper = {
   serializedName: "SkuDescription",
   type: {
     name: "Composite",
@@ -7763,7 +7763,7 @@ export const SkuDescription: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteUserCollection: coreHttp.CompositeMapper = {
+export const StaticSiteUserCollection: coreClient.CompositeMapper = {
   serializedName: "StaticSiteUserCollection",
   type: {
     name: "Composite",
@@ -7796,7 +7796,7 @@ export const StaticSiteUserCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteBuildCollection: coreHttp.CompositeMapper = {
+export const StaticSiteBuildCollection: coreClient.CompositeMapper = {
   serializedName: "StaticSiteBuildCollection",
   type: {
     name: "Composite",
@@ -7829,7 +7829,7 @@ export const StaticSiteBuildCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteFunctionOverviewCollection: coreHttp.CompositeMapper = {
+export const StaticSiteFunctionOverviewCollection: coreClient.CompositeMapper = {
   serializedName: "StaticSiteFunctionOverviewCollection",
   type: {
     name: "Composite",
@@ -7862,7 +7862,7 @@ export const StaticSiteFunctionOverviewCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteCustomDomainOverviewCollection: coreHttp.CompositeMapper = {
+export const StaticSiteCustomDomainOverviewCollection: coreClient.CompositeMapper = {
   serializedName: "StaticSiteCustomDomainOverviewCollection",
   type: {
     name: "Composite",
@@ -7895,7 +7895,7 @@ export const StaticSiteCustomDomainOverviewCollection: coreHttp.CompositeMapper 
   }
 };
 
-export const AppServiceEnvironmentCollection: coreHttp.CompositeMapper = {
+export const AppServiceEnvironmentCollection: coreClient.CompositeMapper = {
   serializedName: "AppServiceEnvironmentCollection",
   type: {
     name: "Composite",
@@ -7928,7 +7928,7 @@ export const AppServiceEnvironmentCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const StampCapacityCollection: coreHttp.CompositeMapper = {
+export const StampCapacityCollection: coreClient.CompositeMapper = {
   serializedName: "StampCapacityCollection",
   type: {
     name: "Composite",
@@ -7961,7 +7961,7 @@ export const StampCapacityCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostingEnvironmentDiagnostics: coreHttp.CompositeMapper = {
+export const HostingEnvironmentDiagnostics: coreClient.CompositeMapper = {
   serializedName: "HostingEnvironmentDiagnostics",
   type: {
     name: "Composite",
@@ -7985,7 +7985,7 @@ export const HostingEnvironmentDiagnostics: coreHttp.CompositeMapper = {
   }
 };
 
-export const InboundEnvironmentEndpointCollection: coreHttp.CompositeMapper = {
+export const InboundEnvironmentEndpointCollection: coreClient.CompositeMapper = {
   serializedName: "InboundEnvironmentEndpointCollection",
   type: {
     name: "Composite",
@@ -8018,7 +8018,7 @@ export const InboundEnvironmentEndpointCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const InboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
+export const InboundEnvironmentEndpoint: coreClient.CompositeMapper = {
   serializedName: "InboundEnvironmentEndpoint",
   type: {
     name: "Composite",
@@ -8061,7 +8061,7 @@ export const InboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const WorkerPoolCollection: coreHttp.CompositeMapper = {
+export const WorkerPoolCollection: coreClient.CompositeMapper = {
   serializedName: "WorkerPoolCollection",
   type: {
     name: "Composite",
@@ -8094,7 +8094,7 @@ export const WorkerPoolCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceMetricDefinitionCollection: coreHttp.CompositeMapper = {
+export const ResourceMetricDefinitionCollection: coreClient.CompositeMapper = {
   serializedName: "ResourceMetricDefinitionCollection",
   type: {
     name: "Composite",
@@ -8127,7 +8127,7 @@ export const ResourceMetricDefinitionCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceMetricAvailability: coreHttp.CompositeMapper = {
+export const ResourceMetricAvailability: coreClient.CompositeMapper = {
   serializedName: "ResourceMetricAvailability",
   type: {
     name: "Composite",
@@ -8153,7 +8153,7 @@ export const ResourceMetricAvailability: coreHttp.CompositeMapper = {
   }
 };
 
-export const SkuInfoCollection: coreHttp.CompositeMapper = {
+export const SkuInfoCollection: coreClient.CompositeMapper = {
   serializedName: "SkuInfoCollection",
   type: {
     name: "Composite",
@@ -8186,7 +8186,7 @@ export const SkuInfoCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const SkuInfo: coreHttp.CompositeMapper = {
+export const SkuInfo: coreClient.CompositeMapper = {
   serializedName: "SkuInfo",
   type: {
     name: "Composite",
@@ -8219,7 +8219,7 @@ export const SkuInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const UsageCollection: coreHttp.CompositeMapper = {
+export const UsageCollection: coreClient.CompositeMapper = {
   serializedName: "UsageCollection",
   type: {
     name: "Composite",
@@ -8252,7 +8252,7 @@ export const UsageCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const OutboundEnvironmentEndpointCollection: coreHttp.CompositeMapper = {
+export const OutboundEnvironmentEndpointCollection: coreClient.CompositeMapper = {
   serializedName: "OutboundEnvironmentEndpointCollection",
   type: {
     name: "Composite",
@@ -8285,7 +8285,7 @@ export const OutboundEnvironmentEndpointCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const OutboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
+export const OutboundEnvironmentEndpoint: coreClient.CompositeMapper = {
   serializedName: "OutboundEnvironmentEndpoint",
   type: {
     name: "Composite",
@@ -8316,7 +8316,7 @@ export const OutboundEnvironmentEndpoint: coreHttp.CompositeMapper = {
   }
 };
 
-export const EndpointDependency: coreHttp.CompositeMapper = {
+export const EndpointDependency: coreClient.CompositeMapper = {
   serializedName: "EndpointDependency",
   type: {
     name: "Composite",
@@ -8347,7 +8347,7 @@ export const EndpointDependency: coreHttp.CompositeMapper = {
   }
 };
 
-export const EndpointDetail: coreHttp.CompositeMapper = {
+export const EndpointDetail: coreClient.CompositeMapper = {
   serializedName: "EndpointDetail",
   type: {
     name: "Composite",
@@ -8385,7 +8385,7 @@ export const EndpointDetail: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServicePlanCollection: coreHttp.CompositeMapper = {
+export const AppServicePlanCollection: coreClient.CompositeMapper = {
   serializedName: "AppServicePlanCollection",
   type: {
     name: "Composite",
@@ -8418,7 +8418,7 @@ export const AppServicePlanCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceCollection: coreHttp.CompositeMapper = {
+export const ResourceCollection: coreClient.CompositeMapper = {
   serializedName: "ResourceCollection",
   type: {
     name: "Composite",
@@ -8450,7 +8450,7 @@ export const ResourceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const HybridConnectionCollection: coreHttp.CompositeMapper = {
+export const HybridConnectionCollection: coreClient.CompositeMapper = {
   serializedName: "HybridConnectionCollection",
   type: {
     name: "Composite",
@@ -8483,7 +8483,7 @@ export const HybridConnectionCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceHealthMetadataCollection: coreHttp.CompositeMapper = {
+export const ResourceHealthMetadataCollection: coreClient.CompositeMapper = {
   serializedName: "ResourceHealthMetadataCollection",
   type: {
     name: "Composite",
@@ -8516,7 +8516,7 @@ export const ResourceHealthMetadataCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
+export const AppServiceCertificateOrder: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificateOrder",
   type: {
     name: "Composite",
@@ -8712,7 +8712,7 @@ export const AppServiceCertificateOrder: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceCertificateResource: coreHttp.CompositeMapper = {
+export const AppServiceCertificateResource: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificateResource",
   type: {
     name: "Composite",
@@ -8758,7 +8758,7 @@ export const AppServiceCertificateResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const Domain: coreHttp.CompositeMapper = {
+export const Domain: coreClient.CompositeMapper = {
   serializedName: "Domain",
   type: {
     name: "Composite",
@@ -8975,7 +8975,7 @@ export const Domain: coreHttp.CompositeMapper = {
   }
 };
 
-export const Certificate: coreHttp.CompositeMapper = {
+export const Certificate: coreClient.CompositeMapper = {
   serializedName: "Certificate",
   type: {
     name: "Composite",
@@ -9158,7 +9158,7 @@ export const Certificate: coreHttp.CompositeMapper = {
   }
 };
 
-export const Site: coreHttp.CompositeMapper = {
+export const Site: coreClient.CompositeMapper = {
   serializedName: "Site",
   type: {
     name: "Composite",
@@ -9484,7 +9484,7 @@ export const Site: coreHttp.CompositeMapper = {
   }
 };
 
-export const PremierAddOn: coreHttp.CompositeMapper = {
+export const PremierAddOn: coreClient.CompositeMapper = {
   serializedName: "PremierAddOn",
   type: {
     name: "Composite",
@@ -9530,7 +9530,7 @@ export const PremierAddOn: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteARMResource",
   type: {
     name: "Composite",
@@ -9600,7 +9600,7 @@ export const StaticSiteARMResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
+export const AppServiceEnvironmentResource: coreClient.CompositeMapper = {
   serializedName: "AppServiceEnvironmentResource",
   type: {
     name: "Composite",
@@ -9952,7 +9952,7 @@ export const AppServiceEnvironmentResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServicePlan: coreHttp.CompositeMapper = {
+export const AppServicePlan: coreClient.CompositeMapper = {
   serializedName: "AppServicePlan",
   type: {
     name: "Composite",
@@ -10120,7 +10120,7 @@ export const AppServicePlan: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper = {
+export const AppServiceCertificateOrderPatchResource: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificateOrderPatchResource",
   type: {
     name: "Composite",
@@ -10316,7 +10316,7 @@ export const AppServiceCertificateOrderPatchResource: coreHttp.CompositeMapper =
   }
 };
 
-export const AppServiceCertificatePatchResource: coreHttp.CompositeMapper = {
+export const AppServiceCertificatePatchResource: coreClient.CompositeMapper = {
   serializedName: "AppServiceCertificatePatchResource",
   type: {
     name: "Composite",
@@ -10362,7 +10362,7 @@ export const AppServiceCertificatePatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ReissueCertificateOrderRequest: coreHttp.CompositeMapper = {
+export const ReissueCertificateOrderRequest: coreClient.CompositeMapper = {
   serializedName: "ReissueCertificateOrderRequest",
   type: {
     name: "Composite",
@@ -10401,7 +10401,7 @@ export const ReissueCertificateOrderRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const RenewCertificateOrderRequest: coreHttp.CompositeMapper = {
+export const RenewCertificateOrderRequest: coreClient.CompositeMapper = {
   serializedName: "RenewCertificateOrderRequest",
   type: {
     name: "Composite",
@@ -10433,7 +10433,7 @@ export const RenewCertificateOrderRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const CertificateOrderAction: coreHttp.CompositeMapper = {
+export const CertificateOrderAction: coreClient.CompositeMapper = {
   serializedName: "CertificateOrderAction",
   type: {
     name: "Composite",
@@ -10476,7 +10476,7 @@ export const CertificateOrderAction: coreHttp.CompositeMapper = {
   }
 };
 
-export const CertificateEmail: coreHttp.CompositeMapper = {
+export const CertificateEmail: coreClient.CompositeMapper = {
   serializedName: "CertificateEmail",
   type: {
     name: "Composite",
@@ -10501,7 +10501,7 @@ export const CertificateEmail: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainPatchResource: coreHttp.CompositeMapper = {
+export const DomainPatchResource: coreClient.CompositeMapper = {
   serializedName: "DomainPatchResource",
   type: {
     name: "Composite",
@@ -10719,7 +10719,7 @@ export const DomainPatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainOwnershipIdentifier: coreHttp.CompositeMapper = {
+export const DomainOwnershipIdentifier: coreClient.CompositeMapper = {
   serializedName: "DomainOwnershipIdentifier",
   type: {
     name: "Composite",
@@ -10737,7 +10737,7 @@ export const DomainOwnershipIdentifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const TopLevelDomain: coreHttp.CompositeMapper = {
+export const TopLevelDomain: coreClient.CompositeMapper = {
   serializedName: "TopLevelDomain",
   type: {
     name: "Composite",
@@ -10755,7 +10755,7 @@ export const TopLevelDomain: coreHttp.CompositeMapper = {
   }
 };
 
-export const CertificatePatchResource: coreHttp.CompositeMapper = {
+export const CertificatePatchResource: coreClient.CompositeMapper = {
   serializedName: "CertificatePatchResource",
   type: {
     name: "Composite",
@@ -10938,7 +10938,7 @@ export const CertificatePatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedSite: coreHttp.CompositeMapper = {
+export const DeletedSite: coreClient.CompositeMapper = {
   serializedName: "DeletedSite",
   type: {
     name: "Composite",
@@ -11013,7 +11013,7 @@ export const DeletedSite: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectorResponse: coreHttp.CompositeMapper = {
+export const DetectorResponse: coreClient.CompositeMapper = {
   serializedName: "DetectorResponse",
   type: {
     name: "Composite",
@@ -11046,7 +11046,7 @@ export const DetectorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticCategory: coreHttp.CompositeMapper = {
+export const DiagnosticCategory: coreClient.CompositeMapper = {
   serializedName: "DiagnosticCategory",
   type: {
     name: "Composite",
@@ -11065,7 +11065,7 @@ export const DiagnosticCategory: coreHttp.CompositeMapper = {
   }
 };
 
-export const AnalysisDefinition: coreHttp.CompositeMapper = {
+export const AnalysisDefinition: coreClient.CompositeMapper = {
   serializedName: "AnalysisDefinition",
   type: {
     name: "Composite",
@@ -11084,7 +11084,7 @@ export const AnalysisDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const DetectorDefinition: coreHttp.CompositeMapper = {
+export const DetectorDefinition: coreClient.CompositeMapper = {
   serializedName: "DetectorDefinition",
   type: {
     name: "Composite",
@@ -11127,7 +11127,7 @@ export const DetectorDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticAnalysis: coreHttp.CompositeMapper = {
+export const DiagnosticAnalysis: coreClient.CompositeMapper = {
   serializedName: "DiagnosticAnalysis",
   type: {
     name: "Composite",
@@ -11194,7 +11194,7 @@ export const DiagnosticAnalysis: coreHttp.CompositeMapper = {
   }
 };
 
-export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
+export const DiagnosticDetectorResponse: coreClient.CompositeMapper = {
   serializedName: "DiagnosticDetectorResponse",
   type: {
     name: "Composite",
@@ -11289,7 +11289,7 @@ export const DiagnosticDetectorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationStackResource: coreHttp.CompositeMapper = {
+export const ApplicationStackResource: coreClient.CompositeMapper = {
   serializedName: "ApplicationStackResource",
   type: {
     name: "Composite",
@@ -11349,7 +11349,7 @@ export const ApplicationStackResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const Recommendation: coreHttp.CompositeMapper = {
+export const Recommendation: coreClient.CompositeMapper = {
   serializedName: "Recommendation",
   type: {
     name: "Composite",
@@ -11541,7 +11541,7 @@ export const Recommendation: coreHttp.CompositeMapper = {
   }
 };
 
-export const RecommendationRule: coreHttp.CompositeMapper = {
+export const RecommendationRule: coreClient.CompositeMapper = {
   serializedName: "RecommendationRule",
   type: {
     name: "Composite",
@@ -11657,7 +11657,7 @@ export const RecommendationRule: coreHttp.CompositeMapper = {
   }
 };
 
-export const User: coreHttp.CompositeMapper = {
+export const User: coreClient.CompositeMapper = {
   serializedName: "User",
   type: {
     name: "Composite",
@@ -11703,7 +11703,7 @@ export const User: coreHttp.CompositeMapper = {
   }
 };
 
-export const SourceControl: coreHttp.CompositeMapper = {
+export const SourceControl: coreClient.CompositeMapper = {
   serializedName: "SourceControl",
   type: {
     name: "Composite",
@@ -11742,7 +11742,7 @@ export const SourceControl: coreHttp.CompositeMapper = {
   }
 };
 
-export const BillingMeter: coreHttp.CompositeMapper = {
+export const BillingMeter: coreClient.CompositeMapper = {
   serializedName: "BillingMeter",
   type: {
     name: "Composite",
@@ -11795,7 +11795,7 @@ export const BillingMeter: coreHttp.CompositeMapper = {
   }
 };
 
-export const GeoRegion: coreHttp.CompositeMapper = {
+export const GeoRegion: coreClient.CompositeMapper = {
   serializedName: "GeoRegion",
   type: {
     name: "Composite",
@@ -11830,7 +11830,7 @@ export const GeoRegion: coreHttp.CompositeMapper = {
   }
 };
 
-export const Identifier: coreHttp.CompositeMapper = {
+export const Identifier: coreClient.CompositeMapper = {
   serializedName: "Identifier",
   type: {
     name: "Composite",
@@ -11848,7 +11848,7 @@ export const Identifier: coreHttp.CompositeMapper = {
   }
 };
 
-export const PremierAddOnOffer: coreHttp.CompositeMapper = {
+export const PremierAddOnOffer: coreClient.CompositeMapper = {
   serializedName: "PremierAddOnOffer",
   type: {
     name: "Composite",
@@ -11937,7 +11937,7 @@ export const PremierAddOnOffer: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetParameters: coreHttp.CompositeMapper = {
+export const VnetParameters: coreClient.CompositeMapper = {
   serializedName: "VnetParameters",
   type: {
     name: "Composite",
@@ -11969,7 +11969,7 @@ export const VnetParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetValidationTestFailure: coreHttp.CompositeMapper = {
+export const VnetValidationTestFailure: coreClient.CompositeMapper = {
   serializedName: "VnetValidationTestFailure",
   type: {
     name: "Composite",
@@ -11994,7 +11994,7 @@ export const VnetValidationTestFailure: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetValidationFailureDetails: coreHttp.CompositeMapper = {
+export const VnetValidationFailureDetails: coreClient.CompositeMapper = {
   serializedName: "VnetValidationFailureDetails",
   type: {
     name: "Composite",
@@ -12026,7 +12026,7 @@ export const VnetValidationFailureDetails: coreHttp.CompositeMapper = {
   }
 };
 
-export const PushSettings: coreHttp.CompositeMapper = {
+export const PushSettings: coreClient.CompositeMapper = {
   serializedName: "PushSettings",
   type: {
     name: "Composite",
@@ -12065,7 +12065,7 @@ export const PushSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const SitePatchResource: coreHttp.CompositeMapper = {
+export const SitePatchResource: coreClient.CompositeMapper = {
   serializedName: "SitePatchResource",
   type: {
     name: "Composite",
@@ -12392,7 +12392,7 @@ export const SitePatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
+export const CustomHostnameAnalysisResult: coreClient.CompositeMapper = {
   serializedName: "CustomHostnameAnalysisResult",
   type: {
     name: "Composite",
@@ -12520,7 +12520,7 @@ export const CustomHostnameAnalysisResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupRequest: coreHttp.CompositeMapper = {
+export const BackupRequest: coreClient.CompositeMapper = {
   serializedName: "BackupRequest",
   type: {
     name: "Composite",
@@ -12574,7 +12574,7 @@ export const BackupRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const BackupItem: coreHttp.CompositeMapper = {
+export const BackupItem: coreClient.CompositeMapper = {
   serializedName: "BackupItem",
   type: {
     name: "Composite",
@@ -12716,7 +12716,7 @@ export const BackupItem: coreHttp.CompositeMapper = {
   }
 };
 
-export const RestoreRequest: coreHttp.CompositeMapper = {
+export const RestoreRequest: coreClient.CompositeMapper = {
   serializedName: "RestoreRequest",
   type: {
     name: "Composite",
@@ -12819,7 +12819,7 @@ export const RestoreRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteConfigResource: coreHttp.CompositeMapper = {
+export const SiteConfigResource: coreClient.CompositeMapper = {
   serializedName: "SiteConfigResource",
   type: {
     name: "Composite",
@@ -13285,7 +13285,7 @@ export const SiteConfigResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const StringDictionary: coreHttp.CompositeMapper = {
+export const StringDictionary: coreClient.CompositeMapper = {
   serializedName: "StringDictionary",
   type: {
     name: "Composite",
@@ -13304,7 +13304,7 @@ export const StringDictionary: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteAuthSettings: coreHttp.CompositeMapper = {
+export const SiteAuthSettings: coreClient.CompositeMapper = {
   serializedName: "SiteAuthSettings",
   type: {
     name: "Composite",
@@ -13536,7 +13536,7 @@ export const SiteAuthSettings: coreHttp.CompositeMapper = {
   }
 };
 
-export const AzureStoragePropertyDictionaryResource: coreHttp.CompositeMapper = {
+export const AzureStoragePropertyDictionaryResource: coreClient.CompositeMapper = {
   serializedName: "AzureStoragePropertyDictionaryResource",
   type: {
     name: "Composite",
@@ -13557,7 +13557,7 @@ export const AzureStoragePropertyDictionaryResource: coreHttp.CompositeMapper = 
   }
 };
 
-export const KeyVaultReferenceCollection: coreHttp.CompositeMapper = {
+export const KeyVaultReferenceCollection: coreClient.CompositeMapper = {
   serializedName: "KeyVaultReferenceCollection",
   type: {
     name: "Composite",
@@ -13576,7 +13576,7 @@ export const KeyVaultReferenceCollection: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyVaultReferenceResource: coreHttp.CompositeMapper = {
+export const KeyVaultReferenceResource: coreClient.CompositeMapper = {
   serializedName: "KeyVaultReferenceResource",
   type: {
     name: "Composite",
@@ -13664,7 +13664,7 @@ export const KeyVaultReferenceResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ConnectionStringDictionary: coreHttp.CompositeMapper = {
+export const ConnectionStringDictionary: coreClient.CompositeMapper = {
   serializedName: "ConnectionStringDictionary",
   type: {
     name: "Composite",
@@ -13685,7 +13685,7 @@ export const ConnectionStringDictionary: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteLogsConfig: coreHttp.CompositeMapper = {
+export const SiteLogsConfig: coreClient.CompositeMapper = {
   serializedName: "SiteLogsConfig",
   type: {
     name: "Composite",
@@ -13728,7 +13728,7 @@ export const SiteLogsConfig: coreHttp.CompositeMapper = {
   }
 };
 
-export const SlotConfigNamesResource: coreHttp.CompositeMapper = {
+export const SlotConfigNamesResource: coreClient.CompositeMapper = {
   serializedName: "SlotConfigNamesResource",
   type: {
     name: "Composite",
@@ -13778,7 +13778,7 @@ export const SlotConfigNamesResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteConfigurationSnapshotInfo: coreHttp.CompositeMapper = {
+export const SiteConfigurationSnapshotInfo: coreClient.CompositeMapper = {
   serializedName: "SiteConfigurationSnapshotInfo",
   type: {
     name: "Composite",
@@ -13805,7 +13805,7 @@ export const SiteConfigurationSnapshotInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ContinuousWebJob: coreHttp.CompositeMapper = {
+export const ContinuousWebJob: coreClient.CompositeMapper = {
   serializedName: "ContinuousWebJob",
   type: {
     name: "Composite",
@@ -13895,7 +13895,7 @@ export const ContinuousWebJob: coreHttp.CompositeMapper = {
   }
 };
 
-export const Deployment: coreHttp.CompositeMapper = {
+export const Deployment: coreClient.CompositeMapper = {
   serializedName: "Deployment",
   type: {
     name: "Composite",
@@ -13969,7 +13969,7 @@ export const Deployment: coreHttp.CompositeMapper = {
   }
 };
 
-export const MSDeployStatus: coreHttp.CompositeMapper = {
+export const MSDeployStatus: coreClient.CompositeMapper = {
   serializedName: "MSDeployStatus",
   type: {
     name: "Composite",
@@ -14027,7 +14027,7 @@ export const MSDeployStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const MSDeploy: coreHttp.CompositeMapper = {
+export const MSDeploy: coreClient.CompositeMapper = {
   serializedName: "MSDeploy",
   type: {
     name: "Composite",
@@ -14088,7 +14088,7 @@ export const MSDeploy: coreHttp.CompositeMapper = {
   }
 };
 
-export const MSDeployLog: coreHttp.CompositeMapper = {
+export const MSDeployLog: coreClient.CompositeMapper = {
   serializedName: "MSDeployLog",
   type: {
     name: "Composite",
@@ -14114,7 +14114,7 @@ export const MSDeployLog: coreHttp.CompositeMapper = {
   }
 };
 
-export const FunctionEnvelope: coreHttp.CompositeMapper = {
+export const FunctionEnvelope: coreClient.CompositeMapper = {
   serializedName: "FunctionEnvelope",
   type: {
     name: "Composite",
@@ -14217,7 +14217,7 @@ export const FunctionEnvelope: coreHttp.CompositeMapper = {
   }
 };
 
-export const FunctionSecrets: coreHttp.CompositeMapper = {
+export const FunctionSecrets: coreClient.CompositeMapper = {
   serializedName: "FunctionSecrets",
   type: {
     name: "Composite",
@@ -14242,7 +14242,7 @@ export const FunctionSecrets: coreHttp.CompositeMapper = {
   }
 };
 
-export const HostNameBinding: coreHttp.CompositeMapper = {
+export const HostNameBinding: coreClient.CompositeMapper = {
   serializedName: "HostNameBinding",
   type: {
     name: "Composite",
@@ -14321,7 +14321,7 @@ export const HostNameBinding: coreHttp.CompositeMapper = {
   }
 };
 
-export const HybridConnection: coreHttp.CompositeMapper = {
+export const HybridConnection: coreClient.CompositeMapper = {
   serializedName: "HybridConnection",
   type: {
     name: "Composite",
@@ -14388,7 +14388,7 @@ export const HybridConnection: coreHttp.CompositeMapper = {
   }
 };
 
-export const RelayServiceConnectionEntity: coreHttp.CompositeMapper = {
+export const RelayServiceConnectionEntity: coreClient.CompositeMapper = {
   serializedName: "RelayServiceConnectionEntity",
   type: {
     name: "Composite",
@@ -14448,7 +14448,7 @@ export const RelayServiceConnectionEntity: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteInstance: coreHttp.CompositeMapper = {
+export const SiteInstance: coreClient.CompositeMapper = {
   serializedName: "SiteInstance",
   type: {
     name: "Composite",
@@ -14467,7 +14467,7 @@ export const SiteInstance: coreHttp.CompositeMapper = {
   }
 };
 
-export const WebSiteInstanceStatus: coreHttp.CompositeMapper = {
+export const WebSiteInstanceStatus: coreClient.CompositeMapper = {
   serializedName: "WebSiteInstanceStatus",
   type: {
     name: "Composite",
@@ -14515,7 +14515,7 @@ export const WebSiteInstanceStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessThreadInfo: coreHttp.CompositeMapper = {
+export const ProcessThreadInfo: coreClient.CompositeMapper = {
   serializedName: "ProcessThreadInfo",
   type: {
     name: "Composite",
@@ -14611,7 +14611,7 @@ export const ProcessThreadInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessModuleInfo: coreHttp.CompositeMapper = {
+export const ProcessModuleInfo: coreClient.CompositeMapper = {
   serializedName: "ProcessModuleInfo",
   type: {
     name: "Composite",
@@ -14699,7 +14699,7 @@ export const ProcessModuleInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const ProcessInfo: coreHttp.CompositeMapper = {
+export const ProcessInfo: coreClient.CompositeMapper = {
   serializedName: "ProcessInfo",
   type: {
     name: "Composite",
@@ -14990,7 +14990,7 @@ export const ProcessInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageMigrationOptions: coreHttp.CompositeMapper = {
+export const StorageMigrationOptions: coreClient.CompositeMapper = {
   serializedName: "StorageMigrationOptions",
   type: {
     name: "Composite",
@@ -15029,7 +15029,7 @@ export const StorageMigrationOptions: coreHttp.CompositeMapper = {
   }
 };
 
-export const StorageMigrationResponse: coreHttp.CompositeMapper = {
+export const StorageMigrationResponse: coreClient.CompositeMapper = {
   serializedName: "StorageMigrationResponse",
   type: {
     name: "Composite",
@@ -15048,7 +15048,7 @@ export const StorageMigrationResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const MigrateMySqlRequest: coreHttp.CompositeMapper = {
+export const MigrateMySqlRequest: coreClient.CompositeMapper = {
   serializedName: "MigrateMySqlRequest",
   type: {
     name: "Composite",
@@ -15074,7 +15074,7 @@ export const MigrateMySqlRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const MigrateMySqlStatus: coreHttp.CompositeMapper = {
+export const MigrateMySqlStatus: coreClient.CompositeMapper = {
   serializedName: "MigrateMySqlStatus",
   type: {
     name: "Composite",
@@ -15116,7 +15116,7 @@ export const MigrateMySqlStatus: coreHttp.CompositeMapper = {
   }
 };
 
-export const SwiftVirtualNetwork: coreHttp.CompositeMapper = {
+export const SwiftVirtualNetwork: coreClient.CompositeMapper = {
   serializedName: "SwiftVirtualNetwork",
   type: {
     name: "Composite",
@@ -15141,7 +15141,7 @@ export const SwiftVirtualNetwork: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetRoute: coreHttp.CompositeMapper = {
+export const VnetRoute: coreClient.CompositeMapper = {
   serializedName: "VnetRoute",
   type: {
     name: "Composite",
@@ -15173,7 +15173,7 @@ export const VnetRoute: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetInfo: coreHttp.CompositeMapper = {
+export const VnetInfo: coreClient.CompositeMapper = {
   serializedName: "VnetInfo",
   type: {
     name: "Composite",
@@ -15243,7 +15243,7 @@ export const VnetInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const NetworkFeatures: coreHttp.CompositeMapper = {
+export const NetworkFeatures: coreClient.CompositeMapper = {
   serializedName: "NetworkFeatures",
   type: {
     name: "Composite",
@@ -15300,7 +15300,7 @@ export const NetworkFeatures: coreHttp.CompositeMapper = {
   }
 };
 
-export const SitePhpErrorLogFlag: coreHttp.CompositeMapper = {
+export const SitePhpErrorLogFlag: coreClient.CompositeMapper = {
   serializedName: "SitePhpErrorLogFlag",
   type: {
     name: "Composite",
@@ -15339,7 +15339,7 @@ export const SitePhpErrorLogFlag: coreHttp.CompositeMapper = {
   }
 };
 
-export const PremierAddOnPatchResource: coreHttp.CompositeMapper = {
+export const PremierAddOnPatchResource: coreClient.CompositeMapper = {
   serializedName: "PremierAddOnPatchResource",
   type: {
     name: "Composite",
@@ -15385,7 +15385,7 @@ export const PremierAddOnPatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateAccess: coreHttp.CompositeMapper = {
+export const PrivateAccess: coreClient.CompositeMapper = {
   serializedName: "PrivateAccess",
   type: {
     name: "Composite",
@@ -15417,7 +15417,7 @@ export const PrivateAccess: coreHttp.CompositeMapper = {
   }
 };
 
-export const PublicCertificate: coreHttp.CompositeMapper = {
+export const PublicCertificate: coreClient.CompositeMapper = {
   serializedName: "PublicCertificate",
   type: {
     name: "Composite",
@@ -15451,7 +15451,7 @@ export const PublicCertificate: coreHttp.CompositeMapper = {
   }
 };
 
-export const DeletedAppRestoreRequest: coreHttp.CompositeMapper = {
+export const DeletedAppRestoreRequest: coreClient.CompositeMapper = {
   serializedName: "DeletedAppRestoreRequest",
   type: {
     name: "Composite",
@@ -15490,7 +15490,7 @@ export const DeletedAppRestoreRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const SnapshotRestoreRequest: coreHttp.CompositeMapper = {
+export const SnapshotRestoreRequest: coreClient.CompositeMapper = {
   serializedName: "SnapshotRestoreRequest",
   type: {
     name: "Composite",
@@ -15544,7 +15544,7 @@ export const SnapshotRestoreRequest: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteExtensionInfo: coreHttp.CompositeMapper = {
+export const SiteExtensionInfo: coreClient.CompositeMapper = {
   serializedName: "SiteExtensionInfo",
   type: {
     name: "Composite",
@@ -15702,7 +15702,7 @@ export const SiteExtensionInfo: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateEndpointConnectionResource: coreHttp.CompositeMapper = {
+export const PrivateEndpointConnectionResource: coreClient.CompositeMapper = {
   serializedName: "PrivateEndpointConnectionResource",
   type: {
     name: "Composite",
@@ -15737,7 +15737,7 @@ export const PrivateEndpointConnectionResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const PrivateLinkConnectionApprovalRequestResource: coreHttp.CompositeMapper = {
+export const PrivateLinkConnectionApprovalRequestResource: coreClient.CompositeMapper = {
   serializedName: "PrivateLinkConnectionApprovalRequestResource",
   type: {
     name: "Composite",
@@ -15756,7 +15756,7 @@ export const PrivateLinkConnectionApprovalRequestResource: coreHttp.CompositeMap
   }
 };
 
-export const SlotDifference: coreHttp.CompositeMapper = {
+export const SlotDifference: coreClient.CompositeMapper = {
   serializedName: "SlotDifference",
   type: {
     name: "Composite",
@@ -15823,7 +15823,7 @@ export const SlotDifference: coreHttp.CompositeMapper = {
   }
 };
 
-export const Snapshot: coreHttp.CompositeMapper = {
+export const Snapshot: coreClient.CompositeMapper = {
   serializedName: "Snapshot",
   type: {
     name: "Composite",
@@ -15842,7 +15842,7 @@ export const Snapshot: coreHttp.CompositeMapper = {
   }
 };
 
-export const SiteSourceControl: coreHttp.CompositeMapper = {
+export const SiteSourceControl: coreClient.CompositeMapper = {
   serializedName: "SiteSourceControl",
   type: {
     name: "Composite",
@@ -15888,7 +15888,7 @@ export const SiteSourceControl: coreHttp.CompositeMapper = {
   }
 };
 
-export const TriggeredJobRun: coreHttp.CompositeMapper = {
+export const TriggeredJobRun: coreClient.CompositeMapper = {
   serializedName: "TriggeredJobRun",
   type: {
     name: "Composite",
@@ -15977,7 +15977,7 @@ export const TriggeredJobRun: coreHttp.CompositeMapper = {
   }
 };
 
-export const TriggeredWebJob: coreHttp.CompositeMapper = {
+export const TriggeredWebJob: coreClient.CompositeMapper = {
   serializedName: "TriggeredWebJob",
   type: {
     name: "Composite",
@@ -16061,7 +16061,7 @@ export const TriggeredWebJob: coreHttp.CompositeMapper = {
   }
 };
 
-export const TriggeredJobHistory: coreHttp.CompositeMapper = {
+export const TriggeredJobHistory: coreClient.CompositeMapper = {
   serializedName: "TriggeredJobHistory",
   type: {
     name: "Composite",
@@ -16086,7 +16086,7 @@ export const TriggeredJobHistory: coreHttp.CompositeMapper = {
   }
 };
 
-export const VnetGateway: coreHttp.CompositeMapper = {
+export const VnetGateway: coreClient.CompositeMapper = {
   serializedName: "VnetGateway",
   type: {
     name: "Composite",
@@ -16111,7 +16111,7 @@ export const VnetGateway: coreHttp.CompositeMapper = {
   }
 };
 
-export const WebJob: coreHttp.CompositeMapper = {
+export const WebJob: coreClient.CompositeMapper = {
   serializedName: "WebJob",
   type: {
     name: "Composite",
@@ -16173,7 +16173,7 @@ export const WebJob: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSitePatchResource: coreHttp.CompositeMapper = {
+export const StaticSitePatchResource: coreClient.CompositeMapper = {
   serializedName: "StaticSitePatchResource",
   type: {
     name: "Composite",
@@ -16235,7 +16235,7 @@ export const StaticSitePatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteUserARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteUserARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteUserARMResource",
   type: {
     name: "Composite",
@@ -16277,7 +16277,7 @@ export const StaticSiteUserARMResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteBuildARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteBuildARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteBuildARMResource",
   type: {
     name: "Composite",
@@ -16344,7 +16344,7 @@ export const StaticSiteBuildARMResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteFunctionOverviewARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteFunctionOverviewARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteFunctionOverviewARMResource",
   type: {
     name: "Composite",
@@ -16371,7 +16371,7 @@ export const StaticSiteFunctionOverviewARMResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const StaticSiteUserInvitationRequestResource: coreHttp.CompositeMapper = {
+export const StaticSiteUserInvitationRequestResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteUserInvitationRequestResource",
   type: {
     name: "Composite",
@@ -16417,7 +16417,7 @@ export const StaticSiteUserInvitationRequestResource: coreHttp.CompositeMapper =
   }
 };
 
-export const StaticSiteUserInvitationResponseResource: coreHttp.CompositeMapper = {
+export const StaticSiteUserInvitationResponseResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteUserInvitationResponseResource",
   type: {
     name: "Composite",
@@ -16444,7 +16444,7 @@ export const StaticSiteUserInvitationResponseResource: coreHttp.CompositeMapper 
   }
 };
 
-export const StaticSiteCustomDomainOverviewARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteCustomDomainOverviewARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteCustomDomainOverviewARMResource",
   type: {
     name: "Composite",
@@ -16471,7 +16471,7 @@ export const StaticSiteCustomDomainOverviewARMResource: coreHttp.CompositeMapper
   }
 };
 
-export const StaticSiteResetPropertiesARMResource: coreHttp.CompositeMapper = {
+export const StaticSiteResetPropertiesARMResource: coreClient.CompositeMapper = {
   serializedName: "StaticSiteResetPropertiesARMResource",
   type: {
     name: "Composite",
@@ -16496,7 +16496,7 @@ export const StaticSiteResetPropertiesARMResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
+export const AppServiceEnvironmentPatchResource: coreClient.CompositeMapper = {
   serializedName: "AppServiceEnvironmentPatchResource",
   type: {
     name: "Composite",
@@ -16848,7 +16848,7 @@ export const AppServiceEnvironmentPatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const AddressResponse: coreHttp.CompositeMapper = {
+export const AddressResponse: coreClient.CompositeMapper = {
   serializedName: "AddressResponse",
   type: {
     name: "Composite",
@@ -16900,7 +16900,7 @@ export const AddressResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const WorkerPoolResource: coreHttp.CompositeMapper = {
+export const WorkerPoolResource: coreClient.CompositeMapper = {
   serializedName: "WorkerPoolResource",
   type: {
     name: "Composite",
@@ -16962,7 +16962,7 @@ export const WorkerPoolResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceMetricDefinition: coreHttp.CompositeMapper = {
+export const ResourceMetricDefinition: coreClient.CompositeMapper = {
   serializedName: "ResourceMetricDefinition",
   type: {
     name: "Composite",
@@ -17021,7 +17021,7 @@ export const ResourceMetricDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const Usage: coreHttp.CompositeMapper = {
+export const Usage: coreClient.CompositeMapper = {
   serializedName: "Usage",
   type: {
     name: "Composite",
@@ -17097,7 +17097,7 @@ export const Usage: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppServicePlanPatchResource: coreHttp.CompositeMapper = {
+export const AppServicePlanPatchResource: coreClient.CompositeMapper = {
   serializedName: "AppServicePlanPatchResource",
   type: {
     name: "Composite",
@@ -17257,7 +17257,7 @@ export const AppServicePlanPatchResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const HybridConnectionKey: coreHttp.CompositeMapper = {
+export const HybridConnectionKey: coreClient.CompositeMapper = {
   serializedName: "HybridConnectionKey",
   type: {
     name: "Composite",
@@ -17284,7 +17284,7 @@ export const HybridConnectionKey: coreHttp.CompositeMapper = {
   }
 };
 
-export const HybridConnectionLimits: coreHttp.CompositeMapper = {
+export const HybridConnectionLimits: coreClient.CompositeMapper = {
   serializedName: "HybridConnectionLimits",
   type: {
     name: "Composite",
@@ -17311,7 +17311,7 @@ export const HybridConnectionLimits: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceHealthMetadataDef: coreHttp.CompositeMapper = {
+export const ResourceHealthMetadataDef: coreClient.CompositeMapper = {
   serializedName: "ResourceHealthMetadataDef",
   type: {
     name: "Composite",

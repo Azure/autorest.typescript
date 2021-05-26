@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { MonitorClientOptionalParams } from "./models";
 
-const packageName = "monitor-data-plane";
-const packageVersion = "1.0.0-beta.1";
-
-export class MonitorClientContext extends coreHttp.ServiceClient {
+export class MonitorClientContext extends coreClient.ServiceClient {
   $host: string;
 
   /**
@@ -21,7 +19,7 @@ export class MonitorClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     options?: MonitorClientOptionalParams
   ) {
     if (credentials === undefined) {
@@ -32,16 +30,17 @@ export class MonitorClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: MonitorClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(credentials, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://monitoring.azure.com";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "https://monitoring.azure.com"
+    };
+    super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "https://monitoring.azure.com";
