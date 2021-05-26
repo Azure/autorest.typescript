@@ -6,6 +6,7 @@ import { command } from "yargs";
 import { SPECS_PATH, DEFAULT_SPEC_BRANCH } from "./constants";
 import { onExit } from "./childProcessOnExit";
 import { appendFileSync } from "fs";
+import { runAutorest } from "./run";
 
 const SMOKE_PATH = joinPath(".", "test", "smoke", "generated");
 
@@ -35,26 +36,17 @@ const generateFromReadme = async ({
     outputFolderName || matches[1].replace(new RegExp("/", "g"), "-");
 
   const output = joinPath(SMOKE_PATH, projectName);
-  const autorestCmd = `autorest${/^win/.test(process.platform) ? ".cmd" : ""}`;
-  const childProcess = spawn(
-    autorestCmd,
-    [
-      `--require=${path}`,
-      `--typescript`,
-      `--package-name=${projectName}`,
-      `--output-folder=${output}`,
-      `--license-header=true`,
-      `--use=.`,
-      `--use-core-v2=true`,
-      `--allow-insecure-connection=true`,
-      ...(params || [])
-    ],
-    {
-      stdio: [process.stdin, process.stdout, process.stderr]
-    }
-  );
-
-  await onExit(childProcess);
+  await runAutorest(path, {
+    srcPath: "",
+    licenseHeader: true,
+    outputPath: output,
+    packageDetails: {
+      name: projectName,
+      version: "",
+      nameWithoutScope: ""
+    },
+    allowInsecureConnection: true
+  });
   return output;
 };
 

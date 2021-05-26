@@ -15,11 +15,13 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const addCredentials = await getAddCredentials(host);
   const credentialKeyHeaderName = await getKeyCredentialHeaderName(host);
   const srcPath = await getSrcPath(host);
+  const outputPath = await getOutputPath(host);
   const credentialScopes = await getCredentialScopes(host);
   const packageDetails = await getPackageDetails(host);
   const licenseHeader = await getLicenseHeader(host);
   const generateMetadata = await getGenerateMetadata(host);
   const hideClients = await getHideClients(host);
+  const title = await getTitle(host);
 
   const tracingInfo = await getTracingInfo(host);
   const disablePagingAsyncIterators = await getDisableAsyncOperators(host);
@@ -34,6 +36,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     credentialScopes,
     restLevelClient,
     srcPath,
+    outputPath,
     packageDetails,
     licenseHeader,
     tracingInfo,
@@ -43,7 +46,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     ignoreNullableOnOptional,
     allowInsecureConnection,
     disablePagingAsyncIterators,
-    skipEnumValidation
+    skipEnumValidation,
+    title
   };
 }
 
@@ -79,8 +83,16 @@ async function getLicenseHeader(host: Host): Promise<boolean> {
   return (await host.GetValue("license-header")) || false;
 }
 
+async function getTitle(host: Host): Promise<string | undefined> {
+  return await host.GetValue("title");
+}
+
 async function getSrcPath(host: Host): Promise<string> {
   return ((await host.GetValue("source-code-folder-path")) as string) || "src";
+}
+
+async function getOutputPath(host: Host): Promise<string | undefined> {
+  return await host.GetValue("output-folder");
 }
 
 async function getKeyCredentialHeaderName(
