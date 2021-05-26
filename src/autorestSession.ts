@@ -11,6 +11,8 @@ export interface AutorestOptions {
   credentialKeyHeaderName?: string;
   credentialScopes?: string[];
   srcPath: string;
+  outputPath?: string;
+  title?: string;
   packageDetails: PackageDetails;
   licenseHeader: boolean;
   tracingInfo?: TracingInfo;
