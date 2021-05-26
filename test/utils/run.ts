@@ -22,7 +22,8 @@ export async function runAutorest(
     disablePagingAsyncIterators,
     hideClients,
     ignoreNullableOnOptional,
-    title
+    title,
+    params
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -85,6 +86,10 @@ export async function runAutorest(
   );
   if (debugging) {
     commandArguments.push(`--typescript.debugger`);
+  }
+
+  if (params !== undefined && params.length > 0) {
+    commandArguments.push(params.join(" "));
   }
   const generationTask = async () => {
     console.log(`=== Start ${title} ===`);

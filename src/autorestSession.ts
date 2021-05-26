@@ -23,6 +23,7 @@ export interface AutorestOptions {
   allowInsecureConnection?: boolean;
   disablePagingAsyncIterators?: boolean;
   skipEnumValidation?: boolean;
+  params?: string[];
 }
 
 let host: Host;

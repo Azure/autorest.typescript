@@ -45,7 +45,8 @@ const generateFromReadme = async ({
       version: "",
       nameWithoutScope: ""
     },
-    allowInsecureConnection: true
+    allowInsecureConnection: true,
+    params
   });
   return output;
 };
