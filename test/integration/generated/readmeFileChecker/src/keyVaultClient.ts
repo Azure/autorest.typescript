@@ -36,6 +36,7 @@ import {
   KeyVaultClientGetDeletedSecretsNextResponse
 } from "./models";
 
+/** @internal */
 export class KeyVaultClient extends KeyVaultClientContext {
   /**
    * Initializes a new instance of the KeyVaultClient class.

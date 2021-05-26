@@ -63,7 +63,7 @@ export async function runAutorest(
       `--disable-async-iterators=${disablePagingAsyncIterators}`
     );
   }
-  if (hideClients !== undefined) {
+  if (hideClients) {
     commandArguments.push(`--hide-clients=${hideClients}`);
   }
   if (licenseHeader !== undefined) {
