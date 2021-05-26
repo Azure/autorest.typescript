@@ -353,13 +353,10 @@ export interface ContainerServiceListResult {
 
 // @public
 export interface ContainerServiceMasterProfile {
-    count?: ContainerServiceMasterProfileCount;
+    count?: Enum31;
     dnsPrefix: string;
     readonly fqdn?: string;
 }
-
-// @public
-export type ContainerServiceMasterProfileCount = number;
 
 // @public
 export interface ContainerServiceOrchestratorProfile {
@@ -1023,6 +1020,9 @@ export interface EncryptionSettingsElement {
 
 // @public
 export type EncryptionType = string;
+
+// @public
+export type Enum31 = number;
 
 // @public
 export interface Galleries {
@@ -1778,16 +1778,6 @@ export const enum KnownAvailabilitySetSkuTypes {
 }
 
 // @public
-export const enum KnownContainerServiceMasterProfileCount {
-    // (undocumented)
-    Five = 5,
-    // (undocumented)
-    One = 1,
-    // (undocumented)
-    Three = 3
-}
-
-// @public
 export const enum KnownContainerServiceVMSizeTypes {
     // (undocumented)
     StandardA0 = "Standard_A0",
@@ -1948,6 +1938,16 @@ export const enum KnownDiskStorageAccountTypes {
 export const enum KnownEncryptionType {
     EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey",
     EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey"
+}
+
+// @public
+export const enum KnownEnum31 {
+    // (undocumented)
+    Five = 5,
+    // (undocumented)
+    One = 1,
+    // (undocumented)
+    Three = 3
 }
 
 // @public
