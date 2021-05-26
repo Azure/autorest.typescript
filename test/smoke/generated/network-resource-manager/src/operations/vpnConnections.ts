@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VpnConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -125,16 +125,10 @@ export class VpnConnectionsImpl implements VpnConnections {
     connectionName: string,
     options?: VpnConnectionsGetOptionalParams
   ): Promise<VpnConnectionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, gatewayName, connectionName, options },
       getOperationSpec
-    ) as Promise<VpnConnectionsGetResponse>;
+    );
   }
 
   /**
@@ -158,25 +152,47 @@ export class VpnConnectionsImpl implements VpnConnections {
       VpnConnectionsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      vpnConnectionParameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VpnConnectionsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VpnConnectionsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        gatewayName,
+        connectionName,
+        vpnConnectionParameters,
+        options
+      },
       createOrUpdateOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -221,27 +237,42 @@ export class VpnConnectionsImpl implements VpnConnections {
     gatewayName: string,
     connectionName: string,
     options?: VpnConnectionsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      connectionName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, gatewayName, connectionName, options },
       deleteOperationSpec,
       sendOperation,
       "location"
@@ -260,7 +291,7 @@ export class VpnConnectionsImpl implements VpnConnections {
     gatewayName: string,
     connectionName: string,
     options?: VpnConnectionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       gatewayName,
@@ -281,15 +312,10 @@ export class VpnConnectionsImpl implements VpnConnections {
     gatewayName: string,
     options?: VpnConnectionsListByVpnGatewayOptionalParams
   ): Promise<VpnConnectionsListByVpnGatewayResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, gatewayName, options },
       listByVpnGatewayOperationSpec
-    ) as Promise<VpnConnectionsListByVpnGatewayResponse>;
+    );
   }
 
   /**
@@ -305,34 +331,16 @@ export class VpnConnectionsImpl implements VpnConnections {
     nextLink: string,
     options?: VpnConnectionsListByVpnGatewayNextOptionalParams
   ): Promise<VpnConnectionsListByVpnGatewayNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      gatewayName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, gatewayName, nextLink, options },
       listByVpnGatewayNextOperationSpec
-    ) as Promise<VpnConnectionsListByVpnGatewayNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}",
   httpMethod: "GET",
@@ -355,7 +363,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}",
   httpMethod: "PUT",
@@ -389,7 +397,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections/{connectionName}",
   httpMethod: "DELETE",
@@ -413,7 +421,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByVpnGatewayOperationSpec: coreHttp.OperationSpec = {
+const listByVpnGatewayOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/vpnGateways/{gatewayName}/vpnConnections",
   httpMethod: "GET",
@@ -435,7 +443,7 @@ const listByVpnGatewayOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByVpnGatewayNextOperationSpec: coreHttp.OperationSpec = {
+const listByVpnGatewayNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

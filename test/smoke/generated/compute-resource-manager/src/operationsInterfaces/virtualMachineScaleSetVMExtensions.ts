@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
@@ -118,9 +117,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     instanceId: string,
     vmExtensionName: string,
     options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The operation to delete the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.
@@ -135,7 +132,7 @@ export interface VirtualMachineScaleSetVMExtensions {
     instanceId: string,
     vmExtensionName: string,
     options?: VirtualMachineScaleSetVMExtensionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * The operation to get the VMSS VM extension.
    * @param resourceGroupName The name of the resource group.

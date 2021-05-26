@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ManagementLockObject,
   ManagementLocksListAtResourceGroupLevelOptionalParams,
@@ -116,7 +115,7 @@ export interface ManagementLocks {
     resourceGroupName: string,
     lockName: string,
     options?: ManagementLocksDeleteAtResourceGroupLevelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a management lock at the resource group level.
    * @param resourceGroupName The name of the locked resource group.
@@ -155,7 +154,7 @@ export interface ManagementLocks {
     scope: string,
     lockName: string,
     options?: ManagementLocksDeleteByScopeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get a management lock by scope.
    * @param scope The scope for the lock.
@@ -214,7 +213,7 @@ export interface ManagementLocks {
     resourceName: string,
     lockName: string,
     options?: ManagementLocksDeleteAtResourceLevelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get the management lock of a resource or any level below resource.
    * @param resourceGroupName The name of the resource group.
@@ -259,7 +258,7 @@ export interface ManagementLocks {
   deleteAtSubscriptionLevel(
     lockName: string,
     options?: ManagementLocksDeleteAtSubscriptionLevelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets a management lock at the subscription level.
    * @param lockName The name of the lock to get.

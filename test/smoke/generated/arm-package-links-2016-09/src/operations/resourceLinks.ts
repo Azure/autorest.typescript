@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ResourceLinks } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagementLinkClientContext } from "../managementLinkClientContext";
@@ -148,15 +148,11 @@ export class ResourceLinksImpl implements ResourceLinks {
   delete(
     linkId: string,
     options?: ResourceLinksDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      linkId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { linkId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -173,15 +169,10 @@ export class ResourceLinksImpl implements ResourceLinks {
     parameters: ResourceLink,
     options?: ResourceLinksCreateOrUpdateOptionalParams
   ): Promise<ResourceLinksCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      linkId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { linkId, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<ResourceLinksCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -194,14 +185,10 @@ export class ResourceLinksImpl implements ResourceLinks {
     linkId: string,
     options?: ResourceLinksGetOptionalParams
   ): Promise<ResourceLinksGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      linkId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { linkId, options },
       getOperationSpec
-    ) as Promise<ResourceLinksGetResponse>;
+    );
   }
 
   /**
@@ -211,13 +198,10 @@ export class ResourceLinksImpl implements ResourceLinks {
   private _listAtSubscription(
     options?: ResourceLinksListAtSubscriptionOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAtSubscriptionOperationSpec
-    ) as Promise<ResourceLinksListAtSubscriptionResponse>;
+    );
   }
 
   /**
@@ -231,14 +215,10 @@ export class ResourceLinksImpl implements ResourceLinks {
     scope: string,
     options?: ResourceLinksListAtSourceScopeOptionalParams
   ): Promise<ResourceLinksListAtSourceScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, options },
       listAtSourceScopeOperationSpec
-    ) as Promise<ResourceLinksListAtSourceScopeResponse>;
+    );
   }
 
   /**
@@ -250,14 +230,10 @@ export class ResourceLinksImpl implements ResourceLinks {
     nextLink: string,
     options?: ResourceLinksListAtSubscriptionNextOptionalParams
   ): Promise<ResourceLinksListAtSubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAtSubscriptionNextOperationSpec
-    ) as Promise<ResourceLinksListAtSubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -273,21 +249,16 @@ export class ResourceLinksImpl implements ResourceLinks {
     nextLink: string,
     options?: ResourceLinksListAtSourceScopeNextOptionalParams
   ): Promise<ResourceLinksListAtSourceScopeNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, nextLink, options },
       listAtSourceScopeNextOperationSpec
-    ) as Promise<ResourceLinksListAtSourceScopeNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "DELETE",
   responses: { 200: {}, 204: {} },
@@ -295,7 +266,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   urlParameters: [Parameters.$host, Parameters.linkId],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "PUT",
   responses: {
@@ -313,7 +284,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{linkId}",
   httpMethod: "GET",
   responses: {
@@ -326,7 +297,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listAtSubscriptionOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/links",
   httpMethod: "GET",
   responses: {
@@ -339,7 +310,7 @@ const listAtSubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSourceScopeOperationSpec: coreHttp.OperationSpec = {
+const listAtSourceScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.Resources/links",
   httpMethod: "GET",
   responses: {
@@ -352,7 +323,7 @@ const listAtSourceScopeOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listAtSubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -369,7 +340,7 @@ const listAtSubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAtSourceScopeNextOperationSpec: coreHttp.OperationSpec = {
+const listAtSourceScopeNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

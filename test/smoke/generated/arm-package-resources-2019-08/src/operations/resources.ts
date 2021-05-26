@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Resources } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
@@ -164,14 +164,10 @@ export class ResourcesImpl implements Resources {
     resourceGroupName: string,
     options?: ResourcesListByResourceGroupOptionalParams
   ): Promise<ResourcesListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<ResourcesListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -187,26 +183,42 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      sourceResourceGroupName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { sourceResourceGroupName, parameters, options },
       moveResourcesOperationSpec,
       sendOperation
     );
@@ -225,7 +237,7 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesMoveResourcesOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginMoveResources(
       sourceResourceGroupName,
       parameters,
@@ -249,26 +261,42 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      sourceResourceGroupName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { sourceResourceGroupName, parameters, options },
       validateMoveResourcesOperationSpec,
       sendOperation
     );
@@ -289,7 +317,7 @@ export class ResourcesImpl implements Resources {
     sourceResourceGroupName: string,
     parameters: ResourcesMoveInfo,
     options?: ResourcesValidateMoveResourcesOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginValidateMoveResources(
       sourceResourceGroupName,
       parameters,
@@ -305,13 +333,7 @@ export class ResourcesImpl implements Resources {
   private _list(
     options?: ResourcesListOptionalParams
   ): Promise<ResourcesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ResourcesListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -333,20 +355,19 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesCheckExistenceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        apiVersion,
+        options
+      },
       checkExistenceOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -368,30 +389,50 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        apiVersion,
+        options
+      },
       deleteOperationSpec,
       sendOperation
     );
@@ -416,7 +457,7 @@ export class ResourcesImpl implements Resources {
     resourceName: string,
     apiVersion: string,
     options?: ResourcesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       resourceProviderNamespace,
@@ -456,28 +497,50 @@ export class ResourcesImpl implements Resources {
       ResourcesCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ResourcesCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ResourcesCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        apiVersion,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -545,28 +608,50 @@ export class ResourcesImpl implements Resources {
       ResourcesUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ResourcesUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ResourcesUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        apiVersion,
+        parameters,
+        options
+      },
       updateOperationSpec,
       sendOperation
     );
@@ -627,19 +712,18 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     options?: ResourcesGetOptionalParams
   ): Promise<ResourcesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceProviderNamespace,
-      parentResourcePath,
-      resourceType,
-      resourceName,
-      apiVersion,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        resourceProviderNamespace,
+        parentResourcePath,
+        resourceType,
+        resourceName,
+        apiVersion,
+        options
+      },
       getOperationSpec
-    ) as Promise<ResourcesGetResponse>;
+    );
   }
 
   /**
@@ -654,16 +738,11 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesCheckExistenceByIdOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceId,
-      apiVersion,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceId, apiVersion, options },
       checkExistenceByIdOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -678,26 +757,42 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceId,
-      apiVersion,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceId, apiVersion, options },
       deleteByIdOperationSpec,
       sendOperation
     );
@@ -715,7 +810,7 @@ export class ResourcesImpl implements Resources {
     resourceId: string,
     apiVersion: string,
     options?: ResourcesDeleteByIdOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteById(resourceId, apiVersion, options);
     return poller.pollUntilDone();
   }
@@ -740,24 +835,41 @@ export class ResourcesImpl implements Resources {
       ResourcesCreateOrUpdateByIdResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceId,
-      apiVersion,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ResourcesCreateOrUpdateByIdResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ResourcesCreateOrUpdateByIdResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceId, apiVersion, parameters, options },
       createOrUpdateByIdOperationSpec,
       sendOperation
     );
@@ -807,24 +919,41 @@ export class ResourcesImpl implements Resources {
       ResourcesUpdateByIdResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceId,
-      apiVersion,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ResourcesUpdateByIdResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ResourcesUpdateByIdResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceId, apiVersion, parameters, options },
       updateByIdOperationSpec,
       sendOperation
     );
@@ -867,15 +996,10 @@ export class ResourcesImpl implements Resources {
     apiVersion: string,
     options?: ResourcesGetByIdOptionalParams
   ): Promise<ResourcesGetByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceId,
-      apiVersion,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceId, apiVersion, options },
       getByIdOperationSpec
-    ) as Promise<ResourcesGetByIdResponse>;
+    );
   }
 
   /**
@@ -889,15 +1013,10 @@ export class ResourcesImpl implements Resources {
     nextLink: string,
     options?: ResourcesListByResourceGroupNextOptionalParams
   ): Promise<ResourcesListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<ResourcesListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -909,32 +1028,16 @@ export class ResourcesImpl implements Resources {
     nextLink: string,
     options?: ResourcesListNextOptionalParams
   ): Promise<ResourcesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ResourcesListNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/resources",
   httpMethod: "GET",
@@ -960,7 +1063,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const moveResourcesOperationSpec: coreHttp.OperationSpec = {
+const moveResourcesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/moveResources",
   httpMethod: "POST",
@@ -984,7 +1087,7 @@ const moveResourcesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
+const validateMoveResourcesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{sourceResourceGroupName}/validateMoveResources",
   httpMethod: "POST",
@@ -1008,7 +1111,7 @@ const validateMoveResourcesOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resources",
   httpMethod: "GET",
   responses: {
@@ -1029,7 +1132,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const checkExistenceOperationSpec: coreHttp.OperationSpec = {
+const checkExistenceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "HEAD",
@@ -1053,7 +1156,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "DELETE",
@@ -1079,7 +1182,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "PUT",
@@ -1115,7 +1218,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "PATCH",
@@ -1151,7 +1254,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}",
   httpMethod: "GET",
@@ -1176,7 +1279,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const checkExistenceByIdOperationSpec: coreHttp.OperationSpec = {
+const checkExistenceByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "HEAD",
   responses: {
@@ -1191,7 +1294,7 @@ const checkExistenceByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteByIdOperationSpec: coreHttp.OperationSpec = {
+const deleteByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "DELETE",
   responses: {
@@ -1208,7 +1311,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "PUT",
   responses: {
@@ -1235,7 +1338,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateByIdOperationSpec: coreHttp.OperationSpec = {
+const updateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "PATCH",
   responses: {
@@ -1262,7 +1365,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getByIdOperationSpec: coreHttp.OperationSpec = {
+const getByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{resourceId}",
   httpMethod: "GET",
   responses: {
@@ -1278,7 +1381,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1304,7 +1407,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

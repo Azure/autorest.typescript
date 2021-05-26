@@ -6,9 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
 import { Poller, PollOperationState } from "@azure/core-lro";
-import { delay, OperationArguments, OperationSpec } from "@azure/core-http";
-import { BaseResult, FinalStateVia, SendOperationFn } from "./models";
+import { OperationArguments, OperationSpec } from "@azure/core-client";
+import { delay } from "@azure/core-util";
+import { FinalStateVia, SendOperationFn } from "./models";
 import { GenericPollOperation } from "./operation";
 
 export interface LROPollerOptions {
@@ -22,7 +26,7 @@ export interface LROPollerOptions {
   resumeFrom?: string;
 }
 
-export class LROPoller<TResult extends BaseResult> extends Poller<
+export class LROPoller<TResult> extends Poller<
   PollOperationState<TResult>,
   TResult
 > {

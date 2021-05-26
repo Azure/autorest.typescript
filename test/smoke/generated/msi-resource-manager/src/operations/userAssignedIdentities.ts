@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { UserAssignedIdentities } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
@@ -148,13 +148,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   private _listBySubscription(
     options?: UserAssignedIdentitiesListBySubscriptionOptionalParams
   ): Promise<UserAssignedIdentitiesListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<UserAssignedIdentitiesListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -166,14 +163,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     resourceGroupName: string,
     options?: UserAssignedIdentitiesListByResourceGroupOptionalParams
   ): Promise<UserAssignedIdentitiesListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<UserAssignedIdentitiesListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -189,16 +182,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     parameters: Identity,
     options?: UserAssignedIdentitiesCreateOrUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, resourceName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -214,16 +201,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     parameters: IdentityUpdate,
     options?: UserAssignedIdentitiesUpdateOptionalParams
   ): Promise<UserAssignedIdentitiesUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, resourceName, parameters, options },
       updateOperationSpec
-    ) as Promise<UserAssignedIdentitiesUpdateResponse>;
+    );
   }
 
   /**
@@ -237,15 +218,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     resourceName: string,
     options?: UserAssignedIdentitiesGetOptionalParams
   ): Promise<UserAssignedIdentitiesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, resourceName, options },
       getOperationSpec
-    ) as Promise<UserAssignedIdentitiesGetResponse>;
+    );
   }
 
   /**
@@ -258,16 +234,11 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     options?: UserAssignedIdentitiesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      resourceName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, resourceName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -279,14 +250,10 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     nextLink: string,
     options?: UserAssignedIdentitiesListBySubscriptionNextOptionalParams
   ): Promise<UserAssignedIdentitiesListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<UserAssignedIdentitiesListBySubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -300,21 +267,16 @@ export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
     nextLink: string,
     options?: UserAssignedIdentitiesListByResourceGroupNextOptionalParams
   ): Promise<UserAssignedIdentitiesListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<UserAssignedIdentitiesListByResourceGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.ManagedIdentity/userAssignedIdentities",
   httpMethod: "GET",
@@ -331,7 +293,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities",
   httpMethod: "GET",
@@ -352,7 +314,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{resourceName}",
   httpMethod: "PUT",
@@ -379,7 +341,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{resourceName}",
   httpMethod: "PATCH",
@@ -403,7 +365,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{resourceName}",
   httpMethod: "GET",
@@ -425,7 +387,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{resourceName}",
   httpMethod: "DELETE",
@@ -446,7 +408,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -466,7 +428,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

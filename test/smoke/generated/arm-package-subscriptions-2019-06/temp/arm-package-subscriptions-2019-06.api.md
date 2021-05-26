@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
@@ -55,28 +56,18 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 export type SpendingLimit = "On" | "Off" | "CurrentPeriodOff";
@@ -95,7 +86,7 @@ export interface Subscription {
 
 // @public (undocumented)
 export class SubscriptionClient extends SubscriptionClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: SubscriptionClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -105,16 +96,16 @@ export class SubscriptionClient extends SubscriptionClientContext {
 }
 
 // @public (undocumented)
-export class SubscriptionClientContext extends coreHttp.ServiceClient {
+export class SubscriptionClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, options?: SubscriptionClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
     // (undocumented)
     apiVersion: string;
 }
 
 // @public
-export interface SubscriptionClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface SubscriptionClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -141,52 +132,32 @@ export interface Subscriptions {
 }
 
 // @public
-export interface SubscriptionsGetOptionalParams extends coreHttp.OperationOptions {
+export interface SubscriptionsGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SubscriptionsGetResponse = Subscription & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Subscription;
-    };
-};
+export type SubscriptionsGetResponse = Subscription;
 
 // @public
-export interface SubscriptionsListLocationsOptionalParams extends coreHttp.OperationOptions {
+export interface SubscriptionsListLocationsOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SubscriptionsListLocationsResponse = LocationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: LocationListResult;
-    };
-};
+export type SubscriptionsListLocationsResponse = LocationListResult;
 
 // @public
-export interface SubscriptionsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface SubscriptionsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SubscriptionsListNextResponse = SubscriptionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SubscriptionListResult;
-    };
-};
+export type SubscriptionsListNextResponse = SubscriptionListResult;
 
 // @public
-export interface SubscriptionsListOptionalParams extends coreHttp.OperationOptions {
+export interface SubscriptionsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SubscriptionsListResponse = SubscriptionListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SubscriptionListResult;
-    };
-};
+export type SubscriptionsListResponse = SubscriptionListResult;
 
 // @public
 export type SubscriptionState = "Enabled" | "Warned" | "PastDue" | "Disabled" | "Deleted";
@@ -217,28 +188,18 @@ export interface Tenants {
 }
 
 // @public
-export interface TenantsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface TenantsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TenantsListNextResponse = TenantListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: TenantListResult;
-    };
-};
+export type TenantsListNextResponse = TenantListResult;
 
 // @public
-export interface TenantsListOptionalParams extends coreHttp.OperationOptions {
+export interface TenantsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type TenantsListResponse = TenantListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: TenantListResult;
-    };
-};
+export type TenantsListResponse = TenantListResult;
 
 
 // (No @packageDocumentation comment for this package)

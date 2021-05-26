@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Applications } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -307,14 +307,10 @@ export class ApplicationsImpl implements Applications {
     parameters: ApplicationCreateParameters,
     options?: ApplicationsCreateOptionalParams
   ): Promise<ApplicationsCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       createOperationSpec
-    ) as Promise<ApplicationsCreateResponse>;
+    );
   }
 
   /**
@@ -324,13 +320,7 @@ export class ApplicationsImpl implements Applications {
   private _list(
     options?: ApplicationsListOptionalParams
   ): Promise<ApplicationsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ApplicationsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -341,15 +331,11 @@ export class ApplicationsImpl implements Applications {
   delete(
     applicationObjectId: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -361,14 +347,10 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       getOperationSpec
-    ) as Promise<ApplicationsGetResponse>;
+    );
   }
 
   /**
@@ -381,16 +363,11 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     parameters: ApplicationUpdateParameters,
     options?: ApplicationsPatchOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, parameters, options },
       patchOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -402,14 +379,10 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     options?: ApplicationsListOwnersOptionalParams
   ): Promise<ApplicationsListOwnersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       listOwnersOperationSpec
-    ) as Promise<ApplicationsListOwnersResponse>;
+    );
   }
 
   /**
@@ -423,16 +396,11 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     parameters: AddOwnerParameters,
     options?: ApplicationsAddOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, parameters, options },
       addOwnerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -445,16 +413,11 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     ownerObjectId: string,
     options?: ApplicationsRemoveOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      ownerObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, ownerObjectId, options },
       removeOwnerOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -466,14 +429,10 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     options?: ApplicationsListKeyCredentialsOptionalParams
   ): Promise<ApplicationsListKeyCredentialsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       listKeyCredentialsOperationSpec
-    ) as Promise<ApplicationsListKeyCredentialsResponse>;
+    );
   }
 
   /**
@@ -486,16 +445,11 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     parameters: KeyCredentialsUpdateParameters,
     options?: ApplicationsUpdateKeyCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, parameters, options },
       updateKeyCredentialsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -507,14 +461,10 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     options?: ApplicationsListPasswordCredentialsOptionalParams
   ): Promise<ApplicationsListPasswordCredentialsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, options },
       listPasswordCredentialsOperationSpec
-    ) as Promise<ApplicationsListPasswordCredentialsResponse>;
+    );
   }
 
   /**
@@ -527,16 +477,11 @@ export class ApplicationsImpl implements Applications {
     applicationObjectId: string,
     parameters: PasswordCredentialsUpdateParameters,
     options?: ApplicationsUpdatePasswordCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, parameters, options },
       updatePasswordCredentialsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -548,14 +493,10 @@ export class ApplicationsImpl implements Applications {
     applicationID: string,
     options?: ApplicationsGetServicePrincipalsIdByAppIdOptionalParams
   ): Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationID,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationID, options },
       getServicePrincipalsIdByAppIdOperationSpec
-    ) as Promise<ApplicationsGetServicePrincipalsIdByAppIdResponse>;
+    );
   }
 
   /**
@@ -567,14 +508,10 @@ export class ApplicationsImpl implements Applications {
     nextLink: string,
     options?: ApplicationsListNextOptionalParams
   ): Promise<ApplicationsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ApplicationsListNextResponse>;
+    );
   }
 
   /**
@@ -588,21 +525,16 @@ export class ApplicationsImpl implements Applications {
     nextLink: string,
     options?: ApplicationsListOwnersNextOptionalParams
   ): Promise<ApplicationsListOwnersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationObjectId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationObjectId, nextLink, options },
       listOwnersNextOperationSpec
-    ) as Promise<ApplicationsListOwnersNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications",
   httpMethod: "POST",
   responses: {
@@ -620,7 +552,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications",
   httpMethod: "GET",
   responses: {
@@ -636,7 +568,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}",
   httpMethod: "DELETE",
   responses: {
@@ -654,7 +586,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}",
   httpMethod: "GET",
   responses: {
@@ -674,7 +606,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const patchOperationSpec: coreHttp.OperationSpec = {
+const patchOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}",
   httpMethod: "PATCH",
   responses: {
@@ -694,7 +626,7 @@ const patchOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOwnersOperationSpec: coreHttp.OperationSpec = {
+const listOwnersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/owners",
   httpMethod: "GET",
   responses: {
@@ -714,7 +646,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const addOwnerOperationSpec: coreHttp.OperationSpec = {
+const addOwnerOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/$links/owners",
   httpMethod: "POST",
   responses: {
@@ -734,7 +666,7 @@ const addOwnerOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const removeOwnerOperationSpec: coreHttp.OperationSpec = {
+const removeOwnerOperationSpec: coreClient.OperationSpec = {
   path:
     "/{tenantID}/applications/{applicationObjectId}/$links/owners/{ownerObjectId}",
   httpMethod: "DELETE",
@@ -754,7 +686,7 @@ const removeOwnerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
+const listKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/keyCredentials",
   httpMethod: "GET",
   responses: {
@@ -774,7 +706,7 @@ const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
+const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/keyCredentials",
   httpMethod: "PATCH",
   responses: {
@@ -794,7 +726,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
+const listPasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/passwordCredentials",
   httpMethod: "GET",
   responses: {
@@ -814,7 +746,7 @@ const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
+const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/applications/{applicationObjectId}/passwordCredentials",
   httpMethod: "PATCH",
   responses: {
@@ -834,7 +766,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getServicePrincipalsIdByAppIdOperationSpec: coreHttp.OperationSpec = {
+const getServicePrincipalsIdByAppIdOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipalsByAppId/{applicationID}/objectId",
   httpMethod: "GET",
   responses: {
@@ -854,7 +786,7 @@ const getServicePrincipalsIdByAppIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -870,7 +802,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
+const listOwnersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

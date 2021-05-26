@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { BastionHosts } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -150,26 +150,42 @@ export class BastionHostsImpl implements BastionHosts {
     resourceGroupName: string,
     bastionHostName: string,
     options?: BastionHostsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, bastionHostName, options },
       deleteOperationSpec,
       sendOperation,
       "location"
@@ -186,7 +202,7 @@ export class BastionHostsImpl implements BastionHosts {
     resourceGroupName: string,
     bastionHostName: string,
     options?: BastionHostsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       bastionHostName,
@@ -206,15 +222,10 @@ export class BastionHostsImpl implements BastionHosts {
     bastionHostName: string,
     options?: BastionHostsGetOptionalParams
   ): Promise<BastionHostsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, bastionHostName, options },
       getOperationSpec
-    ) as Promise<BastionHostsGetResponse>;
+    );
   }
 
   /**
@@ -235,24 +246,41 @@ export class BastionHostsImpl implements BastionHosts {
       BastionHostsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      bastionHostName,
-      parameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<BastionHostsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        BastionHostsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, bastionHostName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -288,13 +316,7 @@ export class BastionHostsImpl implements BastionHosts {
   private _list(
     options?: BastionHostsListOptionalParams
   ): Promise<BastionHostsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<BastionHostsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -306,14 +328,10 @@ export class BastionHostsImpl implements BastionHosts {
     resourceGroupName: string,
     options?: BastionHostsListByResourceGroupOptionalParams
   ): Promise<BastionHostsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<BastionHostsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -325,14 +343,10 @@ export class BastionHostsImpl implements BastionHosts {
     nextLink: string,
     options?: BastionHostsListNextOptionalParams
   ): Promise<BastionHostsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<BastionHostsListNextResponse>;
+    );
   }
 
   /**
@@ -346,33 +360,16 @@ export class BastionHostsImpl implements BastionHosts {
     nextLink: string,
     options?: BastionHostsListByResourceGroupNextOptionalParams
   ): Promise<BastionHostsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<BastionHostsListByResourceGroupNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}",
   httpMethod: "DELETE",
@@ -395,7 +392,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}",
   httpMethod: "GET",
@@ -417,7 +414,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts/{bastionHostName}",
   httpMethod: "PUT",
@@ -450,7 +447,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/bastionHosts",
   httpMethod: "GET",
@@ -467,7 +464,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/bastionHosts",
   httpMethod: "GET",
@@ -488,7 +485,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -508,7 +505,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

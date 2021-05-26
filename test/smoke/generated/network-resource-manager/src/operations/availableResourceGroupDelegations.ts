@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { AvailableResourceGroupDelegations } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -105,15 +105,10 @@ export class AvailableResourceGroupDelegationsImpl
     resourceGroupName: string,
     options?: AvailableResourceGroupDelegationsListOptionalParams
   ): Promise<AvailableResourceGroupDelegationsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, resourceGroupName, options },
       listOperationSpec
-    ) as Promise<AvailableResourceGroupDelegationsListResponse>;
+    );
   }
 
   /**
@@ -129,22 +124,16 @@ export class AvailableResourceGroupDelegationsImpl
     nextLink: string,
     options?: AvailableResourceGroupDelegationsListNextOptionalParams
   ): Promise<AvailableResourceGroupDelegationsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, resourceGroupName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<AvailableResourceGroupDelegationsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/locations/{location}/availableDelegations",
   httpMethod: "GET",
@@ -166,7 +155,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -7,7 +7,7 @@
  */
 
 import { ServerConnectionPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -48,17 +48,16 @@ export class ServerConnectionPoliciesImpl implements ServerConnectionPolicies {
     parameters: ServerConnectionPolicy,
     options?: ServerConnectionPoliciesCreateOrUpdateOptionalParams
   ): Promise<ServerConnectionPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      connectionPolicyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        connectionPolicyName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<ServerConnectionPoliciesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -75,22 +74,16 @@ export class ServerConnectionPoliciesImpl implements ServerConnectionPolicies {
     connectionPolicyName: ConnectionPolicyName,
     options?: ServerConnectionPoliciesGetOptionalParams
   ): Promise<ServerConnectionPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      connectionPolicyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, connectionPolicyName, options },
       getOperationSpec
-    ) as Promise<ServerConnectionPoliciesGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/connectionPolicies/{connectionPolicyName}",
   httpMethod: "PUT",
@@ -115,7 +108,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/connectionPolicies/{connectionPolicyName}",
   httpMethod: "GET",

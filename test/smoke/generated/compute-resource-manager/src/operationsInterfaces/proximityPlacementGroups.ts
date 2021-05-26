@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ProximityPlacementGroup,
   ProximityPlacementGroupsListBySubscriptionOptionalParams,
@@ -78,7 +77,7 @@ export interface ProximityPlacementGroups {
     resourceGroupName: string,
     proximityPlacementGroupName: string,
     options?: ProximityPlacementGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves information about a proximity placement group .
    * @param resourceGroupName The name of the resource group.

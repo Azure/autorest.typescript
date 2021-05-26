@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DeploymentScripts } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { DeploymentScriptsClientContext } from "../deploymentScriptsClientContext";
@@ -164,24 +164,41 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       DeploymentScriptsCreateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      deploymentScript,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<DeploymentScriptsCreateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        DeploymentScriptsCreateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, scriptName, deploymentScript, options },
       createOperationSpec,
       sendOperation
     );
@@ -220,15 +237,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsUpdateOptionalParams
   ): Promise<DeploymentScriptsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, scriptName, options },
       updateOperationSpec
-    ) as Promise<DeploymentScriptsUpdateResponse>;
+    );
   }
 
   /**
@@ -242,15 +254,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsGetOptionalParams
   ): Promise<DeploymentScriptsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, scriptName, options },
       getOperationSpec
-    ) as Promise<DeploymentScriptsGetResponse>;
+    );
   }
 
   /**
@@ -263,16 +270,11 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     options?: DeploymentScriptsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, scriptName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -282,13 +284,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
   private _listBySubscription(
     options?: DeploymentScriptsListBySubscriptionOptionalParams
   ): Promise<DeploymentScriptsListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<DeploymentScriptsListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -302,15 +301,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsGetLogsOptionalParams
   ): Promise<DeploymentScriptsGetLogsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, scriptName, options },
       getLogsOperationSpec
-    ) as Promise<DeploymentScriptsGetLogsResponse>;
+    );
   }
 
   /**
@@ -324,15 +318,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     scriptName: string,
     options?: DeploymentScriptsGetLogsDefaultOptionalParams
   ): Promise<DeploymentScriptsGetLogsDefaultResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      scriptName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, scriptName, options },
       getLogsDefaultOperationSpec
-    ) as Promise<DeploymentScriptsGetLogsDefaultResponse>;
+    );
   }
 
   /**
@@ -344,14 +333,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     resourceGroupName: string,
     options?: DeploymentScriptsListByResourceGroupOptionalParams
   ): Promise<DeploymentScriptsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<DeploymentScriptsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -363,14 +348,10 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     nextLink: string,
     options?: DeploymentScriptsListBySubscriptionNextOptionalParams
   ): Promise<DeploymentScriptsListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<DeploymentScriptsListBySubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -384,33 +365,16 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
     nextLink: string,
     options?: DeploymentScriptsListByResourceGroupNextOptionalParams
   ): Promise<DeploymentScriptsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<DeploymentScriptsListByResourceGroupNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "PUT",
@@ -443,7 +407,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "PATCH",
@@ -467,7 +431,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "GET",
@@ -489,7 +453,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}",
   httpMethod: "DELETE",
@@ -510,7 +474,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deploymentScripts",
   httpMethod: "GET",
@@ -527,7 +491,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLogsOperationSpec: coreHttp.OperationSpec = {
+const getLogsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs",
   httpMethod: "GET",
@@ -549,7 +513,7 @@ const getLogsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLogsDefaultOperationSpec: coreHttp.OperationSpec = {
+const getLogsDefaultOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts/{scriptName}/logs/default",
   httpMethod: "GET",
@@ -571,7 +535,7 @@ const getLogsDefaultOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deploymentScripts",
   httpMethod: "GET",
@@ -592,7 +556,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -612,7 +576,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

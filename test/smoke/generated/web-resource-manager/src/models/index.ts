@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Collection of certificate orders. */
 export interface AppServiceCertificateOrderCollection {
@@ -6603,59 +6603,32 @@ export type StatusOptions = "Ready" | "Pending" | "Creating";
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AppServiceCertificateOrdersListResponse = AppServiceCertificateOrderCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrderCollection;
-  };
-};
+export type AppServiceCertificateOrdersListResponse = AppServiceCertificateOrderCollection;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type AppServiceCertificateOrdersListByResourceGroupResponse = AppServiceCertificateOrderCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrderCollection;
-  };
-};
+export type AppServiceCertificateOrdersListByResourceGroupResponse = AppServiceCertificateOrderCollection;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type AppServiceCertificateOrdersGetResponse = AppServiceCertificateOrder & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrder;
-  };
-};
+export type AppServiceCertificateOrdersGetResponse = AppServiceCertificateOrder;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -6663,72 +6636,36 @@ export interface AppServiceCertificateOrdersCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertificateOrder & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrder;
-  };
-};
+export type AppServiceCertificateOrdersCreateOrUpdateResponse = AppServiceCertificateOrder;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type AppServiceCertificateOrdersUpdateResponse = AppServiceCertificateOrder & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrder;
-  };
-};
+export type AppServiceCertificateOrdersUpdateResponse = AppServiceCertificateOrder;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListCertificatesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCertificates operation. */
-export type AppServiceCertificateOrdersListCertificatesResponse = AppServiceCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateCollection;
-  };
-};
+export type AppServiceCertificateOrdersListCertificatesResponse = AppServiceCertificateCollection;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersGetCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCertificate operation. */
-export type AppServiceCertificateOrdersGetCertificateResponse = AppServiceCertificateResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateResource;
-  };
-};
+export type AppServiceCertificateOrdersGetCertificateResponse = AppServiceCertificateResource;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -6736,282 +6673,139 @@ export interface AppServiceCertificateOrdersCreateOrUpdateCertificateOptionalPar
 }
 
 /** Contains response data for the createOrUpdateCertificate operation. */
-export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppServiceCertificateResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateResource;
-  };
-};
+export type AppServiceCertificateOrdersCreateOrUpdateCertificateResponse = AppServiceCertificateResource;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersDeleteCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersUpdateCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateCertificate operation. */
-export type AppServiceCertificateOrdersUpdateCertificateResponse = AppServiceCertificateResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateResource;
-  };
-};
+export type AppServiceCertificateOrdersUpdateCertificateResponse = AppServiceCertificateResource;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersReissueOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersRenewOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersResendEmailOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersResendRequestEmailsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersRetrieveSiteSealOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the retrieveSiteSeal operation. */
-export type AppServiceCertificateOrdersRetrieveSiteSealResponse = SiteSeal & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSeal;
-  };
-};
+export type AppServiceCertificateOrdersRetrieveSiteSealResponse = SiteSeal;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersVerifyDomainOwnershipOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersRetrieveCertificateActionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the retrieveCertificateActions operation. */
-export type AppServiceCertificateOrdersRetrieveCertificateActionsResponse = CertificateOrderAction[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateOrderAction[];
-  };
-};
+export type AppServiceCertificateOrdersRetrieveCertificateActionsResponse = CertificateOrderAction[];
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersRetrieveCertificateEmailHistoryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the retrieveCertificateEmailHistory operation. */
-export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse = CertificateEmail[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateEmail[];
-  };
-};
+export type AppServiceCertificateOrdersRetrieveCertificateEmailHistoryResponse = CertificateEmail[];
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AppServiceCertificateOrdersListNextResponse = AppServiceCertificateOrderCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrderCollection;
-  };
-};
+export type AppServiceCertificateOrdersListNextResponse = AppServiceCertificateOrderCollection;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type AppServiceCertificateOrdersListByResourceGroupNextResponse = AppServiceCertificateOrderCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateOrderCollection;
-  };
-};
+export type AppServiceCertificateOrdersListByResourceGroupNextResponse = AppServiceCertificateOrderCollection;
 
 /** Optional parameters. */
 export interface AppServiceCertificateOrdersListCertificatesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCertificatesNext operation. */
-export type AppServiceCertificateOrdersListCertificatesNextResponse = AppServiceCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceCertificateCollection;
-  };
-};
+export type AppServiceCertificateOrdersListCertificatesNextResponse = AppServiceCertificateCollection;
 
 /** Optional parameters. */
 export interface CertificateRegistrationProviderListOperationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type CertificateRegistrationProviderListOperationsResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type CertificateRegistrationProviderListOperationsResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface CertificateRegistrationProviderListOperationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
-export type CertificateRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type CertificateRegistrationProviderListOperationsNextResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface DomainsCheckAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkAvailability operation. */
-export type DomainsCheckAvailabilityResponse = DomainAvailabilityCheckResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainAvailabilityCheckResult;
-  };
-};
+export type DomainsCheckAvailabilityResponse = DomainAvailabilityCheckResult;
 
 /** Optional parameters. */
-export interface DomainsListOptionalParams extends coreHttp.OperationOptions {}
+export interface DomainsListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type DomainsListResponse = DomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainCollection;
-  };
-};
+export type DomainsListResponse = DomainCollection;
 
 /** Optional parameters. */
 export interface DomainsGetControlCenterSsoRequestOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getControlCenterSsoRequest operation. */
-export type DomainsGetControlCenterSsoRequestResponse = DomainControlCenterSsoRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainControlCenterSsoRequest;
-  };
-};
+export type DomainsGetControlCenterSsoRequestResponse = DomainControlCenterSsoRequest;
 
 /** Optional parameters. */
 export interface DomainsListRecommendationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendations operation. */
-export type DomainsListRecommendationsResponse = NameIdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NameIdentifierCollection;
-  };
-};
+export type DomainsListRecommendationsResponse = NameIdentifierCollection;
 
 /** Optional parameters. */
 export interface DomainsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DomainsListByResourceGroupResponse = DomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainCollection;
-  };
-};
+export type DomainsListByResourceGroupResponse = DomainCollection;
 
 /** Optional parameters. */
-export interface DomainsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface DomainsGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DomainsGetResponse = Domain & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Domain;
-  };
-};
+export type DomainsGetResponse = Domain;
 
 /** Optional parameters. */
 export interface DomainsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -7019,501 +6813,233 @@ export interface DomainsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type DomainsCreateOrUpdateResponse = Domain & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Domain;
-  };
-};
+export type DomainsCreateOrUpdateResponse = Domain;
 
 /** Optional parameters. */
-export interface DomainsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface DomainsDeleteOptionalParams
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to delete the domain immediately. The default is <code>false</code> which deletes the domain after 24 hours. */
   forceHardDeleteDomain?: boolean;
 }
 
 /** Optional parameters. */
 export interface DomainsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type DomainsUpdateResponse = Domain & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Domain;
-  };
-};
+export type DomainsUpdateResponse = Domain;
 
 /** Optional parameters. */
 export interface DomainsListOwnershipIdentifiersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnershipIdentifiers operation. */
-export type DomainsListOwnershipIdentifiersResponse = DomainOwnershipIdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainOwnershipIdentifierCollection;
-  };
-};
+export type DomainsListOwnershipIdentifiersResponse = DomainOwnershipIdentifierCollection;
 
 /** Optional parameters. */
 export interface DomainsGetOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getOwnershipIdentifier operation. */
-export type DomainsGetOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainOwnershipIdentifier;
-  };
-};
+export type DomainsGetOwnershipIdentifierResponse = DomainOwnershipIdentifier;
 
 /** Optional parameters. */
 export interface DomainsCreateOrUpdateOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateOwnershipIdentifier operation. */
-export type DomainsCreateOrUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainOwnershipIdentifier;
-  };
-};
+export type DomainsCreateOrUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier;
 
 /** Optional parameters. */
 export interface DomainsDeleteOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DomainsUpdateOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateOwnershipIdentifier operation. */
-export type DomainsUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainOwnershipIdentifier;
-  };
-};
+export type DomainsUpdateOwnershipIdentifierResponse = DomainOwnershipIdentifier;
 
 /** Optional parameters. */
-export interface DomainsRenewOptionalParams extends coreHttp.OperationOptions {}
+export interface DomainsRenewOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DomainsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DomainsListNextResponse = DomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainCollection;
-  };
-};
+export type DomainsListNextResponse = DomainCollection;
 
 /** Optional parameters. */
 export interface DomainsListRecommendationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRecommendationsNext operation. */
-export type DomainsListRecommendationsNextResponse = NameIdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NameIdentifierCollection;
-  };
-};
+export type DomainsListRecommendationsNextResponse = NameIdentifierCollection;
 
 /** Optional parameters. */
 export interface DomainsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DomainsListByResourceGroupNextResponse = DomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainCollection;
-  };
-};
+export type DomainsListByResourceGroupNextResponse = DomainCollection;
 
 /** Optional parameters. */
 export interface DomainsListOwnershipIdentifiersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOwnershipIdentifiersNext operation. */
-export type DomainsListOwnershipIdentifiersNextResponse = DomainOwnershipIdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DomainOwnershipIdentifierCollection;
-  };
-};
+export type DomainsListOwnershipIdentifiersNextResponse = DomainOwnershipIdentifierCollection;
 
 /** Optional parameters. */
 export interface TopLevelDomainsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type TopLevelDomainsListResponse = TopLevelDomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TopLevelDomainCollection;
-  };
-};
+export type TopLevelDomainsListResponse = TopLevelDomainCollection;
 
 /** Optional parameters. */
 export interface TopLevelDomainsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type TopLevelDomainsGetResponse = TopLevelDomain & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TopLevelDomain;
-  };
-};
+export type TopLevelDomainsGetResponse = TopLevelDomain;
 
 /** Optional parameters. */
 export interface TopLevelDomainsListAgreementsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAgreements operation. */
-export type TopLevelDomainsListAgreementsResponse = TldLegalAgreementCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TldLegalAgreementCollection;
-  };
-};
+export type TopLevelDomainsListAgreementsResponse = TldLegalAgreementCollection;
 
 /** Optional parameters. */
 export interface TopLevelDomainsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type TopLevelDomainsListNextResponse = TopLevelDomainCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TopLevelDomainCollection;
-  };
-};
+export type TopLevelDomainsListNextResponse = TopLevelDomainCollection;
 
 /** Optional parameters. */
 export interface TopLevelDomainsListAgreementsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAgreementsNext operation. */
-export type TopLevelDomainsListAgreementsNextResponse = TldLegalAgreementCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TldLegalAgreementCollection;
-  };
-};
+export type TopLevelDomainsListAgreementsNextResponse = TldLegalAgreementCollection;
 
 /** Optional parameters. */
 export interface DomainRegistrationProviderListOperationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type DomainRegistrationProviderListOperationsResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type DomainRegistrationProviderListOperationsResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface DomainRegistrationProviderListOperationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
-export type DomainRegistrationProviderListOperationsNextResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type DomainRegistrationProviderListOperationsNextResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface CertificatesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type CertificatesListResponse = CertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateCollection;
-  };
-};
+export type CertificatesListResponse = CertificateCollection;
 
 /** Optional parameters. */
 export interface CertificatesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type CertificatesListByResourceGroupResponse = CertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateCollection;
-  };
-};
+export type CertificatesListByResourceGroupResponse = CertificateCollection;
 
 /** Optional parameters. */
 export interface CertificatesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type CertificatesGetResponse = Certificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Certificate;
-  };
-};
+export type CertificatesGetResponse = Certificate;
 
 /** Optional parameters. */
 export interface CertificatesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type CertificatesCreateOrUpdateResponse = Certificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Certificate;
-  };
-};
+export type CertificatesCreateOrUpdateResponse = Certificate;
 
 /** Optional parameters. */
 export interface CertificatesDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface CertificatesUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type CertificatesUpdateResponse = Certificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Certificate;
-  };
-};
+export type CertificatesUpdateResponse = Certificate;
 
 /** Optional parameters. */
 export interface CertificatesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type CertificatesListNextResponse = CertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateCollection;
-  };
-};
+export type CertificatesListNextResponse = CertificateCollection;
 
 /** Optional parameters. */
 export interface CertificatesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type CertificatesListByResourceGroupNextResponse = CertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CertificateCollection;
-  };
-};
+export type CertificatesListByResourceGroupNextResponse = CertificateCollection;
 
 /** Optional parameters. */
 export interface DeletedWebAppsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type DeletedWebAppsListResponse = DeletedWebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedWebAppCollection;
-  };
-};
+export type DeletedWebAppsListResponse = DeletedWebAppCollection;
 
 /** Optional parameters. */
 export interface DeletedWebAppsListByLocationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type DeletedWebAppsListByLocationResponse = DeletedWebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedWebAppCollection;
-  };
-};
+export type DeletedWebAppsListByLocationResponse = DeletedWebAppCollection;
 
 /** Optional parameters. */
 export interface DeletedWebAppsGetDeletedWebAppByLocationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeletedWebAppByLocation operation. */
-export type DeletedWebAppsGetDeletedWebAppByLocationResponse = DeletedSite & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedSite;
-  };
-};
+export type DeletedWebAppsGetDeletedWebAppByLocationResponse = DeletedSite;
 
 /** Optional parameters. */
 export interface DeletedWebAppsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DeletedWebAppsListNextResponse = DeletedWebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedWebAppCollection;
-  };
-};
+export type DeletedWebAppsListNextResponse = DeletedWebAppCollection;
 
 /** Optional parameters. */
 export interface DeletedWebAppsListByLocationNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocationNext operation. */
-export type DeletedWebAppsListByLocationNextResponse = DeletedWebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedWebAppCollection;
-  };
-};
+export type DeletedWebAppsListByLocationNextResponse = DeletedWebAppCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostingEnvironmentDetectorResponses operation. */
-export type DiagnosticsListHostingEnvironmentDetectorResponsesResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListHostingEnvironmentDetectorResponsesResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7523,36 +7049,18 @@ export interface DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams
 }
 
 /** Contains response data for the getHostingEnvironmentDetectorResponse operation. */
-export type DiagnosticsGetHostingEnvironmentDetectorResponseResponse = DetectorResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponse;
-  };
-};
+export type DiagnosticsGetHostingEnvironmentDetectorResponseResponse = DetectorResponse;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorResponsesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponses operation. */
-export type DiagnosticsListSiteDetectorResponsesResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorResponsesResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDetectorResponseOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7562,84 +7070,39 @@ export interface DiagnosticsGetSiteDetectorResponseOptionalParams
 }
 
 /** Contains response data for the getSiteDetectorResponse operation. */
-export type DiagnosticsGetSiteDetectorResponseResponse = DetectorResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponse;
-  };
-};
+export type DiagnosticsGetSiteDetectorResponseResponse = DetectorResponse;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDiagnosticCategoriesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDiagnosticCategories operation. */
-export type DiagnosticsListSiteDiagnosticCategoriesResponse = DiagnosticCategoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategoryCollection;
-  };
-};
+export type DiagnosticsListSiteDiagnosticCategoriesResponse = DiagnosticCategoryCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDiagnosticCategoryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteDiagnosticCategory operation. */
-export type DiagnosticsGetSiteDiagnosticCategoryResponse = DiagnosticCategory & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategory;
-  };
-};
+export type DiagnosticsGetSiteDiagnosticCategoryResponse = DiagnosticCategory;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteAnalysesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteAnalyses operation. */
-export type DiagnosticsListSiteAnalysesResponse = DiagnosticAnalysisCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysisCollection;
-  };
-};
+export type DiagnosticsListSiteAnalysesResponse = DiagnosticAnalysisCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteAnalysisOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteAnalysis operation. */
-export type DiagnosticsGetSiteAnalysisResponse = AnalysisDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AnalysisDefinition;
-  };
-};
+export type DiagnosticsGetSiteAnalysisResponse = AnalysisDefinition;
 
 /** Optional parameters. */
 export interface DiagnosticsExecuteSiteAnalysisOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7649,52 +7112,25 @@ export interface DiagnosticsExecuteSiteAnalysisOptionalParams
 }
 
 /** Contains response data for the executeSiteAnalysis operation. */
-export type DiagnosticsExecuteSiteAnalysisResponse = DiagnosticAnalysis & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysis;
-  };
-};
+export type DiagnosticsExecuteSiteAnalysisResponse = DiagnosticAnalysis;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectors operation. */
-export type DiagnosticsListSiteDetectorsResponse = DiagnosticDetectorCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorsResponse = DiagnosticDetectorCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDetectorOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteDetector operation. */
-export type DiagnosticsGetSiteDetectorResponse = DetectorDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorDefinition;
-  };
-};
+export type DiagnosticsGetSiteDetectorResponse = DetectorDefinition;
 
 /** Optional parameters. */
 export interface DiagnosticsExecuteSiteDetectorOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7704,36 +7140,18 @@ export interface DiagnosticsExecuteSiteDetectorOptionalParams
 }
 
 /** Contains response data for the executeSiteDetector operation. */
-export type DiagnosticsExecuteSiteDetectorResponse = DiagnosticDetectorResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorResponse;
-  };
-};
+export type DiagnosticsExecuteSiteDetectorResponse = DiagnosticDetectorResponse;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorResponsesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponsesSlot operation. */
-export type DiagnosticsListSiteDetectorResponsesSlotResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorResponsesSlotResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDetectorResponseSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7743,84 +7161,39 @@ export interface DiagnosticsGetSiteDetectorResponseSlotOptionalParams
 }
 
 /** Contains response data for the getSiteDetectorResponseSlot operation. */
-export type DiagnosticsGetSiteDetectorResponseSlotResponse = DetectorResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponse;
-  };
-};
+export type DiagnosticsGetSiteDetectorResponseSlotResponse = DetectorResponse;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDiagnosticCategoriesSlot operation. */
-export type DiagnosticsListSiteDiagnosticCategoriesSlotResponse = DiagnosticCategoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategoryCollection;
-  };
-};
+export type DiagnosticsListSiteDiagnosticCategoriesSlotResponse = DiagnosticCategoryCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteDiagnosticCategorySlot operation. */
-export type DiagnosticsGetSiteDiagnosticCategorySlotResponse = DiagnosticCategory & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategory;
-  };
-};
+export type DiagnosticsGetSiteDiagnosticCategorySlotResponse = DiagnosticCategory;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteAnalysesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteAnalysesSlot operation. */
-export type DiagnosticsListSiteAnalysesSlotResponse = DiagnosticAnalysisCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysisCollection;
-  };
-};
+export type DiagnosticsListSiteAnalysesSlotResponse = DiagnosticAnalysisCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteAnalysisSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteAnalysisSlot operation. */
-export type DiagnosticsGetSiteAnalysisSlotResponse = AnalysisDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AnalysisDefinition;
-  };
-};
+export type DiagnosticsGetSiteAnalysisSlotResponse = AnalysisDefinition;
 
 /** Optional parameters. */
 export interface DiagnosticsExecuteSiteAnalysisSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7830,52 +7203,25 @@ export interface DiagnosticsExecuteSiteAnalysisSlotOptionalParams
 }
 
 /** Contains response data for the executeSiteAnalysisSlot operation. */
-export type DiagnosticsExecuteSiteAnalysisSlotResponse = DiagnosticAnalysis & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysis;
-  };
-};
+export type DiagnosticsExecuteSiteAnalysisSlotResponse = DiagnosticAnalysis;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorsSlot operation. */
-export type DiagnosticsListSiteDetectorsSlotResponse = DiagnosticDetectorCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorsSlotResponse = DiagnosticDetectorCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsGetSiteDetectorSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteDetectorSlot operation. */
-export type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorDefinition;
-  };
-};
+export type DiagnosticsGetSiteDetectorSlotResponse = DetectorDefinition;
 
 /** Optional parameters. */
 export interface DiagnosticsExecuteSiteDetectorSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Start Time */
   startTime?: Date;
   /** End Time */
@@ -7885,268 +7231,124 @@ export interface DiagnosticsExecuteSiteDetectorSlotOptionalParams
 }
 
 /** Contains response data for the executeSiteDetectorSlot operation. */
-export type DiagnosticsExecuteSiteDetectorSlotResponse = DiagnosticDetectorResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorResponse;
-  };
-};
+export type DiagnosticsExecuteSiteDetectorSlotResponse = DiagnosticDetectorResponse;
 
 /** Optional parameters. */
 export interface DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostingEnvironmentDetectorResponsesNext operation. */
-export type DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorResponsesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponsesNext operation. */
-export type DiagnosticsListSiteDetectorResponsesNextResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorResponsesNextResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDiagnosticCategoriesNext operation. */
-export type DiagnosticsListSiteDiagnosticCategoriesNextResponse = DiagnosticCategoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategoryCollection;
-  };
-};
+export type DiagnosticsListSiteDiagnosticCategoriesNextResponse = DiagnosticCategoryCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteAnalysesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteAnalysesNext operation. */
-export type DiagnosticsListSiteAnalysesNextResponse = DiagnosticAnalysisCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysisCollection;
-  };
-};
+export type DiagnosticsListSiteAnalysesNextResponse = DiagnosticAnalysisCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorsNext operation. */
-export type DiagnosticsListSiteDetectorsNextResponse = DiagnosticDetectorCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorsNextResponse = DiagnosticDetectorCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorResponsesSlotNext operation. */
-export type DiagnosticsListSiteDetectorResponsesSlotNextResponse = DetectorResponseCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DetectorResponseCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorResponsesSlotNextResponse = DetectorResponseCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDiagnosticCategoriesSlotNext operation. */
-export type DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse = DiagnosticCategoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticCategoryCollection;
-  };
-};
+export type DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse = DiagnosticCategoryCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteAnalysesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteAnalysesSlotNext operation. */
-export type DiagnosticsListSiteAnalysesSlotNextResponse = DiagnosticAnalysisCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticAnalysisCollection;
-  };
-};
+export type DiagnosticsListSiteAnalysesSlotNextResponse = DiagnosticAnalysisCollection;
 
 /** Optional parameters. */
 export interface DiagnosticsListSiteDetectorsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteDetectorsSlotNext operation. */
-export type DiagnosticsListSiteDetectorsSlotNextResponse = DiagnosticDetectorCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DiagnosticDetectorCollection;
-  };
-};
+export type DiagnosticsListSiteDetectorsSlotNextResponse = DiagnosticDetectorCollection;
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   osTypeSelected?: Enum4;
 }
 
 /** Contains response data for the getAvailableStacks operation. */
-export type ProviderGetAvailableStacksResponse = ApplicationStackCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationStackCollection;
-  };
-};
+export type ProviderGetAvailableStacksResponse = ApplicationStackCollection;
 
 /** Optional parameters. */
 export interface ProviderListOperationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type ProviderListOperationsResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type ProviderListOperationsResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksOnPremOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   osTypeSelected?: Enum5;
 }
 
 /** Contains response data for the getAvailableStacksOnPrem operation. */
-export type ProviderGetAvailableStacksOnPremResponse = ApplicationStackCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationStackCollection;
-  };
-};
+export type ProviderGetAvailableStacksOnPremResponse = ApplicationStackCollection;
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   osTypeSelected?: Enum4;
 }
 
 /** Contains response data for the getAvailableStacksNext operation. */
-export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationStackCollection;
-  };
-};
+export type ProviderGetAvailableStacksNextResponse = ApplicationStackCollection;
 
 /** Optional parameters. */
 export interface ProviderListOperationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
-export type ProviderListOperationsNextResponse = CsmOperationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmOperationCollection;
-  };
-};
+export type ProviderListOperationsNextResponse = CsmOperationCollection;
 
 /** Optional parameters. */
 export interface ProviderGetAvailableStacksOnPremNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   osTypeSelected?: Enum5;
 }
 
 /** Contains response data for the getAvailableStacksOnPremNext operation. */
-export type ProviderGetAvailableStacksOnPremNextResponse = ApplicationStackCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationStackCollection;
-  };
-};
+export type ProviderGetAvailableStacksOnPremNextResponse = ApplicationStackCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
@@ -8154,28 +7356,19 @@ export interface RecommendationsListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type RecommendationsListResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsResetAllFiltersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsDisableRecommendationForSubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
   filter?: string;
   /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
@@ -8183,20 +7376,11 @@ export interface RecommendationsListHistoryForHostingEnvironmentOptionalParams
 }
 
 /** Contains response data for the listHistoryForHostingEnvironment operation. */
-export type RecommendationsListHistoryForHostingEnvironmentResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListHistoryForHostingEnvironmentResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
@@ -8204,28 +7388,19 @@ export interface RecommendationsListRecommendedRulesForHostingEnvironmentOptiona
 }
 
 /** Contains response data for the listRecommendedRulesForHostingEnvironment operation. */
-export type RecommendationsListRecommendedRulesForHostingEnvironmentResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListRecommendedRulesForHostingEnvironmentResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsDisableAllForHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to update the last-seen timestamp of the recommendation object. */
   updateSeen?: boolean;
   /** The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry. */
@@ -8233,24 +7408,15 @@ export interface RecommendationsGetRuleDetailsByHostingEnvironmentOptionalParams
 }
 
 /** Contains response data for the getRuleDetailsByHostingEnvironment operation. */
-export type RecommendationsGetRuleDetailsByHostingEnvironmentResponse = RecommendationRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationRule;
-  };
-};
+export type RecommendationsGetRuleDetailsByHostingEnvironmentResponse = RecommendationRule;
 
 /** Optional parameters. */
 export interface RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForWebAppOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
   filter?: string;
   /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
@@ -8258,20 +7424,11 @@ export interface RecommendationsListHistoryForWebAppOptionalParams
 }
 
 /** Contains response data for the listHistoryForWebApp operation. */
-export type RecommendationsListHistoryForWebAppResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListHistoryForWebAppResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForWebAppOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
@@ -8279,28 +7436,19 @@ export interface RecommendationsListRecommendedRulesForWebAppOptionalParams
 }
 
 /** Contains response data for the listRecommendedRulesForWebApp operation. */
-export type RecommendationsListRecommendedRulesForWebAppResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListRecommendedRulesForWebAppResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsDisableAllForWebAppOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsResetAllFiltersForWebAppOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsGetRuleDetailsByWebAppOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to update the last-seen timestamp of the recommendation object. */
   updateSeen?: boolean;
   /** The GUID of the recommendation object if you query an expired one. You don't need to specify it to query an active entry. */
@@ -8308,24 +7456,15 @@ export interface RecommendationsGetRuleDetailsByWebAppOptionalParams
 }
 
 /** Contains response data for the getRuleDetailsByWebApp operation. */
-export type RecommendationsGetRuleDetailsByWebAppResponse = RecommendationRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationRule;
-  };
-};
+export type RecommendationsGetRuleDetailsByWebAppResponse = RecommendationRule;
 
 /** Optional parameters. */
 export interface RecommendationsDisableRecommendationForSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface RecommendationsListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
@@ -8333,20 +7472,11 @@ export interface RecommendationsListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type RecommendationsListNextResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForHostingEnvironmentNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
   filter?: string;
   /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
@@ -8354,20 +7484,11 @@ export interface RecommendationsListHistoryForHostingEnvironmentNextOptionalPara
 }
 
 /** Contains response data for the listHistoryForHostingEnvironmentNext operation. */
-export type RecommendationsListHistoryForHostingEnvironmentNextResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListHistoryForHostingEnvironmentNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForHostingEnvironmentNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
@@ -8375,20 +7496,11 @@ export interface RecommendationsListRecommendedRulesForHostingEnvironmentNextOpt
 }
 
 /** Contains response data for the listRecommendedRulesForHostingEnvironmentNext operation. */
-export type RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListRecommendedRulesForHostingEnvironmentNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListHistoryForWebAppNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[PT1H|PT1M|P1D] */
   filter?: string;
   /** Specify <code>false</code> to return all recommendations. The default is <code>true</code>, which returns only expired recommendations. */
@@ -8396,20 +7508,11 @@ export interface RecommendationsListHistoryForWebAppNextOptionalParams
 }
 
 /** Contains response data for the listHistoryForWebAppNext operation. */
-export type RecommendationsListHistoryForWebAppNextResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListHistoryForWebAppNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to return only the most critical recommendations. The default is <code>false</code>, which returns all recommendations. */
   featured?: boolean;
   /** Return only channels specified in the filter. Filter is specified by using OData syntax. Example: $filter=channel eq 'Api' or channel eq 'Notification' */
@@ -8417,100 +7520,46 @@ export interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams
 }
 
 /** Contains response data for the listRecommendedRulesForWebAppNext operation. */
-export type RecommendationsListRecommendedRulesForWebAppNextResponse = RecommendationCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RecommendationCollection;
-  };
-};
+export type RecommendationsListRecommendedRulesForWebAppNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientGetPublishingUserOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPublishingUser operation. */
-export type WebSiteManagementClientGetPublishingUserResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type WebSiteManagementClientGetPublishingUserResponse = User;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientUpdatePublishingUserOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updatePublishingUser operation. */
-export type WebSiteManagementClientUpdatePublishingUserResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type WebSiteManagementClientUpdatePublishingUserResponse = User;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListSourceControlsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSourceControls operation. */
-export type WebSiteManagementClientListSourceControlsResponse = SourceControlCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SourceControlCollection;
-  };
-};
+export type WebSiteManagementClientListSourceControlsResponse = SourceControlCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientGetSourceControlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSourceControl operation. */
-export type WebSiteManagementClientGetSourceControlResponse = SourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SourceControl;
-  };
-};
+export type WebSiteManagementClientGetSourceControlResponse = SourceControl;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientUpdateSourceControlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSourceControl operation. */
-export type WebSiteManagementClientUpdateSourceControlResponse = SourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SourceControl;
-  };
-};
+export type WebSiteManagementClientUpdateSourceControlResponse = SourceControl;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListBillingMetersOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Azure Location of billable resource */
   billingLocation?: string;
   /** App Service OS type meters used for */
@@ -8518,55 +7567,28 @@ export interface WebSiteManagementClientListBillingMetersOptionalParams
 }
 
 /** Contains response data for the listBillingMeters operation. */
-export type WebSiteManagementClientListBillingMetersResponse = BillingMeterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BillingMeterCollection;
-  };
-};
+export type WebSiteManagementClientListBillingMetersResponse = BillingMeterCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientCheckNameAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Is fully qualified domain name. */
   isFqdn?: boolean;
 }
 
 /** Contains response data for the checkNameAvailability operation. */
-export type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameAvailability & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceNameAvailability;
-  };
-};
+export type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameAvailability;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSubscriptionDeploymentLocations operation. */
-export type WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse = DeploymentLocations & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentLocations;
-  };
-};
+export type WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListGeoRegionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Name of SKU used to filter the regions. */
   sku?: SkuName;
   /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
@@ -8578,124 +7600,61 @@ export interface WebSiteManagementClientListGeoRegionsOptionalParams
 }
 
 /** Contains response data for the listGeoRegions operation. */
-export type WebSiteManagementClientListGeoRegionsResponse = GeoRegionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GeoRegionCollection;
-  };
-};
+export type WebSiteManagementClientListGeoRegionsResponse = GeoRegionCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteIdentifiersAssignedToHostName operation. */
-export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListPremierAddOnOffersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnOffers operation. */
-export type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOnOfferCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOnOfferCollection;
-  };
-};
+export type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOnOfferCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListSkusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSkus operation. */
-export type WebSiteManagementClientListSkusResponse = SkuInfos & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SkuInfos;
-  };
-};
+export type WebSiteManagementClientListSkusResponse = SkuInfos;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the verifyHostingEnvironmentVnet operation. */
-export type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetValidationFailureDetails;
-  };
-};
+export type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientMoveOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebSiteManagementClientValidateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validate operation. */
-export type WebSiteManagementClientValidateResponse = ValidateResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ValidateResponse;
-  };
-};
+export type WebSiteManagementClientValidateResponse = ValidateResponse;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientValidateMoveOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListSourceControlsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSourceControlsNext operation. */
-export type WebSiteManagementClientListSourceControlsNextResponse = SourceControlCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SourceControlCollection;
-  };
-};
+export type WebSiteManagementClientListSourceControlsNextResponse = SourceControlCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListBillingMetersNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Azure Location of billable resource */
   billingLocation?: string;
   /** App Service OS type meters used for */
@@ -8703,20 +7662,11 @@ export interface WebSiteManagementClientListBillingMetersNextOptionalParams
 }
 
 /** Contains response data for the listBillingMetersNext operation. */
-export type WebSiteManagementClientListBillingMetersNextResponse = BillingMeterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BillingMeterCollection;
-  };
-};
+export type WebSiteManagementClientListBillingMetersNextResponse = BillingMeterCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListGeoRegionsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Name of SKU used to filter the regions. */
   sku?: SkuName;
   /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
@@ -8728,101 +7678,48 @@ export interface WebSiteManagementClientListGeoRegionsNextOptionalParams
 }
 
 /** Contains response data for the listGeoRegionsNext operation. */
-export type WebSiteManagementClientListGeoRegionsNextResponse = GeoRegionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GeoRegionCollection;
-  };
-};
+export type WebSiteManagementClientListGeoRegionsNextResponse = GeoRegionCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteIdentifiersAssignedToHostNameNext operation. */
-export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientListPremierAddOnOffersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnOffersNext operation. */
-export type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOnOfferCollection;
-  };
-};
+export type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection;
 
 /** Optional parameters. */
-export interface WebAppsListOptionalParams extends coreHttp.OperationOptions {}
+export interface WebAppsListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type WebAppsListResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <strong>true</strong> to include deployment slots in results. The default is false, which only gives you the production slot of all apps. */
   includeSlots?: boolean;
 }
 
 /** Contains response data for the listByResourceGroup operation. */
-export type WebAppsListByResourceGroupResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListByResourceGroupResponse = WebAppCollection;
 
 /** Optional parameters. */
-export interface WebAppsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface WebAppsGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type WebAppsGetResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsGetResponse = Site;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -8830,19 +7727,11 @@ export interface WebAppsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type WebAppsCreateOrUpdateResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsCreateOrUpdateResponse = Site;
 
 /** Optional parameters. */
-export interface WebAppsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface WebAppsDeleteOptionalParams
+  extends coreClient.OperationOptions {
   /** If true, web app metrics are also deleted. */
   deleteMetrics?: boolean;
   /** Specify false if you want to keep empty App Service plan. By default, empty App Service plan is deleted. */
@@ -8851,114 +7740,60 @@ export interface WebAppsDeleteOptionalParams extends coreHttp.OperationOptions {
 
 /** Optional parameters. */
 export interface WebAppsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type WebAppsUpdateResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsUpdateResponse = Site;
 
 /** Optional parameters. */
 export interface WebAppsAnalyzeCustomHostnameOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Custom hostname. */
   hostName?: string;
 }
 
 /** Contains response data for the analyzeCustomHostname operation. */
-export type WebAppsAnalyzeCustomHostnameResponse = CustomHostnameAnalysisResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CustomHostnameAnalysisResult;
-  };
-};
+export type WebAppsAnalyzeCustomHostnameResponse = CustomHostnameAnalysisResult;
 
 /** Optional parameters. */
 export interface WebAppsApplySlotConfigToProductionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsBackupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the backup operation. */
-export type WebAppsBackupResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsBackupResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsListBackupsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackups operation. */
-export type WebAppsListBackupsResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListBackupsResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetBackupStatusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBackupStatus operation. */
-export type WebAppsGetBackupStatusResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsGetBackupStatusResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsDeleteBackupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListBackupStatusSecretsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackupStatusSecrets operation. */
-export type WebAppsListBackupStatusSecretsResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsListBackupStatusSecretsResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsRestoreOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -8967,283 +7802,130 @@ export interface WebAppsRestoreOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurations operation. */
-export type WebAppsListConfigurationsResponse = SiteConfigResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResourceCollection;
-  };
-};
+export type WebAppsListConfigurationsResponse = SiteConfigResourceCollection;
 
 /** Optional parameters. */
 export interface WebAppsUpdateApplicationSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateApplicationSettings operation. */
-export type WebAppsUpdateApplicationSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsUpdateApplicationSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListApplicationSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listApplicationSettings operation. */
-export type WebAppsListApplicationSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListApplicationSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsUpdateAuthSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateAuthSettings operation. */
-export type WebAppsUpdateAuthSettingsResponse = SiteAuthSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteAuthSettings;
-  };
-};
+export type WebAppsUpdateAuthSettingsResponse = SiteAuthSettings;
 
 /** Optional parameters. */
 export interface WebAppsGetAuthSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAuthSettings operation. */
-export type WebAppsGetAuthSettingsResponse = SiteAuthSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteAuthSettings;
-  };
-};
+export type WebAppsGetAuthSettingsResponse = SiteAuthSettings;
 
 /** Optional parameters. */
 export interface WebAppsUpdateAzureStorageAccountsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateAzureStorageAccounts operation. */
-export type WebAppsUpdateAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureStoragePropertyDictionaryResource;
-  };
-};
+export type WebAppsUpdateAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource;
 
 /** Optional parameters. */
 export interface WebAppsListAzureStorageAccountsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAzureStorageAccounts operation. */
-export type WebAppsListAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureStoragePropertyDictionaryResource;
-  };
-};
+export type WebAppsListAzureStorageAccountsResponse = AzureStoragePropertyDictionaryResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateBackupConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateBackupConfiguration operation. */
-export type WebAppsUpdateBackupConfigurationResponse = BackupRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupRequest;
-  };
-};
+export type WebAppsUpdateBackupConfigurationResponse = BackupRequest;
 
 /** Optional parameters. */
 export interface WebAppsDeleteBackupConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetBackupConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBackupConfiguration operation. */
-export type WebAppsGetBackupConfigurationResponse = BackupRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupRequest;
-  };
-};
+export type WebAppsGetBackupConfigurationResponse = BackupRequest;
 
 /** Optional parameters. */
 export interface WebAppsGetAppSettingsKeyVaultReferencesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAppSettingsKeyVaultReferences operation. */
-export type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyVaultReferenceCollection;
-  };
-};
+export type WebAppsGetAppSettingsKeyVaultReferencesResponse = KeyVaultReferenceCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetAppSettingKeyVaultReferenceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAppSettingKeyVaultReference operation. */
-export type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyVaultReferenceResource;
-  };
-};
+export type WebAppsGetAppSettingKeyVaultReferenceResponse = KeyVaultReferenceResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateConnectionStringsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateConnectionStrings operation. */
-export type WebAppsUpdateConnectionStringsResponse = ConnectionStringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionStringDictionary;
-  };
-};
+export type WebAppsUpdateConnectionStringsResponse = ConnectionStringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListConnectionStringsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnectionStrings operation. */
-export type WebAppsListConnectionStringsResponse = ConnectionStringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionStringDictionary;
-  };
-};
+export type WebAppsListConnectionStringsResponse = ConnectionStringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsGetDiagnosticLogsConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDiagnosticLogsConfiguration operation. */
-export type WebAppsGetDiagnosticLogsConfigurationResponse = SiteLogsConfig & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteLogsConfig;
-  };
-};
+export type WebAppsGetDiagnosticLogsConfigurationResponse = SiteLogsConfig;
 
 /** Optional parameters. */
 export interface WebAppsUpdateDiagnosticLogsConfigOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateDiagnosticLogsConfig operation. */
-export type WebAppsUpdateDiagnosticLogsConfigResponse = SiteLogsConfig & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteLogsConfig;
-  };
-};
+export type WebAppsUpdateDiagnosticLogsConfigResponse = SiteLogsConfig;
 
 /** Optional parameters. */
 export interface WebAppsUpdateMetadataOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateMetadata operation. */
-export type WebAppsUpdateMetadataResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsUpdateMetadataResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListMetadataOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetadata operation. */
-export type WebAppsListMetadataResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListMetadataResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListPublishingCredentialsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -9251,168 +7933,78 @@ export interface WebAppsListPublishingCredentialsOptionalParams
 }
 
 /** Contains response data for the listPublishingCredentials operation. */
-export type WebAppsListPublishingCredentialsResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type WebAppsListPublishingCredentialsResponse = User;
 
 /** Optional parameters. */
 export interface WebAppsUpdateSitePushSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSitePushSettings operation. */
-export type WebAppsUpdateSitePushSettingsResponse = PushSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PushSettings;
-  };
-};
+export type WebAppsUpdateSitePushSettingsResponse = PushSettings;
 
 /** Optional parameters. */
 export interface WebAppsListSitePushSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSitePushSettings operation. */
-export type WebAppsListSitePushSettingsResponse = PushSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PushSettings;
-  };
-};
+export type WebAppsListSitePushSettingsResponse = PushSettings;
 
 /** Optional parameters. */
 export interface WebAppsListSlotConfigurationNamesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotConfigurationNames operation. */
-export type WebAppsListSlotConfigurationNamesResponse = SlotConfigNamesResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotConfigNamesResource;
-  };
-};
+export type WebAppsListSlotConfigurationNamesResponse = SlotConfigNamesResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateSlotConfigurationNamesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSlotConfigurationNames operation. */
-export type WebAppsUpdateSlotConfigurationNamesResponse = SlotConfigNamesResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotConfigNamesResource;
-  };
-};
+export type WebAppsUpdateSlotConfigurationNamesResponse = SlotConfigNamesResource;
 
 /** Optional parameters. */
 export interface WebAppsGetConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getConfiguration operation. */
-export type WebAppsGetConfigurationResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsGetConfigurationResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateConfiguration operation. */
-export type WebAppsCreateOrUpdateConfigurationResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsCreateOrUpdateConfigurationResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateConfigurationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateConfiguration operation. */
-export type WebAppsUpdateConfigurationResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsUpdateConfigurationResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationSnapshotInfoOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationSnapshotInfo operation. */
-export type WebAppsListConfigurationSnapshotInfoResponse = SiteConfigurationSnapshotInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigurationSnapshotInfoCollection;
-  };
-};
+export type WebAppsListConfigurationSnapshotInfoResponse = SiteConfigurationSnapshotInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetConfigurationSnapshotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getConfigurationSnapshot operation. */
-export type WebAppsGetConfigurationSnapshotResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsGetConfigurationSnapshotResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsRecoverSiteConfigurationSnapshotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetWebSiteContainerLogsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebSiteContainerLogs operation. */
 export type WebAppsGetWebSiteContainerLogsResponse = {
@@ -9430,14 +8022,11 @@ export type WebAppsGetWebSiteContainerLogsResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsGetContainerLogsZipOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getContainerLogsZip operation. */
 export type WebAppsGetContainerLogsZipResponse = {
@@ -9455,226 +8044,115 @@ export type WebAppsGetContainerLogsZipResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListContinuousWebJobsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobs operation. */
-export type WebAppsListContinuousWebJobsResponse = ContinuousWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJobCollection;
-  };
-};
+export type WebAppsListContinuousWebJobsResponse = ContinuousWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetContinuousWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getContinuousWebJob operation. */
-export type WebAppsGetContinuousWebJobResponse = ContinuousWebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJob;
-  };
-};
+export type WebAppsGetContinuousWebJobResponse = ContinuousWebJob;
 
 /** Optional parameters. */
 export interface WebAppsDeleteContinuousWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStartContinuousWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStopContinuousWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeployments operation. */
-export type WebAppsListDeploymentsResponse = DeploymentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentCollection;
-  };
-};
+export type WebAppsListDeploymentsResponse = DeploymentCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetDeploymentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeployment operation. */
-export type WebAppsGetDeploymentResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsGetDeploymentResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsCreateDeploymentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createDeployment operation. */
-export type WebAppsCreateDeploymentResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsCreateDeploymentResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsDeleteDeploymentOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentLogOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeploymentLog operation. */
-export type WebAppsListDeploymentLogResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsListDeploymentLogResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsDiscoverBackupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the discoverBackup operation. */
-export type WebAppsDiscoverBackupResponse = RestoreRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RestoreRequest;
-  };
-};
+export type WebAppsDiscoverBackupResponse = RestoreRequest;
 
 /** Optional parameters. */
 export interface WebAppsListDomainOwnershipIdentifiersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiers operation. */
-export type WebAppsListDomainOwnershipIdentifiersResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebAppsListDomainOwnershipIdentifiersResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetDomainOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDomainOwnershipIdentifier operation. */
-export type WebAppsGetDomainOwnershipIdentifierResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsGetDomainOwnershipIdentifierResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateDomainOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateDomainOwnershipIdentifier operation. */
-export type WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsCreateOrUpdateDomainOwnershipIdentifierResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsDeleteDomainOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateDomainOwnershipIdentifierOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateDomainOwnershipIdentifier operation. */
-export type WebAppsUpdateDomainOwnershipIdentifierResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsUpdateDomainOwnershipIdentifierResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsGetMSDeployStatusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMSDeployStatus operation. */
-export type WebAppsGetMSDeployStatusResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsGetMSDeployStatusResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsCreateMSDeployOperationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -9682,87 +8160,42 @@ export interface WebAppsCreateMSDeployOperationOptionalParams
 }
 
 /** Contains response data for the createMSDeployOperation operation. */
-export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsCreateMSDeployOperationResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetMSDeployLogOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMSDeployLog operation. */
-export type WebAppsGetMSDeployLogResponse = MSDeployLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployLog;
-  };
-};
+export type WebAppsGetMSDeployLogResponse = MSDeployLog;
 
 /** Optional parameters. */
 export interface WebAppsListFunctionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctions operation. */
-export type WebAppsListFunctionsResponse = FunctionEnvelopeCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelopeCollection;
-  };
-};
+export type WebAppsListFunctionsResponse = FunctionEnvelopeCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetFunctionsAdminTokenOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFunctionsAdminToken operation. */
 export type WebAppsGetFunctionsAdminTokenResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface WebAppsGetFunctionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFunction operation. */
-export type WebAppsGetFunctionResponse = FunctionEnvelope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelope;
-  };
-};
+export type WebAppsGetFunctionResponse = FunctionEnvelope;
 
 /** Optional parameters. */
 export interface WebAppsCreateFunctionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -9770,356 +8203,176 @@ export interface WebAppsCreateFunctionOptionalParams
 }
 
 /** Contains response data for the createFunction operation. */
-export type WebAppsCreateFunctionResponse = FunctionEnvelope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelope;
-  };
-};
+export type WebAppsCreateFunctionResponse = FunctionEnvelope;
 
 /** Optional parameters. */
 export interface WebAppsDeleteFunctionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateFunctionSecretOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateFunctionSecret operation. */
-export type WebAppsCreateOrUpdateFunctionSecretResponse = KeyInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyInfo;
-  };
-};
+export type WebAppsCreateOrUpdateFunctionSecretResponse = KeyInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteFunctionSecretOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListFunctionKeysOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctionKeys operation. */
-export type WebAppsListFunctionKeysResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListFunctionKeysResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListFunctionSecretsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctionSecrets operation. */
-export type WebAppsListFunctionSecretsResponse = FunctionSecrets & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionSecrets;
-  };
-};
+export type WebAppsListFunctionSecretsResponse = FunctionSecrets;
 
 /** Optional parameters. */
 export interface WebAppsListHostKeysOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostKeys operation. */
-export type WebAppsListHostKeysResponse = HostKeys & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostKeys;
-  };
-};
+export type WebAppsListHostKeysResponse = HostKeys;
 
 /** Optional parameters. */
 export interface WebAppsListSyncStatusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncFunctionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHostSecretOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostSecret operation. */
-export type WebAppsCreateOrUpdateHostSecretResponse = KeyInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyInfo;
-  };
-};
+export type WebAppsCreateOrUpdateHostSecretResponse = KeyInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHostSecretOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListHostNameBindingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostNameBindings operation. */
-export type WebAppsListHostNameBindingsResponse = HostNameBindingCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBindingCollection;
-  };
-};
+export type WebAppsListHostNameBindingsResponse = HostNameBindingCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetHostNameBindingOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHostNameBinding operation. */
-export type WebAppsGetHostNameBindingResponse = HostNameBinding & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBinding;
-  };
-};
+export type WebAppsGetHostNameBindingResponse = HostNameBinding;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHostNameBindingOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostNameBinding operation. */
-export type WebAppsCreateOrUpdateHostNameBindingResponse = HostNameBinding & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBinding;
-  };
-};
+export type WebAppsCreateOrUpdateHostNameBindingResponse = HostNameBinding;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHostNameBindingOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHybridConnection operation. */
-export type WebAppsGetHybridConnectionResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsGetHybridConnectionResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHybridConnection operation. */
-export type WebAppsCreateOrUpdateHybridConnectionResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsCreateOrUpdateHybridConnectionResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateHybridConnection operation. */
-export type WebAppsUpdateHybridConnectionResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsUpdateHybridConnectionResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsListHybridConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHybridConnections operation. */
-export type WebAppsListHybridConnectionsResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsListHybridConnectionsResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsListRelayServiceConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRelayServiceConnections operation. */
-export type WebAppsListRelayServiceConnectionsResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsListRelayServiceConnectionsResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsGetRelayServiceConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getRelayServiceConnection operation. */
-export type WebAppsGetRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsGetRelayServiceConnectionResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateRelayServiceConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateRelayServiceConnection operation. */
-export type WebAppsCreateOrUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsCreateOrUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsDeleteRelayServiceConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateRelayServiceConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateRelayServiceConnection operation. */
-export type WebAppsUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsUpdateRelayServiceConnectionResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceIdentifiersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiers operation. */
-export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppInstanceCollection;
-  };
-};
+export type WebAppsListInstanceIdentifiersResponse = WebAppInstanceCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceInfoOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceInfo operation. */
-export type WebAppsGetInstanceInfoResponse = WebSiteInstanceStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebSiteInstanceStatus;
-  };
-};
+export type WebAppsGetInstanceInfoResponse = WebSiteInstanceStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceMsDeployStatusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceMsDeployStatus operation. */
-export type WebAppsGetInstanceMsDeployStatusResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsGetInstanceMsDeployStatusResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsCreateInstanceMSDeployOperationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10127,72 +8380,36 @@ export interface WebAppsCreateInstanceMSDeployOperationOptionalParams
 }
 
 /** Contains response data for the createInstanceMSDeployOperation operation. */
-export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsCreateInstanceMSDeployOperationResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceMSDeployLogOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceMSDeployLog operation. */
-export type WebAppsGetInstanceMSDeployLogResponse = MSDeployLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployLog;
-  };
-};
+export type WebAppsGetInstanceMSDeployLogResponse = MSDeployLog;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcesses operation. */
-export type WebAppsListInstanceProcessesResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessesResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcess operation. */
-export type WebAppsGetInstanceProcessResponse = ProcessInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfo;
-  };
-};
+export type WebAppsGetInstanceProcessResponse = ProcessInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteInstanceProcessOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessDumpOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessDump operation. */
 export type WebAppsGetInstanceProcessDumpResponse = {
@@ -10210,110 +8427,53 @@ export type WebAppsGetInstanceProcessDumpResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessModulesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessModules operation. */
-export type WebAppsListInstanceProcessModulesResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessModulesResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessModuleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessModule operation. */
-export type WebAppsGetInstanceProcessModuleResponse = ProcessModuleInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfo;
-  };
-};
+export type WebAppsGetInstanceProcessModuleResponse = ProcessModuleInfo;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessThreadsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessThreads operation. */
-export type WebAppsListInstanceProcessThreadsResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessThreadsResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsIsCloneableOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the isCloneable operation. */
-export type WebAppsIsCloneableResponse = SiteCloneability & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteCloneability;
-  };
-};
+export type WebAppsIsCloneableResponse = SiteCloneability;
 
 /** Optional parameters. */
 export interface WebAppsListSiteBackupsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteBackups operation. */
-export type WebAppsListSiteBackupsResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListSiteBackupsResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSyncFunctionTriggersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSyncFunctionTriggers operation. */
-export type WebAppsListSyncFunctionTriggersResponse = FunctionSecrets & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionSecrets;
-  };
-};
+export type WebAppsListSyncFunctionTriggersResponse = FunctionSecrets;
 
 /** Optional parameters. */
 export interface WebAppsMigrateStorageOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10321,20 +8481,11 @@ export interface WebAppsMigrateStorageOptionalParams
 }
 
 /** Contains response data for the migrateStorage operation. */
-export type WebAppsMigrateStorageResponse = StorageMigrationResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageMigrationResponse;
-  };
-};
+export type WebAppsMigrateStorageResponse = StorageMigrationResponse;
 
 /** Optional parameters. */
 export interface WebAppsMigrateMySqlOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10342,120 +8493,57 @@ export interface WebAppsMigrateMySqlOptionalParams
 }
 
 /** Contains response data for the migrateMySql operation. */
-export type WebAppsMigrateMySqlResponse = Operation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Operation;
-  };
-};
+export type WebAppsMigrateMySqlResponse = Operation;
 
 /** Optional parameters. */
 export interface WebAppsGetMigrateMySqlStatusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMigrateMySqlStatus operation. */
-export type WebAppsGetMigrateMySqlStatusResponse = MigrateMySqlStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MigrateMySqlStatus;
-  };
-};
+export type WebAppsGetMigrateMySqlStatusResponse = MigrateMySqlStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetSwiftVirtualNetworkConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSwiftVirtualNetworkConnection operation. */
-export type WebAppsGetSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsGetSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateSwiftVirtualNetworkConnection operation. */
-export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSwiftVirtualNetworkOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateSwiftVirtualNetworkConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSwiftVirtualNetworkConnection operation. */
-export type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsUpdateSwiftVirtualNetworkConnectionResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsListNetworkFeaturesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNetworkFeatures operation. */
-export type WebAppsListNetworkFeaturesResponse = NetworkFeatures & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkFeatures;
-  };
-};
+export type WebAppsListNetworkFeaturesResponse = NetworkFeatures;
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTraceOperationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperation operation. */
-export type WebAppsGetNetworkTraceOperationResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTraceOperationResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsStartWebSiteNetworkTraceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -10468,20 +8556,11 @@ export interface WebAppsStartWebSiteNetworkTraceOptionalParams
 export type WebAppsStartWebSiteNetworkTraceResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface WebAppsStartWebSiteNetworkTraceOperationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -10495,247 +8574,121 @@ export interface WebAppsStartWebSiteNetworkTraceOperationOptionalParams
 }
 
 /** Contains response data for the startWebSiteNetworkTraceOperation operation. */
-export type WebAppsStartWebSiteNetworkTraceOperationResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsStartWebSiteNetworkTraceOperationResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsStopWebSiteNetworkTraceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTracesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTraces operation. */
-export type WebAppsGetNetworkTracesResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTracesResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTraceOperationV2OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperationV2 operation. */
-export type WebAppsGetNetworkTraceOperationV2Response = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTraceOperationV2Response = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTracesV2OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTracesV2 operation. */
-export type WebAppsGetNetworkTracesV2Response = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTracesV2Response = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGenerateNewSitePublishingPasswordOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listPerfMonCounters operation. */
-export type WebAppsListPerfMonCountersResponse = PerfMonCounterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PerfMonCounterCollection;
-  };
-};
+export type WebAppsListPerfMonCountersResponse = PerfMonCounterCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSitePhpErrorLogFlagOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSitePhpErrorLogFlag operation. */
-export type WebAppsGetSitePhpErrorLogFlagResponse = SitePhpErrorLogFlag & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SitePhpErrorLogFlag;
-  };
-};
+export type WebAppsGetSitePhpErrorLogFlagResponse = SitePhpErrorLogFlag;
 
 /** Optional parameters. */
 export interface WebAppsListPremierAddOnsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOns operation. */
-export type WebAppsListPremierAddOnsResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsListPremierAddOnsResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsGetPremierAddOnOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPremierAddOn operation. */
-export type WebAppsGetPremierAddOnResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsGetPremierAddOnResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsAddPremierAddOnOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the addPremierAddOn operation. */
-export type WebAppsAddPremierAddOnResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsAddPremierAddOnResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsDeletePremierAddOnOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdatePremierAddOnOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updatePremierAddOn operation. */
-export type WebAppsUpdatePremierAddOnResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsUpdatePremierAddOnResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsGetPrivateAccessOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPrivateAccess operation. */
-export type WebAppsGetPrivateAccessResponse = PrivateAccess & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateAccess;
-  };
-};
+export type WebAppsGetPrivateAccessResponse = PrivateAccess;
 
 /** Optional parameters. */
 export interface WebAppsPutPrivateAccessVnetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the putPrivateAccessVnet operation. */
-export type WebAppsPutPrivateAccessVnetResponse = PrivateAccess & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateAccess;
-  };
-};
+export type WebAppsPutPrivateAccessVnetResponse = PrivateAccess;
 
 /** Optional parameters. */
 export interface WebAppsListProcessesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcesses operation. */
-export type WebAppsListProcessesResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListProcessesResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetProcessOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcess operation. */
-export type WebAppsGetProcessResponse = ProcessInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfo;
-  };
-};
+export type WebAppsGetProcessResponse = ProcessInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteProcessOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetProcessDumpOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcessDump operation. */
 export type WebAppsGetProcessDumpResponse = {
@@ -10753,114 +8706,57 @@ export type WebAppsGetProcessDumpResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListProcessModulesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessModules operation. */
-export type WebAppsListProcessModulesResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListProcessModulesResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetProcessModuleOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcessModule operation. */
-export type WebAppsGetProcessModuleResponse = ProcessModuleInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfo;
-  };
-};
+export type WebAppsGetProcessModuleResponse = ProcessModuleInfo;
 
 /** Optional parameters. */
 export interface WebAppsListProcessThreadsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessThreads operation. */
-export type WebAppsListProcessThreadsResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListProcessThreadsResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPublicCertificatesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublicCertificates operation. */
-export type WebAppsListPublicCertificatesResponse = PublicCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificateCollection;
-  };
-};
+export type WebAppsListPublicCertificatesResponse = PublicCertificateCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetPublicCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPublicCertificate operation. */
-export type WebAppsGetPublicCertificateResponse = PublicCertificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificate;
-  };
-};
+export type WebAppsGetPublicCertificateResponse = PublicCertificate;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdatePublicCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdatePublicCertificate operation. */
-export type WebAppsCreateOrUpdatePublicCertificateResponse = PublicCertificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificate;
-  };
-};
+export type WebAppsCreateOrUpdatePublicCertificateResponse = PublicCertificate;
 
 /** Optional parameters. */
 export interface WebAppsDeletePublicCertificateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPublishingProfileXmlWithSecretsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublishingProfileXmlWithSecrets operation. */
 export type WebAppsListPublishingProfileXmlWithSecretsResponse = {
@@ -10878,18 +8774,15 @@ export type WebAppsListPublishingProfileXmlWithSecretsResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsResetProductionSlotConfigOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsRestartOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify true to apply the configuration settings and restarts the app only if necessary. By default, the API always restarts and reprovisions the app. */
   softRestart?: boolean;
   /** Specify true to block until the app is restarted. By default, it is set to false, and the API responds immediately (asynchronous). */
@@ -10898,7 +8791,7 @@ export interface WebAppsRestartOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreFromBackupBlobOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10907,7 +8800,7 @@ export interface WebAppsRestoreFromBackupBlobOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreFromDeletedAppOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10916,7 +8809,7 @@ export interface WebAppsRestoreFromDeletedAppOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreSnapshotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10925,39 +8818,21 @@ export interface WebAppsRestoreSnapshotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSiteExtensionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteExtensions operation. */
-export type WebAppsListSiteExtensionsResponse = SiteExtensionInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfoCollection;
-  };
-};
+export type WebAppsListSiteExtensionsResponse = SiteExtensionInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSiteExtensionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteExtension operation. */
-export type WebAppsGetSiteExtensionResponse = SiteExtensionInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfo;
-  };
-};
+export type WebAppsGetSiteExtensionResponse = SiteExtensionInfo;
 
 /** Optional parameters. */
 export interface WebAppsInstallSiteExtensionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10965,24 +8840,15 @@ export interface WebAppsInstallSiteExtensionOptionalParams
 }
 
 /** Contains response data for the installSiteExtension operation. */
-export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfo;
-  };
-};
+export type WebAppsInstallSiteExtensionResponse = SiteExtensionInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSiteExtensionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCopyProductionSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10991,39 +8857,21 @@ export interface WebAppsCopyProductionSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSlotsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlots operation. */
-export type WebAppsListSlotsResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListSlotsResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSlot operation. */
-export type WebAppsGetSlotResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsGetSlotResponse = Site;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11031,20 +8879,11 @@ export interface WebAppsCreateOrUpdateSlotOptionalParams
 }
 
 /** Contains response data for the createOrUpdateSlot operation. */
-export type WebAppsCreateOrUpdateSlotResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsCreateOrUpdateSlotResponse = Site;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** If true, web app metrics are also deleted. */
   deleteMetrics?: boolean;
   /** Specify true if the App Service plan will be empty after app deletion and you want to delete the empty App Service plan. By default, the empty App Service plan is not deleted. */
@@ -11053,114 +8892,60 @@ export interface WebAppsDeleteSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsUpdateSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSlot operation. */
-export type WebAppsUpdateSlotResponse = Site & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Site;
-  };
-};
+export type WebAppsUpdateSlotResponse = Site;
 
 /** Optional parameters. */
 export interface WebAppsAnalyzeCustomHostnameSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Custom hostname. */
   hostName?: string;
 }
 
 /** Contains response data for the analyzeCustomHostnameSlot operation. */
-export type WebAppsAnalyzeCustomHostnameSlotResponse = CustomHostnameAnalysisResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CustomHostnameAnalysisResult;
-  };
-};
+export type WebAppsAnalyzeCustomHostnameSlotResponse = CustomHostnameAnalysisResult;
 
 /** Optional parameters. */
 export interface WebAppsApplySlotConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsBackupSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the backupSlot operation. */
-export type WebAppsBackupSlotResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsBackupSlotResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsListBackupsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackupsSlot operation. */
-export type WebAppsListBackupsSlotResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListBackupsSlotResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetBackupStatusSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBackupStatusSlot operation. */
-export type WebAppsGetBackupStatusSlotResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsGetBackupStatusSlotResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsDeleteBackupSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListBackupStatusSecretsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackupStatusSecretsSlot operation. */
-export type WebAppsListBackupStatusSecretsSlotResponse = BackupItem & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItem;
-  };
-};
+export type WebAppsListBackupStatusSecretsSlotResponse = BackupItem;
 
 /** Optional parameters. */
 export interface WebAppsRestoreSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11169,251 +8954,116 @@ export interface WebAppsRestoreSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationsSlot operation. */
-export type WebAppsListConfigurationsSlotResponse = SiteConfigResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResourceCollection;
-  };
-};
+export type WebAppsListConfigurationsSlotResponse = SiteConfigResourceCollection;
 
 /** Optional parameters. */
 export interface WebAppsUpdateApplicationSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateApplicationSettingsSlot operation. */
-export type WebAppsUpdateApplicationSettingsSlotResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsUpdateApplicationSettingsSlotResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListApplicationSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listApplicationSettingsSlot operation. */
-export type WebAppsListApplicationSettingsSlotResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListApplicationSettingsSlotResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsUpdateAuthSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateAuthSettingsSlot operation. */
-export type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteAuthSettings;
-  };
-};
+export type WebAppsUpdateAuthSettingsSlotResponse = SiteAuthSettings;
 
 /** Optional parameters. */
 export interface WebAppsGetAuthSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAuthSettingsSlot operation. */
-export type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteAuthSettings;
-  };
-};
+export type WebAppsGetAuthSettingsSlotResponse = SiteAuthSettings;
 
 /** Optional parameters. */
 export interface WebAppsUpdateAzureStorageAccountsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateAzureStorageAccountsSlot operation. */
-export type WebAppsUpdateAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureStoragePropertyDictionaryResource;
-  };
-};
+export type WebAppsUpdateAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource;
 
 /** Optional parameters. */
 export interface WebAppsListAzureStorageAccountsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAzureStorageAccountsSlot operation. */
-export type WebAppsListAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureStoragePropertyDictionaryResource;
-  };
-};
+export type WebAppsListAzureStorageAccountsSlotResponse = AzureStoragePropertyDictionaryResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateBackupConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateBackupConfigurationSlot operation. */
-export type WebAppsUpdateBackupConfigurationSlotResponse = BackupRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupRequest;
-  };
-};
+export type WebAppsUpdateBackupConfigurationSlotResponse = BackupRequest;
 
 /** Optional parameters. */
 export interface WebAppsDeleteBackupConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetBackupConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBackupConfigurationSlot operation. */
-export type WebAppsGetBackupConfigurationSlotResponse = BackupRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupRequest;
-  };
-};
+export type WebAppsGetBackupConfigurationSlotResponse = BackupRequest;
 
 /** Optional parameters. */
 export interface WebAppsUpdateConnectionStringsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateConnectionStringsSlot operation. */
-export type WebAppsUpdateConnectionStringsSlotResponse = ConnectionStringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionStringDictionary;
-  };
-};
+export type WebAppsUpdateConnectionStringsSlotResponse = ConnectionStringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListConnectionStringsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnectionStringsSlot operation. */
-export type WebAppsListConnectionStringsSlotResponse = ConnectionStringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionStringDictionary;
-  };
-};
+export type WebAppsListConnectionStringsSlotResponse = ConnectionStringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsGetDiagnosticLogsConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDiagnosticLogsConfigurationSlot operation. */
-export type WebAppsGetDiagnosticLogsConfigurationSlotResponse = SiteLogsConfig & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteLogsConfig;
-  };
-};
+export type WebAppsGetDiagnosticLogsConfigurationSlotResponse = SiteLogsConfig;
 
 /** Optional parameters. */
 export interface WebAppsUpdateDiagnosticLogsConfigSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateDiagnosticLogsConfigSlot operation. */
-export type WebAppsUpdateDiagnosticLogsConfigSlotResponse = SiteLogsConfig & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteLogsConfig;
-  };
-};
+export type WebAppsUpdateDiagnosticLogsConfigSlotResponse = SiteLogsConfig;
 
 /** Optional parameters. */
 export interface WebAppsUpdateMetadataSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateMetadataSlot operation. */
-export type WebAppsUpdateMetadataSlotResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsUpdateMetadataSlotResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListMetadataSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMetadataSlot operation. */
-export type WebAppsListMetadataSlotResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListMetadataSlotResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListPublishingCredentialsSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11421,136 +9071,64 @@ export interface WebAppsListPublishingCredentialsSlotOptionalParams
 }
 
 /** Contains response data for the listPublishingCredentialsSlot operation. */
-export type WebAppsListPublishingCredentialsSlotResponse = User & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: User;
-  };
-};
+export type WebAppsListPublishingCredentialsSlotResponse = User;
 
 /** Optional parameters. */
 export interface WebAppsUpdateSitePushSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSitePushSettingsSlot operation. */
-export type WebAppsUpdateSitePushSettingsSlotResponse = PushSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PushSettings;
-  };
-};
+export type WebAppsUpdateSitePushSettingsSlotResponse = PushSettings;
 
 /** Optional parameters. */
 export interface WebAppsListSitePushSettingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSitePushSettingsSlot operation. */
-export type WebAppsListSitePushSettingsSlotResponse = PushSettings & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PushSettings;
-  };
-};
+export type WebAppsListSitePushSettingsSlotResponse = PushSettings;
 
 /** Optional parameters. */
 export interface WebAppsGetConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getConfigurationSlot operation. */
-export type WebAppsGetConfigurationSlotResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsGetConfigurationSlotResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateConfigurationSlot operation. */
-export type WebAppsCreateOrUpdateConfigurationSlotResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsCreateOrUpdateConfigurationSlotResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsUpdateConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateConfigurationSlot operation. */
-export type WebAppsUpdateConfigurationSlotResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsUpdateConfigurationSlotResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationSnapshotInfoSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationSnapshotInfoSlot operation. */
-export type WebAppsListConfigurationSnapshotInfoSlotResponse = SiteConfigurationSnapshotInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigurationSnapshotInfoCollection;
-  };
-};
+export type WebAppsListConfigurationSnapshotInfoSlotResponse = SiteConfigurationSnapshotInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetConfigurationSnapshotSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getConfigurationSnapshotSlot operation. */
-export type WebAppsGetConfigurationSnapshotSlotResponse = SiteConfigResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResource;
-  };
-};
+export type WebAppsGetConfigurationSnapshotSlotResponse = SiteConfigResource;
 
 /** Optional parameters. */
 export interface WebAppsRecoverSiteConfigurationSnapshotSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetWebSiteContainerLogsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebSiteContainerLogsSlot operation. */
 export type WebAppsGetWebSiteContainerLogsSlotResponse = {
@@ -11568,14 +9146,11 @@ export type WebAppsGetWebSiteContainerLogsSlotResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsGetContainerLogsZipSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getContainerLogsZipSlot operation. */
 export type WebAppsGetContainerLogsZipSlotResponse = {
@@ -11593,226 +9168,115 @@ export type WebAppsGetContainerLogsZipSlotResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListContinuousWebJobsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobsSlot operation. */
-export type WebAppsListContinuousWebJobsSlotResponse = ContinuousWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJobCollection;
-  };
-};
+export type WebAppsListContinuousWebJobsSlotResponse = ContinuousWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetContinuousWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getContinuousWebJobSlot operation. */
-export type WebAppsGetContinuousWebJobSlotResponse = ContinuousWebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJob;
-  };
-};
+export type WebAppsGetContinuousWebJobSlotResponse = ContinuousWebJob;
 
 /** Optional parameters. */
 export interface WebAppsDeleteContinuousWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStartContinuousWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStopContinuousWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeploymentsSlot operation. */
-export type WebAppsListDeploymentsSlotResponse = DeploymentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentCollection;
-  };
-};
+export type WebAppsListDeploymentsSlotResponse = DeploymentCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetDeploymentSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeploymentSlot operation. */
-export type WebAppsGetDeploymentSlotResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsGetDeploymentSlotResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsCreateDeploymentSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createDeploymentSlot operation. */
-export type WebAppsCreateDeploymentSlotResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsCreateDeploymentSlotResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsDeleteDeploymentSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentLogSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeploymentLogSlot operation. */
-export type WebAppsListDeploymentLogSlotResponse = Deployment & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Deployment;
-  };
-};
+export type WebAppsListDeploymentLogSlotResponse = Deployment;
 
 /** Optional parameters. */
 export interface WebAppsDiscoverBackupSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the discoverBackupSlot operation. */
-export type WebAppsDiscoverBackupSlotResponse = RestoreRequest & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RestoreRequest;
-  };
-};
+export type WebAppsDiscoverBackupSlotResponse = RestoreRequest;
 
 /** Optional parameters. */
 export interface WebAppsListDomainOwnershipIdentifiersSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersSlot operation. */
-export type WebAppsListDomainOwnershipIdentifiersSlotResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebAppsListDomainOwnershipIdentifiersSlotResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetDomainOwnershipIdentifierSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDomainOwnershipIdentifierSlot operation. */
-export type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsGetDomainOwnershipIdentifierSlotResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateDomainOwnershipIdentifierSlot operation. */
-export type WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsCreateOrUpdateDomainOwnershipIdentifierSlotResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsDeleteDomainOwnershipIdentifierSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateDomainOwnershipIdentifierSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateDomainOwnershipIdentifierSlot operation. */
-export type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identifier;
-  };
-};
+export type WebAppsUpdateDomainOwnershipIdentifierSlotResponse = Identifier;
 
 /** Optional parameters. */
 export interface WebAppsGetMSDeployStatusSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMSDeployStatusSlot operation. */
-export type WebAppsGetMSDeployStatusSlotResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsGetMSDeployStatusSlotResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsCreateMSDeployOperationSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11820,87 +9284,42 @@ export interface WebAppsCreateMSDeployOperationSlotOptionalParams
 }
 
 /** Contains response data for the createMSDeployOperationSlot operation. */
-export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsCreateMSDeployOperationSlotResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetMSDeployLogSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMSDeployLogSlot operation. */
-export type WebAppsGetMSDeployLogSlotResponse = MSDeployLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployLog;
-  };
-};
+export type WebAppsGetMSDeployLogSlotResponse = MSDeployLog;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceFunctionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceFunctionsSlot operation. */
-export type WebAppsListInstanceFunctionsSlotResponse = FunctionEnvelopeCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelopeCollection;
-  };
-};
+export type WebAppsListInstanceFunctionsSlotResponse = FunctionEnvelopeCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetFunctionsAdminTokenSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFunctionsAdminTokenSlot operation. */
 export type WebAppsGetFunctionsAdminTokenSlotResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceFunctionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceFunctionSlot operation. */
-export type WebAppsGetInstanceFunctionSlotResponse = FunctionEnvelope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelope;
-  };
-};
+export type WebAppsGetInstanceFunctionSlotResponse = FunctionEnvelope;
 
 /** Optional parameters. */
 export interface WebAppsCreateInstanceFunctionSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11908,356 +9327,176 @@ export interface WebAppsCreateInstanceFunctionSlotOptionalParams
 }
 
 /** Contains response data for the createInstanceFunctionSlot operation. */
-export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelope;
-  };
-};
+export type WebAppsCreateInstanceFunctionSlotResponse = FunctionEnvelope;
 
 /** Optional parameters. */
 export interface WebAppsDeleteInstanceFunctionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateFunctionSecretSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateFunctionSecretSlot operation. */
-export type WebAppsCreateOrUpdateFunctionSecretSlotResponse = KeyInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyInfo;
-  };
-};
+export type WebAppsCreateOrUpdateFunctionSecretSlotResponse = KeyInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteFunctionSecretSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListFunctionKeysSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctionKeysSlot operation. */
-export type WebAppsListFunctionKeysSlotResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type WebAppsListFunctionKeysSlotResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface WebAppsListFunctionSecretsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctionSecretsSlot operation. */
-export type WebAppsListFunctionSecretsSlotResponse = FunctionSecrets & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionSecrets;
-  };
-};
+export type WebAppsListFunctionSecretsSlotResponse = FunctionSecrets;
 
 /** Optional parameters. */
 export interface WebAppsListHostKeysSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostKeysSlot operation. */
-export type WebAppsListHostKeysSlotResponse = HostKeys & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostKeys;
-  };
-};
+export type WebAppsListHostKeysSlotResponse = HostKeys;
 
 /** Optional parameters. */
 export interface WebAppsListSyncStatusSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncFunctionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHostSecretSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostSecretSlot operation. */
-export type WebAppsCreateOrUpdateHostSecretSlotResponse = KeyInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: KeyInfo;
-  };
-};
+export type WebAppsCreateOrUpdateHostSecretSlotResponse = KeyInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHostSecretSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListHostNameBindingsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostNameBindingsSlot operation. */
-export type WebAppsListHostNameBindingsSlotResponse = HostNameBindingCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBindingCollection;
-  };
-};
+export type WebAppsListHostNameBindingsSlotResponse = HostNameBindingCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetHostNameBindingSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHostNameBindingSlot operation. */
-export type WebAppsGetHostNameBindingSlotResponse = HostNameBinding & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBinding;
-  };
-};
+export type WebAppsGetHostNameBindingSlotResponse = HostNameBinding;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHostNameBindingSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHostNameBindingSlot operation. */
-export type WebAppsCreateOrUpdateHostNameBindingSlotResponse = HostNameBinding & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBinding;
-  };
-};
+export type WebAppsCreateOrUpdateHostNameBindingSlotResponse = HostNameBinding;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHostNameBindingSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetHybridConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHybridConnectionSlot operation. */
-export type WebAppsGetHybridConnectionSlotResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsGetHybridConnectionSlotResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateHybridConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateHybridConnectionSlot operation. */
-export type WebAppsCreateOrUpdateHybridConnectionSlotResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsCreateOrUpdateHybridConnectionSlotResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsDeleteHybridConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateHybridConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateHybridConnectionSlot operation. */
-export type WebAppsUpdateHybridConnectionSlotResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsUpdateHybridConnectionSlotResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsListHybridConnectionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHybridConnectionsSlot operation. */
-export type WebAppsListHybridConnectionsSlotResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type WebAppsListHybridConnectionsSlotResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface WebAppsListRelayServiceConnectionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRelayServiceConnectionsSlot operation. */
-export type WebAppsListRelayServiceConnectionsSlotResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsListRelayServiceConnectionsSlotResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsGetRelayServiceConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getRelayServiceConnectionSlot operation. */
-export type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsGetRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateRelayServiceConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateRelayServiceConnectionSlot operation. */
-export type WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsCreateOrUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsDeleteRelayServiceConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateRelayServiceConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateRelayServiceConnectionSlot operation. */
-export type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RelayServiceConnectionEntity;
-  };
-};
+export type WebAppsUpdateRelayServiceConnectionSlotResponse = RelayServiceConnectionEntity;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceIdentifiersSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiersSlot operation. */
-export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppInstanceCollection;
-  };
-};
+export type WebAppsListInstanceIdentifiersSlotResponse = WebAppInstanceCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceInfoSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceInfoSlot operation. */
-export type WebAppsGetInstanceInfoSlotResponse = WebSiteInstanceStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebSiteInstanceStatus;
-  };
-};
+export type WebAppsGetInstanceInfoSlotResponse = WebSiteInstanceStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceMsDeployStatusSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceMsDeployStatusSlot operation. */
-export type WebAppsGetInstanceMsDeployStatusSlotResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsGetInstanceMsDeployStatusSlotResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12265,72 +9504,36 @@ export interface WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
 }
 
 /** Contains response data for the createInstanceMSDeployOperationSlot operation. */
-export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployStatus;
-  };
-};
+export type WebAppsCreateInstanceMSDeployOperationSlotResponse = MSDeployStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceMSDeployLogSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceMSDeployLogSlot operation. */
-export type WebAppsGetInstanceMSDeployLogSlotResponse = MSDeployLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MSDeployLog;
-  };
-};
+export type WebAppsGetInstanceMSDeployLogSlotResponse = MSDeployLog;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessesSlot operation. */
-export type WebAppsListInstanceProcessesSlotResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessesSlotResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessSlot operation. */
-export type WebAppsGetInstanceProcessSlotResponse = ProcessInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfo;
-  };
-};
+export type WebAppsGetInstanceProcessSlotResponse = ProcessInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteInstanceProcessSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessDumpSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessDumpSlot operation. */
 export type WebAppsGetInstanceProcessDumpSlotResponse = {
@@ -12348,210 +9551,99 @@ export type WebAppsGetInstanceProcessDumpSlotResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessModulesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessModulesSlot operation. */
-export type WebAppsListInstanceProcessModulesSlotResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessModulesSlotResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetInstanceProcessModuleSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInstanceProcessModuleSlot operation. */
-export type WebAppsGetInstanceProcessModuleSlotResponse = ProcessModuleInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfo;
-  };
-};
+export type WebAppsGetInstanceProcessModuleSlotResponse = ProcessModuleInfo;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessThreadsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessThreadsSlot operation. */
-export type WebAppsListInstanceProcessThreadsSlotResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessThreadsSlotResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsIsCloneableSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the isCloneableSlot operation. */
-export type WebAppsIsCloneableSlotResponse = SiteCloneability & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteCloneability;
-  };
-};
+export type WebAppsIsCloneableSlotResponse = SiteCloneability;
 
 /** Optional parameters. */
 export interface WebAppsListSiteBackupsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteBackupsSlot operation. */
-export type WebAppsListSiteBackupsSlotResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListSiteBackupsSlotResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSyncFunctionTriggersSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSyncFunctionTriggersSlot operation. */
-export type WebAppsListSyncFunctionTriggersSlotResponse = FunctionSecrets & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionSecrets;
-  };
-};
+export type WebAppsListSyncFunctionTriggersSlotResponse = FunctionSecrets;
 
 /** Optional parameters. */
 export interface WebAppsGetMigrateMySqlStatusSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMigrateMySqlStatusSlot operation. */
-export type WebAppsGetMigrateMySqlStatusSlotResponse = MigrateMySqlStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: MigrateMySqlStatus;
-  };
-};
+export type WebAppsGetMigrateMySqlStatusSlotResponse = MigrateMySqlStatus;
 
 /** Optional parameters. */
 export interface WebAppsGetSwiftVirtualNetworkConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSwiftVirtualNetworkConnectionSlot operation. */
-export type WebAppsGetSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsGetSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateSwiftVirtualNetworkConnectionSlot operation. */
-export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsCreateOrUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSwiftVirtualNetworkSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateSwiftVirtualNetworkConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSwiftVirtualNetworkConnectionSlot operation. */
-export type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SwiftVirtualNetwork;
-  };
-};
+export type WebAppsUpdateSwiftVirtualNetworkConnectionSlotResponse = SwiftVirtualNetwork;
 
 /** Optional parameters. */
 export interface WebAppsListNetworkFeaturesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNetworkFeaturesSlot operation. */
-export type WebAppsListNetworkFeaturesSlotResponse = NetworkFeatures & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkFeatures;
-  };
-};
+export type WebAppsListNetworkFeaturesSlotResponse = NetworkFeatures;
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTraceOperationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperationSlot operation. */
-export type WebAppsGetNetworkTraceOperationSlotResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTraceOperationSlotResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsStartWebSiteNetworkTraceSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -12564,20 +9656,11 @@ export interface WebAppsStartWebSiteNetworkTraceSlotOptionalParams
 export type WebAppsStartWebSiteNetworkTraceSlotResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -12591,227 +9674,110 @@ export interface WebAppsStartWebSiteNetworkTraceOperationSlotOptionalParams
 }
 
 /** Contains response data for the startWebSiteNetworkTraceOperationSlot operation. */
-export type WebAppsStartWebSiteNetworkTraceOperationSlotResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsStartWebSiteNetworkTraceOperationSlotResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsStopWebSiteNetworkTraceSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTracesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTracesSlot operation. */
-export type WebAppsGetNetworkTracesSlotResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTracesSlotResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTraceOperationSlotV2OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTraceOperationSlotV2 operation. */
-export type WebAppsGetNetworkTraceOperationSlotV2Response = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTraceOperationSlotV2Response = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGetNetworkTracesSlotV2OptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getNetworkTracesSlotV2 operation. */
-export type WebAppsGetNetworkTracesSlotV2Response = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsGetNetworkTracesSlotV2Response = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsGenerateNewSitePublishingPasswordSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listPerfMonCountersSlot operation. */
-export type WebAppsListPerfMonCountersSlotResponse = PerfMonCounterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PerfMonCounterCollection;
-  };
-};
+export type WebAppsListPerfMonCountersSlotResponse = PerfMonCounterCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSitePhpErrorLogFlagSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSitePhpErrorLogFlagSlot operation. */
-export type WebAppsGetSitePhpErrorLogFlagSlotResponse = SitePhpErrorLogFlag & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SitePhpErrorLogFlag;
-  };
-};
+export type WebAppsGetSitePhpErrorLogFlagSlotResponse = SitePhpErrorLogFlag;
 
 /** Optional parameters. */
 export interface WebAppsListPremierAddOnsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnsSlot operation. */
-export type WebAppsListPremierAddOnsSlotResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsListPremierAddOnsSlotResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsGetPremierAddOnSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPremierAddOnSlot operation. */
-export type WebAppsGetPremierAddOnSlotResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsGetPremierAddOnSlotResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsAddPremierAddOnSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the addPremierAddOnSlot operation. */
-export type WebAppsAddPremierAddOnSlotResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsAddPremierAddOnSlotResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsDeletePremierAddOnSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdatePremierAddOnSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updatePremierAddOnSlot operation. */
-export type WebAppsUpdatePremierAddOnSlotResponse = PremierAddOn & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PremierAddOn;
-  };
-};
+export type WebAppsUpdatePremierAddOnSlotResponse = PremierAddOn;
 
 /** Optional parameters. */
 export interface WebAppsGetPrivateAccessSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPrivateAccessSlot operation. */
-export type WebAppsGetPrivateAccessSlotResponse = PrivateAccess & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateAccess;
-  };
-};
+export type WebAppsGetPrivateAccessSlotResponse = PrivateAccess;
 
 /** Optional parameters. */
 export interface WebAppsPutPrivateAccessVnetSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the putPrivateAccessVnetSlot operation. */
-export type WebAppsPutPrivateAccessVnetSlotResponse = PrivateAccess & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateAccess;
-  };
-};
+export type WebAppsPutPrivateAccessVnetSlotResponse = PrivateAccess;
 
 /** Optional parameters. */
 export interface WebAppsGetPrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPrivateEndpointConnection operation. */
-export type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnectionResource;
-  };
-};
+export type WebAppsGetPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
 
 /** Optional parameters. */
 export interface WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12819,20 +9785,11 @@ export interface WebAppsApproveOrRejectPrivateEndpointConnectionOptionalParams
 }
 
 /** Contains response data for the approveOrRejectPrivateEndpointConnection operation. */
-export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnectionResource;
-  };
-};
+export type WebAppsApproveOrRejectPrivateEndpointConnectionResponse = PrivateEndpointConnectionResource;
 
 /** Optional parameters. */
 export interface WebAppsDeletePrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12843,72 +9800,36 @@ export interface WebAppsDeletePrivateEndpointConnectionOptionalParams
 export type WebAppsDeletePrivateEndpointConnectionResponse = {
   /** The parsed response body. */
   body: any;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: any;
-  };
 };
 
 /** Optional parameters. */
 export interface WebAppsGetPrivateLinkResourcesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPrivateLinkResources operation. */
-export type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkResourcesWrapper;
-  };
-};
+export type WebAppsGetPrivateLinkResourcesResponse = PrivateLinkResourcesWrapper;
 
 /** Optional parameters. */
 export interface WebAppsListProcessesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessesSlot operation. */
-export type WebAppsListProcessesSlotResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListProcessesSlotResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetProcessSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcessSlot operation. */
-export type WebAppsGetProcessSlotResponse = ProcessInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfo;
-  };
-};
+export type WebAppsGetProcessSlotResponse = ProcessInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteProcessSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsGetProcessDumpSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcessDumpSlot operation. */
 export type WebAppsGetProcessDumpSlotResponse = {
@@ -12926,114 +9847,57 @@ export type WebAppsGetProcessDumpSlotResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsListProcessModulesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessModulesSlot operation. */
-export type WebAppsListProcessModulesSlotResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListProcessModulesSlotResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetProcessModuleSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getProcessModuleSlot operation. */
-export type WebAppsGetProcessModuleSlotResponse = ProcessModuleInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfo;
-  };
-};
+export type WebAppsGetProcessModuleSlotResponse = ProcessModuleInfo;
 
 /** Optional parameters. */
 export interface WebAppsListProcessThreadsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessThreadsSlot operation. */
-export type WebAppsListProcessThreadsSlotResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListProcessThreadsSlotResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPublicCertificatesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesSlot operation. */
-export type WebAppsListPublicCertificatesSlotResponse = PublicCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificateCollection;
-  };
-};
+export type WebAppsListPublicCertificatesSlotResponse = PublicCertificateCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetPublicCertificateSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPublicCertificateSlot operation. */
-export type WebAppsGetPublicCertificateSlotResponse = PublicCertificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificate;
-  };
-};
+export type WebAppsGetPublicCertificateSlotResponse = PublicCertificate;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdatePublicCertificateSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdatePublicCertificateSlot operation. */
-export type WebAppsCreateOrUpdatePublicCertificateSlotResponse = PublicCertificate & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificate;
-  };
-};
+export type WebAppsCreateOrUpdatePublicCertificateSlotResponse = PublicCertificate;
 
 /** Optional parameters. */
 export interface WebAppsDeletePublicCertificateSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListPublishingProfileXmlWithSecretsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublishingProfileXmlWithSecretsSlot operation. */
 export type WebAppsListPublishingProfileXmlWithSecretsSlotResponse = {
@@ -13051,18 +9915,15 @@ export type WebAppsListPublishingProfileXmlWithSecretsSlotResponse = {
    * Always `undefined` in the browser.
    */
   readableStreamBody?: NodeJS.ReadableStream;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse;
 };
 
 /** Optional parameters. */
 export interface WebAppsResetSlotConfigurationSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsRestartSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify true to apply the configuration settings and restarts the app only if necessary. By default, the API always restarts and reprovisions the app. */
   softRestart?: boolean;
   /** Specify true to block until the app is restarted. By default, it is set to false, and the API responds immediately (asynchronous). */
@@ -13071,7 +9932,7 @@ export interface WebAppsRestartSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreFromBackupBlobSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13080,7 +9941,7 @@ export interface WebAppsRestoreFromBackupBlobSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreFromDeletedAppSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13089,7 +9950,7 @@ export interface WebAppsRestoreFromDeletedAppSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsRestoreSnapshotSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13098,39 +9959,21 @@ export interface WebAppsRestoreSnapshotSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSiteExtensionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteExtensionsSlot operation. */
-export type WebAppsListSiteExtensionsSlotResponse = SiteExtensionInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfoCollection;
-  };
-};
+export type WebAppsListSiteExtensionsSlotResponse = SiteExtensionInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSiteExtensionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSiteExtensionSlot operation. */
-export type WebAppsGetSiteExtensionSlotResponse = SiteExtensionInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfo;
-  };
-};
+export type WebAppsGetSiteExtensionSlotResponse = SiteExtensionInfo;
 
 /** Optional parameters. */
 export interface WebAppsInstallSiteExtensionSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13138,24 +9981,15 @@ export interface WebAppsInstallSiteExtensionSlotOptionalParams
 }
 
 /** Contains response data for the installSiteExtensionSlot operation. */
-export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfo;
-  };
-};
+export type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSiteExtensionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsCopySlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13164,23 +9998,14 @@ export interface WebAppsCopySlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSlotDifferencesSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesSlot operation. */
-export type WebAppsListSlotDifferencesSlotResponse = SlotDifferenceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotDifferenceCollection;
-  };
-};
+export type WebAppsListSlotDifferencesSlotResponse = SlotDifferenceCollection;
 
 /** Optional parameters. */
 export interface WebAppsSwapSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13189,55 +10014,28 @@ export interface WebAppsSwapSlotOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsSlot operation. */
-export type WebAppsListSnapshotsSlotResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsSlotResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsFromDRSecondarySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondarySlot operation. */
-export type WebAppsListSnapshotsFromDRSecondarySlotResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsFromDRSecondarySlotResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSourceControlSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSourceControlSlot operation. */
-export type WebAppsGetSourceControlSlotResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsGetSourceControlSlotResponse = SiteSourceControl;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateSourceControlSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13245,44 +10043,26 @@ export interface WebAppsCreateOrUpdateSourceControlSlotOptionalParams
 }
 
 /** Contains response data for the createOrUpdateSourceControlSlot operation. */
-export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsCreateOrUpdateSourceControlSlotResponse = SiteSourceControl;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSourceControlSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateSourceControlSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSourceControlSlot operation. */
-export type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsUpdateSourceControlSlotResponse = SiteSourceControl;
 
 /** Optional parameters. */
 export interface WebAppsStartSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStartNetworkTraceSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -13296,291 +10076,147 @@ export interface WebAppsStartNetworkTraceSlotOptionalParams
 }
 
 /** Contains response data for the startNetworkTraceSlot operation. */
-export type WebAppsStartNetworkTraceSlotResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsStartNetworkTraceSlotResponse = NetworkTrace[];
 
 /** Optional parameters. */
 export interface WebAppsStopSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStopNetworkTraceSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncRepositorySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncFunctionTriggersSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobsSlot operation. */
-export type WebAppsListTriggeredWebJobsSlotResponse = TriggeredWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJobCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobsSlotResponse = TriggeredWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetTriggeredWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTriggeredWebJobSlot operation. */
-export type WebAppsGetTriggeredWebJobSlotResponse = TriggeredWebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJob;
-  };
-};
+export type WebAppsGetTriggeredWebJobSlotResponse = TriggeredWebJob;
 
 /** Optional parameters. */
 export interface WebAppsDeleteTriggeredWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobHistorySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistorySlot operation. */
-export type WebAppsListTriggeredWebJobHistorySlotResponse = TriggeredJobHistoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistoryCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobHistorySlotResponse = TriggeredJobHistoryCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetTriggeredWebJobHistorySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTriggeredWebJobHistorySlot operation. */
-export type WebAppsGetTriggeredWebJobHistorySlotResponse = TriggeredJobHistory & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistory;
-  };
-};
+export type WebAppsGetTriggeredWebJobHistorySlotResponse = TriggeredJobHistory;
 
 /** Optional parameters. */
 export interface WebAppsRunTriggeredWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListUsagesSlotOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsagesSlot operation. */
-export type WebAppsListUsagesSlotResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type WebAppsListUsagesSlotResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface WebAppsListVnetConnectionsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVnetConnectionsSlot operation. */
-export type WebAppsListVnetConnectionsSlotResponse = VnetInfo[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo[];
-  };
-};
+export type WebAppsListVnetConnectionsSlotResponse = VnetInfo[];
 
 /** Optional parameters. */
 export interface WebAppsGetVnetConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetConnectionSlot operation. */
-export type WebAppsGetVnetConnectionSlotResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsGetVnetConnectionSlotResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateVnetConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnectionSlot operation. */
-export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsCreateOrUpdateVnetConnectionSlotResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteVnetConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateVnetConnectionSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetConnectionSlot operation. */
-export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsUpdateVnetConnectionSlotResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsGetVnetConnectionGatewaySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetConnectionGatewaySlot operation. */
-export type WebAppsGetVnetConnectionGatewaySlotResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsGetVnetConnectionGatewaySlotResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateVnetConnectionGatewaySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnectionGatewaySlot operation. */
-export type WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsCreateOrUpdateVnetConnectionGatewaySlotResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsUpdateVnetConnectionGatewaySlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetConnectionGatewaySlot operation. */
-export type WebAppsUpdateVnetConnectionGatewaySlotResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsUpdateVnetConnectionGatewaySlotResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsListWebJobsSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebJobsSlot operation. */
-export type WebAppsListWebJobsSlotResponse = WebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJobCollection;
-  };
-};
+export type WebAppsListWebJobsSlotResponse = WebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetWebJobSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebJobSlot operation. */
-export type WebAppsGetWebJobSlotResponse = WebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJob;
-  };
-};
+export type WebAppsGetWebJobSlotResponse = WebJob;
 
 /** Optional parameters. */
 export interface WebAppsListSlotDifferencesFromProductionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesFromProduction operation. */
-export type WebAppsListSlotDifferencesFromProductionResponse = SlotDifferenceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotDifferenceCollection;
-  };
-};
+export type WebAppsListSlotDifferencesFromProductionResponse = SlotDifferenceCollection;
 
 /** Optional parameters. */
 export interface WebAppsSwapSlotWithProductionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13589,55 +10225,28 @@ export interface WebAppsSwapSlotWithProductionOptionalParams
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshots operation. */
-export type WebAppsListSnapshotsResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsFromDRSecondaryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondary operation. */
-export type WebAppsListSnapshotsFromDRSecondaryResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsFromDRSecondaryResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetSourceControlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSourceControl operation. */
-export type WebAppsGetSourceControlResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsGetSourceControlResponse = SiteSourceControl;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateSourceControlOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13645,43 +10254,26 @@ export interface WebAppsCreateOrUpdateSourceControlOptionalParams
 }
 
 /** Contains response data for the createOrUpdateSourceControl operation. */
-export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsCreateOrUpdateSourceControlResponse = SiteSourceControl;
 
 /** Optional parameters. */
 export interface WebAppsDeleteSourceControlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateSourceControlOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSourceControl operation. */
-export type WebAppsUpdateSourceControlResponse = SiteSourceControl & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteSourceControl;
-  };
-};
+export type WebAppsUpdateSourceControlResponse = SiteSourceControl;
 
 /** Optional parameters. */
-export interface WebAppsStartOptionalParams extends coreHttp.OperationOptions {}
+export interface WebAppsStartOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStartNetworkTraceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The duration to keep capturing in seconds. */
   durationInSeconds?: number;
   /** The maximum frame length in bytes (Optional). */
@@ -13695,1661 +10287,771 @@ export interface WebAppsStartNetworkTraceOptionalParams
 }
 
 /** Contains response data for the startNetworkTrace operation. */
-export type WebAppsStartNetworkTraceResponse = NetworkTrace[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkTrace[];
-  };
-};
+export type WebAppsStartNetworkTraceResponse = NetworkTrace[];
 
 /** Optional parameters. */
-export interface WebAppsStopOptionalParams extends coreHttp.OperationOptions {}
+export interface WebAppsStopOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsStopNetworkTraceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncRepositoryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsSyncFunctionTriggersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobs operation. */
-export type WebAppsListTriggeredWebJobsResponse = TriggeredWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJobCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobsResponse = TriggeredWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetTriggeredWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTriggeredWebJob operation. */
-export type WebAppsGetTriggeredWebJobResponse = TriggeredWebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJob;
-  };
-};
+export type WebAppsGetTriggeredWebJobResponse = TriggeredWebJob;
 
 /** Optional parameters. */
 export interface WebAppsDeleteTriggeredWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobHistoryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistory operation. */
-export type WebAppsListTriggeredWebJobHistoryResponse = TriggeredJobHistoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistoryCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobHistoryResponse = TriggeredJobHistoryCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetTriggeredWebJobHistoryOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTriggeredWebJobHistory operation. */
-export type WebAppsGetTriggeredWebJobHistoryResponse = TriggeredJobHistory & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistory;
-  };
-};
+export type WebAppsGetTriggeredWebJobHistoryResponse = TriggeredJobHistory;
 
 /** Optional parameters. */
 export interface WebAppsRunTriggeredWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsListUsagesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsages operation. */
-export type WebAppsListUsagesResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type WebAppsListUsagesResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface WebAppsListVnetConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVnetConnections operation. */
-export type WebAppsListVnetConnectionsResponse = VnetInfo[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo[];
-  };
-};
+export type WebAppsListVnetConnectionsResponse = VnetInfo[];
 
 /** Optional parameters. */
 export interface WebAppsGetVnetConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetConnection operation. */
-export type WebAppsGetVnetConnectionResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsGetVnetConnectionResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateVnetConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnection operation. */
-export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsCreateOrUpdateVnetConnectionResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsDeleteVnetConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface WebAppsUpdateVnetConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetConnection operation. */
-export type WebAppsUpdateVnetConnectionResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type WebAppsUpdateVnetConnectionResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface WebAppsGetVnetConnectionGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetConnectionGateway operation. */
-export type WebAppsGetVnetConnectionGatewayResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsGetVnetConnectionGatewayResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsCreateOrUpdateVnetConnectionGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetConnectionGateway operation. */
-export type WebAppsCreateOrUpdateVnetConnectionGatewayResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsCreateOrUpdateVnetConnectionGatewayResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsUpdateVnetConnectionGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetConnectionGateway operation. */
-export type WebAppsUpdateVnetConnectionGatewayResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type WebAppsUpdateVnetConnectionGatewayResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface WebAppsListWebJobsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebJobs operation. */
-export type WebAppsListWebJobsResponse = WebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJobCollection;
-  };
-};
+export type WebAppsListWebJobsResponse = WebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsGetWebJobOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWebJob operation. */
-export type WebAppsGetWebJobResponse = WebJob & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJob;
-  };
-};
+export type WebAppsGetWebJobResponse = WebJob;
 
 /** Optional parameters. */
 export interface WebAppsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type WebAppsListNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <strong>true</strong> to include deployment slots in results. The default is false, which only gives you the production slot of all apps. */
   includeSlots?: boolean;
 }
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type WebAppsListByResourceGroupNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListByResourceGroupNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsListBackupsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackupsNext operation. */
-export type WebAppsListBackupsNextResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListBackupsNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationsNext operation. */
-export type WebAppsListConfigurationsNextResponse = SiteConfigResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResourceCollection;
-  };
-};
+export type WebAppsListConfigurationsNextResponse = SiteConfigResourceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationSnapshotInfoNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationSnapshotInfoNext operation. */
-export type WebAppsListConfigurationSnapshotInfoNextResponse = SiteConfigurationSnapshotInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigurationSnapshotInfoCollection;
-  };
-};
+export type WebAppsListConfigurationSnapshotInfoNextResponse = SiteConfigurationSnapshotInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListContinuousWebJobsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobsNext operation. */
-export type WebAppsListContinuousWebJobsNextResponse = ContinuousWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJobCollection;
-  };
-};
+export type WebAppsListContinuousWebJobsNextResponse = ContinuousWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeploymentsNext operation. */
-export type WebAppsListDeploymentsNextResponse = DeploymentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentCollection;
-  };
-};
+export type WebAppsListDeploymentsNextResponse = DeploymentCollection;
 
 /** Optional parameters. */
 export interface WebAppsListDomainOwnershipIdentifiersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersNext operation. */
-export type WebAppsListDomainOwnershipIdentifiersNextResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebAppsListDomainOwnershipIdentifiersNextResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebAppsListFunctionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listFunctionsNext operation. */
-export type WebAppsListFunctionsNextResponse = FunctionEnvelopeCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelopeCollection;
-  };
-};
+export type WebAppsListFunctionsNextResponse = FunctionEnvelopeCollection;
 
 /** Optional parameters. */
 export interface WebAppsListHostNameBindingsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostNameBindingsNext operation. */
-export type WebAppsListHostNameBindingsNextResponse = HostNameBindingCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBindingCollection;
-  };
-};
+export type WebAppsListHostNameBindingsNextResponse = HostNameBindingCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceIdentifiersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiersNext operation. */
-export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppInstanceCollection;
-  };
-};
+export type WebAppsListInstanceIdentifiersNextResponse = WebAppInstanceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessesNext operation. */
-export type WebAppsListInstanceProcessesNextResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessesNextResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessModulesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessModulesNext operation. */
-export type WebAppsListInstanceProcessModulesNextResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessModulesNextResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessThreadsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessThreadsNext operation. */
-export type WebAppsListInstanceProcessThreadsNextResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessThreadsNextResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSiteBackupsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteBackupsNext operation. */
-export type WebAppsListSiteBackupsNextResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListSiteBackupsNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listPerfMonCountersNext operation. */
-export type WebAppsListPerfMonCountersNextResponse = PerfMonCounterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PerfMonCounterCollection;
-  };
-};
+export type WebAppsListPerfMonCountersNextResponse = PerfMonCounterCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessesNext operation. */
-export type WebAppsListProcessesNextResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListProcessesNextResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessModulesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessModulesNext operation. */
-export type WebAppsListProcessModulesNextResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListProcessModulesNextResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessThreadsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessThreadsNext operation. */
-export type WebAppsListProcessThreadsNextResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListProcessThreadsNextResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPublicCertificatesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesNext operation. */
-export type WebAppsListPublicCertificatesNextResponse = PublicCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificateCollection;
-  };
-};
+export type WebAppsListPublicCertificatesNextResponse = PublicCertificateCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSiteExtensionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteExtensionsNext operation. */
-export type WebAppsListSiteExtensionsNextResponse = SiteExtensionInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfoCollection;
-  };
-};
+export type WebAppsListSiteExtensionsNextResponse = SiteExtensionInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSlotsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotsNext operation. */
-export type WebAppsListSlotsNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type WebAppsListSlotsNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface WebAppsListBackupsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBackupsSlotNext operation. */
-export type WebAppsListBackupsSlotNextResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListBackupsSlotNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationsSlotNext operation. */
-export type WebAppsListConfigurationsSlotNextResponse = SiteConfigResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigResourceCollection;
-  };
-};
+export type WebAppsListConfigurationsSlotNextResponse = SiteConfigResourceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListConfigurationSnapshotInfoSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConfigurationSnapshotInfoSlotNext operation. */
-export type WebAppsListConfigurationSnapshotInfoSlotNextResponse = SiteConfigurationSnapshotInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteConfigurationSnapshotInfoCollection;
-  };
-};
+export type WebAppsListConfigurationSnapshotInfoSlotNextResponse = SiteConfigurationSnapshotInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListContinuousWebJobsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listContinuousWebJobsSlotNext operation. */
-export type WebAppsListContinuousWebJobsSlotNextResponse = ContinuousWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ContinuousWebJobCollection;
-  };
-};
+export type WebAppsListContinuousWebJobsSlotNextResponse = ContinuousWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsListDeploymentsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeploymentsSlotNext operation. */
-export type WebAppsListDeploymentsSlotNextResponse = DeploymentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentCollection;
-  };
-};
+export type WebAppsListDeploymentsSlotNextResponse = DeploymentCollection;
 
 /** Optional parameters. */
 export interface WebAppsListDomainOwnershipIdentifiersSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDomainOwnershipIdentifiersSlotNext operation. */
-export type WebAppsListDomainOwnershipIdentifiersSlotNextResponse = IdentifierCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IdentifierCollection;
-  };
-};
+export type WebAppsListDomainOwnershipIdentifiersSlotNextResponse = IdentifierCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceFunctionsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceFunctionsSlotNext operation. */
-export type WebAppsListInstanceFunctionsSlotNextResponse = FunctionEnvelopeCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FunctionEnvelopeCollection;
-  };
-};
+export type WebAppsListInstanceFunctionsSlotNextResponse = FunctionEnvelopeCollection;
 
 /** Optional parameters. */
 export interface WebAppsListHostNameBindingsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHostNameBindingsSlotNext operation. */
-export type WebAppsListHostNameBindingsSlotNextResponse = HostNameBindingCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostNameBindingCollection;
-  };
-};
+export type WebAppsListHostNameBindingsSlotNextResponse = HostNameBindingCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceIdentifiersSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceIdentifiersSlotNext operation. */
-export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppInstanceCollection;
-  };
-};
+export type WebAppsListInstanceIdentifiersSlotNextResponse = WebAppInstanceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessesSlotNext operation. */
-export type WebAppsListInstanceProcessesSlotNextResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessesSlotNextResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessModulesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessModulesSlotNext operation. */
-export type WebAppsListInstanceProcessModulesSlotNextResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessModulesSlotNextResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListInstanceProcessThreadsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listInstanceProcessThreadsSlotNext operation. */
-export type WebAppsListInstanceProcessThreadsSlotNextResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListInstanceProcessThreadsSlotNextResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSiteBackupsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteBackupsSlotNext operation. */
-export type WebAppsListSiteBackupsSlotNextResponse = BackupItemCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackupItemCollection;
-  };
-};
+export type WebAppsListSiteBackupsSlotNextResponse = BackupItemCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPerfMonCountersSlotNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listPerfMonCountersSlotNext operation. */
-export type WebAppsListPerfMonCountersSlotNextResponse = PerfMonCounterCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PerfMonCounterCollection;
-  };
-};
+export type WebAppsListPerfMonCountersSlotNextResponse = PerfMonCounterCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessesSlotNext operation. */
-export type WebAppsListProcessesSlotNextResponse = ProcessInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessInfoCollection;
-  };
-};
+export type WebAppsListProcessesSlotNextResponse = ProcessInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessModulesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessModulesSlotNext operation. */
-export type WebAppsListProcessModulesSlotNextResponse = ProcessModuleInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessModuleInfoCollection;
-  };
-};
+export type WebAppsListProcessModulesSlotNextResponse = ProcessModuleInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListProcessThreadsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listProcessThreadsSlotNext operation. */
-export type WebAppsListProcessThreadsSlotNextResponse = ProcessThreadInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProcessThreadInfoCollection;
-  };
-};
+export type WebAppsListProcessThreadsSlotNextResponse = ProcessThreadInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListPublicCertificatesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPublicCertificatesSlotNext operation. */
-export type WebAppsListPublicCertificatesSlotNextResponse = PublicCertificateCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicCertificateCollection;
-  };
-};
+export type WebAppsListPublicCertificatesSlotNextResponse = PublicCertificateCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSiteExtensionsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteExtensionsSlotNext operation. */
-export type WebAppsListSiteExtensionsSlotNextResponse = SiteExtensionInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SiteExtensionInfoCollection;
-  };
-};
+export type WebAppsListSiteExtensionsSlotNextResponse = SiteExtensionInfoCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSlotDifferencesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesSlotNext operation. */
-export type WebAppsListSlotDifferencesSlotNextResponse = SlotDifferenceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotDifferenceCollection;
-  };
-};
+export type WebAppsListSlotDifferencesSlotNextResponse = SlotDifferenceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsSlotNext operation. */
-export type WebAppsListSnapshotsSlotNextResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsSlotNextResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsFromDRSecondarySlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondarySlotNext operation. */
-export type WebAppsListSnapshotsFromDRSecondarySlotNextResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsFromDRSecondarySlotNextResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobsSlotNext operation. */
-export type WebAppsListTriggeredWebJobsSlotNextResponse = TriggeredWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJobCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobsSlotNextResponse = TriggeredWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobHistorySlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistorySlotNext operation. */
-export type WebAppsListTriggeredWebJobHistorySlotNextResponse = TriggeredJobHistoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistoryCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobHistorySlotNextResponse = TriggeredJobHistoryCollection;
 
 /** Optional parameters. */
 export interface WebAppsListUsagesSlotNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsagesSlotNext operation. */
-export type WebAppsListUsagesSlotNextResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type WebAppsListUsagesSlotNextResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface WebAppsListWebJobsSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebJobsSlotNext operation. */
-export type WebAppsListWebJobsSlotNextResponse = WebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJobCollection;
-  };
-};
+export type WebAppsListWebJobsSlotNextResponse = WebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSlotDifferencesFromProductionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSlotDifferencesFromProductionNext operation. */
-export type WebAppsListSlotDifferencesFromProductionNextResponse = SlotDifferenceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SlotDifferenceCollection;
-  };
-};
+export type WebAppsListSlotDifferencesFromProductionNextResponse = SlotDifferenceCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsNext operation. */
-export type WebAppsListSnapshotsNextResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsNextResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListSnapshotsFromDRSecondaryNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSnapshotsFromDRSecondaryNext operation. */
-export type WebAppsListSnapshotsFromDRSecondaryNextResponse = SnapshotCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SnapshotCollection;
-  };
-};
+export type WebAppsListSnapshotsFromDRSecondaryNextResponse = SnapshotCollection;
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobsNext operation. */
-export type WebAppsListTriggeredWebJobsNextResponse = TriggeredWebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredWebJobCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobsNextResponse = TriggeredWebJobCollection;
 
 /** Optional parameters. */
 export interface WebAppsListTriggeredWebJobHistoryNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listTriggeredWebJobHistoryNext operation. */
-export type WebAppsListTriggeredWebJobHistoryNextResponse = TriggeredJobHistoryCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TriggeredJobHistoryCollection;
-  };
-};
+export type WebAppsListTriggeredWebJobHistoryNextResponse = TriggeredJobHistoryCollection;
 
 /** Optional parameters. */
 export interface WebAppsListUsagesNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only information specified in the filter (using OData syntax). For example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsagesNext operation. */
-export type WebAppsListUsagesNextResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type WebAppsListUsagesNextResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface WebAppsListWebJobsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebJobsNext operation. */
-export type WebAppsListWebJobsNextResponse = WebJobCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebJobCollection;
-  };
-};
+export type WebAppsListWebJobsNextResponse = WebJobCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type StaticSitesListResponse = StaticSiteCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCollection;
-  };
-};
+export type StaticSitesListResponse = StaticSiteCollection;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSitesByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSitesByResourceGroup operation. */
-export type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCollection;
-  };
-};
+export type StaticSitesGetStaticSitesByResourceGroupResponse = StaticSiteCollection;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSite operation. */
-export type StaticSitesGetStaticSiteResponse = StaticSiteARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteARMResource;
-  };
-};
+export type StaticSitesGetStaticSiteResponse = StaticSiteARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesCreateOrUpdateStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateStaticSite operation. */
-export type StaticSitesCreateOrUpdateStaticSiteResponse = StaticSiteARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteARMResource;
-  };
-};
+export type StaticSitesCreateOrUpdateStaticSiteResponse = StaticSiteARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesDeleteStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesUpdateStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateStaticSite operation. */
-export type StaticSitesUpdateStaticSiteResponse = StaticSiteARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteARMResource;
-  };
-};
+export type StaticSitesUpdateStaticSiteResponse = StaticSiteARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteUsersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteUsers operation. */
-export type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteUserCollection;
-  };
-};
+export type StaticSitesListStaticSiteUsersResponse = StaticSiteUserCollection;
 
 /** Optional parameters. */
 export interface StaticSitesDeleteStaticSiteUserOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesUpdateStaticSiteUserOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateStaticSiteUser operation. */
-export type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteUserARMResource;
-  };
-};
+export type StaticSitesUpdateStaticSiteUserResponse = StaticSiteUserARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSiteBuildsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSiteBuilds operation. */
-export type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteBuildCollection;
-  };
-};
+export type StaticSitesGetStaticSiteBuildsResponse = StaticSiteBuildCollection;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSiteBuildOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSiteBuild operation. */
-export type StaticSitesGetStaticSiteBuildResponse = StaticSiteBuildARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteBuildARMResource;
-  };
-};
+export type StaticSitesGetStaticSiteBuildResponse = StaticSiteBuildARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesDeleteStaticSiteBuildOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateStaticSiteBuildFunctionAppSettings operation. */
-export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type StaticSitesCreateOrUpdateStaticSiteBuildFunctionAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteBuildFunctionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteBuildFunctions operation. */
-export type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunctionOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteFunctionOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteBuildFunctionsResponse = StaticSiteFunctionOverviewCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteBuildFunctionAppSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteBuildFunctionAppSettings operation. */
-export type StaticSitesListStaticSiteBuildFunctionAppSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type StaticSitesListStaticSiteBuildFunctionAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateStaticSiteFunctionAppSettings operation. */
-export type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type StaticSitesCreateOrUpdateStaticSiteFunctionAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface StaticSitesCreateUserRolesInvitationLinkOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createUserRolesInvitationLink operation. */
-export type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInvitationResponseResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteUserInvitationResponseResource;
-  };
-};
+export type StaticSitesCreateUserRolesInvitationLinkResponse = StaticSiteUserInvitationResponseResource;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteCustomDomainsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteCustomDomains operation. */
-export type StaticSitesListStaticSiteCustomDomainsResponse = StaticSiteCustomDomainOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCustomDomainOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteCustomDomainsResponse = StaticSiteCustomDomainOverviewCollection;
 
 /** Optional parameters. */
 export interface StaticSitesCreateOrUpdateStaticSiteCustomDomainOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateStaticSiteCustomDomain operation. */
-export type StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse = StaticSiteCustomDomainOverviewARMResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCustomDomainOverviewARMResource;
-  };
-};
+export type StaticSitesCreateOrUpdateStaticSiteCustomDomainResponse = StaticSiteCustomDomainOverviewARMResource;
 
 /** Optional parameters. */
 export interface StaticSitesDeleteStaticSiteCustomDomainOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesDetachStaticSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteFunctionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteFunctions operation. */
-export type StaticSitesListStaticSiteFunctionsResponse = StaticSiteFunctionOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteFunctionOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteFunctionsResponse = StaticSiteFunctionOverviewCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteFunctionAppSettingsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteFunctionAppSettings operation. */
-export type StaticSitesListStaticSiteFunctionAppSettingsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type StaticSitesListStaticSiteFunctionAppSettingsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteSecretsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteSecrets operation. */
-export type StaticSitesListStaticSiteSecretsResponse = StringDictionary & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StringDictionary;
-  };
-};
+export type StaticSitesListStaticSiteSecretsResponse = StringDictionary;
 
 /** Optional parameters. */
 export interface StaticSitesResetStaticSiteApiKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StaticSitesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type StaticSitesListNextResponse = StaticSiteCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCollection;
-  };
-};
+export type StaticSitesListNextResponse = StaticSiteCollection;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSitesByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSitesByResourceGroupNext operation. */
-export type StaticSitesGetStaticSitesByResourceGroupNextResponse = StaticSiteCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCollection;
-  };
-};
+export type StaticSitesGetStaticSitesByResourceGroupNextResponse = StaticSiteCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteUsersNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteUsersNext operation. */
-export type StaticSitesListStaticSiteUsersNextResponse = StaticSiteUserCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteUserCollection;
-  };
-};
+export type StaticSitesListStaticSiteUsersNextResponse = StaticSiteUserCollection;
 
 /** Optional parameters. */
 export interface StaticSitesGetStaticSiteBuildsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStaticSiteBuildsNext operation. */
-export type StaticSitesGetStaticSiteBuildsNextResponse = StaticSiteBuildCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteBuildCollection;
-  };
-};
+export type StaticSitesGetStaticSiteBuildsNextResponse = StaticSiteBuildCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteBuildFunctionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteBuildFunctionsNext operation. */
-export type StaticSitesListStaticSiteBuildFunctionsNextResponse = StaticSiteFunctionOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteFunctionOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteBuildFunctionsNextResponse = StaticSiteFunctionOverviewCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteCustomDomainsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteCustomDomainsNext operation. */
-export type StaticSitesListStaticSiteCustomDomainsNextResponse = StaticSiteCustomDomainOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteCustomDomainOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteCustomDomainsNextResponse = StaticSiteCustomDomainOverviewCollection;
 
 /** Optional parameters. */
 export interface StaticSitesListStaticSiteFunctionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listStaticSiteFunctionsNext operation. */
-export type StaticSitesListStaticSiteFunctionsNextResponse = StaticSiteFunctionOverviewCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StaticSiteFunctionOverviewCollection;
-  };
-};
+export type StaticSitesListStaticSiteFunctionsNextResponse = StaticSiteFunctionOverviewCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AppServiceEnvironmentsListResponse = AppServiceEnvironmentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentCollection;
-  };
-};
+export type AppServiceEnvironmentsListResponse = AppServiceEnvironmentCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type AppServiceEnvironmentsListByResourceGroupResponse = AppServiceEnvironmentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentCollection;
-  };
-};
+export type AppServiceEnvironmentsListByResourceGroupResponse = AppServiceEnvironmentCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentResource;
-  };
-};
+export type AppServiceEnvironmentsGetResponse = AppServiceEnvironmentResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15357,20 +11059,11 @@ export interface AppServiceEnvironmentsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironmentResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentResource;
-  };
-};
+export type AppServiceEnvironmentsCreateOrUpdateResponse = AppServiceEnvironmentResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to force the deletion even if the App Service Environment contains resources. The default is <code>false</code>. */
   forceDelete?: boolean;
   /** Delay to wait until next poll, in milliseconds. */
@@ -15381,55 +11074,28 @@ export interface AppServiceEnvironmentsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type AppServiceEnvironmentsUpdateResponse = AppServiceEnvironmentResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentResource;
-  };
-};
+export type AppServiceEnvironmentsUpdateResponse = AppServiceEnvironmentResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListCapacitiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCapacities operation. */
-export type AppServiceEnvironmentsListCapacitiesResponse = StampCapacityCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StampCapacityCollection;
-  };
-};
+export type AppServiceEnvironmentsListCapacitiesResponse = StampCapacityCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetVipInfoOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVipInfo operation. */
-export type AppServiceEnvironmentsGetVipInfoResponse = AddressResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AddressResponse;
-  };
-};
+export type AppServiceEnvironmentsGetVipInfoResponse = AddressResponse;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsChangeVnetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15437,100 +11103,46 @@ export interface AppServiceEnvironmentsChangeVnetOptionalParams
 }
 
 /** Contains response data for the changeVnet operation. */
-export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsChangeVnetResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListDiagnosticsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDiagnostics operation. */
-export type AppServiceEnvironmentsListDiagnosticsResponse = HostingEnvironmentDiagnostics[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostingEnvironmentDiagnostics[];
-  };
-};
+export type AppServiceEnvironmentsListDiagnosticsResponse = HostingEnvironmentDiagnostics[];
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetDiagnosticsItemOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDiagnosticsItem operation. */
-export type AppServiceEnvironmentsGetDiagnosticsItemResponse = HostingEnvironmentDiagnostics & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HostingEnvironmentDiagnostics;
-  };
-};
+export type AppServiceEnvironmentsGetDiagnosticsItemResponse = HostingEnvironmentDiagnostics;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInboundNetworkDependenciesEndpoints operation. */
-export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse = InboundEnvironmentEndpointCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundEnvironmentEndpointCollection;
-  };
-};
+export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsResponse = InboundEnvironmentEndpointCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePools operation. */
-export type AppServiceEnvironmentsListMultiRolePoolsResponse = WorkerPoolCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolsResponse = WorkerPoolCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetMultiRolePoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getMultiRolePool operation. */
-export type AppServiceEnvironmentsGetMultiRolePoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsGetMultiRolePoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15538,136 +11150,64 @@ export interface AppServiceEnvironmentsCreateOrUpdateMultiRolePoolOptionalParams
 }
 
 /** Contains response data for the createOrUpdateMultiRolePool operation. */
-export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsCreateOrUpdateMultiRolePoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsUpdateMultiRolePoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateMultiRolePool operation. */
-export type AppServiceEnvironmentsUpdateMultiRolePoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsUpdateMultiRolePoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolInstanceMetricDefinitions operation. */
-export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRoleMetricDefinitionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRoleMetricDefinitions operation. */
-export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolSkusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolSkus operation. */
-export type AppServiceEnvironmentsListMultiRolePoolSkusResponse = SkuInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SkuInfoCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolSkusResponse = SkuInfoCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRoleUsagesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRoleUsages operation. */
-export type AppServiceEnvironmentsListMultiRoleUsagesResponse = UsageCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsageCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRoleUsagesResponse = UsageCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListOperationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type AppServiceEnvironmentsListOperationsResponse = Operation[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Operation[];
-  };
-};
+export type AppServiceEnvironmentsListOperationsResponse = Operation[];
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getOutboundNetworkDependenciesEndpoints operation. */
-export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse = OutboundEnvironmentEndpointCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OutboundEnvironmentEndpointCollection;
-  };
-};
+export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsResponse = OutboundEnvironmentEndpointCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsRebootOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsResumeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15675,55 +11215,28 @@ export interface AppServiceEnvironmentsResumeOptionalParams
 }
 
 /** Contains response data for the resume operation. */
-export type AppServiceEnvironmentsResumeResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsResumeResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListAppServicePlansOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAppServicePlans operation. */
-export type AppServiceEnvironmentsListAppServicePlansResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServiceEnvironmentsListAppServicePlansResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebAppsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Comma separated list of app properties to include. */
   propertiesToInclude?: string;
 }
 
 /** Contains response data for the listWebApps operation. */
-export type AppServiceEnvironmentsListWebAppsResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebAppsResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsSuspendOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15731,71 +11244,35 @@ export interface AppServiceEnvironmentsSuspendOptionalParams
 }
 
 /** Contains response data for the suspend operation. */
-export type AppServiceEnvironmentsSuspendResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsSuspendResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListUsagesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsages operation. */
-export type AppServiceEnvironmentsListUsagesResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type AppServiceEnvironmentsListUsagesResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPools operation. */
-export type AppServiceEnvironmentsListWorkerPoolsResponse = WorkerPoolCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolsResponse = WorkerPoolCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetWorkerPoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWorkerPool operation. */
-export type AppServiceEnvironmentsGetWorkerPoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsGetWorkerPoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15803,442 +11280,199 @@ export interface AppServiceEnvironmentsCreateOrUpdateWorkerPoolOptionalParams
 }
 
 /** Contains response data for the createOrUpdateWorkerPool operation. */
-export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsCreateOrUpdateWorkerPoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsUpdateWorkerPoolOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateWorkerPool operation. */
-export type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolResource;
-  };
-};
+export type AppServiceEnvironmentsUpdateWorkerPoolResponse = WorkerPoolResource;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolInstanceMetricDefinitions operation. */
-export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebWorkerMetricDefinitionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebWorkerMetricDefinitions operation. */
-export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolSkusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolSkus operation. */
-export type AppServiceEnvironmentsListWorkerPoolSkusResponse = SkuInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SkuInfoCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolSkusResponse = SkuInfoCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebWorkerUsagesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebWorkerUsages operation. */
-export type AppServiceEnvironmentsListWebWorkerUsagesResponse = UsageCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsageCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebWorkerUsagesResponse = UsageCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AppServiceEnvironmentsListNextResponse = AppServiceEnvironmentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentCollection;
-  };
-};
+export type AppServiceEnvironmentsListNextResponse = AppServiceEnvironmentCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type AppServiceEnvironmentsListByResourceGroupNextResponse = AppServiceEnvironmentCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServiceEnvironmentCollection;
-  };
-};
+export type AppServiceEnvironmentsListByResourceGroupNextResponse = AppServiceEnvironmentCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListCapacitiesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCapacitiesNext operation. */
-export type AppServiceEnvironmentsListCapacitiesNextResponse = StampCapacityCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StampCapacityCollection;
-  };
-};
+export type AppServiceEnvironmentsListCapacitiesNextResponse = StampCapacityCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsChangeVnetNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the changeVnetNext operation. */
-export type AppServiceEnvironmentsChangeVnetNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsChangeVnetNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInboundNetworkDependenciesEndpointsNext operation. */
-export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse = InboundEnvironmentEndpointCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundEnvironmentEndpointCollection;
-  };
-};
+export type AppServiceEnvironmentsGetInboundNetworkDependenciesEndpointsNextResponse = InboundEnvironmentEndpointCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolsNext operation. */
-export type AppServiceEnvironmentsListMultiRolePoolsNextResponse = WorkerPoolCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolsNextResponse = WorkerPoolCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolInstanceMetricDefinitionsNext operation. */
-export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRoleMetricDefinitionsNext operation. */
-export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRoleMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRolePoolSkusNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRolePoolSkusNext operation. */
-export type AppServiceEnvironmentsListMultiRolePoolSkusNextResponse = SkuInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SkuInfoCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRolePoolSkusNextResponse = SkuInfoCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListMultiRoleUsagesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listMultiRoleUsagesNext operation. */
-export type AppServiceEnvironmentsListMultiRoleUsagesNextResponse = UsageCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsageCollection;
-  };
-};
+export type AppServiceEnvironmentsListMultiRoleUsagesNextResponse = UsageCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getOutboundNetworkDependenciesEndpointsNext operation. */
-export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse = OutboundEnvironmentEndpointCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OutboundEnvironmentEndpointCollection;
-  };
-};
+export type AppServiceEnvironmentsGetOutboundNetworkDependenciesEndpointsNextResponse = OutboundEnvironmentEndpointCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsResumeNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the resumeNext operation. */
-export type AppServiceEnvironmentsResumeNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsResumeNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListAppServicePlansNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAppServicePlansNext operation. */
-export type AppServiceEnvironmentsListAppServicePlansNextResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServiceEnvironmentsListAppServicePlansNextResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebAppsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Comma separated list of app properties to include. */
   propertiesToInclude?: string;
 }
 
 /** Contains response data for the listWebAppsNext operation. */
-export type AppServiceEnvironmentsListWebAppsNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebAppsNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsSuspendNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the suspendNext operation. */
-export type AppServiceEnvironmentsSuspendNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServiceEnvironmentsSuspendNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListUsagesNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2') and startTime eq 2014-01-01T00:00:00Z and endTime eq 2014-12-31T23:59:59Z and timeGrain eq duration'[Hour|Minute|Day]'. */
   filter?: string;
 }
 
 /** Contains response data for the listUsagesNext operation. */
-export type AppServiceEnvironmentsListUsagesNextResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type AppServiceEnvironmentsListUsagesNextResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolsNext operation. */
-export type AppServiceEnvironmentsListWorkerPoolsNextResponse = WorkerPoolCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WorkerPoolCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolsNextResponse = WorkerPoolCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolInstanceMetricDefinitionsNext operation. */
-export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolInstanceMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebWorkerMetricDefinitionsNext operation. */
-export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceMetricDefinitionCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebWorkerMetricDefinitionsNextResponse = ResourceMetricDefinitionCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWorkerPoolSkusNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWorkerPoolSkusNext operation. */
-export type AppServiceEnvironmentsListWorkerPoolSkusNextResponse = SkuInfoCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SkuInfoCollection;
-  };
-};
+export type AppServiceEnvironmentsListWorkerPoolSkusNextResponse = SkuInfoCollection;
 
 /** Optional parameters. */
 export interface AppServiceEnvironmentsListWebWorkerUsagesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebWorkerUsagesNext operation. */
-export type AppServiceEnvironmentsListWebWorkerUsagesNextResponse = UsageCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsageCollection;
-  };
-};
+export type AppServiceEnvironmentsListWebWorkerUsagesNextResponse = UsageCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /**
    * Specify <code>true</code> to return all App Service plan properties. The default is <code>false</code>, which returns a subset of the properties.
    *  Retrieval of all properties may increase the API latency.
@@ -16247,52 +11481,25 @@ export interface AppServicePlansListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type AppServicePlansListResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServicePlansListResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type AppServicePlansListByResourceGroupResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServicePlansListByResourceGroupResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type AppServicePlansGetResponse = AppServicePlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlan;
-  };
-};
+export type AppServicePlansGetResponse = AppServicePlan;
 
 /** Optional parameters. */
 export interface AppServicePlansCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16300,147 +11507,75 @@ export interface AppServicePlansCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type AppServicePlansCreateOrUpdateResponse = AppServicePlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlan;
-  };
-};
+export type AppServicePlansCreateOrUpdateResponse = AppServicePlan;
 
 /** Optional parameters. */
 export interface AppServicePlansDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServicePlansUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type AppServicePlansUpdateResponse = AppServicePlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlan;
-  };
-};
+export type AppServicePlansUpdateResponse = AppServicePlan;
 
 /** Optional parameters. */
 export interface AppServicePlansListCapabilitiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listCapabilities operation. */
-export type AppServicePlansListCapabilitiesResponse = Capability[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Capability[];
-  };
-};
+export type AppServicePlansListCapabilitiesResponse = Capability[];
 
 /** Optional parameters. */
 export interface AppServicePlansGetHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHybridConnection operation. */
-export type AppServicePlansGetHybridConnectionResponse = HybridConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnection;
-  };
-};
+export type AppServicePlansGetHybridConnectionResponse = HybridConnection;
 
 /** Optional parameters. */
 export interface AppServicePlansDeleteHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServicePlansListHybridConnectionKeysOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHybridConnectionKeys operation. */
-export type AppServicePlansListHybridConnectionKeysResponse = HybridConnectionKey & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnectionKey;
-  };
-};
+export type AppServicePlansListHybridConnectionKeysResponse = HybridConnectionKey;
 
 /** Optional parameters. */
 export interface AppServicePlansListWebAppsByHybridConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebAppsByHybridConnection operation. */
-export type AppServicePlansListWebAppsByHybridConnectionResponse = ResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceCollection;
-  };
-};
+export type AppServicePlansListWebAppsByHybridConnectionResponse = ResourceCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansGetHybridConnectionPlanLimitOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHybridConnectionPlanLimit operation. */
-export type AppServicePlansGetHybridConnectionPlanLimitResponse = HybridConnectionLimits & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnectionLimits;
-  };
-};
+export type AppServicePlansGetHybridConnectionPlanLimitResponse = HybridConnectionLimits;
 
 /** Optional parameters. */
 export interface AppServicePlansListHybridConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHybridConnections operation. */
-export type AppServicePlansListHybridConnectionsResponse = HybridConnectionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnectionCollection;
-  };
-};
+export type AppServicePlansListHybridConnectionsResponse = HybridConnectionCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansRestartWebAppsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Specify <code>true</code> to perform a soft restart, applies the configuration settings and restarts the apps if necessary. The default is <code>false</code>, which always restarts and reprovisions the apps */
   softRestart?: boolean;
 }
 
 /** Optional parameters. */
 export interface AppServicePlansListWebAppsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Supported filter: $filter=state eq running. Returns only web apps that are currently running */
   filter?: string;
   /** Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list */
@@ -16450,194 +11585,95 @@ export interface AppServicePlansListWebAppsOptionalParams
 }
 
 /** Contains response data for the listWebApps operation. */
-export type AppServicePlansListWebAppsResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServicePlansListWebAppsResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansGetServerFarmSkusOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServerFarmSkus operation. */
 export type AppServicePlansGetServerFarmSkusResponse = {
   /** The parsed response body. */
   body: any;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: any;
-  };
 };
 
 /** Optional parameters. */
 export interface AppServicePlansListUsagesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2'). */
   filter?: string;
 }
 
 /** Contains response data for the listUsages operation. */
-export type AppServicePlansListUsagesResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type AppServicePlansListUsagesResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListVnetsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVnets operation. */
-export type AppServicePlansListVnetsResponse = VnetInfo[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo[];
-  };
-};
+export type AppServicePlansListVnetsResponse = VnetInfo[];
 
 /** Optional parameters. */
 export interface AppServicePlansGetVnetFromServerFarmOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetFromServerFarm operation. */
-export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetInfo;
-  };
-};
+export type AppServicePlansGetVnetFromServerFarmResponse = VnetInfo;
 
 /** Optional parameters. */
 export interface AppServicePlansGetVnetGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getVnetGateway operation. */
-export type AppServicePlansGetVnetGatewayResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type AppServicePlansGetVnetGatewayResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface AppServicePlansUpdateVnetGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetGateway operation. */
-export type AppServicePlansUpdateVnetGatewayResponse = VnetGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetGateway;
-  };
-};
+export type AppServicePlansUpdateVnetGatewayResponse = VnetGateway;
 
 /** Optional parameters. */
 export interface AppServicePlansListRoutesForVnetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listRoutesForVnet operation. */
-export type AppServicePlansListRoutesForVnetResponse = VnetRoute[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetRoute[];
-  };
-};
+export type AppServicePlansListRoutesForVnetResponse = VnetRoute[];
 
 /** Optional parameters. */
 export interface AppServicePlansGetRouteForVnetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getRouteForVnet operation. */
-export type AppServicePlansGetRouteForVnetResponse = VnetRoute[] & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetRoute[];
-  };
-};
+export type AppServicePlansGetRouteForVnetResponse = VnetRoute[];
 
 /** Optional parameters. */
 export interface AppServicePlansCreateOrUpdateVnetRouteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateVnetRoute operation. */
-export type AppServicePlansCreateOrUpdateVnetRouteResponse = VnetRoute & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetRoute;
-  };
-};
+export type AppServicePlansCreateOrUpdateVnetRouteResponse = VnetRoute;
 
 /** Optional parameters. */
 export interface AppServicePlansDeleteVnetRouteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServicePlansUpdateVnetRouteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateVnetRoute operation. */
-export type AppServicePlansUpdateVnetRouteResponse = VnetRoute & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VnetRoute;
-  };
-};
+export type AppServicePlansUpdateVnetRouteResponse = VnetRoute;
 
 /** Optional parameters. */
 export interface AppServicePlansRebootWorkerOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface AppServicePlansListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /**
    * Specify <code>true</code> to return all App Service plan properties. The default is <code>false</code>, which returns a subset of the properties.
    *  Retrieval of all properties may increase the API latency.
@@ -16646,68 +11682,32 @@ export interface AppServicePlansListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type AppServicePlansListNextResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServicePlansListNextResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type AppServicePlansListByResourceGroupNextResponse = AppServicePlanCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AppServicePlanCollection;
-  };
-};
+export type AppServicePlansListByResourceGroupNextResponse = AppServicePlanCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListWebAppsByHybridConnectionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listWebAppsByHybridConnectionNext operation. */
-export type AppServicePlansListWebAppsByHybridConnectionNextResponse = ResourceCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceCollection;
-  };
-};
+export type AppServicePlansListWebAppsByHybridConnectionNextResponse = ResourceCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListHybridConnectionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listHybridConnectionsNext operation. */
-export type AppServicePlansListHybridConnectionsNextResponse = HybridConnectionCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HybridConnectionCollection;
-  };
-};
+export type AppServicePlansListHybridConnectionsNextResponse = HybridConnectionCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListWebAppsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Supported filter: $filter=state eq running. Returns only web apps that are currently running */
   filter?: string;
   /** Skip to a web app in the list of webapps associated with app service plan. If specified, the resulting list will contain web apps starting from (including) the skipToken. Otherwise, the resulting list contains web apps from the start of the list */
@@ -16717,199 +11717,91 @@ export interface AppServicePlansListWebAppsNextOptionalParams
 }
 
 /** Contains response data for the listWebAppsNext operation. */
-export type AppServicePlansListWebAppsNextResponse = WebAppCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebAppCollection;
-  };
-};
+export type AppServicePlansListWebAppsNextResponse = WebAppCollection;
 
 /** Optional parameters. */
 export interface AppServicePlansListUsagesNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Return only usages/metrics specified in the filter. Filter conforms to odata syntax. Example: $filter=(name.value eq 'Metric1' or name.value eq 'Metric2'). */
   filter?: string;
 }
 
 /** Contains response data for the listUsagesNext operation. */
-export type AppServicePlansListUsagesNextResponse = CsmUsageQuotaCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CsmUsageQuotaCollection;
-  };
-};
+export type AppServicePlansListUsagesNextResponse = CsmUsageQuotaCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ResourceHealthMetadataListByResourceGroupResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListByResourceGroupResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListBySiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySite operation. */
-export type ResourceHealthMetadataListBySiteResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListBySiteResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataGetBySiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBySite operation. */
-export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataDef;
-  };
-};
+export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListBySiteSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySiteSlot operation. */
-export type ResourceHealthMetadataListBySiteSlotResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListBySiteSlotResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataGetBySiteSlotOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBySiteSlot operation. */
-export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataDef;
-  };
-};
+export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ResourceHealthMetadataListNextResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListNextResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ResourceHealthMetadataListByResourceGroupNextResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListByResourceGroupNextResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListBySiteNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySiteNext operation. */
-export type ResourceHealthMetadataListBySiteNextResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListBySiteNextResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface ResourceHealthMetadataListBySiteSlotNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySiteSlotNext operation. */
-export type ResourceHealthMetadataListBySiteSlotNextResponse = ResourceHealthMetadataCollection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceHealthMetadataCollection;
-  };
-};
+export type ResourceHealthMetadataListBySiteSlotNextResponse = ResourceHealthMetadataCollection;
 
 /** Optional parameters. */
 export interface WebSiteManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

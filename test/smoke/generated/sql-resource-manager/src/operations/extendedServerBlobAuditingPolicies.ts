@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ExtendedServerBlobAuditingPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -125,15 +125,10 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     serverName: string,
     options?: ExtendedServerBlobAuditingPoliciesGetOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, options },
       getOperationSpec
-    ) as Promise<ExtendedServerBlobAuditingPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -157,24 +152,41 @@ export class ExtendedServerBlobAuditingPoliciesImpl
       ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ExtendedServerBlobAuditingPoliciesCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, serverName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -215,15 +227,10 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     serverName: string,
     options?: ExtendedServerBlobAuditingPoliciesListByServerOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, options },
       listByServerOperationSpec
-    ) as Promise<ExtendedServerBlobAuditingPoliciesListByServerResponse>;
+    );
   }
 
   /**
@@ -240,34 +247,16 @@ export class ExtendedServerBlobAuditingPoliciesImpl
     nextLink: string,
     options?: ExtendedServerBlobAuditingPoliciesListByServerNextOptionalParams
   ): Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, nextLink, options },
       listByServerNextOperationSpec
-    ) as Promise<ExtendedServerBlobAuditingPoliciesListByServerNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings/{blobAuditingPolicyName}",
   httpMethod: "GET",
@@ -288,7 +277,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings/{blobAuditingPolicyName}",
   httpMethod: "PUT",
@@ -320,7 +309,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByServerOperationSpec: coreHttp.OperationSpec = {
+const listByServerOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/extendedAuditingSettings",
   httpMethod: "GET",
@@ -340,7 +329,7 @@ const listByServerOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByServerNextOperationSpec: coreHttp.OperationSpec = {
+const listByServerNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

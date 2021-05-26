@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Collection } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
@@ -295,18 +295,17 @@ export class CollectionImpl implements Collection {
     filter: string,
     options?: CollectionListMetricsOptionalParams
   ): Promise<CollectionListMetricsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      collectionRid,
-      filter,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        databaseRid,
+        collectionRid,
+        filter,
+        options
+      },
       listMetricsOperationSpec
-    ) as Promise<CollectionListMetricsResponse>;
+    );
   }
 
   /**
@@ -324,17 +323,10 @@ export class CollectionImpl implements Collection {
     collectionRid: string,
     options?: CollectionListUsagesOptionalParams
   ): Promise<CollectionListUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      collectionRid,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseRid, collectionRid, options },
       listUsagesOperationSpec
-    ) as Promise<CollectionListUsagesResponse>;
+    );
   }
 
   /**
@@ -352,23 +344,16 @@ export class CollectionImpl implements Collection {
     collectionRid: string,
     options?: CollectionListMetricDefinitionsOptionalParams
   ): Promise<CollectionListMetricDefinitionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      collectionRid,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseRid, collectionRid, options },
       listMetricDefinitionsOperationSpec
-    ) as Promise<CollectionListMetricDefinitionsResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listMetricsOperationSpec: coreHttp.OperationSpec = {
+const listMetricsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/collections/{collectionRid}/metrics",
   httpMethod: "GET",
@@ -389,7 +374,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesOperationSpec: coreHttp.OperationSpec = {
+const listUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/collections/{collectionRid}/usages",
   httpMethod: "GET",
@@ -410,7 +395,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/collections/{collectionRid}/metricDefinitions",
   httpMethod: "GET",

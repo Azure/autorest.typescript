@@ -24,6 +24,7 @@ export class LROClientContext extends coreClient.ServiceClient {
     const defaults: LROClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

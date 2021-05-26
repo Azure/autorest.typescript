@@ -21,6 +21,7 @@ export class OptionalNullClientContext extends coreClient.ServiceClient {
     const defaults: OptionalNullClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

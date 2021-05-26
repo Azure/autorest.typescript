@@ -24,6 +24,7 @@ export class PagingNoIteratorsClientContext extends coreClient.ServiceClient {
     const defaults: PagingNoIteratorsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

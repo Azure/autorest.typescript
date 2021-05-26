@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   IpGroup,
@@ -108,9 +107,7 @@ export interface IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     options?: IpGroupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified ipGroups.
    * @param resourceGroupName The name of the resource group.
@@ -121,5 +118,5 @@ export interface IpGroups {
     resourceGroupName: string,
     ipGroupsName: string,
     options?: IpGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

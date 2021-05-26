@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ServicePrincipals } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -286,14 +286,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     parameters: ServicePrincipalCreateParameters,
     options?: ServicePrincipalsCreateOptionalParams
   ): Promise<ServicePrincipalsCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       createOperationSpec
-    ) as Promise<ServicePrincipalsCreateResponse>;
+    );
   }
 
   /**
@@ -303,13 +299,7 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   private _list(
     options?: ServicePrincipalsListOptionalParams
   ): Promise<ServicePrincipalsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ServicePrincipalsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -322,16 +312,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     parameters: ServicePrincipalUpdateParameters,
     options?: ServicePrincipalsUpdateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       updateOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -342,15 +327,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   delete(
     objectId: string,
     options?: ServicePrincipalsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -363,14 +344,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     options?: ServicePrincipalsGetOptionalParams
   ): Promise<ServicePrincipalsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       getOperationSpec
-    ) as Promise<ServicePrincipalsGetResponse>;
+    );
   }
 
   /**
@@ -382,14 +359,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     options?: ServicePrincipalsListOwnersOptionalParams
   ): Promise<ServicePrincipalsListOwnersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       listOwnersOperationSpec
-    ) as Promise<ServicePrincipalsListOwnersResponse>;
+    );
   }
 
   /**
@@ -401,14 +374,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     options?: ServicePrincipalsListKeyCredentialsOptionalParams
   ): Promise<ServicePrincipalsListKeyCredentialsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       listKeyCredentialsOperationSpec
-    ) as Promise<ServicePrincipalsListKeyCredentialsResponse>;
+    );
   }
 
   /**
@@ -421,16 +390,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       updateKeyCredentialsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -442,14 +406,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     options?: ServicePrincipalsListPasswordCredentialsOptionalParams
   ): Promise<ServicePrincipalsListPasswordCredentialsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, options },
       listPasswordCredentialsOperationSpec
-    ) as Promise<ServicePrincipalsListPasswordCredentialsResponse>;
+    );
   }
 
   /**
@@ -462,16 +422,11 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     objectId: string,
     parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       updatePasswordCredentialsOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -483,14 +438,10 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     nextLink: string,
     options?: ServicePrincipalsListNextOptionalParams
   ): Promise<ServicePrincipalsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ServicePrincipalsListNextResponse>;
+    );
   }
 
   /**
@@ -504,21 +455,16 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
     nextLink: string,
     options?: ServicePrincipalsListOwnersNextOptionalParams
   ): Promise<ServicePrincipalsListOwnersNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, nextLink, options },
       listOwnersNextOperationSpec
-    ) as Promise<ServicePrincipalsListOwnersNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals",
   httpMethod: "POST",
   responses: {
@@ -536,7 +482,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals",
   httpMethod: "GET",
   responses: {
@@ -552,7 +498,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
   httpMethod: "PATCH",
   responses: {
@@ -568,7 +514,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
   httpMethod: "DELETE",
   responses: {
@@ -582,7 +528,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}",
   httpMethod: "GET",
   responses: {
@@ -598,7 +544,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnersOperationSpec: coreHttp.OperationSpec = {
+const listOwnersOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/owners",
   httpMethod: "GET",
   responses: {
@@ -614,7 +560,7 @@ const listOwnersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
+const listKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/keyCredentials",
   httpMethod: "GET",
   responses: {
@@ -630,7 +576,7 @@ const listKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
+const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/keyCredentials",
   httpMethod: "PATCH",
   responses: {
@@ -646,7 +592,7 @@ const updateKeyCredentialsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
+const listPasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/passwordCredentials",
   httpMethod: "GET",
   responses: {
@@ -662,7 +608,7 @@ const listPasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
+const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/servicePrincipals/{objectId}/passwordCredentials",
   httpMethod: "PATCH",
   responses: {
@@ -678,7 +624,7 @@ const updatePasswordCredentialsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -694,7 +640,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOwnersNextOperationSpec: coreHttp.OperationSpec = {
+const listOwnersNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

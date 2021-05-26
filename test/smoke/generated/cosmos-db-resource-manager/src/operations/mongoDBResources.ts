@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { MongoDBResources } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
@@ -197,15 +197,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     options?: MongoDBResourcesListMongoDBDatabasesOptionalParams
   ): Promise<MongoDBResourcesListMongoDBDatabasesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listMongoDBDatabasesOperationSpec
-    ) as Promise<MongoDBResourcesListMongoDBDatabasesResponse>;
+    );
   }
 
   /**
@@ -222,16 +217,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     options?: MongoDBResourcesGetMongoDBDatabaseOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, options },
       getMongoDBDatabaseOperationSpec
-    ) as Promise<MongoDBResourcesGetMongoDBDatabaseResponse>;
+    );
   }
 
   /**
@@ -255,25 +244,47 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      createUpdateMongoDBDatabaseParameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesCreateUpdateMongoDBDatabaseResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        MongoDBResourcesCreateUpdateMongoDBDatabaseResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        createUpdateMongoDBDatabaseParameters,
+        options
+      },
       createUpdateMongoDBDatabaseOperationSpec,
       sendOperation
     );
@@ -317,27 +328,42 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, options },
       deleteMongoDBDatabaseOperationSpec,
       sendOperation
     );
@@ -355,7 +381,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteMongoDBDatabase(
       resourceGroupName,
       accountName,
@@ -379,16 +405,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     options?: MongoDBResourcesGetMongoDBDatabaseThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, options },
       getMongoDBDatabaseThroughputOperationSpec
-    ) as Promise<MongoDBResourcesGetMongoDBDatabaseThroughputResponse>;
+    );
   }
 
   /**
@@ -414,25 +434,47 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      updateThroughputParameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        MongoDBResourcesUpdateMongoDBDatabaseThroughputResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        updateThroughputParameters,
+        options
+      },
       updateMongoDBDatabaseThroughputOperationSpec,
       sendOperation
     );
@@ -477,16 +519,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     options?: MongoDBResourcesListMongoDBCollectionsOptionalParams
   ): Promise<MongoDBResourcesListMongoDBCollectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, options },
       listMongoDBCollectionsOperationSpec
-    ) as Promise<MongoDBResourcesListMongoDBCollectionsResponse>;
+    );
   }
 
   /**
@@ -504,17 +540,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     collectionName: string,
     options?: MongoDBResourcesGetMongoDBCollectionOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      collectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, collectionName, options },
       getMongoDBCollectionOperationSpec
-    ) as Promise<MongoDBResourcesGetMongoDBCollectionResponse>;
+    );
   }
 
   /**
@@ -540,26 +569,48 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       MongoDBResourcesCreateUpdateMongoDBCollectionResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      collectionName,
-      createUpdateMongoDBCollectionParameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesCreateUpdateMongoDBCollectionResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        MongoDBResourcesCreateUpdateMongoDBCollectionResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        collectionName,
+        createUpdateMongoDBCollectionParameters,
+        options
+      },
       createUpdateMongoDBCollectionOperationSpec,
       sendOperation
     );
@@ -608,28 +659,42 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      collectionName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, collectionName, options },
       deleteMongoDBCollectionOperationSpec,
       sendOperation
     );
@@ -649,7 +714,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteMongoDBCollection(
       resourceGroupName,
       accountName,
@@ -676,17 +741,10 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     collectionName: string,
     options?: MongoDBResourcesGetMongoDBCollectionThroughputOptionalParams
   ): Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      collectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseName, collectionName, options },
       getMongoDBCollectionThroughputOperationSpec
-    ) as Promise<MongoDBResourcesGetMongoDBCollectionThroughputResponse>;
+    );
   }
 
   /**
@@ -714,26 +772,48 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseName,
-      collectionName,
-      updateThroughputParameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<MongoDBResourcesUpdateMongoDBCollectionThroughputResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        MongoDBResourcesUpdateMongoDBCollectionThroughputResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        databaseName,
+        collectionName,
+        updateThroughputParameters,
+        options
+      },
       updateMongoDBCollectionThroughputOperationSpec,
       sendOperation
     );
@@ -767,23 +847,11 @@ export class MongoDBResourcesImpl implements MongoDBResources {
     );
     return poller.pollUntilDone();
   }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
-  }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listMongoDBDatabasesOperationSpec: coreHttp.OperationSpec = {
+const listMongoDBDatabasesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases",
   httpMethod: "GET",
@@ -802,7 +870,7 @@ const listMongoDBDatabasesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
+const getMongoDBDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}",
   httpMethod: "GET",
@@ -822,7 +890,7 @@ const getMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createUpdateMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
+const createUpdateMongoDBDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}",
   httpMethod: "PUT",
@@ -853,7 +921,7 @@ const createUpdateMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
+const deleteMongoDBDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}",
   httpMethod: "DELETE",
@@ -868,7 +936,7 @@ const deleteMongoDBDatabaseOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
+const getMongoDBDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default",
   httpMethod: "GET",
@@ -888,7 +956,7 @@ const getMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
+const updateMongoDBDatabaseThroughputOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/throughputSettings/default",
   httpMethod: "PUT",
@@ -919,7 +987,7 @@ const updateMongoDBDatabaseThroughputOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listMongoDBCollectionsOperationSpec: coreHttp.OperationSpec = {
+const listMongoDBCollectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections",
   httpMethod: "GET",
@@ -939,7 +1007,7 @@ const listMongoDBCollectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
+const getMongoDBCollectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}",
   httpMethod: "GET",
@@ -960,7 +1028,7 @@ const getMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createUpdateMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
+const createUpdateMongoDBCollectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}",
   httpMethod: "PUT",
@@ -992,7 +1060,7 @@ const createUpdateMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
+const deleteMongoDBCollectionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}",
   httpMethod: "DELETE",
@@ -1008,7 +1076,7 @@ const deleteMongoDBCollectionOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
+const getMongoDBCollectionThroughputOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default",
   httpMethod: "GET",
@@ -1029,7 +1097,7 @@ const getMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateMongoDBCollectionThroughputOperationSpec: coreHttp.OperationSpec = {
+const updateMongoDBCollectionThroughputOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/mongodbDatabases/{databaseName}/collections/{collectionName}/throughputSettings/default",
   httpMethod: "PUT",

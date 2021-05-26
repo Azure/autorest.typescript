@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const SignInName: coreHttp.CompositeMapper = {
+export const SignInName: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SignInName",
@@ -30,7 +30,7 @@ export const SignInName: coreHttp.CompositeMapper = {
   }
 };
 
-export const DirectoryObject: coreHttp.CompositeMapper = {
+export const DirectoryObject: coreClient.CompositeMapper = {
   serializedName: "DirectoryObject",
   type: {
     name: "Composite",
@@ -67,7 +67,7 @@ export const DirectoryObject: coreHttp.CompositeMapper = {
   }
 };
 
-export const GraphError: coreHttp.CompositeMapper = {
+export const GraphError: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GraphError",
@@ -88,7 +88,7 @@ export const GraphError: coreHttp.CompositeMapper = {
   }
 };
 
-export const DirectoryObjectListResult: coreHttp.CompositeMapper = {
+export const DirectoryObjectListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DirectoryObjectListResult",
@@ -115,7 +115,7 @@ export const DirectoryObjectListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationBase: coreHttp.CompositeMapper = {
+export const ApplicationBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationBase",
@@ -356,7 +356,7 @@ export const ApplicationBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const AppRole: coreHttp.CompositeMapper = {
+export const AppRole: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AppRole",
@@ -406,7 +406,7 @@ export const AppRole: coreHttp.CompositeMapper = {
   }
 };
 
-export const InformationalUrl: coreHttp.CompositeMapper = {
+export const InformationalUrl: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "InformationalUrl",
@@ -439,7 +439,7 @@ export const InformationalUrl: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyCredential: coreHttp.CompositeMapper = {
+export const KeyCredential: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyCredential",
@@ -491,7 +491,7 @@ export const KeyCredential: coreHttp.CompositeMapper = {
   }
 };
 
-export const OAuth2Permission: coreHttp.CompositeMapper = {
+export const OAuth2Permission: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OAuth2Permission",
@@ -548,7 +548,7 @@ export const OAuth2Permission: coreHttp.CompositeMapper = {
   }
 };
 
-export const OptionalClaims: coreHttp.CompositeMapper = {
+export const OptionalClaims: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OptionalClaims",
@@ -593,7 +593,7 @@ export const OptionalClaims: coreHttp.CompositeMapper = {
   }
 };
 
-export const OptionalClaim: coreHttp.CompositeMapper = {
+export const OptionalClaim: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OptionalClaim",
@@ -626,7 +626,7 @@ export const OptionalClaim: coreHttp.CompositeMapper = {
   }
 };
 
-export const PasswordCredential: coreHttp.CompositeMapper = {
+export const PasswordCredential: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PasswordCredential",
@@ -666,7 +666,7 @@ export const PasswordCredential: coreHttp.CompositeMapper = {
   }
 };
 
-export const PreAuthorizedApplication: coreHttp.CompositeMapper = {
+export const PreAuthorizedApplication: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PreAuthorizedApplication",
@@ -705,7 +705,7 @@ export const PreAuthorizedApplication: coreHttp.CompositeMapper = {
   }
 };
 
-export const PreAuthorizedApplicationPermission: coreHttp.CompositeMapper = {
+export const PreAuthorizedApplicationPermission: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PreAuthorizedApplicationPermission",
@@ -731,7 +731,7 @@ export const PreAuthorizedApplicationPermission: coreHttp.CompositeMapper = {
   }
 };
 
-export const PreAuthorizedApplicationExtension: coreHttp.CompositeMapper = {
+export const PreAuthorizedApplicationExtension: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PreAuthorizedApplicationExtension",
@@ -751,7 +751,7 @@ export const PreAuthorizedApplicationExtension: coreHttp.CompositeMapper = {
   }
 };
 
-export const RequiredResourceAccess: coreHttp.CompositeMapper = {
+export const RequiredResourceAccess: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "RequiredResourceAccess",
@@ -780,7 +780,7 @@ export const RequiredResourceAccess: coreHttp.CompositeMapper = {
   }
 };
 
-export const ResourceAccess: coreHttp.CompositeMapper = {
+export const ResourceAccess: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ResourceAccess",
@@ -803,7 +803,7 @@ export const ResourceAccess: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationListResult: coreHttp.CompositeMapper = {
+export const ApplicationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationListResult",
@@ -830,7 +830,7 @@ export const ApplicationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const AddOwnerParameters: coreHttp.CompositeMapper = {
+export const AddOwnerParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "AddOwnerParameters",
@@ -847,7 +847,7 @@ export const AddOwnerParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyCredentialListResult: coreHttp.CompositeMapper = {
+export const KeyCredentialListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyCredentialListResult",
@@ -868,7 +868,7 @@ export const KeyCredentialListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const KeyCredentialsUpdateParameters: coreHttp.CompositeMapper = {
+export const KeyCredentialsUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "KeyCredentialsUpdateParameters",
@@ -890,7 +890,7 @@ export const KeyCredentialsUpdateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const PasswordCredentialListResult: coreHttp.CompositeMapper = {
+export const PasswordCredentialListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PasswordCredentialListResult",
@@ -911,7 +911,7 @@ export const PasswordCredentialListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PasswordCredentialsUpdateParameters: coreHttp.CompositeMapper = {
+export const PasswordCredentialsUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PasswordCredentialsUpdateParameters",
@@ -933,7 +933,7 @@ export const PasswordCredentialsUpdateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const CheckGroupMembershipParameters: coreHttp.CompositeMapper = {
+export const CheckGroupMembershipParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CheckGroupMembershipParameters",
@@ -957,7 +957,7 @@ export const CheckGroupMembershipParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const CheckGroupMembershipResult: coreHttp.CompositeMapper = {
+export const CheckGroupMembershipResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "CheckGroupMembershipResult",
@@ -973,7 +973,7 @@ export const CheckGroupMembershipResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const GroupAddMemberParameters: coreHttp.CompositeMapper = {
+export const GroupAddMemberParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GroupAddMemberParameters",
@@ -990,7 +990,7 @@ export const GroupAddMemberParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const GroupCreateParameters: coreHttp.CompositeMapper = {
+export const GroupCreateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GroupCreateParameters",
@@ -1030,7 +1030,7 @@ export const GroupCreateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const GroupListResult: coreHttp.CompositeMapper = {
+export const GroupListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GroupListResult",
@@ -1057,7 +1057,7 @@ export const GroupListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const GroupGetMemberGroupsParameters: coreHttp.CompositeMapper = {
+export const GroupGetMemberGroupsParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GroupGetMemberGroupsParameters",
@@ -1074,7 +1074,7 @@ export const GroupGetMemberGroupsParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const GroupGetMemberGroupsResult: coreHttp.CompositeMapper = {
+export const GroupGetMemberGroupsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GroupGetMemberGroupsResult",
@@ -1094,7 +1094,7 @@ export const GroupGetMemberGroupsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalBase: coreHttp.CompositeMapper = {
+export const ServicePrincipalBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServicePrincipalBase",
@@ -1156,7 +1156,7 @@ export const ServicePrincipalBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
+export const ServicePrincipalListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServicePrincipalListResult",
@@ -1183,7 +1183,7 @@ export const ServicePrincipalListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalObjectResult: coreHttp.CompositeMapper = {
+export const ServicePrincipalObjectResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServicePrincipalObjectResult",
@@ -1204,7 +1204,7 @@ export const ServicePrincipalObjectResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PasswordProfile: coreHttp.CompositeMapper = {
+export const PasswordProfile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PasswordProfile",
@@ -1227,7 +1227,7 @@ export const PasswordProfile: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserBase: coreHttp.CompositeMapper = {
+export const UserBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserBase",
@@ -1267,7 +1267,7 @@ export const UserBase: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserListResult: coreHttp.CompositeMapper = {
+export const UserListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserListResult",
@@ -1294,7 +1294,7 @@ export const UserListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserGetMemberGroupsParameters: coreHttp.CompositeMapper = {
+export const UserGetMemberGroupsParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserGetMemberGroupsParameters",
@@ -1311,7 +1311,7 @@ export const UserGetMemberGroupsParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserGetMemberGroupsResult: coreHttp.CompositeMapper = {
+export const UserGetMemberGroupsResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserGetMemberGroupsResult",
@@ -1331,7 +1331,7 @@ export const UserGetMemberGroupsResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const GetObjectsParameters: coreHttp.CompositeMapper = {
+export const GetObjectsParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GetObjectsParameters",
@@ -1369,7 +1369,7 @@ export const GetObjectsParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const DomainListResult: coreHttp.CompositeMapper = {
+export const DomainListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "DomainListResult",
@@ -1390,7 +1390,7 @@ export const DomainListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Domain: coreHttp.CompositeMapper = {
+export const Domain: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Domain",
@@ -1428,7 +1428,7 @@ export const Domain: coreHttp.CompositeMapper = {
   }
 };
 
-export const OAuth2PermissionGrantListResult: coreHttp.CompositeMapper = {
+export const OAuth2PermissionGrantListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OAuth2PermissionGrantListResult",
@@ -1455,7 +1455,7 @@ export const OAuth2PermissionGrantListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const OAuth2PermissionGrantDef: coreHttp.CompositeMapper = {
+export const OAuth2PermissionGrantDef: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OAuth2PermissionGrantDef",
@@ -1518,7 +1518,7 @@ export const OAuth2PermissionGrantDef: coreHttp.CompositeMapper = {
   }
 };
 
-export const User: coreHttp.CompositeMapper = {
+export const User: coreClient.CompositeMapper = {
   serializedName: "User",
   type: {
     name: "Composite",
@@ -1604,7 +1604,7 @@ export const User: coreHttp.CompositeMapper = {
   }
 };
 
-export const Application: coreHttp.CompositeMapper = {
+export const Application: coreClient.CompositeMapper = {
   serializedName: "Application",
   type: {
     name: "Composite",
@@ -1873,7 +1873,7 @@ export const Application: coreHttp.CompositeMapper = {
   }
 };
 
-export const ADGroup: coreHttp.CompositeMapper = {
+export const ADGroup: coreClient.CompositeMapper = {
   serializedName: "Group",
   type: {
     name: "Composite",
@@ -1917,7 +1917,7 @@ export const ADGroup: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipal: coreHttp.CompositeMapper = {
+export const ServicePrincipal: coreClient.CompositeMapper = {
   serializedName: "ServicePrincipal",
   type: {
     name: "Composite",
@@ -2104,7 +2104,7 @@ export const ServicePrincipal: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
+export const ApplicationCreateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationCreateParameters",
@@ -2132,7 +2132,7 @@ export const ApplicationCreateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationUpdateParameters: coreHttp.CompositeMapper = {
+export const ApplicationUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationUpdateParameters",
@@ -2159,7 +2159,7 @@ export const ApplicationUpdateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalCreateParameters: coreHttp.CompositeMapper = {
+export const ServicePrincipalCreateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServicePrincipalCreateParameters",
@@ -2176,7 +2176,7 @@ export const ServicePrincipalCreateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const ServicePrincipalUpdateParameters: coreHttp.CompositeMapper = {
+export const ServicePrincipalUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ServicePrincipalUpdateParameters",
@@ -2186,7 +2186,7 @@ export const ServicePrincipalUpdateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserCreateParameters: coreHttp.CompositeMapper = {
+export const UserCreateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserCreateParameters",
@@ -2238,7 +2238,7 @@ export const UserCreateParameters: coreHttp.CompositeMapper = {
   }
 };
 
-export const UserUpdateParameters: coreHttp.CompositeMapper = {
+export const UserUpdateParameters: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "UserUpdateParameters",

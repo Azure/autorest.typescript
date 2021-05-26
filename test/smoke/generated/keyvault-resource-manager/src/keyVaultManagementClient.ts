@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreAuth from "@azure/core-auth";
 import {
   VaultsImpl,
   PrivateEndpointConnectionsImpl,
@@ -31,7 +31,7 @@ export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: KeyVaultManagementClientOptionalParams
   ) {

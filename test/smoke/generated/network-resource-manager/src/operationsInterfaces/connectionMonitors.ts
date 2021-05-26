@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ConnectionMonitorResult,
@@ -102,9 +101,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -117,7 +114,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Update tags of the specified connection monitor.
    * @param resourceGroupName The name of the resource group.
@@ -145,9 +142,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStopOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Stops the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -160,7 +155,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStopOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -173,9 +168,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts the specified connection monitor.
    * @param resourceGroupName The name of the resource group containing Network Watcher.
@@ -188,7 +181,7 @@ export interface ConnectionMonitors {
     networkWatcherName: string,
     connectionMonitorName: string,
     options?: ConnectionMonitorsStartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Query a snapshot of the most recent connection states.
    * @param resourceGroupName The name of the resource group containing Network Watcher.

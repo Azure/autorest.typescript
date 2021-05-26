@@ -4,7 +4,8 @@
 
 ```ts
 
-import * as coreHttp from '@azure/core-http';
+import * as coreAuth from '@azure/core-auth';
+import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
@@ -40,7 +41,7 @@ export type IdentityUpdate = Resource & {
 
 // @public (undocumented)
 export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -50,10 +51,10 @@ export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientCo
 }
 
 // @public (undocumented)
-export class ManagedServiceIdentityClientContext extends coreHttp.ServiceClient {
+export class ManagedServiceIdentityClientContext extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
-    constructor(credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
+    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
@@ -61,7 +62,7 @@ export class ManagedServiceIdentityClientContext extends coreHttp.ServiceClient 
 }
 
 // @public
-export interface ManagedServiceIdentityClientOptionalParams extends coreHttp.ServiceClientOptions {
+export interface ManagedServiceIdentityClientOptionalParams extends coreClient.ServiceClientOptions {
     $host?: string;
     apiVersion?: string;
     endpoint?: string;
@@ -93,28 +94,18 @@ export interface Operations {
 }
 
 // @public
-export interface OperationsListNextOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListNextResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 // @public
-export interface OperationsListOptionalParams extends coreHttp.OperationOptions {
+export interface OperationsListOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type OperationsListResponse = OperationListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: OperationListResult;
-    };
-};
+export type OperationsListResponse = OperationListResult;
 
 // @public
 export type ProxyResource = Resource & {};
@@ -132,16 +123,11 @@ export interface SystemAssignedIdentities {
 }
 
 // @public
-export interface SystemAssignedIdentitiesGetByScopeOptionalParams extends coreHttp.OperationOptions {
+export interface SystemAssignedIdentitiesGetByScopeOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: SystemAssignedIdentity;
-    };
-};
+export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity;
 
 // @public
 export type SystemAssignedIdentity = ProxyResource & {
@@ -166,7 +152,7 @@ export type TrackedResource = Resource & {
 // @public
 export interface UserAssignedIdentities {
     createOrUpdate(resourceGroupName: string, resourceName: string, parameters: Identity, options?: UserAssignedIdentitiesCreateOrUpdateOptionalParams): Promise<UserAssignedIdentitiesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, resourceName: string, options?: UserAssignedIdentitiesDeleteOptionalParams): Promise<coreHttp.RestResponse>;
+    delete(resourceGroupName: string, resourceName: string, options?: UserAssignedIdentitiesDeleteOptionalParams): Promise<void>;
     get(resourceGroupName: string, resourceName: string, options?: UserAssignedIdentitiesGetOptionalParams): Promise<UserAssignedIdentitiesGetResponse>;
     listByResourceGroup(resourceGroupName: string, options?: UserAssignedIdentitiesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Identity>;
     listBySubscription(options?: UserAssignedIdentitiesListBySubscriptionOptionalParams): PagedAsyncIterableIterator<Identity>;
@@ -174,80 +160,50 @@ export interface UserAssignedIdentities {
 }
 
 // @public
-export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Identity;
-    };
-};
+export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity;
 
 // @public
-export interface UserAssignedIdentitiesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesDeleteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export interface UserAssignedIdentitiesGetOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesGetResponse = Identity & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Identity;
-    };
-};
+export type UserAssignedIdentitiesGetResponse = Identity;
 
 // @public
-export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UserAssignedIdentitiesListResult;
-    };
-};
+export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult;
 
 // @public
-export interface UserAssignedIdentitiesListByResourceGroupOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesListByResourceGroupOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UserAssignedIdentitiesListResult;
-    };
-};
+export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult;
 
 // @public
-export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UserAssignedIdentitiesListResult;
-    };
-};
+export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult;
 
 // @public
-export interface UserAssignedIdentitiesListBySubscriptionOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesListBySubscriptionOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: UserAssignedIdentitiesListResult;
-    };
-};
+export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult;
 
 // @public
 export interface UserAssignedIdentitiesListResult {
@@ -256,16 +212,11 @@ export interface UserAssignedIdentitiesListResult {
 }
 
 // @public
-export interface UserAssignedIdentitiesUpdateOptionalParams extends coreHttp.OperationOptions {
+export interface UserAssignedIdentitiesUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type UserAssignedIdentitiesUpdateResponse = Identity & {
-    _response: coreHttp.HttpResponse & {
-        bodyAsText: string;
-        parsedBody: Identity;
-    };
-};
+export type UserAssignedIdentitiesUpdateResponse = Identity;
 
 
 // (No @packageDocumentation comment for this package)

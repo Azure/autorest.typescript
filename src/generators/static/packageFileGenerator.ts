@@ -4,22 +4,72 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
-import { OptionsBag } from "../../utils/optionsBag";
+import { getAutorestOptions } from "../../autorestSession";
 
 export function generatePackageJson(
-  clientDetails: ClientDetails,
-  packageDetails: PackageDetails,
   project: Project,
-  optionsBag: OptionsBag
+  clientDetails?: ClientDetails
 ) {
+  const {
+    restLevelClient,
+    generateMetadata,
+    packageDetails
+  } = getAutorestOptions();
+  let packageJsonContents;
+
+  if (!generateMetadata) {
+    return;
+  }
+
+  if (!restLevelClient) {
+    if (!clientDetails) {
+      throw new Error(
+        `Expected ClientDetails and PackageDetails to generate package.json`
+      );
+    }
+    packageJsonContents = regularAutorestPackage(clientDetails, packageDetails);
+  } else {
+    packageJsonContents = restLevelPackage();
+  }
+
+  project.createSourceFile(
+    "package.json",
+    JSON.stringify(packageJsonContents),
+    {
+      overwrite: true
+    }
+  );
+}
+
+/**
+ * This function defines the REST Level client package.json file
+ * or High Level Client
+ */
+function restLevelPackage() {
+  throw Error("Rest Level Client - Not yet implemented");
+}
+
+/**
+ * This function defines the Regular Autorest package.json file
+ * or High Level Client
+ */
+function regularAutorestPackage(
+  clientDetails: ClientDetails,
+  packageDetails: PackageDetails
+) {
+  const {
+    srcPath,
+    useCoreV2,
+    tracingInfo,
+    disablePagingAsyncIterators
+  } = getAutorestOptions();
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
   );
   const hasAsyncIterators =
-    !clientDetails.options.disablePagingAsyncIterators &&
-    clientDetails.options.hasPaging;
+    !disablePagingAsyncIterators && clientDetails.options.hasPaging;
 
-  const packageJsonContents = {
+  return {
     name: packageDetails.name,
     author: "Microsoft Corporation",
     description:
@@ -29,12 +79,12 @@ export function generatePackageJson(
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
-      ...(!optionsBag.useCoreV2 && { "@azure/core-http": "^1.2.4" }),
-      ...(optionsBag.useCoreV2 && { "@azure/core-client": "^1.1.2" }),
-      ...(optionsBag.useCoreV2 && {
+      ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
+      ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "1.0.0-beta.2"
       }),
-      ...(clientDetails.tracing && {
+      ...(tracingInfo && {
         "@azure/core-tracing": "1.0.0-preview.11",
         "@opentelemetry/api": "^0.10.2"
       }),
@@ -43,17 +93,21 @@ export function generatePackageJson(
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
-    main: `./dist/${packageDetails.nameWithoutScope}.js`,
+    main: `./dist/index.js`,
     module: `./esm/index.js`,
     types: `./esm/index.d.ts`,
     devDependencies: {
-      typescript: "^3.1.1",
-      rollup: "^0.66.2",
-      "rollup-plugin-node-resolve": "^3.4.0",
-      "rollup-plugin-sourcemaps": "^0.4.2",
-      "uglify-js": "^3.4.9",
       "@microsoft/api-extractor": "7.9.10",
-      mkdirp: "^1.0.4"
+      "@rollup/plugin-commonjs": "11.0.2",
+      "@rollup/plugin-json": "^4.0.0",
+      "@rollup/plugin-multi-entry": "^3.0.0",
+      "@rollup/plugin-node-resolve": "^8.0.0",
+      mkdirp: "^1.0.4",
+      rollup: "^1.16.3",
+      "rollup-plugin-sourcemaps": "^0.4.2",
+      "rollup-plugin-node-resolve": "^3.4.0",
+      typescript: "^3.1.1",
+      "uglify-js": "^3.4.9"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js`,
@@ -73,7 +127,7 @@ export function generatePackageJson(
       "esm/**/*.js.map",
       "esm/**/*.d.ts",
       "esm/**/*.d.ts.map",
-      `${clientDetails.srcPath}/**/*.ts`,
+      `${srcPath}/**/*.ts`,
       "README.md",
       "rollup.config.js",
       "tsconfig.json"
@@ -81,19 +135,11 @@ export function generatePackageJson(
     scripts: {
       build:
         "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
-      minify: `uglifyjs -c -m --comments --source-map "content='./dist/${packageDetails.nameWithoutScope}.js.map'" -o ./dist/${packageDetails.nameWithoutScope}.min.js ./dist/${packageDetails.nameWithoutScope}.js`,
+      minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm install && npm run build",
       "extract-api": "api-extractor run --local"
     },
     sideEffects: false,
     autoPublish: true
   };
-
-  project.createSourceFile(
-    "package.json",
-    JSON.stringify(packageJsonContents),
-    {
-      overwrite: true
-    }
-  );
 }

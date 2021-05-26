@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   InstancePool,
@@ -100,9 +99,7 @@ export interface InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     options?: InstancePoolsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an instance pool
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -114,7 +111,7 @@ export interface InstancePools {
     resourceGroupName: string,
     instancePoolName: string,
     options?: InstancePoolsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates an instance pool.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

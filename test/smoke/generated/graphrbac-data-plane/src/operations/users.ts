@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Users } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -190,14 +190,10 @@ export class UsersImpl implements Users {
     parameters: UserCreateParameters,
     options?: UsersCreateOptionalParams
   ): Promise<UsersCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       createOperationSpec
-    ) as Promise<UsersCreateResponse>;
+    );
   }
 
   /**
@@ -205,13 +201,7 @@ export class UsersImpl implements Users {
    * @param options The options parameters.
    */
   private _list(options?: UsersListOptionalParams): Promise<UsersListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<UsersListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -223,14 +213,10 @@ export class UsersImpl implements Users {
     upnOrObjectId: string,
     options?: UsersGetOptionalParams
   ): Promise<UsersGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      upnOrObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { upnOrObjectId, options },
       getOperationSpec
-    ) as Promise<UsersGetResponse>;
+    );
   }
 
   /**
@@ -243,16 +229,11 @@ export class UsersImpl implements Users {
     upnOrObjectId: string,
     parameters: UserUpdateParameters,
     options?: UsersUpdateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      upnOrObjectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { upnOrObjectId, parameters, options },
       updateOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -263,15 +244,11 @@ export class UsersImpl implements Users {
   delete(
     upnOrObjectId: string,
     options?: UsersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      upnOrObjectId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { upnOrObjectId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -285,15 +262,10 @@ export class UsersImpl implements Users {
     parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): Promise<UsersGetMemberGroupsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      objectId,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { objectId, parameters, options },
       getMemberGroupsOperationSpec
-    ) as Promise<UsersGetMemberGroupsResponse>;
+    );
   }
 
   /**
@@ -305,20 +277,16 @@ export class UsersImpl implements Users {
     nextLink: string,
     options?: UsersListNextOptionalParams
   ): Promise<UsersListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<UsersListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users",
   httpMethod: "POST",
   responses: {
@@ -336,7 +304,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users",
   httpMethod: "GET",
   responses: {
@@ -356,7 +324,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
   httpMethod: "GET",
   responses: {
@@ -376,7 +344,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
   httpMethod: "PATCH",
   responses: {
@@ -396,7 +364,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{upnOrObjectId}",
   httpMethod: "DELETE",
   responses: {
@@ -414,7 +382,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
+const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/users/{objectId}/getMemberGroups",
   httpMethod: "POST",
   responses: {
@@ -432,7 +400,7 @@ const getMemberGroupsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "GET",
   responses: {

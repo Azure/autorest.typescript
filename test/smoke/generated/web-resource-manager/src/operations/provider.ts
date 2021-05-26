@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Provider } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -180,13 +180,10 @@ export class ProviderImpl implements Provider {
   private _getAvailableStacks(
     options?: ProviderGetAvailableStacksOptionalParams
   ): Promise<ProviderGetAvailableStacksResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getAvailableStacksOperationSpec
-    ) as Promise<ProviderGetAvailableStacksResponse>;
+    );
   }
 
   /**
@@ -197,13 +194,10 @@ export class ProviderImpl implements Provider {
   private _listOperations(
     options?: ProviderListOperationsOptionalParams
   ): Promise<ProviderListOperationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listOperationsOperationSpec
-    ) as Promise<ProviderListOperationsResponse>;
+    );
   }
 
   /**
@@ -213,13 +207,10 @@ export class ProviderImpl implements Provider {
   private _getAvailableStacksOnPrem(
     options?: ProviderGetAvailableStacksOnPremOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       getAvailableStacksOnPremOperationSpec
-    ) as Promise<ProviderGetAvailableStacksOnPremResponse>;
+    );
   }
 
   /**
@@ -231,14 +222,10 @@ export class ProviderImpl implements Provider {
     nextLink: string,
     options?: ProviderGetAvailableStacksNextOptionalParams
   ): Promise<ProviderGetAvailableStacksNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       getAvailableStacksNextOperationSpec
-    ) as Promise<ProviderGetAvailableStacksNextResponse>;
+    );
   }
 
   /**
@@ -250,14 +237,10 @@ export class ProviderImpl implements Provider {
     nextLink: string,
     options?: ProviderListOperationsNextOptionalParams
   ): Promise<ProviderListOperationsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listOperationsNextOperationSpec
-    ) as Promise<ProviderListOperationsNextResponse>;
+    );
   }
 
   /**
@@ -270,20 +253,16 @@ export class ProviderImpl implements Provider {
     nextLink: string,
     options?: ProviderGetAvailableStacksOnPremNextOptionalParams
   ): Promise<ProviderGetAvailableStacksOnPremNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       getAvailableStacksOnPremNextOperationSpec
-    ) as Promise<ProviderGetAvailableStacksOnPremNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getAvailableStacksOperationSpec: coreHttp.OperationSpec = {
+const getAvailableStacksOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/availableStacks",
   httpMethod: "GET",
   responses: {
@@ -299,7 +278,7 @@ const getAvailableStacksOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationsOperationSpec: coreHttp.OperationSpec = {
+const listOperationsOperationSpec: coreClient.OperationSpec = {
   path: "/providers/Microsoft.Web/operations",
   httpMethod: "GET",
   responses: {
@@ -315,7 +294,7 @@ const listOperationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAvailableStacksOnPremOperationSpec: coreHttp.OperationSpec = {
+const getAvailableStacksOnPremOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Web/availableStacks",
   httpMethod: "GET",
@@ -332,7 +311,7 @@ const getAvailableStacksOnPremOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAvailableStacksNextOperationSpec: coreHttp.OperationSpec = {
+const getAvailableStacksNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -348,7 +327,7 @@ const getAvailableStacksNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
+const listOperationsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -364,7 +343,7 @@ const listOperationsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAvailableStacksOnPremNextOperationSpec: coreHttp.OperationSpec = {
+const getAvailableStacksOnPremNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

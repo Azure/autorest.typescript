@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DeploymentScriptUnion,
@@ -109,7 +108,7 @@ export interface DeploymentScripts {
     resourceGroupName: string,
     scriptName: string,
     options?: DeploymentScriptsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets deployment script logs for a given deployment script name.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.

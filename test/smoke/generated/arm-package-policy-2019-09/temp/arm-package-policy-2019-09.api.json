@@ -2344,12 +2344,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2382,28 +2382,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2411,7 +2389,7 @@
           "name": "PolicyAssignmentsCreateByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2425,12 +2403,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2463,28 +2441,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2492,7 +2448,7 @@
           "name": "PolicyAssignmentsCreateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2506,12 +2462,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2544,28 +2500,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2573,7 +2507,7 @@
           "name": "PolicyAssignmentsDeleteByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2587,12 +2521,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2625,28 +2559,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2654,7 +2566,7 @@
           "name": "PolicyAssignmentsDeleteResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2668,12 +2580,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2706,28 +2618,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2735,7 +2625,7 @@
           "name": "PolicyAssignmentsGetByIdResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2749,12 +2639,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2787,28 +2677,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2816,7 +2684,7 @@
           "name": "PolicyAssignmentsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2830,12 +2698,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2868,28 +2736,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2897,7 +2743,7 @@
           "name": "PolicyAssignmentsListForManagementGroupNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2911,12 +2757,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -2949,28 +2795,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -2978,7 +2802,7 @@
           "name": "PolicyAssignmentsListForManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -2992,12 +2816,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3056,28 +2880,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3085,7 +2887,7 @@
           "name": "PolicyAssignmentsListForResourceGroupNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3099,12 +2901,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3163,28 +2965,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3192,7 +2972,7 @@
           "name": "PolicyAssignmentsListForResourceGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3206,12 +2986,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3270,28 +3050,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3299,7 +3057,7 @@
           "name": "PolicyAssignmentsListForResourceNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3313,12 +3071,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3377,28 +3135,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3406,7 +3142,7 @@
           "name": "PolicyAssignmentsListForResourceResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3420,12 +3156,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3484,28 +3220,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3513,7 +3227,7 @@
           "name": "PolicyAssignmentsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3527,12 +3241,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -3591,28 +3305,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -3620,7 +3312,7 @@
           "name": "PolicyAssignmentsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -3656,21 +3348,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -3701,21 +3384,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -3819,12 +3502,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClient",
-              "canonicalReference": "@azure/core-http!ServiceClient:class"
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -3845,21 +3528,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "coreHttp."
+                  "text": "coreAuth."
                 },
                 {
                   "kind": "Reference",
                   "text": "TokenCredential",
                   "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": " | coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ServiceClientCredentials",
-                  "canonicalReference": "@azure/core-http!ServiceClientCredentials:interface"
                 },
                 {
                   "kind": "Content",
@@ -3890,21 +3564,21 @@
                   "parameterName": "credentials",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 5
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "subscriptionId",
                   "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 8,
-                    "endIndex": 9
+                    "startIndex": 6,
+                    "endIndex": 7
                   }
                 }
               ]
@@ -4005,12 +3679,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "ServiceClientOptions",
-              "canonicalReference": "@azure/core-http!ServiceClientOptions:interface"
+              "canonicalReference": "@azure/core-client!ServiceClientOptions:interface"
             },
             {
               "kind": "Content",
@@ -4955,16 +4629,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -4973,7 +4638,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5036,16 +4701,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -5054,7 +4710,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -5520,12 +5176,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5558,28 +5214,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -5587,7 +5221,7 @@
           "name": "PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5601,12 +5235,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5639,28 +5273,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -5668,7 +5280,7 @@
           "name": "PolicyDefinitionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5682,12 +5294,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5715,12 +5327,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5748,12 +5360,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5786,28 +5398,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -5815,7 +5405,7 @@
           "name": "PolicyDefinitionsGetAtManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5829,12 +5419,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5867,28 +5457,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -5896,7 +5464,7 @@
           "name": "PolicyDefinitionsGetBuiltInResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5910,12 +5478,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -5948,28 +5516,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -5977,7 +5523,7 @@
           "name": "PolicyDefinitionsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -5991,12 +5537,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6029,28 +5575,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6058,7 +5582,7 @@
           "name": "PolicyDefinitionsListBuiltInNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -6072,12 +5596,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6110,28 +5634,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6139,7 +5641,7 @@
           "name": "PolicyDefinitionsListBuiltInResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -6153,12 +5655,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6191,28 +5693,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6220,7 +5700,7 @@
           "name": "PolicyDefinitionsListByManagementGroupNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -6234,12 +5714,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6272,28 +5752,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6301,7 +5759,7 @@
           "name": "PolicyDefinitionsListByManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -6315,12 +5773,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6353,28 +5811,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6382,7 +5818,7 @@
           "name": "PolicyDefinitionsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -6396,12 +5832,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -6434,28 +5870,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -6463,7 +5877,7 @@
           "name": "PolicyDefinitionsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7062,16 +6476,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -7080,7 +6485,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 9
+                "endIndex": 7
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7143,16 +6548,7 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<coreHttp."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "RestResponse",
-                  "canonicalReference": "@azure/core-http!RestResponse:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "<void>"
                 },
                 {
                   "kind": "Content",
@@ -7161,7 +6557,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 7,
-                "endIndex": 11
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -7627,12 +7023,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7665,28 +7061,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7694,7 +7068,7 @@
           "name": "PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7708,12 +7082,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7746,28 +7120,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7775,7 +7127,7 @@
           "name": "PolicySetDefinitionsCreateOrUpdateResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7789,12 +7141,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7822,12 +7174,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7855,12 +7207,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7893,28 +7245,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -7922,7 +7252,7 @@
           "name": "PolicySetDefinitionsGetAtManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -7936,12 +7266,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -7974,28 +7304,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8003,7 +7311,7 @@
           "name": "PolicySetDefinitionsGetBuiltInResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8017,12 +7325,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8055,28 +7363,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8084,7 +7370,7 @@
           "name": "PolicySetDefinitionsGetResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8098,12 +7384,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8136,28 +7422,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8165,7 +7429,7 @@
           "name": "PolicySetDefinitionsListBuiltInNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8179,12 +7443,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8217,28 +7481,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8246,7 +7488,7 @@
           "name": "PolicySetDefinitionsListBuiltInResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8260,12 +7502,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8298,28 +7540,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8327,7 +7547,7 @@
           "name": "PolicySetDefinitionsListByManagementGroupNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8341,12 +7561,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8379,28 +7599,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8408,7 +7606,7 @@
           "name": "PolicySetDefinitionsListByManagementGroupResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8422,12 +7620,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8460,28 +7658,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8489,7 +7665,7 @@
           "name": "PolicySetDefinitionsListNextResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {
@@ -8503,12 +7679,12 @@
             },
             {
               "kind": "Content",
-              "text": "coreHttp."
+              "text": "coreClient."
             },
             {
               "kind": "Reference",
               "text": "OperationOptions",
-              "canonicalReference": "@azure/core-http!OperationOptions:interface"
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
             },
             {
               "kind": "Content",
@@ -8541,28 +7717,6 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    _response: coreHttp."
-            },
-            {
-              "kind": "Reference",
-              "text": "HttpResponse",
-              "canonicalReference": "@azure/core-http!HttpResponse:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " & {\n        bodyAsText: string;\n        parsedBody: "
-            },
-            {
-              "kind": "Reference",
-              "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";\n    };\n}"
-            },
-            {
-              "kind": "Content",
               "text": ";"
             }
           ],
@@ -8570,7 +7724,7 @@
           "name": "PolicySetDefinitionsListResponse",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 2
           }
         },
         {

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -850,39 +850,21 @@ export type ResourceIdentityType =
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface OperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteAtScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -891,11 +873,11 @@ export interface DeploymentsDeleteAtScopeOptionalParams
 
 /** Optional parameters. */
 export interface DeploymentsCheckExistenceAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsCreateOrUpdateAtScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -903,72 +885,36 @@ export interface DeploymentsCreateOrUpdateAtScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtScope operation. */
-export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsCreateOrUpdateAtScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtScope operation. */
-export type DeploymentsGetAtScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsGetAtScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsCancelAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsValidateAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtScope operation. */
-export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentValidateResult;
-  };
-};
+export type DeploymentsValidateAtScopeResponse = DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtScope operation. */
-export type DeploymentsExportTemplateAtScopeResponse = DeploymentExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExportResult;
-  };
-};
+export type DeploymentsExportTemplateAtScopeResponse = DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -976,20 +922,11 @@ export interface DeploymentsListAtScopeOptionalParams
 }
 
 /** Contains response data for the listAtScope operation. */
-export type DeploymentsListAtScopeResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtScopeResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -998,11 +935,11 @@ export interface DeploymentsDeleteAtTenantScopeOptionalParams
 
 /** Optional parameters. */
 export interface DeploymentsCheckExistenceAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1010,72 +947,36 @@ export interface DeploymentsCreateOrUpdateAtTenantScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtTenantScope operation. */
-export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsCreateOrUpdateAtTenantScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtTenantScope operation. */
-export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsGetAtTenantScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsCancelAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsValidateAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtTenantScope operation. */
-export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentValidateResult;
-  };
-};
+export type DeploymentsValidateAtTenantScopeResponse = DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtTenantScope operation. */
-export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExportResult;
-  };
-};
+export type DeploymentsExportTemplateAtTenantScopeResponse = DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1083,20 +984,11 @@ export interface DeploymentsListAtTenantScopeOptionalParams
 }
 
 /** Contains response data for the listAtTenantScope operation. */
-export type DeploymentsListAtTenantScopeResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtTenantScopeResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1105,11 +997,11 @@ export interface DeploymentsDeleteAtManagementGroupScopeOptionalParams
 
 /** Optional parameters. */
 export interface DeploymentsCheckExistenceAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1117,72 +1009,36 @@ export interface DeploymentsCreateOrUpdateAtManagementGroupScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtManagementGroupScope operation. */
-export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsCreateOrUpdateAtManagementGroupScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroupScope operation. */
-export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsGetAtManagementGroupScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsCancelAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsValidateAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtManagementGroupScope operation. */
-export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentValidateResult;
-  };
-};
+export type DeploymentsValidateAtManagementGroupScopeResponse = DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtManagementGroupScope operation. */
-export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExportResult;
-  };
-};
+export type DeploymentsExportTemplateAtManagementGroupScopeResponse = DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1190,20 +1046,11 @@ export interface DeploymentsListAtManagementGroupScopeOptionalParams
 }
 
 /** Contains response data for the listAtManagementGroupScope operation. */
-export type DeploymentsListAtManagementGroupScopeResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtManagementGroupScopeResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1212,11 +1059,11 @@ export interface DeploymentsDeleteAtSubscriptionScopeOptionalParams
 
 /** Optional parameters. */
 export interface DeploymentsCheckExistenceAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1224,56 +1071,29 @@ export interface DeploymentsCreateOrUpdateAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the createOrUpdateAtSubscriptionScope operation. */
-export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsCreateOrUpdateAtSubscriptionScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionScope operation. */
-export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsGetAtSubscriptionScopeResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsCancelAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsValidateAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validateAtSubscriptionScope operation. */
-export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentValidateResult;
-  };
-};
+export type DeploymentsValidateAtSubscriptionScopeResponse = DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1281,36 +1101,18 @@ export interface DeploymentsWhatIfAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the whatIfAtSubscriptionScope operation. */
-export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WhatIfOperationResult;
-  };
-};
+export type DeploymentsWhatIfAtSubscriptionScopeResponse = WhatIfOperationResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplateAtSubscriptionScope operation. */
-export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExportResult;
-  };
-};
+export type DeploymentsExportTemplateAtSubscriptionScopeResponse = DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1318,20 +1120,11 @@ export interface DeploymentsListAtSubscriptionScopeOptionalParams
 }
 
 /** Contains response data for the listAtSubscriptionScope operation. */
-export type DeploymentsListAtSubscriptionScopeResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtSubscriptionScopeResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1340,11 +1133,11 @@ export interface DeploymentsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface DeploymentsCheckExistenceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1352,56 +1145,29 @@ export interface DeploymentsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type DeploymentsCreateOrUpdateResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsCreateOrUpdateResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DeploymentsGetResponse = DeploymentExtended & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExtended;
-  };
-};
+export type DeploymentsGetResponse = DeploymentExtended;
 
 /** Optional parameters. */
 export interface DeploymentsCancelOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface DeploymentsValidateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the validate operation. */
-export type DeploymentsValidateResponse = DeploymentValidateResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentValidateResult;
-  };
-};
+export type DeploymentsValidateResponse = DeploymentValidateResult;
 
 /** Optional parameters. */
 export interface DeploymentsWhatIfOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1409,36 +1175,18 @@ export interface DeploymentsWhatIfOptionalParams
 }
 
 /** Contains response data for the whatIf operation. */
-export type DeploymentsWhatIfResponse = WhatIfOperationResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WhatIfOperationResult;
-  };
-};
+export type DeploymentsWhatIfResponse = WhatIfOperationResult;
 
 /** Optional parameters. */
 export interface DeploymentsExportTemplateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the exportTemplate operation. */
-export type DeploymentsExportTemplateResponse = DeploymentExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentExportResult;
-  };
-};
+export type DeploymentsExportTemplateResponse = DeploymentExportResult;
 
 /** Optional parameters. */
 export interface DeploymentsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1446,36 +1194,18 @@ export interface DeploymentsListByResourceGroupOptionalParams
 }
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DeploymentsListByResourceGroupResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListByResourceGroupResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsCalculateTemplateHashOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the calculateTemplateHash operation. */
-export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TemplateHashResult;
-  };
-};
+export type DeploymentsCalculateTemplateHashResponse = TemplateHashResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1483,20 +1213,11 @@ export interface DeploymentsListAtScopeNextOptionalParams
 }
 
 /** Contains response data for the listAtScopeNext operation. */
-export type DeploymentsListAtScopeNextResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtTenantScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1504,20 +1225,11 @@ export interface DeploymentsListAtTenantScopeNextOptionalParams
 }
 
 /** Contains response data for the listAtTenantScopeNext operation. */
-export type DeploymentsListAtTenantScopeNextResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtTenantScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtManagementGroupScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1525,20 +1237,11 @@ export interface DeploymentsListAtManagementGroupScopeNextOptionalParams
 }
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
-export type DeploymentsListAtManagementGroupScopeNextResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtManagementGroupScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListAtSubscriptionScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1546,20 +1249,11 @@ export interface DeploymentsListAtSubscriptionScopeNextOptionalParams
 }
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
-export type DeploymentsListAtSubscriptionScopeNextResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListAtSubscriptionScopeNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface DeploymentsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation. For example, you can use $filter=provisioningState eq '{state}'. */
   filter?: string;
   /** The number of results to get. If null is passed, returns all deployments. */
@@ -1567,51 +1261,25 @@ export interface DeploymentsListByResourceGroupNextOptionalParams
 }
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DeploymentsListByResourceGroupNextResponse = DeploymentListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentListResult;
-  };
-};
+export type DeploymentsListByResourceGroupNextResponse = DeploymentListResult;
 
 /** Optional parameters. */
 export interface ProvidersUnregisterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the unregister operation. */
-export type ProvidersUnregisterResponse = Provider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Provider;
-  };
-};
+export type ProvidersUnregisterResponse = Provider;
 
 /** Optional parameters. */
 export interface ProvidersRegisterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the register operation. */
-export type ProvidersRegisterResponse = Provider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Provider;
-  };
-};
+export type ProvidersRegisterResponse = Provider;
 
 /** Optional parameters. */
-export interface ProvidersListOptionalParams extends coreHttp.OperationOptions {
+export interface ProvidersListOptionalParams
+  extends coreClient.OperationOptions {
   /** The number of results to return. If null is passed returns all deployments. */
   top?: number;
   /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
@@ -1619,20 +1287,11 @@ export interface ProvidersListOptionalParams extends coreHttp.OperationOptions {
 }
 
 /** Contains response data for the list operation. */
-export type ProvidersListResponse = ProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProviderListResult;
-  };
-};
+export type ProvidersListResponse = ProviderListResult;
 
 /** Optional parameters. */
 export interface ProvidersListAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. If null is passed returns all providers. */
   top?: number;
   /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
@@ -1640,57 +1299,31 @@ export interface ProvidersListAtTenantScopeOptionalParams
 }
 
 /** Contains response data for the listAtTenantScope operation. */
-export type ProvidersListAtTenantScopeResponse = ProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProviderListResult;
-  };
-};
+export type ProvidersListAtTenantScopeResponse = ProviderListResult;
 
 /** Optional parameters. */
-export interface ProvidersGetOptionalParams extends coreHttp.OperationOptions {
+export interface ProvidersGetOptionalParams
+  extends coreClient.OperationOptions {
   /** The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type ProvidersGetResponse = Provider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Provider;
-  };
-};
+export type ProvidersGetResponse = Provider;
 
 /** Optional parameters. */
 export interface ProvidersGetAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The $expand query parameter. For example, to include property aliases in response, use $expand=resourceTypes/aliases. */
   expand?: string;
 }
 
 /** Contains response data for the getAtTenantScope operation. */
-export type ProvidersGetAtTenantScopeResponse = Provider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Provider;
-  };
-};
+export type ProvidersGetAtTenantScopeResponse = Provider;
 
 /** Optional parameters. */
 export interface ProvidersListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. If null is passed returns all deployments. */
   top?: number;
   /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
@@ -1698,20 +1331,11 @@ export interface ProvidersListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type ProvidersListNextResponse = ProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProviderListResult;
-  };
-};
+export type ProvidersListNextResponse = ProviderListResult;
 
 /** Optional parameters. */
 export interface ProvidersListAtTenantScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. If null is passed returns all providers. */
   top?: number;
   /** The properties to include in the results. For example, use &$expand=metadata in the query string to retrieve resource provider metadata. To include property aliases in response, use $expand=resourceTypes/aliases. */
@@ -1719,20 +1343,11 @@ export interface ProvidersListAtTenantScopeNextOptionalParams
 }
 
 /** Contains response data for the listAtTenantScopeNext operation. */
-export type ProvidersListAtTenantScopeNextResponse = ProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ProviderListResult;
-  };
-};
+export type ProvidersListAtTenantScopeNextResponse = ProviderListResult;
 
 /** Optional parameters. */
 export interface ResourcesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resources. */
@@ -1742,20 +1357,11 @@ export interface ResourcesListByResourceGroupOptionalParams
 }
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ResourcesListByResourceGroupResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type ResourcesListByResourceGroupResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface ResourcesMoveResourcesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1764,7 +1370,7 @@ export interface ResourcesMoveResourcesOptionalParams
 
 /** Optional parameters. */
 export interface ResourcesValidateMoveResourcesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1772,7 +1378,8 @@ export interface ResourcesValidateMoveResourcesOptionalParams
 }
 
 /** Optional parameters. */
-export interface ResourcesListOptionalParams extends coreHttp.OperationOptions {
+export interface ResourcesListOptionalParams
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resource groups. */
@@ -1782,24 +1389,15 @@ export interface ResourcesListOptionalParams extends coreHttp.OperationOptions {
 }
 
 /** Contains response data for the list operation. */
-export type ResourcesListResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type ResourcesListResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface ResourcesCheckExistenceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ResourcesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1808,7 +1406,7 @@ export interface ResourcesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ResourcesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1816,20 +1414,11 @@ export interface ResourcesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ResourcesCreateOrUpdateResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesCreateOrUpdateResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1837,39 +1426,22 @@ export interface ResourcesUpdateOptionalParams
 }
 
 /** Contains response data for the update operation. */
-export type ResourcesUpdateResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesUpdateResponse = GenericResource;
 
 /** Optional parameters. */
-export interface ResourcesGetOptionalParams extends coreHttp.OperationOptions {}
+export interface ResourcesGetOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ResourcesGetResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesGetResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesCheckExistenceByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ResourcesDeleteByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1878,7 +1450,7 @@ export interface ResourcesDeleteByIdOptionalParams
 
 /** Optional parameters. */
 export interface ResourcesCreateOrUpdateByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1886,20 +1458,11 @@ export interface ResourcesCreateOrUpdateByIdOptionalParams
 }
 
 /** Contains response data for the createOrUpdateById operation. */
-export type ResourcesCreateOrUpdateByIdResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesCreateOrUpdateByIdResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesUpdateByIdOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1907,36 +1470,18 @@ export interface ResourcesUpdateByIdOptionalParams
 }
 
 /** Contains response data for the updateById operation. */
-export type ResourcesUpdateByIdResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesUpdateByIdResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesGetByIdOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getById operation. */
-export type ResourcesGetByIdResponse = GenericResource & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GenericResource;
-  };
-};
+export type ResourcesGetByIdResponse = GenericResource;
 
 /** Optional parameters. */
 export interface ResourcesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resources. */
@@ -1946,20 +1491,11 @@ export interface ResourcesListByResourceGroupNextOptionalParams
 }
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ResourcesListByResourceGroupNextResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type ResourcesListByResourceGroupNextResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface ResourcesListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>The properties you can use for eq (equals) or ne (not equals) are: location, resourceType, name, resourceGroup, identity, identity/principalId, plan, plan/publisher, plan/product, plan/name, plan/version, and plan/promotionCode.<br><br>For example, to filter by a resource type, use: $filter=resourceType eq 'Microsoft.Network/virtualNetworks'<br><br>You can use substringof(value, property) in the filter. The properties you can use for substring are: name and resourceGroup.<br><br>For example, to get all resources with 'demo' anywhere in the name, use: $filter=substringof('demo', name)<br><br>You can link more than one substringof together by adding and/or operators.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1'. When you filter by a tag name and value, the tags for each resource are not returned in the results.<br><br>You can use some properties together when filtering. The combinations you can use are: substringof and/or resourceType, plan and plan/publisher and plan/name, identity and identity/principalId. */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resource groups. */
@@ -1969,40 +1505,22 @@ export interface ResourcesListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type ResourcesListNextResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type ResourcesListNextResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface ResourceGroupsCheckExistenceOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ResourceGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroup;
-  };
-};
+export type ResourceGroupsCreateOrUpdateResponse = ResourceGroup;
 
 /** Optional parameters. */
 export interface ResourceGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2011,39 +1529,21 @@ export interface ResourceGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ResourceGroupsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ResourceGroupsGetResponse = ResourceGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroup;
-  };
-};
+export type ResourceGroupsGetResponse = ResourceGroup;
 
 /** Optional parameters. */
 export interface ResourceGroupsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type ResourceGroupsUpdateResponse = ResourceGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroup;
-  };
-};
+export type ResourceGroupsUpdateResponse = ResourceGroup;
 
 /** Optional parameters. */
 export interface ResourceGroupsExportTemplateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2051,20 +1551,11 @@ export interface ResourceGroupsExportTemplateOptionalParams
 }
 
 /** Contains response data for the exportTemplate operation. */
-export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroupExportResult;
-  };
-};
+export type ResourceGroupsExportTemplateResponse = ResourceGroupExportResult;
 
 /** Optional parameters. */
 export interface ResourceGroupsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1' */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resource groups. */
@@ -2072,20 +1563,11 @@ export interface ResourceGroupsListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type ResourceGroupsListResponse = ResourceGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroupListResult;
-  };
-};
+export type ResourceGroupsListResponse = ResourceGroupListResult;
 
 /** Optional parameters. */
 export interface ResourceGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the operation.<br><br>You can filter by tag names and values. For example, to filter for a tag name and value, use $filter=tagName eq 'tag1' and tagValue eq 'Value1' */
   filter?: string;
   /** The number of results to return. If null is passed, returns all resource groups. */
@@ -2093,359 +1575,180 @@ export interface ResourceGroupsListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type ResourceGroupsListNextResponse = ResourceGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceGroupListResult;
-  };
-};
+export type ResourceGroupsListNextResponse = ResourceGroupListResult;
 
 /** Optional parameters. */
 export interface TagsDeleteValueOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface TagsCreateOrUpdateValueOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdateValue operation. */
-export type TagsCreateOrUpdateValueResponse = TagValue & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TagValue;
-  };
-};
+export type TagsCreateOrUpdateValueResponse = TagValue;
 
 /** Optional parameters. */
 export interface TagsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type TagsCreateOrUpdateResponse = TagDetails & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TagDetails;
-  };
-};
+export type TagsCreateOrUpdateResponse = TagDetails;
 
 /** Optional parameters. */
-export interface TagsDeleteOptionalParams extends coreHttp.OperationOptions {}
+export interface TagsDeleteOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface TagsListOptionalParams extends coreHttp.OperationOptions {}
+export interface TagsListOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type TagsListResponse = TagsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TagsListResult;
-  };
-};
+export type TagsListResponse = TagsListResult;
 
 /** Optional parameters. */
-export interface TagsListNextOptionalParams extends coreHttp.OperationOptions {}
+export interface TagsListNextOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type TagsListNextResponse = TagsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TagsListResult;
-  };
-};
+export type TagsListNextResponse = TagsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtScope operation. */
-export type DeploymentOperationsGetAtScopeResponse = DeploymentOperation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperation;
-  };
-};
+export type DeploymentOperationsGetAtScopeResponse = DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtScope operation. */
-export type DeploymentOperationsListAtScopeResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtScopeResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtTenantScope operation. */
-export type DeploymentOperationsGetAtTenantScopeResponse = DeploymentOperation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperation;
-  };
-};
+export type DeploymentOperationsGetAtTenantScopeResponse = DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtTenantScope operation. */
-export type DeploymentOperationsListAtTenantScopeResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtTenantScopeResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtManagementGroupScope operation. */
-export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperation;
-  };
-};
+export type DeploymentOperationsGetAtManagementGroupScopeResponse = DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtManagementGroupScope operation. */
-export type DeploymentOperationsListAtManagementGroupScopeResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtManagementGroupScopeResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getAtSubscriptionScope operation. */
-export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperation;
-  };
-};
+export type DeploymentOperationsGetAtSubscriptionScopeResponse = DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtSubscriptionScope operation. */
-export type DeploymentOperationsListAtSubscriptionScopeResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtSubscriptionScopeResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DeploymentOperationsGetResponse = DeploymentOperation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperation;
-  };
-};
+export type DeploymentOperationsGetResponse = DeploymentOperation;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the list operation. */
-export type DeploymentOperationsListResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtScopeNext operation. */
-export type DeploymentOperationsListAtScopeNextResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtTenantScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtTenantScopeNext operation. */
-export type DeploymentOperationsListAtTenantScopeNextResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtTenantScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtManagementGroupScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtManagementGroupScopeNext operation. */
-export type DeploymentOperationsListAtManagementGroupScopeNextResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtManagementGroupScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListAtSubscriptionScopeNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listAtSubscriptionScopeNext operation. */
-export type DeploymentOperationsListAtSubscriptionScopeNextResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListAtSubscriptionScopeNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface DeploymentOperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listNext operation. */
-export type DeploymentOperationsListNextResponse = DeploymentOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeploymentOperationsListResult;
-  };
-};
+export type DeploymentOperationsListNextResponse = DeploymentOperationsListResult;
 
 /** Optional parameters. */
 export interface ResourceManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export type FirewallPolicyRuleUnion =
   | FirewallPolicyRule
@@ -10677,7 +10677,7 @@ export type ResourceIdentityType =
 
 /** Optional parameters. */
 export interface ApplicationGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10686,23 +10686,14 @@ export interface ApplicationGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ApplicationGatewaysGetResponse = ApplicationGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGateway;
-  };
-};
+export type ApplicationGatewaysGetResponse = ApplicationGateway;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10710,68 +10701,32 @@ export interface ApplicationGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ApplicationGatewaysCreateOrUpdateResponse = ApplicationGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGateway;
-  };
-};
+export type ApplicationGatewaysCreateOrUpdateResponse = ApplicationGateway;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGateway;
-  };
-};
+export type ApplicationGatewaysUpdateTagsResponse = ApplicationGateway;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ApplicationGatewaysListResponse = ApplicationGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayListResult;
-  };
-};
+export type ApplicationGatewaysListResponse = ApplicationGatewayListResult;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type ApplicationGatewaysListAllResponse = ApplicationGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayListResult;
-  };
-};
+export type ApplicationGatewaysListAllResponse = ApplicationGatewayListResult;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysStartOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10780,7 +10735,7 @@ export interface ApplicationGatewaysStartOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationGatewaysStopOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -10789,7 +10744,7 @@ export interface ApplicationGatewaysStopOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationGatewaysBackendHealthOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands BackendAddressPool and BackendHttpSettings referenced in backend health. */
   expand?: string;
   /** Delay to wait until next poll, in milliseconds. */
@@ -10799,20 +10754,11 @@ export interface ApplicationGatewaysBackendHealthOptionalParams
 }
 
 /** Contains response data for the backendHealth operation. */
-export type ApplicationGatewaysBackendHealthResponse = ApplicationGatewayBackendHealth & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayBackendHealth;
-  };
-};
+export type ApplicationGatewaysBackendHealthResponse = ApplicationGatewayBackendHealth;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysBackendHealthOnDemandOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands BackendAddressPool and BackendHttpSettings referenced in backend health. */
   expand?: string;
   /** Delay to wait until next poll, in milliseconds. */
@@ -10822,189 +10768,90 @@ export interface ApplicationGatewaysBackendHealthOnDemandOptionalParams
 }
 
 /** Contains response data for the backendHealthOnDemand operation. */
-export type ApplicationGatewaysBackendHealthOnDemandResponse = ApplicationGatewayBackendHealthOnDemand & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayBackendHealthOnDemand;
-  };
-};
+export type ApplicationGatewaysBackendHealthOnDemandResponse = ApplicationGatewayBackendHealthOnDemand;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableServerVariablesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableServerVariables operation. */
 export type ApplicationGatewaysListAvailableServerVariablesResponse = {
   /** The parsed response body. */
   body: string[];
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string[];
-  };
 };
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableRequestHeadersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableRequestHeaders operation. */
 export type ApplicationGatewaysListAvailableRequestHeadersResponse = {
   /** The parsed response body. */
   body: string[];
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string[];
-  };
 };
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableResponseHeadersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableResponseHeaders operation. */
 export type ApplicationGatewaysListAvailableResponseHeadersResponse = {
   /** The parsed response body. */
   body: string[];
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string[];
-  };
 };
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableWafRuleSetsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableWafRuleSets operation. */
-export type ApplicationGatewaysListAvailableWafRuleSetsResponse = ApplicationGatewayAvailableWafRuleSetsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayAvailableWafRuleSetsResult;
-  };
-};
+export type ApplicationGatewaysListAvailableWafRuleSetsResponse = ApplicationGatewayAvailableWafRuleSetsResult;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableSslOptionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableSslOptions operation. */
-export type ApplicationGatewaysListAvailableSslOptionsResponse = ApplicationGatewayAvailableSslOptions & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayAvailableSslOptions;
-  };
-};
+export type ApplicationGatewaysListAvailableSslOptionsResponse = ApplicationGatewayAvailableSslOptions;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableSslPredefinedPolicies operation. */
-export type ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse = ApplicationGatewayAvailableSslPredefinedPolicies & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
-  };
-};
+export type ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse = ApplicationGatewayAvailableSslPredefinedPolicies;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysGetSslPredefinedPolicyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSslPredefinedPolicy operation. */
-export type ApplicationGatewaysGetSslPredefinedPolicyResponse = ApplicationGatewaySslPredefinedPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewaySslPredefinedPolicy;
-  };
-};
+export type ApplicationGatewaysGetSslPredefinedPolicyResponse = ApplicationGatewaySslPredefinedPolicy;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ApplicationGatewaysListNextResponse = ApplicationGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayListResult;
-  };
-};
+export type ApplicationGatewaysListNextResponse = ApplicationGatewayListResult;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayListResult;
-  };
-};
+export type ApplicationGatewaysListAllNextResponse = ApplicationGatewayListResult;
 
 /** Optional parameters. */
 export interface ApplicationGatewaysListAvailableSslPredefinedPoliciesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAvailableSslPredefinedPoliciesNext operation. */
-export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = ApplicationGatewayAvailableSslPredefinedPolicies & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationGatewayAvailableSslPredefinedPolicies;
-  };
-};
+export type ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse = ApplicationGatewayAvailableSslPredefinedPolicies;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11013,23 +10860,14 @@ export interface ApplicationSecurityGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ApplicationSecurityGroupsGetResponse = ApplicationSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroup;
-  };
-};
+export type ApplicationSecurityGroupsGetResponse = ApplicationSecurityGroup;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11037,228 +10875,102 @@ export interface ApplicationSecurityGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroup;
-  };
-};
+export type ApplicationSecurityGroupsCreateOrUpdateResponse = ApplicationSecurityGroup;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ApplicationSecurityGroupsUpdateTagsResponse = ApplicationSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroup;
-  };
-};
+export type ApplicationSecurityGroupsUpdateTagsResponse = ApplicationSecurityGroup;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type ApplicationSecurityGroupsListAllResponse = ApplicationSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroupListResult;
-  };
-};
+export type ApplicationSecurityGroupsListAllResponse = ApplicationSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ApplicationSecurityGroupsListResponse = ApplicationSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroupListResult;
-  };
-};
+export type ApplicationSecurityGroupsListResponse = ApplicationSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type ApplicationSecurityGroupsListAllNextResponse = ApplicationSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroupListResult;
-  };
-};
+export type ApplicationSecurityGroupsListAllNextResponse = ApplicationSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface ApplicationSecurityGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ApplicationSecurityGroupsListNextResponse = ApplicationSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ApplicationSecurityGroupListResult;
-  };
-};
+export type ApplicationSecurityGroupsListNextResponse = ApplicationSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface AvailableDelegationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AvailableDelegationsListResponse = AvailableDelegationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableDelegationsResult;
-  };
-};
+export type AvailableDelegationsListResponse = AvailableDelegationsResult;
 
 /** Optional parameters. */
 export interface AvailableDelegationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AvailableDelegationsListNextResponse = AvailableDelegationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableDelegationsResult;
-  };
-};
+export type AvailableDelegationsListNextResponse = AvailableDelegationsResult;
 
 /** Optional parameters. */
 export interface AvailableResourceGroupDelegationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AvailableResourceGroupDelegationsListResponse = AvailableDelegationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableDelegationsResult;
-  };
-};
+export type AvailableResourceGroupDelegationsListResponse = AvailableDelegationsResult;
 
 /** Optional parameters. */
 export interface AvailableResourceGroupDelegationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AvailableResourceGroupDelegationsListNextResponse = AvailableDelegationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableDelegationsResult;
-  };
-};
+export type AvailableResourceGroupDelegationsListNextResponse = AvailableDelegationsResult;
 
 /** Optional parameters. */
 export interface AvailableServiceAliasesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AvailableServiceAliasesListResponse = AvailableServiceAliasesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableServiceAliasesResult;
-  };
-};
+export type AvailableServiceAliasesListResponse = AvailableServiceAliasesResult;
 
 /** Optional parameters. */
 export interface AvailableServiceAliasesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type AvailableServiceAliasesListByResourceGroupResponse = AvailableServiceAliasesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableServiceAliasesResult;
-  };
-};
+export type AvailableServiceAliasesListByResourceGroupResponse = AvailableServiceAliasesResult;
 
 /** Optional parameters. */
 export interface AvailableServiceAliasesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AvailableServiceAliasesListNextResponse = AvailableServiceAliasesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableServiceAliasesResult;
-  };
-};
+export type AvailableServiceAliasesListNextResponse = AvailableServiceAliasesResult;
 
 /** Optional parameters. */
 export interface AvailableServiceAliasesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type AvailableServiceAliasesListByResourceGroupNextResponse = AvailableServiceAliasesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableServiceAliasesResult;
-  };
-};
+export type AvailableServiceAliasesListByResourceGroupNextResponse = AvailableServiceAliasesResult;
 
 /** Optional parameters. */
 export interface AzureFirewallsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11267,23 +10979,14 @@ export interface AzureFirewallsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface AzureFirewallsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type AzureFirewallsGetResponse = AzureFirewall & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewall;
-  };
-};
+export type AzureFirewallsGetResponse = AzureFirewall;
 
 /** Optional parameters. */
 export interface AzureFirewallsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11291,20 +10994,11 @@ export interface AzureFirewallsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewall;
-  };
-};
+export type AzureFirewallsCreateOrUpdateResponse = AzureFirewall;
 
 /** Optional parameters. */
 export interface AzureFirewallsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11312,116 +11006,53 @@ export interface AzureFirewallsUpdateTagsOptionalParams
 }
 
 /** Contains response data for the updateTags operation. */
-export type AzureFirewallsUpdateTagsResponse = AzureFirewall & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewall;
-  };
-};
+export type AzureFirewallsUpdateTagsResponse = AzureFirewall;
 
 /** Optional parameters. */
 export interface AzureFirewallsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AzureFirewallsListResponse = AzureFirewallListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallListResult;
-  };
-};
+export type AzureFirewallsListResponse = AzureFirewallListResult;
 
 /** Optional parameters. */
 export interface AzureFirewallsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type AzureFirewallsListAllResponse = AzureFirewallListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallListResult;
-  };
-};
+export type AzureFirewallsListAllResponse = AzureFirewallListResult;
 
 /** Optional parameters. */
 export interface AzureFirewallsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AzureFirewallsListNextResponse = AzureFirewallListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallListResult;
-  };
-};
+export type AzureFirewallsListNextResponse = AzureFirewallListResult;
 
 /** Optional parameters. */
 export interface AzureFirewallsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type AzureFirewallsListAllNextResponse = AzureFirewallListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallListResult;
-  };
-};
+export type AzureFirewallsListAllNextResponse = AzureFirewallListResult;
 
 /** Optional parameters. */
 export interface AzureFirewallFqdnTagsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type AzureFirewallFqdnTagsListAllResponse = AzureFirewallFqdnTagListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallFqdnTagListResult;
-  };
-};
+export type AzureFirewallFqdnTagsListAllResponse = AzureFirewallFqdnTagListResult;
 
 /** Optional parameters. */
 export interface AzureFirewallFqdnTagsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type AzureFirewallFqdnTagsListAllNextResponse = AzureFirewallFqdnTagListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureFirewallFqdnTagListResult;
-  };
-};
+export type AzureFirewallFqdnTagsListAllNextResponse = AzureFirewallFqdnTagListResult;
 
 /** Optional parameters. */
 export interface BastionHostsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11430,23 +11061,14 @@ export interface BastionHostsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface BastionHostsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type BastionHostsGetResponse = BastionHost & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHost;
-  };
-};
+export type BastionHostsGetResponse = BastionHost;
 
 /** Optional parameters. */
 export interface BastionHostsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11454,84 +11076,39 @@ export interface BastionHostsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type BastionHostsCreateOrUpdateResponse = BastionHost & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHost;
-  };
-};
+export type BastionHostsCreateOrUpdateResponse = BastionHost;
 
 /** Optional parameters. */
 export interface BastionHostsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type BastionHostsListResponse = BastionHostListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHostListResult;
-  };
-};
+export type BastionHostsListResponse = BastionHostListResult;
 
 /** Optional parameters. */
 export interface BastionHostsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type BastionHostsListByResourceGroupResponse = BastionHostListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHostListResult;
-  };
-};
+export type BastionHostsListByResourceGroupResponse = BastionHostListResult;
 
 /** Optional parameters. */
 export interface BastionHostsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type BastionHostsListNextResponse = BastionHostListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHostListResult;
-  };
-};
+export type BastionHostsListNextResponse = BastionHostListResult;
 
 /** Optional parameters. */
 export interface BastionHostsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type BastionHostsListByResourceGroupNextResponse = BastionHostListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionHostListResult;
-  };
-};
+export type BastionHostsListByResourceGroupNextResponse = BastionHostListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientPutBastionShareableLinkOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11539,20 +11116,11 @@ export interface NetworkManagementClientPutBastionShareableLinkOptionalParams
 }
 
 /** Contains response data for the putBastionShareableLink operation. */
-export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShareableLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionShareableLinkListResult;
-  };
-};
+export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11561,23 +11129,14 @@ export interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams
 
 /** Optional parameters. */
 export interface NetworkManagementClientGetBastionShareableLinkOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBastionShareableLink operation. */
-export type NetworkManagementClientGetBastionShareableLinkResponse = BastionShareableLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionShareableLinkListResult;
-  };
-};
+export type NetworkManagementClientGetBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientGetActiveSessionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11585,68 +11144,32 @@ export interface NetworkManagementClientGetActiveSessionsOptionalParams
 }
 
 /** Contains response data for the getActiveSessions operation. */
-export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSessionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionActiveSessionListResult;
-  };
-};
+export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSessionListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientDisconnectActiveSessionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the disconnectActiveSessions operation. */
-export type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSessionDeleteResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionSessionDeleteResult;
-  };
-};
+export type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSessionDeleteResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientCheckDnsNameAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkDnsNameAvailability operation. */
-export type NetworkManagementClientCheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DnsNameAvailabilityResult;
-  };
-};
+export type NetworkManagementClientCheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientSupportedSecurityProvidersOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the supportedSecurityProviders operation. */
-export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualWanSecurityProviders & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualWanSecurityProviders;
-  };
-};
+export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualWanSecurityProviders;
 
 /** Optional parameters. */
 export interface NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11654,84 +11177,39 @@ export interface NetworkManagementClientGeneratevirtualwanvpnserverconfiguration
 }
 
 /** Contains response data for the generatevirtualwanvpnserverconfigurationvpnprofile operation. */
-export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnProfileResponse;
-  };
-};
+export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse;
 
 /** Optional parameters. */
 export interface NetworkManagementClientPutBastionShareableLinkNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the putBastionShareableLinkNext operation. */
-export type NetworkManagementClientPutBastionShareableLinkNextResponse = BastionShareableLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionShareableLinkListResult;
-  };
-};
+export type NetworkManagementClientPutBastionShareableLinkNextResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientGetBastionShareableLinkNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBastionShareableLinkNext operation. */
-export type NetworkManagementClientGetBastionShareableLinkNextResponse = BastionShareableLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionShareableLinkListResult;
-  };
-};
+export type NetworkManagementClientGetBastionShareableLinkNextResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientGetActiveSessionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getActiveSessionsNext operation. */
-export type NetworkManagementClientGetActiveSessionsNextResponse = BastionActiveSessionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionActiveSessionListResult;
-  };
-};
+export type NetworkManagementClientGetActiveSessionsNextResponse = BastionActiveSessionListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientDisconnectActiveSessionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the disconnectActiveSessionsNext operation. */
-export type NetworkManagementClientDisconnectActiveSessionsNextResponse = BastionSessionDeleteResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BastionSessionDeleteResult;
-  };
-};
+export type NetworkManagementClientDisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
 
 /** Optional parameters. */
 export interface DdosCustomPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11740,23 +11218,14 @@ export interface DdosCustomPoliciesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface DdosCustomPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DdosCustomPoliciesGetResponse = DdosCustomPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosCustomPolicy;
-  };
-};
+export type DdosCustomPoliciesGetResponse = DdosCustomPolicy;
 
 /** Optional parameters. */
 export interface DdosCustomPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11764,36 +11233,18 @@ export interface DdosCustomPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosCustomPolicy;
-  };
-};
+export type DdosCustomPoliciesCreateOrUpdateResponse = DdosCustomPolicy;
 
 /** Optional parameters. */
 export interface DdosCustomPoliciesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type DdosCustomPoliciesUpdateTagsResponse = DdosCustomPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosCustomPolicy;
-  };
-};
+export type DdosCustomPoliciesUpdateTagsResponse = DdosCustomPolicy;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11802,23 +11253,14 @@ export interface DdosProtectionPlansDeleteOptionalParams
 
 /** Optional parameters. */
 export interface DdosProtectionPlansGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DdosProtectionPlansGetResponse = DdosProtectionPlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlan;
-  };
-};
+export type DdosProtectionPlansGetResponse = DdosProtectionPlan;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11826,132 +11268,60 @@ export interface DdosProtectionPlansCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type DdosProtectionPlansCreateOrUpdateResponse = DdosProtectionPlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlan;
-  };
-};
+export type DdosProtectionPlansCreateOrUpdateResponse = DdosProtectionPlan;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type DdosProtectionPlansUpdateTagsResponse = DdosProtectionPlan & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlan;
-  };
-};
+export type DdosProtectionPlansUpdateTagsResponse = DdosProtectionPlan;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type DdosProtectionPlansListResponse = DdosProtectionPlanListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlanListResult;
-  };
-};
+export type DdosProtectionPlansListResponse = DdosProtectionPlanListResult;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type DdosProtectionPlansListByResourceGroupResponse = DdosProtectionPlanListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlanListResult;
-  };
-};
+export type DdosProtectionPlansListByResourceGroupResponse = DdosProtectionPlanListResult;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DdosProtectionPlansListNextResponse = DdosProtectionPlanListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlanListResult;
-  };
-};
+export type DdosProtectionPlansListNextResponse = DdosProtectionPlanListResult;
 
 /** Optional parameters. */
 export interface DdosProtectionPlansListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type DdosProtectionPlansListByResourceGroupNextResponse = DdosProtectionPlanListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DdosProtectionPlanListResult;
-  };
-};
+export type DdosProtectionPlansListByResourceGroupNextResponse = DdosProtectionPlanListResult;
 
 /** Optional parameters. */
 export interface AvailableEndpointServicesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AvailableEndpointServicesListResponse = EndpointServicesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EndpointServicesListResult;
-  };
-};
+export type AvailableEndpointServicesListResponse = EndpointServicesListResult;
 
 /** Optional parameters. */
 export interface AvailableEndpointServicesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AvailableEndpointServicesListNextResponse = EndpointServicesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EndpointServicesListResult;
-  };
-};
+export type AvailableEndpointServicesListNextResponse = EndpointServicesListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitAuthorizationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11960,23 +11330,14 @@ export interface ExpressRouteCircuitAuthorizationsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitAuthorizationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCircuitAuthorizationsGetResponse = ExpressRouteCircuitAuthorization & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitAuthorization;
-  };
-};
+export type ExpressRouteCircuitAuthorizationsGetResponse = ExpressRouteCircuitAuthorization;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -11984,52 +11345,25 @@ export interface ExpressRouteCircuitAuthorizationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRouteCircuitAuthorization & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitAuthorization;
-  };
-};
+export type ExpressRouteCircuitAuthorizationsCreateOrUpdateResponse = ExpressRouteCircuitAuthorization;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitAuthorizationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCircuitAuthorizationsListResponse = AuthorizationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AuthorizationListResult;
-  };
-};
+export type ExpressRouteCircuitAuthorizationsListResponse = AuthorizationListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitAuthorizationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCircuitAuthorizationsListNextResponse = AuthorizationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AuthorizationListResult;
-  };
-};
+export type ExpressRouteCircuitAuthorizationsListNextResponse = AuthorizationListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitPeeringsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12038,23 +11372,14 @@ export interface ExpressRouteCircuitPeeringsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitPeeringsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCircuitPeeringsGetResponse = ExpressRouteCircuitPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitPeering;
-  };
-};
+export type ExpressRouteCircuitPeeringsGetResponse = ExpressRouteCircuitPeering;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12062,52 +11387,25 @@ export interface ExpressRouteCircuitPeeringsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCircuitPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitPeering;
-  };
-};
+export type ExpressRouteCircuitPeeringsCreateOrUpdateResponse = ExpressRouteCircuitPeering;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitPeeringsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCircuitPeeringsListResponse = ExpressRouteCircuitPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitPeeringListResult;
-  };
-};
+export type ExpressRouteCircuitPeeringsListResponse = ExpressRouteCircuitPeeringListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitPeeringsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCircuitPeeringsListNextResponse = ExpressRouteCircuitPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitPeeringListResult;
-  };
-};
+export type ExpressRouteCircuitPeeringsListNextResponse = ExpressRouteCircuitPeeringListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12116,23 +11414,14 @@ export interface ExpressRouteCircuitConnectionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCircuitConnectionsGetResponse = ExpressRouteCircuitConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitConnection;
-  };
-};
+export type ExpressRouteCircuitConnectionsGetResponse = ExpressRouteCircuitConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12140,100 +11429,46 @@ export interface ExpressRouteCircuitConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = ExpressRouteCircuitConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitConnection;
-  };
-};
+export type ExpressRouteCircuitConnectionsCreateOrUpdateResponse = ExpressRouteCircuitConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCircuitConnectionsListResponse = ExpressRouteCircuitConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitConnectionListResult;
-  };
-};
+export type ExpressRouteCircuitConnectionsListResponse = ExpressRouteCircuitConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitConnectionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCircuitConnectionsListNextResponse = ExpressRouteCircuitConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitConnectionListResult;
-  };
-};
+export type ExpressRouteCircuitConnectionsListNextResponse = ExpressRouteCircuitConnectionListResult;
 
 /** Optional parameters. */
 export interface PeerExpressRouteCircuitConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PeerExpressRouteCircuitConnectionsGetResponse = PeerExpressRouteCircuitConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PeerExpressRouteCircuitConnection;
-  };
-};
+export type PeerExpressRouteCircuitConnectionsGetResponse = PeerExpressRouteCircuitConnection;
 
 /** Optional parameters. */
 export interface PeerExpressRouteCircuitConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PeerExpressRouteCircuitConnectionsListResponse = PeerExpressRouteCircuitConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PeerExpressRouteCircuitConnectionListResult;
-  };
-};
+export type PeerExpressRouteCircuitConnectionsListResponse = PeerExpressRouteCircuitConnectionListResult;
 
 /** Optional parameters. */
 export interface PeerExpressRouteCircuitConnectionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PeerExpressRouteCircuitConnectionsListNextResponse = PeerExpressRouteCircuitConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PeerExpressRouteCircuitConnectionListResult;
-  };
-};
+export type PeerExpressRouteCircuitConnectionsListNextResponse = PeerExpressRouteCircuitConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12242,23 +11477,14 @@ export interface ExpressRouteCircuitsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCircuitsGetResponse = ExpressRouteCircuit & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuit;
-  };
-};
+export type ExpressRouteCircuitsGetResponse = ExpressRouteCircuit;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12266,36 +11492,18 @@ export interface ExpressRouteCircuitsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCircuitsCreateOrUpdateResponse = ExpressRouteCircuit & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuit;
-  };
-};
+export type ExpressRouteCircuitsCreateOrUpdateResponse = ExpressRouteCircuit;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ExpressRouteCircuitsUpdateTagsResponse = ExpressRouteCircuit & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuit;
-  };
-};
+export type ExpressRouteCircuitsUpdateTagsResponse = ExpressRouteCircuit;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListArpTableOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12303,20 +11511,11 @@ export interface ExpressRouteCircuitsListArpTableOptionalParams
 }
 
 /** Contains response data for the listArpTable operation. */
-export type ExpressRouteCircuitsListArpTableResponse = ExpressRouteCircuitsArpTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitsArpTableListResult;
-  };
-};
+export type ExpressRouteCircuitsListArpTableResponse = ExpressRouteCircuitsArpTableListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListRoutesTableOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12324,20 +11523,11 @@ export interface ExpressRouteCircuitsListRoutesTableOptionalParams
 }
 
 /** Contains response data for the listRoutesTable operation. */
-export type ExpressRouteCircuitsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-  };
-};
+export type ExpressRouteCircuitsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListRoutesTableSummaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12345,196 +11535,88 @@ export interface ExpressRouteCircuitsListRoutesTableSummaryOptionalParams
 }
 
 /** Contains response data for the listRoutesTableSummary operation. */
-export type ExpressRouteCircuitsListRoutesTableSummaryResponse = ExpressRouteCircuitsRoutesTableSummaryListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitsRoutesTableSummaryListResult;
-  };
-};
+export type ExpressRouteCircuitsListRoutesTableSummaryResponse = ExpressRouteCircuitsRoutesTableSummaryListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsGetStatsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getStats operation. */
-export type ExpressRouteCircuitsGetStatsResponse = ExpressRouteCircuitStats & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitStats;
-  };
-};
+export type ExpressRouteCircuitsGetStatsResponse = ExpressRouteCircuitStats;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsGetPeeringStatsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPeeringStats operation. */
-export type ExpressRouteCircuitsGetPeeringStatsResponse = ExpressRouteCircuitStats & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitStats;
-  };
-};
+export type ExpressRouteCircuitsGetPeeringStatsResponse = ExpressRouteCircuitStats;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCircuitsListResponse = ExpressRouteCircuitListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitListResult;
-  };
-};
+export type ExpressRouteCircuitsListResponse = ExpressRouteCircuitListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type ExpressRouteCircuitsListAllResponse = ExpressRouteCircuitListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitListResult;
-  };
-};
+export type ExpressRouteCircuitsListAllResponse = ExpressRouteCircuitListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCircuitsListNextResponse = ExpressRouteCircuitListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitListResult;
-  };
-};
+export type ExpressRouteCircuitsListNextResponse = ExpressRouteCircuitListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCircuitsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type ExpressRouteCircuitsListAllNextResponse = ExpressRouteCircuitListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitListResult;
-  };
-};
+export type ExpressRouteCircuitsListAllNextResponse = ExpressRouteCircuitListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteServiceProvidersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteServiceProviderListResult;
-  };
-};
+export type ExpressRouteServiceProvidersListResponse = ExpressRouteServiceProviderListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteServiceProvidersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteServiceProvidersListNextResponse = ExpressRouteServiceProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteServiceProviderListResult;
-  };
-};
+export type ExpressRouteServiceProvidersListNextResponse = ExpressRouteServiceProviderListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCrossConnectionsListResponse = ExpressRouteCrossConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListResponse = ExpressRouteCrossConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ExpressRouteCrossConnectionsListByResourceGroupResponse = ExpressRouteCrossConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListByResourceGroupResponse = ExpressRouteCrossConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCrossConnectionsGetResponse = ExpressRouteCrossConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnection;
-  };
-};
+export type ExpressRouteCrossConnectionsGetResponse = ExpressRouteCrossConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12542,36 +11624,18 @@ export interface ExpressRouteCrossConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = ExpressRouteCrossConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnection;
-  };
-};
+export type ExpressRouteCrossConnectionsCreateOrUpdateResponse = ExpressRouteCrossConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ExpressRouteCrossConnectionsUpdateTagsResponse = ExpressRouteCrossConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnection;
-  };
-};
+export type ExpressRouteCrossConnectionsUpdateTagsResponse = ExpressRouteCrossConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListArpTableOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12579,20 +11643,11 @@ export interface ExpressRouteCrossConnectionsListArpTableOptionalParams
 }
 
 /** Contains response data for the listArpTable operation. */
-export type ExpressRouteCrossConnectionsListArpTableResponse = ExpressRouteCircuitsArpTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitsArpTableListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListArpTableResponse = ExpressRouteCircuitsArpTableListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12600,20 +11655,11 @@ export interface ExpressRouteCrossConnectionsListRoutesTableSummaryOptionalParam
 }
 
 /** Contains response data for the listRoutesTableSummary operation. */
-export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = ExpressRouteCrossConnectionsRoutesTableSummaryListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListRoutesTableSummaryResponse = ExpressRouteCrossConnectionsRoutesTableSummaryListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListRoutesTableOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12621,68 +11667,32 @@ export interface ExpressRouteCrossConnectionsListRoutesTableOptionalParams
 }
 
 /** Contains response data for the listRoutesTable operation. */
-export type ExpressRouteCrossConnectionsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCircuitsRoutesTableListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListRoutesTableResponse = ExpressRouteCircuitsRoutesTableListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCrossConnectionsListNextResponse = ExpressRouteCrossConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListNextResponse = ExpressRouteCrossConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ExpressRouteCrossConnectionsListByResourceGroupNextResponse = ExpressRouteCrossConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionListResult;
-  };
-};
+export type ExpressRouteCrossConnectionsListByResourceGroupNextResponse = ExpressRouteCrossConnectionListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionPeeringsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteCrossConnectionPeeringsListResponse = ExpressRouteCrossConnectionPeeringList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionPeeringList;
-  };
-};
+export type ExpressRouteCrossConnectionPeeringsListResponse = ExpressRouteCrossConnectionPeeringList;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12691,23 +11701,14 @@ export interface ExpressRouteCrossConnectionPeeringsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionPeeringsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteCrossConnectionPeeringsGetResponse = ExpressRouteCrossConnectionPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionPeering;
-  };
-};
+export type ExpressRouteCrossConnectionPeeringsGetResponse = ExpressRouteCrossConnectionPeering;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12715,84 +11716,39 @@ export interface ExpressRouteCrossConnectionPeeringsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressRouteCrossConnectionPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionPeering;
-  };
-};
+export type ExpressRouteCrossConnectionPeeringsCreateOrUpdateResponse = ExpressRouteCrossConnectionPeering;
 
 /** Optional parameters. */
 export interface ExpressRouteCrossConnectionPeeringsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteCrossConnectionPeeringsListNextResponse = ExpressRouteCrossConnectionPeeringList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteCrossConnectionPeeringList;
-  };
-};
+export type ExpressRouteCrossConnectionPeeringsListNextResponse = ExpressRouteCrossConnectionPeeringList;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsLocationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRoutePortsLocationsListResponse = ExpressRoutePortsLocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortsLocationListResult;
-  };
-};
+export type ExpressRoutePortsLocationsListResponse = ExpressRoutePortsLocationListResult;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsLocationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRoutePortsLocationsGetResponse = ExpressRoutePortsLocation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortsLocation;
-  };
-};
+export type ExpressRoutePortsLocationsGetResponse = ExpressRoutePortsLocation;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsLocationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRoutePortsLocationsListNextResponse = ExpressRoutePortsLocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortsLocationListResult;
-  };
-};
+export type ExpressRoutePortsLocationsListNextResponse = ExpressRoutePortsLocationListResult;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12801,23 +11757,14 @@ export interface ExpressRoutePortsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRoutePortsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRoutePortsGetResponse = ExpressRoutePort & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePort;
-  };
-};
+export type ExpressRoutePortsGetResponse = ExpressRoutePort;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12825,148 +11772,67 @@ export interface ExpressRoutePortsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePort;
-  };
-};
+export type ExpressRoutePortsCreateOrUpdateResponse = ExpressRoutePort;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ExpressRoutePortsUpdateTagsResponse = ExpressRoutePort & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePort;
-  };
-};
+export type ExpressRoutePortsUpdateTagsResponse = ExpressRoutePort;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ExpressRoutePortsListByResourceGroupResponse = ExpressRoutePortListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortListResult;
-  };
-};
+export type ExpressRoutePortsListByResourceGroupResponse = ExpressRoutePortListResult;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRoutePortsListResponse = ExpressRoutePortListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortListResult;
-  };
-};
+export type ExpressRoutePortsListResponse = ExpressRoutePortListResult;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ExpressRoutePortsListByResourceGroupNextResponse = ExpressRoutePortListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortListResult;
-  };
-};
+export type ExpressRoutePortsListByResourceGroupNextResponse = ExpressRoutePortListResult;
 
 /** Optional parameters. */
 export interface ExpressRoutePortsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRoutePortsListNextResponse = ExpressRoutePortListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRoutePortListResult;
-  };
-};
+export type ExpressRoutePortsListNextResponse = ExpressRoutePortListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteLinksGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteLinksGetResponse = ExpressRouteLink & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteLink;
-  };
-};
+export type ExpressRouteLinksGetResponse = ExpressRouteLink;
 
 /** Optional parameters. */
 export interface ExpressRouteLinksListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteLinksListResponse = ExpressRouteLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteLinkListResult;
-  };
-};
+export type ExpressRouteLinksListResponse = ExpressRouteLinkListResult;
 
 /** Optional parameters. */
 export interface ExpressRouteLinksListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ExpressRouteLinksListNextResponse = ExpressRouteLinkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteLinkListResult;
-  };
-};
+export type ExpressRouteLinksListNextResponse = ExpressRouteLinkListResult;
 
 /** Optional parameters. */
 export interface FirewallPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -12975,26 +11841,17 @@ export interface FirewallPoliciesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface FirewallPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type FirewallPoliciesGetResponse = FirewallPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicy;
-  };
-};
+export type FirewallPoliciesGetResponse = FirewallPolicy;
 
 /** Optional parameters. */
 export interface FirewallPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13002,84 +11859,39 @@ export interface FirewallPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicy;
-  };
-};
+export type FirewallPoliciesCreateOrUpdateResponse = FirewallPolicy;
 
 /** Optional parameters. */
 export interface FirewallPoliciesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FirewallPoliciesListResponse = FirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyListResult;
-  };
-};
+export type FirewallPoliciesListResponse = FirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface FirewallPoliciesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type FirewallPoliciesListAllResponse = FirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyListResult;
-  };
-};
+export type FirewallPoliciesListAllResponse = FirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface FirewallPoliciesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type FirewallPoliciesListNextResponse = FirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyListResult;
-  };
-};
+export type FirewallPoliciesListNextResponse = FirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface FirewallPoliciesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type FirewallPoliciesListAllNextResponse = FirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyListResult;
-  };
-};
+export type FirewallPoliciesListAllNextResponse = FirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface FirewallPolicyRuleGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13088,23 +11900,14 @@ export interface FirewallPolicyRuleGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface FirewallPolicyRuleGroupsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type FirewallPolicyRuleGroupsGetResponse = FirewallPolicyRuleGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyRuleGroup;
-  };
-};
+export type FirewallPolicyRuleGroupsGetResponse = FirewallPolicyRuleGroup;
 
 /** Optional parameters. */
 export interface FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13112,52 +11915,25 @@ export interface FirewallPolicyRuleGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyRuleGroup;
-  };
-};
+export type FirewallPolicyRuleGroupsCreateOrUpdateResponse = FirewallPolicyRuleGroup;
 
 /** Optional parameters. */
 export interface FirewallPolicyRuleGroupsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyRuleGroupListResult;
-  };
-};
+export type FirewallPolicyRuleGroupsListResponse = FirewallPolicyRuleGroupListResult;
 
 /** Optional parameters. */
 export interface FirewallPolicyRuleGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type FirewallPolicyRuleGroupsListNextResponse = FirewallPolicyRuleGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FirewallPolicyRuleGroupListResult;
-  };
-};
+export type FirewallPolicyRuleGroupsListNextResponse = FirewallPolicyRuleGroupListResult;
 
 /** Optional parameters. */
 export interface IpAllocationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13166,26 +11942,17 @@ export interface IpAllocationsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface IpAllocationsGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type IpAllocationsGetResponse = IpAllocation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocation;
-  };
-};
+export type IpAllocationsGetResponse = IpAllocation;
 
 /** Optional parameters. */
 export interface IpAllocationsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13193,118 +11960,55 @@ export interface IpAllocationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type IpAllocationsCreateOrUpdateResponse = IpAllocation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocation;
-  };
-};
+export type IpAllocationsCreateOrUpdateResponse = IpAllocation;
 
 /** Optional parameters. */
 export interface IpAllocationsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type IpAllocationsUpdateTagsResponse = IpAllocation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocation;
-  };
-};
+export type IpAllocationsUpdateTagsResponse = IpAllocation;
 
 /** Optional parameters. */
 export interface IpAllocationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type IpAllocationsListResponse = IpAllocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocationListResult;
-  };
-};
+export type IpAllocationsListResponse = IpAllocationListResult;
 
 /** Optional parameters. */
 export interface IpAllocationsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type IpAllocationsListByResourceGroupResponse = IpAllocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocationListResult;
-  };
-};
+export type IpAllocationsListByResourceGroupResponse = IpAllocationListResult;
 
 /** Optional parameters. */
 export interface IpAllocationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type IpAllocationsListNextResponse = IpAllocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocationListResult;
-  };
-};
+export type IpAllocationsListNextResponse = IpAllocationListResult;
 
 /** Optional parameters. */
 export interface IpAllocationsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type IpAllocationsListByResourceGroupNextResponse = IpAllocationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpAllocationListResult;
-  };
-};
+export type IpAllocationsListByResourceGroupNextResponse = IpAllocationListResult;
 
 /** Optional parameters. */
-export interface IpGroupsGetOptionalParams extends coreHttp.OperationOptions {
+export interface IpGroupsGetOptionalParams extends coreClient.OperationOptions {
   /** Expands resourceIds (of Firewalls/Network Security Groups etc.) back referenced by the IpGroups resource. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type IpGroupsGetResponse = IpGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroup;
-  };
-};
+export type IpGroupsGetResponse = IpGroup;
 
 /** Optional parameters. */
 export interface IpGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13312,36 +12016,18 @@ export interface IpGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type IpGroupsCreateOrUpdateResponse = IpGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroup;
-  };
-};
+export type IpGroupsCreateOrUpdateResponse = IpGroup;
 
 /** Optional parameters. */
 export interface IpGroupsUpdateGroupsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateGroups operation. */
-export type IpGroupsUpdateGroupsResponse = IpGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroup;
-  };
-};
+export type IpGroupsUpdateGroupsResponse = IpGroup;
 
 /** Optional parameters. */
 export interface IpGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13350,70 +12036,35 @@ export interface IpGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface IpGroupsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type IpGroupsListByResourceGroupResponse = IpGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroupListResult;
-  };
-};
+export type IpGroupsListByResourceGroupResponse = IpGroupListResult;
 
 /** Optional parameters. */
-export interface IpGroupsListOptionalParams extends coreHttp.OperationOptions {}
+export interface IpGroupsListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type IpGroupsListResponse = IpGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroupListResult;
-  };
-};
+export type IpGroupsListResponse = IpGroupListResult;
 
 /** Optional parameters. */
 export interface IpGroupsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type IpGroupsListByResourceGroupNextResponse = IpGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroupListResult;
-  };
-};
+export type IpGroupsListByResourceGroupNextResponse = IpGroupListResult;
 
 /** Optional parameters. */
 export interface IpGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type IpGroupsListNextResponse = IpGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IpGroupListResult;
-  };
-};
+export type IpGroupsListNextResponse = IpGroupListResult;
 
 /** Optional parameters. */
 export interface LoadBalancersDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13422,26 +12073,17 @@ export interface LoadBalancersDeleteOptionalParams
 
 /** Optional parameters. */
 export interface LoadBalancersGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type LoadBalancersGetResponse = LoadBalancer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancer;
-  };
-};
+export type LoadBalancersGetResponse = LoadBalancer;
 
 /** Optional parameters. */
 export interface LoadBalancersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13449,132 +12091,60 @@ export interface LoadBalancersCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type LoadBalancersCreateOrUpdateResponse = LoadBalancer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancer;
-  };
-};
+export type LoadBalancersCreateOrUpdateResponse = LoadBalancer;
 
 /** Optional parameters. */
 export interface LoadBalancersUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type LoadBalancersUpdateTagsResponse = LoadBalancer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancer;
-  };
-};
+export type LoadBalancersUpdateTagsResponse = LoadBalancer;
 
 /** Optional parameters. */
 export interface LoadBalancersListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type LoadBalancersListAllResponse = LoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerListResult;
-  };
-};
+export type LoadBalancersListAllResponse = LoadBalancerListResult;
 
 /** Optional parameters. */
 export interface LoadBalancersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancersListResponse = LoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerListResult;
-  };
-};
+export type LoadBalancersListResponse = LoadBalancerListResult;
 
 /** Optional parameters. */
 export interface LoadBalancersListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type LoadBalancersListAllNextResponse = LoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerListResult;
-  };
-};
+export type LoadBalancersListAllNextResponse = LoadBalancerListResult;
 
 /** Optional parameters. */
 export interface LoadBalancersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancersListNextResponse = LoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerListResult;
-  };
-};
+export type LoadBalancersListNextResponse = LoadBalancerListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerBackendAddressPoolsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerBackendAddressPoolsListResponse = LoadBalancerBackendAddressPoolListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerBackendAddressPoolListResult;
-  };
-};
+export type LoadBalancerBackendAddressPoolsListResponse = LoadBalancerBackendAddressPoolListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerBackendAddressPoolsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LoadBalancerBackendAddressPoolsGetResponse = BackendAddressPool & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackendAddressPool;
-  };
-};
+export type LoadBalancerBackendAddressPoolsGetResponse = BackendAddressPool;
 
 /** Optional parameters. */
 export interface LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13582,20 +12152,11 @@ export interface LoadBalancerBackendAddressPoolsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddressPool & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BackendAddressPool;
-  };
-};
+export type LoadBalancerBackendAddressPoolsCreateOrUpdateResponse = BackendAddressPool;
 
 /** Optional parameters. */
 export interface LoadBalancerBackendAddressPoolsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13604,87 +12165,42 @@ export interface LoadBalancerBackendAddressPoolsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface LoadBalancerBackendAddressPoolsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerBackendAddressPoolsListNextResponse = LoadBalancerBackendAddressPoolListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerBackendAddressPoolListResult;
-  };
-};
+export type LoadBalancerBackendAddressPoolsListNextResponse = LoadBalancerBackendAddressPoolListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerFrontendIPConfigurationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerFrontendIPConfigurationsListResponse = LoadBalancerFrontendIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerFrontendIPConfigurationListResult;
-  };
-};
+export type LoadBalancerFrontendIPConfigurationsListResponse = LoadBalancerFrontendIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerFrontendIPConfigurationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LoadBalancerFrontendIPConfigurationsGetResponse = FrontendIPConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FrontendIPConfiguration;
-  };
-};
+export type LoadBalancerFrontendIPConfigurationsGetResponse = FrontendIPConfiguration;
 
 /** Optional parameters. */
 export interface LoadBalancerFrontendIPConfigurationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerFrontendIPConfigurationsListNextResponse = LoadBalancerFrontendIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerFrontendIPConfigurationListResult;
-  };
-};
+export type LoadBalancerFrontendIPConfigurationsListNextResponse = LoadBalancerFrontendIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface InboundNatRulesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type InboundNatRulesListResponse = InboundNatRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundNatRuleListResult;
-  };
-};
+export type InboundNatRulesListResponse = InboundNatRuleListResult;
 
 /** Optional parameters. */
 export interface InboundNatRulesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13693,26 +12209,17 @@ export interface InboundNatRulesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface InboundNatRulesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type InboundNatRulesGetResponse = InboundNatRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundNatRule;
-  };
-};
+export type InboundNatRulesGetResponse = InboundNatRule;
 
 /** Optional parameters. */
 export interface InboundNatRulesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13720,212 +12227,95 @@ export interface InboundNatRulesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundNatRule;
-  };
-};
+export type InboundNatRulesCreateOrUpdateResponse = InboundNatRule;
 
 /** Optional parameters. */
 export interface InboundNatRulesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type InboundNatRulesListNextResponse = InboundNatRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: InboundNatRuleListResult;
-  };
-};
+export type InboundNatRulesListNextResponse = InboundNatRuleListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerLoadBalancingRulesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerLoadBalancingRulesListResponse = LoadBalancerLoadBalancingRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerLoadBalancingRuleListResult;
-  };
-};
+export type LoadBalancerLoadBalancingRulesListResponse = LoadBalancerLoadBalancingRuleListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerLoadBalancingRulesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LoadBalancerLoadBalancingRulesGetResponse = LoadBalancingRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancingRule;
-  };
-};
+export type LoadBalancerLoadBalancingRulesGetResponse = LoadBalancingRule;
 
 /** Optional parameters. */
 export interface LoadBalancerLoadBalancingRulesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerLoadBalancingRulesListNextResponse = LoadBalancerLoadBalancingRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerLoadBalancingRuleListResult;
-  };
-};
+export type LoadBalancerLoadBalancingRulesListNextResponse = LoadBalancerLoadBalancingRuleListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerOutboundRulesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerOutboundRulesListResponse = LoadBalancerOutboundRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerOutboundRuleListResult;
-  };
-};
+export type LoadBalancerOutboundRulesListResponse = LoadBalancerOutboundRuleListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerOutboundRulesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LoadBalancerOutboundRulesGetResponse = OutboundRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OutboundRule;
-  };
-};
+export type LoadBalancerOutboundRulesGetResponse = OutboundRule;
 
 /** Optional parameters. */
 export interface LoadBalancerOutboundRulesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerOutboundRulesListNextResponse = LoadBalancerOutboundRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerOutboundRuleListResult;
-  };
-};
+export type LoadBalancerOutboundRulesListNextResponse = LoadBalancerOutboundRuleListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerNetworkInterfacesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerNetworkInterfacesListResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type LoadBalancerNetworkInterfacesListResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerNetworkInterfacesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerNetworkInterfacesListNextResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type LoadBalancerNetworkInterfacesListNextResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerProbesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerProbeListResult;
-  };
-};
+export type LoadBalancerProbesListResponse = LoadBalancerProbeListResult;
 
 /** Optional parameters. */
 export interface LoadBalancerProbesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LoadBalancerProbesGetResponse = Probe & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Probe;
-  };
-};
+export type LoadBalancerProbesGetResponse = Probe;
 
 /** Optional parameters. */
 export interface LoadBalancerProbesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LoadBalancerProbesListNextResponse = LoadBalancerProbeListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LoadBalancerProbeListResult;
-  };
-};
+export type LoadBalancerProbesListNextResponse = LoadBalancerProbeListResult;
 
 /** Optional parameters. */
 export interface NatGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13934,26 +12324,17 @@ export interface NatGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NatGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type NatGatewaysGetResponse = NatGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGateway;
-  };
-};
+export type NatGatewaysGetResponse = NatGateway;
 
 /** Optional parameters. */
 export interface NatGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -13961,100 +12342,46 @@ export interface NatGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type NatGatewaysCreateOrUpdateResponse = NatGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGateway;
-  };
-};
+export type NatGatewaysCreateOrUpdateResponse = NatGateway;
 
 /** Optional parameters. */
 export interface NatGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NatGatewaysUpdateTagsResponse = NatGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGateway;
-  };
-};
+export type NatGatewaysUpdateTagsResponse = NatGateway;
 
 /** Optional parameters. */
 export interface NatGatewaysListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type NatGatewaysListAllResponse = NatGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGatewayListResult;
-  };
-};
+export type NatGatewaysListAllResponse = NatGatewayListResult;
 
 /** Optional parameters. */
 export interface NatGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NatGatewaysListResponse = NatGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGatewayListResult;
-  };
-};
+export type NatGatewaysListResponse = NatGatewayListResult;
 
 /** Optional parameters. */
 export interface NatGatewaysListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type NatGatewaysListAllNextResponse = NatGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGatewayListResult;
-  };
-};
+export type NatGatewaysListAllNextResponse = NatGatewayListResult;
 
 /** Optional parameters. */
 export interface NatGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NatGatewaysListNextResponse = NatGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NatGatewayListResult;
-  };
-};
+export type NatGatewaysListNextResponse = NatGatewayListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14063,26 +12390,17 @@ export interface NetworkInterfacesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkInterfacesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type NetworkInterfacesGetResponse = NetworkInterface & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterface;
-  };
-};
+export type NetworkInterfacesGetResponse = NetworkInterface;
 
 /** Optional parameters. */
 export interface NetworkInterfacesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14090,68 +12408,32 @@ export interface NetworkInterfacesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterface;
-  };
-};
+export type NetworkInterfacesCreateOrUpdateResponse = NetworkInterface;
 
 /** Optional parameters. */
 export interface NetworkInterfacesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NetworkInterfacesUpdateTagsResponse = NetworkInterface & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterface;
-  };
-};
+export type NetworkInterfacesUpdateTagsResponse = NetworkInterface;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListAllResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkInterfacesListResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesGetEffectiveRouteTableOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14159,20 +12441,11 @@ export interface NetworkInterfacesGetEffectiveRouteTableOptionalParams
 }
 
 /** Contains response data for the getEffectiveRouteTable operation. */
-export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EffectiveRouteListResult;
-  };
-};
+export type NetworkInterfacesGetEffectiveRouteTableResponse = EffectiveRouteListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14180,272 +12453,128 @@ export interface NetworkInterfacesListEffectiveNetworkSecurityGroupsOptionalPara
 }
 
 /** Contains response data for the listEffectiveNetworkSecurityGroups operation. */
-export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = EffectiveNetworkSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EffectiveNetworkSecurityGroupListResult;
-  };
-};
+export type NetworkInterfacesListEffectiveNetworkSecurityGroupsResponse = EffectiveNetworkSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfaces operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetNetworkInterfaces operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the getVirtualMachineScaleSetNetworkInterface operation. */
-export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse = NetworkInterface & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterface;
-  };
-};
+export type NetworkInterfacesGetVirtualMachineScaleSetNetworkInterfaceResponse = NetworkInterface;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the listVirtualMachineScaleSetIpConfigurations operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse = NetworkInterfaceIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfigurationListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsResponse = NetworkInterfaceIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the getVirtualMachineScaleSetIpConfiguration operation. */
-export type NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse = NetworkInterfaceIPConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfiguration;
-  };
-};
+export type NetworkInterfacesGetVirtualMachineScaleSetIpConfigurationResponse = NetworkInterfaceIPConfiguration;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type NetworkInterfacesListAllNextResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListAllNextResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListNextResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetVMNetworkInterfacesNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetVMNetworkInterfacesNextResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetNetworkInterfacesNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = NetworkInterfaceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetNetworkInterfacesNextResponse = NetworkInterfaceListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the listVirtualMachineScaleSetIpConfigurationsNext operation. */
-export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = NetworkInterfaceIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfigurationListResult;
-  };
-};
+export type NetworkInterfacesListVirtualMachineScaleSetIpConfigurationsNextResponse = NetworkInterfaceIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceIPConfigurationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkInterfaceIPConfigurationsListResponse = NetworkInterfaceIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfigurationListResult;
-  };
-};
+export type NetworkInterfaceIPConfigurationsListResponse = NetworkInterfaceIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceIPConfigurationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type NetworkInterfaceIPConfigurationsGetResponse = NetworkInterfaceIPConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfiguration;
-  };
-};
+export type NetworkInterfaceIPConfigurationsGetResponse = NetworkInterfaceIPConfiguration;
 
 /** Optional parameters. */
 export interface NetworkInterfaceIPConfigurationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkInterfaceIPConfigurationsListNextResponse = NetworkInterfaceIPConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceIPConfigurationListResult;
-  };
-};
+export type NetworkInterfaceIPConfigurationsListNextResponse = NetworkInterfaceIPConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceLoadBalancersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceLoadBalancerListResult;
-  };
-};
+export type NetworkInterfaceLoadBalancersListResponse = NetworkInterfaceLoadBalancerListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceLoadBalancersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkInterfaceLoadBalancersListNextResponse = NetworkInterfaceLoadBalancerListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceLoadBalancerListResult;
-  };
-};
+export type NetworkInterfaceLoadBalancersListNextResponse = NetworkInterfaceLoadBalancerListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceTapConfigurationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14454,23 +12583,14 @@ export interface NetworkInterfaceTapConfigurationsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkInterfaceTapConfigurationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type NetworkInterfaceTapConfigurationsGetResponse = NetworkInterfaceTapConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceTapConfiguration;
-  };
-};
+export type NetworkInterfaceTapConfigurationsGetResponse = NetworkInterfaceTapConfiguration;
 
 /** Optional parameters. */
 export interface NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14478,52 +12598,25 @@ export interface NetworkInterfaceTapConfigurationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInterfaceTapConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceTapConfiguration;
-  };
-};
+export type NetworkInterfaceTapConfigurationsCreateOrUpdateResponse = NetworkInterfaceTapConfiguration;
 
 /** Optional parameters. */
 export interface NetworkInterfaceTapConfigurationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceTapConfigurationListResult;
-  };
-};
+export type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkInterfaceTapConfigurationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkInterfaceTapConfigurationsListNextResponse = NetworkInterfaceTapConfigurationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkInterfaceTapConfigurationListResult;
-  };
-};
+export type NetworkInterfaceTapConfigurationsListNextResponse = NetworkInterfaceTapConfigurationListResult;
 
 /** Optional parameters. */
 export interface NetworkProfilesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14532,122 +12625,59 @@ export interface NetworkProfilesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkProfilesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type NetworkProfilesGetResponse = NetworkProfile & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfile;
-  };
-};
+export type NetworkProfilesGetResponse = NetworkProfile;
 
 /** Optional parameters. */
 export interface NetworkProfilesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkProfilesCreateOrUpdateResponse = NetworkProfile & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfile;
-  };
-};
+export type NetworkProfilesCreateOrUpdateResponse = NetworkProfile;
 
 /** Optional parameters. */
 export interface NetworkProfilesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NetworkProfilesUpdateTagsResponse = NetworkProfile & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfile;
-  };
-};
+export type NetworkProfilesUpdateTagsResponse = NetworkProfile;
 
 /** Optional parameters. */
 export interface NetworkProfilesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type NetworkProfilesListAllResponse = NetworkProfileListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfileListResult;
-  };
-};
+export type NetworkProfilesListAllResponse = NetworkProfileListResult;
 
 /** Optional parameters. */
 export interface NetworkProfilesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkProfilesListResponse = NetworkProfileListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfileListResult;
-  };
-};
+export type NetworkProfilesListResponse = NetworkProfileListResult;
 
 /** Optional parameters. */
 export interface NetworkProfilesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type NetworkProfilesListAllNextResponse = NetworkProfileListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfileListResult;
-  };
-};
+export type NetworkProfilesListAllNextResponse = NetworkProfileListResult;
 
 /** Optional parameters. */
 export interface NetworkProfilesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkProfilesListNextResponse = NetworkProfileListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkProfileListResult;
-  };
-};
+export type NetworkProfilesListNextResponse = NetworkProfileListResult;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14656,26 +12686,17 @@ export interface NetworkSecurityGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type NetworkSecurityGroupsGetResponse = NetworkSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroup;
-  };
-};
+export type NetworkSecurityGroupsGetResponse = NetworkSecurityGroup;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14683,100 +12704,46 @@ export interface NetworkSecurityGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroup;
-  };
-};
+export type NetworkSecurityGroupsCreateOrUpdateResponse = NetworkSecurityGroup;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NetworkSecurityGroupsUpdateTagsResponse = NetworkSecurityGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroup;
-  };
-};
+export type NetworkSecurityGroupsUpdateTagsResponse = NetworkSecurityGroup;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type NetworkSecurityGroupsListAllResponse = NetworkSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroupListResult;
-  };
-};
+export type NetworkSecurityGroupsListAllResponse = NetworkSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkSecurityGroupsListResponse = NetworkSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroupListResult;
-  };
-};
+export type NetworkSecurityGroupsListResponse = NetworkSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type NetworkSecurityGroupsListAllNextResponse = NetworkSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroupListResult;
-  };
-};
+export type NetworkSecurityGroupsListAllNextResponse = NetworkSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface NetworkSecurityGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkSecurityGroupsListNextResponse = NetworkSecurityGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkSecurityGroupListResult;
-  };
-};
+export type NetworkSecurityGroupsListNextResponse = NetworkSecurityGroupListResult;
 
 /** Optional parameters. */
 export interface SecurityRulesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14785,23 +12752,14 @@ export interface SecurityRulesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface SecurityRulesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type SecurityRulesGetResponse = SecurityRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRule;
-  };
-};
+export type SecurityRulesGetResponse = SecurityRule;
 
 /** Optional parameters. */
 export interface SecurityRulesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14809,100 +12767,46 @@ export interface SecurityRulesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type SecurityRulesCreateOrUpdateResponse = SecurityRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRule;
-  };
-};
+export type SecurityRulesCreateOrUpdateResponse = SecurityRule;
 
 /** Optional parameters. */
 export interface SecurityRulesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type SecurityRulesListResponse = SecurityRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRuleListResult;
-  };
-};
+export type SecurityRulesListResponse = SecurityRuleListResult;
 
 /** Optional parameters. */
 export interface SecurityRulesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type SecurityRulesListNextResponse = SecurityRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRuleListResult;
-  };
-};
+export type SecurityRulesListNextResponse = SecurityRuleListResult;
 
 /** Optional parameters. */
 export interface DefaultSecurityRulesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type DefaultSecurityRulesListResponse = SecurityRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRuleListResult;
-  };
-};
+export type DefaultSecurityRulesListResponse = SecurityRuleListResult;
 
 /** Optional parameters. */
 export interface DefaultSecurityRulesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DefaultSecurityRulesGetResponse = SecurityRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRule;
-  };
-};
+export type DefaultSecurityRulesGetResponse = SecurityRule;
 
 /** Optional parameters. */
 export interface DefaultSecurityRulesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type DefaultSecurityRulesListNextResponse = SecurityRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityRuleListResult;
-  };
-};
+export type DefaultSecurityRulesListNextResponse = SecurityRuleListResult;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14911,42 +12815,24 @@ export interface NetworkVirtualAppliancesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type NetworkVirtualAppliancesGetResponse = NetworkVirtualAppliance & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualAppliance;
-  };
-};
+export type NetworkVirtualAppliancesGetResponse = NetworkVirtualAppliance;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NetworkVirtualAppliancesUpdateTagsResponse = NetworkVirtualAppliance & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualAppliance;
-  };
-};
+export type NetworkVirtualAppliancesUpdateTagsResponse = NetworkVirtualAppliance;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -14954,116 +12840,53 @@ export interface NetworkVirtualAppliancesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppliance & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualAppliance;
-  };
-};
+export type NetworkVirtualAppliancesCreateOrUpdateResponse = NetworkVirtualAppliance;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type NetworkVirtualAppliancesListByResourceGroupResponse = NetworkVirtualApplianceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualApplianceListResult;
-  };
-};
+export type NetworkVirtualAppliancesListByResourceGroupResponse = NetworkVirtualApplianceListResult;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkVirtualAppliancesListResponse = NetworkVirtualApplianceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualApplianceListResult;
-  };
-};
+export type NetworkVirtualAppliancesListResponse = NetworkVirtualApplianceListResult;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type NetworkVirtualAppliancesListByResourceGroupNextResponse = NetworkVirtualApplianceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualApplianceListResult;
-  };
-};
+export type NetworkVirtualAppliancesListByResourceGroupNextResponse = NetworkVirtualApplianceListResult;
 
 /** Optional parameters. */
 export interface NetworkVirtualAppliancesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type NetworkVirtualAppliancesListNextResponse = NetworkVirtualApplianceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkVirtualApplianceListResult;
-  };
-};
+export type NetworkVirtualAppliancesListNextResponse = NetworkVirtualApplianceListResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type NetworkWatchersCreateOrUpdateResponse = NetworkWatcher & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkWatcher;
-  };
-};
+export type NetworkWatchersCreateOrUpdateResponse = NetworkWatcher;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type NetworkWatchersGetResponse = NetworkWatcher & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkWatcher;
-  };
-};
+export type NetworkWatchersGetResponse = NetworkWatcher;
 
 /** Optional parameters. */
 export interface NetworkWatchersDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15072,71 +12895,35 @@ export interface NetworkWatchersDeleteOptionalParams
 
 /** Optional parameters. */
 export interface NetworkWatchersUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type NetworkWatchersUpdateTagsResponse = NetworkWatcher & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkWatcher;
-  };
-};
+export type NetworkWatchersUpdateTagsResponse = NetworkWatcher;
 
 /** Optional parameters. */
 export interface NetworkWatchersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type NetworkWatchersListResponse = NetworkWatcherListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkWatcherListResult;
-  };
-};
+export type NetworkWatchersListResponse = NetworkWatcherListResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type NetworkWatchersListAllResponse = NetworkWatcherListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkWatcherListResult;
-  };
-};
+export type NetworkWatchersListAllResponse = NetworkWatcherListResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetTopologyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getTopology operation. */
-export type NetworkWatchersGetTopologyResponse = Topology & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Topology;
-  };
-};
+export type NetworkWatchersGetTopologyResponse = Topology;
 
 /** Optional parameters. */
 export interface NetworkWatchersVerifyIPFlowOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15144,20 +12931,11 @@ export interface NetworkWatchersVerifyIPFlowOptionalParams
 }
 
 /** Contains response data for the verifyIPFlow operation. */
-export type NetworkWatchersVerifyIPFlowResponse = VerificationIPFlowResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VerificationIPFlowResult;
-  };
-};
+export type NetworkWatchersVerifyIPFlowResponse = VerificationIPFlowResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetNextHopOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15165,20 +12943,11 @@ export interface NetworkWatchersGetNextHopOptionalParams
 }
 
 /** Contains response data for the getNextHop operation. */
-export type NetworkWatchersGetNextHopResponse = NextHopResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NextHopResult;
-  };
-};
+export type NetworkWatchersGetNextHopResponse = NextHopResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetVMSecurityRulesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15186,20 +12955,11 @@ export interface NetworkWatchersGetVMSecurityRulesOptionalParams
 }
 
 /** Contains response data for the getVMSecurityRules operation. */
-export type NetworkWatchersGetVMSecurityRulesResponse = SecurityGroupViewResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityGroupViewResult;
-  };
-};
+export type NetworkWatchersGetVMSecurityRulesResponse = SecurityGroupViewResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetTroubleshootingOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15207,20 +12967,11 @@ export interface NetworkWatchersGetTroubleshootingOptionalParams
 }
 
 /** Contains response data for the getTroubleshooting operation. */
-export type NetworkWatchersGetTroubleshootingResponse = TroubleshootingResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TroubleshootingResult;
-  };
-};
+export type NetworkWatchersGetTroubleshootingResponse = TroubleshootingResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetTroubleshootingResultOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15228,20 +12979,11 @@ export interface NetworkWatchersGetTroubleshootingResultOptionalParams
 }
 
 /** Contains response data for the getTroubleshootingResult operation. */
-export type NetworkWatchersGetTroubleshootingResultResponse = TroubleshootingResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: TroubleshootingResult;
-  };
-};
+export type NetworkWatchersGetTroubleshootingResultResponse = TroubleshootingResult;
 
 /** Optional parameters. */
 export interface NetworkWatchersSetFlowLogConfigurationOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15249,20 +12991,11 @@ export interface NetworkWatchersSetFlowLogConfigurationOptionalParams
 }
 
 /** Contains response data for the setFlowLogConfiguration operation. */
-export type NetworkWatchersSetFlowLogConfigurationResponse = FlowLogInformation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLogInformation;
-  };
-};
+export type NetworkWatchersSetFlowLogConfigurationResponse = FlowLogInformation;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetFlowLogStatusOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15270,20 +13003,11 @@ export interface NetworkWatchersGetFlowLogStatusOptionalParams
 }
 
 /** Contains response data for the getFlowLogStatus operation. */
-export type NetworkWatchersGetFlowLogStatusResponse = FlowLogInformation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLogInformation;
-  };
-};
+export type NetworkWatchersGetFlowLogStatusResponse = FlowLogInformation;
 
 /** Optional parameters. */
 export interface NetworkWatchersCheckConnectivityOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15291,20 +13015,11 @@ export interface NetworkWatchersCheckConnectivityOptionalParams
 }
 
 /** Contains response data for the checkConnectivity operation. */
-export type NetworkWatchersCheckConnectivityResponse = ConnectivityInformation & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectivityInformation;
-  };
-};
+export type NetworkWatchersCheckConnectivityResponse = ConnectivityInformation;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetAzureReachabilityReportOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15312,20 +13027,11 @@ export interface NetworkWatchersGetAzureReachabilityReportOptionalParams
 }
 
 /** Contains response data for the getAzureReachabilityReport operation. */
-export type NetworkWatchersGetAzureReachabilityReportResponse = AzureReachabilityReport & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureReachabilityReport;
-  };
-};
+export type NetworkWatchersGetAzureReachabilityReportResponse = AzureReachabilityReport;
 
 /** Optional parameters. */
 export interface NetworkWatchersListAvailableProvidersOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15333,20 +13039,11 @@ export interface NetworkWatchersListAvailableProvidersOptionalParams
 }
 
 /** Contains response data for the listAvailableProviders operation. */
-export type NetworkWatchersListAvailableProvidersResponse = AvailableProvidersList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailableProvidersList;
-  };
-};
+export type NetworkWatchersListAvailableProvidersResponse = AvailableProvidersList;
 
 /** Optional parameters. */
 export interface NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15354,20 +13051,11 @@ export interface NetworkWatchersGetNetworkConfigurationDiagnosticOptionalParams
 }
 
 /** Contains response data for the getNetworkConfigurationDiagnostic operation. */
-export type NetworkWatchersGetNetworkConfigurationDiagnosticResponse = NetworkConfigurationDiagnosticResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: NetworkConfigurationDiagnosticResponse;
-  };
-};
+export type NetworkWatchersGetNetworkConfigurationDiagnosticResponse = NetworkConfigurationDiagnosticResponse;
 
 /** Optional parameters. */
 export interface PacketCapturesCreateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15375,36 +13063,18 @@ export interface PacketCapturesCreateOptionalParams
 }
 
 /** Contains response data for the create operation. */
-export type PacketCapturesCreateResponse = PacketCaptureResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PacketCaptureResult;
-  };
-};
+export type PacketCapturesCreateResponse = PacketCaptureResult;
 
 /** Optional parameters. */
 export interface PacketCapturesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PacketCapturesGetResponse = PacketCaptureResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PacketCaptureResult;
-  };
-};
+export type PacketCapturesGetResponse = PacketCaptureResult;
 
 /** Optional parameters. */
 export interface PacketCapturesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15413,7 +13083,7 @@ export interface PacketCapturesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PacketCapturesStopOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15422,7 +13092,7 @@ export interface PacketCapturesStopOptionalParams
 
 /** Optional parameters. */
 export interface PacketCapturesGetStatusOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15430,36 +13100,18 @@ export interface PacketCapturesGetStatusOptionalParams
 }
 
 /** Contains response data for the getStatus operation. */
-export type PacketCapturesGetStatusResponse = PacketCaptureQueryStatusResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PacketCaptureQueryStatusResult;
-  };
-};
+export type PacketCapturesGetStatusResponse = PacketCaptureQueryStatusResult;
 
 /** Optional parameters. */
 export interface PacketCapturesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PacketCapturesListResponse = PacketCaptureListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PacketCaptureListResult;
-  };
-};
+export type PacketCapturesListResponse = PacketCaptureListResult;
 
 /** Optional parameters. */
 export interface ConnectionMonitorsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15467,36 +13119,18 @@ export interface ConnectionMonitorsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionMonitorResult;
-  };
-};
+export type ConnectionMonitorsCreateOrUpdateResponse = ConnectionMonitorResult;
 
 /** Optional parameters. */
 export interface ConnectionMonitorsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ConnectionMonitorsGetResponse = ConnectionMonitorResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionMonitorResult;
-  };
-};
+export type ConnectionMonitorsGetResponse = ConnectionMonitorResult;
 
 /** Optional parameters. */
 export interface ConnectionMonitorsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15505,23 +13139,14 @@ export interface ConnectionMonitorsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ConnectionMonitorsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ConnectionMonitorsUpdateTagsResponse = ConnectionMonitorResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionMonitorResult;
-  };
-};
+export type ConnectionMonitorsUpdateTagsResponse = ConnectionMonitorResult;
 
 /** Optional parameters. */
 export interface ConnectionMonitorsStopOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15530,7 +13155,7 @@ export interface ConnectionMonitorsStopOptionalParams
 
 /** Optional parameters. */
 export interface ConnectionMonitorsStartOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15539,7 +13164,7 @@ export interface ConnectionMonitorsStartOptionalParams
 
 /** Optional parameters. */
 export interface ConnectionMonitorsQueryOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15547,36 +13172,18 @@ export interface ConnectionMonitorsQueryOptionalParams
 }
 
 /** Contains response data for the query operation. */
-export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionMonitorQueryResult;
-  };
-};
+export type ConnectionMonitorsQueryResponse = ConnectionMonitorQueryResult;
 
 /** Optional parameters. */
 export interface ConnectionMonitorsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ConnectionMonitorsListResponse = ConnectionMonitorListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionMonitorListResult;
-  };
-};
+export type ConnectionMonitorsListResponse = ConnectionMonitorListResult;
 
 /** Optional parameters. */
 export interface FlowLogsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15584,35 +13191,18 @@ export interface FlowLogsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type FlowLogsCreateOrUpdateResponse = FlowLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLog;
-  };
-};
+export type FlowLogsCreateOrUpdateResponse = FlowLog;
 
 /** Optional parameters. */
-export interface FlowLogsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface FlowLogsGetOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type FlowLogsGetResponse = FlowLog & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLog;
-  };
-};
+export type FlowLogsGetResponse = FlowLog;
 
 /** Optional parameters. */
 export interface FlowLogsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15620,71 +13210,36 @@ export interface FlowLogsDeleteOptionalParams
 }
 
 /** Optional parameters. */
-export interface FlowLogsListOptionalParams extends coreHttp.OperationOptions {}
+export interface FlowLogsListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FlowLogsListResponse = FlowLogListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLogListResult;
-  };
-};
+export type FlowLogsListResponse = FlowLogListResult;
 
 /** Optional parameters. */
 export interface FlowLogsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type FlowLogsListNextResponse = FlowLogListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FlowLogListResult;
-  };
-};
+export type FlowLogsListNextResponse = FlowLogListResult;
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface OperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15693,26 +13248,17 @@ export interface PrivateEndpointsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PrivateEndpointsGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type PrivateEndpointsGetResponse = PrivateEndpoint & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpoint;
-  };
-};
+export type PrivateEndpointsGetResponse = PrivateEndpoint;
 
 /** Optional parameters. */
 export interface PrivateEndpointsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15720,148 +13266,67 @@ export interface PrivateEndpointsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateEndpointsCreateOrUpdateResponse = PrivateEndpoint & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpoint;
-  };
-};
+export type PrivateEndpointsCreateOrUpdateResponse = PrivateEndpoint;
 
 /** Optional parameters. */
 export interface PrivateEndpointsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PrivateEndpointsListResponse = PrivateEndpointListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointListResult;
-  };
-};
+export type PrivateEndpointsListResponse = PrivateEndpointListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointsListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type PrivateEndpointsListBySubscriptionResponse = PrivateEndpointListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointListResult;
-  };
-};
+export type PrivateEndpointsListBySubscriptionResponse = PrivateEndpointListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PrivateEndpointsListNextResponse = PrivateEndpointListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointListResult;
-  };
-};
+export type PrivateEndpointsListNextResponse = PrivateEndpointListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointsListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type PrivateEndpointsListBySubscriptionNextResponse = PrivateEndpointListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointListResult;
-  };
-};
+export type PrivateEndpointsListBySubscriptionNextResponse = PrivateEndpointListResult;
 
 /** Optional parameters. */
 export interface AvailablePrivateEndpointTypesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type AvailablePrivateEndpointTypesListResponse = AvailablePrivateEndpointTypesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailablePrivateEndpointTypesResult;
-  };
-};
+export type AvailablePrivateEndpointTypesListResponse = AvailablePrivateEndpointTypesResult;
 
 /** Optional parameters. */
 export interface AvailablePrivateEndpointTypesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type AvailablePrivateEndpointTypesListByResourceGroupResponse = AvailablePrivateEndpointTypesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailablePrivateEndpointTypesResult;
-  };
-};
+export type AvailablePrivateEndpointTypesListByResourceGroupResponse = AvailablePrivateEndpointTypesResult;
 
 /** Optional parameters. */
 export interface AvailablePrivateEndpointTypesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type AvailablePrivateEndpointTypesListNextResponse = AvailablePrivateEndpointTypesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailablePrivateEndpointTypesResult;
-  };
-};
+export type AvailablePrivateEndpointTypesListNextResponse = AvailablePrivateEndpointTypesResult;
 
 /** Optional parameters. */
 export interface AvailablePrivateEndpointTypesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type AvailablePrivateEndpointTypesListByResourceGroupNextResponse = AvailablePrivateEndpointTypesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AvailablePrivateEndpointTypesResult;
-  };
-};
+export type AvailablePrivateEndpointTypesListByResourceGroupNextResponse = AvailablePrivateEndpointTypesResult;
 
 /** Optional parameters. */
 export interface PrivateDnsZoneGroupsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15870,23 +13335,14 @@ export interface PrivateDnsZoneGroupsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PrivateDnsZoneGroupsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PrivateDnsZoneGroupsGetResponse = PrivateDnsZoneGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateDnsZoneGroup;
-  };
-};
+export type PrivateDnsZoneGroupsGetResponse = PrivateDnsZoneGroup;
 
 /** Optional parameters. */
 export interface PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15894,52 +13350,25 @@ export interface PrivateDnsZoneGroupsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateDnsZoneGroupsCreateOrUpdateResponse = PrivateDnsZoneGroup & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateDnsZoneGroup;
-  };
-};
+export type PrivateDnsZoneGroupsCreateOrUpdateResponse = PrivateDnsZoneGroup;
 
 /** Optional parameters. */
 export interface PrivateDnsZoneGroupsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PrivateDnsZoneGroupsListResponse = PrivateDnsZoneGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateDnsZoneGroupListResult;
-  };
-};
+export type PrivateDnsZoneGroupsListResponse = PrivateDnsZoneGroupListResult;
 
 /** Optional parameters. */
 export interface PrivateDnsZoneGroupsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PrivateDnsZoneGroupsListNextResponse = PrivateDnsZoneGroupListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateDnsZoneGroupListResult;
-  };
-};
+export type PrivateDnsZoneGroupsListNextResponse = PrivateDnsZoneGroupListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15948,26 +13377,17 @@ export interface PrivateLinkServicesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PrivateLinkServicesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type PrivateLinkServicesGetResponse = PrivateLinkService & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkService;
-  };
-};
+export type PrivateLinkServicesGetResponse = PrivateLinkService;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -15975,87 +13395,42 @@ export interface PrivateLinkServicesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PrivateLinkServicesCreateOrUpdateResponse = PrivateLinkService & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkService;
-  };
-};
+export type PrivateLinkServicesCreateOrUpdateResponse = PrivateLinkService;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PrivateLinkServicesListResponse = PrivateLinkServiceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceListResult;
-  };
-};
+export type PrivateLinkServicesListResponse = PrivateLinkServiceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type PrivateLinkServicesListBySubscriptionResponse = PrivateLinkServiceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceListResult;
-  };
-};
+export type PrivateLinkServicesListBySubscriptionResponse = PrivateLinkServiceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesGetPrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the getPrivateEndpointConnection operation. */
-export type PrivateLinkServicesGetPrivateEndpointConnectionResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateLinkServicesGetPrivateEndpointConnectionResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesUpdatePrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updatePrivateEndpointConnection operation. */
-export type PrivateLinkServicesUpdatePrivateEndpointConnectionResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateLinkServicesUpdatePrivateEndpointConnectionResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16064,167 +13439,77 @@ export interface PrivateLinkServicesDeletePrivateEndpointConnectionOptionalParam
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListPrivateEndpointConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPrivateEndpointConnections operation. */
-export type PrivateLinkServicesListPrivateEndpointConnectionsResponse = PrivateEndpointConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnectionListResult;
-  };
-};
+export type PrivateLinkServicesListPrivateEndpointConnectionsResponse = PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkPrivateLinkServiceVisibility operation. */
-export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse = PrivateLinkServiceVisibility & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceVisibility;
-  };
-};
+export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityResponse = PrivateLinkServiceVisibility;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkPrivateLinkServiceVisibilityByResourceGroup operation. */
-export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse = PrivateLinkServiceVisibility & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceVisibility;
-  };
-};
+export type PrivateLinkServicesCheckPrivateLinkServiceVisibilityByResourceGroupResponse = PrivateLinkServiceVisibility;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAutoApprovedPrivateLinkServices operation. */
-export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse = AutoApprovedPrivateLinkServicesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AutoApprovedPrivateLinkServicesResult;
-  };
-};
+export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesResponse = AutoApprovedPrivateLinkServicesResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAutoApprovedPrivateLinkServicesByResourceGroup operation. */
-export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse = AutoApprovedPrivateLinkServicesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AutoApprovedPrivateLinkServicesResult;
-  };
-};
+export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupResponse = AutoApprovedPrivateLinkServicesResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PrivateLinkServicesListNextResponse = PrivateLinkServiceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceListResult;
-  };
-};
+export type PrivateLinkServicesListNextResponse = PrivateLinkServiceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type PrivateLinkServicesListBySubscriptionNextResponse = PrivateLinkServiceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkServiceListResult;
-  };
-};
+export type PrivateLinkServicesListBySubscriptionNextResponse = PrivateLinkServiceListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListPrivateEndpointConnectionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPrivateEndpointConnectionsNext operation. */
-export type PrivateLinkServicesListPrivateEndpointConnectionsNextResponse = PrivateEndpointConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnectionListResult;
-  };
-};
+export type PrivateLinkServicesListPrivateEndpointConnectionsNextResponse = PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAutoApprovedPrivateLinkServicesNext operation. */
-export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse = AutoApprovedPrivateLinkServicesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AutoApprovedPrivateLinkServicesResult;
-  };
-};
+export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesNextResponse = AutoApprovedPrivateLinkServicesResult;
 
 /** Optional parameters. */
 export interface PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAutoApprovedPrivateLinkServicesByResourceGroupNext operation. */
-export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse = AutoApprovedPrivateLinkServicesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AutoApprovedPrivateLinkServicesResult;
-  };
-};
+export type PrivateLinkServicesListAutoApprovedPrivateLinkServicesByResourceGroupNextResponse = AutoApprovedPrivateLinkServicesResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16233,26 +13518,17 @@ export interface PublicIPAddressesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PublicIPAddressesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type PublicIPAddressesGetResponse = PublicIPAddress & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddress;
-  };
-};
+export type PublicIPAddressesGetResponse = PublicIPAddress;
 
 /** Optional parameters. */
 export interface PublicIPAddressesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16260,183 +13536,84 @@ export interface PublicIPAddressesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddress;
-  };
-};
+export type PublicIPAddressesCreateOrUpdateResponse = PublicIPAddress;
 
 /** Optional parameters. */
 export interface PublicIPAddressesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type PublicIPAddressesUpdateTagsResponse = PublicIPAddress & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddress;
-  };
-};
+export type PublicIPAddressesUpdateTagsResponse = PublicIPAddress;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type PublicIPAddressesListAllResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListAllResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PublicIPAddressesListResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetPublicIPAddresses operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddresses operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the getVirtualMachineScaleSetPublicIPAddress operation. */
-export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = PublicIPAddress & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddress;
-  };
-};
+export type PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse = PublicIPAddress;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type PublicIPAddressesListAllNextResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListAllNextResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PublicIPAddressesListNextResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListNextResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetPublicIPAddressesNext operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listVirtualMachineScaleSetVMPublicIPAddressesNext operation. */
-export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = PublicIPAddressListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPAddressListResult;
-  };
-};
+export type PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse = PublicIPAddressListResult;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16445,26 +13622,17 @@ export interface PublicIPPrefixesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface PublicIPPrefixesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type PublicIPPrefixesGetResponse = PublicIPPrefix & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefix;
-  };
-};
+export type PublicIPPrefixesGetResponse = PublicIPPrefix;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16472,100 +13640,46 @@ export interface PublicIPPrefixesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefix;
-  };
-};
+export type PublicIPPrefixesCreateOrUpdateResponse = PublicIPPrefix;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type PublicIPPrefixesUpdateTagsResponse = PublicIPPrefix & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefix;
-  };
-};
+export type PublicIPPrefixesUpdateTagsResponse = PublicIPPrefix;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type PublicIPPrefixesListAllResponse = PublicIPPrefixListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefixListResult;
-  };
-};
+export type PublicIPPrefixesListAllResponse = PublicIPPrefixListResult;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PublicIPPrefixesListResponse = PublicIPPrefixListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefixListResult;
-  };
-};
+export type PublicIPPrefixesListResponse = PublicIPPrefixListResult;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type PublicIPPrefixesListAllNextResponse = PublicIPPrefixListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefixListResult;
-  };
-};
+export type PublicIPPrefixesListAllNextResponse = PublicIPPrefixListResult;
 
 /** Optional parameters. */
 export interface PublicIPPrefixesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type PublicIPPrefixesListNextResponse = PublicIPPrefixListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PublicIPPrefixListResult;
-  };
-};
+export type PublicIPPrefixesListNextResponse = PublicIPPrefixListResult;
 
 /** Optional parameters. */
 export interface RouteFiltersDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16574,26 +13688,17 @@ export interface RouteFiltersDeleteOptionalParams
 
 /** Optional parameters. */
 export interface RouteFiltersGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced express route bgp peering resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type RouteFiltersGetResponse = RouteFilter & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilter;
-  };
-};
+export type RouteFiltersGetResponse = RouteFilter;
 
 /** Optional parameters. */
 export interface RouteFiltersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16601,100 +13706,46 @@ export interface RouteFiltersCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type RouteFiltersCreateOrUpdateResponse = RouteFilter & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilter;
-  };
-};
+export type RouteFiltersCreateOrUpdateResponse = RouteFilter;
 
 /** Optional parameters. */
 export interface RouteFiltersUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type RouteFiltersUpdateTagsResponse = RouteFilter & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilter;
-  };
-};
+export type RouteFiltersUpdateTagsResponse = RouteFilter;
 
 /** Optional parameters. */
 export interface RouteFiltersListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type RouteFiltersListByResourceGroupResponse = RouteFilterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterListResult;
-  };
-};
+export type RouteFiltersListByResourceGroupResponse = RouteFilterListResult;
 
 /** Optional parameters. */
 export interface RouteFiltersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RouteFiltersListResponse = RouteFilterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterListResult;
-  };
-};
+export type RouteFiltersListResponse = RouteFilterListResult;
 
 /** Optional parameters. */
 export interface RouteFiltersListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type RouteFiltersListByResourceGroupNextResponse = RouteFilterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterListResult;
-  };
-};
+export type RouteFiltersListByResourceGroupNextResponse = RouteFilterListResult;
 
 /** Optional parameters. */
 export interface RouteFiltersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type RouteFiltersListNextResponse = RouteFilterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterListResult;
-  };
-};
+export type RouteFiltersListNextResponse = RouteFilterListResult;
 
 /** Optional parameters. */
 export interface RouteFilterRulesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16703,23 +13754,14 @@ export interface RouteFilterRulesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface RouteFilterRulesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type RouteFilterRulesGetResponse = RouteFilterRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterRule;
-  };
-};
+export type RouteFilterRulesGetResponse = RouteFilterRule;
 
 /** Optional parameters. */
 export interface RouteFilterRulesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16727,52 +13769,25 @@ export interface RouteFilterRulesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterRule;
-  };
-};
+export type RouteFilterRulesCreateOrUpdateResponse = RouteFilterRule;
 
 /** Optional parameters. */
 export interface RouteFilterRulesListByRouteFilterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByRouteFilter operation. */
-export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterRuleListResult;
-  };
-};
+export type RouteFilterRulesListByRouteFilterResponse = RouteFilterRuleListResult;
 
 /** Optional parameters. */
 export interface RouteFilterRulesListByRouteFilterNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByRouteFilterNext operation. */
-export type RouteFilterRulesListByRouteFilterNextResponse = RouteFilterRuleListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteFilterRuleListResult;
-  };
-};
+export type RouteFilterRulesListByRouteFilterNextResponse = RouteFilterRuleListResult;
 
 /** Optional parameters. */
 export interface RouteTablesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16781,26 +13796,17 @@ export interface RouteTablesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface RouteTablesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type RouteTablesGetResponse = RouteTable & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTable;
-  };
-};
+export type RouteTablesGetResponse = RouteTable;
 
 /** Optional parameters. */
 export interface RouteTablesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16808,99 +13814,46 @@ export interface RouteTablesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type RouteTablesCreateOrUpdateResponse = RouteTable & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTable;
-  };
-};
+export type RouteTablesCreateOrUpdateResponse = RouteTable;
 
 /** Optional parameters. */
 export interface RouteTablesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type RouteTablesUpdateTagsResponse = RouteTable & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTable;
-  };
-};
+export type RouteTablesUpdateTagsResponse = RouteTable;
 
 /** Optional parameters. */
 export interface RouteTablesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RouteTablesListResponse = RouteTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTableListResult;
-  };
-};
+export type RouteTablesListResponse = RouteTableListResult;
 
 /** Optional parameters. */
 export interface RouteTablesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type RouteTablesListAllResponse = RouteTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTableListResult;
-  };
-};
+export type RouteTablesListAllResponse = RouteTableListResult;
 
 /** Optional parameters. */
 export interface RouteTablesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type RouteTablesListNextResponse = RouteTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTableListResult;
-  };
-};
+export type RouteTablesListNextResponse = RouteTableListResult;
 
 /** Optional parameters. */
 export interface RouteTablesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type RouteTablesListAllNextResponse = RouteTableListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteTableListResult;
-  };
-};
+export type RouteTablesListAllNextResponse = RouteTableListResult;
 
 /** Optional parameters. */
-export interface RoutesDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface RoutesDeleteOptionalParams
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16908,23 +13861,14 @@ export interface RoutesDeleteOptionalParams extends coreHttp.OperationOptions {
 }
 
 /** Optional parameters. */
-export interface RoutesGetOptionalParams extends coreHttp.OperationOptions {}
+export interface RoutesGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type RoutesGetResponse = Route & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Route;
-  };
-};
+export type RoutesGetResponse = Route;
 
 /** Optional parameters. */
 export interface RoutesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16932,51 +13876,24 @@ export interface RoutesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type RoutesCreateOrUpdateResponse = Route & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Route;
-  };
-};
+export type RoutesCreateOrUpdateResponse = Route;
 
 /** Optional parameters. */
-export interface RoutesListOptionalParams extends coreHttp.OperationOptions {}
+export interface RoutesListOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type RoutesListResponse = RouteListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteListResult;
-  };
-};
+export type RoutesListResponse = RouteListResult;
 
 /** Optional parameters. */
 export interface RoutesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type RoutesListNextResponse = RouteListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: RouteListResult;
-  };
-};
+export type RoutesListNextResponse = RouteListResult;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -16985,23 +13902,14 @@ export interface SecurityPartnerProvidersDeleteOptionalParams
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type SecurityPartnerProvidersGetResponse = SecurityPartnerProvider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProvider;
-  };
-};
+export type SecurityPartnerProvidersGetResponse = SecurityPartnerProvider;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17009,132 +13917,60 @@ export interface SecurityPartnerProvidersCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type SecurityPartnerProvidersCreateOrUpdateResponse = SecurityPartnerProvider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProvider;
-  };
-};
+export type SecurityPartnerProvidersCreateOrUpdateResponse = SecurityPartnerProvider;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type SecurityPartnerProvidersUpdateTagsResponse = SecurityPartnerProvider & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProvider;
-  };
-};
+export type SecurityPartnerProvidersUpdateTagsResponse = SecurityPartnerProvider;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type SecurityPartnerProvidersListByResourceGroupResponse = SecurityPartnerProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProviderListResult;
-  };
-};
+export type SecurityPartnerProvidersListByResourceGroupResponse = SecurityPartnerProviderListResult;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type SecurityPartnerProvidersListResponse = SecurityPartnerProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProviderListResult;
-  };
-};
+export type SecurityPartnerProvidersListResponse = SecurityPartnerProviderListResult;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type SecurityPartnerProvidersListByResourceGroupNextResponse = SecurityPartnerProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProviderListResult;
-  };
-};
+export type SecurityPartnerProvidersListByResourceGroupNextResponse = SecurityPartnerProviderListResult;
 
 /** Optional parameters. */
 export interface SecurityPartnerProvidersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type SecurityPartnerProvidersListNextResponse = SecurityPartnerProviderListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SecurityPartnerProviderListResult;
-  };
-};
+export type SecurityPartnerProvidersListNextResponse = SecurityPartnerProviderListResult;
 
 /** Optional parameters. */
 export interface BgpServiceCommunitiesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type BgpServiceCommunitiesListResponse = BgpServiceCommunityListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BgpServiceCommunityListResult;
-  };
-};
+export type BgpServiceCommunitiesListResponse = BgpServiceCommunityListResult;
 
 /** Optional parameters. */
 export interface BgpServiceCommunitiesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type BgpServiceCommunitiesListNextResponse = BgpServiceCommunityListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BgpServiceCommunityListResult;
-  };
-};
+export type BgpServiceCommunitiesListNextResponse = BgpServiceCommunityListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17143,26 +13979,17 @@ export interface ServiceEndpointPoliciesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type ServiceEndpointPoliciesGetResponse = ServiceEndpointPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicy;
-  };
-};
+export type ServiceEndpointPoliciesGetResponse = ServiceEndpointPolicy;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17170,100 +13997,46 @@ export interface ServiceEndpointPoliciesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServiceEndpointPoliciesCreateOrUpdateResponse = ServiceEndpointPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicy;
-  };
-};
+export type ServiceEndpointPoliciesCreateOrUpdateResponse = ServiceEndpointPolicy;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type ServiceEndpointPoliciesUpdateTagsResponse = ServiceEndpointPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicy;
-  };
-};
+export type ServiceEndpointPoliciesUpdateTagsResponse = ServiceEndpointPolicy;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ServiceEndpointPoliciesListResponse = ServiceEndpointPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyListResult;
-  };
-};
+export type ServiceEndpointPoliciesListResponse = ServiceEndpointPolicyListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ServiceEndpointPoliciesListByResourceGroupResponse = ServiceEndpointPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyListResult;
-  };
-};
+export type ServiceEndpointPoliciesListByResourceGroupResponse = ServiceEndpointPolicyListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type ServiceEndpointPoliciesListNextResponse = ServiceEndpointPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyListResult;
-  };
-};
+export type ServiceEndpointPoliciesListNextResponse = ServiceEndpointPolicyListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPoliciesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ServiceEndpointPoliciesListByResourceGroupNextResponse = ServiceEndpointPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyListResult;
-  };
-};
+export type ServiceEndpointPoliciesListByResourceGroupNextResponse = ServiceEndpointPolicyListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPolicyDefinitionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17272,23 +14045,14 @@ export interface ServiceEndpointPolicyDefinitionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ServiceEndpointPolicyDefinitionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ServiceEndpointPolicyDefinitionsGetResponse = ServiceEndpointPolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyDefinition;
-  };
-};
+export type ServiceEndpointPolicyDefinitionsGetResponse = ServiceEndpointPolicyDefinition;
 
 /** Optional parameters. */
 export interface ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17296,99 +14060,45 @@ export interface ServiceEndpointPolicyDefinitionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndpointPolicyDefinition & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyDefinition;
-  };
-};
+export type ServiceEndpointPolicyDefinitionsCreateOrUpdateResponse = ServiceEndpointPolicyDefinition;
 
 /** Optional parameters. */
 export interface ServiceEndpointPolicyDefinitionsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ServiceEndpointPolicyDefinitionsListByResourceGroupResponse = ServiceEndpointPolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyDefinitionListResult;
-  };
-};
+export type ServiceEndpointPolicyDefinitionsListByResourceGroupResponse = ServiceEndpointPolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface ServiceEndpointPolicyDefinitionsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse = ServiceEndpointPolicyDefinitionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceEndpointPolicyDefinitionListResult;
-  };
-};
+export type ServiceEndpointPolicyDefinitionsListByResourceGroupNextResponse = ServiceEndpointPolicyDefinitionListResult;
 
 /** Optional parameters. */
 export interface ServiceTagsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ServiceTagsListResponse = ServiceTagsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceTagsListResult;
-  };
-};
+export type ServiceTagsListResponse = ServiceTagsListResult;
 
 /** Optional parameters. */
-export interface UsagesListOptionalParams extends coreHttp.OperationOptions {}
+export interface UsagesListOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type UsagesListResponse = UsagesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsagesListResult;
-  };
-};
+export type UsagesListResponse = UsagesListResult;
 
 /** Optional parameters. */
 export interface UsagesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type UsagesListNextResponse = UsagesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsagesListResult;
-  };
-};
+export type UsagesListNextResponse = UsagesListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17397,26 +14107,17 @@ export interface VirtualNetworksDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworksGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type VirtualNetworksGetResponse = VirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetwork;
-  };
-};
+export type VirtualNetworksGetResponse = VirtualNetwork;
 
 /** Optional parameters. */
 export interface VirtualNetworksCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17424,147 +14125,67 @@ export interface VirtualNetworksCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualNetworksCreateOrUpdateResponse = VirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetwork;
-  };
-};
+export type VirtualNetworksCreateOrUpdateResponse = VirtualNetwork;
 
 /** Optional parameters. */
 export interface VirtualNetworksUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VirtualNetworksUpdateTagsResponse = VirtualNetwork & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetwork;
-  };
-};
+export type VirtualNetworksUpdateTagsResponse = VirtualNetwork;
 
 /** Optional parameters. */
 export interface VirtualNetworksListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type VirtualNetworksListAllResponse = VirtualNetworkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListResult;
-  };
-};
+export type VirtualNetworksListAllResponse = VirtualNetworkListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualNetworksListResponse = VirtualNetworkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListResult;
-  };
-};
+export type VirtualNetworksListResponse = VirtualNetworkListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksCheckIPAddressAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkIPAddressAvailability operation. */
-export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailabilityResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: IPAddressAvailabilityResult;
-  };
-};
+export type VirtualNetworksCheckIPAddressAvailabilityResponse = IPAddressAvailabilityResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksListUsageOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsage operation. */
-export type VirtualNetworksListUsageResponse = VirtualNetworkListUsageResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListUsageResult;
-  };
-};
+export type VirtualNetworksListUsageResponse = VirtualNetworkListUsageResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type VirtualNetworksListAllNextResponse = VirtualNetworkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListResult;
-  };
-};
+export type VirtualNetworksListAllNextResponse = VirtualNetworkListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualNetworksListNextResponse = VirtualNetworkListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListResult;
-  };
-};
+export type VirtualNetworksListNextResponse = VirtualNetworkListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworksListUsageNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listUsageNext operation. */
-export type VirtualNetworksListUsageNextResponse = VirtualNetworkListUsageResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkListUsageResult;
-  };
-};
+export type VirtualNetworksListUsageNextResponse = VirtualNetworkListUsageResult;
 
 /** Optional parameters. */
-export interface SubnetsDeleteOptionalParams extends coreHttp.OperationOptions {
+export interface SubnetsDeleteOptionalParams
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17572,26 +14193,17 @@ export interface SubnetsDeleteOptionalParams extends coreHttp.OperationOptions {
 }
 
 /** Optional parameters. */
-export interface SubnetsGetOptionalParams extends coreHttp.OperationOptions {
+export interface SubnetsGetOptionalParams extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type SubnetsGetResponse = Subnet & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Subnet;
-  };
-};
+export type SubnetsGetResponse = Subnet;
 
 /** Optional parameters. */
 export interface SubnetsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17599,20 +14211,11 @@ export interface SubnetsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type SubnetsCreateOrUpdateResponse = Subnet & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Subnet;
-  };
-};
+export type SubnetsCreateOrUpdateResponse = Subnet;
 
 /** Optional parameters. */
 export interface SubnetsPrepareNetworkPoliciesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17621,7 +14224,7 @@ export interface SubnetsPrepareNetworkPoliciesOptionalParams
 
 /** Optional parameters. */
 export interface SubnetsUnprepareNetworkPoliciesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17629,71 +14232,36 @@ export interface SubnetsUnprepareNetworkPoliciesOptionalParams
 }
 
 /** Optional parameters. */
-export interface SubnetsListOptionalParams extends coreHttp.OperationOptions {}
+export interface SubnetsListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type SubnetsListResponse = SubnetListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SubnetListResult;
-  };
-};
+export type SubnetsListResponse = SubnetListResult;
 
 /** Optional parameters. */
 export interface SubnetsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type SubnetsListNextResponse = SubnetListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SubnetListResult;
-  };
-};
+export type SubnetsListNextResponse = SubnetListResult;
 
 /** Optional parameters. */
 export interface ResourceNavigationLinksListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ResourceNavigationLinksListResponse = ResourceNavigationLinksListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceNavigationLinksListResult;
-  };
-};
+export type ResourceNavigationLinksListResponse = ResourceNavigationLinksListResult;
 
 /** Optional parameters. */
 export interface ServiceAssociationLinksListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ServiceAssociationLinksListResponse = ServiceAssociationLinksListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ServiceAssociationLinksListResult;
-  };
-};
+export type ServiceAssociationLinksListResponse = ServiceAssociationLinksListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17702,23 +14270,14 @@ export interface VirtualNetworkPeeringsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualNetworkPeeringsGetResponse = VirtualNetworkPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkPeering;
-  };
-};
+export type VirtualNetworkPeeringsGetResponse = VirtualNetworkPeering;
 
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17726,52 +14285,25 @@ export interface VirtualNetworkPeeringsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkPeering;
-  };
-};
+export type VirtualNetworkPeeringsCreateOrUpdateResponse = VirtualNetworkPeering;
 
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkPeeringListResult;
-  };
-};
+export type VirtualNetworkPeeringsListResponse = VirtualNetworkPeeringListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkPeeringsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualNetworkPeeringsListNextResponse = VirtualNetworkPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkPeeringListResult;
-  };
-};
+export type VirtualNetworkPeeringsListNextResponse = VirtualNetworkPeeringListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17779,36 +14311,18 @@ export interface VirtualNetworkGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualNetworkGatewaysCreateOrUpdateResponse = VirtualNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGateway;
-  };
-};
+export type VirtualNetworkGatewaysCreateOrUpdateResponse = VirtualNetworkGateway;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualNetworkGatewaysGetResponse = VirtualNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGateway;
-  };
-};
+export type VirtualNetworkGatewaysGetResponse = VirtualNetworkGateway;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17817,7 +14331,7 @@ export interface VirtualNetworkGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17825,52 +14339,25 @@ export interface VirtualNetworkGatewaysUpdateTagsOptionalParams
 }
 
 /** Contains response data for the updateTags operation. */
-export type VirtualNetworkGatewaysUpdateTagsResponse = VirtualNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGateway;
-  };
-};
+export type VirtualNetworkGatewaysUpdateTagsResponse = VirtualNetworkGateway;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualNetworkGatewaysListResponse = VirtualNetworkGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayListResult;
-  };
-};
+export type VirtualNetworkGatewaysListResponse = VirtualNetworkGatewayListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysListConnectionsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnections operation. */
-export type VirtualNetworkGatewaysListConnectionsResponse = VirtualNetworkGatewayListConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayListConnectionsResult;
-  };
-};
+export type VirtualNetworkGatewaysListConnectionsResponse = VirtualNetworkGatewayListConnectionsResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysResetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Virtual network gateway vip address supplied to the begin reset of the active-active feature enabled gateway. */
   gatewayVip?: string;
   /** Delay to wait until next poll, in milliseconds. */
@@ -17880,20 +14367,11 @@ export interface VirtualNetworkGatewaysResetOptionalParams
 }
 
 /** Contains response data for the reset operation. */
-export type VirtualNetworkGatewaysResetResponse = VirtualNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGateway;
-  };
-};
+export type VirtualNetworkGatewaysResetResponse = VirtualNetworkGateway;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17902,7 +14380,7 @@ export interface VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17913,20 +14391,11 @@ export interface VirtualNetworkGatewaysGeneratevpnclientpackageOptionalParams
 export type VirtualNetworkGatewaysGeneratevpnclientpackageResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGenerateVpnProfileOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17937,20 +14406,11 @@ export interface VirtualNetworkGatewaysGenerateVpnProfileOptionalParams
 export type VirtualNetworkGatewaysGenerateVpnProfileResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -17961,20 +14421,11 @@ export interface VirtualNetworkGatewaysGetVpnProfilePackageUrlOptionalParams
 export type VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The IP address of the peer to retrieve the status of. */
   peer?: string;
   /** Delay to wait until next poll, in milliseconds. */
@@ -17984,39 +14435,21 @@ export interface VirtualNetworkGatewaysGetBgpPeerStatusOptionalParams
 }
 
 /** Contains response data for the getBgpPeerStatus operation. */
-export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = BgpPeerStatusListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BgpPeerStatusListResult;
-  };
-};
+export type VirtualNetworkGatewaysGetBgpPeerStatusResponse = BgpPeerStatusListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the supportedVpnDevices operation. */
 export type VirtualNetworkGatewaysSupportedVpnDevicesResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18024,20 +14457,11 @@ export interface VirtualNetworkGatewaysGetLearnedRoutesOptionalParams
 }
 
 /** Contains response data for the getLearnedRoutes operation. */
-export type VirtualNetworkGatewaysGetLearnedRoutesResponse = GatewayRouteListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GatewayRouteListResult;
-  };
-};
+export type VirtualNetworkGatewaysGetLearnedRoutesResponse = GatewayRouteListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18045,20 +14469,11 @@ export interface VirtualNetworkGatewaysGetAdvertisedRoutesOptionalParams
 }
 
 /** Contains response data for the getAdvertisedRoutes operation. */
-export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = GatewayRouteListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: GatewayRouteListResult;
-  };
-};
+export type VirtualNetworkGatewaysGetAdvertisedRoutesResponse = GatewayRouteListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18066,20 +14481,11 @@ export interface VirtualNetworkGatewaysSetVpnclientIpsecParametersOptionalParams
 }
 
 /** Contains response data for the setVpnclientIpsecParameters operation. */
-export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = VpnClientIPsecParameters & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnClientIPsecParameters;
-  };
-};
+export type VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse = VpnClientIPsecParameters;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18087,39 +14493,21 @@ export interface VirtualNetworkGatewaysGetVpnclientIpsecParametersOptionalParams
 }
 
 /** Contains response data for the getVpnclientIpsecParameters operation. */
-export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = VpnClientIPsecParameters & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnClientIPsecParameters;
-  };
-};
+export type VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse = VpnClientIPsecParameters;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the vpnDeviceConfigurationScript operation. */
 export type VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysStartPacketCaptureOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Virtual network gateway packet capture parameters supplied to start packet capture on gateway. */
   parameters?: VpnPacketCaptureStartParameters;
   /** Delay to wait until next poll, in milliseconds. */
@@ -18132,20 +14520,11 @@ export interface VirtualNetworkGatewaysStartPacketCaptureOptionalParams
 export type VirtualNetworkGatewaysStartPacketCaptureResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysStopPacketCaptureOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18156,20 +14535,11 @@ export interface VirtualNetworkGatewaysStopPacketCaptureOptionalParams
 export type VirtualNetworkGatewaysStopPacketCaptureResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18177,20 +14547,11 @@ export interface VirtualNetworkGatewaysGetVpnclientConnectionHealthOptionalParam
 }
 
 /** Contains response data for the getVpnclientConnectionHealth operation. */
-export type VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse = VpnClientConnectionHealthDetailListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnClientConnectionHealthDetailListResult;
-  };
-};
+export type VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse = VpnClientConnectionHealthDetailListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18199,39 +14560,21 @@ export interface VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnect
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualNetworkGatewaysListNextResponse = VirtualNetworkGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayListResult;
-  };
-};
+export type VirtualNetworkGatewaysListNextResponse = VirtualNetworkGatewayListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewaysListConnectionsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listConnectionsNext operation. */
-export type VirtualNetworkGatewaysListConnectionsNextResponse = VirtualNetworkGatewayListConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayListConnectionsResult;
-  };
-};
+export type VirtualNetworkGatewaysListConnectionsNextResponse = VirtualNetworkGatewayListConnectionsResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18239,36 +14582,18 @@ export interface VirtualNetworkGatewayConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetworkGatewayConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayConnection;
-  };
-};
+export type VirtualNetworkGatewayConnectionsCreateOrUpdateResponse = VirtualNetworkGatewayConnection;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualNetworkGatewayConnectionsGetResponse = VirtualNetworkGatewayConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayConnection;
-  };
-};
+export type VirtualNetworkGatewayConnectionsGetResponse = VirtualNetworkGatewayConnection;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18277,7 +14602,7 @@ export interface VirtualNetworkGatewayConnectionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18285,20 +14610,11 @@ export interface VirtualNetworkGatewayConnectionsUpdateTagsOptionalParams
 }
 
 /** Contains response data for the updateTags operation. */
-export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkGatewayConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayConnection;
-  };
-};
+export type VirtualNetworkGatewayConnectionsUpdateTagsResponse = VirtualNetworkGatewayConnection;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18306,52 +14622,25 @@ export interface VirtualNetworkGatewayConnectionsSetSharedKeyOptionalParams
 }
 
 /** Contains response data for the setSharedKey operation. */
-export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = ConnectionSharedKey & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionSharedKey;
-  };
-};
+export type VirtualNetworkGatewayConnectionsSetSharedKeyResponse = ConnectionSharedKey;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsGetSharedKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSharedKey operation. */
-export type VirtualNetworkGatewayConnectionsGetSharedKeyResponse = ConnectionSharedKey & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionSharedKey;
-  };
-};
+export type VirtualNetworkGatewayConnectionsGetSharedKeyResponse = ConnectionSharedKey;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualNetworkGatewayConnectionsListResponse = VirtualNetworkGatewayConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayConnectionListResult;
-  };
-};
+export type VirtualNetworkGatewayConnectionsListResponse = VirtualNetworkGatewayConnectionListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18359,20 +14648,11 @@ export interface VirtualNetworkGatewayConnectionsResetSharedKeyOptionalParams
 }
 
 /** Contains response data for the resetSharedKey operation. */
-export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = ConnectionResetSharedKey & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ConnectionResetSharedKey;
-  };
-};
+export type VirtualNetworkGatewayConnectionsResetSharedKeyResponse = ConnectionResetSharedKey;
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Virtual network gateway packet capture parameters supplied to start packet capture on gateway connection. */
   parameters?: VpnPacketCaptureStartParameters;
   /** Delay to wait until next poll, in milliseconds. */
@@ -18385,20 +14665,11 @@ export interface VirtualNetworkGatewayConnectionsStartPacketCaptureOptionalParam
 export type VirtualNetworkGatewayConnectionsStartPacketCaptureResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18409,36 +14680,18 @@ export interface VirtualNetworkGatewayConnectionsStopPacketCaptureOptionalParams
 export type VirtualNetworkGatewayConnectionsStopPacketCaptureResponse = {
   /** The parsed response body. */
   body: string;
-
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: string;
-  };
 };
 
 /** Optional parameters. */
 export interface VirtualNetworkGatewayConnectionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualNetworkGatewayConnectionsListNextResponse = VirtualNetworkGatewayConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkGatewayConnectionListResult;
-  };
-};
+export type VirtualNetworkGatewayConnectionsListNextResponse = VirtualNetworkGatewayConnectionListResult;
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18446,36 +14699,18 @@ export interface LocalNetworkGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LocalNetworkGateway;
-  };
-};
+export type LocalNetworkGatewaysCreateOrUpdateResponse = LocalNetworkGateway;
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type LocalNetworkGatewaysGetResponse = LocalNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LocalNetworkGateway;
-  };
-};
+export type LocalNetworkGatewaysGetResponse = LocalNetworkGateway;
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18484,55 +14719,28 @@ export interface LocalNetworkGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type LocalNetworkGatewaysUpdateTagsResponse = LocalNetworkGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LocalNetworkGateway;
-  };
-};
+export type LocalNetworkGatewaysUpdateTagsResponse = LocalNetworkGateway;
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type LocalNetworkGatewaysListResponse = LocalNetworkGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LocalNetworkGatewayListResult;
-  };
-};
+export type LocalNetworkGatewaysListResponse = LocalNetworkGatewayListResult;
 
 /** Optional parameters. */
 export interface LocalNetworkGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type LocalNetworkGatewaysListNextResponse = LocalNetworkGatewayListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LocalNetworkGatewayListResult;
-  };
-};
+export type LocalNetworkGatewaysListNextResponse = LocalNetworkGatewayListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18541,23 +14749,14 @@ export interface VirtualNetworkTapsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualNetworkTapsGetResponse = VirtualNetworkTap & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTap;
-  };
-};
+export type VirtualNetworkTapsGetResponse = VirtualNetworkTap;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18565,100 +14764,46 @@ export interface VirtualNetworkTapsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualNetworkTapsCreateOrUpdateResponse = VirtualNetworkTap & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTap;
-  };
-};
+export type VirtualNetworkTapsCreateOrUpdateResponse = VirtualNetworkTap;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VirtualNetworkTapsUpdateTagsResponse = VirtualNetworkTap & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTap;
-  };
-};
+export type VirtualNetworkTapsUpdateTagsResponse = VirtualNetworkTap;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type VirtualNetworkTapsListAllResponse = VirtualNetworkTapListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTapListResult;
-  };
-};
+export type VirtualNetworkTapsListAllResponse = VirtualNetworkTapListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VirtualNetworkTapsListByResourceGroupResponse = VirtualNetworkTapListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTapListResult;
-  };
-};
+export type VirtualNetworkTapsListByResourceGroupResponse = VirtualNetworkTapListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type VirtualNetworkTapsListAllNextResponse = VirtualNetworkTapListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTapListResult;
-  };
-};
+export type VirtualNetworkTapsListAllNextResponse = VirtualNetworkTapListResult;
 
 /** Optional parameters. */
 export interface VirtualNetworkTapsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VirtualNetworkTapsListByResourceGroupNextResponse = VirtualNetworkTapListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualNetworkTapListResult;
-  };
-};
+export type VirtualNetworkTapsListByResourceGroupNextResponse = VirtualNetworkTapListResult;
 
 /** Optional parameters. */
 export interface VirtualRoutersDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18667,26 +14812,17 @@ export interface VirtualRoutersDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualRoutersGetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Expands referenced resources. */
   expand?: string;
 }
 
 /** Contains response data for the get operation. */
-export type VirtualRoutersGetResponse = VirtualRouter & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouter;
-  };
-};
+export type VirtualRoutersGetResponse = VirtualRouter;
 
 /** Optional parameters. */
 export interface VirtualRoutersCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18694,84 +14830,39 @@ export interface VirtualRoutersCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouter;
-  };
-};
+export type VirtualRoutersCreateOrUpdateResponse = VirtualRouter;
 
 /** Optional parameters. */
 export interface VirtualRoutersListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VirtualRoutersListByResourceGroupResponse = VirtualRouterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterListResult;
-  };
-};
+export type VirtualRoutersListByResourceGroupResponse = VirtualRouterListResult;
 
 /** Optional parameters. */
 export interface VirtualRoutersListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualRoutersListResponse = VirtualRouterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterListResult;
-  };
-};
+export type VirtualRoutersListResponse = VirtualRouterListResult;
 
 /** Optional parameters. */
 export interface VirtualRoutersListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VirtualRoutersListByResourceGroupNextResponse = VirtualRouterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterListResult;
-  };
-};
+export type VirtualRoutersListByResourceGroupNextResponse = VirtualRouterListResult;
 
 /** Optional parameters. */
 export interface VirtualRoutersListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualRoutersListNextResponse = VirtualRouterListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterListResult;
-  };
-};
+export type VirtualRoutersListNextResponse = VirtualRouterListResult;
 
 /** Optional parameters. */
 export interface VirtualRouterPeeringsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18780,23 +14871,14 @@ export interface VirtualRouterPeeringsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualRouterPeeringsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualRouterPeeringsGetResponse = VirtualRouterPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterPeering;
-  };
-};
+export type VirtualRouterPeeringsGetResponse = VirtualRouterPeering;
 
 /** Optional parameters. */
 export interface VirtualRouterPeeringsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18804,68 +14886,32 @@ export interface VirtualRouterPeeringsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterPeering;
-  };
-};
+export type VirtualRouterPeeringsCreateOrUpdateResponse = VirtualRouterPeering;
 
 /** Optional parameters. */
 export interface VirtualRouterPeeringsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterPeeringListResult;
-  };
-};
+export type VirtualRouterPeeringsListResponse = VirtualRouterPeeringListResult;
 
 /** Optional parameters. */
 export interface VirtualRouterPeeringsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualRouterPeeringsListNextResponse = VirtualRouterPeeringListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualRouterPeeringListResult;
-  };
-};
+export type VirtualRouterPeeringsListNextResponse = VirtualRouterPeeringListResult;
 
 /** Optional parameters. */
 export interface VirtualWansGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualWansGetResponse = VirtualWAN & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualWAN;
-  };
-};
+export type VirtualWansGetResponse = VirtualWAN;
 
 /** Optional parameters. */
 export interface VirtualWansCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18873,36 +14919,18 @@ export interface VirtualWansCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualWansCreateOrUpdateResponse = VirtualWAN & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualWAN;
-  };
-};
+export type VirtualWansCreateOrUpdateResponse = VirtualWAN;
 
 /** Optional parameters. */
 export interface VirtualWansUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VirtualWansUpdateTagsResponse = VirtualWAN & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualWAN;
-  };
-};
+export type VirtualWansUpdateTagsResponse = VirtualWAN;
 
 /** Optional parameters. */
 export interface VirtualWansDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18911,86 +14939,42 @@ export interface VirtualWansDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualWansListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VirtualWansListByResourceGroupResponse = ListVirtualWANsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualWANsResult;
-  };
-};
+export type VirtualWansListByResourceGroupResponse = ListVirtualWANsResult;
 
 /** Optional parameters. */
 export interface VirtualWansListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualWansListResponse = ListVirtualWANsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualWANsResult;
-  };
-};
+export type VirtualWansListResponse = ListVirtualWANsResult;
 
 /** Optional parameters. */
 export interface VirtualWansListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VirtualWansListByResourceGroupNextResponse = ListVirtualWANsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualWANsResult;
-  };
-};
+export type VirtualWansListByResourceGroupNextResponse = ListVirtualWANsResult;
 
 /** Optional parameters. */
 export interface VirtualWansListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualWansListNextResponse = ListVirtualWANsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualWANsResult;
-  };
-};
+export type VirtualWansListNextResponse = ListVirtualWANsResult;
 
 /** Optional parameters. */
-export interface VpnSitesGetOptionalParams extends coreHttp.OperationOptions {}
+export interface VpnSitesGetOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnSitesGetResponse = VpnSite & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnSite;
-  };
-};
+export type VpnSitesGetResponse = VpnSite;
 
 /** Optional parameters. */
 export interface VpnSitesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -18998,36 +14982,18 @@ export interface VpnSitesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VpnSitesCreateOrUpdateResponse = VpnSite & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnSite;
-  };
-};
+export type VpnSitesCreateOrUpdateResponse = VpnSite;
 
 /** Optional parameters. */
 export interface VpnSitesUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VpnSitesUpdateTagsResponse = VpnSite & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnSite;
-  };
-};
+export type VpnSitesUpdateTagsResponse = VpnSite;
 
 /** Optional parameters. */
 export interface VpnSitesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19036,118 +15002,56 @@ export interface VpnSitesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VpnSitesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VpnSitesListByResourceGroupResponse = ListVpnSitesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSitesResult;
-  };
-};
+export type VpnSitesListByResourceGroupResponse = ListVpnSitesResult;
 
 /** Optional parameters. */
-export interface VpnSitesListOptionalParams extends coreHttp.OperationOptions {}
+export interface VpnSitesListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VpnSitesListResponse = ListVpnSitesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSitesResult;
-  };
-};
+export type VpnSitesListResponse = ListVpnSitesResult;
 
 /** Optional parameters. */
 export interface VpnSitesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VpnSitesListByResourceGroupNextResponse = ListVpnSitesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSitesResult;
-  };
-};
+export type VpnSitesListByResourceGroupNextResponse = ListVpnSitesResult;
 
 /** Optional parameters. */
 export interface VpnSitesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VpnSitesListNextResponse = ListVpnSitesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSitesResult;
-  };
-};
+export type VpnSitesListNextResponse = ListVpnSitesResult;
 
 /** Optional parameters. */
 export interface VpnSiteLinksGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnSiteLinksGetResponse = VpnSiteLink & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnSiteLink;
-  };
-};
+export type VpnSiteLinksGetResponse = VpnSiteLink;
 
 /** Optional parameters. */
 export interface VpnSiteLinksListByVpnSiteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnSite operation. */
-export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSiteLinksResult;
-  };
-};
+export type VpnSiteLinksListByVpnSiteResponse = ListVpnSiteLinksResult;
 
 /** Optional parameters. */
 export interface VpnSiteLinksListByVpnSiteNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnSiteNext operation. */
-export type VpnSiteLinksListByVpnSiteNextResponse = ListVpnSiteLinksResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSiteLinksResult;
-  };
-};
+export type VpnSiteLinksListByVpnSiteNextResponse = ListVpnSiteLinksResult;
 
 /** Optional parameters. */
 export interface VpnSitesConfigurationDownloadOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19156,23 +15060,14 @@ export interface VpnSitesConfigurationDownloadOptionalParams
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnServerConfigurationsGetResponse = VpnServerConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnServerConfiguration;
-  };
-};
+export type VpnServerConfigurationsGetResponse = VpnServerConfiguration;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19180,36 +15075,18 @@ export interface VpnServerConfigurationsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VpnServerConfigurationsCreateOrUpdateResponse = VpnServerConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnServerConfiguration;
-  };
-};
+export type VpnServerConfigurationsCreateOrUpdateResponse = VpnServerConfiguration;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VpnServerConfigurationsUpdateTagsResponse = VpnServerConfiguration & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnServerConfiguration;
-  };
-};
+export type VpnServerConfigurationsUpdateTagsResponse = VpnServerConfiguration;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19218,87 +15095,42 @@ export interface VpnServerConfigurationsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VpnServerConfigurationsListByResourceGroupResponse = ListVpnServerConfigurationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnServerConfigurationsResult;
-  };
-};
+export type VpnServerConfigurationsListByResourceGroupResponse = ListVpnServerConfigurationsResult;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VpnServerConfigurationsListResponse = ListVpnServerConfigurationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnServerConfigurationsResult;
-  };
-};
+export type VpnServerConfigurationsListResponse = ListVpnServerConfigurationsResult;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VpnServerConfigurationsListByResourceGroupNextResponse = ListVpnServerConfigurationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnServerConfigurationsResult;
-  };
-};
+export type VpnServerConfigurationsListByResourceGroupNextResponse = ListVpnServerConfigurationsResult;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VpnServerConfigurationsListNextResponse = ListVpnServerConfigurationsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnServerConfigurationsResult;
-  };
-};
+export type VpnServerConfigurationsListNextResponse = ListVpnServerConfigurationsResult;
 
 /** Optional parameters. */
 export interface VirtualHubsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualHubsGetResponse = VirtualHub & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualHub;
-  };
-};
+export type VirtualHubsGetResponse = VirtualHub;
 
 /** Optional parameters. */
 export interface VirtualHubsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19306,36 +15138,18 @@ export interface VirtualHubsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualHubsCreateOrUpdateResponse = VirtualHub & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualHub;
-  };
-};
+export type VirtualHubsCreateOrUpdateResponse = VirtualHub;
 
 /** Optional parameters. */
 export interface VirtualHubsUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VirtualHubsUpdateTagsResponse = VirtualHub & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualHub;
-  };
-};
+export type VirtualHubsUpdateTagsResponse = VirtualHub;
 
 /** Optional parameters. */
 export interface VirtualHubsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19344,135 +15158,63 @@ export interface VirtualHubsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualHubsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VirtualHubsListByResourceGroupResponse = ListVirtualHubsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubsResult;
-  };
-};
+export type VirtualHubsListByResourceGroupResponse = ListVirtualHubsResult;
 
 /** Optional parameters. */
 export interface VirtualHubsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualHubsListResponse = ListVirtualHubsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubsResult;
-  };
-};
+export type VirtualHubsListResponse = ListVirtualHubsResult;
 
 /** Optional parameters. */
 export interface VirtualHubsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VirtualHubsListByResourceGroupNextResponse = ListVirtualHubsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubsResult;
-  };
-};
+export type VirtualHubsListByResourceGroupNextResponse = ListVirtualHubsResult;
 
 /** Optional parameters. */
 export interface VirtualHubsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualHubsListNextResponse = ListVirtualHubsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubsResult;
-  };
-};
+export type VirtualHubsListNextResponse = ListVirtualHubsResult;
 
 /** Optional parameters. */
 export interface HubVirtualNetworkConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type HubVirtualNetworkConnectionsGetResponse = HubVirtualNetworkConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HubVirtualNetworkConnection;
-  };
-};
+export type HubVirtualNetworkConnectionsGetResponse = HubVirtualNetworkConnection;
 
 /** Optional parameters. */
 export interface HubVirtualNetworkConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type HubVirtualNetworkConnectionsListResponse = ListHubVirtualNetworkConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListHubVirtualNetworkConnectionsResult;
-  };
-};
+export type HubVirtualNetworkConnectionsListResponse = ListHubVirtualNetworkConnectionsResult;
 
 /** Optional parameters. */
 export interface HubVirtualNetworkConnectionsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type HubVirtualNetworkConnectionsListNextResponse = ListHubVirtualNetworkConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListHubVirtualNetworkConnectionsResult;
-  };
-};
+export type HubVirtualNetworkConnectionsListNextResponse = ListHubVirtualNetworkConnectionsResult;
 
 /** Optional parameters. */
 export interface VpnGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnGatewaysGetResponse = VpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnGateway;
-  };
-};
+export type VpnGatewaysGetResponse = VpnGateway;
 
 /** Optional parameters. */
 export interface VpnGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19480,36 +15222,18 @@ export interface VpnGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VpnGatewaysCreateOrUpdateResponse = VpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnGateway;
-  };
-};
+export type VpnGatewaysCreateOrUpdateResponse = VpnGateway;
 
 /** Optional parameters. */
 export interface VpnGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type VpnGatewaysUpdateTagsResponse = VpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnGateway;
-  };
-};
+export type VpnGatewaysUpdateTagsResponse = VpnGateway;
 
 /** Optional parameters. */
 export interface VpnGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19518,7 +15242,7 @@ export interface VpnGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VpnGatewaysResetOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19526,100 +15250,46 @@ export interface VpnGatewaysResetOptionalParams
 }
 
 /** Contains response data for the reset operation. */
-export type VpnGatewaysResetResponse = VpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnGateway;
-  };
-};
+export type VpnGatewaysResetResponse = VpnGateway;
 
 /** Optional parameters. */
 export interface VpnGatewaysListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VpnGatewaysListByResourceGroupResponse = ListVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnGatewaysResult;
-  };
-};
+export type VpnGatewaysListByResourceGroupResponse = ListVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface VpnGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VpnGatewaysListResponse = ListVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnGatewaysResult;
-  };
-};
+export type VpnGatewaysListResponse = ListVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface VpnGatewaysListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VpnGatewaysListByResourceGroupNextResponse = ListVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnGatewaysResult;
-  };
-};
+export type VpnGatewaysListByResourceGroupNextResponse = ListVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface VpnGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VpnGatewaysListNextResponse = ListVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnGatewaysResult;
-  };
-};
+export type VpnGatewaysListNextResponse = ListVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface VpnConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnConnectionsGetResponse = VpnConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnConnection;
-  };
-};
+export type VpnConnectionsGetResponse = VpnConnection;
 
 /** Optional parameters. */
 export interface VpnConnectionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19627,20 +15297,11 @@ export interface VpnConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VpnConnectionsCreateOrUpdateResponse = VpnConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnConnection;
-  };
-};
+export type VpnConnectionsCreateOrUpdateResponse = VpnConnection;
 
 /** Optional parameters. */
 export interface VpnConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19649,103 +15310,49 @@ export interface VpnConnectionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VpnConnectionsListByVpnGatewayOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnGateway operation. */
-export type VpnConnectionsListByVpnGatewayResponse = ListVpnConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnConnectionsResult;
-  };
-};
+export type VpnConnectionsListByVpnGatewayResponse = ListVpnConnectionsResult;
 
 /** Optional parameters. */
 export interface VpnConnectionsListByVpnGatewayNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnGatewayNext operation. */
-export type VpnConnectionsListByVpnGatewayNextResponse = ListVpnConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnConnectionsResult;
-  };
-};
+export type VpnConnectionsListByVpnGatewayNextResponse = ListVpnConnectionsResult;
 
 /** Optional parameters. */
 export interface VpnSiteLinkConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VpnSiteLinkConnectionsGetResponse = VpnSiteLinkConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnSiteLinkConnection;
-  };
-};
+export type VpnSiteLinkConnectionsGetResponse = VpnSiteLinkConnection;
 
 /** Optional parameters. */
 export interface VpnLinkConnectionsListByVpnConnectionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnConnection operation. */
-export type VpnLinkConnectionsListByVpnConnectionResponse = ListVpnSiteLinkConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSiteLinkConnectionsResult;
-  };
-};
+export type VpnLinkConnectionsListByVpnConnectionResponse = ListVpnSiteLinkConnectionsResult;
 
 /** Optional parameters. */
 export interface VpnLinkConnectionsListByVpnConnectionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVpnConnectionNext operation. */
-export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkConnectionsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVpnSiteLinkConnectionsResult;
-  };
-};
+export type VpnLinkConnectionsListByVpnConnectionNextResponse = ListVpnSiteLinkConnectionsResult;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type P2SVpnGatewaysGetResponse = P2SVpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: P2SVpnGateway;
-  };
-};
+export type P2SVpnGatewaysGetResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19753,36 +15360,18 @@ export interface P2SVpnGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: P2SVpnGateway;
-  };
-};
+export type P2SVpnGatewaysCreateOrUpdateResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysUpdateTagsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateTags operation. */
-export type P2SVpnGatewaysUpdateTagsResponse = P2SVpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: P2SVpnGateway;
-  };
-};
+export type P2SVpnGatewaysUpdateTagsResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19791,39 +15380,21 @@ export interface P2SVpnGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type P2SVpnGatewaysListByResourceGroupResponse = ListP2SVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListP2SVpnGatewaysResult;
-  };
-};
+export type P2SVpnGatewaysListByResourceGroupResponse = ListP2SVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type P2SVpnGatewaysListResponse = ListP2SVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListP2SVpnGatewaysResult;
-  };
-};
+export type P2SVpnGatewaysListResponse = ListP2SVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGenerateVpnProfileOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19831,20 +15402,11 @@ export interface P2SVpnGatewaysGenerateVpnProfileOptionalParams
 }
 
 /** Contains response data for the generateVpnProfile operation. */
-export type P2SVpnGatewaysGenerateVpnProfileResponse = VpnProfileResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnProfileResponse;
-  };
-};
+export type P2SVpnGatewaysGenerateVpnProfileResponse = VpnProfileResponse;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19852,20 +15414,11 @@ export interface P2SVpnGatewaysGetP2SVpnConnectionHealthOptionalParams
 }
 
 /** Contains response data for the getP2SVpnConnectionHealth operation. */
-export type P2SVpnGatewaysGetP2SVpnConnectionHealthResponse = P2SVpnGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: P2SVpnGateway;
-  };
-};
+export type P2SVpnGatewaysGetP2SVpnConnectionHealthResponse = P2SVpnGateway;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19873,20 +15426,11 @@ export interface P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedOptionalParams
 }
 
 /** Contains response data for the getP2SVpnConnectionHealthDetailed operation. */
-export type P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse = P2SVpnConnectionHealth & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: P2SVpnConnectionHealth;
-  };
-};
+export type P2SVpnGatewaysGetP2SVpnConnectionHealthDetailedResponse = P2SVpnConnectionHealth;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19895,39 +15439,21 @@ export interface P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type P2SVpnGatewaysListByResourceGroupNextResponse = ListP2SVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListP2SVpnGatewaysResult;
-  };
-};
+export type P2SVpnGatewaysListByResourceGroupNextResponse = ListP2SVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface P2SVpnGatewaysListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type P2SVpnGatewaysListNextResponse = ListP2SVpnGatewaysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListP2SVpnGatewaysResult;
-  };
-};
+export type P2SVpnGatewaysListNextResponse = ListP2SVpnGatewaysResult;
 
 /** Optional parameters. */
 export interface VpnServerConfigurationsAssociatedWithVirtualWanListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19935,36 +15461,18 @@ export interface VpnServerConfigurationsAssociatedWithVirtualWanListOptionalPara
 }
 
 /** Contains response data for the list operation. */
-export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnServerConfigurationsResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VpnServerConfigurationsResponse;
-  };
-};
+export type VpnServerConfigurationsAssociatedWithVirtualWanListResponse = VpnServerConfigurationsResponse;
 
 /** Optional parameters. */
 export interface VirtualHubRouteTableV2SGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VirtualHubRouteTableV2SGetResponse = VirtualHubRouteTableV2 & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualHubRouteTableV2;
-  };
-};
+export type VirtualHubRouteTableV2SGetResponse = VirtualHubRouteTableV2;
 
 /** Optional parameters. */
 export interface VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19972,20 +15480,11 @@ export interface VirtualHubRouteTableV2SCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTableV2 & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VirtualHubRouteTableV2;
-  };
-};
+export type VirtualHubRouteTableV2SCreateOrUpdateResponse = VirtualHubRouteTableV2;
 
 /** Optional parameters. */
 export interface VirtualHubRouteTableV2SDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -19994,71 +15493,35 @@ export interface VirtualHubRouteTableV2SDeleteOptionalParams
 
 /** Optional parameters. */
 export interface VirtualHubRouteTableV2SListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type VirtualHubRouteTableV2SListResponse = ListVirtualHubRouteTableV2SResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubRouteTableV2SResult;
-  };
-};
+export type VirtualHubRouteTableV2SListResponse = ListVirtualHubRouteTableV2SResult;
 
 /** Optional parameters. */
 export interface VirtualHubRouteTableV2SListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type VirtualHubRouteTableV2SListNextResponse = ListVirtualHubRouteTableV2SResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListVirtualHubRouteTableV2SResult;
-  };
-};
+export type VirtualHubRouteTableV2SListNextResponse = ListVirtualHubRouteTableV2SResult;
 
 /** Optional parameters. */
 export interface ExpressRouteGatewaysListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type ExpressRouteGatewaysListBySubscriptionResponse = ExpressRouteGatewayList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteGatewayList;
-  };
-};
+export type ExpressRouteGatewaysListBySubscriptionResponse = ExpressRouteGatewayList;
 
 /** Optional parameters. */
 export interface ExpressRouteGatewaysListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type ExpressRouteGatewaysListByResourceGroupResponse = ExpressRouteGatewayList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteGatewayList;
-  };
-};
+export type ExpressRouteGatewaysListByResourceGroupResponse = ExpressRouteGatewayList;
 
 /** Optional parameters. */
 export interface ExpressRouteGatewaysCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20066,36 +15529,18 @@ export interface ExpressRouteGatewaysCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteGateway;
-  };
-};
+export type ExpressRouteGatewaysCreateOrUpdateResponse = ExpressRouteGateway;
 
 /** Optional parameters. */
 export interface ExpressRouteGatewaysGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteGatewaysGetResponse = ExpressRouteGateway & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteGateway;
-  };
-};
+export type ExpressRouteGatewaysGetResponse = ExpressRouteGateway;
 
 /** Optional parameters. */
 export interface ExpressRouteGatewaysDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20104,7 +15549,7 @@ export interface ExpressRouteGatewaysDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteConnectionsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20112,36 +15557,18 @@ export interface ExpressRouteConnectionsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteConnection;
-  };
-};
+export type ExpressRouteConnectionsCreateOrUpdateResponse = ExpressRouteConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ExpressRouteConnectionsGetResponse = ExpressRouteConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteConnection;
-  };
-};
+export type ExpressRouteConnectionsGetResponse = ExpressRouteConnection;
 
 /** Optional parameters. */
 export interface ExpressRouteConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20150,23 +15577,14 @@ export interface ExpressRouteConnectionsDeleteOptionalParams
 
 /** Optional parameters. */
 export interface ExpressRouteConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ExpressRouteConnectionsListResponse = ExpressRouteConnectionList & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ExpressRouteConnectionList;
-  };
-};
+export type ExpressRouteConnectionsListResponse = ExpressRouteConnectionList;
 
 /** Optional parameters. */
 export interface HubRouteTablesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20174,36 +15592,18 @@ export interface HubRouteTablesCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HubRouteTable;
-  };
-};
+export type HubRouteTablesCreateOrUpdateResponse = HubRouteTable;
 
 /** Optional parameters. */
 export interface HubRouteTablesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type HubRouteTablesGetResponse = HubRouteTable & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: HubRouteTable;
-  };
-};
+export type HubRouteTablesGetResponse = HubRouteTable;
 
 /** Optional parameters. */
 export interface HubRouteTablesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20212,103 +15612,49 @@ export interface HubRouteTablesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface HubRouteTablesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type HubRouteTablesListResponse = ListHubRouteTablesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListHubRouteTablesResult;
-  };
-};
+export type HubRouteTablesListResponse = ListHubRouteTablesResult;
 
 /** Optional parameters. */
 export interface HubRouteTablesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type HubRouteTablesListNextResponse = ListHubRouteTablesResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListHubRouteTablesResult;
-  };
-};
+export type HubRouteTablesListNextResponse = ListHubRouteTablesResult;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type WebApplicationFirewallPoliciesListResponse = WebApplicationFirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicyListResult;
-  };
-};
+export type WebApplicationFirewallPoliciesListResponse = WebApplicationFirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type WebApplicationFirewallPoliciesListAllResponse = WebApplicationFirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicyListResult;
-  };
-};
+export type WebApplicationFirewallPoliciesListAllResponse = WebApplicationFirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type WebApplicationFirewallPoliciesGetResponse = WebApplicationFirewallPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicy;
-  };
-};
+export type WebApplicationFirewallPoliciesGetResponse = WebApplicationFirewallPolicy;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicationFirewallPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicy;
-  };
-};
+export type WebApplicationFirewallPoliciesCreateOrUpdateResponse = WebApplicationFirewallPolicy;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -20317,39 +15663,21 @@ export interface WebApplicationFirewallPoliciesDeleteOptionalParams
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type WebApplicationFirewallPoliciesListNextResponse = WebApplicationFirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicyListResult;
-  };
-};
+export type WebApplicationFirewallPoliciesListNextResponse = WebApplicationFirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface WebApplicationFirewallPoliciesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type WebApplicationFirewallPoliciesListAllNextResponse = WebApplicationFirewallPolicyListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: WebApplicationFirewallPolicyListResult;
-  };
-};
+export type WebApplicationFirewallPoliciesListAllNextResponse = WebApplicationFirewallPolicyListResult;
 
 /** Optional parameters. */
 export interface NetworkManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

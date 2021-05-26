@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   StaticSiteARMResource,
   StaticSitesListOptionalParams,
@@ -172,7 +171,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDeleteStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates a new static site in an existing resource group, or updates an existing
    * static site.
@@ -201,7 +200,7 @@ export interface StaticSites {
     authprovider: string,
     userid: string,
     options?: StaticSitesDeleteStaticSiteUserOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Updates a user entry with the listed roles
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -244,7 +243,7 @@ export interface StaticSites {
     name: string,
     prId: string,
     options?: StaticSitesDeleteStaticSiteBuildOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates or updates the function app settings of a static site build.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -327,7 +326,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesDeleteStaticSiteCustomDomainOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Validates a particular custom domain can be added to a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -340,7 +339,7 @@ export interface StaticSites {
     name: string,
     domainName: string,
     options?: StaticSitesValidateCustomDomainCanBeAddedToStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Detaches a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -351,7 +350,7 @@ export interface StaticSites {
     resourceGroupName: string,
     name: string,
     options?: StaticSitesDetachStaticSiteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets the application settings of a static site.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -386,5 +385,5 @@ export interface StaticSites {
     name: string,
     resetPropertiesEnvelope: StaticSiteResetPropertiesARMResource,
     options?: StaticSitesResetStaticSiteApiKeyOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

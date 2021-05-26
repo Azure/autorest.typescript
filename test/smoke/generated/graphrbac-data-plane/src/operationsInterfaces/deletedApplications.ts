@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Application,
   DeletedApplicationsListNextOptionalParams,
@@ -54,5 +53,5 @@ export interface DeletedApplications {
   hardDelete(
     applicationObjectId: string,
     options?: DeletedApplicationsHardDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

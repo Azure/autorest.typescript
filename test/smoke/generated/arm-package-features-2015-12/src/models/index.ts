@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list Microsoft.Features operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -62,149 +62,70 @@ export interface FeatureProperties {
 
 /** Optional parameters. */
 export interface FeatureClientListOperationsOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type FeatureClientListOperationsResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type FeatureClientListOperationsResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface FeatureClientListOperationsNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
-export type FeatureClientListOperationsNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type FeatureClientListOperationsNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface FeaturesListAllOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAll operation. */
-export type FeaturesListAllResponse = FeatureOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureOperationsListResult;
-  };
-};
+export type FeaturesListAllResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
-export interface FeaturesListOptionalParams extends coreHttp.OperationOptions {}
+export interface FeaturesListOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FeaturesListResponse = FeatureOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureOperationsListResult;
-  };
-};
+export type FeaturesListResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
-export interface FeaturesGetOptionalParams extends coreHttp.OperationOptions {}
+export interface FeaturesGetOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type FeaturesGetResponse = FeatureResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureResult;
-  };
-};
+export type FeaturesGetResponse = FeatureResult;
 
 /** Optional parameters. */
 export interface FeaturesRegisterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the register operation. */
-export type FeaturesRegisterResponse = FeatureResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureResult;
-  };
-};
+export type FeaturesRegisterResponse = FeatureResult;
 
 /** Optional parameters. */
 export interface FeaturesUnregisterOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the unregister operation. */
-export type FeaturesUnregisterResponse = FeatureResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureResult;
-  };
-};
+export type FeaturesUnregisterResponse = FeatureResult;
 
 /** Optional parameters. */
 export interface FeaturesListAllNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAllNext operation. */
-export type FeaturesListAllNextResponse = FeatureOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureOperationsListResult;
-  };
-};
+export type FeaturesListAllNextResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
 export interface FeaturesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type FeaturesListNextResponse = FeatureOperationsListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FeatureOperationsListResult;
-  };
-};
+export type FeaturesListNextResponse = FeatureOperationsListResult;
 
 /** Optional parameters. */
 export interface FeatureClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

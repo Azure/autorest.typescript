@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ObjectReplicationPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageManagementClientContext } from "../storageManagementClientContext";
@@ -103,15 +103,10 @@ export class ObjectReplicationPoliciesImpl
     accountName: string,
     options?: ObjectReplicationPoliciesListOptionalParams
   ): Promise<ObjectReplicationPoliciesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listOperationSpec
-    ) as Promise<ObjectReplicationPoliciesListResponse>;
+    );
   }
 
   /**
@@ -131,16 +126,10 @@ export class ObjectReplicationPoliciesImpl
     objectReplicationPolicyId: string,
     options?: ObjectReplicationPoliciesGetOptionalParams
   ): Promise<ObjectReplicationPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      objectReplicationPolicyId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, objectReplicationPolicyId, options },
       getOperationSpec
-    ) as Promise<ObjectReplicationPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -163,17 +152,16 @@ export class ObjectReplicationPoliciesImpl
     properties: ObjectReplicationPolicy,
     options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams
   ): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      objectReplicationPolicyId,
-      properties,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        accountName,
+        objectReplicationPolicyId,
+        properties,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -192,23 +180,17 @@ export class ObjectReplicationPoliciesImpl
     accountName: string,
     objectReplicationPolicyId: string,
     options?: ObjectReplicationPoliciesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      objectReplicationPolicyId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, objectReplicationPolicyId, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/objectReplicationPolicies",
   httpMethod: "GET",
@@ -230,7 +212,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/objectReplicationPolicies/{objectReplicationPolicyId}",
   httpMethod: "GET",
@@ -253,7 +235,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/objectReplicationPolicies/{objectReplicationPolicyId}",
   httpMethod: "PUT",
@@ -278,7 +260,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/objectReplicationPolicies/{objectReplicationPolicyId}",
   httpMethod: "DELETE",

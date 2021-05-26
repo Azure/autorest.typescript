@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ServerCommunicationLink,
@@ -48,7 +47,7 @@ export interface ServerCommunicationLinks {
     serverName: string,
     communicationLinkName: string,
     options?: ServerCommunicationLinksDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Returns a server communication link.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

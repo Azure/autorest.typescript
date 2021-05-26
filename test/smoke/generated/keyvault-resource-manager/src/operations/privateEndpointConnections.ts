@@ -7,7 +7,7 @@
  */
 
 import { PrivateEndpointConnections } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { KeyVaultManagementClientContext } from "../keyVaultManagementClientContext";
@@ -50,16 +50,10 @@ export class PrivateEndpointConnectionsImpl
     privateEndpointConnectionName: string,
     options?: PrivateEndpointConnectionsGetOptionalParams
   ): Promise<PrivateEndpointConnectionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vaultName, privateEndpointConnectionName, options },
       getOperationSpec
-    ) as Promise<PrivateEndpointConnectionsGetResponse>;
+    );
   }
 
   /**
@@ -78,17 +72,16 @@ export class PrivateEndpointConnectionsImpl
     properties: PrivateEndpointConnection,
     options?: PrivateEndpointConnectionsPutOptionalParams
   ): Promise<PrivateEndpointConnectionsPutResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName,
-      properties,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        vaultName,
+        privateEndpointConnectionName,
+        properties,
+        options
+      },
       putOperationSpec
-    ) as Promise<PrivateEndpointConnectionsPutResponse>;
+    );
   }
 
   /**
@@ -110,24 +103,41 @@ export class PrivateEndpointConnectionsImpl
       PrivateEndpointConnectionsDeleteResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vaultName,
-      privateEndpointConnectionName,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PrivateEndpointConnectionsDeleteResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        PrivateEndpointConnectionsDeleteResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vaultName, privateEndpointConnectionName, options },
       deleteOperationSpec,
       sendOperation
     );
@@ -155,23 +165,11 @@ export class PrivateEndpointConnectionsImpl
     );
     return poller.pollUntilDone();
   }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
-  }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "GET",
@@ -194,7 +192,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const putOperationSpec: coreHttp.OperationSpec = {
+const putOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "PUT",
@@ -220,7 +218,7 @@ const putOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
   httpMethod: "DELETE",

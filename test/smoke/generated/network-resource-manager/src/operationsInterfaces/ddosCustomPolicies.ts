@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DdosCustomPoliciesDeleteOptionalParams,
@@ -32,9 +31,7 @@ export interface DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     options?: DdosCustomPoliciesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified DDoS custom policy.
    * @param resourceGroupName The name of the resource group.
@@ -45,7 +42,7 @@ export interface DdosCustomPolicies {
     resourceGroupName: string,
     ddosCustomPolicyName: string,
     options?: DdosCustomPoliciesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets information about the specified DDoS custom policy.
    * @param resourceGroupName The name of the resource group.

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   StorageAccount,
@@ -133,7 +132,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Returns the properties for the specified storage account including but not limited to name, SKU
    * name, location, and account status. The ListKeys operation should be used to retrieve storage keys.
@@ -250,9 +249,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Failover request can be triggered for a storage account in case of availability issues. The failover
    * occurs from the storage account's primary cluster to secondary cluster for RA-GRS accounts. The
@@ -268,7 +265,7 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsFailoverOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Restore blobs in the specified blob ranges
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -319,5 +316,5 @@ export interface StorageAccounts {
     resourceGroupName: string,
     accountName: string,
     options?: StorageAccountsRevokeUserDelegationKeysOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

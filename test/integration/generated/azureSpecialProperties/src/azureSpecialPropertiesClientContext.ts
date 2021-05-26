@@ -39,8 +39,15 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
       options = {};
     }
     const defaults: AzureSpecialPropertiesClientOptionalParams = {
-      requestContentType: "application/json; charset=utf-8"
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
     };
+    if (!options.credentialScopes) {
+      options.credentialScopes = [
+        "https://microsoft.com/.default",
+        "http://microsoft.com/.default"
+      ];
+    }
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   P2SVpnGateway,
@@ -120,9 +119,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a virtual wan p2s vpn gateway.
    * @param resourceGroupName The resource group name of the P2SVpnGateway.
@@ -133,7 +130,7 @@ export interface P2SVpnGateways {
     resourceGroupName: string,
     gatewayName: string,
     options?: P2SVpnGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Generates VPN profile for P2S client of the P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -241,9 +238,7 @@ export interface P2SVpnGateways {
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Disconnect P2S vpn connections of the virtual wan P2SVpnGateway in the specified resource group.
    * @param resourceGroupName The name of the resource group.
@@ -256,5 +251,5 @@ export interface P2SVpnGateways {
     p2SVpnGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: P2SVpnGatewaysDisconnectP2SVpnConnectionsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

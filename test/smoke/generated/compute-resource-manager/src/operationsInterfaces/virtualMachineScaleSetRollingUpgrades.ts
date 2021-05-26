@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineScaleSetRollingUpgradesCancelOptionalParams,
@@ -28,9 +27,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Cancels the current virtual machine scale set rolling upgrade.
    * @param resourceGroupName The name of the resource group.
@@ -41,7 +38,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
    * Platform Image OS version. Instances which are already running the latest available OS version are
@@ -54,9 +51,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts a rolling upgrade to move all virtual machine scale set instances to the latest available
    * Platform Image OS version. Instances which are already running the latest available OS version are
@@ -69,7 +64,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
    * latest available extension version. Instances which are already running the latest extension
@@ -82,9 +77,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts a rolling upgrade to move all extensions for all virtual machine scale set instances to the
    * latest available extension version. Instances which are already running the latest extension
@@ -97,7 +90,7 @@ export interface VirtualMachineScaleSetRollingUpgrades {
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the status of the latest virtual machine scale set rolling upgrade.
    * @param resourceGroupName The name of the resource group.

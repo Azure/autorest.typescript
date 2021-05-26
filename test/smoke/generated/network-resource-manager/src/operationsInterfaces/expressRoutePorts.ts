@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRoutePort,
@@ -53,9 +52,7 @@ export interface ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: ExpressRoutePortsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified ExpressRoutePort resource.
    * @param resourceGroupName The name of the resource group.
@@ -66,7 +63,7 @@ export interface ExpressRoutePorts {
     resourceGroupName: string,
     expressRoutePortName: string,
     options?: ExpressRoutePortsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Retrieves the requested ExpressRoutePort resource.
    * @param resourceGroupName The name of the resource group.

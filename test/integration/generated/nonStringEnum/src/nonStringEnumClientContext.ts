@@ -24,6 +24,7 @@ export class NonStringEnumClientContext extends coreClient.ServiceClient {
     const defaults: NonStringEnumClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Identity,
   UserAssignedIdentitiesListBySubscriptionOptionalParams,
@@ -89,5 +88,5 @@ export interface UserAssignedIdentities {
     resourceGroupName: string,
     resourceName: string,
     options?: UserAssignedIdentitiesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

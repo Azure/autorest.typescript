@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VirtualMachineScaleSetVMs } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -139,27 +139,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageOperationSpec,
       sendOperation
     );
@@ -177,7 +192,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginReimage(
       resourceGroupName,
       vmScaleSetName,
@@ -200,27 +215,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageAllOperationSpec,
       sendOperation
     );
@@ -239,7 +269,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsReimageAllOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginReimageAll(
       resourceGroupName,
       vmScaleSetName,
@@ -263,27 +293,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       deallocateOperationSpec,
       sendOperation
     );
@@ -303,7 +348,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeallocateOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeallocate(
       resourceGroupName,
       vmScaleSetName,
@@ -333,25 +378,41 @@ export class VirtualMachineScaleSetVMsImpl
       VirtualMachineScaleSetVMsUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualMachineScaleSetVMsUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualMachineScaleSetVMsUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
       updateOperationSpec,
       sendOperation
     );
@@ -394,27 +455,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       deleteOperationSpec,
       sendOperation
     );
@@ -432,7 +508,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       vmScaleSetName,
@@ -455,16 +531,10 @@ export class VirtualMachineScaleSetVMsImpl
     instanceId: string,
     options?: VirtualMachineScaleSetVMsGetOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       getOperationSpec
-    ) as Promise<VirtualMachineScaleSetVMsGetResponse>;
+    );
   }
 
   /**
@@ -480,16 +550,10 @@ export class VirtualMachineScaleSetVMsImpl
     instanceId: string,
     options?: VirtualMachineScaleSetVMsGetInstanceViewOptionalParams
   ): Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       getInstanceViewOperationSpec
-    ) as Promise<VirtualMachineScaleSetVMsGetInstanceViewResponse>;
+    );
   }
 
   /**
@@ -503,15 +567,10 @@ export class VirtualMachineScaleSetVMsImpl
     virtualMachineScaleSetName: string,
     options?: VirtualMachineScaleSetVMsListOptionalParams
   ): Promise<VirtualMachineScaleSetVMsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualMachineScaleSetName, options },
       listOperationSpec
-    ) as Promise<VirtualMachineScaleSetVMsListResponse>;
+    );
   }
 
   /**
@@ -528,27 +587,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       powerOffOperationSpec,
       sendOperation
     );
@@ -568,7 +642,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPowerOffOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginPowerOff(
       resourceGroupName,
       vmScaleSetName,
@@ -590,27 +664,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRestartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       restartOperationSpec,
       sendOperation
     );
@@ -628,7 +717,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRestartOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRestart(
       resourceGroupName,
       vmScaleSetName,
@@ -650,27 +739,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       startOperationSpec,
       sendOperation
     );
@@ -688,7 +792,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsStartOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginStart(
       resourceGroupName,
       vmScaleSetName,
@@ -711,27 +815,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRedeployOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       redeployOperationSpec,
       sendOperation
     );
@@ -750,7 +869,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsRedeployOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginRedeploy(
       resourceGroupName,
       vmScaleSetName,
@@ -772,27 +891,42 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       performMaintenanceOperationSpec,
       sendOperation
     );
@@ -810,7 +944,7 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsPerformMaintenanceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginPerformMaintenance(
       resourceGroupName,
       vmScaleSetName,
@@ -833,17 +967,11 @@ export class VirtualMachineScaleSetVMsImpl
     vmScaleSetName: string,
     instanceId: string,
     options?: VirtualMachineScaleSetVMsSimulateEvictionOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, options },
       simulateEvictionOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -866,25 +994,41 @@ export class VirtualMachineScaleSetVMsImpl
       VirtualMachineScaleSetVMsRunCommandResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      instanceId,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualMachineScaleSetVMsRunCommandResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualMachineScaleSetVMsRunCommandResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
       runCommandOperationSpec,
       sendOperation,
       "location"
@@ -929,34 +1073,16 @@ export class VirtualMachineScaleSetVMsImpl
     nextLink: string,
     options?: VirtualMachineScaleSetVMsListNextOptionalParams
   ): Promise<VirtualMachineScaleSetVMsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualMachineScaleSetName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<VirtualMachineScaleSetVMsListNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const reimageOperationSpec: coreHttp.OperationSpec = {
+const reimageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/reimage",
   httpMethod: "POST",
@@ -974,7 +1100,7 @@ const reimageOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const reimageAllOperationSpec: coreHttp.OperationSpec = {
+const reimageAllOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/reimageall",
   httpMethod: "POST",
@@ -989,7 +1115,7 @@ const reimageAllOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const deallocateOperationSpec: coreHttp.OperationSpec = {
+const deallocateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/deallocate",
   httpMethod: "POST",
@@ -1004,7 +1130,7 @@ const deallocateOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}",
   httpMethod: "PUT",
@@ -1035,7 +1161,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}",
   httpMethod: "DELETE",
@@ -1050,7 +1176,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}",
   httpMethod: "GET",
@@ -1070,7 +1196,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getInstanceViewOperationSpec: coreHttp.OperationSpec = {
+const getInstanceViewOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/instanceView",
   httpMethod: "GET",
@@ -1090,7 +1216,7 @@ const getInstanceViewOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines",
   httpMethod: "GET",
@@ -1114,7 +1240,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const powerOffOperationSpec: coreHttp.OperationSpec = {
+const powerOffOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/poweroff",
   httpMethod: "POST",
@@ -1129,7 +1255,7 @@ const powerOffOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const restartOperationSpec: coreHttp.OperationSpec = {
+const restartOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/restart",
   httpMethod: "POST",
@@ -1144,7 +1270,7 @@ const restartOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const startOperationSpec: coreHttp.OperationSpec = {
+const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/start",
   httpMethod: "POST",
@@ -1159,7 +1285,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const redeployOperationSpec: coreHttp.OperationSpec = {
+const redeployOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/redeploy",
   httpMethod: "POST",
@@ -1174,7 +1300,7 @@ const redeployOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
+const performMaintenanceOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/performMaintenance",
   httpMethod: "POST",
@@ -1189,7 +1315,7 @@ const performMaintenanceOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const simulateEvictionOperationSpec: coreHttp.OperationSpec = {
+const simulateEvictionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/simulateEviction",
   httpMethod: "POST",
@@ -1204,7 +1330,7 @@ const simulateEvictionOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const runCommandOperationSpec: coreHttp.OperationSpec = {
+const runCommandOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualmachines/{instanceId}/runCommand",
   httpMethod: "POST",
@@ -1235,7 +1361,7 @@ const runCommandOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

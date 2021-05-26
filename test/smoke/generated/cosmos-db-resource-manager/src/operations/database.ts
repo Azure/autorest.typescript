@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Database } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
@@ -269,17 +269,10 @@ export class DatabaseImpl implements Database {
     filter: string,
     options?: DatabaseListMetricsOptionalParams
   ): Promise<DatabaseListMetricsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      filter,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseRid, filter, options },
       listMetricsOperationSpec
-    ) as Promise<DatabaseListMetricsResponse>;
+    );
   }
 
   /**
@@ -295,16 +288,10 @@ export class DatabaseImpl implements Database {
     databaseRid: string,
     options?: DatabaseListUsagesOptionalParams
   ): Promise<DatabaseListUsagesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseRid, options },
       listUsagesOperationSpec
-    ) as Promise<DatabaseListUsagesResponse>;
+    );
   }
 
   /**
@@ -320,22 +307,16 @@ export class DatabaseImpl implements Database {
     databaseRid: string,
     options?: DatabaseListMetricDefinitionsOptionalParams
   ): Promise<DatabaseListMetricDefinitionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      databaseRid,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, databaseRid, options },
       listMetricDefinitionsOperationSpec
-    ) as Promise<DatabaseListMetricDefinitionsResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listMetricsOperationSpec: coreHttp.OperationSpec = {
+const listMetricsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/metrics",
   httpMethod: "GET",
@@ -355,7 +336,7 @@ const listMetricsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listUsagesOperationSpec: coreHttp.OperationSpec = {
+const listUsagesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/usages",
   httpMethod: "GET",
@@ -375,7 +356,7 @@ const listUsagesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listMetricDefinitionsOperationSpec: coreHttp.OperationSpec = {
+const listMetricDefinitionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/databases/{databaseRid}/metricDefinitions",
   httpMethod: "GET",

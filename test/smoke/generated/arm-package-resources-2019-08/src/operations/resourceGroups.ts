@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ResourceGroups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
@@ -98,15 +98,11 @@ export class ResourceGroupsImpl implements ResourceGroups {
   checkExistence(
     resourceGroupName: string,
     options?: ResourceGroupsCheckExistenceOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       checkExistenceOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -122,15 +118,10 @@ export class ResourceGroupsImpl implements ResourceGroups {
     parameters: ResourceGroup,
     options?: ResourceGroupsCreateOrUpdateOptionalParams
   ): Promise<ResourceGroupsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<ResourceGroupsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -142,25 +133,42 @@ export class ResourceGroupsImpl implements ResourceGroups {
   async beginDelete(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, options },
       deleteOperationSpec,
       sendOperation
     );
@@ -175,7 +183,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
   async beginDeleteAndWait(
     resourceGroupName: string,
     options?: ResourceGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(resourceGroupName, options);
     return poller.pollUntilDone();
   }
@@ -189,14 +197,10 @@ export class ResourceGroupsImpl implements ResourceGroups {
     resourceGroupName: string,
     options?: ResourceGroupsGetOptionalParams
   ): Promise<ResourceGroupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       getOperationSpec
-    ) as Promise<ResourceGroupsGetResponse>;
+    );
   }
 
   /**
@@ -212,15 +216,10 @@ export class ResourceGroupsImpl implements ResourceGroups {
     parameters: ResourceGroupPatchable,
     options?: ResourceGroupsUpdateOptionalParams
   ): Promise<ResourceGroupsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, parameters, options },
       updateOperationSpec
-    ) as Promise<ResourceGroupsUpdateResponse>;
+    );
   }
 
   /**
@@ -239,23 +238,41 @@ export class ResourceGroupsImpl implements ResourceGroups {
       ResourceGroupsExportTemplateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ResourceGroupsExportTemplateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ResourceGroupsExportTemplateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, parameters, options },
       exportTemplateOperationSpec,
       sendOperation,
       "location"
@@ -288,13 +305,7 @@ export class ResourceGroupsImpl implements ResourceGroups {
   private _list(
     options?: ResourceGroupsListOptionalParams
   ): Promise<ResourceGroupsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<ResourceGroupsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -306,32 +317,16 @@ export class ResourceGroupsImpl implements ResourceGroups {
     nextLink: string,
     options?: ResourceGroupsListNextOptionalParams
   ): Promise<ResourceGroupsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<ResourceGroupsListNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const checkExistenceOperationSpec: coreHttp.OperationSpec = {
+const checkExistenceOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "HEAD",
   responses: {
@@ -350,7 +345,7 @@ const checkExistenceOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "PUT",
   responses: {
@@ -375,7 +370,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "DELETE",
   responses: {
@@ -396,7 +391,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "GET",
   responses: {
@@ -416,7 +411,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}",
   httpMethod: "PATCH",
   responses: {
@@ -438,7 +433,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const exportTemplateOperationSpec: coreHttp.OperationSpec = {
+const exportTemplateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/exportTemplate",
   httpMethod: "POST",
@@ -470,7 +465,7 @@ const exportTemplateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/resourcegroups",
   httpMethod: "GET",
   responses: {
@@ -486,7 +481,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

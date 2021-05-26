@@ -24,6 +24,7 @@ export class LroParametrizedEndpointsClientContext extends coreClient.ServiceCli
     const defaults: LroParametrizedEndpointsClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -24,6 +24,7 @@ export class StorageFileShareClientContext extends coreClient.ServiceClient {
     const defaults: StorageFileShareClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

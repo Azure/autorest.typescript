@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { DedicatedHostGroups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -157,16 +157,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     parameters: DedicatedHostGroup,
     options?: DedicatedHostGroupsCreateOrUpdateOptionalParams
   ): Promise<DedicatedHostGroupsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      hostGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, hostGroupName, parameters, options },
       createOrUpdateOperationSpec
-    ) as Promise<DedicatedHostGroupsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -182,16 +176,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     parameters: DedicatedHostGroupUpdate,
     options?: DedicatedHostGroupsUpdateOptionalParams
   ): Promise<DedicatedHostGroupsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      hostGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, hostGroupName, parameters, options },
       updateOperationSpec
-    ) as Promise<DedicatedHostGroupsUpdateResponse>;
+    );
   }
 
   /**
@@ -204,16 +192,11 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     resourceGroupName: string,
     hostGroupName: string,
     options?: DedicatedHostGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      hostGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, hostGroupName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -227,15 +210,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     hostGroupName: string,
     options?: DedicatedHostGroupsGetOptionalParams
   ): Promise<DedicatedHostGroupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      hostGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, hostGroupName, options },
       getOperationSpec
-    ) as Promise<DedicatedHostGroupsGetResponse>;
+    );
   }
 
   /**
@@ -248,14 +226,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     resourceGroupName: string,
     options?: DedicatedHostGroupsListByResourceGroupOptionalParams
   ): Promise<DedicatedHostGroupsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<DedicatedHostGroupsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -266,13 +240,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
   private _listBySubscription(
     options?: DedicatedHostGroupsListBySubscriptionOptionalParams
   ): Promise<DedicatedHostGroupsListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<DedicatedHostGroupsListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -286,15 +257,10 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     nextLink: string,
     options?: DedicatedHostGroupsListByResourceGroupNextOptionalParams
   ): Promise<DedicatedHostGroupsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<DedicatedHostGroupsListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -306,20 +272,16 @@ export class DedicatedHostGroupsImpl implements DedicatedHostGroups {
     nextLink: string,
     options?: DedicatedHostGroupsListBySubscriptionNextOptionalParams
   ): Promise<DedicatedHostGroupsListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<DedicatedHostGroupsListBySubscriptionNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
   httpMethod: "PUT",
@@ -343,7 +305,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
   httpMethod: "PATCH",
@@ -364,7 +326,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
   httpMethod: "DELETE",
@@ -378,7 +340,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}",
   httpMethod: "GET",
@@ -397,7 +359,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups",
   httpMethod: "GET",
@@ -415,7 +377,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/hostGroups",
   httpMethod: "GET",
@@ -429,7 +391,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -447,7 +409,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   PrivateEndpointConnection,
@@ -99,9 +98,7 @@ export interface PrivateEndpointConnections {
     serverName: string,
     privateEndpointConnectionName: string,
     options?: PrivateEndpointConnectionsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a private endpoint connection with a given name.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -115,5 +112,5 @@ export interface PrivateEndpointConnections {
     serverName: string,
     privateEndpointConnectionName: string,
     options?: PrivateEndpointConnectionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

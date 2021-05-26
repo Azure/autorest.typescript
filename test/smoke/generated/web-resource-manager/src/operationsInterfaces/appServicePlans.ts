@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServicePlan,
@@ -182,7 +181,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates or updates an App Service Plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -236,7 +235,7 @@ export interface AppServicePlans {
     namespaceName: string,
     relayName: string,
     options?: AppServicePlansDeleteHybridConnectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get the send key name and value of a Hybrid Connection.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -273,7 +272,7 @@ export interface AppServicePlans {
     resourceGroupName: string,
     name: string,
     options?: AppServicePlansRestartWebAppsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Gets all selectable SKUs for a given App Service Plan
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -400,7 +399,7 @@ export interface AppServicePlans {
     vnetName: string,
     routeName: string,
     options?: AppServicePlansDeleteVnetRouteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Create or update a Virtual Network route in an App Service plan.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -430,5 +429,5 @@ export interface AppServicePlans {
     name: string,
     workerName: string,
     options?: AppServicePlansRebootWorkerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

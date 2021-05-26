@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -89,145 +89,73 @@ export interface ResourceLinkFilter {
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface OperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface ResourceLinksDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ResourceLinksCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ResourceLinksCreateOrUpdateResponse = ResourceLink & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLink;
-  };
-};
+export type ResourceLinksCreateOrUpdateResponse = ResourceLink;
 
 /** Optional parameters. */
 export interface ResourceLinksGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ResourceLinksGetResponse = ResourceLink & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLink;
-  };
-};
+export type ResourceLinksGetResponse = ResourceLink;
 
 /** Optional parameters. */
 export interface ResourceLinksListAtSubscriptionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
   filter?: string;
 }
 
 /** Contains response data for the listAtSubscription operation. */
-export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLinkResult;
-  };
-};
+export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export interface ResourceLinksListAtSourceScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSourceScope operation. */
-export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLinkResult;
-  };
-};
+export type ResourceLinksListAtSourceScopeResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export interface ResourceLinksListAtSubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value} */
   filter?: string;
 }
 
 /** Contains response data for the listAtSubscriptionNext operation. */
-export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLinkResult;
-  };
-};
+export type ResourceLinksListAtSubscriptionNextResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export interface ResourceLinksListAtSourceScopeNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAtSourceScopeNext operation. */
-export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceLinkResult;
-  };
-};
+export type ResourceLinksListAtSourceScopeNextResponse = ResourceLinkResult;
 
 /** Optional parameters. */
 export interface ManagementLinkClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

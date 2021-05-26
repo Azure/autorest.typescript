@@ -24,6 +24,7 @@ export class XmlServiceClientContext extends coreClient.ServiceClient {
     const defaults: XmlServiceClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

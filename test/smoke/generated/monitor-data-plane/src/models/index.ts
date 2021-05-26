@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface AzureMetricsDocument {
   /** Gets or sets Time property (in ISO 8601 format) */
@@ -61,23 +61,14 @@ export interface ApiError {
 
 /** Optional parameters. */
 export interface MetricsCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type MetricsCreateResponse = AzureMetricsResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: AzureMetricsResult;
-  };
-};
+export type MetricsCreateResponse = AzureMetricsResult;
 
 /** Optional parameters. */
 export interface MonitorClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Overrides client endpoint. */

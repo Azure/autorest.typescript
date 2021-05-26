@@ -5,7 +5,6 @@ import * as prettier from "prettier";
 import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
-import { PackageDetails } from "./models/packageDetails";
 import { transformCodeModel } from "./transforms/transforms";
 import { ClientDetails } from "./models/clientDetails";
 import { generateClient } from "./generators/clientFileGenerator";
@@ -24,8 +23,7 @@ import { generateOperationsInterfaces } from "./generators/operationInterfaceGen
 import { generateParameters } from "./generators/parametersGenerator";
 import { generateLROFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
-import { TracingInfo } from "./models/clientDetails";
-import { OptionsBag } from "./utils/optionsBag";
+import { getAutorestOptions } from "./autorestSession";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -56,51 +54,12 @@ export async function generateTypeScriptLibrary(
     }
   });
 
-  const srcPath =
-    ((await host.GetValue("source-code-folder-path")) as string) || "src";
+  const {
+    packageDetails,
+    licenseHeader: shouldGenerateLicense
+  } = getAutorestOptions();
 
-  const shouldGenerateLicense: boolean =
-    (await host.GetValue("license-header")) || false;
-  const hideClients: boolean = (await host.GetValue("hide-clients")) || false;
-  const armLibrary: boolean =
-    (await host.GetValue("azure-arm")) ||
-    (await host.GetValue("openapi-type")) === "arm" ||
-    false;
-  const ignoreNullableOnOptional: boolean = (await host.GetValue(
-    "ignore-nullable-on-optional"
-  ))
-    ? true
-    : armLibrary;
-  const useCoreV2Option: boolean = await host.GetValue("use-core-v2");
-  const useCoreV2: boolean =
-    useCoreV2Option === undefined ? true : Boolean(useCoreV2Option);
-  const allowInsecureConnection: boolean =
-    (await host.GetValue("allow-insecure-connection")) || false;
-
-  const optionsBag: OptionsBag = {
-    shouldGenerateLicense,
-    hideClients,
-    armLibrary,
-    ignoreNullableOnOptional,
-    useCoreV2,
-    allowInsecureConnection
-  };
-
-  const clientDetails = await transformCodeModel(codeModel, host, optionsBag);
-  clientDetails.srcPath = srcPath;
-
-  clientDetails.tracing = await getTracingInfo(host);
-
-  const packageName =
-    (await host.GetValue("package-name")) || clientDetails.name;
-  const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
-  const packageDetails: PackageDetails = {
-    name: packageName,
-    scopeName: packageNameParts[2],
-    nameWithoutScope: packageNameParts[3],
-    description: clientDetails.description,
-    version: (await host.GetValue("package-version")) || "1.0.0"
-  };
+  const clientDetails = await transformCodeModel(codeModel, host);
 
   clientDetails.operationGroups.forEach(operationGroup => {
     const isConflict: boolean = checkForConflictWithDefinitions(
@@ -121,26 +80,24 @@ export async function generateTypeScriptLibrary(
   });
 
   // Skip metadata generation if `generate-metadata` is explicitly false
-  if ((await host.GetValue("generate-metadata")) !== false) {
-    generatePackageJson(clientDetails, packageDetails, project, optionsBag);
-    generateLicenseFile(project, optionsBag);
-    generateReadmeFile(clientDetails, packageDetails, project);
-    generateTsConfig(project);
-    generateRollupConfig(clientDetails, packageDetails, project, optionsBag);
-    generateApiExtractorConfig(clientDetails, project);
-  }
+  generatePackageJson(project, clientDetails);
+  generateLicenseFile(project);
+  generateReadmeFile(clientDetails, project);
+  generateTsConfig(project);
+  generateRollupConfig(project);
+  generateApiExtractorConfig(project);
 
-  generateClient(clientDetails, project, optionsBag);
-  generateClientContext(clientDetails, packageDetails, project, optionsBag);
-  generateModels(clientDetails, project, optionsBag);
+  generateClient(clientDetails, project);
+  generateClientContext(clientDetails, packageDetails, project);
+  generateModels(clientDetails, project);
 
-  generateMappers(clientDetails, project, optionsBag);
-  generateOperations(clientDetails, project, optionsBag);
-  generateOperationsInterfaces(clientDetails, project, optionsBag);
-  generateParameters(clientDetails, project, optionsBag);
+  generateMappers(clientDetails, project);
+  generateOperations(clientDetails, project);
+  generateOperationsInterfaces(clientDetails, project);
+  generateParameters(clientDetails, project);
   generateIndexFile(clientDetails, project);
   await generateLROFiles(clientDetails, project);
-  generateTracingFile(clientDetails, project);
+  generateTracingFile(project);
 
   const licenseHeader = `
 /*
@@ -195,33 +152,4 @@ function checkForConflictWithDefinitions(
     }
   });
   return conflict;
-}
-
-async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
-  const tracing: TracingInfo | undefined =
-    (await host.GetValue("tracing-info")) || undefined;
-
-  if (tracing && tracing.namespace && tracing.packagePrefix) {
-    return tracing;
-  }
-
-  const namespace =
-    (await host.GetValue("tracing-info.namespace")) || undefined;
-  const packagePrefix =
-    (await host.GetValue("tracing-info.packagePrefix")) || undefined;
-
-  if (packagePrefix && namespace) {
-    return {
-      namespace,
-      packagePrefix
-    };
-  }
-
-  if (!tracing && !packagePrefix && !namespace) {
-    return undefined;
-  }
-
-  throw new Error(
-    "Invalid tracing-info. Make sure that namespace and packagePrefix are defined"
-  );
 }

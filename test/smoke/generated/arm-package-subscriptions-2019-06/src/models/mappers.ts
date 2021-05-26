@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const OperationListResult: coreHttp.CompositeMapper = {
+export const OperationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationListResult",
@@ -35,7 +35,7 @@ export const OperationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Operation: coreHttp.CompositeMapper = {
+export const Operation: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Operation",
@@ -57,7 +57,7 @@ export const Operation: coreHttp.CompositeMapper = {
   }
 };
 
-export const OperationDisplay: coreHttp.CompositeMapper = {
+export const OperationDisplay: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "OperationDisplay",
@@ -90,7 +90,7 @@ export const OperationDisplay: coreHttp.CompositeMapper = {
   }
 };
 
-export const LocationListResult: coreHttp.CompositeMapper = {
+export const LocationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "LocationListResult",
@@ -111,7 +111,7 @@ export const LocationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const Location: coreHttp.CompositeMapper = {
+export const Location: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Location",
@@ -162,7 +162,7 @@ export const Location: coreHttp.CompositeMapper = {
   }
 };
 
-export const Subscription: coreHttp.CompositeMapper = {
+export const Subscription: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Subscription",
@@ -232,7 +232,7 @@ export const Subscription: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubscriptionPolicies: coreHttp.CompositeMapper = {
+export const SubscriptionPolicies: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubscriptionPolicies",
@@ -263,7 +263,7 @@ export const SubscriptionPolicies: coreHttp.CompositeMapper = {
   }
 };
 
-export const ManagedByTenant: coreHttp.CompositeMapper = {
+export const ManagedByTenant: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ManagedByTenant",
@@ -279,7 +279,7 @@ export const ManagedByTenant: coreHttp.CompositeMapper = {
   }
 };
 
-export const SubscriptionListResult: coreHttp.CompositeMapper = {
+export const SubscriptionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "SubscriptionListResult",
@@ -307,7 +307,7 @@ export const SubscriptionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const TenantListResult: coreHttp.CompositeMapper = {
+export const TenantListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TenantListResult",
@@ -335,7 +335,7 @@ export const TenantListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const TenantIdDescription: coreHttp.CompositeMapper = {
+export const TenantIdDescription: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "TenantIdDescription",

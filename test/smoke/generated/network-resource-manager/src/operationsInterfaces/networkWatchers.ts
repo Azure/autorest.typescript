@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   NetworkWatcher,
@@ -113,9 +112,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: NetworkWatchersDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified network watcher resource.
    * @param resourceGroupName The name of the resource group.
@@ -126,7 +123,7 @@ export interface NetworkWatchers {
     resourceGroupName: string,
     networkWatcherName: string,
     options?: NetworkWatchersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Updates a network watcher tags.
    * @param resourceGroupName The name of the resource group.

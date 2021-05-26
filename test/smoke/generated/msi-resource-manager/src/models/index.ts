@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 export interface Resource {
   /**
@@ -163,171 +163,81 @@ export type Identity = TrackedResource & {
 
 /** Optional parameters. */
 export interface SystemAssignedIdentitiesGetByScopeOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getByScope operation. */
-export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: SystemAssignedIdentity;
-  };
-};
+export type SystemAssignedIdentitiesGetByScopeResponse = SystemAssignedIdentity;
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface OperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscription operation. */
-export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserAssignedIdentitiesListResult;
-  };
-};
+export type UserAssignedIdentitiesListBySubscriptionResponse = UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserAssignedIdentitiesListResult;
-  };
-};
+export type UserAssignedIdentitiesListByResourceGroupResponse = UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identity;
-  };
-};
+export type UserAssignedIdentitiesCreateOrUpdateResponse = Identity;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type UserAssignedIdentitiesUpdateResponse = Identity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identity;
-  };
-};
+export type UserAssignedIdentitiesUpdateResponse = Identity;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type UserAssignedIdentitiesGetResponse = Identity & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Identity;
-  };
-};
+export type UserAssignedIdentitiesGetResponse = Identity;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserAssignedIdentitiesListResult;
-  };
-};
+export type UserAssignedIdentitiesListBySubscriptionNextResponse = UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface UserAssignedIdentitiesListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UserAssignedIdentitiesListResult;
-  };
-};
+export type UserAssignedIdentitiesListByResourceGroupNextResponse = UserAssignedIdentitiesListResult;
 
 /** Optional parameters. */
 export interface ManagedServiceIdentityClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

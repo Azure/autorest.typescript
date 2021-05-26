@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ExpressRouteGatewaysListBySubscriptionOptionalParams,
@@ -94,9 +93,7 @@ export interface ExpressRouteGateways {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified ExpressRoute gateway in a resource group. An ExpressRoute gateway resource can
    * only be deleted when there are no connection subresources.
@@ -108,5 +105,5 @@ export interface ExpressRouteGateways {
     resourceGroupName: string,
     expressRouteGatewayName: string,
     options?: ExpressRouteGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

@@ -24,6 +24,7 @@ export class BodyArrayClientContext extends coreClient.ServiceClient {
     const defaults: BodyArrayClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

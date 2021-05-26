@@ -7,7 +7,7 @@
  */
 
 import { VirtualMachineScaleSetRollingUpgrades } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -44,26 +44,42 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, options },
       cancelOperationSpec,
       sendOperation
     );
@@ -79,7 +95,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesCancelOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginCancel(
       resourceGroupName,
       vmScaleSetName,
@@ -100,26 +116,42 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, options },
       startOSUpgradeOperationSpec,
       sendOperation
     );
@@ -137,7 +169,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginStartOSUpgrade(
       resourceGroupName,
       vmScaleSetName,
@@ -158,26 +190,42 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, options },
       startExtensionUpgradeOperationSpec,
       sendOperation
     );
@@ -195,7 +243,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     resourceGroupName: string,
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesStartExtensionUpgradeOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginStartExtensionUpgrade(
       resourceGroupName,
       vmScaleSetName,
@@ -215,33 +263,16 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
     vmScaleSetName: string,
     options?: VirtualMachineScaleSetRollingUpgradesGetLatestOptionalParams
   ): Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      vmScaleSetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, vmScaleSetName, options },
       getLatestOperationSpec
-    ) as Promise<VirtualMachineScaleSetRollingUpgradesGetLatestResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const cancelOperationSpec: coreHttp.OperationSpec = {
+const cancelOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/cancel",
   httpMethod: "POST",
@@ -255,7 +286,7 @@ const cancelOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const startOSUpgradeOperationSpec: coreHttp.OperationSpec = {
+const startOSUpgradeOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/osRollingUpgrade",
   httpMethod: "POST",
@@ -269,7 +300,7 @@ const startOSUpgradeOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const startExtensionUpgradeOperationSpec: coreHttp.OperationSpec = {
+const startExtensionUpgradeOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/extensionRollingUpgrade",
   httpMethod: "POST",
@@ -283,7 +314,7 @@ const startExtensionUpgradeOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getLatestOperationSpec: coreHttp.OperationSpec = {
+const getLatestOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/rollingUpgrades/latest",
   httpMethod: "GET",

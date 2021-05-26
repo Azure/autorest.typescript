@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { GeoBackupPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -124,18 +124,17 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     parameters: GeoBackupPolicy,
     options?: GeoBackupPoliciesCreateOrUpdateOptionalParams
   ): Promise<GeoBackupPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      geoBackupPolicyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        geoBackupPolicyName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<GeoBackupPoliciesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -154,17 +153,16 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     geoBackupPolicyName: GeoBackupPolicyName,
     options?: GeoBackupPoliciesGetOptionalParams
   ): Promise<GeoBackupPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      geoBackupPolicyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        databaseName,
+        geoBackupPolicyName,
+        options
+      },
       getOperationSpec
-    ) as Promise<GeoBackupPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -181,22 +179,16 @@ export class GeoBackupPoliciesImpl implements GeoBackupPolicies {
     databaseName: string,
     options?: GeoBackupPoliciesListByDatabaseOptionalParams
   ): Promise<GeoBackupPoliciesListByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       listByDatabaseOperationSpec
-    ) as Promise<GeoBackupPoliciesListByDatabaseResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/geoBackupPolicies/{geoBackupPolicyName}",
   httpMethod: "PUT",
@@ -222,7 +214,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/geoBackupPolicies/{geoBackupPolicyName}",
   httpMethod: "GET",
@@ -243,7 +235,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/geoBackupPolicies",
   httpMethod: "GET",

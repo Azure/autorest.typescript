@@ -38,6 +38,7 @@ export class LicenseHeaderClientContext extends coreClient.ServiceClient {
     const defaults: LicenseHeaderClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -7,7 +7,7 @@
  */
 
 import { DatabaseAutomaticTuning } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -45,16 +45,10 @@ export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
     databaseName: string,
     options?: DatabaseAutomaticTuningGetOptionalParams
   ): Promise<DatabaseAutomaticTuningGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, options },
       getOperationSpec
-    ) as Promise<DatabaseAutomaticTuningGetResponse>;
+    );
   }
 
   /**
@@ -73,23 +67,16 @@ export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
     parameters: DatabaseAutomaticTuningDef,
     options?: DatabaseAutomaticTuningUpdateOptionalParams
   ): Promise<DatabaseAutomaticTuningUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      databaseName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, databaseName, parameters, options },
       updateOperationSpec
-    ) as Promise<DatabaseAutomaticTuningUpdateResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/automaticTuning/current",
   httpMethod: "GET",
@@ -110,7 +97,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/databases/{databaseName}/automaticTuning/current",
   httpMethod: "PATCH",

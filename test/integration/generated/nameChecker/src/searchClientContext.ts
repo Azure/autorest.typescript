@@ -31,6 +31,7 @@ export class SearchClientContext extends coreClient.ServiceClient {
     const defaults: SearchClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

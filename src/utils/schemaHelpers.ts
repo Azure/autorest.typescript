@@ -16,7 +16,6 @@ import {
 import { getStringForValue } from "./valueHelpers";
 import { getLanguageMetadata } from "./languageHelpers";
 import { normalizeName, NameType, normalizeTypeName } from "./nameUtils";
-import { OptionsBag } from "./optionsBag";
 
 /**
  * Extracts parents from an ObjectSchema

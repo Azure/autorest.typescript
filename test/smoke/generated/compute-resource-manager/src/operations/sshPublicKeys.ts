@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { SshPublicKeys } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -153,13 +153,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
   private _listBySubscription(
     options?: SshPublicKeysListBySubscriptionOptionalParams
   ): Promise<SshPublicKeysListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<SshPublicKeysListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -172,14 +169,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     resourceGroupName: string,
     options?: SshPublicKeysListByResourceGroupOptionalParams
   ): Promise<SshPublicKeysListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<SshPublicKeysListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -195,16 +188,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     parameters: SshPublicKeyResource,
     options?: SshPublicKeysCreateOptionalParams
   ): Promise<SshPublicKeysCreateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      sshPublicKeyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, sshPublicKeyName, parameters, options },
       createOperationSpec
-    ) as Promise<SshPublicKeysCreateResponse>;
+    );
   }
 
   /**
@@ -220,16 +207,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     parameters: SshPublicKeyUpdateResource,
     options?: SshPublicKeysUpdateOptionalParams
   ): Promise<SshPublicKeysUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      sshPublicKeyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, sshPublicKeyName, parameters, options },
       updateOperationSpec
-    ) as Promise<SshPublicKeysUpdateResponse>;
+    );
   }
 
   /**
@@ -242,16 +223,11 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     resourceGroupName: string,
     sshPublicKeyName: string,
     options?: SshPublicKeysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      sshPublicKeyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, sshPublicKeyName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -265,15 +241,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     sshPublicKeyName: string,
     options?: SshPublicKeysGetOptionalParams
   ): Promise<SshPublicKeysGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      sshPublicKeyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, sshPublicKeyName, options },
       getOperationSpec
-    ) as Promise<SshPublicKeysGetResponse>;
+    );
   }
 
   /**
@@ -289,15 +260,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     sshPublicKeyName: string,
     options?: SshPublicKeysGenerateKeyPairOptionalParams
   ): Promise<SshPublicKeysGenerateKeyPairResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      sshPublicKeyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, sshPublicKeyName, options },
       generateKeyPairOperationSpec
-    ) as Promise<SshPublicKeysGenerateKeyPairResponse>;
+    );
   }
 
   /**
@@ -309,14 +275,10 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     nextLink: string,
     options?: SshPublicKeysListBySubscriptionNextOptionalParams
   ): Promise<SshPublicKeysListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<SshPublicKeysListBySubscriptionNextResponse>;
+    );
   }
 
   /**
@@ -330,21 +292,16 @@ export class SshPublicKeysImpl implements SshPublicKeys {
     nextLink: string,
     options?: SshPublicKeysListByResourceGroupNextOptionalParams
   ): Promise<SshPublicKeysListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<SshPublicKeysListByResourceGroupNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/sshPublicKeys",
   httpMethod: "GET",
@@ -358,7 +315,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys",
   httpMethod: "GET",
@@ -376,7 +333,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOperationSpec: coreHttp.OperationSpec = {
+const createOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys/{sshPublicKeyName}",
   httpMethod: "PUT",
@@ -400,7 +357,7 @@ const createOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys/{sshPublicKeyName}",
   httpMethod: "PATCH",
@@ -421,7 +378,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys/{sshPublicKeyName}",
   httpMethod: "DELETE",
@@ -435,7 +392,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys/{sshPublicKeyName}",
   httpMethod: "GET",
@@ -454,7 +411,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const generateKeyPairOperationSpec: coreHttp.OperationSpec = {
+const generateKeyPairOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/sshPublicKeys/{sshPublicKeyName}/generateKeyPair",
   httpMethod: "POST",
@@ -473,7 +430,7 @@ const generateKeyPairOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -490,7 +447,7 @@ const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   ApplicationGateway,
@@ -81,9 +80,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the specified application gateway.
    * @param resourceGroupName The name of the resource group.
@@ -94,7 +91,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the specified application gateway.
    * @param resourceGroupName The name of the resource group.
@@ -160,9 +157,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Starts the specified application gateway.
    * @param resourceGroupName The name of the resource group.
@@ -173,7 +168,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Stops the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -184,9 +179,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Stops the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.
@@ -197,7 +190,7 @@ export interface ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the backend health of the specified application gateway in a resource group.
    * @param resourceGroupName The name of the resource group.

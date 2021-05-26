@@ -24,6 +24,7 @@ export class BodyDateTimeRfc1123ClientContext extends coreClient.ServiceClient {
     const defaults: BodyDateTimeRfc1123ClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

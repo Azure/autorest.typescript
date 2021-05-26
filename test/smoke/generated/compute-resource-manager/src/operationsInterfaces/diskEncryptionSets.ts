@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   DiskEncryptionSet,
@@ -142,9 +141,7 @@ export interface DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: DiskEncryptionSetsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a disk encryption set.
    * @param resourceGroupName The name of the resource group.
@@ -157,5 +154,5 @@ export interface DiskEncryptionSets {
     resourceGroupName: string,
     diskEncryptionSetName: string,
     options?: DiskEncryptionSetsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

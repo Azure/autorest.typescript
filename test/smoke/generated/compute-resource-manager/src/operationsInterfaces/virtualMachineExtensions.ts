@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VirtualMachineExtension,
@@ -106,9 +105,7 @@ export interface VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     options?: VirtualMachineExtensionsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * The operation to delete the extension.
    * @param resourceGroupName The name of the resource group.
@@ -121,7 +118,7 @@ export interface VirtualMachineExtensions {
     vmName: string,
     vmExtensionName: string,
     options?: VirtualMachineExtensionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * The operation to get the extension.
    * @param resourceGroupName The name of the resource group.

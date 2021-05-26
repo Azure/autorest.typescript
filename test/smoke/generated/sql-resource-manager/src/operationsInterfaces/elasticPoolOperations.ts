@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ElasticPoolOperation,
   ElasticPoolOperationsListByElasticPoolOptionalParams,
@@ -47,5 +46,5 @@ export interface ElasticPoolOperations {
     elasticPoolName: string,
     operationId: string,
     options?: ElasticPoolOperationsCancelOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

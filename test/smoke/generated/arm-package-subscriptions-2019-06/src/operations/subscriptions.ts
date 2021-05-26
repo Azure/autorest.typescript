@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Subscriptions } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SubscriptionClientContext } from "../subscriptionClientContext";
@@ -135,14 +135,10 @@ export class SubscriptionsImpl implements Subscriptions {
     subscriptionId: string,
     options?: SubscriptionsListLocationsOptionalParams
   ): Promise<SubscriptionsListLocationsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      subscriptionId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { subscriptionId, options },
       listLocationsOperationSpec
-    ) as Promise<SubscriptionsListLocationsResponse>;
+    );
   }
 
   /**
@@ -154,14 +150,10 @@ export class SubscriptionsImpl implements Subscriptions {
     subscriptionId: string,
     options?: SubscriptionsGetOptionalParams
   ): Promise<SubscriptionsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      subscriptionId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { subscriptionId, options },
       getOperationSpec
-    ) as Promise<SubscriptionsGetResponse>;
+    );
   }
 
   /**
@@ -171,13 +163,7 @@ export class SubscriptionsImpl implements Subscriptions {
   private _list(
     options?: SubscriptionsListOptionalParams
   ): Promise<SubscriptionsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<SubscriptionsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -189,20 +175,16 @@ export class SubscriptionsImpl implements Subscriptions {
     nextLink: string,
     options?: SubscriptionsListNextOptionalParams
   ): Promise<SubscriptionsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<SubscriptionsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listLocationsOperationSpec: coreHttp.OperationSpec = {
+const listLocationsOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/locations",
   httpMethod: "GET",
   responses: {
@@ -215,7 +197,7 @@ const listLocationsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}",
   httpMethod: "GET",
   responses: {
@@ -228,7 +210,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions",
   httpMethod: "GET",
   responses: {
@@ -241,7 +223,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

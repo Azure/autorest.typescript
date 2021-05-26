@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Diagnostics } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
@@ -817,15 +817,10 @@ export class DiagnosticsImpl implements Diagnostics {
     name: string,
     options?: DiagnosticsListHostingEnvironmentDetectorResponsesOptionalParams
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, options },
       listHostingEnvironmentDetectorResponsesOperationSpec
-    ) as Promise<DiagnosticsListHostingEnvironmentDetectorResponsesResponse>;
+    );
   }
 
   /**
@@ -841,16 +836,10 @@ export class DiagnosticsImpl implements Diagnostics {
     detectorName: string,
     options?: DiagnosticsGetHostingEnvironmentDetectorResponseOptionalParams
   ): Promise<DiagnosticsGetHostingEnvironmentDetectorResponseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      detectorName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, detectorName, options },
       getHostingEnvironmentDetectorResponseOperationSpec
-    ) as Promise<DiagnosticsGetHostingEnvironmentDetectorResponseResponse>;
+    );
   }
 
   /**
@@ -864,15 +853,10 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     options?: DiagnosticsListSiteDetectorResponsesOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, options },
       listSiteDetectorResponsesOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorResponsesResponse>;
+    );
   }
 
   /**
@@ -888,16 +872,10 @@ export class DiagnosticsImpl implements Diagnostics {
     detectorName: string,
     options?: DiagnosticsGetSiteDetectorResponseOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      detectorName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, detectorName, options },
       getSiteDetectorResponseOperationSpec
-    ) as Promise<DiagnosticsGetSiteDetectorResponseResponse>;
+    );
   }
 
   /**
@@ -911,15 +889,10 @@ export class DiagnosticsImpl implements Diagnostics {
     siteName: string,
     options?: DiagnosticsListSiteDiagnosticCategoriesOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, options },
       listSiteDiagnosticCategoriesOperationSpec
-    ) as Promise<DiagnosticsListSiteDiagnosticCategoriesResponse>;
+    );
   }
 
   /**
@@ -935,16 +908,10 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     options?: DiagnosticsGetSiteDiagnosticCategoryOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategoryResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, options },
       getSiteDiagnosticCategoryOperationSpec
-    ) as Promise<DiagnosticsGetSiteDiagnosticCategoryResponse>;
+    );
   }
 
   /**
@@ -960,16 +927,10 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     options?: DiagnosticsListSiteAnalysesOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, options },
       listSiteAnalysesOperationSpec
-    ) as Promise<DiagnosticsListSiteAnalysesResponse>;
+    );
   }
 
   /**
@@ -987,17 +948,16 @@ export class DiagnosticsImpl implements Diagnostics {
     analysisName: string,
     options?: DiagnosticsGetSiteAnalysisOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      analysisName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        analysisName,
+        options
+      },
       getSiteAnalysisOperationSpec
-    ) as Promise<DiagnosticsGetSiteAnalysisResponse>;
+    );
   }
 
   /**
@@ -1015,17 +975,16 @@ export class DiagnosticsImpl implements Diagnostics {
     analysisName: string,
     options?: DiagnosticsExecuteSiteAnalysisOptionalParams
   ): Promise<DiagnosticsExecuteSiteAnalysisResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      analysisName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        analysisName,
+        options
+      },
       executeSiteAnalysisOperationSpec
-    ) as Promise<DiagnosticsExecuteSiteAnalysisResponse>;
+    );
   }
 
   /**
@@ -1041,16 +1000,10 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     options?: DiagnosticsListSiteDetectorsOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, options },
       listSiteDetectorsOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorsResponse>;
+    );
   }
 
   /**
@@ -1068,17 +1021,16 @@ export class DiagnosticsImpl implements Diagnostics {
     detectorName: string,
     options?: DiagnosticsGetSiteDetectorOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      detectorName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        detectorName,
+        options
+      },
       getSiteDetectorOperationSpec
-    ) as Promise<DiagnosticsGetSiteDetectorResponse>;
+    );
   }
 
   /**
@@ -1096,17 +1048,16 @@ export class DiagnosticsImpl implements Diagnostics {
     diagnosticCategory: string,
     options?: DiagnosticsExecuteSiteDetectorOptionalParams
   ): Promise<DiagnosticsExecuteSiteDetectorResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      detectorName,
-      diagnosticCategory,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        detectorName,
+        diagnosticCategory,
+        options
+      },
       executeSiteDetectorOperationSpec
-    ) as Promise<DiagnosticsExecuteSiteDetectorResponse>;
+    );
   }
 
   /**
@@ -1122,16 +1073,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsListSiteDetectorResponsesSlotOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, slot, options },
       listSiteDetectorResponsesSlotOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorResponsesSlotResponse>;
+    );
   }
 
   /**
@@ -1149,17 +1094,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsGetSiteDetectorResponseSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorResponseSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      detectorName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, detectorName, slot, options },
       getSiteDetectorResponseSlotOperationSpec
-    ) as Promise<DiagnosticsGetSiteDetectorResponseSlotResponse>;
+    );
   }
 
   /**
@@ -1175,16 +1113,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsListSiteDiagnosticCategoriesSlotOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, slot, options },
       listSiteDiagnosticCategoriesSlotOperationSpec
-    ) as Promise<DiagnosticsListSiteDiagnosticCategoriesSlotResponse>;
+    );
   }
 
   /**
@@ -1202,17 +1134,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsGetSiteDiagnosticCategorySlotOptionalParams
   ): Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, slot, options },
       getSiteDiagnosticCategorySlotOperationSpec
-    ) as Promise<DiagnosticsGetSiteDiagnosticCategorySlotResponse>;
+    );
   }
 
   /**
@@ -1230,17 +1155,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsListSiteAnalysesSlotOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, slot, options },
       listSiteAnalysesSlotOperationSpec
-    ) as Promise<DiagnosticsListSiteAnalysesSlotResponse>;
+    );
   }
 
   /**
@@ -1260,18 +1178,17 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsGetSiteAnalysisSlotOptionalParams
   ): Promise<DiagnosticsGetSiteAnalysisSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      analysisName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        analysisName,
+        slot,
+        options
+      },
       getSiteAnalysisSlotOperationSpec
-    ) as Promise<DiagnosticsGetSiteAnalysisSlotResponse>;
+    );
   }
 
   /**
@@ -1291,18 +1208,17 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsExecuteSiteAnalysisSlotOptionalParams
   ): Promise<DiagnosticsExecuteSiteAnalysisSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      analysisName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        analysisName,
+        slot,
+        options
+      },
       executeSiteAnalysisSlotOperationSpec
-    ) as Promise<DiagnosticsExecuteSiteAnalysisSlotResponse>;
+    );
   }
 
   /**
@@ -1320,17 +1236,10 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsListSiteDetectorsSlotOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, slot, options },
       listSiteDetectorsSlotOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorsSlotResponse>;
+    );
   }
 
   /**
@@ -1350,18 +1259,17 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsGetSiteDetectorSlotOptionalParams
   ): Promise<DiagnosticsGetSiteDetectorSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      detectorName,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        detectorName,
+        slot,
+        options
+      },
       getSiteDetectorSlotOperationSpec
-    ) as Promise<DiagnosticsGetSiteDetectorSlotResponse>;
+    );
   }
 
   /**
@@ -1381,18 +1289,17 @@ export class DiagnosticsImpl implements Diagnostics {
     slot: string,
     options?: DiagnosticsExecuteSiteDetectorSlotOptionalParams
   ): Promise<DiagnosticsExecuteSiteDetectorSlotResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      detectorName,
-      diagnosticCategory,
-      slot,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        detectorName,
+        diagnosticCategory,
+        slot,
+        options
+      },
       executeSiteDetectorSlotOperationSpec
-    ) as Promise<DiagnosticsExecuteSiteDetectorSlotResponse>;
+    );
   }
 
   /**
@@ -1409,18 +1316,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListHostingEnvironmentDetectorResponsesNextOptionalParams
   ): Promise<DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      name,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, name, nextLink, options },
       listHostingEnvironmentDetectorResponsesNextOperationSpec
-    ) as Promise<
-      DiagnosticsListHostingEnvironmentDetectorResponsesNextResponse
-    >;
+    );
   }
 
   /**
@@ -1437,16 +1336,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDetectorResponsesNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, nextLink, options },
       listSiteDetectorResponsesNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorResponsesNextResponse>;
+    );
   }
 
   /**
@@ -1463,16 +1356,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDiagnosticCategoriesNextOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, nextLink, options },
       listSiteDiagnosticCategoriesNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDiagnosticCategoriesNextResponse>;
+    );
   }
 
   /**
@@ -1490,17 +1377,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteAnalysesNextOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, nextLink, options },
       listSiteAnalysesNextOperationSpec
-    ) as Promise<DiagnosticsListSiteAnalysesNextResponse>;
+    );
   }
 
   /**
@@ -1518,17 +1398,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDetectorsNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, diagnosticCategory, nextLink, options },
       listSiteDetectorsNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorsNextResponse>;
+    );
   }
 
   /**
@@ -1547,17 +1420,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDetectorResponsesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorResponsesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, slot, nextLink, options },
       listSiteDetectorResponsesSlotNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorResponsesSlotNextResponse>;
+    );
   }
 
   /**
@@ -1576,17 +1442,10 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDiagnosticCategoriesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, siteName, slot, nextLink, options },
       listSiteDiagnosticCategoriesSlotNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDiagnosticCategoriesSlotNextResponse>;
+    );
   }
 
   /**
@@ -1606,18 +1465,17 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteAnalysesSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteAnalysesSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        nextLink,
+        options
+      },
       listSiteAnalysesSlotNextOperationSpec
-    ) as Promise<DiagnosticsListSiteAnalysesSlotNextResponse>;
+    );
   }
 
   /**
@@ -1637,24 +1495,23 @@ export class DiagnosticsImpl implements Diagnostics {
     nextLink: string,
     options?: DiagnosticsListSiteDetectorsSlotNextOptionalParams
   ): Promise<DiagnosticsListSiteDetectorsSlotNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      siteName,
-      diagnosticCategory,
-      slot,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        siteName,
+        diagnosticCategory,
+        slot,
+        nextLink,
+        options
+      },
       listSiteDetectorsSlotNextOperationSpec
-    ) as Promise<DiagnosticsListSiteDetectorsSlotNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listHostingEnvironmentDetectorResponsesOperationSpec: coreHttp.OperationSpec = {
+const listHostingEnvironmentDetectorResponsesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/detectors",
   httpMethod: "GET",
@@ -1676,7 +1533,7 @@ const listHostingEnvironmentDetectorResponsesOperationSpec: coreHttp.OperationSp
   headerParameters: [Parameters.accept],
   serializer
 };
-const getHostingEnvironmentDetectorResponseOperationSpec: coreHttp.OperationSpec = {
+const getHostingEnvironmentDetectorResponseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/hostingEnvironments/{name}/detectors/{detectorName}",
   httpMethod: "GET",
@@ -1704,7 +1561,7 @@ const getHostingEnvironmentDetectorResponseOperationSpec: coreHttp.OperationSpec
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorResponsesOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorResponsesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/detectors",
   httpMethod: "GET",
@@ -1726,7 +1583,7 @@ const listSiteDetectorResponsesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDetectorResponseOperationSpec: coreHttp.OperationSpec = {
+const getSiteDetectorResponseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/detectors/{detectorName}",
   httpMethod: "GET",
@@ -1754,7 +1611,7 @@ const getSiteDetectorResponseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDiagnosticCategoriesOperationSpec: coreHttp.OperationSpec = {
+const listSiteDiagnosticCategoriesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics",
   httpMethod: "GET",
@@ -1776,7 +1633,7 @@ const listSiteDiagnosticCategoriesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDiagnosticCategoryOperationSpec: coreHttp.OperationSpec = {
+const getSiteDiagnosticCategoryOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}",
   httpMethod: "GET",
@@ -1799,7 +1656,7 @@ const getSiteDiagnosticCategoryOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteAnalysesOperationSpec: coreHttp.OperationSpec = {
+const listSiteAnalysesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses",
   httpMethod: "GET",
@@ -1822,7 +1679,7 @@ const listSiteAnalysesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
+const getSiteAnalysisOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses/{analysisName}",
   httpMethod: "GET",
@@ -1846,7 +1703,7 @@ const getSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const executeSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
+const executeSiteAnalysisOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/analyses/{analysisName}/execute",
   httpMethod: "POST",
@@ -1875,7 +1732,7 @@ const executeSiteAnalysisOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorsOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors",
   httpMethod: "GET",
@@ -1898,7 +1755,7 @@ const listSiteDetectorsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDetectorOperationSpec: coreHttp.OperationSpec = {
+const getSiteDetectorOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors/{detectorName}",
   httpMethod: "GET",
@@ -1922,7 +1779,7 @@ const getSiteDetectorOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const executeSiteDetectorOperationSpec: coreHttp.OperationSpec = {
+const executeSiteDetectorOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/diagnostics/{diagnosticCategory}/detectors/{detectorName}/execute",
   httpMethod: "POST",
@@ -1951,7 +1808,7 @@ const executeSiteDetectorOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorResponsesSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorResponsesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors",
   httpMethod: "GET",
@@ -1974,7 +1831,7 @@ const listSiteDetectorResponsesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDetectorResponseSlotOperationSpec: coreHttp.OperationSpec = {
+const getSiteDetectorResponseSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/detectors/{detectorName}",
   httpMethod: "GET",
@@ -2003,7 +1860,7 @@ const getSiteDetectorResponseSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDiagnosticCategoriesSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteDiagnosticCategoriesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics",
   httpMethod: "GET",
@@ -2026,7 +1883,7 @@ const listSiteDiagnosticCategoriesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDiagnosticCategorySlotOperationSpec: coreHttp.OperationSpec = {
+const getSiteDiagnosticCategorySlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}",
   httpMethod: "GET",
@@ -2050,7 +1907,7 @@ const getSiteDiagnosticCategorySlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteAnalysesSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteAnalysesSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses",
   httpMethod: "GET",
@@ -2074,7 +1931,7 @@ const listSiteAnalysesSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
+const getSiteAnalysisSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses/{analysisName}",
   httpMethod: "GET",
@@ -2099,7 +1956,7 @@ const getSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const executeSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
+const executeSiteAnalysisSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/analyses/{analysisName}/execute",
   httpMethod: "POST",
@@ -2129,7 +1986,7 @@ const executeSiteAnalysisSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorsSlotOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorsSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors",
   httpMethod: "GET",
@@ -2153,7 +2010,7 @@ const listSiteDetectorsSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
+const getSiteDetectorSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors/{detectorName}",
   httpMethod: "GET",
@@ -2178,7 +2035,7 @@ const getSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const executeSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
+const executeSiteDetectorSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{siteName}/slots/{slot}/diagnostics/{diagnosticCategory}/detectors/{detectorName}/execute",
   httpMethod: "POST",
@@ -2208,7 +2065,7 @@ const executeSiteDetectorSlotOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
+const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2230,7 +2087,7 @@ const listHostingEnvironmentDetectorResponsesNextOperationSpec: coreHttp.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorResponsesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2252,7 +2109,7 @@ const listSiteDetectorResponsesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDiagnosticCategoriesNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDiagnosticCategoriesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2274,7 +2131,7 @@ const listSiteDiagnosticCategoriesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteAnalysesNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteAnalysesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2297,7 +2154,7 @@ const listSiteAnalysesNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorsNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2320,7 +2177,7 @@ const listSiteDetectorsNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorResponsesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorResponsesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2343,7 +2200,7 @@ const listSiteDetectorResponsesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2366,7 +2223,7 @@ const listSiteDiagnosticCategoriesSlotNextOperationSpec: coreHttp.OperationSpec 
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteAnalysesSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteAnalysesSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2390,7 +2247,7 @@ const listSiteAnalysesSlotNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listSiteDetectorsSlotNextOperationSpec: coreHttp.OperationSpec = {
+const listSiteDetectorsSlotNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

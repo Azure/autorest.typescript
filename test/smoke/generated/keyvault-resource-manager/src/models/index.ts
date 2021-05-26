@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Parameters for creating or updating a vault */
 export interface VaultCreateOrUpdateParameters {
@@ -733,7 +733,7 @@ export type Reason = "AccountNameInvalid" | "AlreadyExists";
 
 /** Optional parameters. */
 export interface VaultsCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -741,139 +741,69 @@ export interface VaultsCreateOrUpdateOptionalParams
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export type VaultsCreateOrUpdateResponse = Vault & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Vault;
-  };
-};
+export type VaultsCreateOrUpdateResponse = Vault;
 
 /** Optional parameters. */
-export interface VaultsUpdateOptionalParams extends coreHttp.OperationOptions {}
+export interface VaultsUpdateOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type VaultsUpdateResponse = Vault & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Vault;
-  };
-};
+export type VaultsUpdateResponse = Vault;
 
 /** Optional parameters. */
-export interface VaultsDeleteOptionalParams extends coreHttp.OperationOptions {}
+export interface VaultsDeleteOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface VaultsGetOptionalParams extends coreHttp.OperationOptions {}
+export interface VaultsGetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type VaultsGetResponse = Vault & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: Vault;
-  };
-};
+export type VaultsGetResponse = Vault;
 
 /** Optional parameters. */
 export interface VaultsUpdateAccessPolicyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateAccessPolicy operation. */
-export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VaultAccessPolicyParameters;
-  };
-};
+export type VaultsUpdateAccessPolicyResponse = VaultAccessPolicyParameters;
 
 /** Optional parameters. */
 export interface VaultsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listByResourceGroup operation. */
-export type VaultsListByResourceGroupResponse = VaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VaultListResult;
-  };
-};
+export type VaultsListByResourceGroupResponse = VaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListBySubscriptionOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listBySubscription operation. */
-export type VaultsListBySubscriptionResponse = VaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VaultListResult;
-  };
-};
+export type VaultsListBySubscriptionResponse = VaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListDeletedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeleted operation. */
-export type VaultsListDeletedResponse = DeletedVaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedVaultListResult;
-  };
-};
+export type VaultsListDeletedResponse = DeletedVaultListResult;
 
 /** Optional parameters. */
 export interface VaultsGetDeletedOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeleted operation. */
-export type VaultsGetDeletedResponse = DeletedVault & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedVault;
-  };
-};
+export type VaultsGetDeletedResponse = DeletedVault;
 
 /** Optional parameters. */
 export interface VaultsPurgeDeletedOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -881,150 +811,76 @@ export interface VaultsPurgeDeletedOptionalParams
 }
 
 /** Optional parameters. */
-export interface VaultsListOptionalParams extends coreHttp.OperationOptions {
+export interface VaultsListOptionalParams extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the list operation. */
-export type VaultsListResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type VaultsListResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface VaultsCheckNameAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
-export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CheckNameAvailabilityResult;
-  };
-};
+export type VaultsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
 
 /** Optional parameters. */
 export interface VaultsListByResourceGroupNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listByResourceGroupNext operation. */
-export type VaultsListByResourceGroupNextResponse = VaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VaultListResult;
-  };
-};
+export type VaultsListByResourceGroupNextResponse = VaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListBySubscriptionNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listBySubscriptionNext operation. */
-export type VaultsListBySubscriptionNextResponse = VaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: VaultListResult;
-  };
-};
+export type VaultsListBySubscriptionNextResponse = VaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListDeletedNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listDeletedNext operation. */
-export type VaultsListDeletedNextResponse = DeletedVaultListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: DeletedVaultListResult;
-  };
-};
+export type VaultsListDeletedNextResponse = DeletedVaultListResult;
 
 /** Optional parameters. */
 export interface VaultsListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Maximum number of results to return. */
   top?: number;
 }
 
 /** Contains response data for the listNext operation. */
-export type VaultsListNextResponse = ResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ResourceListResult;
-  };
-};
+export type VaultsListNextResponse = ResourceListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsPutOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the put operation. */
 export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnectionsPutHeaders &
-  PrivateEndpointConnection & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: PrivateEndpointConnection;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: PrivateEndpointConnectionsPutHeaders;
-    };
-  };
+  PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -1032,68 +888,32 @@ export interface PrivateEndpointConnectionsDeleteOptionalParams
 }
 
 /** Contains response data for the delete operation. */
-export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateEndpointConnectionsDeleteResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesListByVaultOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByVault operation. */
-export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkResourceListResult;
-  };
-};
+export type PrivateLinkResourcesListByVaultResponse = PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface OperationsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type OperationsListNextResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface KeyVaultManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

@@ -24,6 +24,7 @@ export class BodyBooleanClientContext extends coreClient.ServiceClient {
     const defaults: BodyBooleanClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
 /** Result of the request to list Storage operations. It contains a list of operations and a URL link to get the next set of results. */
 export interface OperationListResult {
@@ -2260,54 +2260,27 @@ export type PublicAccess = "Container" | "Blob" | "None";
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type OperationsListResponse = OperationListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: OperationListResult;
-  };
-};
+export type OperationsListResponse = OperationListResult;
 
 /** Optional parameters. */
-export interface SkusListOptionalParams extends coreHttp.OperationOptions {}
+export interface SkusListOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type SkusListResponse = StorageSkuListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageSkuListResult;
-  };
-};
+export type SkusListResponse = StorageSkuListResult;
 
 /** Optional parameters. */
 export interface StorageAccountsCheckNameAvailabilityOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkNameAvailability operation. */
-export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: CheckNameAvailabilityResult;
-  };
-};
+export type StorageAccountsCheckNameAvailabilityResponse = CheckNameAvailabilityResult;
 
 /** Optional parameters. */
 export interface StorageAccountsCreateOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2315,155 +2288,74 @@ export interface StorageAccountsCreateOptionalParams
 }
 
 /** Contains response data for the create operation. */
-export type StorageAccountsCreateResponse = StorageAccount & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccount;
-  };
-};
+export type StorageAccountsCreateResponse = StorageAccount;
 
 /** Optional parameters. */
 export interface StorageAccountsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StorageAccountsGetPropertiesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** May be used to expand the properties within account's properties. By default, data is not included when fetching properties. Currently we only support geoReplicationStats and blobRestoreStatus. */
   expand?: StorageAccountExpand;
 }
 
 /** Contains response data for the getProperties operation. */
-export type StorageAccountsGetPropertiesResponse = StorageAccount & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccount;
-  };
-};
+export type StorageAccountsGetPropertiesResponse = StorageAccount;
 
 /** Optional parameters. */
 export interface StorageAccountsUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type StorageAccountsUpdateResponse = StorageAccount & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccount;
-  };
-};
+export type StorageAccountsUpdateResponse = StorageAccount;
 
 /** Optional parameters. */
 export interface StorageAccountsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type StorageAccountsListResponse = StorageAccountListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccountListResult;
-  };
-};
+export type StorageAccountsListResponse = StorageAccountListResult;
 
 /** Optional parameters. */
 export interface StorageAccountsListByResourceGroupOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByResourceGroup operation. */
-export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccountListResult;
-  };
-};
+export type StorageAccountsListByResourceGroupResponse = StorageAccountListResult;
 
 /** Optional parameters. */
 export interface StorageAccountsListKeysOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listKeys operation. */
-export type StorageAccountsListKeysResponse = StorageAccountListKeysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccountListKeysResult;
-  };
-};
+export type StorageAccountsListKeysResponse = StorageAccountListKeysResult;
 
 /** Optional parameters. */
 export interface StorageAccountsRegenerateKeyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the regenerateKey operation. */
-export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccountListKeysResult;
-  };
-};
+export type StorageAccountsRegenerateKeyResponse = StorageAccountListKeysResult;
 
 /** Optional parameters. */
 export interface StorageAccountsListAccountSASOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listAccountSAS operation. */
-export type StorageAccountsListAccountSASResponse = ListAccountSasResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListAccountSasResponse;
-  };
-};
+export type StorageAccountsListAccountSASResponse = ListAccountSasResponse;
 
 /** Optional parameters. */
 export interface StorageAccountsListServiceSASOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listServiceSAS operation. */
-export type StorageAccountsListServiceSASResponse = ListServiceSasResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListServiceSasResponse;
-  };
-};
+export type StorageAccountsListServiceSASResponse = ListServiceSasResponse;
 
 /** Optional parameters. */
 export interface StorageAccountsFailoverOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2472,7 +2364,7 @@ export interface StorageAccountsFailoverOptionalParams
 
 /** Optional parameters. */
 export interface StorageAccountsRestoreBlobRangesOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
   /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
@@ -2480,340 +2372,160 @@ export interface StorageAccountsRestoreBlobRangesOptionalParams
 }
 
 /** Contains response data for the restoreBlobRanges operation. */
-export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobRestoreStatus;
-  };
-};
+export type StorageAccountsRestoreBlobRangesResponse = BlobRestoreStatus;
 
 /** Optional parameters. */
 export interface StorageAccountsRevokeUserDelegationKeysOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface StorageAccountsListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type StorageAccountsListNextResponse = StorageAccountListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: StorageAccountListResult;
-  };
-};
+export type StorageAccountsListNextResponse = StorageAccountListResult;
 
 /** Optional parameters. */
 export interface UsagesListByLocationOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByLocation operation. */
-export type UsagesListByLocationResponse = UsageListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: UsageListResult;
-  };
-};
+export type UsagesListByLocationResponse = UsageListResult;
 
 /** Optional parameters. */
 export interface ManagementPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ManagementPoliciesGetResponse = ManagementPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementPolicy;
-  };
-};
+export type ManagementPoliciesGetResponse = ManagementPolicy;
 
 /** Optional parameters. */
 export interface ManagementPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ManagementPolicy;
-  };
-};
+export type ManagementPoliciesCreateOrUpdateResponse = ManagementPolicy;
 
 /** Optional parameters. */
 export interface ManagementPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnectionListResult;
-  };
-};
+export type PrivateEndpointConnectionsListResponse = PrivateEndpointConnectionListResult;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateEndpointConnectionsGetResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsPutOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the put operation. */
-export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateEndpointConnection;
-  };
-};
+export type PrivateEndpointConnectionsPutResponse = PrivateEndpointConnection;
 
 /** Optional parameters. */
 export interface PrivateEndpointConnectionsDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PrivateLinkResourcesListByStorageAccountOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listByStorageAccount operation. */
-export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: PrivateLinkResourceListResult;
-  };
-};
+export type PrivateLinkResourcesListByStorageAccountResponse = PrivateLinkResourceListResult;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ObjectReplicationPoliciesDef;
-  };
-};
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ObjectReplicationPolicy;
-  };
-};
+export type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the createOrUpdate operation. */
-export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ObjectReplicationPolicy;
-  };
-};
+export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface EncryptionScopesPutOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the put operation. */
-export type EncryptionScopesPutResponse = EncryptionScope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EncryptionScope;
-  };
-};
+export type EncryptionScopesPutResponse = EncryptionScope;
 
 /** Optional parameters. */
 export interface EncryptionScopesPatchOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the patch operation. */
-export type EncryptionScopesPatchResponse = EncryptionScope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EncryptionScope;
-  };
-};
+export type EncryptionScopesPatchResponse = EncryptionScope;
 
 /** Optional parameters. */
 export interface EncryptionScopesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type EncryptionScopesGetResponse = EncryptionScope & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EncryptionScope;
-  };
-};
+export type EncryptionScopesGetResponse = EncryptionScope;
 
 /** Optional parameters. */
 export interface EncryptionScopesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type EncryptionScopesListResponse = EncryptionScopeListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EncryptionScopeListResult;
-  };
-};
+export type EncryptionScopesListResponse = EncryptionScopeListResult;
 
 /** Optional parameters. */
 export interface EncryptionScopesListNextOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listNext operation. */
-export type EncryptionScopesListNextResponse = EncryptionScopeListResult & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: EncryptionScopeListResult;
-  };
-};
+export type EncryptionScopesListNextResponse = EncryptionScopeListResult;
 
 /** Optional parameters. */
 export interface BlobServicesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type BlobServicesListResponse = BlobServiceItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobServiceItems;
-  };
-};
+export type BlobServicesListResponse = BlobServiceItems;
 
 /** Optional parameters. */
 export interface BlobServicesSetServicePropertiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the setServiceProperties operation. */
-export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobServiceProperties;
-  };
-};
+export type BlobServicesSetServicePropertiesResponse = BlobServiceProperties;
 
 /** Optional parameters. */
 export interface BlobServicesGetServicePropertiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServiceProperties operation. */
-export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobServiceProperties;
-  };
-};
+export type BlobServicesGetServicePropertiesResponse = BlobServiceProperties;
 
 /** Optional parameters. */
 export interface BlobContainersListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Optional. Specified maximum number of containers that can be included in the list. */
   maxpagesize?: string;
   /** Optional. When specified, only container names starting with the filter will be listed. */
@@ -2821,104 +2533,50 @@ export interface BlobContainersListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type BlobContainersListResponse = ListContainerItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListContainerItems;
-  };
-};
+export type BlobContainersListResponse = ListContainerItems;
 
 /** Optional parameters. */
 export interface BlobContainersCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type BlobContainersCreateResponse = BlobContainer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobContainer;
-  };
-};
+export type BlobContainersCreateResponse = BlobContainer;
 
 /** Optional parameters. */
 export interface BlobContainersUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type BlobContainersUpdateResponse = BlobContainer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobContainer;
-  };
-};
+export type BlobContainersUpdateResponse = BlobContainer;
 
 /** Optional parameters. */
 export interface BlobContainersGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type BlobContainersGetResponse = BlobContainer & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: BlobContainer;
-  };
-};
+export type BlobContainersGetResponse = BlobContainer;
 
 /** Optional parameters. */
 export interface BlobContainersDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface BlobContainersSetLegalHoldOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the setLegalHold operation. */
-export type BlobContainersSetLegalHoldResponse = LegalHold & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LegalHold;
-  };
-};
+export type BlobContainersSetLegalHoldResponse = LegalHold;
 
 /** Optional parameters. */
 export interface BlobContainersClearLegalHoldOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the clearLegalHold operation. */
-export type BlobContainersClearLegalHoldResponse = LegalHold & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LegalHold;
-  };
-};
+export type BlobContainersClearLegalHoldResponse = LegalHold;
 
 /** Optional parameters. */
 export interface BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The ImmutabilityPolicy Properties that will be created or updated to a blob container. */
   parameters?: ImmutabilityPolicy;
   /** The entity state (ETag) version of the immutability policy to update. A value of "*" can be used to apply the operation only if the immutability policy already exists. If omitted, this operation will always be applied. */
@@ -2927,123 +2585,59 @@ export interface BlobContainersCreateOrUpdateImmutabilityPolicyOptionalParams
 
 /** Contains response data for the createOrUpdateImmutabilityPolicy operation. */
 export type BlobContainersCreateOrUpdateImmutabilityPolicyResponse = BlobContainersCreateOrUpdateImmutabilityPolicyHeaders &
-  ImmutabilityPolicy & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: ImmutabilityPolicy;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: BlobContainersCreateOrUpdateImmutabilityPolicyHeaders;
-    };
-  };
+  ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersGetImmutabilityPolicyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The entity state (ETag) version of the immutability policy to update. A value of "*" can be used to apply the operation only if the immutability policy already exists. If omitted, this operation will always be applied. */
   ifMatch?: string;
 }
 
 /** Contains response data for the getImmutabilityPolicy operation. */
 export type BlobContainersGetImmutabilityPolicyResponse = BlobContainersGetImmutabilityPolicyHeaders &
-  ImmutabilityPolicy & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: ImmutabilityPolicy;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: BlobContainersGetImmutabilityPolicyHeaders;
-    };
-  };
+  ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersDeleteImmutabilityPolicyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the deleteImmutabilityPolicy operation. */
 export type BlobContainersDeleteImmutabilityPolicyResponse = BlobContainersDeleteImmutabilityPolicyHeaders &
-  ImmutabilityPolicy & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: ImmutabilityPolicy;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: BlobContainersDeleteImmutabilityPolicyHeaders;
-    };
-  };
+  ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersLockImmutabilityPolicyOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the lockImmutabilityPolicy operation. */
 export type BlobContainersLockImmutabilityPolicyResponse = BlobContainersLockImmutabilityPolicyHeaders &
-  ImmutabilityPolicy & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: ImmutabilityPolicy;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: BlobContainersLockImmutabilityPolicyHeaders;
-    };
-  };
+  ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersExtendImmutabilityPolicyOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** The ImmutabilityPolicy Properties that will be extended for a blob container. */
   parameters?: ImmutabilityPolicy;
 }
 
 /** Contains response data for the extendImmutabilityPolicy operation. */
 export type BlobContainersExtendImmutabilityPolicyResponse = BlobContainersExtendImmutabilityPolicyHeaders &
-  ImmutabilityPolicy & {
-    /** The underlying HTTP response. */
-    _response: coreHttp.HttpResponse & {
-      /** The response body as text (string format) */
-      bodyAsText: string;
-
-      /** The response body as parsed JSON or XML */
-      parsedBody: ImmutabilityPolicy;
-      /** The parsed HTTP response headers. */
-      parsedHeaders: BlobContainersExtendImmutabilityPolicyHeaders;
-    };
-  };
+  ImmutabilityPolicy;
 
 /** Optional parameters. */
 export interface BlobContainersLeaseOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Lease Container request body. */
   parameters?: LeaseContainerRequest;
 }
 
 /** Contains response data for the lease operation. */
-export type BlobContainersLeaseResponse = LeaseContainerResponse & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: LeaseContainerResponse;
-  };
-};
+export type BlobContainersLeaseResponse = LeaseContainerResponse;
 
 /** Optional parameters. */
 export interface BlobContainersListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Optional. Specified maximum number of containers that can be included in the list. */
   maxpagesize?: string;
   /** Optional. When specified, only container names starting with the filter will be listed. */
@@ -3051,68 +2645,32 @@ export interface BlobContainersListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type BlobContainersListNextResponse = ListContainerItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: ListContainerItems;
-  };
-};
+export type BlobContainersListNextResponse = ListContainerItems;
 
 /** Optional parameters. */
 export interface FileServicesListOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type FileServicesListResponse = FileServiceItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileServiceItems;
-  };
-};
+export type FileServicesListResponse = FileServiceItems;
 
 /** Optional parameters. */
 export interface FileServicesSetServicePropertiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the setServiceProperties operation. */
-export type FileServicesSetServicePropertiesResponse = FileServiceProperties & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileServiceProperties;
-  };
-};
+export type FileServicesSetServicePropertiesResponse = FileServiceProperties;
 
 /** Optional parameters. */
 export interface FileServicesGetServicePropertiesOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServiceProperties operation. */
-export type FileServicesGetServicePropertiesResponse = FileServiceProperties & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileServiceProperties;
-  };
-};
+export type FileServicesGetServicePropertiesResponse = FileServiceProperties;
 
 /** Optional parameters. */
 export interface FileSharesListOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Optional. Specified maximum number of shares that can be included in the list. */
   maxpagesize?: string;
   /** Optional. When specified, only share names starting with the filter will be listed. */
@@ -3120,76 +2678,40 @@ export interface FileSharesListOptionalParams
 }
 
 /** Contains response data for the list operation. */
-export type FileSharesListResponse = FileShareItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileShareItems;
-  };
-};
+export type FileSharesListResponse = FileShareItems;
 
 /** Optional parameters. */
 export interface FileSharesCreateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the create operation. */
-export type FileSharesCreateResponse = FileShare & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileShare;
-  };
-};
+export type FileSharesCreateResponse = FileShare;
 
 /** Optional parameters. */
 export interface FileSharesUpdateOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type FileSharesUpdateResponse = FileShare & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileShare;
-  };
-};
+export type FileSharesUpdateResponse = FileShare;
 
 /** Optional parameters. */
 export interface FileSharesGetOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type FileSharesGetResponse = FileShare & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileShare;
-  };
-};
+export type FileSharesGetResponse = FileShare;
 
 /** Optional parameters. */
 export interface FileSharesDeleteOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface FileSharesRestoreOptionalParams
-  extends coreHttp.OperationOptions {}
+  extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface FileSharesListNextOptionalParams
-  extends coreHttp.OperationOptions {
+  extends coreClient.OperationOptions {
   /** Optional. Specified maximum number of shares that can be included in the list. */
   maxpagesize?: string;
   /** Optional. When specified, only share names starting with the filter will be listed. */
@@ -3197,20 +2719,11 @@ export interface FileSharesListNextOptionalParams
 }
 
 /** Contains response data for the listNext operation. */
-export type FileSharesListNextResponse = FileShareItems & {
-  /** The underlying HTTP response. */
-  _response: coreHttp.HttpResponse & {
-    /** The response body as text (string format) */
-    bodyAsText: string;
-
-    /** The response body as parsed JSON or XML */
-    parsedBody: FileShareItems;
-  };
-};
+export type FileSharesListNextResponse = FileShareItems;
 
 /** Optional parameters. */
 export interface StorageManagementClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+  extends coreClient.ServiceClientOptions {
   /** server parameter */
   $host?: string;
   /** Api Version */

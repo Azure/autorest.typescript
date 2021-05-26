@@ -34,7 +34,7 @@ import { getStringForValue } from "../utils/valueHelpers";
 import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -46,33 +46,34 @@ interface OperationParameterDetails {
   targetMediaType?: KnownMediaType;
 }
 
-const buildCredentialsParameter = (
-  optionsBag: OptionsBag
-): ParameterDetails => ({
-  nameRef: "credentials",
-  description:
-    "Subscription credentials which uniquely identify client subscription.",
-  name: "credentials",
-  serializedName: "credentials",
-  location: ParameterLocation.None,
-  required: true,
-  nullable: false,
-  parameterPath: "credentials",
-  mapper: "any",
-  isGlobal: true,
-  parameter: {} as Parameter,
-  implementationLocation: ImplementationLocation.Client,
-  typeDetails: {
-    typeName: !optionsBag.useCoreV2
-      ? "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials"
-      : "coreAuth.TokenCredential",
-    kind: PropertyKind.Primitive,
-    usedModels: []
-  },
-  isSynthetic: true,
-  schemaType: SchemaType.Object,
-  isFlattened: false
-});
+const buildCredentialsParameter = (): ParameterDetails => {
+  const { useCoreV2 } = getAutorestOptions();
+  return {
+    nameRef: "credentials",
+    description:
+      "Subscription credentials which uniquely identify client subscription.",
+    name: "credentials",
+    serializedName: "credentials",
+    location: ParameterLocation.None,
+    required: true,
+    nullable: false,
+    parameterPath: "credentials",
+    mapper: "any",
+    isGlobal: true,
+    parameter: {} as Parameter,
+    implementationLocation: ImplementationLocation.Client,
+    typeDetails: {
+      typeName: !useCoreV2
+        ? "coreHttp.TokenCredential | coreHttp.ServiceClientCredentials"
+        : "coreAuth.TokenCredential",
+      kind: PropertyKind.Primitive,
+      usedModels: []
+    },
+    isSynthetic: true,
+    schemaType: SchemaType.Object,
+    isFlattened: false
+  };
+};
 
 const buildEndpointParameter = (): ParameterDetails => ({
   nameRef: "endpoint",
@@ -99,10 +100,10 @@ const buildEndpointParameter = (): ParameterDetails => ({
 
 export function transformParameters(
   codeModel: CodeModel,
-  options: ClientOptions,
-  optionsBag: OptionsBag
+  options: ClientOptions
 ): ParameterDetails[] {
   let parameters: ParameterDetails[] = [];
+  const { addCredentials } = getAutorestOptions();
 
   const hasXmlMetadata = !!options.mediaTypes?.has(KnownMediaType.Xml);
   extractOperationParameters(codeModel).forEach(p =>
@@ -111,15 +112,14 @@ export function transformParameters(
       parameters,
       p.operationName,
       hasXmlMetadata,
-      optionsBag,
       p.targetMediaType
     )
   );
 
   // Adding credentials parameter as a Synthetic parameter, this is to treat this as any another parameter
   // during generation and remove the need of special handling it.
-  if (options.addCredentials) {
-    const creds = buildCredentialsParameter(optionsBag);
+  if (addCredentials) {
+    const creds = buildCredentialsParameter();
     parameters.unshift(creds);
   }
 
@@ -201,9 +201,10 @@ export function populateOperationParameters(
   operationParameters: ParameterDetails[],
   operationName: string,
   hasXmlMetadata: boolean,
-  optionsBag: OptionsBag,
   targetMediaType?: KnownMediaType
 ): void {
+  const { useCoreV2 } = getAutorestOptions();
+
   const parameterName = getParameterName(parameter);
   const parameterMetadata = getLanguageMetadata(parameter.language);
   const schemaMetadata = getLanguageMetadata(parameter.schema.language);
@@ -240,11 +241,7 @@ export function populateOperationParameters(
   const isNullable = !!parameter.nullable;
 
   const collectionFormat = getCollectionFormat(parameter);
-  const typeDetails = getTypeForSchema(
-    parameter.schema,
-    false,
-    optionsBag.useCoreV2
-  );
+  const typeDetails = getTypeForSchema(parameter.schema, false, useCoreV2);
   const paramDetails: ParameterDetails = {
     nameRef: name,
     description:

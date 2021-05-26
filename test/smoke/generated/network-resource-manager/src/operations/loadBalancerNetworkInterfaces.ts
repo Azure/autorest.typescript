@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { LoadBalancerNetworkInterfaces } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -113,15 +113,10 @@ export class LoadBalancerNetworkInterfacesImpl
     loadBalancerName: string,
     options?: LoadBalancerNetworkInterfacesListOptionalParams
   ): Promise<LoadBalancerNetworkInterfacesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      loadBalancerName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, loadBalancerName, options },
       listOperationSpec
-    ) as Promise<LoadBalancerNetworkInterfacesListResponse>;
+    );
   }
 
   /**
@@ -137,22 +132,16 @@ export class LoadBalancerNetworkInterfacesImpl
     nextLink: string,
     options?: LoadBalancerNetworkInterfacesListNextOptionalParams
   ): Promise<LoadBalancerNetworkInterfacesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      loadBalancerName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, loadBalancerName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<LoadBalancerNetworkInterfacesListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/loadBalancers/{loadBalancerName}/networkInterfaces",
   httpMethod: "GET",
@@ -174,7 +163,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -6,13 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
+import * as coreAuth from "@azure/core-auth";
 import { ManagementLockClientOptionalParams } from "./models";
 
-const packageName = "arm-package-locks-2016-09";
-const packageVersion = "1.0.0";
-
-export class ManagementLockClientContext extends coreHttp.ServiceClient {
+export class ManagementLockClientContext extends coreClient.ServiceClient {
   $host: string;
   apiVersion: string;
   subscriptionId: string;
@@ -24,7 +22,7 @@ export class ManagementLockClientContext extends coreHttp.ServiceClient {
    * @param options The parameter options
    */
   constructor(
-    credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
+    credentials: coreAuth.TokenCredential,
     subscriptionId: string,
     options?: ManagementLockClientOptionalParams
   ) {
@@ -39,16 +37,17 @@ export class ManagementLockClientContext extends coreHttp.ServiceClient {
     if (!options) {
       options = {};
     }
+    const defaults: ManagementLockClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
 
-    if (!options.userAgent) {
-      const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-      options.userAgent = `${packageName}/${packageVersion} ${defaultUserAgent}`;
-    }
-
-    super(credentials, options);
-
-    this.requestContentType = "application/json; charset=utf-8";
-    this.baseUri = options.endpoint || "https://management.azure.com";
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "https://management.azure.com"
+    };
+    super(optionsWithDefaults);
     // Parameter assignments
     this.subscriptionId = subscriptionId;
 

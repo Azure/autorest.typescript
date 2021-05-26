@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Usage } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
@@ -91,14 +91,10 @@ export class UsageImpl implements Usage {
     location: string,
     options?: UsageListOptionalParams
   ): Promise<UsageListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, options },
       listOperationSpec
-    ) as Promise<UsageListResponse>;
+    );
   }
 
   /**
@@ -112,21 +108,16 @@ export class UsageImpl implements Usage {
     nextLink: string,
     options?: UsageListNextOptionalParams
   ): Promise<UsageListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      location,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { location, nextLink, options },
       listNextOperationSpec
-    ) as Promise<UsageListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages",
   httpMethod: "GET",
@@ -144,7 +135,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

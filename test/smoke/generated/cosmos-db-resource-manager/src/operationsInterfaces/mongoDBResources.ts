@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   MongoDBDatabaseGetResults,
@@ -128,9 +127,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB MongoDB database.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -143,7 +140,7 @@ export interface MongoDBResources {
     accountName: string,
     databaseName: string,
     options?: MongoDBResourcesDeleteMongoDBDatabaseOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the RUs per second of the MongoDB database under an existing Azure Cosmos DB database account
    * with the provided name.
@@ -267,9 +264,7 @@ export interface MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes an existing Azure Cosmos DB MongoDB Collection.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -284,7 +279,7 @@ export interface MongoDBResources {
     databaseName: string,
     collectionName: string,
     options?: MongoDBResourcesDeleteMongoDBCollectionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets the RUs per second of the MongoDB collection under an existing Azure Cosmos DB database account
    * with the provided name.

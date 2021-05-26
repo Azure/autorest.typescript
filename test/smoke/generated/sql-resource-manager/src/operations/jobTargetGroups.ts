@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { JobTargetGroups } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -134,16 +134,10 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
     jobAgentName: string,
     options?: JobTargetGroupsListByAgentOptionalParams
   ): Promise<JobTargetGroupsListByAgentResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, options },
       listByAgentOperationSpec
-    ) as Promise<JobTargetGroupsListByAgentResponse>;
+    );
   }
 
   /**
@@ -162,17 +156,10 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
     targetGroupName: string,
     options?: JobTargetGroupsGetOptionalParams
   ): Promise<JobTargetGroupsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      targetGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, targetGroupName, options },
       getOperationSpec
-    ) as Promise<JobTargetGroupsGetResponse>;
+    );
   }
 
   /**
@@ -193,18 +180,17 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
     parameters: JobTargetGroup,
     options?: JobTargetGroupsCreateOrUpdateOptionalParams
   ): Promise<JobTargetGroupsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      targetGroupName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        serverName,
+        jobAgentName,
+        targetGroupName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<JobTargetGroupsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -222,18 +208,11 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
     jobAgentName: string,
     targetGroupName: string,
     options?: JobTargetGroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      targetGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, targetGroupName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -252,23 +231,16 @@ export class JobTargetGroupsImpl implements JobTargetGroups {
     nextLink: string,
     options?: JobTargetGroupsListByAgentNextOptionalParams
   ): Promise<JobTargetGroupsListByAgentNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      serverName,
-      jobAgentName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, serverName, jobAgentName, nextLink, options },
       listByAgentNextOperationSpec
-    ) as Promise<JobTargetGroupsListByAgentNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByAgentOperationSpec: coreHttp.OperationSpec = {
+const listByAgentOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/targetGroups",
   httpMethod: "GET",
@@ -289,7 +261,7 @@ const listByAgentOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/targetGroups/{targetGroupName}",
   httpMethod: "GET",
@@ -311,7 +283,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/targetGroups/{targetGroupName}",
   httpMethod: "PUT",
@@ -338,7 +310,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/servers/{serverName}/jobAgents/{jobAgentName}/targetGroups/{targetGroupName}",
   httpMethod: "DELETE",
@@ -354,7 +326,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   ],
   serializer
 };
-const listByAgentNextOperationSpec: coreHttp.OperationSpec = {
+const listByAgentNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

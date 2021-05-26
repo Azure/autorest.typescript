@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   Application,
@@ -70,9 +69,7 @@ export interface Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the managed application.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -83,7 +80,7 @@ export interface Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a new managed application.
    * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -148,9 +145,7 @@ export interface Applications {
   beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes the managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed
@@ -161,7 +156,7 @@ export interface Applications {
   beginDeleteByIdAndWait(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Creates a new managed application.
    * @param applicationId The fully qualified ID of the managed application, including the managed

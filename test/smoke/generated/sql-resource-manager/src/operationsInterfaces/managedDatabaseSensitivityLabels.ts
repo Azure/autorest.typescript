@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   SensitivityLabel,
   ManagedDatabaseSensitivityLabelsListCurrentByDatabaseOptionalParams,
@@ -117,7 +116,7 @@ export interface ManagedDatabaseSensitivityLabels {
     tableName: string,
     columnName: string,
     options?: ManagedDatabaseSensitivityLabelsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Disables sensitivity recommendations on a given column
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -137,7 +136,7 @@ export interface ManagedDatabaseSensitivityLabels {
     tableName: string,
     columnName: string,
     options?: ManagedDatabaseSensitivityLabelsDisableRecommendationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Enables sensitivity recommendations on a given column (recommendations are enabled by default on all
    * columns)
@@ -158,5 +157,5 @@ export interface ManagedDatabaseSensitivityLabels {
     tableName: string,
     columnName: string,
     options?: ManagedDatabaseSensitivityLabelsEnableRecommendationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

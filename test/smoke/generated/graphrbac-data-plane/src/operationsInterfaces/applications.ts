@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Application,
   ApplicationsListNextOptionalParams,
@@ -101,7 +100,7 @@ export interface Applications {
   delete(
     applicationObjectId: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Get an application by object ID.
    * @param applicationObjectId Application object ID.
@@ -121,7 +120,7 @@ export interface Applications {
     applicationObjectId: string,
     parameters: ApplicationUpdateParameters,
     options?: ApplicationsPatchOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Add an owner to an application.
    * @param applicationObjectId The object ID of the application to which to add the owner.
@@ -133,7 +132,7 @@ export interface Applications {
     applicationObjectId: string,
     parameters: AddOwnerParameters,
     options?: ApplicationsAddOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Remove a member from owners.
    * @param applicationObjectId The object ID of the application from which to remove the owner.
@@ -144,7 +143,7 @@ export interface Applications {
     applicationObjectId: string,
     ownerObjectId: string,
     options?: ApplicationsRemoveOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Update the keyCredentials associated with an application.
    * @param applicationObjectId Application object ID.
@@ -155,7 +154,7 @@ export interface Applications {
     applicationObjectId: string,
     parameters: KeyCredentialsUpdateParameters,
     options?: ApplicationsUpdateKeyCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Update passwordCredentials associated with an application.
    * @param applicationObjectId Application object ID.
@@ -166,7 +165,7 @@ export interface Applications {
     applicationObjectId: string,
     parameters: PasswordCredentialsUpdateParameters,
     options?: ApplicationsUpdatePasswordCredentialsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Gets an object id for a given application id from the current tenant.
    * @param applicationID The application ID.

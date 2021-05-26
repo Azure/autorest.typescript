@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PublicIPAddresses } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -330,26 +330,42 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      publicIpAddressName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, publicIpAddressName, options },
       deleteOperationSpec,
       sendOperation,
       "location"
@@ -366,7 +382,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     publicIpAddressName: string,
     options?: PublicIPAddressesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       publicIpAddressName,
@@ -386,15 +402,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     publicIpAddressName: string,
     options?: PublicIPAddressesGetOptionalParams
   ): Promise<PublicIPAddressesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      publicIpAddressName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, publicIpAddressName, options },
       getOperationSpec
-    ) as Promise<PublicIPAddressesGetResponse>;
+    );
   }
 
   /**
@@ -415,24 +426,41 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
       PublicIPAddressesCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      publicIpAddressName,
-      parameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PublicIPAddressesCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        PublicIPAddressesCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, publicIpAddressName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -474,16 +502,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     parameters: TagsObject,
     options?: PublicIPAddressesUpdateTagsOptionalParams
   ): Promise<PublicIPAddressesUpdateTagsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      publicIpAddressName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, publicIpAddressName, parameters, options },
       updateTagsOperationSpec
-    ) as Promise<PublicIPAddressesUpdateTagsResponse>;
+    );
   }
 
   /**
@@ -493,13 +515,7 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   private _listAll(
     options?: PublicIPAddressesListAllOptionalParams
   ): Promise<PublicIPAddressesListAllResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listAllOperationSpec
-    ) as Promise<PublicIPAddressesListAllResponse>;
+    return this.client.sendOperationRequest({ options }, listAllOperationSpec);
   }
 
   /**
@@ -511,14 +527,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     resourceGroupName: string,
     options?: PublicIPAddressesListOptionalParams
   ): Promise<PublicIPAddressesListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listOperationSpec
-    ) as Promise<PublicIPAddressesListResponse>;
+    );
   }
 
   /**
@@ -534,17 +546,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualMachineScaleSetName, options },
       listVirtualMachineScaleSetPublicIPAddressesOperationSpec
-    ) as Promise<
-      PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesResponse
-    >;
+    );
   }
 
   /**
@@ -567,20 +572,17 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      ipConfigurationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        ipConfigurationName,
+        options
+      },
       listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec
-    ) as Promise<
-      PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesResponse
-    >;
+    );
   }
 
   /**
@@ -604,21 +606,18 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   ): Promise<
     PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      ipConfigurationName,
-      publicIpAddressName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        ipConfigurationName,
+        publicIpAddressName,
+        options
+      },
       getVirtualMachineScaleSetPublicIPAddressOperationSpec
-    ) as Promise<
-      PublicIPAddressesGetVirtualMachineScaleSetPublicIPAddressResponse
-    >;
+    );
   }
 
   /**
@@ -630,14 +629,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     nextLink: string,
     options?: PublicIPAddressesListAllNextOptionalParams
   ): Promise<PublicIPAddressesListAllNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAllNextOperationSpec
-    ) as Promise<PublicIPAddressesListAllNextResponse>;
+    );
   }
 
   /**
@@ -651,15 +646,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
     nextLink: string,
     options?: PublicIPAddressesListNextOptionalParams
   ): Promise<PublicIPAddressesListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<PublicIPAddressesListNextResponse>;
+    );
   }
 
   /**
@@ -678,18 +668,10 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualMachineScaleSetName, nextLink, options },
       listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec
-    ) as Promise<
-      PublicIPAddressesListVirtualMachineScaleSetPublicIPAddressesNextResponse
-    >;
+    );
   }
 
   /**
@@ -714,39 +696,24 @@ export class PublicIPAddressesImpl implements PublicIPAddresses {
   ): Promise<
     PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualMachineScaleSetName,
-      virtualmachineIndex,
-      networkInterfaceName,
-      ipConfigurationName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        virtualMachineScaleSetName,
+        virtualmachineIndex,
+        networkInterfaceName,
+        ipConfigurationName,
+        nextLink,
+        options
+      },
       listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec
-    ) as Promise<
-      PublicIPAddressesListVirtualMachineScaleSetVMPublicIPAddressesNextResponse
-    >;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
   httpMethod: "DELETE",
@@ -769,7 +736,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
   httpMethod: "GET",
@@ -791,7 +758,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
   httpMethod: "PUT",
@@ -824,7 +791,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateTagsOperationSpec: coreHttp.OperationSpec = {
+const updateTagsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses/{publicIpAddressName}",
   httpMethod: "PATCH",
@@ -848,7 +815,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listAllOperationSpec: coreHttp.OperationSpec = {
+const listAllOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/publicIPAddresses",
   httpMethod: "GET",
@@ -865,7 +832,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPAddresses",
   httpMethod: "GET",
@@ -886,7 +853,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: coreHttp.OperationSpec = {
+const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/publicipaddresses",
   httpMethod: "GET",
@@ -908,7 +875,7 @@ const listVirtualMachineScaleSetPublicIPAddressesOperationSpec: coreHttp.Operati
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreHttp.OperationSpec = {
+const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}/ipconfigurations/{ipConfigurationName}/publicipaddresses",
   httpMethod: "GET",
@@ -933,7 +900,7 @@ const listVirtualMachineScaleSetVMPublicIPAddressesOperationSpec: coreHttp.Opera
   headerParameters: [Parameters.accept],
   serializer
 };
-const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationSpec = {
+const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{virtualMachineScaleSetName}/virtualMachines/{virtualmachineIndex}/networkInterfaces/{networkInterfaceName}/ipconfigurations/{ipConfigurationName}/publicipaddresses/{publicIpAddressName}",
   httpMethod: "GET",
@@ -959,7 +926,7 @@ const getVirtualMachineScaleSetPublicIPAddressOperationSpec: coreHttp.OperationS
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAllNextOperationSpec: coreHttp.OperationSpec = {
+const listAllNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -979,7 +946,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1000,7 +967,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreHttp.OperationSpec = {
+const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1022,7 +989,7 @@ const listVirtualMachineScaleSetPublicIPAddressesNextOperationSpec: coreHttp.Ope
   headerParameters: [Parameters.accept],
   serializer
 };
-const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: coreHttp.OperationSpec = {
+const listVirtualMachineScaleSetVMPublicIPAddressesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

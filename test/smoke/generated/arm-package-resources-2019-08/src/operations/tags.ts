@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Tags } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
@@ -92,16 +92,11 @@ export class TagsImpl implements Tags {
     tagName: string,
     tagValue: string,
     options?: TagsDeleteValueOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      tagName,
-      tagValue,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  ): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { tagName, tagValue, options },
       deleteValueOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -115,15 +110,10 @@ export class TagsImpl implements Tags {
     tagValue: string,
     options?: TagsCreateOrUpdateValueOptionalParams
   ): Promise<TagsCreateOrUpdateValueResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      tagName,
-      tagValue,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { tagName, tagValue, options },
       createOrUpdateValueOperationSpec
-    ) as Promise<TagsCreateOrUpdateValueResponse>;
+    );
   }
 
   /**
@@ -137,14 +127,10 @@ export class TagsImpl implements Tags {
     tagName: string,
     options?: TagsCreateOrUpdateOptionalParams
   ): Promise<TagsCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      tagName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { tagName, options },
       createOrUpdateOperationSpec
-    ) as Promise<TagsCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -152,18 +138,11 @@ export class TagsImpl implements Tags {
    * @param tagName The name of the tag.
    * @param options The options parameters.
    */
-  delete(
-    tagName: string,
-    options?: TagsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      tagName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
+  delete(tagName: string, options?: TagsDeleteOptionalParams): Promise<void> {
     return this.client.sendOperationRequest(
-      operationArguments,
+      { tagName, options },
       deleteOperationSpec
-    ) as Promise<coreHttp.RestResponse>;
+    );
   }
 
   /**
@@ -171,13 +150,7 @@ export class TagsImpl implements Tags {
    * @param options The options parameters.
    */
   private _list(options?: TagsListOptionalParams): Promise<TagsListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listOperationSpec
-    ) as Promise<TagsListResponse>;
+    return this.client.sendOperationRequest({ options }, listOperationSpec);
   }
 
   /**
@@ -189,20 +162,16 @@ export class TagsImpl implements Tags {
     nextLink: string,
     options?: TagsListNextOptionalParams
   ): Promise<TagsListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listNextOperationSpec
-    ) as Promise<TagsListNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteValueOperationSpec: coreHttp.OperationSpec = {
+const deleteValueOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
   httpMethod: "DELETE",
@@ -223,7 +192,7 @@ const deleteValueOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateValueOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateValueOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/tagNames/{tagName}/tagValues/{tagValue}",
   httpMethod: "PUT",
@@ -248,7 +217,7 @@ const createOrUpdateValueOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
   httpMethod: "PUT",
   responses: {
@@ -271,7 +240,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames/{tagName}",
   httpMethod: "DELETE",
   responses: {
@@ -290,7 +259,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path: "/subscriptions/{subscriptionId}/tagNames",
   httpMethod: "GET",
   responses: {
@@ -306,7 +275,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

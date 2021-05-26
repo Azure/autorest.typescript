@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Applications } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
@@ -160,15 +160,10 @@ export class ApplicationsImpl implements Applications {
     applicationName: string,
     options?: ApplicationsGetOptionalParams
   ): Promise<ApplicationsGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, applicationName, options },
       getOperationSpec
-    ) as Promise<ApplicationsGetResponse>;
+    );
   }
 
   /**
@@ -181,26 +176,42 @@ export class ApplicationsImpl implements Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationName,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationName, options },
       deleteOperationSpec,
       sendOperation
     );
@@ -216,7 +227,7 @@ export class ApplicationsImpl implements Applications {
     resourceGroupName: string,
     applicationName: string,
     options?: ApplicationsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       applicationName,
@@ -243,24 +254,41 @@ export class ApplicationsImpl implements Applications {
       ApplicationsCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ApplicationsCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ApplicationsCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -300,15 +328,10 @@ export class ApplicationsImpl implements Applications {
     applicationName: string,
     options?: ApplicationsUpdateOptionalParams
   ): Promise<ApplicationsUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, applicationName, options },
       updateOperationSpec
-    ) as Promise<ApplicationsUpdateResponse>;
+    );
   }
 
   /**
@@ -320,14 +343,10 @@ export class ApplicationsImpl implements Applications {
     resourceGroupName: string,
     options?: ApplicationsListByResourceGroupOptionalParams
   ): Promise<ApplicationsListByResourceGroupResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listByResourceGroupOperationSpec
-    ) as Promise<ApplicationsListByResourceGroupResponse>;
+    );
   }
 
   /**
@@ -337,13 +356,10 @@ export class ApplicationsImpl implements Applications {
   private _listBySubscription(
     options?: ApplicationsListBySubscriptionOptionalParams
   ): Promise<ApplicationsListBySubscriptionResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listBySubscriptionOperationSpec
-    ) as Promise<ApplicationsListBySubscriptionResponse>;
+    );
   }
 
   /**
@@ -357,14 +373,10 @@ export class ApplicationsImpl implements Applications {
     applicationId: string,
     options?: ApplicationsGetByIdOptionalParams
   ): Promise<ApplicationsGetByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationId, options },
       getByIdOperationSpec
-    ) as Promise<ApplicationsGetByIdResponse>;
+    );
   }
 
   /**
@@ -377,25 +389,42 @@ export class ApplicationsImpl implements Applications {
   async beginDeleteById(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationId,
-      options: this.getOperationOptions(options, "undefined")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { applicationId, options },
       deleteByIdOperationSpec,
       sendOperation
     );
@@ -411,7 +440,7 @@ export class ApplicationsImpl implements Applications {
   async beginDeleteByIdAndWait(
     applicationId: string,
     options?: ApplicationsDeleteByIdOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDeleteById(applicationId, options);
     return poller.pollUntilDone();
   }
@@ -434,23 +463,41 @@ export class ApplicationsImpl implements Applications {
       ApplicationsCreateOrUpdateByIdResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationId,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ApplicationsCreateOrUpdateByIdResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ApplicationsCreateOrUpdateByIdResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { applicationId, parameters, options },
       createOrUpdateByIdOperationSpec,
       sendOperation
     );
@@ -489,14 +536,10 @@ export class ApplicationsImpl implements Applications {
     applicationId: string,
     options?: ApplicationsUpdateByIdOptionalParams
   ): Promise<ApplicationsUpdateByIdResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      applicationId,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { applicationId, options },
       updateByIdOperationSpec
-    ) as Promise<ApplicationsUpdateByIdResponse>;
+    );
   }
 
   /**
@@ -510,15 +553,10 @@ export class ApplicationsImpl implements Applications {
     nextLink: string,
     options?: ApplicationsListByResourceGroupNextOptionalParams
   ): Promise<ApplicationsListByResourceGroupNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listByResourceGroupNextOperationSpec
-    ) as Promise<ApplicationsListByResourceGroupNextResponse>;
+    );
   }
 
   /**
@@ -530,32 +568,16 @@ export class ApplicationsImpl implements Applications {
     nextLink: string,
     options?: ApplicationsListBySubscriptionNextOptionalParams
   ): Promise<ApplicationsListBySubscriptionNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listBySubscriptionNextOperationSpec
-    ) as Promise<ApplicationsListBySubscriptionNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
   httpMethod: "GET",
@@ -578,7 +600,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
   httpMethod: "DELETE",
@@ -601,7 +623,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
   httpMethod: "PUT",
@@ -634,7 +656,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications/{applicationName}",
   httpMethod: "PATCH",
@@ -658,7 +680,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Solutions/applications",
   httpMethod: "GET",
@@ -679,7 +701,7 @@ const listByResourceGroupOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Solutions/applications",
   httpMethod: "GET",
@@ -696,7 +718,7 @@ const listBySubscriptionOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getByIdOperationSpec: coreHttp.OperationSpec = {
+const getByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationId}",
   httpMethod: "GET",
   responses: {
@@ -713,7 +735,7 @@ const getByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteByIdOperationSpec: coreHttp.OperationSpec = {
+const deleteByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationId}",
   httpMethod: "DELETE",
   responses: {
@@ -730,7 +752,7 @@ const deleteByIdOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationId}",
   httpMethod: "PUT",
   responses: {
@@ -757,7 +779,7 @@ const createOrUpdateByIdOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateByIdOperationSpec: coreHttp.OperationSpec = {
+const updateByIdOperationSpec: coreClient.OperationSpec = {
   path: "/{applicationId}",
   httpMethod: "PATCH",
   responses: {
@@ -775,7 +797,7 @@ const updateByIdOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
+const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -796,7 +818,7 @@ const listByResourceGroupNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listBySubscriptionNextOperationSpec: coreHttp.OperationSpec = {
+const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

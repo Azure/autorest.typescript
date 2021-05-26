@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { Objects } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
@@ -150,14 +150,10 @@ export class ObjectsImpl implements Objects {
     parameters: GetObjectsParameters,
     options?: ObjectsGetObjectsByObjectIdsOptionalParams
   ): Promise<ObjectsGetObjectsByObjectIdsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { parameters, options },
       getObjectsByObjectIdsOperationSpec
-    ) as Promise<ObjectsGetObjectsByObjectIdsResponse>;
+    );
   }
 
   /**
@@ -169,20 +165,16 @@ export class ObjectsImpl implements Objects {
     nextLink: string,
     options?: ObjectsGetObjectsByObjectIdsNextOptionalParams
   ): Promise<ObjectsGetObjectsByObjectIdsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       getObjectsByObjectIdsNextOperationSpec
-    ) as Promise<ObjectsGetObjectsByObjectIdsNextResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getObjectsByObjectIdsOperationSpec: coreHttp.OperationSpec = {
+const getObjectsByObjectIdsOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/getObjectsByObjectIds",
   httpMethod: "POST",
   responses: {
@@ -197,7 +189,7 @@ const getObjectsByObjectIdsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getObjectsByObjectIdsNextOperationSpec: coreHttp.OperationSpec = {
+const getObjectsByObjectIdsNextOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/{nextLink}",
   httpMethod: "POST",
   responses: {

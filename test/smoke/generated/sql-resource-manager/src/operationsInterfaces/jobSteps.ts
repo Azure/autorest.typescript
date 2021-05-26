@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   JobStep,
   JobStepsListByVersionOptionalParams,
@@ -134,5 +133,5 @@ export interface JobSteps {
     jobName: string,
     stepName: string,
     options?: JobStepsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

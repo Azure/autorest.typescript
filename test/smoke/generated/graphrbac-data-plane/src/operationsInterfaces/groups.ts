@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   ADGroup,
   GroupsListNextOptionalParams,
@@ -111,7 +110,7 @@ export interface Groups {
     groupObjectId: string,
     memberObjectId: string,
     options?: GroupsRemoveMemberOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Add a member to a group.
    * @param groupObjectId The object ID of the group to which to add the member.
@@ -123,7 +122,7 @@ export interface Groups {
     groupObjectId: string,
     parameters: GroupAddMemberParameters,
     options?: GroupsAddMemberOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Create a group in the directory.
    * @param parameters The parameters for the group to create.
@@ -147,10 +146,7 @@ export interface Groups {
    * @param objectId The object ID of the group to delete.
    * @param options The options parameters.
    */
-  delete(
-    objectId: string,
-    options?: GroupsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  delete(objectId: string, options?: GroupsDeleteOptionalParams): Promise<void>;
   /**
    * Add an owner to a group.
    * @param objectId The object ID of the application to which to add the owner.
@@ -162,7 +158,7 @@ export interface Groups {
     objectId: string,
     parameters: AddOwnerParameters,
     options?: GroupsAddOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Remove a member from owners.
    * @param objectId The object ID of the group from which to remove the owner.
@@ -173,5 +169,5 @@ export interface Groups {
     objectId: string,
     ownerObjectId: string,
     options?: GroupsRemoveOwnerOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

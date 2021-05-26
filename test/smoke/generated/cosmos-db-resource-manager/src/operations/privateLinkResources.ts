@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PrivateLinkResources } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
@@ -105,15 +105,10 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     accountName: string,
     options?: PrivateLinkResourcesListByDatabaseAccountOptionalParams
   ): Promise<PrivateLinkResourcesListByDatabaseAccountResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, options },
       listByDatabaseAccountOperationSpec
-    ) as Promise<PrivateLinkResourcesListByDatabaseAccountResponse>;
+    );
   }
 
   /**
@@ -129,22 +124,16 @@ export class PrivateLinkResourcesImpl implements PrivateLinkResources {
     groupName: string,
     options?: PrivateLinkResourcesGetOptionalParams
   ): Promise<PrivateLinkResourcesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      accountName,
-      groupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, accountName, groupName, options },
       getOperationSpec
-    ) as Promise<PrivateLinkResourcesGetResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseAccountOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/privateLinkResources",
   httpMethod: "GET",
@@ -163,7 +152,7 @@ const listByDatabaseAccountOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/privateLinkResources/{groupName}",
   httpMethod: "GET",

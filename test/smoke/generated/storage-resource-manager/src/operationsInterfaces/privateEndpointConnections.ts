@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   PrivateEndpointConnection,
   PrivateEndpointConnectionsListOptionalParams,
@@ -88,5 +87,5 @@ export interface PrivateEndpointConnections {
     accountName: string,
     privateEndpointConnectionName: string,
     options?: PrivateEndpointConnectionsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

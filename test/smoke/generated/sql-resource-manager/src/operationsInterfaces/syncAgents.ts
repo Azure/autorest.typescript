@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   SyncAgent,
@@ -117,9 +116,7 @@ export interface SyncAgents {
     serverName: string,
     syncAgentName: string,
     options?: SyncAgentsDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a sync agent.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
@@ -133,7 +130,7 @@ export interface SyncAgents {
     serverName: string,
     syncAgentName: string,
     options?: SyncAgentsDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Generates a sync agent key.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain

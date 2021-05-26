@@ -6,9 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 
-export const Plan: coreHttp.CompositeMapper = {
+export const Plan: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Plan",
@@ -51,7 +51,7 @@ export const Plan: coreHttp.CompositeMapper = {
   }
 };
 
-export const Sku: coreHttp.CompositeMapper = {
+export const Sku: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Sku",
@@ -97,7 +97,7 @@ export const Sku: coreHttp.CompositeMapper = {
   }
 };
 
-export const Identity: coreHttp.CompositeMapper = {
+export const Identity: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Identity",
@@ -128,7 +128,7 @@ export const Identity: coreHttp.CompositeMapper = {
   }
 };
 
-export const Resource: coreHttp.CompositeMapper = {
+export const Resource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Resource",
@@ -171,7 +171,7 @@ export const Resource: coreHttp.CompositeMapper = {
   }
 };
 
-export const ErrorResponse: coreHttp.CompositeMapper = {
+export const ErrorResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ErrorResponse",
@@ -198,7 +198,7 @@ export const ErrorResponse: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationProviderAuthorization: coreHttp.CompositeMapper = {
+export const ApplicationProviderAuthorization: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationProviderAuthorization",
@@ -221,7 +221,7 @@ export const ApplicationProviderAuthorization: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationArtifact: coreHttp.CompositeMapper = {
+export const ApplicationArtifact: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationArtifact",
@@ -249,7 +249,7 @@ export const ApplicationArtifact: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationDefinitionListResult: coreHttp.CompositeMapper = {
+export const ApplicationDefinitionListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationDefinitionListResult",
@@ -276,7 +276,7 @@ export const ApplicationDefinitionListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationListResult: coreHttp.CompositeMapper = {
+export const ApplicationListResult: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationListResult",
@@ -303,7 +303,7 @@ export const ApplicationListResult: coreHttp.CompositeMapper = {
   }
 };
 
-export const PlanPatchable: coreHttp.CompositeMapper = {
+export const PlanPatchable: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "PlanPatchable",
@@ -342,7 +342,7 @@ export const PlanPatchable: coreHttp.CompositeMapper = {
   }
 };
 
-export const GenericResource: coreHttp.CompositeMapper = {
+export const GenericResource: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "GenericResource",
@@ -372,7 +372,7 @@ export const GenericResource: coreHttp.CompositeMapper = {
   }
 };
 
-export const Application: coreHttp.CompositeMapper = {
+export const Application: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "Application",
@@ -432,7 +432,7 @@ export const Application: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationDefinition: coreHttp.CompositeMapper = {
+export const ApplicationDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationDefinition",
@@ -511,7 +511,7 @@ export const ApplicationDefinition: coreHttp.CompositeMapper = {
   }
 };
 
-export const ApplicationPatchable: coreHttp.CompositeMapper = {
+export const ApplicationPatchable: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
     className: "ApplicationPatchable",

@@ -24,6 +24,7 @@ export class ModelFlatteningClientContext extends coreClient.ServiceClient {
     const defaults: ModelFlatteningClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

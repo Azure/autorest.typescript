@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedBackupShortTermRetentionPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -141,17 +141,16 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     policyName: ManagedShortTermRetentionPolicyName,
     options?: ManagedBackupShortTermRetentionPoliciesGetOptionalParams
   ): Promise<ManagedBackupShortTermRetentionPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      policyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        policyName,
+        options
+      },
       getOperationSpec
-    ) as Promise<ManagedBackupShortTermRetentionPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -179,26 +178,48 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
       ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      policyName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ManagedBackupShortTermRetentionPoliciesCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        policyName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec,
       sendOperation
     );
@@ -256,26 +277,48 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
       ManagedBackupShortTermRetentionPoliciesUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      policyName,
-      parameters,
-      options: this.getOperationOptions(options, "undefined")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ManagedBackupShortTermRetentionPoliciesUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ManagedBackupShortTermRetentionPoliciesUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        policyName,
+        parameters,
+        options
+      },
       updateOperationSpec,
       sendOperation
     );
@@ -324,16 +367,10 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
     databaseName: string,
     options?: ManagedBackupShortTermRetentionPoliciesListByDatabaseOptionalParams
   ): Promise<ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, databaseName, options },
       listByDatabaseOperationSpec
-    ) as Promise<ManagedBackupShortTermRetentionPoliciesListByDatabaseResponse>;
+    );
   }
 
   /**
@@ -354,37 +391,22 @@ export class ManagedBackupShortTermRetentionPoliciesImpl
   ): Promise<
     ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        nextLink,
+        options
+      },
       listByDatabaseNextOperationSpec
-    ) as Promise<
-      ManagedBackupShortTermRetentionPoliciesListByDatabaseNextResponse
-    >;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}",
   httpMethod: "GET",
@@ -406,7 +428,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}",
   httpMethod: "PUT",
@@ -439,7 +461,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateOperationSpec: coreHttp.OperationSpec = {
+const updateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/backupShortTermRetentionPolicies/{policyName}",
   httpMethod: "PATCH",
@@ -472,7 +494,7 @@ const updateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/backupShortTermRetentionPolicies",
   httpMethod: "GET",
@@ -493,7 +515,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

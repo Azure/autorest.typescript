@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ManagedDatabaseSecurityAlertPolicies } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
@@ -138,17 +138,16 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     securityAlertPolicyName: SecurityAlertPolicyName,
     options?: ManagedDatabaseSecurityAlertPoliciesGetOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      securityAlertPolicyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        securityAlertPolicyName,
+        options
+      },
       getOperationSpec
-    ) as Promise<ManagedDatabaseSecurityAlertPoliciesGetResponse>;
+    );
   }
 
   /**
@@ -169,18 +168,17 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     parameters: ManagedDatabaseSecurityAlertPolicy,
     options?: ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      securityAlertPolicyName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        securityAlertPolicyName,
+        parameters,
+        options
+      },
       createOrUpdateOperationSpec
-    ) as Promise<ManagedDatabaseSecurityAlertPoliciesCreateOrUpdateResponse>;
+    );
   }
 
   /**
@@ -198,16 +196,10 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     databaseName: string,
     options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, managedInstanceName, databaseName, options },
       listByDatabaseOperationSpec
-    ) as Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseResponse>;
+    );
   }
 
   /**
@@ -227,25 +219,22 @@ export class ManagedDatabaseSecurityAlertPoliciesImpl
     nextLink: string,
     options?: ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextOptionalParams
   ): Promise<ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      managedInstanceName,
-      databaseName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        managedInstanceName,
+        databaseName,
+        nextLink,
+        options
+      },
       listByDatabaseNextOperationSpec
-    ) as Promise<
-      ManagedDatabaseSecurityAlertPoliciesListByDatabaseNextResponse
-    >;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/securityAlertPolicies/{securityAlertPolicyName}",
   httpMethod: "GET",
@@ -267,7 +256,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/securityAlertPolicies/{securityAlertPolicyName}",
   httpMethod: "PUT",
@@ -294,7 +283,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Sql/managedInstances/{managedInstanceName}/databases/{databaseName}/securityAlertPolicies",
   httpMethod: "GET",
@@ -315,7 +304,7 @@ const listByDatabaseOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listByDatabaseNextOperationSpec: coreHttp.OperationSpec = {
+const listByDatabaseNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

@@ -7,7 +7,7 @@
  */
 
 import { SystemAssignedIdentities } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ManagedServiceIdentityClientContext } from "../managedServiceIdentityClientContext";
@@ -38,20 +38,16 @@ export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {
     scope: string,
     options?: SystemAssignedIdentitiesGetByScopeOptionalParams
   ): Promise<SystemAssignedIdentitiesGetByScopeResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      scope,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { scope, options },
       getByScopeOperationSpec
-    ) as Promise<SystemAssignedIdentitiesGetByScopeResponse>;
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const getByScopeOperationSpec: coreHttp.OperationSpec = {
+const getByScopeOperationSpec: coreClient.OperationSpec = {
   path: "/{scope}/providers/Microsoft.ManagedIdentity/identities/default",
   httpMethod: "GET",
   responses: {

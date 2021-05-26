@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { ApplicationGateways } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -221,26 +221,42 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, options },
       deleteOperationSpec,
       sendOperation,
       "location"
@@ -257,7 +273,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       applicationGatewayName,
@@ -277,15 +293,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     applicationGatewayName: string,
     options?: ApplicationGatewaysGetOptionalParams
   ): Promise<ApplicationGatewaysGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, options },
       getOperationSpec
-    ) as Promise<ApplicationGatewaysGetResponse>;
+    );
   }
 
   /**
@@ -306,24 +317,41 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       ApplicationGatewaysCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ApplicationGatewaysCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ApplicationGatewaysCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -365,16 +393,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     parameters: TagsObject,
     options?: ApplicationGatewaysUpdateTagsOptionalParams
   ): Promise<ApplicationGatewaysUpdateTagsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, parameters, options },
       updateTagsOperationSpec
-    ) as Promise<ApplicationGatewaysUpdateTagsResponse>;
+    );
   }
 
   /**
@@ -386,14 +408,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     options?: ApplicationGatewaysListOptionalParams
   ): Promise<ApplicationGatewaysListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listOperationSpec
-    ) as Promise<ApplicationGatewaysListResponse>;
+    );
   }
 
   /**
@@ -403,13 +421,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   private _listAll(
     options?: ApplicationGatewaysListAllOptionalParams
   ): Promise<ApplicationGatewaysListAllResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
-    return this.client.sendOperationRequest(
-      operationArguments,
-      listAllOperationSpec
-    ) as Promise<ApplicationGatewaysListAllResponse>;
+    return this.client.sendOperationRequest({ options }, listAllOperationSpec);
   }
 
   /**
@@ -422,26 +434,42 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, options },
       startOperationSpec,
       sendOperation,
       "location"
@@ -458,7 +486,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStartOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginStart(
       resourceGroupName,
       applicationGatewayName,
@@ -477,26 +505,42 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, options },
       stopOperationSpec,
       sendOperation,
       "location"
@@ -513,7 +557,7 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     resourceGroupName: string,
     applicationGatewayName: string,
     options?: ApplicationGatewaysStopOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginStop(
       resourceGroupName,
       applicationGatewayName,
@@ -538,23 +582,41 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       ApplicationGatewaysBackendHealthResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ApplicationGatewaysBackendHealthResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ApplicationGatewaysBackendHealthResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, options },
       backendHealthOperationSpec,
       sendOperation,
       "location"
@@ -599,24 +661,41 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       ApplicationGatewaysBackendHealthOnDemandResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      applicationGatewayName,
-      probeRequest,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<ApplicationGatewaysBackendHealthOnDemandResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        ApplicationGatewaysBackendHealthOnDemandResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, applicationGatewayName, probeRequest, options },
       backendHealthOnDemandOperationSpec,
       sendOperation,
       "location"
@@ -653,13 +732,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   listAvailableServerVariables(
     options?: ApplicationGatewaysListAvailableServerVariablesOptionalParams
   ): Promise<ApplicationGatewaysListAvailableServerVariablesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableServerVariablesOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableServerVariablesResponse>;
+    );
   }
 
   /**
@@ -669,13 +745,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   listAvailableRequestHeaders(
     options?: ApplicationGatewaysListAvailableRequestHeadersOptionalParams
   ): Promise<ApplicationGatewaysListAvailableRequestHeadersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableRequestHeadersOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableRequestHeadersResponse>;
+    );
   }
 
   /**
@@ -685,13 +758,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   listAvailableResponseHeaders(
     options?: ApplicationGatewaysListAvailableResponseHeadersOptionalParams
   ): Promise<ApplicationGatewaysListAvailableResponseHeadersResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableResponseHeadersOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableResponseHeadersResponse>;
+    );
   }
 
   /**
@@ -701,13 +771,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   listAvailableWafRuleSets(
     options?: ApplicationGatewaysListAvailableWafRuleSetsOptionalParams
   ): Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableWafRuleSetsOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableWafRuleSetsResponse>;
+    );
   }
 
   /**
@@ -717,13 +784,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   listAvailableSslOptions(
     options?: ApplicationGatewaysListAvailableSslOptionsOptionalParams
   ): Promise<ApplicationGatewaysListAvailableSslOptionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableSslOptionsOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableSslOptionsResponse>;
+    );
   }
 
   /**
@@ -733,13 +797,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   private _listAvailableSslPredefinedPolicies(
     options?: ApplicationGatewaysListAvailableSslPredefinedPoliciesOptionalParams
   ): Promise<ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { options },
       listAvailableSslPredefinedPoliciesOperationSpec
-    ) as Promise<ApplicationGatewaysListAvailableSslPredefinedPoliciesResponse>;
+    );
   }
 
   /**
@@ -751,14 +812,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     predefinedPolicyName: string,
     options?: ApplicationGatewaysGetSslPredefinedPolicyOptionalParams
   ): Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      predefinedPolicyName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { predefinedPolicyName, options },
       getSslPredefinedPolicyOperationSpec
-    ) as Promise<ApplicationGatewaysGetSslPredefinedPolicyResponse>;
+    );
   }
 
   /**
@@ -772,15 +829,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     nextLink: string,
     options?: ApplicationGatewaysListNextOptionalParams
   ): Promise<ApplicationGatewaysListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<ApplicationGatewaysListNextResponse>;
+    );
   }
 
   /**
@@ -792,14 +844,10 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
     nextLink: string,
     options?: ApplicationGatewaysListAllNextOptionalParams
   ): Promise<ApplicationGatewaysListAllNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAllNextOperationSpec
-    ) as Promise<ApplicationGatewaysListAllNextResponse>;
+    );
   }
 
   /**
@@ -814,34 +862,16 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
   ): Promise<
     ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { nextLink, options },
       listAvailableSslPredefinedPoliciesNextOperationSpec
-    ) as Promise<
-      ApplicationGatewaysListAvailableSslPredefinedPoliciesNextResponse
-    >;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
   httpMethod: "DELETE",
@@ -864,7 +894,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
   httpMethod: "GET",
@@ -886,7 +916,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
   httpMethod: "PUT",
@@ -919,7 +949,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const updateTagsOperationSpec: coreHttp.OperationSpec = {
+const updateTagsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}",
   httpMethod: "PATCH",
@@ -943,7 +973,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways",
   httpMethod: "GET",
@@ -964,7 +994,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAllOperationSpec: coreHttp.OperationSpec = {
+const listAllOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways",
   httpMethod: "GET",
@@ -981,7 +1011,7 @@ const listAllOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const startOperationSpec: coreHttp.OperationSpec = {
+const startOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}/start",
   httpMethod: "POST",
@@ -1004,7 +1034,7 @@ const startOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const stopOperationSpec: coreHttp.OperationSpec = {
+const stopOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}/stop",
   httpMethod: "POST",
@@ -1027,7 +1057,7 @@ const stopOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const backendHealthOperationSpec: coreHttp.OperationSpec = {
+const backendHealthOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}/backendhealth",
   httpMethod: "POST",
@@ -1058,7 +1088,7 @@ const backendHealthOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const backendHealthOnDemandOperationSpec: coreHttp.OperationSpec = {
+const backendHealthOnDemandOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways/{applicationGatewayName}/getBackendHealthOnDemand",
   httpMethod: "POST",
@@ -1091,7 +1121,7 @@ const backendHealthOnDemandOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listAvailableServerVariablesOperationSpec: coreHttp.OperationSpec = {
+const listAvailableServerVariablesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableServerVariables",
   httpMethod: "GET",
@@ -1110,7 +1140,7 @@ const listAvailableServerVariablesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableRequestHeadersOperationSpec: coreHttp.OperationSpec = {
+const listAvailableRequestHeadersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableRequestHeaders",
   httpMethod: "GET",
@@ -1129,7 +1159,7 @@ const listAvailableRequestHeadersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableResponseHeadersOperationSpec: coreHttp.OperationSpec = {
+const listAvailableResponseHeadersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableResponseHeaders",
   httpMethod: "GET",
@@ -1148,7 +1178,7 @@ const listAvailableResponseHeadersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableWafRuleSetsOperationSpec: coreHttp.OperationSpec = {
+const listAvailableWafRuleSetsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableWafRuleSets",
   httpMethod: "GET",
@@ -1165,7 +1195,7 @@ const listAvailableWafRuleSetsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableSslOptionsOperationSpec: coreHttp.OperationSpec = {
+const listAvailableSslOptionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default",
   httpMethod: "GET",
@@ -1182,7 +1212,7 @@ const listAvailableSslOptionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableSslPredefinedPoliciesOperationSpec: coreHttp.OperationSpec = {
+const listAvailableSslPredefinedPoliciesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies",
   httpMethod: "GET",
@@ -1199,7 +1229,7 @@ const listAvailableSslPredefinedPoliciesOperationSpec: coreHttp.OperationSpec = 
   headerParameters: [Parameters.accept],
   serializer
 };
-const getSslPredefinedPolicyOperationSpec: coreHttp.OperationSpec = {
+const getSslPredefinedPolicyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGatewayAvailableSslOptions/default/predefinedPolicies/{predefinedPolicyName}",
   httpMethod: "GET",
@@ -1220,7 +1250,7 @@ const getSslPredefinedPolicyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1241,7 +1271,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAllNextOperationSpec: coreHttp.OperationSpec = {
+const listAllNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -1261,7 +1291,7 @@ const listAllNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listAvailableSslPredefinedPoliciesNextOperationSpec: coreHttp.OperationSpec = {
+const listAvailableSslPredefinedPoliciesNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

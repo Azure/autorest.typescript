@@ -24,6 +24,7 @@ export class BodyDictionaryClientContext extends coreClient.ServiceClient {
     const defaults: BodyDictionaryClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

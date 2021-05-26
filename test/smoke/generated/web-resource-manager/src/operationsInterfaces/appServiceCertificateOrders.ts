@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   AppServiceCertificateOrder,
@@ -88,7 +87,7 @@ export interface AppServiceCertificateOrders {
   validatePurchaseInformation(
     appServiceCertificateOrder: AppServiceCertificateOrder,
     options?: AppServiceCertificateOrdersValidatePurchaseInformationOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -141,7 +140,7 @@ export interface AppServiceCertificateOrders {
     resourceGroupName: string,
     certificateOrderName: string,
     options?: AppServiceCertificateOrdersDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Create or update a certificate purchase order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -217,7 +216,7 @@ export interface AppServiceCertificateOrders {
     certificateOrderName: string,
     name: string,
     options?: AppServiceCertificateOrdersDeleteCertificateOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Creates or updates a certificate and associates with key vault secret.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -245,7 +244,7 @@ export interface AppServiceCertificateOrders {
     certificateOrderName: string,
     reissueCertificateOrderRequest: ReissueCertificateOrderRequest,
     options?: AppServiceCertificateOrdersReissueOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Renew an existing certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -258,7 +257,7 @@ export interface AppServiceCertificateOrders {
     certificateOrderName: string,
     renewCertificateOrderRequest: RenewCertificateOrderRequest,
     options?: AppServiceCertificateOrdersRenewOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Resend certificate email.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -269,7 +268,7 @@ export interface AppServiceCertificateOrders {
     resourceGroupName: string,
     certificateOrderName: string,
     options?: AppServiceCertificateOrdersResendEmailOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Verify domain ownership for this certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -282,7 +281,7 @@ export interface AppServiceCertificateOrders {
     certificateOrderName: string,
     nameIdentifier: NameIdentifier,
     options?: AppServiceCertificateOrdersResendRequestEmailsOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Verify domain ownership for this certificate order.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -306,7 +305,7 @@ export interface AppServiceCertificateOrders {
     resourceGroupName: string,
     certificateOrderName: string,
     options?: AppServiceCertificateOrdersVerifyDomainOwnershipOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Retrieve the list of certificate actions.
    * @param resourceGroupName Name of the resource group to which the resource belongs.

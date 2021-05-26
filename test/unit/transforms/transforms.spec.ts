@@ -3,7 +3,6 @@ import * as assert from "assert";
 import { transformChoice } from "../../../src/transforms/transforms";
 
 import {
-  CodeModel,
   SchemaType,
   ObjectSchema,
   StringSchema,
@@ -12,14 +11,14 @@ import {
   ConstantSchema,
   ConstantValue,
   ChoiceSchema,
-  ChoiceValue,
-  BooleanSchema
+  ChoiceValue
 } from "@autorest/codemodel";
 import {
   transformProperty,
   transformObject
 } from "../../../src/transforms/objectTransforms";
-import { OptionsBag } from "../../../src/utils/optionsBag";
+import * as sinon from "sinon";
+import * as autorestSession from "../../../src/autorestSession";
 
 const appleSchema = new ObjectSchema("Apple", "An apple.", {
   properties: [
@@ -49,32 +48,37 @@ const appleSchema = new ObjectSchema("Apple", "An apple.", {
   ]
 });
 
-const fakeCodeModel: CodeModel = new CodeModel("FakeModel", false, {
-  schemas: {
-    objects: [appleSchema]
-  }
-});
-
 describe("Transforms", () => {
+  beforeEach(() => {
+    sinon.replace(autorestSession, "getAutorestOptions", () => ({
+      srcPath: ".",
+      packageDetails: {
+        name: "test",
+        nameWithoutScope: "test",
+        version: "1.0.0"
+      },
+      licenseHeader: false,
+      hideClients: true,
+      azureArm: false,
+      ignoreNullableOnOptional: false,
+      useCoreV2: true,
+      allowInsecureConnection: true
+    }));
+  });
+
+  afterEach(() => {
+    sinon.restore();
+  });
+
   describe("Property to PropertyDetails", () => {
     it("retains basic details", () => {
-      const optionsBag: OptionsBag = {
-        shouldGenerateLicense: false,
-        hideClients: true,
-        armLibrary: false,
-        ignoreNullableOnOptional: false,
-        useCoreV2: true,
-        allowInsecureConnection: true
-      };
-
       const property = transformProperty(
         new Property(
           "color",
           "The color",
           new StringSchema("Color", "A color."),
           { required: true, readOnly: false }
-        ),
-        optionsBag
+        )
       );
 
       assert.strictEqual(property.name, "color");
@@ -87,16 +91,7 @@ describe("Transforms", () => {
 
   describe("ObjectSchema to ModelDetails", () => {
     it("retains basic details and contains properties", () => {
-      const optionsBag: OptionsBag = {
-        shouldGenerateLicense: false,
-        hideClients: true,
-        armLibrary: false,
-        ignoreNullableOnOptional: false,
-        useCoreV2: true,
-        allowInsecureConnection: true
-      };
-
-      const model = transformObject(appleSchema, [], optionsBag);
+      const model = transformObject(appleSchema, []);
       assert.strictEqual(model.name, "Apple");
       assert.strictEqual(model.properties.length, 3);
       assert.strictEqual(model.properties[0].name, "color");

@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   VpnSite,
@@ -108,9 +107,7 @@ export interface VpnSites {
     resourceGroupName: string,
     vpnSiteName: string,
     options?: VpnSitesDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  >;
+  ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Deletes a VpnSite.
    * @param resourceGroupName The resource group name of the VpnSite.
@@ -121,5 +118,5 @@ export interface VpnSites {
     resourceGroupName: string,
     vpnSiteName: string,
     options?: VpnSitesDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

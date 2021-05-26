@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { VirtualNetworkGateways } from "../operationsInterfaces";
-import * as coreHttp from "@azure/core-http";
+import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
@@ -223,24 +223,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysCreateOrUpdateResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysCreateOrUpdateResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysCreateOrUpdateResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       createOrUpdateOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -280,15 +297,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysGetOptionalParams
   ): Promise<VirtualNetworkGatewaysGetResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getOperationSpec
-    ) as Promise<VirtualNetworkGatewaysGetResponse>;
+    );
   }
 
   /**
@@ -301,26 +313,42 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysDeleteOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       deleteOperationSpec,
       sendOperation,
       "location"
@@ -337,7 +365,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysDeleteOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDelete(
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -364,24 +392,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysUpdateTagsResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "azure-async-operation")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysUpdateTagsResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysUpdateTagsResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       updateTagsOperationSpec,
       sendOperation,
       "azure-async-operation"
@@ -419,14 +464,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     options?: VirtualNetworkGatewaysListOptionalParams
   ): Promise<VirtualNetworkGatewaysListResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, options },
       listOperationSpec
-    ) as Promise<VirtualNetworkGatewaysListResponse>;
+    );
   }
 
   /**
@@ -440,15 +481,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysListConnectionsOptionalParams
   ): Promise<VirtualNetworkGatewaysListConnectionsResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       listConnectionsOperationSpec
-    ) as Promise<VirtualNetworkGatewaysListConnectionsResponse>;
+    );
   }
 
   /**
@@ -467,23 +503,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysResetResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysResetResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysResetResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       resetOperationSpec,
       sendOperation,
       "location"
@@ -519,26 +573,42 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       resetVpnClientSharedKeyOperationSpec,
       sendOperation,
       "location"
@@ -555,7 +625,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     resourceGroupName: string,
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysResetVpnClientSharedKeyOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginResetVpnClientSharedKey(
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -586,24 +656,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGeneratevpnclientpackageResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGeneratevpnclientpackageResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGeneratevpnclientpackageResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       generatevpnclientpackageOperationSpec,
       sendOperation,
       "location"
@@ -654,24 +741,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGenerateVpnProfileResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGenerateVpnProfileResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGenerateVpnProfileResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       generateVpnProfileOperationSpec,
       sendOperation,
       "location"
@@ -719,23 +823,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetVpnProfilePackageUrlResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnProfilePackageUrlOperationSpec,
       sendOperation,
       "location"
@@ -778,23 +900,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetBgpPeerStatusResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetBgpPeerStatusResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetBgpPeerStatusResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getBgpPeerStatusOperationSpec,
       sendOperation,
       "location"
@@ -831,15 +971,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     options?: VirtualNetworkGatewaysSupportedVpnDevicesOptionalParams
   ): Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       supportedVpnDevicesOperationSpec
-    ) as Promise<VirtualNetworkGatewaysSupportedVpnDevicesResponse>;
+    );
   }
 
   /**
@@ -859,23 +994,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetLearnedRoutesResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetLearnedRoutesResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetLearnedRoutesResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getLearnedRoutesOperationSpec,
       sendOperation,
       "location"
@@ -921,24 +1074,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetAdvertisedRoutesResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      peer,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetAdvertisedRoutesResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetAdvertisedRoutesResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, peer, options },
       getAdvertisedRoutesOperationSpec,
       sendOperation,
       "location"
@@ -990,24 +1160,46 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      vpnclientIpsecParams,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysSetVpnclientIpsecParametersResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      {
+        resourceGroupName,
+        virtualNetworkGatewayName,
+        vpnclientIpsecParams,
+        options
+      },
       setVpnclientIpsecParametersOperationSpec,
       sendOperation,
       "location"
@@ -1058,23 +1250,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetVpnclientIpsecParametersResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnclientIpsecParametersOperationSpec,
       sendOperation,
       "location"
@@ -1116,16 +1326,15 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     parameters: VpnDeviceScriptParameters,
     options?: VirtualNetworkGatewaysVpnDeviceConfigurationScriptOptionalParams
   ): Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayConnectionName,
-      parameters,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      {
+        resourceGroupName,
+        virtualNetworkGatewayConnectionName,
+        parameters,
+        options
+      },
       vpnDeviceConfigurationScriptOperationSpec
-    ) as Promise<VirtualNetworkGatewaysVpnDeviceConfigurationScriptResponse>;
+    );
   }
 
   /**
@@ -1144,23 +1353,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysStartPacketCaptureResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysStartPacketCaptureResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysStartPacketCaptureResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       startPacketCaptureOperationSpec,
       sendOperation,
       "location"
@@ -1205,24 +1432,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysStopPacketCaptureResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      parameters,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysStopPacketCaptureResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysStopPacketCaptureResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       stopPacketCaptureOperationSpec,
       sendOperation,
       "location"
@@ -1271,23 +1515,41 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
     >
   > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      options: this.getOperationOptions(options, "location")
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        VirtualNetworkGatewaysGetVpnclientConnectionHealthResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnclientConnectionHealthOperationSpec,
       sendOperation,
       "location"
@@ -1326,27 +1588,42 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
-  ): Promise<
-    PollerLike<PollOperationState<coreHttp.RestResponse>, coreHttp.RestResponse>
-  > {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      request,
-      options: this.getOperationOptions(options, "location")
+  ): Promise<PollerLike<PollOperationState<void>, void>> {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<void> => {
+      return this.client.sendOperationRequest(args, spec);
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
     ) => {
-      return this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return { flatResponse, rawResponse: currentRawResponse! };
     };
 
     return new LROPoller(
       { intervalInMs: options?.updateIntervalInMs },
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, request, options },
       disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec,
       sendOperation,
       "location"
@@ -1365,7 +1642,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     virtualNetworkGatewayName: string,
     request: P2SVpnConnectionRequest,
     options?: VirtualNetworkGatewaysDisconnectVirtualNetworkGatewayVpnConnectionsOptionalParams
-  ): Promise<coreHttp.RestResponse> {
+  ): Promise<void> {
     const poller = await this.beginDisconnectVirtualNetworkGatewayVpnConnections(
       resourceGroupName,
       virtualNetworkGatewayName,
@@ -1386,15 +1663,10 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     nextLink: string,
     options?: VirtualNetworkGatewaysListNextOptionalParams
   ): Promise<VirtualNetworkGatewaysListNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, nextLink, options },
       listNextOperationSpec
-    ) as Promise<VirtualNetworkGatewaysListNextResponse>;
+    );
   }
 
   /**
@@ -1410,34 +1682,16 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
     nextLink: string,
     options?: VirtualNetworkGatewaysListConnectionsNextOptionalParams
   ): Promise<VirtualNetworkGatewaysListConnectionsNextResponse> {
-    const operationArguments: coreHttp.OperationArguments = {
-      resourceGroupName,
-      virtualNetworkGatewayName,
-      nextLink,
-      options: coreHttp.operationOptionsToRequestOptionsBase(options || {})
-    };
     return this.client.sendOperationRequest(
-      operationArguments,
+      { resourceGroupName, virtualNetworkGatewayName, nextLink, options },
       listConnectionsNextOperationSpec
-    ) as Promise<VirtualNetworkGatewaysListConnectionsNextResponse>;
-  }
-
-  private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
-    options: TOptions | undefined,
-    finalStateVia?: string
-  ): coreHttp.RequestOptionsBase {
-    const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
-    };
-    return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
+    );
   }
 }
 // Operation Specifications
-const serializer = new coreHttp.Serializer(Mappers, /* isXml */ false);
+const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
+const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
   httpMethod: "PUT",
@@ -1470,7 +1724,7 @@ const createOrUpdateOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getOperationSpec: coreHttp.OperationSpec = {
+const getOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
   httpMethod: "GET",
@@ -1492,7 +1746,7 @@ const getOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const deleteOperationSpec: coreHttp.OperationSpec = {
+const deleteOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
   httpMethod: "DELETE",
@@ -1515,7 +1769,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const updateTagsOperationSpec: coreHttp.OperationSpec = {
+const updateTagsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}",
   httpMethod: "PATCH",
@@ -1548,7 +1802,7 @@ const updateTagsOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const listOperationSpec: coreHttp.OperationSpec = {
+const listOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways",
   httpMethod: "GET",
@@ -1569,7 +1823,7 @@ const listOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConnectionsOperationSpec: coreHttp.OperationSpec = {
+const listConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/connections",
   httpMethod: "GET",
@@ -1591,7 +1845,7 @@ const listConnectionsOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const resetOperationSpec: coreHttp.OperationSpec = {
+const resetOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/reset",
   httpMethod: "POST",
@@ -1622,7 +1876,7 @@ const resetOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const resetVpnClientSharedKeyOperationSpec: coreHttp.OperationSpec = {
+const resetVpnClientSharedKeyOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/resetvpnclientsharedkey",
   httpMethod: "POST",
@@ -1645,7 +1899,7 @@ const resetVpnClientSharedKeyOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
+const generatevpnclientpackageOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/generatevpnclientpackage",
   httpMethod: "POST",
@@ -1678,7 +1932,7 @@ const generatevpnclientpackageOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
+const generateVpnProfileOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/generatevpnprofile",
   httpMethod: "POST",
@@ -1711,7 +1965,7 @@ const generateVpnProfileOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getVpnProfilePackageUrlOperationSpec: coreHttp.OperationSpec = {
+const getVpnProfilePackageUrlOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getvpnprofilepackageurl",
   httpMethod: "POST",
@@ -1742,7 +1996,7 @@ const getVpnProfilePackageUrlOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getBgpPeerStatusOperationSpec: coreHttp.OperationSpec = {
+const getBgpPeerStatusOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getBgpPeerStatus",
   httpMethod: "POST",
@@ -1773,7 +2027,7 @@ const getBgpPeerStatusOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const supportedVpnDevicesOperationSpec: coreHttp.OperationSpec = {
+const supportedVpnDevicesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/supportedvpndevices",
   httpMethod: "POST",
@@ -1795,7 +2049,7 @@ const supportedVpnDevicesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getLearnedRoutesOperationSpec: coreHttp.OperationSpec = {
+const getLearnedRoutesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getLearnedRoutes",
   httpMethod: "POST",
@@ -1826,7 +2080,7 @@ const getLearnedRoutesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const getAdvertisedRoutesOperationSpec: coreHttp.OperationSpec = {
+const getAdvertisedRoutesOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getAdvertisedRoutes",
   httpMethod: "POST",
@@ -1857,7 +2111,7 @@ const getAdvertisedRoutesOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
+const setVpnclientIpsecParametersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/setvpnclientipsecparameters",
   httpMethod: "POST",
@@ -1890,7 +2144,7 @@ const setVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
+const getVpnclientIpsecParametersOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getvpnclientipsecparameters",
   httpMethod: "POST",
@@ -1921,7 +2175,7 @@ const getVpnclientIpsecParametersOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
+const vpnDeviceConfigurationScriptOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/connections/{virtualNetworkGatewayConnectionName}/vpndeviceconfigurationscript",
   httpMethod: "POST",
@@ -1945,7 +2199,7 @@ const vpnDeviceConfigurationScriptOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
+const startPacketCaptureOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/startPacketCapture",
   httpMethod: "POST",
@@ -1978,7 +2232,7 @@ const startPacketCaptureOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
+const stopPacketCaptureOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/stopPacketCapture",
   httpMethod: "POST",
@@ -2011,7 +2265,7 @@ const stopPacketCaptureOperationSpec: coreHttp.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getVpnclientConnectionHealthOperationSpec: coreHttp.OperationSpec = {
+const getVpnclientConnectionHealthOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getVpnClientConnectionHealth",
   httpMethod: "POST",
@@ -2042,7 +2296,7 @@ const getVpnclientConnectionHealthOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.OperationSpec = {
+const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/disconnectVirtualNetworkGatewayVpnConnections",
   httpMethod: "POST",
@@ -2067,7 +2321,7 @@ const disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec: coreHttp.Opera
   mediaType: "json",
   serializer
 };
-const listNextOperationSpec: coreHttp.OperationSpec = {
+const listNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2088,7 +2342,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const listConnectionsNextOperationSpec: coreHttp.OperationSpec = {
+const listConnectionsNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {

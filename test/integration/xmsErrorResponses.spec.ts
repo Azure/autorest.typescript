@@ -15,10 +15,11 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   beforeEach(() => {
     let generatedClientOptions: XmsErrorResponsesClientOptionalParams = {};
-    const clientOptions = {
+    const clientOptions: XmsErrorResponsesClientOptionalParams = {
       endpoint: "http://localhost:3000",
       $host: "http://localhost:3000",
-      allowInsecureConnection: true
+      allowInsecureConnection: true,
+      retryOptions: { retryDelayInMs: 0 }
     };
     generatedClientOptions = {
       ...clientOptions,
@@ -34,7 +35,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an animal not found error", async () => {
     try {
-      const response: any = await client.pet.getPetById("coyoteUgly");
+      await client.pet.getPetById("coyoteUgly");
       assert.fail();
     } catch (ex) {
       const expected: AnimalNotFound = {
@@ -79,7 +80,7 @@ describe("Integration tests for XmsErrorResponsesClient", () => {
 
   it("should get an animal sad error", async () => {
     try {
-      const response: any = await client.pet.doSomething("jump");
+      await client.pet.doSomething("jump");
       assert.fail();
     } catch (ex) {
       const expected: PetSadError = {

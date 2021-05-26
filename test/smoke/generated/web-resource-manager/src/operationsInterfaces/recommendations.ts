@@ -8,7 +8,6 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import * as coreHttp from "@azure/core-http";
 import {
   Recommendation,
   RecommendationsListOptionalParams,
@@ -90,7 +89,7 @@ export interface Recommendations {
    */
   resetAllFilters(
     options?: RecommendationsResetAllFiltersOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Disables the specified rule so it will not apply to a subscription in the future.
    * @param name Rule name
@@ -99,7 +98,7 @@ export interface Recommendations {
   disableRecommendationForSubscription(
     name: string,
     options?: RecommendationsDisableRecommendationForSubscriptionOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Disable all recommendations for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -112,7 +111,7 @@ export interface Recommendations {
     environmentName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsDisableAllForHostingEnvironmentOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Reset all recommendation opt-out settings for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -125,7 +124,7 @@ export interface Recommendations {
     environmentName: string,
     hostingEnvironmentName: string,
     options?: RecommendationsResetAllFiltersForHostingEnvironmentOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a recommendation rule for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -153,7 +152,7 @@ export interface Recommendations {
     name: string,
     hostingEnvironmentName: string,
     options?: RecommendationsDisableRecommendationForHostingEnvironmentOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Disable all recommendations for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -164,7 +163,7 @@ export interface Recommendations {
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsDisableAllForWebAppOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Reset all recommendation opt-out settings for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -175,7 +174,7 @@ export interface Recommendations {
     resourceGroupName: string,
     siteName: string,
     options?: RecommendationsResetAllFiltersForWebAppOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
   /**
    * Description for Get a recommendation rule for an app.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -201,5 +200,5 @@ export interface Recommendations {
     siteName: string,
     name: string,
     options?: RecommendationsDisableRecommendationForSiteOptionalParams
-  ): Promise<coreHttp.RestResponse>;
+  ): Promise<void>;
 }

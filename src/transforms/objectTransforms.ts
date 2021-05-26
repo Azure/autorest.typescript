@@ -24,18 +24,17 @@ import {
   getSchemaTypeDocumentation
 } from "../utils/schemaHelpers";
 import { extractHeaders } from "../utils/extractHeaders";
-import { OptionsBag } from "../utils/optionsBag";
+import { getAutorestOptions } from "../autorestSession";
 
 export function transformObjects(
   codeModel: CodeModel,
-  uberParents: ObjectDetails[],
-  optionsBag: OptionsBag
+  uberParents: ObjectDetails[]
 ): ObjectDetails[] {
   const clientName = getLanguageMetadata(codeModel.language).name;
   const objectSchemas = codeModel.schemas.objects || [];
   const headersSchemas = extractHeaders(codeModel.operationGroups, clientName);
   const objectDetails = [...objectSchemas, ...headersSchemas].map(object =>
-    transformObject(object, uberParents, optionsBag)
+    transformObject(object, uberParents)
   );
 
   return getObjectDetailsWithHierarchy(objectDetails);
@@ -43,8 +42,7 @@ export function transformObjects(
 
 export function transformObject(
   schema: ObjectSchema,
-  uberParents: ObjectDetails[],
-  optionsBag: OptionsBag
+  uberParents: ObjectDetails[]
 ): ObjectDetails {
   const metadata = getLanguageMetadata(schema.language);
   let name = normalizeName(
@@ -64,28 +62,26 @@ export function transformObject(
     description: metadata.description || undefined,
     schema,
     properties: schema.properties
-      ? schema.properties.map(prop => transformProperty(prop, optionsBag))
+      ? schema.properties.map(prop => transformProperty(prop))
       : []
   };
 
   return getAdditionalObjectDetails(objectDetails, uberParents);
 }
 
-export function transformProperty(
-  {
-    language,
-    schema,
-    serializedName,
-    required,
-    readOnly,
-    nullable
-  }: Property | GroupProperty,
-  optionsBag: OptionsBag
-): PropertyDetails {
+export function transformProperty({
+  language,
+  schema,
+  serializedName,
+  required,
+  readOnly,
+  nullable
+}: Property | GroupProperty): PropertyDetails {
+  const { useCoreV2 } = getAutorestOptions();
   const metadata = getLanguageMetadata(language);
   // In the next call, the second parameter 'false' stands for isNullable
   // which helps to determine whether | null should be added to the type.
-  const typeDetails = getTypeForSchema(schema, false, optionsBag.useCoreV2);
+  const typeDetails = getTypeForSchema(schema, false, useCoreV2);
   const { typeName, isConstant, defaultValue } = typeDetails;
 
   const schemaDescription = getSchemaTypeDocumentation(schema);
