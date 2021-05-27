@@ -24,9 +24,11 @@ stages:
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
-          - script: npm version --no-git-tag-version $DEV_VERSION
+              npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
-          - script: export TAR_NAME=$(npm pack -q)
+            name: SetDevVersion
+          - script: |
+              export TAR_NAME=$(npm pack -q)
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackArtifacts
           - task: CopyFiles@2
