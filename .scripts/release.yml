@@ -13,7 +13,7 @@ parameters:
 
 stages:
   - ? ${{if and(eq(variables['Build.Reason'], 'Manual'), eq(variables['System.TeamProject'], 'internal'))}}
-    : - stage: Integration
+    : - stage: Release
         displayName: "Release: @autorest/typescript"
         dependsOn: ${{parameters.DependsOn}}
         jobs:
@@ -60,7 +60,7 @@ stages:
                     - script: |
                         cd $(Pipeline.Workspace)/packages
                         npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                        npm publish $(TAR_NAME) --access public --dry-run
+                        npm publish $(TAR_NAME) --access public --tag latest --dry-run
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
 
@@ -111,6 +111,6 @@ stages:
                 - script: |
                     cd $(Pipeline.Workspace)/packages
                     npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                    npm publish $(TAR_NAME) --access public
+                    npm publish $(TAR_NAME) --access public --tag dev
                     npm config delete //registry.npmjs.org/:_authToken
                   displayName: "Publish to NPM"
