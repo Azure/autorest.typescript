@@ -1,4 +1,40 @@
-# Contributing
+# TypeScript Plugin for Autorest
+
+[Autorest](https://github.com/Azure/autorest/blob/master/docs/readme.md) is a suite of tools to automatically generate SDKs for cloud services. This project provides an autorest extension that generates SDKs in TypeScript.
+
+## Auto-generate your package in TypeScript using Autorest
+
+It is easy to generate an SDK once you have a swagger specification file.
+
+- You will need first to install Autorest
+
+```bash
+npm install -g autorest
+```
+
+- You can then generate the SDK as follows:
+
+```bash
+autorest --typescript <path to the swagger file>
+```
+
+- You will likely need to specify extra flags to control the behavior of the generation, and these flags are listed in the next section.
+
+## Options
+
+In addition to the [list of Autorest flags](https://github.com/Azure/autorest/blob/master/docs/generate/flags.md), you can further control the behavior of the typescript generator with the following flags:
+
+| Flag                            | Description                                                                                                                                                                                                                                                                                                                          |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--use-core-v2`                 | Uses azure core v2 and it is enabled by default. Please set it to false if you need to regenerate a package that uses core-http and you do not want to do the migration to core v2 in that regeneration. For differences between v1 and v2, please refer to https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/core/README.md |
+| `--hide-client`                 | Hides the client class from docs. This is typically useful when the you will write a convenience layer on top of the generated client                                                                                                                                                                                                |
+| `--ignore-nullable-on-optional` | If an optional property is also marked as nullable, it will be treated as just optional                                                                                                                                                                                                                                              |
+| `--generate-metadata`           | Generates meta files such as readme, license, package.json, etc. Typically, you need to specify this flag in your first generation only                                                                                                                                                                                              |
+| `--tracing-info`                | Controls specification of meta info attached to requests for tracing purposes                                                                                                                                                                                                                                                        |
+| `--disable-async-iterators`     | Does not generate async iterators needed for paging operations                                                                                                                                                                                                                                                                       |
+| `--allow-insecure-connection`   | Allow generated clients to make requests to HTTP endpoints                                                                                                                                                                                                                                                                           |
+
+## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
@@ -12,18 +48,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-# Simple AutoRest Extension
-
-A simple AutoRest extension that can be used as a template for or documentation about writing such extensions.
-Since this a TypeScript project, we distinguish between language agnostic and language dependent requirements.
-
-## Language Agnostic Requirements
-
-More information about these can be found [here](https://github.com/Azure/autorest/tree/master/docs/developer), summary:
-
-1. Specify the start command of the extension as the `start` script in the `package.json`
-2. Implement the AutoRest extension protocol (here: handled by library, see below)
-3. Hook up plugins into the AutoRest pipeline DAG, e.g.
+## Autorest Typescript Plugin Configuration
 
 ```yaml
 version: 3.1.2
