@@ -61,9 +61,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
     author: "",
     license: "ISC",
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.2",
+      "@azure-rest/core-client": "1.0.0-beta.4",
       "@azure/core-auth": "^1.1.4",
-      "@azure/core-rest-pipeline": "^1.0.3"
+      "@azure/core-rest-pipeline": "^1.0.4"
     },
     devDependencies: {
       autorest: "latest",
@@ -72,7 +72,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       dotenv: "^8.2.0",
       prettier: "^2.2.1",
       "ts-node": "^9.1.1",
-      typescript: "^4.1.5",
+      typescript: "~4.2.4",
       mkdirp: "^1.0.4"
     }
   };
