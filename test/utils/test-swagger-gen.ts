@@ -1,6 +1,7 @@
 import { spawn } from "child_process";
 import { TracingInfo } from "../../src/models/clientDetails";
 import { onExit } from "./childProcessOnExit";
+import { runAutorest } from "./run";
 
 interface SwaggerConfig {
   swaggerOrConfig: string;
@@ -666,25 +667,6 @@ const generateSwaggers = async (
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
-
-    let autorestCommand = "autorest";
-    const commandArguments: string[] = [`--typescript`];
-
-    if (tracing) {
-      commandArguments.push(
-        `--tracing-info.namespace=${tracing.namespace}`,
-        `--tracing-info.packagePrefix="${tracing.packagePrefix}"`
-      );
-    }
-
-    if (credentialScopes) {
-      commandArguments.push(`--credential-scopes=${credentialScopes}`);
-    }
-
-    if (disableAsyncIterators) {
-      commandArguments.push("--disable-async-iterators=true");
-    }
-
     if (swaggerOrConfig.split("/").length === 1) {
       // When given a filename look for it in test server, otherwise use the path
       swaggerPath = `node_modules/@microsoft.azure/autorest.testserver/swagger/${swaggerOrConfig}`;
@@ -694,45 +676,29 @@ const generateSwaggers = async (
     if (!swaggerPath.endsWith(".md")) {
       inputFileCommand = `--input-file=${inputFileCommand}`;
     }
-
-    commandArguments.push(
-      inputFileCommand,
-      "--clear-output-folder=true",
-      `--license-header=${!!licenseHeader}`,
-      `--add-credentials=${!!addCredentials}`,
-      `--output-folder=./test/integration/generated/${name}`,
-      `--title=${clientName}`,
-      `--use=.`,
-      `--package-name=${packageName}`,
-      `--package-version=${package_version}`,
-      `--hide-clients=${!!hideClients}`,
-      `--ignore-nullable-on-optional=${!!ignoreNullableOnOptional}`,
-      `--use-core-v2=${!!useCoreV2}`,
-      `--allow-insecure-connection=${!!allowInsecureConnection}`
+    await runAutorest(
+      swaggerPath,
+      {
+        tracingInfo: tracing,
+        disablePagingAsyncIterators: disableAsyncIterators,
+        credentialScopes: credentialScopes ? [credentialScopes] : undefined,
+        srcPath: "",
+        licenseHeader: !!licenseHeader,
+        addCredentials,
+        outputPath: `./test/integration/generated/${name}`,
+        title: clientName,
+        packageDetails: {
+          name: packageName,
+          version: package_version,
+          nameWithoutScope: ""
+        },
+        hideClients,
+        ignoreNullableOnOptional,
+        useCoreV2,
+        allowInsecureConnection
+      },
+      isDebugging
     );
-    if (isDebugging) {
-      commandArguments.push(`--typescript.debugger`);
-    }
-    const generationTask = async () => {
-      console.log(`=== Start ${name} ===`);
-      const childProcess = spawn(autorestCommand, commandArguments, {
-        stdio: [process.stdin, process.stdout, process.stderr],
-        shell: process.platform === "win32"
-      });
-
-      console.log(`${autorestCommand} ${commandArguments.join(" ")}`);
-
-      const result = await onExit(childProcess);
-      console.log(`=== End ${name} ===`);
-      return result;
-    };
-
-    try {
-      await generationTask();
-    } catch (error) {
-      console.error(error);
-      throw error;
-    }
   }
 };
 

@@ -1,6 +1,7 @@
 import * as coreClient from "@azure/core-client";
 import { ApiVersion72Preview, KeyVaultClientOptionalParams } from "./models";
 
+/** @internal */
 export class KeyVaultClientContext extends coreClient.ServiceClient {
   apiVersion: ApiVersion72Preview;
 

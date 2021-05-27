@@ -15,11 +15,13 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const addCredentials = await getAddCredentials(host);
   const credentialKeyHeaderName = await getKeyCredentialHeaderName(host);
   const srcPath = await getSrcPath(host);
+  const outputPath = await getOutputPath(host);
   const credentialScopes = await getCredentialScopes(host);
   const packageDetails = await getPackageDetails(host);
   const licenseHeader = await getLicenseHeader(host);
   const generateMetadata = await getGenerateMetadata(host);
   const hideClients = await getHideClients(host);
+  const title = await getTitle(host);
 
   const tracingInfo = await getTracingInfo(host);
   const disablePagingAsyncIterators = await getDisableAsyncOperators(host);
@@ -34,6 +36,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     credentialScopes,
     restLevelClient,
     srcPath,
+    outputPath,
     packageDetails,
     licenseHeader,
     tracingInfo,
@@ -43,7 +46,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     ignoreNullableOnOptional,
     allowInsecureConnection,
     disablePagingAsyncIterators,
-    skipEnumValidation
+    skipEnumValidation,
+    title
   };
 }
 
@@ -79,14 +83,22 @@ async function getLicenseHeader(host: Host): Promise<boolean> {
   return (await host.GetValue("license-header")) || false;
 }
 
+async function getTitle(host: Host): Promise<string | undefined> {
+  return (await host.GetValue("title")) || undefined;
+}
+
 async function getSrcPath(host: Host): Promise<string> {
   return ((await host.GetValue("source-code-folder-path")) as string) || "src";
+}
+
+async function getOutputPath(host: Host): Promise<string | undefined> {
+  return (await host.GetValue("output-folder")) || undefined;
 }
 
 async function getKeyCredentialHeaderName(
   host: Host
 ): Promise<string | undefined> {
-  return await host.GetValue("credential-key-header-name");
+  return (await host.GetValue("credential-key-header-name")) || undefined;
 }
 
 async function getAddCredentials(host: Host): Promise<boolean> {
@@ -113,7 +125,7 @@ async function getRestLevelClient(host: Host): Promise<boolean> {
 
 async function getUseCoreV2(host: Host): Promise<boolean> {
   const useCoreV2Option: boolean = await host.GetValue("use-core-v2");
-  return useCoreV2Option === undefined ? true : Boolean(useCoreV2Option);
+  return useCoreV2Option === null ? true : Boolean(useCoreV2Option);
 }
 
 async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
