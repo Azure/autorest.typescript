@@ -50,19 +50,19 @@ stages:
               name: ${{ parameters.LinuxPool }}
               vmImage: ${{ parameters.OSVmImage }}
             strategy:
-            runOnce:
-              deploy:
-                steps:
-                  - task: NodeTool@0
-                    inputs:
-                      versionSpec: "14.x"
-                    displayName: "Install Node.js"
-                  - script: |
-                      cd $(Pipeline.Workspace)/packages
-                      npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                      npm publish $(TAR_NAME) --access public --dry-run
-                      npm config delete //registry.npmjs.org/:_authToken
-                    displayName: "Publish to NPM"
+              runOnce:
+                deploy:
+                  steps:
+                    - task: NodeTool@0
+                      inputs:
+                        versionSpec: "14.x"
+                      displayName: "Install Node.js"
+                    - script: |
+                        cd $(Pipeline.Workspace)/packages
+                        npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                        npm publish $(TAR_NAME) --access public --dry-run
+                        npm config delete //registry.npmjs.org/:_authToken
+                      displayName: "Publish to NPM"
 
   - stage: Integration
     dependsOn: ${{parameters.DependsOn}}
