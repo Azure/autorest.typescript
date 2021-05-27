@@ -43,7 +43,7 @@
         "@azure/logger": "^1.0.0",
         "@opentelemetry/api": "^0.10.2",
         "@types/lodash": "^4.14.149",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.21",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
         "ts-morph": "^9.0.0"
