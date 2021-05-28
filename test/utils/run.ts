@@ -23,7 +23,8 @@ export async function runAutorest(
     disablePagingAsyncIterators,
     hideClients,
     ignoreNullableOnOptional,
-    title
+    title,
+    restLevelClient
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -45,6 +46,9 @@ export async function runAutorest(
   }
   if (useCoreV2 !== undefined) {
     commandArguments.push(`--use-core-v2=${useCoreV2}`);
+  }
+  if (restLevelClient === true) {
+    commandArguments.push(`--rest-level-client=${restLevelClient}`);
   }
   if (title !== undefined) {
     commandArguments.push(`--title=${title}`);
