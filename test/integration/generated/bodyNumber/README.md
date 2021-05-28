@@ -1,27 +1,33 @@
-## Azure BodyNumberClient SDK for JavaScript
+# BodyNumberClient library for JavaScript
 
-This package contains an isomorphic SDK for BodyNumberClient.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyNumberClient.
+
+Test Infrastructure for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/body-number) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `body-number` package
+
+Install the BodyNumberClient library for JavaScript with `npm`:
 
 ```bash
 npm install body-number
 ```
 
-### How to use
+### Create and authenticate a `BodyNumberClient`
 
-#### Sample code
+To create a client object to access the BodyNumber API, you will need the `endpoint` of your BodyNumber resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### BodyNumberClient
 
-## Related projects
+`BodyNumberClient` is the primary interface for developers using the BodyNumberClient library. Explore the methods on this client object to understand the different features of the BodyNumber service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

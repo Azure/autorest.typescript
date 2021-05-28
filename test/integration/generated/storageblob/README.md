@@ -1,27 +1,33 @@
-## Azure StorageBlobClient SDK for JavaScript
+# StorageBlobClient library for JavaScript
 
-This package contains an isomorphic SDK for StorageBlobClient.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for StorageBlobClient.
+
+
+
+[Package (NPM)](https://www.npmjs.com/package/storageblob) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `storageblob` package
+
+Install the StorageBlobClient library for JavaScript with `npm`:
 
 ```bash
 npm install storageblob
 ```
 
-### How to use
+### Create and authenticate a `StorageBlobClient`
 
-#### Sample code
+To create a client object to access the StorageBlob API, you will need the `endpoint` of your StorageBlob resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### StorageBlobClient
 
-## Related projects
+`StorageBlobClient` is the primary interface for developers using the StorageBlobClient library. Explore the methods on this client object to understand the different features of the StorageBlob service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

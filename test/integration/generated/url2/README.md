@@ -1,27 +1,33 @@
-## Azure UrlClient SDK for JavaScript
+# UrlClient library for JavaScript
 
-This package contains an isomorphic SDK for UrlClient.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for UrlClient.
+
+
+
+[Package (NPM)](https://www.npmjs.com/package/url) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `url` package
+
+Install the UrlClient library for JavaScript with `npm`:
 
 ```bash
 npm install url
 ```
 
-### How to use
+### Create and authenticate a `UrlClient`
 
-#### Sample code
+To create a client object to access the Url API, you will need the `endpoint` of your Url resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### UrlClient
 
-## Related projects
+`UrlClient` is the primary interface for developers using the UrlClient library. Explore the methods on this client object to understand the different features of the Url service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

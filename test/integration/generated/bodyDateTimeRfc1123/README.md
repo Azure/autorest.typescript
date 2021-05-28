@@ -1,27 +1,33 @@
-## Azure BodyDateTimeRfc1123Client SDK for JavaScript
+# BodyDateTimeRfc1123Client library for JavaScript
 
-This package contains an isomorphic SDK for BodyDateTimeRfc1123Client.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyDateTimeRfc1123Client.
+
+Test Infrastructure for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/body-datetime-rfc1123) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `body-datetime-rfc1123` package
+
+Install the BodyDateTimeRfc1123Client library for JavaScript with `npm`:
 
 ```bash
 npm install body-datetime-rfc1123
 ```
 
-### How to use
+### Create and authenticate a `BodyDateTimeRfc1123Client`
 
-#### Sample code
+To create a client object to access the BodyDateTimeRfc1123 API, you will need the `endpoint` of your BodyDateTimeRfc1123 resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### BodyDateTimeRfc1123Client
 
-## Related projects
+`BodyDateTimeRfc1123Client` is the primary interface for developers using the BodyDateTimeRfc1123Client library. Explore the methods on this client object to understand the different features of the BodyDateTimeRfc1123 service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

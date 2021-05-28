@@ -1,27 +1,33 @@
-## Azure CustomUrlClient SDK for JavaScript
+# CustomUrlClient library for JavaScript
 
-This package contains an isomorphic SDK for CustomUrlClient.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for CustomUrlClient.
+
+Test Infrastructure for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/custom-url) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `custom-url` package
+
+Install the CustomUrlClient library for JavaScript with `npm`:
 
 ```bash
 npm install custom-url
 ```
 
-### How to use
+### Create and authenticate a `CustomUrlClient`
 
-#### Sample code
+To create a client object to access the CustomUrl API, you will need the `endpoint` of your CustomUrl resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### CustomUrlClient
 
-## Related projects
+`CustomUrlClient` is the primary interface for developers using the CustomUrlClient library. Explore the methods on this client object to understand the different features of the CustomUrl service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

@@ -1,27 +1,33 @@
-## Azure BodyDictionaryClient SDK for JavaScript
+# BodyDictionaryClient library for JavaScript
 
-This package contains an isomorphic SDK for BodyDictionaryClient.
+This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyDictionaryClient.
+
+Test Infrastructure for AutoRest Swagger BAT
+
+[Package (NPM)](https://www.npmjs.com/package/body-dictionary) |
+
+## Getting started
 
 ### Currently supported environments
 
 - Node.js version 8.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `body-dictionary` package
+
+Install the BodyDictionaryClient library for JavaScript with `npm`:
 
 ```bash
 npm install body-dictionary
 ```
 
-### How to use
+### Create and authenticate a `BodyDictionaryClient`
 
-#### Sample code
+To create a client object to access the BodyDictionary API, you will need the `endpoint` of your BodyDictionary resource and a `credential`.
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### BodyDictionaryClient
 
-## Related projects
+`BodyDictionaryClient` is the primary interface for developers using the BodyDictionaryClient library. Explore the methods on this client object to understand the different features of the BodyDictionary service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)
