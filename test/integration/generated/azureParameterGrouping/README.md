@@ -22,9 +22,7 @@ Install the AzureParameterGrouping client library for JavaScript with `npm`:
 npm install azure-parameter-grouping
 ```
 
-### Create and authenticate a `AzureParameterGroupingClient`
 
-To create a client object to access the AzureParameterGrouping API, you will need the `endpoint` of your AzureParameterGrouping resource and a `credential`.
 ## Key concepts
 
 ### AzureParameterGroupingClient

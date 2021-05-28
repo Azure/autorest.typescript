@@ -22,9 +22,7 @@ Install the OptionalNull client library for JavaScript with `npm`:
 npm install optionalnull
 ```
 
-### Create and authenticate a `OptionalNullClient`
 
-To create a client object to access the OptionalNull API, you will need the `endpoint` of your OptionalNull resource and a `credential`.
 ## Key concepts
 
 ### OptionalNullClient

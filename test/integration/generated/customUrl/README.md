@@ -22,9 +22,7 @@ Install the CustomUrl client library for JavaScript with `npm`:
 npm install custom-url
 ```
 
-### Create and authenticate a `CustomUrlClient`
 
-To create a client object to access the CustomUrl API, you will need the `endpoint` of your CustomUrl resource and a `credential`.
 ## Key concepts
 
 ### CustomUrlClient

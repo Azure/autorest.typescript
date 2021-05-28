@@ -22,9 +22,7 @@ Install the BodyNumber client library for JavaScript with `npm`:
 npm install body-number
 ```
 
-### Create and authenticate a `BodyNumberClient`
 
-To create a client object to access the BodyNumber API, you will need the `endpoint` of your BodyNumber resource and a `credential`.
 ## Key concepts
 
 ### BodyNumberClient

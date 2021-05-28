@@ -22,9 +22,7 @@ Install the ModelFlattening client library for JavaScript with `npm`:
 npm install model-flattening
 ```
 
-### Create and authenticate a `ModelFlatteningClient`
 
-To create a client object to access the ModelFlattening API, you will need the `endpoint` of your ModelFlattening resource and a `credential`.
 ## Key concepts
 
 ### ModelFlatteningClient

@@ -22,9 +22,7 @@ Install the BodyDateTime client library for JavaScript with `npm`:
 npm install body-datetime
 ```
 
-### Create and authenticate a `BodyDateTimeClient`
 
-To create a client object to access the BodyDateTime API, you will need the `endpoint` of your BodyDateTime resource and a `credential`.
 ## Key concepts
 
 ### BodyDateTimeClient

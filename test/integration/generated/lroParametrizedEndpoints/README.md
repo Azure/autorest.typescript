@@ -22,9 +22,7 @@ Install the LroParametrizedEndpoints client library for JavaScript with `npm`:
 npm install lro-parameterized-endpoints
 ```
 
-### Create and authenticate a `LroParametrizedEndpointsClient`
 
-To create a client object to access the LroParametrizedEndpoints API, you will need the `endpoint` of your LroParametrizedEndpoints resource and a `credential`.
 ## Key concepts
 
 ### LroParametrizedEndpointsClient

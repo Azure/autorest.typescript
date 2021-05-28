@@ -22,9 +22,7 @@ Install the OperationGroupClash client library for JavaScript with `npm`:
 npm install operationgroupclash
 ```
 
-### Create and authenticate a `OperationGroupClashClient`
 
-To create a client object to access the OperationGroupClash API, you will need the `endpoint` of your OperationGroupClash resource and a `credential`.
 ## Key concepts
 
 ### OperationGroupClashClient

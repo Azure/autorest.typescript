@@ -22,9 +22,7 @@ Install the NonStringEnum client library for JavaScript with `npm`:
 npm install non-string-num
 ```
 
-### Create and authenticate a `NonStringEnumClient`
 
-To create a client object to access the NonStringEnum API, you will need the `endpoint` of your NonStringEnum resource and a `credential`.
 ## Key concepts
 
 ### NonStringEnumClient

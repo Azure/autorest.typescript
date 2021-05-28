@@ -22,9 +22,7 @@ Install the Validation client library for JavaScript with `npm`:
 npm install validation
 ```
 
-### Create and authenticate a `ValidationClient`
 
-To create a client object to access the Validation API, you will need the `endpoint` of your Validation resource and a `credential`.
 ## Key concepts
 
 ### ValidationClient

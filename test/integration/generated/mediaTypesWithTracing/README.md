@@ -22,9 +22,7 @@ Install the mediaTypesWithTracing client library for JavaScript with `npm`:
 npm install media-types-service-tracing
 ```
 
-### Create and authenticate a `MediaTypesWithTracingClient`
 
-To create a client object to access the mediaTypesWithTracing API, you will need the `endpoint` of your mediaTypesWithTracing resource and a `credential`.
 ## Key concepts
 
 ### MediaTypesWithTracingClient

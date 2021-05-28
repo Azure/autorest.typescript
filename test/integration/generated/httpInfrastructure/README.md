@@ -22,9 +22,7 @@ Install the HttpInfrastructure client library for JavaScript with `npm`:
 npm install httpInfrastructure
 ```
 
-### Create and authenticate a `HttpInfrastructureClient`
 
-To create a client object to access the HttpInfrastructure API, you will need the `endpoint` of your HttpInfrastructure resource and a `credential`.
 ## Key concepts
 
 ### HttpInfrastructureClient

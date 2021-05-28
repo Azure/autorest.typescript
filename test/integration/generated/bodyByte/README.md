@@ -22,9 +22,7 @@ Install the BodyByte client library for JavaScript with `npm`:
 npm install body-byte
 ```
 
-### Create and authenticate a `BodyByteClient`
 
-To create a client object to access the BodyByte API, you will need the `endpoint` of your BodyByte resource and a `credential`.
 ## Key concepts
 
 ### BodyByteClient

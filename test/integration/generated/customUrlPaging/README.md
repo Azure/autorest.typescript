@@ -22,9 +22,7 @@ Install the CustomUrlPaging client library for JavaScript with `npm`:
 npm install custom-url-paging
 ```
 
-### Create and authenticate a `CustomUrlPagingClient`
 
-To create a client object to access the CustomUrlPaging API, you will need the `endpoint` of your CustomUrlPaging resource and a `credential`.
 ## Key concepts
 
 ### CustomUrlPagingClient

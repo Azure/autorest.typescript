@@ -22,9 +22,7 @@ Install the BodyTime client library for JavaScript with `npm`:
 npm install body-time
 ```
 
-### Create and authenticate a `BodyTimeClient`
 
-To create a client object to access the BodyTime API, you will need the `endpoint` of your BodyTime resource and a `credential`.
 ## Key concepts
 
 ### BodyTimeClient

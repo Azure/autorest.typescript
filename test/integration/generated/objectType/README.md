@@ -22,9 +22,7 @@ Install the ObjectType client library for JavaScript with `npm`:
 npm install object-type
 ```
 
-### Create and authenticate a `ObjectTypeClient`
 
-To create a client object to access the ObjectType API, you will need the `endpoint` of your ObjectType resource and a `credential`.
 ## Key concepts
 
 ### ObjectTypeClient

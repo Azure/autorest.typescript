@@ -22,9 +22,7 @@ Install the Paging client library for JavaScript with `npm`:
 npm install paging-service
 ```
 
-### Create and authenticate a `PagingClient`
 
-To create a client object to access the Paging API, you will need the `endpoint` of your Paging resource and a `credential`.
 ## Key concepts
 
 ### PagingClient

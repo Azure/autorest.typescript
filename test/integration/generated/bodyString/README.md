@@ -22,9 +22,7 @@ Install the BodyString client library for JavaScript with `npm`:
 npm install body-string
 ```
 
-### Create and authenticate a `BodyStringClient`
 
-To create a client object to access the BodyString API, you will need the `endpoint` of your BodyString resource and a `credential`.
 ## Key concepts
 
 ### BodyStringClient

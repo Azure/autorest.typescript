@@ -22,9 +22,7 @@ Install the LicenseHeader client library for JavaScript with `npm`:
 npm install license-header
 ```
 
-### Create and authenticate a `LicenseHeaderClient`
 
-To create a client object to access the LicenseHeader API, you will need the `endpoint` of your LicenseHeader resource and a `credential`.
 ## Key concepts
 
 ### LicenseHeaderClient

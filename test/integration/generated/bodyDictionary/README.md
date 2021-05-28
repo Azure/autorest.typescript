@@ -22,9 +22,7 @@ Install the BodyDictionary client library for JavaScript with `npm`:
 npm install body-dictionary
 ```
 
-### Create and authenticate a `BodyDictionaryClient`
 
-To create a client object to access the BodyDictionary API, you will need the `endpoint` of your BodyDictionary resource and a `credential`.
 ## Key concepts
 
 ### BodyDictionaryClient

@@ -22,9 +22,7 @@ Install the BodyBoolean client library for JavaScript with `npm`:
 npm install body-boolean
 ```
 
-### Create and authenticate a `BodyBooleanClient`
 
-To create a client object to access the BodyBoolean API, you will need the `endpoint` of your BodyBoolean resource and a `credential`.
 ## Key concepts
 
 ### BodyBooleanClient

@@ -22,9 +22,7 @@ Install the StorageFileShare client library for JavaScript with `npm`:
 npm install storagefileshare
 ```
 
-### Create and authenticate a `StorageFileShareClient`
 
-To create a client object to access the StorageFileShare API, you will need the `endpoint` of your StorageFileShare resource and a `credential`.
 ## Key concepts
 
 ### StorageFileShareClient

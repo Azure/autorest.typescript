@@ -22,9 +22,7 @@ Install the Service client library for JavaScript with `npm`:
 npm install body-complex-tracing
 ```
 
-### Create and authenticate a `BodyComplexWithTracing`
 
-To create a client object to access the Service API, you will need the `endpoint` of your Service resource and a `credential`.
 ## Key concepts
 
 ### BodyComplexWithTracing

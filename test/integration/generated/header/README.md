@@ -22,9 +22,7 @@ Install the Header client library for JavaScript with `npm`:
 npm install header
 ```
 
-### Create and authenticate a `HeaderClient`
 
-To create a client object to access the Header API, you will need the `endpoint` of your Header resource and a `credential`.
 ## Key concepts
 
 ### HeaderClient

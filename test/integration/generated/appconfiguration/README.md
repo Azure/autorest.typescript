@@ -22,9 +22,7 @@ Install the AppConfiguration client library for JavaScript with `npm`:
 npm install appconfiguration
 ```
 
-### Create and authenticate a `AppConfigurationClient`
 
-To create a client object to access the AppConfiguration API, you will need the `endpoint` of your AppConfiguration resource and a `credential`.
 ## Key concepts
 
 ### AppConfigurationClient

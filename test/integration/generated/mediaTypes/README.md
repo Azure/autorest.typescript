@@ -22,9 +22,7 @@ Install the MediaTypes client library for JavaScript with `npm`:
 npm install media-types-service
 ```
 
-### Create and authenticate a `MediaTypesClient`
 
-To create a client object to access the MediaTypes API, you will need the `endpoint` of your MediaTypes resource and a `credential`.
 ## Key concepts
 
 ### MediaTypesClient

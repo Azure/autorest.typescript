@@ -22,9 +22,7 @@ Install the BodyBooleanQuirks client library for JavaScript with `npm`:
 npm install body-boolean-quirks
 ```
 
-### Create and authenticate a `BodyBooleanQuirksClient`
 
-To create a client object to access the BodyBooleanQuirks API, you will need the `endpoint` of your BodyBooleanQuirks resource and a `credential`.
 ## Key concepts
 
 ### BodyBooleanQuirksClient

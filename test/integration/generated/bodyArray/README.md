@@ -22,9 +22,7 @@ Install the BodyArray client library for JavaScript with `npm`:
 npm install body-array
 ```
 
-### Create and authenticate a `BodyArrayClient`
 
-To create a client object to access the BodyArray API, you will need the `endpoint` of your BodyArray resource and a `credential`.
 ## Key concepts
 
 ### BodyArrayClient

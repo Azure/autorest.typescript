@@ -22,9 +22,7 @@ Install the Service client library for JavaScript with `npm`:
 npm install regex-constraint
 ```
 
-### Create and authenticate a `RegexConstraint`
 
-To create a client object to access the Service API, you will need the `endpoint` of your Service resource and a `credential`.
 ## Key concepts
 
 ### RegexConstraint

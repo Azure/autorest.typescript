@@ -22,9 +22,7 @@ Install the BodyDate client library for JavaScript with `npm`:
 npm install body-date
 ```
 
-### Create and authenticate a `BodyDateClient`
 
-To create a client object to access the BodyDate API, you will need the `endpoint` of your BodyDate resource and a `credential`.
 ## Key concepts
 
 ### BodyDateClient

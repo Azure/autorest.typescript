@@ -22,9 +22,7 @@ Install the MediaTypesV3LRO client library for JavaScript with `npm`:
 npm install media-types-v3-lro-client
 ```
 
-### Create and authenticate a `MediaTypesV3LROClient`
 
-To create a client object to access the MediaTypesV3LRO API, you will need the `endpoint` of your MediaTypesV3LRO resource and a `credential`.
 ## Key concepts
 
 ### MediaTypesV3LROClient

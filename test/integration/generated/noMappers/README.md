@@ -22,9 +22,7 @@ Install the NoMappers client library for JavaScript with `npm`:
 npm install no-mappers
 ```
 
-### Create and authenticate a `NoMappersClient`
 
-To create a client object to access the NoMappers API, you will need the `endpoint` of your NoMappers resource and a `credential`.
 ## Key concepts
 
 ### NoMappersClient

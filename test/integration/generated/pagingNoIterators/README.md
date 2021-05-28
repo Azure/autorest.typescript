@@ -22,9 +22,7 @@ Install the PagingNoIterators client library for JavaScript with `npm`:
 npm install paging-no-iterators
 ```
 
-### Create and authenticate a `PagingNoIteratorsClient`
 
-To create a client object to access the PagingNoIterators API, you will need the `endpoint` of your PagingNoIterators resource and a `credential`.
 ## Key concepts
 
 ### PagingNoIteratorsClient

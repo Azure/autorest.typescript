@@ -22,9 +22,7 @@ Install the XmlService client library for JavaScript with `npm`:
 npm install xml-service
 ```
 
-### Create and authenticate a `XmlServiceClient`
 
-To create a client object to access the XmlService API, you will need the `endpoint` of your XmlService resource and a `credential`.
 ## Key concepts
 
 ### XmlServiceClient

@@ -22,9 +22,7 @@ Install the NoOperations client library for JavaScript with `npm`:
 npm install no-operation
 ```
 
-### Create and authenticate a `NoOperationsClient`
 
-To create a client object to access the NoOperations API, you will need the `endpoint` of your NoOperations resource and a `credential`.
 ## Key concepts
 
 ### NoOperationsClient

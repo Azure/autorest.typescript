@@ -22,9 +22,7 @@ Install the UrlMulti client library for JavaScript with `npm`:
 npm install url-multi
 ```
 
-### Create and authenticate a `UrlMultiClient`
 
-To create a client object to access the UrlMulti API, you will need the `endpoint` of your UrlMulti resource and a `credential`.
 ## Key concepts
 
 ### UrlMultiClient

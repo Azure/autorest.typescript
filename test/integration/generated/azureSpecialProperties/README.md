@@ -22,9 +22,7 @@ Install the AzureSpecialProperties client library for JavaScript with `npm`:
 npm install azure-special-properties
 ```
 
-### Create and authenticate a `AzureSpecialPropertiesClient`
 
-To create a client object to access the AzureSpecialProperties API, you will need the `endpoint` of your AzureSpecialProperties resource and a `credential`.
 ## Key concepts
 
 ### AzureSpecialPropertiesClient

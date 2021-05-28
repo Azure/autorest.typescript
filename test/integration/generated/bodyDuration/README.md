@@ -22,9 +22,7 @@ Install the BodyDuration client library for JavaScript with `npm`:
 npm install body-duration
 ```
 
-### Create and authenticate a `BodyDurationClient`
 
-To create a client object to access the BodyDuration API, you will need the `endpoint` of your BodyDuration resource and a `credential`.
 ## Key concepts
 
 ### BodyDurationClient

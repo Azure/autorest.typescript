@@ -22,9 +22,7 @@ Install the BodyInteger client library for JavaScript with `npm`:
 npm install body-integer
 ```
 
-### Create and authenticate a `BodyIntegerClient`
 
-To create a client object to access the BodyInteger API, you will need the `endpoint` of your BodyInteger resource and a `credential`.
 ## Key concepts
 
 ### BodyIntegerClient

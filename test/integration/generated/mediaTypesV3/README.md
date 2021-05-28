@@ -22,9 +22,7 @@ Install the MediaTypesV3 client library for JavaScript with `npm`:
 npm install media-types-v3-client
 ```
 
-### Create and authenticate a `MediaTypesV3Client`
 
-To create a client object to access the MediaTypesV3 API, you will need the `endpoint` of your MediaTypesV3 resource and a `credential`.
 ## Key concepts
 
 ### MediaTypesV3Client

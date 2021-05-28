@@ -22,9 +22,7 @@ Install the BodyComplex client library for JavaScript with `npm`:
 npm install body-complex
 ```
 
-### Create and authenticate a `BodyComplexClient`
 
-To create a client object to access the BodyComplex API, you will need the `endpoint` of your BodyComplex resource and a `credential`.
 ## Key concepts
 
 ### BodyComplexClient

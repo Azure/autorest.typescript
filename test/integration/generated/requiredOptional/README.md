@@ -22,9 +22,7 @@ Install the RequiredOptional client library for JavaScript with `npm`:
 npm install required-optional
 ```
 
-### Create and authenticate a `RequiredOptionalClient`
 
-To create a client object to access the RequiredOptional API, you will need the `endpoint` of your RequiredOptional resource and a `credential`.
 ## Key concepts
 
 ### RequiredOptionalClient

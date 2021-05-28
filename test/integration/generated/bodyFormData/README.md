@@ -22,9 +22,7 @@ Install the BodyFormData client library for JavaScript with `npm`:
 npm install body-formdata
 ```
 
-### Create and authenticate a `BodyFormDataClient`
 
-To create a client object to access the BodyFormData API, you will need the `endpoint` of your BodyFormData resource and a `credential`.
 ## Key concepts
 
 ### BodyFormDataClient

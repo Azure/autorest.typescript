@@ -22,9 +22,7 @@ Install the XmsErrorResponses client library for JavaScript with `npm`:
 npm install xms-error-responses
 ```
 
-### Create and authenticate a `XmsErrorResponsesClient`
 
-To create a client object to access the XmsErrorResponses API, you will need the `endpoint` of your XmsErrorResponses resource and a `credential`.
 ## Key concepts
 
 ### XmsErrorResponsesClient

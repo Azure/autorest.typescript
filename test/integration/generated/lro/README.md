@@ -22,9 +22,7 @@ Install the LRO client library for JavaScript with `npm`:
 npm install lro
 ```
 
-### Create and authenticate a `LROClient`
 
-To create a client object to access the LRO API, you will need the `endpoint` of your LRO resource and a `credential`.
 ## Key concepts
 
 ### LROClient

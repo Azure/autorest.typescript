@@ -22,9 +22,7 @@ Install the ArrayConstraints client library for JavaScript with `npm`:
 npm install array-constraints-client
 ```
 
-### Create and authenticate a `ArrayConstraintsClient`
 
-To create a client object to access the ArrayConstraints API, you will need the `endpoint` of your ArrayConstraints resource and a `credential`.
 ## Key concepts
 
 ### ArrayConstraintsClient

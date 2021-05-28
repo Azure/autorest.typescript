@@ -22,9 +22,7 @@ Install the AdditionalProperties client library for JavaScript with `npm`:
 npm install additional-properties
 ```
 
-### Create and authenticate a `AdditionalPropertiesClient`
 
-To create a client object to access the AdditionalProperties API, you will need the `endpoint` of your AdditionalProperties resource and a `credential`.
 ## Key concepts
 
 ### AdditionalPropertiesClient

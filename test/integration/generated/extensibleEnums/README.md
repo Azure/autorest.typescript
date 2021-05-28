@@ -22,9 +22,7 @@ Install the ExtensibleEnums client library for JavaScript with `npm`:
 npm install extensible-enums
 ```
 
-### Create and authenticate a `ExtensibleEnumsClient`
 
-To create a client object to access the ExtensibleEnums API, you will need the `endpoint` of your ExtensibleEnums resource and a `credential`.
 ## Key concepts
 
 ### ExtensibleEnumsClient

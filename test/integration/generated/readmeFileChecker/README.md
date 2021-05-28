@@ -26,11 +26,6 @@ Install the Azure KeyVault client library for JavaScript with `npm`:
 npm install @azure/keyvault-secrets
 ```
 
-### Create and authenticate a `KeyVaultClient`
-
-To create a client object to access the Azure KeyVault API, you will need the `endpoint` of your Azure KeyVault resource and a `credential`. The Azure KeyVault client can use Azure Active Directory credentials to authenticate.
-You can find the endpoint for your Azure KeyVault resource in the [Azure Portal][azure_portal].
-
 
 ## Key concepts
 

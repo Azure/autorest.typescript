@@ -22,9 +22,7 @@ Install the Uuid client library for JavaScript with `npm`:
 npm install uuid
 ```
 
-### Create and authenticate a `UuidClient`
 
-To create a client object to access the Uuid API, you will need the `endpoint` of your Uuid resource and a `credential`.
 ## Key concepts
 
 ### UuidClient

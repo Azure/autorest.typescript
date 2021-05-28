@@ -22,9 +22,7 @@ Install the MapperRequired client library for JavaScript with `npm`:
 npm install mapperrequired
 ```
 
-### Create and authenticate a `MapperRequiredClient`
 
-To create a client object to access the MapperRequired API, you will need the `endpoint` of your MapperRequired resource and a `credential`.
 ## Key concepts
 
 ### MapperRequiredClient

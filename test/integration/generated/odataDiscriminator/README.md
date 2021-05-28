@@ -22,9 +22,7 @@ Install the ODataDiscriminator client library for JavaScript with `npm`:
 npm install odata-discriminator
 ```
 
-### Create and authenticate a `ODataDiscriminatorClient`
 
-To create a client object to access the ODataDiscriminator API, you will need the `endpoint` of your ODataDiscriminator resource and a `credential`.
 ## Key concepts
 
 ### ODataDiscriminatorClient

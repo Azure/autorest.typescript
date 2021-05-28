@@ -22,9 +22,7 @@ Install the CustomUrlMoreOptions client library for JavaScript with `npm`:
 npm install custom-url-MoreOptions
 ```
 
-### Create and authenticate a `CustomUrlMoreOptionsClient`
 
-To create a client object to access the CustomUrlMoreOptions API, you will need the `endpoint` of your CustomUrlMoreOptions resource and a `credential`.
 ## Key concepts
 
 ### CustomUrlMoreOptionsClient

@@ -22,9 +22,7 @@ Install the SubscriptionIdApiVersion client library for JavaScript with `npm`:
 npm install subscriptionid-apiversion
 ```
 
-### Create and authenticate a `SubscriptionIdApiVersionClient`
 
-To create a client object to access the SubscriptionIdApiVersion API, you will need the `endpoint` of your SubscriptionIdApiVersion resource and a `credential`.
 ## Key concepts
 
 ### SubscriptionIdApiVersionClient

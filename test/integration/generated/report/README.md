@@ -22,9 +22,7 @@ Install the Report client library for JavaScript with `npm`:
 npm install zzzReport
 ```
 
-### Create and authenticate a `ReportClient`
 
-To create a client object to access the Report API, you will need the `endpoint` of your Report resource and a `credential`.
 ## Key concepts
 
 ### ReportClient

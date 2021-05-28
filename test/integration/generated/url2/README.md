@@ -22,9 +22,7 @@ Install the Url client library for JavaScript with `npm`:
 npm install url
 ```
 
-### Create and authenticate a `UrlClient`
 
-To create a client object to access the Url API, you will need the `endpoint` of your Url resource and a `credential`.
 ## Key concepts
 
 ### UrlClient

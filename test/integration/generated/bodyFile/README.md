@@ -22,9 +22,7 @@ Install the BodyFile client library for JavaScript with `npm`:
 npm install body-file
 ```
 
-### Create and authenticate a `BodyFileClient`
 
-To create a client object to access the BodyFile API, you will need the `endpoint` of your BodyFile resource and a `credential`.
 ## Key concepts
 
 ### BodyFileClient

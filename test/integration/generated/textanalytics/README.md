@@ -22,9 +22,7 @@ Install the Generated client library for JavaScript with `npm`:
 npm install textanalytics
 ```
 
-### Create and authenticate a `GeneratedClient`
 
-To create a client object to access the Generated API, you will need the `endpoint` of your Generated resource and a `credential`.
 ## Key concepts
 
 ### GeneratedClient

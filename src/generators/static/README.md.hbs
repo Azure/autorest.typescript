@@ -61,9 +61,7 @@ const { {{ clientClassName }} } = require("{{ clientPackageName }}");
 const { DefaultAzureCredential } = require("@azure/identity");
 const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
 ```
-{{/if}}
-{{/if}}
-
+{{/if}}{{/if}}
 ## Key concepts
 
 ### {{ clientClassName }}

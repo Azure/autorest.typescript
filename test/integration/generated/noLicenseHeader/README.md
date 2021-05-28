@@ -22,9 +22,7 @@ Install the NoLicenseHeader client library for JavaScript with `npm`:
 npm install nolicense-header
 ```
 
-### Create and authenticate a `NoLicenseHeaderClient`
 
-To create a client object to access the NoLicenseHeader API, you will need the `endpoint` of your NoLicenseHeader resource and a `credential`.
 ## Key concepts
 
 ### NoLicenseHeaderClient

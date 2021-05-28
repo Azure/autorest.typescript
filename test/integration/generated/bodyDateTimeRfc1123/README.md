@@ -22,9 +22,7 @@ Install the BodyDateTimeRfc1123 client library for JavaScript with `npm`:
 npm install body-datetime-rfc1123
 ```
 
-### Create and authenticate a `BodyDateTimeRfc1123Client`
 
-To create a client object to access the BodyDateTimeRfc1123 API, you will need the `endpoint` of your BodyDateTimeRfc1123 resource and a `credential`.
 ## Key concepts
 
 ### BodyDateTimeRfc1123Client
