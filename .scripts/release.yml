@@ -60,7 +60,7 @@ stages:
                     - script: |
                         cd $(Pipeline.Workspace)/packages
                         npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
-                        npm publish $(TAR_NAME) --access public --tag latest --dry-run
+                        npm publish $(TAR_NAME) --access public --tag latest
                         npm config delete //registry.npmjs.org/:_authToken
                       displayName: "Publish to NPM"
 
