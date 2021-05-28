@@ -1,6 +1,6 @@
-# ModelFlatteningClient library for JavaScript
+# ModelFlattening client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for ModelFlatteningClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ModelFlattening client.
 
 Resource Flattening for AutoRest
 
@@ -10,13 +10,13 @@ Resource Flattening for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `model-flattening` package
 
-Install the ModelFlatteningClient library for JavaScript with `npm`:
+Install the ModelFlattening client library for JavaScript with `npm`:
 
 ```bash
 npm install model-flattening
@@ -29,5 +29,5 @@ To create a client object to access the ModelFlattening API, you will need the `
 
 ### ModelFlatteningClient
 
-`ModelFlatteningClient` is the primary interface for developers using the ModelFlatteningClient library. Explore the methods on this client object to understand the different features of the ModelFlattening service that you can access.
+`ModelFlatteningClient` is the primary interface for developers using the ModelFlattening client library. Explore the methods on this client object to understand the different features of the ModelFlattening service that you can access.
 

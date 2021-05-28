@@ -1,6 +1,6 @@
-# NoMappersClient library for JavaScript
+# NoMappers client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for NoMappersClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NoMappers client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `no-mappers` package
 
-Install the NoMappersClient library for JavaScript with `npm`:
+Install the NoMappers client library for JavaScript with `npm`:
 
 ```bash
 npm install no-mappers
@@ -29,5 +29,5 @@ To create a client object to access the NoMappers API, you will need the `endpoi
 
 ### NoMappersClient
 
-`NoMappersClient` is the primary interface for developers using the NoMappersClient library. Explore the methods on this client object to understand the different features of the NoMappers service that you can access.
+`NoMappersClient` is the primary interface for developers using the NoMappers client library. Explore the methods on this client object to understand the different features of the NoMappers service that you can access.
 

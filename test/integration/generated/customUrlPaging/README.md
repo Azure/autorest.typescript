@@ -1,6 +1,6 @@
-# CustomUrlPagingClient library for JavaScript
+# CustomUrlPaging client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for CustomUrlPagingClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for CustomUrlPaging client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `custom-url-paging` package
 
-Install the CustomUrlPagingClient library for JavaScript with `npm`:
+Install the CustomUrlPaging client library for JavaScript with `npm`:
 
 ```bash
 npm install custom-url-paging
@@ -29,5 +29,5 @@ To create a client object to access the CustomUrlPaging API, you will need the `
 
 ### CustomUrlPagingClient
 
-`CustomUrlPagingClient` is the primary interface for developers using the CustomUrlPagingClient library. Explore the methods on this client object to understand the different features of the CustomUrlPaging service that you can access.
+`CustomUrlPagingClient` is the primary interface for developers using the CustomUrlPaging client library. Explore the methods on this client object to understand the different features of the CustomUrlPaging service that you can access.
 

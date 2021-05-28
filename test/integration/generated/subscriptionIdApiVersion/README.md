@@ -1,6 +1,6 @@
-# SubscriptionIdApiVersionClient library for JavaScript
+# SubscriptionIdApiVersion client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for SubscriptionIdApiVersionClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SubscriptionIdApiVersion client.
 
 Some cool documentation.
 
@@ -10,13 +10,13 @@ Some cool documentation.
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `subscriptionid-apiversion` package
 
-Install the SubscriptionIdApiVersionClient library for JavaScript with `npm`:
+Install the SubscriptionIdApiVersion client library for JavaScript with `npm`:
 
 ```bash
 npm install subscriptionid-apiversion
@@ -29,5 +29,5 @@ To create a client object to access the SubscriptionIdApiVersion API, you will n
 
 ### SubscriptionIdApiVersionClient
 
-`SubscriptionIdApiVersionClient` is the primary interface for developers using the SubscriptionIdApiVersionClient library. Explore the methods on this client object to understand the different features of the SubscriptionIdApiVersion service that you can access.
+`SubscriptionIdApiVersionClient` is the primary interface for developers using the SubscriptionIdApiVersion client library. Explore the methods on this client object to understand the different features of the SubscriptionIdApiVersion service that you can access.
 

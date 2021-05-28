@@ -1,6 +1,6 @@
-# LroParametrizedEndpointsClient library for JavaScript
+# LroParametrizedEndpoints client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for LroParametrizedEndpointsClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for LroParametrizedEndpoints client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `lro-parameterized-endpoints` package
 
-Install the LroParametrizedEndpointsClient library for JavaScript with `npm`:
+Install the LroParametrizedEndpoints client library for JavaScript with `npm`:
 
 ```bash
 npm install lro-parameterized-endpoints
@@ -29,5 +29,5 @@ To create a client object to access the LroParametrizedEndpoints API, you will n
 
 ### LroParametrizedEndpointsClient
 
-`LroParametrizedEndpointsClient` is the primary interface for developers using the LroParametrizedEndpointsClient library. Explore the methods on this client object to understand the different features of the LroParametrizedEndpoints service that you can access.
+`LroParametrizedEndpointsClient` is the primary interface for developers using the LroParametrizedEndpoints client library. Explore the methods on this client object to understand the different features of the LroParametrizedEndpoints service that you can access.
 

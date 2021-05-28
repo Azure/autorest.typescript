@@ -1,6 +1,6 @@
-# BodyBooleanClient library for JavaScript
+# BodyBoolean client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyBooleanClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyBoolean client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-boolean` package
 
-Install the BodyBooleanClient library for JavaScript with `npm`:
+Install the BodyBoolean client library for JavaScript with `npm`:
 
 ```bash
 npm install body-boolean
@@ -29,5 +29,5 @@ To create a client object to access the BodyBoolean API, you will need the `endp
 
 ### BodyBooleanClient
 
-`BodyBooleanClient` is the primary interface for developers using the BodyBooleanClient library. Explore the methods on this client object to understand the different features of the BodyBoolean service that you can access.
+`BodyBooleanClient` is the primary interface for developers using the BodyBoolean client library. Explore the methods on this client object to understand the different features of the BodyBoolean service that you can access.
 

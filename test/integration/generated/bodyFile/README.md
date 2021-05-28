@@ -1,6 +1,6 @@
-# BodyFileClient library for JavaScript
+# BodyFile client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyFileClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyFile client.
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest Swagger BAT
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-file` package
 
-Install the BodyFileClient library for JavaScript with `npm`:
+Install the BodyFile client library for JavaScript with `npm`:
 
 ```bash
 npm install body-file
@@ -29,5 +29,5 @@ To create a client object to access the BodyFile API, you will need the `endpoin
 
 ### BodyFileClient
 
-`BodyFileClient` is the primary interface for developers using the BodyFileClient library. Explore the methods on this client object to understand the different features of the BodyFile service that you can access.
+`BodyFileClient` is the primary interface for developers using the BodyFile client library. Explore the methods on this client object to understand the different features of the BodyFile service that you can access.
 

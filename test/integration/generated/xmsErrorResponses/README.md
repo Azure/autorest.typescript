@@ -1,6 +1,6 @@
-# XmsErrorResponsesClient library for JavaScript
+# XmsErrorResponses client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for XmsErrorResponsesClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for XmsErrorResponses client.
 
 XMS Error Response Extensions
 
@@ -10,13 +10,13 @@ XMS Error Response Extensions
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `xms-error-responses` package
 
-Install the XmsErrorResponsesClient library for JavaScript with `npm`:
+Install the XmsErrorResponses client library for JavaScript with `npm`:
 
 ```bash
 npm install xms-error-responses
@@ -29,5 +29,5 @@ To create a client object to access the XmsErrorResponses API, you will need the
 
 ### XmsErrorResponsesClient
 
-`XmsErrorResponsesClient` is the primary interface for developers using the XmsErrorResponsesClient library. Explore the methods on this client object to understand the different features of the XmsErrorResponses service that you can access.
+`XmsErrorResponsesClient` is the primary interface for developers using the XmsErrorResponses client library. Explore the methods on this client object to understand the different features of the XmsErrorResponses service that you can access.
 

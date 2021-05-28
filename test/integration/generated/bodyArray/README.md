@@ -1,6 +1,6 @@
-# BodyArrayClient library for JavaScript
+# BodyArray client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyArrayClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyArray client.
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest Swagger BAT
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-array` package
 
-Install the BodyArrayClient library for JavaScript with `npm`:
+Install the BodyArray client library for JavaScript with `npm`:
 
 ```bash
 npm install body-array
@@ -29,5 +29,5 @@ To create a client object to access the BodyArray API, you will need the `endpoi
 
 ### BodyArrayClient
 
-`BodyArrayClient` is the primary interface for developers using the BodyArrayClient library. Explore the methods on this client object to understand the different features of the BodyArray service that you can access.
+`BodyArrayClient` is the primary interface for developers using the BodyArray client library. Explore the methods on this client object to understand the different features of the BodyArray service that you can access.
 

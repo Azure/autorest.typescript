@@ -1,6 +1,6 @@
-# StorageFileShareClient library for JavaScript
+# StorageFileShare client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for StorageFileShareClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for StorageFileShare client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `storagefileshare` package
 
-Install the StorageFileShareClient library for JavaScript with `npm`:
+Install the StorageFileShare client library for JavaScript with `npm`:
 
 ```bash
 npm install storagefileshare
@@ -29,5 +29,5 @@ To create a client object to access the StorageFileShare API, you will need the 
 
 ### StorageFileShareClient
 
-`StorageFileShareClient` is the primary interface for developers using the StorageFileShareClient library. Explore the methods on this client object to understand the different features of the StorageFileShare service that you can access.
+`StorageFileShareClient` is the primary interface for developers using the StorageFileShare client library. Explore the methods on this client object to understand the different features of the StorageFileShare service that you can access.
 

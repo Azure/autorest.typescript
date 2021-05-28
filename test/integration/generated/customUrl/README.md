@@ -1,6 +1,6 @@
-# CustomUrlClient library for JavaScript
+# CustomUrl client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for CustomUrlClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for CustomUrl client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `custom-url` package
 
-Install the CustomUrlClient library for JavaScript with `npm`:
+Install the CustomUrl client library for JavaScript with `npm`:
 
 ```bash
 npm install custom-url
@@ -29,5 +29,5 @@ To create a client object to access the CustomUrl API, you will need the `endpoi
 
 ### CustomUrlClient
 
-`CustomUrlClient` is the primary interface for developers using the CustomUrlClient library. Explore the methods on this client object to understand the different features of the CustomUrl service that you can access.
+`CustomUrlClient` is the primary interface for developers using the CustomUrl client library. Explore the methods on this client object to understand the different features of the CustomUrl service that you can access.
 

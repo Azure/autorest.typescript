@@ -1,6 +1,6 @@
-# UrlMultiClient library for JavaScript
+# UrlMulti client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for UrlMultiClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for UrlMulti client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `url-multi` package
 
-Install the UrlMultiClient library for JavaScript with `npm`:
+Install the UrlMulti client library for JavaScript with `npm`:
 
 ```bash
 npm install url-multi
@@ -29,5 +29,5 @@ To create a client object to access the UrlMulti API, you will need the `endpoin
 
 ### UrlMultiClient
 
-`UrlMultiClient` is the primary interface for developers using the UrlMultiClient library. Explore the methods on this client object to understand the different features of the UrlMulti service that you can access.
+`UrlMultiClient` is the primary interface for developers using the UrlMulti client library. Explore the methods on this client object to understand the different features of the UrlMulti service that you can access.
 

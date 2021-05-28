@@ -1,6 +1,6 @@
-# UrlClient library for JavaScript
+# Url client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for UrlClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Url client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `url` package
 
-Install the UrlClient library for JavaScript with `npm`:
+Install the Url client library for JavaScript with `npm`:
 
 ```bash
 npm install url
@@ -29,5 +29,5 @@ To create a client object to access the Url API, you will need the `endpoint` of
 
 ### UrlClient
 
-`UrlClient` is the primary interface for developers using the UrlClient library. Explore the methods on this client object to understand the different features of the Url service that you can access.
+`UrlClient` is the primary interface for developers using the Url client library. Explore the methods on this client object to understand the different features of the Url service that you can access.
 

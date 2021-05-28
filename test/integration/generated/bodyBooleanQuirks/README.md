@@ -1,6 +1,6 @@
-# BodyBooleanQuirksClient library for JavaScript
+# BodyBooleanQuirks client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyBooleanQuirksClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyBooleanQuirks client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-boolean-quirks` package
 
-Install the BodyBooleanQuirksClient library for JavaScript with `npm`:
+Install the BodyBooleanQuirks client library for JavaScript with `npm`:
 
 ```bash
 npm install body-boolean-quirks
@@ -29,5 +29,5 @@ To create a client object to access the BodyBooleanQuirks API, you will need the
 
 ### BodyBooleanQuirksClient
 
-`BodyBooleanQuirksClient` is the primary interface for developers using the BodyBooleanQuirksClient library. Explore the methods on this client object to understand the different features of the BodyBooleanQuirks service that you can access.
+`BodyBooleanQuirksClient` is the primary interface for developers using the BodyBooleanQuirks client library. Explore the methods on this client object to understand the different features of the BodyBooleanQuirks service that you can access.
 

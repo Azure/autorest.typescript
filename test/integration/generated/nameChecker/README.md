@@ -26,11 +26,6 @@ Install the Azure Search client library for JavaScript with `npm`:
 npm install @azure/search-documents
 ```
 
-### Create and authenticate a `SearchClient`
-
-To create a client object to access the Azure Search API, you will need the `endpoint` of your Azure Search resource and a `credential`. The Azure Search client can use Azure Active Directory credentials to authenticate.
-You can find the endpoint for your Azure Search resource in the [Azure Portal][azure_portal].
-
 
 ## Key concepts
 

@@ -1,6 +1,6 @@
-# NoOperationsClient library for JavaScript
+# NoOperations client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for NoOperationsClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NoOperations client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `no-operation` package
 
-Install the NoOperationsClient library for JavaScript with `npm`:
+Install the NoOperations client library for JavaScript with `npm`:
 
 ```bash
 npm install no-operation
@@ -29,5 +29,5 @@ To create a client object to access the NoOperations API, you will need the `end
 
 ### NoOperationsClient
 
-`NoOperationsClient` is the primary interface for developers using the NoOperationsClient library. Explore the methods on this client object to understand the different features of the NoOperations service that you can access.
+`NoOperationsClient` is the primary interface for developers using the NoOperations client library. Explore the methods on this client object to understand the different features of the NoOperations service that you can access.
 

@@ -1,6 +1,6 @@
-# ObjectTypeClient library for JavaScript
+# ObjectType client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for ObjectTypeClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ObjectType client.
 
 Service client for testing basic type: object swaggers
 
@@ -10,13 +10,13 @@ Service client for testing basic type: object swaggers
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `object-type` package
 
-Install the ObjectTypeClient library for JavaScript with `npm`:
+Install the ObjectType client library for JavaScript with `npm`:
 
 ```bash
 npm install object-type
@@ -29,5 +29,5 @@ To create a client object to access the ObjectType API, you will need the `endpo
 
 ### ObjectTypeClient
 
-`ObjectTypeClient` is the primary interface for developers using the ObjectTypeClient library. Explore the methods on this client object to understand the different features of the ObjectType service that you can access.
+`ObjectTypeClient` is the primary interface for developers using the ObjectType client library. Explore the methods on this client object to understand the different features of the ObjectType service that you can access.
 

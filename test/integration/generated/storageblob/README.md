@@ -1,6 +1,6 @@
-# StorageBlobClient library for JavaScript
+# StorageBlob client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for StorageBlobClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for StorageBlob client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `storageblob` package
 
-Install the StorageBlobClient library for JavaScript with `npm`:
+Install the StorageBlob client library for JavaScript with `npm`:
 
 ```bash
 npm install storageblob
@@ -29,5 +29,5 @@ To create a client object to access the StorageBlob API, you will need the `endp
 
 ### StorageBlobClient
 
-`StorageBlobClient` is the primary interface for developers using the StorageBlobClient library. Explore the methods on this client object to understand the different features of the StorageBlob service that you can access.
+`StorageBlobClient` is the primary interface for developers using the StorageBlob client library. Explore the methods on this client object to understand the different features of the StorageBlob service that you can access.
 

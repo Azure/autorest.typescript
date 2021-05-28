@@ -1,6 +1,6 @@
-# BodyDateTimeClient library for JavaScript
+# BodyDateTime client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyDateTimeClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyDateTime client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-datetime` package
 
-Install the BodyDateTimeClient library for JavaScript with `npm`:
+Install the BodyDateTime client library for JavaScript with `npm`:
 
 ```bash
 npm install body-datetime
@@ -29,5 +29,5 @@ To create a client object to access the BodyDateTime API, you will need the `end
 
 ### BodyDateTimeClient
 
-`BodyDateTimeClient` is the primary interface for developers using the BodyDateTimeClient library. Explore the methods on this client object to understand the different features of the BodyDateTime service that you can access.
+`BodyDateTimeClient` is the primary interface for developers using the BodyDateTime client library. Explore the methods on this client object to understand the different features of the BodyDateTime service that you can access.
 

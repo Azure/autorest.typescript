@@ -1,6 +1,6 @@
-# AdditionalPropertiesClient library for JavaScript
+# AdditionalProperties client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for AdditionalPropertiesClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AdditionalProperties client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `additional-properties` package
 
-Install the AdditionalPropertiesClient library for JavaScript with `npm`:
+Install the AdditionalProperties client library for JavaScript with `npm`:
 
 ```bash
 npm install additional-properties
@@ -29,5 +29,5 @@ To create a client object to access the AdditionalProperties API, you will need 
 
 ### AdditionalPropertiesClient
 
-`AdditionalPropertiesClient` is the primary interface for developers using the AdditionalPropertiesClient library. Explore the methods on this client object to understand the different features of the AdditionalProperties service that you can access.
+`AdditionalPropertiesClient` is the primary interface for developers using the AdditionalProperties client library. Explore the methods on this client object to understand the different features of the AdditionalProperties service that you can access.
 

@@ -1,6 +1,6 @@
-# OptionalNullClient library for JavaScript
+# OptionalNull client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for OptionalNullClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for OptionalNull client.
 
 
 
@@ -10,13 +10,13 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `optionalnull` package
 
-Install the OptionalNullClient library for JavaScript with `npm`:
+Install the OptionalNull client library for JavaScript with `npm`:
 
 ```bash
 npm install optionalnull
@@ -29,5 +29,5 @@ To create a client object to access the OptionalNull API, you will need the `end
 
 ### OptionalNullClient
 
-`OptionalNullClient` is the primary interface for developers using the OptionalNullClient library. Explore the methods on this client object to understand the different features of the OptionalNull service that you can access.
+`OptionalNullClient` is the primary interface for developers using the OptionalNull client library. Explore the methods on this client object to understand the different features of the OptionalNull service that you can access.
 

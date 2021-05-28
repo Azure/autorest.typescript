@@ -1,6 +1,6 @@
-# BodyDateTimeRfc1123Client library for JavaScript
+# BodyDateTimeRfc1123 client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyDateTimeRfc1123Client.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyDateTimeRfc1123 client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-datetime-rfc1123` package
 
-Install the BodyDateTimeRfc1123Client library for JavaScript with `npm`:
+Install the BodyDateTimeRfc1123 client library for JavaScript with `npm`:
 
 ```bash
 npm install body-datetime-rfc1123
@@ -29,5 +29,5 @@ To create a client object to access the BodyDateTimeRfc1123 API, you will need t
 
 ### BodyDateTimeRfc1123Client
 
-`BodyDateTimeRfc1123Client` is the primary interface for developers using the BodyDateTimeRfc1123Client library. Explore the methods on this client object to understand the different features of the BodyDateTimeRfc1123 service that you can access.
+`BodyDateTimeRfc1123Client` is the primary interface for developers using the BodyDateTimeRfc1123 client library. Explore the methods on this client object to understand the different features of the BodyDateTimeRfc1123 service that you can access.
 

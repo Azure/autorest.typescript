@@ -1,6 +1,6 @@
-# CustomUrlMoreOptionsClient library for JavaScript
+# CustomUrlMoreOptions client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for CustomUrlMoreOptionsClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for CustomUrlMoreOptions client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `custom-url-MoreOptions` package
 
-Install the CustomUrlMoreOptionsClient library for JavaScript with `npm`:
+Install the CustomUrlMoreOptions client library for JavaScript with `npm`:
 
 ```bash
 npm install custom-url-MoreOptions
@@ -29,5 +29,5 @@ To create a client object to access the CustomUrlMoreOptions API, you will need 
 
 ### CustomUrlMoreOptionsClient
 
-`CustomUrlMoreOptionsClient` is the primary interface for developers using the CustomUrlMoreOptionsClient library. Explore the methods on this client object to understand the different features of the CustomUrlMoreOptions service that you can access.
+`CustomUrlMoreOptionsClient` is the primary interface for developers using the CustomUrlMoreOptions client library. Explore the methods on this client object to understand the different features of the CustomUrlMoreOptions service that you can access.
 

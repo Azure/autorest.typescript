@@ -1,6 +1,6 @@
-# BodyFormDataClient library for JavaScript
+# BodyFormData client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyFormDataClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyFormData client.
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest Swagger BAT
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-formdata` package
 
-Install the BodyFormDataClient library for JavaScript with `npm`:
+Install the BodyFormData client library for JavaScript with `npm`:
 
 ```bash
 npm install body-formdata
@@ -29,5 +29,5 @@ To create a client object to access the BodyFormData API, you will need the `end
 
 ### BodyFormDataClient
 
-`BodyFormDataClient` is the primary interface for developers using the BodyFormDataClient library. Explore the methods on this client object to understand the different features of the BodyFormData service that you can access.
+`BodyFormDataClient` is the primary interface for developers using the BodyFormData client library. Explore the methods on this client object to understand the different features of the BodyFormData service that you can access.
 

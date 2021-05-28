@@ -1,6 +1,6 @@
-# ValidationClient library for JavaScript
+# Validation client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for ValidationClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Validation client.
 
 Test Infrastructure for AutoRest. No server backend exists for these tests.
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest. No server backend exists for these tests.
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `validation` package
 
-Install the ValidationClient library for JavaScript with `npm`:
+Install the Validation client library for JavaScript with `npm`:
 
 ```bash
 npm install validation
@@ -29,5 +29,5 @@ To create a client object to access the Validation API, you will need the `endpo
 
 ### ValidationClient
 
-`ValidationClient` is the primary interface for developers using the ValidationClient library. Explore the methods on this client object to understand the different features of the Validation service that you can access.
+`ValidationClient` is the primary interface for developers using the Validation client library. Explore the methods on this client object to understand the different features of the Validation service that you can access.
 

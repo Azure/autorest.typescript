@@ -1,6 +1,6 @@
-# HttpInfrastructureClient library for JavaScript
+# HttpInfrastructure client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for HttpInfrastructureClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for HttpInfrastructure client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `httpInfrastructure` package
 
-Install the HttpInfrastructureClient library for JavaScript with `npm`:
+Install the HttpInfrastructure client library for JavaScript with `npm`:
 
 ```bash
 npm install httpInfrastructure
@@ -29,5 +29,5 @@ To create a client object to access the HttpInfrastructure API, you will need th
 
 ### HttpInfrastructureClient
 
-`HttpInfrastructureClient` is the primary interface for developers using the HttpInfrastructureClient library. Explore the methods on this client object to understand the different features of the HttpInfrastructure service that you can access.
+`HttpInfrastructureClient` is the primary interface for developers using the HttpInfrastructure client library. Explore the methods on this client object to understand the different features of the HttpInfrastructure service that you can access.
 

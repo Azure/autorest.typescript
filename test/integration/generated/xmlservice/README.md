@@ -1,6 +1,6 @@
-# XmlServiceClient library for JavaScript
+# XmlService client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for XmlServiceClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for XmlService client.
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest Swagger BAT
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `xml-service` package
 
-Install the XmlServiceClient library for JavaScript with `npm`:
+Install the XmlService client library for JavaScript with `npm`:
 
 ```bash
 npm install xml-service
@@ -29,5 +29,5 @@ To create a client object to access the XmlService API, you will need the `endpo
 
 ### XmlServiceClient
 
-`XmlServiceClient` is the primary interface for developers using the XmlServiceClient library. Explore the methods on this client object to understand the different features of the XmlService service that you can access.
+`XmlServiceClient` is the primary interface for developers using the XmlService client library. Explore the methods on this client object to understand the different features of the XmlService service that you can access.
 

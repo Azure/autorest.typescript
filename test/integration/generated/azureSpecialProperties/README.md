@@ -1,6 +1,6 @@
-# AzureSpecialPropertiesClient library for JavaScript
+# AzureSpecialProperties client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for AzureSpecialPropertiesClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AzureSpecialProperties client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `azure-special-properties` package
 
-Install the AzureSpecialPropertiesClient library for JavaScript with `npm`:
+Install the AzureSpecialProperties client library for JavaScript with `npm`:
 
 ```bash
 npm install azure-special-properties
@@ -29,5 +29,5 @@ To create a client object to access the AzureSpecialProperties API, you will nee
 
 ### AzureSpecialPropertiesClient
 
-`AzureSpecialPropertiesClient` is the primary interface for developers using the AzureSpecialPropertiesClient library. Explore the methods on this client object to understand the different features of the AzureSpecialProperties service that you can access.
+`AzureSpecialPropertiesClient` is the primary interface for developers using the AzureSpecialProperties client library. Explore the methods on this client object to understand the different features of the AzureSpecialProperties service that you can access.
 

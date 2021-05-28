@@ -38,12 +38,13 @@ Install the {{ clientDescriptiveName }} library for JavaScript with `npm`:
 npm install {{ clientPackageName }}
 ```
 
+{{#if azure}}
+{{#if addCredentials}}
 ### Create and authenticate a `{{ clientClassName}}`
 
-To create a client object to access the {{ serviceName }} API, you will need the `endpoint` of your {{ serviceName }} resource and a `credential`.{{#if azure}} The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
+To create a client object to access the {{ serviceName }} API, you will need the `endpoint` of your {{ serviceName }} resource and a `credential`. The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your {{ serviceName }} resource in the [Azure Portal][azure_portal].
 
-{{#if addCredentials}}
 #### Using an Azure Active Directory Credential
 
 You can authenticate with Azure Active Directory using the [Azure Identity library][azure_identity]. To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:

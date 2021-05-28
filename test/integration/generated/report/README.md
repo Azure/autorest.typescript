@@ -1,6 +1,6 @@
-# ReportClient library for JavaScript
+# Report client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for ReportClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Report client.
 
 Test Infrastructure for AutoRest
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `zzzReport` package
 
-Install the ReportClient library for JavaScript with `npm`:
+Install the Report client library for JavaScript with `npm`:
 
 ```bash
 npm install zzzReport
@@ -29,5 +29,5 @@ To create a client object to access the Report API, you will need the `endpoint`
 
 ### ReportClient
 
-`ReportClient` is the primary interface for developers using the ReportClient library. Explore the methods on this client object to understand the different features of the Report service that you can access.
+`ReportClient` is the primary interface for developers using the Report client library. Explore the methods on this client object to understand the different features of the Report service that you can access.
 

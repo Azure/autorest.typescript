@@ -1,6 +1,6 @@
-# GeneratedClient library for JavaScript
+# Generated client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for GeneratedClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Generated client.
 
 TextAnalytics Client
 
@@ -10,13 +10,13 @@ TextAnalytics Client
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `textanalytics` package
 
-Install the GeneratedClient library for JavaScript with `npm`:
+Install the Generated client library for JavaScript with `npm`:
 
 ```bash
 npm install textanalytics
@@ -29,5 +29,5 @@ To create a client object to access the Generated API, you will need the `endpoi
 
 ### GeneratedClient
 
-`GeneratedClient` is the primary interface for developers using the GeneratedClient library. Explore the methods on this client object to understand the different features of the Generated service that you can access.
+`GeneratedClient` is the primary interface for developers using the Generated client library. Explore the methods on this client object to understand the different features of the Generated service that you can access.
 

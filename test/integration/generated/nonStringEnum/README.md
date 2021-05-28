@@ -1,6 +1,6 @@
-# NonStringEnumClient library for JavaScript
+# NonStringEnum client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for NonStringEnumClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NonStringEnum client.
 
 Testing non-string enums.
 
@@ -10,13 +10,13 @@ Testing non-string enums.
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `non-string-num` package
 
-Install the NonStringEnumClient library for JavaScript with `npm`:
+Install the NonStringEnum client library for JavaScript with `npm`:
 
 ```bash
 npm install non-string-num
@@ -29,5 +29,5 @@ To create a client object to access the NonStringEnum API, you will need the `en
 
 ### NonStringEnumClient
 
-`NonStringEnumClient` is the primary interface for developers using the NonStringEnumClient library. Explore the methods on this client object to understand the different features of the NonStringEnum service that you can access.
+`NonStringEnumClient` is the primary interface for developers using the NonStringEnum client library. Explore the methods on this client object to understand the different features of the NonStringEnum service that you can access.
 

@@ -1,6 +1,6 @@
-# mediaTypesWithTracingClient library for JavaScript
+# mediaTypesWithTracing client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for mediaTypesWithTracingClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for mediaTypesWithTracing client.
 
 Play with produces/consumes and media-types in general.
 
@@ -10,13 +10,13 @@ Play with produces/consumes and media-types in general.
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `media-types-service-tracing` package
 
-Install the mediaTypesWithTracingClient library for JavaScript with `npm`:
+Install the mediaTypesWithTracing client library for JavaScript with `npm`:
 
 ```bash
 npm install media-types-service-tracing
@@ -29,5 +29,5 @@ To create a client object to access the mediaTypesWithTracing API, you will need
 
 ### MediaTypesWithTracingClient
 
-`MediaTypesWithTracingClient` is the primary interface for developers using the mediaTypesWithTracingClient library. Explore the methods on this client object to understand the different features of the mediaTypesWithTracing service that you can access.
+`MediaTypesWithTracingClient` is the primary interface for developers using the mediaTypesWithTracing client library. Explore the methods on this client object to understand the different features of the mediaTypesWithTracing service that you can access.
 

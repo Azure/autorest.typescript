@@ -1,6 +1,6 @@
-# PagingNoIteratorsClient library for JavaScript
+# PagingNoIterators client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for PagingNoIteratorsClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for PagingNoIterators client.
 
 Long-running Operation for AutoRest
 
@@ -10,13 +10,13 @@ Long-running Operation for AutoRest
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `paging-no-iterators` package
 
-Install the PagingNoIteratorsClient library for JavaScript with `npm`:
+Install the PagingNoIterators client library for JavaScript with `npm`:
 
 ```bash
 npm install paging-no-iterators
@@ -29,5 +29,5 @@ To create a client object to access the PagingNoIterators API, you will need the
 
 ### PagingNoIteratorsClient
 
-`PagingNoIteratorsClient` is the primary interface for developers using the PagingNoIteratorsClient library. Explore the methods on this client object to understand the different features of the PagingNoIterators service that you can access.
+`PagingNoIteratorsClient` is the primary interface for developers using the PagingNoIterators client library. Explore the methods on this client object to understand the different features of the PagingNoIterators service that you can access.
 

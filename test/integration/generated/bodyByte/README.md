@@ -1,6 +1,6 @@
-# BodyByteClient library for JavaScript
+# BodyByte client library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for BodyByteClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for BodyByte client.
 
 Test Infrastructure for AutoRest Swagger BAT
 
@@ -10,13 +10,13 @@ Test Infrastructure for AutoRest Swagger BAT
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 
 ### Install the `body-byte` package
 
-Install the BodyByteClient library for JavaScript with `npm`:
+Install the BodyByte client library for JavaScript with `npm`:
 
 ```bash
 npm install body-byte
@@ -29,5 +29,5 @@ To create a client object to access the BodyByte API, you will need the `endpoin
 
 ### BodyByteClient
 
-`BodyByteClient` is the primary interface for developers using the BodyByteClient library. Explore the methods on this client object to understand the different features of the BodyByte service that you can access.
+`BodyByteClient` is the primary interface for developers using the BodyByte client library. Explore the methods on this client object to understand the different features of the BodyByte service that you can access.
 
