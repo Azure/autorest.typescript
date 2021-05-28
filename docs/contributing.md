@@ -142,7 +142,7 @@ To debug code generation the flag &#x2013;typescript.debugger can be used
 
 - In order to debug integration tests you need to start the test server, by running:
 
-      npm run start-test-server:v1
+      npm run start-test-server
 
 - Once the Test Server is running
 
