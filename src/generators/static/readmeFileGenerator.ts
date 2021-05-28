@@ -43,6 +43,10 @@ interface Metadata {
   contributingGuideURL?: string;
   /** The name of the project that lives in the repository */
   projectName?: string;
+  /** whether the client accepts standard credentials */
+  addCredentials?: boolean;
+  /** The link to the identity package in the repository */
+  identityPackageURL?: string;
 }
 
 /**
@@ -54,7 +58,8 @@ interface Metadata {
 function createMetadata(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails,
-  azureOutputDirectory?: string
+  azureOutputDirectory?: string,
+  addCredentials?: boolean
 ): Metadata {
   const azureHuh = packageDetails.scopeName === "azure";
   const repoURL = azureHuh
@@ -62,24 +67,33 @@ function createMetadata(
     : undefined;
   const relativePackageSourcePath = azureOutputDirectory;
   const packageSourceURL =
-    repoURL && `${repoURL}/tree/master/${relativePackageSourcePath}`;
+    relativePackageSourcePath &&
+    repoURL &&
+    `${repoURL}/tree/master/${relativePackageSourcePath}`;
   const names = relativePackageSourcePath?.split("/").slice(1);
   const packageParentDirectoryName = names?.[0];
   const packageDirectoryName = names?.[1];
   const clientClassName = clientDetails.name;
   const clientPackageName = packageDetails.name;
-  const title = clientDetails.info?.title ?? clientClassName;
-  const serviceName =
+  const serviceTitle = clientDetails.info?.title ?? clientClassName;
+  const simpleServiceName =
     /**
      * It is a required convention in Azure swaggers for their titles to end with
      * "Client".
      */
-    title.match(/(.*) Client/)?.[1] ??
+    serviceTitle.match(/(.*) Client/)?.[1] ??
     /** I noticed management-plane swaggers do not use spaces in their titles */
-    title.match(/(.*)Client/)?.[1] ??
+    serviceTitle.match(/(.*)Client/)?.[1] ??
     clientClassName.match(/(.*)Client/)?.[1] ??
-    title.match(/(.*) Service/)?.[1] ??
+    serviceTitle.match(/(.*) Service/)?.[1] ??
     "Service";
+  const serviceName = azureHuh
+    ? simpleServiceName.startsWith("Azure")
+      ? simpleServiceName
+      : `Azure ${simpleServiceName}`
+    : simpleServiceName;
+  const identityPackageURL =
+    repoURL && `${repoURL}/tree/master/sdk/identity/identity`;
   return {
     serviceName: serviceName,
     clientPackageName: clientPackageName,
@@ -90,20 +104,20 @@ function createMetadata(
     packageSourceURL: packageSourceURL,
     samplesURL: packageSourceURL && `${packageSourceURL}/samples`,
     impressionURL: azureHuh
-      ? `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
+      ? packageParentDirectoryName &&
+        packageDirectoryName &&
+        `https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2F${packageParentDirectoryName}%2F${packageDirectoryName}%2FREADME.png`
       : undefined,
-    clientDescriptiveName: azureHuh
-      ? title.startsWith("Azure")
-        ? title
-        : `Azure ${title}`
-      : title,
+    clientDescriptiveName: `${serviceName} client`,
     description: clientDetails.info?.description,
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}`
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/master/CONTRIBUTING.md`,
-    projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined
+    projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
+    addCredentials,
+    identityPackageURL
   };
 }
 
@@ -114,7 +128,8 @@ export function generateReadmeFile(
   const {
     packageDetails,
     azureOutputDirectory,
-    generateMetadata
+    generateMetadata,
+    addCredentials
   } = getAutorestOptions();
 
   if (!generateMetadata) {
@@ -124,9 +139,10 @@ export function generateReadmeFile(
   const metadata = createMetadata(
     packageDetails,
     clientDetails,
-    azureOutputDirectory
+    azureOutputDirectory,
+    addCredentials
   );
-  const file = fs.readFileSync("src/generators/static/README.md.hbs", {
+  const file = fs.readFileSync(path.join(__dirname, "README.md.hbs"), {
     encoding: "utf-8"
   });
   const readmeFileContents = hbs.compile(file, { noEscape: true });

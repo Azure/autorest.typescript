@@ -2,7 +2,7 @@
     "name": "@autorest/typescript",
     "version": "1.0.0-beta.1",
     "scripts": {
-        "build": "tsc -p .",
+        "build": "tsc -p . && npm run copyFiles",
         "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
         "check:tree": "ts-node ./test/utils/check-clean-tree.ts",
         "clean": "rimraf test-browser test/**/node_modules",
@@ -22,7 +22,8 @@
         "debug": "node --inspect-brk ./dist/src/main.js",
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
-        "smoke-test": "ts-node ./test/utils/smoke-test.ts"
+        "smoke-test": "ts-node ./test/utils/smoke-test.ts",
+        "copyFiles": "cp src/generators/static/README.md.hbs dist/src/generators/static/README.md.hbs"
     },
     "files": [
         "src",

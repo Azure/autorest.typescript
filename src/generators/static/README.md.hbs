@@ -1,6 +1,6 @@
 # {{ clientDescriptiveName }} library for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for {{ clientDescriptiveName }}.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {{ clientDescriptiveName }}.
 
 {{ description }}
 
@@ -10,8 +10,8 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 {{#if packageNPMURL}}
 [Package (NPM)]({{ packageNPMURL }}) |
 {{/if}}
-{{#if apirefURL}}
-[API reference documentation]({{ apirefURL }}) |
+{{#if apiRefURL}}
+[API reference documentation]({{ apiRefURL }}) |
 {{/if}}
 {{#if samplesURL}}
 [Samples]({{samplesURL}})
@@ -21,7 +21,7 @@ This package contains an isomorphic SDK (runs both in node.js and in browsers) f
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
 {{#if azure}}
@@ -43,9 +43,10 @@ npm install {{ clientPackageName }}
 To create a client object to access the {{ serviceName }} API, you will need the `endpoint` of your {{ serviceName }} resource and a `credential`.{{#if azure}} The {{ clientDescriptiveName }} can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your {{ serviceName }} resource in the [Azure Portal][azure_portal].
 
+{{#if addCredentials}}
 #### Using an Azure Active Directory Credential
 
-Client API key authentication is used in most of the examples, but you can also authenticate with Azure Active Directory using the [Azure Identity library][azure_identity]. To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
+You can authenticate with Azure Active Directory using the [Azure Identity library][azure_identity]. To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
 
 ```bash
 npm install @azure/identity
@@ -60,6 +61,7 @@ const { DefaultAzureCredential } = require("@azure/identity");
 const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredential());
 ```
 {{/if}}
+{{/if}}
 
 ## Key concepts
 
@@ -68,6 +70,8 @@ const client = new {{ clientClassName }}("<endpoint>", new DefaultAzureCredentia
 `{{ clientClassName }}` is the primary interface for developers using the {{ clientDescriptiveName }} library. Explore the methods on this client object to understand the different features of the {{ serviceName }} service that you can access.
 
 {{#if azure}}
+## Troubleshooting
+
 ### Logging
 
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
@@ -77,25 +81,29 @@ import { setLogLevel } from "@azure/logger";
 setLogLevel("info");
 ```
 
-For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs]({{ repoURL }}/tree/master/sdk/core/logger).;
+For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs]({{ repoURL }}/tree/master/sdk/core/logger).
 
+{{#if samplesURL}}
 ## Next steps
 
 Please take a look at the [samples]({{ samplesURL }}) directory for detailed examples on how to use this library.
+{{/if}}
 
 ## Contributing
 
-If you'd like to contribute to this library, please read the [contributing guide]({{ contributingGuideURL }}) to learn more about how to build and test the code.;
+If you'd like to contribute to this library, please read the [contributing guide]({{ contributingGuideURL }}) to learn more about how to build and test the code.
 
 ## Related projects
 
 - [{{ projectName }}]({{ repoURL }})
 
-[azure_sub]: https://azure.microsoft.com/free/
-[Impressions]({{ impressionURL }})
+{{#if impressionURL}}-![Impressions]({{ impressionURL }})
+{{/if}}
+
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
+[azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
-[azure_identity]: {{ identityPackageURL }}
-[defaultazurecredential]: {{ identityPackageURL }}#defaultazurecredential
+{{#if identityPackageURL}}[azure_identity]: {{ identityPackageURL }}
+{{/if}}[defaultazurecredential]: {{ identityPackageURL }}#defaultazurecredential
 {{/if}}
