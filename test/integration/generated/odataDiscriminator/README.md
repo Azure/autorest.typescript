@@ -1,27 +1,31 @@
-## Azure ODataDiscriminatorClient SDK for JavaScript
+# ODataDiscriminator client library for JavaScript
 
-This package contains an isomorphic SDK for ODataDiscriminatorClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ODataDiscriminator client.
+
+Client that can be used to manage and query indexes and documents, as well as manage other resources, on a search service.
+
+[Package (NPM)](https://www.npmjs.com/package/odata-discriminator) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `odata-discriminator` package
+
+Install the ODataDiscriminator client library for JavaScript with `npm`:
 
 ```bash
 npm install odata-discriminator
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### ODataDiscriminatorClient
 
-## Related projects
+`ODataDiscriminatorClient` is the primary interface for developers using the ODataDiscriminator client library. Explore the methods on this client object to understand the different features of the ODataDiscriminator service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

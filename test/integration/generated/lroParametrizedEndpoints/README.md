@@ -1,27 +1,31 @@
-## Azure LroParametrizedEndpointsClient SDK for JavaScript
+# LroParametrizedEndpoints client library for JavaScript
 
-This package contains an isomorphic SDK for LroParametrizedEndpointsClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for LroParametrizedEndpoints client.
+
+Test Infrastructure for AutoRest
+
+[Package (NPM)](https://www.npmjs.com/package/lro-parameterized-endpoints) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
+- Node.js version 10.x.x or higher
 - Browser JavaScript
 
-### How to Install
+
+### Install the `lro-parameterized-endpoints` package
+
+Install the LroParametrizedEndpoints client library for JavaScript with `npm`:
 
 ```bash
 npm install lro-parameterized-endpoints
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### LroParametrizedEndpointsClient
 
-## Related projects
+`LroParametrizedEndpointsClient` is the primary interface for developers using the LroParametrizedEndpoints client library. Explore the methods on this client object to understand the different features of the LroParametrizedEndpoints service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

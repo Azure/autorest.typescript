@@ -28,6 +28,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const ignoreNullableOnOptional = await getIgnoreNullableOnOptional(host);
   const allowInsecureConnection = await getAllowInsecureConnection(host);
   const skipEnumValidation = await getSkipEnumValidation(host);
+  const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
 
   return {
     azureArm,
@@ -47,7 +48,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     allowInsecureConnection,
     disablePagingAsyncIterators,
     skipEnumValidation,
-    title
+    title,
+    azureOutputDirectory
   };
 }
 
@@ -206,4 +208,20 @@ export async function getCredentialScopes(
   }
 
   return undefined;
+}
+
+async function getAzureOutputDirectoryPath(
+  host: Host
+): Promise<string | undefined> {
+  const outputDirectoryPath: string | null = await host.GetValue(
+    "outputFolderUri"
+  );
+  const outputDirectoryRelativePath: string | undefined = outputDirectoryPath
+    ?.replace(/\/$/, "")
+    .split("/")
+    .slice(-3)
+    .join("/");
+  return outputDirectoryRelativePath?.substr(0, 3) === "sdk"
+    ? outputDirectoryRelativePath
+    : undefined;
 }
