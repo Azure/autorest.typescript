@@ -8,6 +8,7 @@ import { ParameterDetails } from "./parameterDetails";
 import { ObjectDetails } from "./modelDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { KnownMediaType } from "@azure-tools/codegen";
+import { Info } from "@autorest/codemodel";
 
 export interface ClientOptions {
   mediaTypes?: Set<KnownMediaType>;
@@ -22,7 +23,7 @@ export interface TracingInfo {
 export interface ClientDetails {
   name: string;
   className: string;
-  description?: string;
+  info: Info;
   sourceFileName: string;
   objects: ObjectDetails[];
   mappers: Mapper[];
