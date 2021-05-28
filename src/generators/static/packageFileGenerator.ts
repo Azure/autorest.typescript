@@ -29,7 +29,7 @@ export function generatePackageJson(
     }
     packageJsonContents = regularAutorestPackage(clientDetails, packageDetails);
   } else {
-    packageJsonContents = restLevelPackage();
+    packageJsonContents = restLevelPackage(packageDetails);
   }
 
   project.createSourceFile(
@@ -45,8 +45,37 @@ export function generatePackageJson(
  * This function defines the REST Level client package.json file
  * or High Level Client
  */
-function restLevelPackage() {
-  throw Error("Rest Level Client - Not yet implemented");
+function restLevelPackage(packageDetails: PackageDetails) {
+  return {
+    name: `${packageDetails.name}`,
+    version: `${packageDetails.version}`,
+    description: `${packageDetails.description}`,
+    main: "esm/index.js",
+    types: "esm/index.d.ts",
+    scripts: {
+      test: 'echo "Error: no test specified" && exit 1',
+      build: "tsc --build && npm run extract-api",
+      "extract-api": "mkdirp ./review && api-extractor run --local"
+    },
+    keywords: [],
+    author: "",
+    license: "ISC",
+    dependencies: {
+      "@azure-rest/core-client": "1.0.0-beta.4",
+      "@azure/core-auth": "^1.1.4",
+      "@azure/core-rest-pipeline": "^1.0.4"
+    },
+    devDependencies: {
+      autorest: "latest",
+      "@microsoft/api-extractor": "^7.13.2",
+      "@types/node": "^14.14.22",
+      dotenv: "^8.2.0",
+      prettier: "^2.2.1",
+      "ts-node": "^9.1.1",
+      typescript: "~4.2.4",
+      mkdirp: "^1.0.4"
+    }
+  };
 }
 
 /**

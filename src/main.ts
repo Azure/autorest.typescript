@@ -3,14 +3,22 @@
 
 import { AutoRestExtension, Host } from "@autorest/extension-base";
 import { generateTypeScriptLibrary } from "./typescriptGenerator";
-import { getSession, initializeSession } from "./autorestSession";
+import { generateRestLevelClient } from "./restLevelClient/generateRestLevel";
+import {
+  getSession,
+  initializeSession,
+  getAutorestOptions
+} from "./autorestSession";
 
 export async function processRequest(host: Host) {
   await initializeSession(host);
   const session = getSession();
+  const { restLevelClient } = getAutorestOptions();
   try {
     const start = Date.now();
-    await generateTypeScriptLibrary(session.model, host);
+    restLevelClient
+      ? await generateRestLevelClient()
+      : await generateTypeScriptLibrary(session.model, host);
     session.log(`Autorest.Typescript took ${Date.now() - start}ms`, "");
   } catch (err) {
     session.error("An error was encountered while handling a request:", err);
