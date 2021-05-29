@@ -1,3 +1,5 @@
+## 1.0.0-beta.2 (UNRELEASED)
+
 ## 1.0.0-beta.1 (2021-05-28)
 
 - Initial preview release of the Autorest Typescript/Javascript SDK Generator. This package replaces the older [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript) package.

@@ -19,12 +19,15 @@ stages:
         jobs:
           - deployment: TagRepository
             displayName: "Create release tag"
-            condition: ne(variables['Skip.TagRepository'], 'true')
+            condition: and(ne(variables['Skip.TagRepository'], 'true'), ne(variables['SetDevVersion'], 'true'))
             environment: github
 
             pool:
               name: ${{ parameters.LinuxPool }}
               vmImage: ${{ parameters.OSVmImage }}
+
+            variables:
+              MAIN_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.MAIN_VERSION'] ]
 
             strategy:
               runOnce:
@@ -35,17 +38,15 @@ stages:
                         versionSpec: "14.x"
                       displayName: "Install Node.js"
                     - script: |
-                        tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
-                        export VERSION=$(node -p -e "require('./package.json').version")
-                    - script: |
                         cd package
-                        npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(VERSION) --tag v$(VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                        npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(MAIN_VERSION) --tag v$(MAIN_VERSION) --notes='release  build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
                       displayName: "Publish to GitHub"
           - deployment: PublishToNpm
             variables:
               TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
             environment: npm
             displayName: Publish NPM
+            condition: ne(variables['SetDevVersion'], 'true')
             pool:
               name: ${{ parameters.LinuxPool }}
               vmImage: ${{ parameters.OSVmImage }}
