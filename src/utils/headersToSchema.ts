@@ -15,18 +15,24 @@ export function headersToSchema(
     `Defines headers for ${operationFullName} operation.`
   );
 
-  headers.forEach(({ header, language, schema }) => {
+  headers.forEach(({ header, language, schema, extensions }) => {
     if (!headersSchema.properties) {
       headersSchema.properties = [];
     }
 
     const { description, name } = getLanguageMetadata(language);
-    headersSchema.properties.push(
-      new Property(name, description, schema, {
-        // core-http serializer requires Header serialized names to be lowercase
-        serializedName: header.toLocaleLowerCase()
-      })
-    );
+
+    const prop: Property = new Property(name, description, schema, {
+      // core-http serializer requires Header serialized names to be lowercase
+      serializedName: header.toLocaleLowerCase()
+    });
+
+    if (extensions && extensions["x-ms-header-collection-prefix"]) {
+      prop.schema.language.default["headerCollectionPrefix"] =
+        extensions["x-ms-header-collection-prefix"];
+    }
+
+    headersSchema.properties.push(prop);
   });
 
   return headersSchema;

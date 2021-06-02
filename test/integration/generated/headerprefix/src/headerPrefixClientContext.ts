@@ -1,0 +1,34 @@
+import * as coreClient from "@azure/core-client";
+import { HeaderPrefixClientOptionalParams } from "./models";
+
+export class HeaderPrefixClientContext extends coreClient.ServiceClient {
+  $host: string;
+
+  /**
+   * Initializes a new instance of the HeaderPrefixClientContext class.
+   * @param $host server parameter
+   * @param options The parameter options
+   */
+  constructor($host: string, options?: HeaderPrefixClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: HeaderPrefixClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      baseUri: options.endpoint || "{$host}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.$host = $host;
+  }
+}
