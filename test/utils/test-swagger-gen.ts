@@ -41,6 +41,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false
   },
+  attestation: {
+    swaggerOrConfig: "test/integration/swaggers/attestation.json",
+    clientName: "GeneratedClient",
+    packageName: "attestation",
+    hideClients: true,
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
   azureParameterGrouping: {
     swaggerOrConfig: "azure-parameter-grouping.json",
     clientName: "AzureParameterGroupingClient",
