@@ -373,14 +373,16 @@ export async function transformOperation(
     ...(operation.responses || []),
     ...(operation.exceptions || [])
   ];
-  const typeName = `${normalizeName(
+  const normalizedOperationGroupName = normalizeName(
     getOperationGroupName(operationGroup, clientName),
     NameType.Interface
-  )}${normalizeName(
+  );
+  const normalizedOperationName = normalizeName(
     metadata.name,
     NameType.Interface,
     true /** shouldGuard */
-  )}`;
+  );
+  const typeName = `${normalizedOperationGroupName}${normalizedOperationName}`;
 
   const typeDetails: TypeDetails = {
     typeName,

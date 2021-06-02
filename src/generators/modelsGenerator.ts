@@ -91,7 +91,6 @@ const writeClientModels = (
 
   writeOptionalParameters(
     clientDetails.name,
-    "",
     clientOptionalParams,
     modelsIndexFile,
     {
@@ -106,16 +105,10 @@ const writeOperationModels = (
   clientDetails: ClientDetails,
   modelsIndexFile: SourceFile
 ) => {
-  const { useCoreV2 } = getAutorestOptions();
   const modelsNames = getAllModelsNames(clientDetails);
   return clientDetails.operationGroups.forEach(operationGroup => {
     operationGroup.operations.forEach(operation => {
-      writeOptionsParameter(
-        clientDetails,
-        operationGroup,
-        operation,
-        modelsIndexFile
-      );
+      writeOptionsParameter(clientDetails, operation, modelsIndexFile);
       writeResponseTypes(operation, modelsIndexFile, modelsNames);
     });
   });
@@ -126,7 +119,6 @@ const writeOperationModels = (
  */
 function writeOptionsParameter(
   clientDetails: ClientDetails,
-  operationGroup: OperationGroupDetails,
   operation: OperationDetails,
   sourceFile: SourceFile
 ) {
@@ -136,23 +128,16 @@ function writeOptionsParameter(
     { includeOptional: true, includeGroupedParameters: true }
   );
 
-  const operationGroupName = normalizeName(
-    operationGroup.name,
-    NameType.Interface
-  );
-
   const optionalParams = operationParameters.filter(
     ({ required, isFlattened }) => !required && !isFlattened
   );
 
-  const operationName = normalizeName(operation.name, NameType.Interface);
   const operationRequestMediaTypes = new Set<KnownMediaType>();
   operation.requests.forEach(
     r => r.mediaType && operationRequestMediaTypes.add(r.mediaType)
   );
   writeOptionalParameters(
-    operationGroupName,
-    operationName,
+    operation.typeDetails.typeName,
     optionalParams,
     sourceFile,
     {
@@ -649,8 +634,7 @@ function getOptionalGroups(
 }
 
 function writeOptionalParameters(
-  operationGroupName: string,
-  operationName: string,
+  typeName: string,
   optionalParams: ParameterDetails[],
   modelsIndexFile: SourceFile,
   {
@@ -698,30 +682,24 @@ function writeOptionalParameters(
     for (const mediaType of mediaTypes!.values()) {
       interfaces.push(
         modelsIndexFile.addInterface(
-          buildOptionsInterface(
-            `${operationGroupName}${operationName}$${mediaType}OptionalParams`,
-            [
-              ...optionalGroupDeclarations,
-              ...optionalParams
-                .filter(
-                  p => !p.targetMediaType || p.targetMediaType === mediaType
-                )
-                .map<PropertySignatureStructure>(buildParamDetails)
-            ]
-          )
+          buildOptionsInterface(`${typeName}$${mediaType}OptionalParams`, [
+            ...optionalGroupDeclarations,
+            ...optionalParams
+              .filter(
+                p => !p.targetMediaType || p.targetMediaType === mediaType
+              )
+              .map<PropertySignatureStructure>(buildParamDetails)
+          ])
         )
       );
     }
   } else {
     interfaces.push(
       modelsIndexFile.addInterface(
-        buildOptionsInterface(
-          `${operationGroupName}${operationName}OptionalParams`,
-          [
-            ...optionalGroupDeclarations,
-            ...optionalParams.map<PropertySignatureStructure>(buildParamDetails)
-          ]
-        )
+        buildOptionsInterface(`${typeName}OptionalParams`, [
+          ...optionalGroupDeclarations,
+          ...optionalParams.map<PropertySignatureStructure>(buildParamDetails)
+        ])
       )
     );
   }
