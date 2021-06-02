@@ -1,0 +1,280 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "AttestationClient",
+        "description": "Describes the interface for the per-tenant enclave service.",
+        "version": "2020-10-01"
+    },
+    "x-ms-parameterized-host": {
+        "hostTemplate": "{instanceUrl}",
+        "useSchemePrefix": false,
+        "parameters": [
+            {
+                "name": "instanceUrl",
+                "x-ms-parameter-location": "client",
+                "description": "The attestation instance base URI, for example https://mytenant.attest.azure.net.",
+                "required": true,
+                "type": "string",
+                "in": "path",
+                "x-ms-skip-url-encoding": true
+            }
+        ]
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "azure_auth": {
+            "type": "oauth2",
+            "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+            "flow": "implicit",
+            "description": "Azure Active Directory OAuth2 Flow",
+            "scopes": {
+                "user_impersonation": "impersonate your user account"
+            }
+        }
+    },
+    "paths": {
+        "/policies/{attestationType}": {
+            "get": {
+                "tags": [
+                    "Policy"
+                ],
+                "summary": "Retrieves the current policy for an attestation type.",
+                "operationId": "Policy_Get",
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/AttestationType"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PolicyResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error response describing why the operation failed",
+                        "schema": {
+                            "$ref": "#/definitions/CloudError"
+                        }
+                    }
+                },
+                "x-ms-examples": {
+                    "Get Policy": {
+                        "$ref": "./examples/Get_Policy.json"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Policy"
+                ],
+                "summary": "Sets the policy for a given attestation type.",
+                "operationId": "Policy_Set",
+                "consumes": [
+                    "text/plain"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/AttestationType"
+                    },
+                    {
+                        "name": "newAttestationPolicy",
+                        "in": "body",
+                        "description": "JWT Expressing the new policy whose body is a StoredAttestationPolicy object.",
+                        "required": true,
+                        "x-ms-client-flatten": true,
+                        "schema": {
+                            "$ref": "#/definitions/JsonWebToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/PolicyResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error response describing why the operation failed",
+                        "schema": {
+                            "$ref": "#/definitions/CloudError"
+                        }
+                    }
+                },
+                "x-ms-examples": {
+                    "Set Policy": {
+                        "$ref": "./examples/Set_Policy.json"
+                    }
+                }
+            }
+        },
+        "/policies/{attestationType}:reset": {
+            "post": {
+                "tags": [
+                    "Policy"
+                ],
+                "summary": "Resets the attestation policy for the specified tenant and reverts to the default policy.",
+                "operationId": "Policy_Reset",
+                "consumes": [
+                    "text/plain"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ApiVersionParameter"
+                    },
+                    {
+                        "$ref": "#/parameters/AttestationType"
+                    },
+                    {
+                        "name": "PolicyJws",
+                        "in": "body",
+                        "description": "JSON Web Signature with an empty policy document",
+                        "required": true,
+                        "x-ms-client-flatten": true,
+                        "schema": {
+                            "$ref": "#/definitions/JsonWebToken"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success - Returns a JWT signed by the metadata signing key that contains the hash of the supplied policy to be set.",
+                        "schema": {
+                            "$ref": "#/definitions/PolicyResponse"
+                        }
+                    },
+                    "default": {
+                        "description": "Error response describing why the operation failed",
+                        "schema": {
+                            "$ref": "#/definitions/CloudError"
+                        }
+                    }
+                },
+                "x-ms-examples": {
+                    "Reset Policy": {
+                        "$ref": "./examples/Reset_Policy.json"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "CloudError": {
+            "x-ms-external": true,
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/CloudErrorBody"
+                }
+            },
+            "description": "An error response from Attestation."
+        },
+        "CloudErrorBody": {
+            "x-ms-external": true,
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "description": "An identifier for the error. Codes are invariant and are intended to be consumed programmatically."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "A message describing the error, intended to be suitable for displaying in a user interface."
+                }
+            },
+            "description": "An error response from Attestation."
+        },
+        "JsonWebToken": {
+            "description": "An RFC 7519 Json Web Token",
+            "type": "string",
+            "pattern": "[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]*\\.[A-Za-z0-9_-]*",
+            "externalDocs": {
+                "description": "JSON Web Token RFC",
+                "url": "https://tools.ietf.org/html/rfc7519"
+            }
+        },
+        "PolicyResponse": {
+            "type": "object",
+            "description": "The response to an attestation policy operation",
+            "properties": {
+                "token": {
+                    "description": "An RFC7519 JSON Web Token structure whose body is an PolicyResult object.",
+                    "$ref": "#/definitions/JsonWebToken"
+                }
+            }
+        },
+        "DataType": {
+            "description": "Specifies the type of the data encoded contained within the \"data\" field of a \"RuntimeData\" or \"InitTimeData\" object",
+            "type": "string",
+            "enum": [
+                "Binary",
+                "JSON"
+            ],
+            "x-ms-enum": {
+                "name": "DataType",
+                "modelAsString": true,
+                "values": [
+                    {
+                        "value": "Binary",
+                        "description": "The contents of the field should be treated as binary and not interpreted by MAA."
+                    },
+                    {
+                        "value": "JSON",
+                        "description": "The contents of the field should be treated as a JSON object and may be further interpreted by MAA."
+                    }
+                ]
+            }
+        }
+    },
+    "parameters": {
+        "ApiVersionParameter": {
+            "name": "api-version",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Client API version. Current version is 2010-10-01"
+        },
+        "AttestationType": {
+            "description": "Specifies the trusted execution environment to be used to validate the evidence",
+            "name": "attestationType",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "x-ms-parameter-location": "method",
+            "x-ms-enum": {
+                "name": "AttestationType",
+                "modelAsString": true,
+                "values": [
+                    {
+                        "value": "SgxEnclave",
+                        "description": "Intel Software Guard eXtensions"
+                    },
+                    {
+                        "value": "OpenEnclave",
+                        "description": "OpenEnclave extensions to SGX"
+                    },
+                    {
+                        "value": "Tpm",
+                        "description": "Edge TPM Virtualization Based Security"
+                    }
+                ]
+            },
+            "enum": [
+                "SgxEnclave",
+                "OpenEnclave",
+                "Tpm"
+            ]
+        }
+    }
+}
