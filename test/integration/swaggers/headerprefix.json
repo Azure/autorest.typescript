@@ -1,0 +1,100 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Queue Storage",
+    "version": "2018-03-28"
+  },
+  "securityDefinitions": {
+    "queue_shared_key": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "schemes": ["https"],
+  "consumes": ["application/xml"],
+  "produces": ["application/xml"],
+  "paths": {},
+  "x-ms-paths": {
+    "/{queueName}?comp=metadata": {
+      "get": {
+        "tags": ["queue"],
+        "operationId": "Queue_GetProperties",
+        "description": "Retrieves user-defined metadata and queue properties on the specified queue. Metadata is associated with the queue as name-values pairs.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ClientRequestId"
+          },
+          {
+            "$ref": "#/parameters/Metadata"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "headers": {
+              "x-ms-meta": {
+                "type": "string",
+                "x-ms-client-name": "Metadata",
+                "x-ms-header-collection-prefix": "x-ms-meta-"
+              },
+              "x-ms-approximate-messages-count": {
+                "type": "integer",
+                "x-ms-client-name": "ApproximateMessagesCount",
+                "description": "The approximate number of messages in the queue. This number is not lower than the actual number of messages in the queue, but could be higher."
+              },
+              "x-ms-request-id": {
+                "x-ms-client-name": "RequestId",
+                "type": "string",
+                "description": "This header uniquely identifies the request that was made and can be used for troubleshooting the request."
+              }
+            }
+          },
+          "default": {
+            "description": "Failure",
+            "headers": {
+              "x-ms-error-code": {
+                "x-ms-client-name": "ErrorCode",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/StorageError"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "StorageError": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "ClientRequestId": {
+      "name": "x-ms-client-request-id",
+      "x-ms-client-name": "requestId",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Provides a client-generated, opaque value with a 1 KB character limit that is recorded in the analytics logs when storage analytics logging is enabled."
+    },
+    "Metadata": {
+      "name": "x-ms-meta",
+      "x-ms-client-name": "metadata",
+      "in": "header",
+      "required": false,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Optional. Include this parameter to specify that the queue's metadata be returned as part of the response body. Note that metadata requested with this parameter must be stored in accordance with the naming restrictions imposed by the 2009-09-19 version of the Queue service. Beginning with this version, all metadata names must adhere to the naming conventions for C# identifiers.",
+      "x-ms-header-collection-prefix": "x-ms-meta-"
+    }
+  }
+}

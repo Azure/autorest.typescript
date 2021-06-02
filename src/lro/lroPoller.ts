@@ -3,7 +3,6 @@
 
 import { Poller, PollOperationState } from "@azure/core-lro";
 import { OperationArguments, OperationSpec } from "@azure/core-client";
-import { delay } from "@azure/core-util";
 import { FinalStateVia, SendOperationFn } from "./models";
 import { GenericPollOperation } from "./operation";
 
@@ -51,6 +50,8 @@ export class LROPoller<TResult> extends Poller<
    * The method used by the poller to wait before attempting to update its operation.
    */
   delay(): Promise<void> {
-    return delay(this.intervalInMs);
+    return new Promise(resolve =>
+      setTimeout(() => resolve(), this.intervalInMs)
+    );
   }
 }

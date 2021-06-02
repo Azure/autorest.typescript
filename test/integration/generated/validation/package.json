@@ -44,7 +44,8 @@
     "src/**/*.ts",
     "README.md",
     "rollup.config.js",
-    "tsconfig.json"
+    "tsconfig.json",
+    "review/*"
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",

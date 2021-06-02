@@ -640,6 +640,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     addCredentials: false
   },
+  headerprefix: {
+    swaggerOrConfig: "test/integration/swaggers/headerprefix.json",
+    clientName: "HeaderPrefixClient",
+    packageName: "headerprefix",
+    useCoreV2: true,
+    addCredentials: false
+  },
   operationgroupclash: {
     swaggerOrConfig: "test/integration/swaggers/operationGroupClash.json",
     clientName: "OperationGroupClashClient",

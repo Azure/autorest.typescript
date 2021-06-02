@@ -274,7 +274,11 @@ function getXmlMetadata(
 
   const xmlName = name || defaultName;
 
+  const headerCollectionPrefix = getLanguageMetadata(schema.language)
+    .headerCollectionPrefix;
+
   return {
+    ...(headerCollectionPrefix && { headerCollectionPrefix }),
     ...(xmlName && { xmlName }),
     ...(xmlIsAttribute && { xmlIsAttribute }),
     ...(xmlIsWrapped && { xmlIsWrapped }),

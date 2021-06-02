@@ -35,6 +35,7 @@ import { ClientOptions } from "../models/clientDetails";
 import { PropertyKind } from "../models/modelDetails";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { getAutorestOptions } from "../autorestSession";
+import { DictionaryMapper } from "@azure/core-client";
 
 interface OperationParameterDetails {
   parameter: Parameter;
@@ -278,6 +279,15 @@ export function populateOperationParameters(
     targetMediaType,
     isFlattened: !!parameter.flattened
   };
+
+  if (
+    parameter.extensions &&
+    parameter.extensions["x-ms-header-collection-prefix"] &&
+    typeof paramDetails.mapper !== "string"
+  ) {
+    (paramDetails.mapper as DictionaryMapper)["headerCollectionPrefix"] =
+      parameter.extensions["x-ms-header-collection-prefix"];
+  }
 
   if (!sameNameParams.length) {
     operationParameters.push(paramDetails);
