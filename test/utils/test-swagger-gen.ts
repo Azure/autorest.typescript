@@ -618,6 +618,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false
   },
+  constantParam: {
+    swaggerOrConfig: "test/integration/swaggers/textAnalytics.json",
+    clientName: "GeneratedClient",
+    packageName: "constantParam",
+    hideClients: true,
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
   storagefileshare: {
     swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
     clientName: "StorageFileShareClient",
