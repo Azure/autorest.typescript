@@ -600,7 +600,7 @@ export const enum KnownStringIndexType {
  * Defines values for StringIndexType. \
  * {@link KnownStringIndexType} can be used interchangeably with StringIndexType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TextElements_v8**: Returned offset and length values will correspond to TextElements (Graphemes and Grapheme clusters) confirming to the Unicode 8.0.0 standard. Use this option if your application is written in .Net Framework or .Net Core and you will be using StringInfo. \
  * **UnicodeCodePoint**: Returned offset and length values will correspond to Unicode code points. Use this option if your application is written in a language that support Unicode, for example Python. \
  * **Utf16CodeUnit**: Returned offset and length values will correspond to UTF-16 code units. Use this option if your application is written in a language that support Unicode, for example Java, JavaScript.
@@ -617,7 +617,7 @@ export const enum KnownPiiTaskParametersDomain {
  * Defines values for PiiTaskParametersDomain. \
  * {@link KnownPiiTaskParametersDomain} can be used interchangeably with PiiTaskParametersDomain,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **phi** \
  * **none**
  */
@@ -804,7 +804,7 @@ export const enum KnownPiiCategory {
  * Defines values for PiiCategory. \
  * {@link KnownPiiCategory} can be used interchangeably with PiiCategory,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ABARoutingNumber** \
  * **ARNationalIdentityNumber** \
  * **AUBankAccountNumber** \
@@ -998,7 +998,7 @@ export const enum KnownInnerErrorCodeValue {
  * Defines values for InnerErrorCodeValue. \
  * {@link KnownInnerErrorCodeValue} can be used interchangeably with InnerErrorCodeValue,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **InvalidParameterValue** \
  * **InvalidRequestBodyFormat** \
  * **EmptyRequest** \
@@ -1021,7 +1021,7 @@ export const enum KnownWarningCode {
  * Defines values for WarningCode. \
  * {@link KnownWarningCode} can be used interchangeably with WarningCode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LongWordsInDocument** \
  * **DocumentTruncated**
  */
@@ -1056,7 +1056,7 @@ export const enum KnownRelationType {
  * Defines values for RelationType. \
  * {@link KnownRelationType} can be used interchangeably with RelationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Abbreviation** \
  * **DirectionOfBodyStructure** \
  * **DirectionOfCondition** \

@@ -285,7 +285,7 @@ export const enum KnownPublicAccessType {
  * Defines values for PublicAccessType. \
  * {@link KnownPublicAccessType} can be used interchangeably with PublicAccessType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **container** \
  * **blob**
  */
@@ -309,7 +309,7 @@ export const enum KnownAccessTier {
  * Defines values for AccessTier. \
  * {@link KnownAccessTier} can be used interchangeably with AccessTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **P4** \
  * **P6** \
  * **P10** \
@@ -333,7 +333,7 @@ export const enum KnownArchiveStatus {
  * Defines values for ArchiveStatus. \
  * {@link KnownArchiveStatus} can be used interchangeably with ArchiveStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **rehydrate-pending-to-hot** \
  * **rehydrate-pending-to-cool**
  */

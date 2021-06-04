@@ -31,7 +31,7 @@ export const enum KnownDaysOfWeekExtensibleEnum {
  * Defines values for DaysOfWeekExtensibleEnum. \
  * {@link KnownDaysOfWeekExtensibleEnum} can be used interchangeably with DaysOfWeekExtensibleEnum,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Monday** \
  * **Tuesday** \
  * **Wednesday** \
@@ -56,7 +56,7 @@ export const enum KnownIntEnum {
  * Defines values for IntEnum. \
  * {@link KnownIntEnum} can be used interchangeably with IntEnum,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **1**: This is a really long comment to see what wrapping looks like. This comment is really long and it should wrap for readability. Please wrap. This should wrap. \
  * **2**: two \
  * **3**: three

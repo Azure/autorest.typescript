@@ -42,7 +42,7 @@ export const enum KnownAttestationType {
  * Defines values for AttestationType. \
  * {@link KnownAttestationType} can be used interchangeably with AttestationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SgxEnclave**: Intel Software Guard eXtensions \
  * **OpenEnclave**: OpenEnclave extensions to SGX \
  * **Tpm**: Edge TPM Virtualization Based Security
@@ -61,7 +61,7 @@ export const enum KnownDataType {
  * Defines values for DataType. \
  * {@link KnownDataType} can be used interchangeably with DataType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Binary**: The contents of the field should be treated as binary and not interpreted by MAA. \
  * **JSON**: The contents of the field should be treated as a JSON object and may be further interpreted by MAA.
  */
