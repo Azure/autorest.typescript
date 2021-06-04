@@ -170,13 +170,6 @@ const extractOperationParameters = (codeModel: CodeModel) =>
   }, []);
 
 function getDefaultValue(parameter: Parameter) {
-  if (!!parameter.clientDefaultValue) {
-    return getStringForValue(
-      parameter.clientDefaultValue,
-      parameter.schema.type
-    );
-  }
-
   if (parameter.schema.type === SchemaType.Constant) {
     const constantSchema = parameter.schema as ConstantSchema;
     let defaultValue = getStringForValue(
@@ -192,6 +185,13 @@ function getDefaultValue(parameter: Parameter) {
     }
 
     return defaultValue;
+  }
+
+  if (!!parameter.clientDefaultValue) {
+    return getStringForValue(
+      parameter.clientDefaultValue,
+      parameter.schema.type
+    );
   }
 
   return undefined;
