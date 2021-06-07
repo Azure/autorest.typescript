@@ -1,0 +1,483 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "v3.1",
+        "contact": {
+            "name": "Microsoft Cognitive Services",
+            "url": "https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/",
+            "email": "mlapi@microsoft.com"
+        },
+        "title": "Text Analytics Client",
+        "description": "The Text Analytics API is a suite of natural language processing (NLP) services built with best-in-class Microsoft machine learning algorithms.  The API can be used to analyze unstructured text for tasks such as sentiment analysis, key phrase extraction and language detection. Functionality for analysis of text specific to the healthcare domain and personal information are also available in the API. Further documentation can be found in <a href=\"https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview\">https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/overview</a>"
+    },
+    "securityDefinitions": {
+        "apim_key": {
+            "type": "apiKey",
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "apim_key": []
+        }
+    ],
+    "x-ms-parameterized-host": {
+        "hostTemplate": "{Endpoint}/text/analytics/{ApiVersion}",
+        "useSchemePrefix": false,
+        "parameters": [
+            {
+                "$ref": "#/parameters/Endpoint"
+            },
+            {
+                "$ref": "#/parameters/ApiVersion"
+            }
+        ]
+    },
+    "paths": {
+        "/languages": {
+            "post": {
+                "summary": "Detect Language",
+                "description": "The API returns the detected language and a numeric score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true. See the <a href=\"https://aka.ms/talangs\">Supported languages in Text Analytics API</a> for the list of enabled languages.",
+                "operationId": "Languages",
+                "consumes": [
+                    "application/json",
+                    "text/json"
+                ],
+                "produces": [
+                    "application/json",
+                    "text/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/ModelVersion"
+                    },
+                    {
+                        "$ref": "#/parameters/ShowStats"
+                    },
+                    {
+                        "$ref": "#/parameters/LoggingOptOut"
+                    },
+                    {
+                        "$ref": "#/parameters/LanguageInput"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A successful call results in the detected language with the highest probability for each valid document",
+                        "schema": {
+                            "$ref": "#/definitions/LanguageResult"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request.",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "x-ms-error-response": true
+                    },
+                    "500": {
+                        "description": "Internal error response",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponse"
+                        },
+                        "x-ms-error-response": true
+                    }
+                },
+                "x-ms-examples": {
+                    "Successful Detect Language request": {
+                        "$ref": ".//examples//SuccessfulLanguagesRequest.json"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "DocumentError": {
+            "type": "object",
+            "required": [
+                "id",
+                "error"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Document Id."
+                },
+                "error": {
+                    "type": "object",
+                    "description": "Document Error.",
+                    "$ref": "#/definitions/TextAnalyticsError"
+                }
+            }
+        },
+        "ErrorResponse": {
+            "type": "object",
+            "required": [
+                "error"
+            ],
+            "properties": {
+                "error": {
+                    "type": "object",
+                    "description": "Document Error.",
+                    "$ref": "#/definitions/TextAnalyticsError"
+                }
+            }
+        },
+        "TextAnalyticsError": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "enum": [
+                        "InvalidRequest",
+                        "InvalidArgument",
+                        "InternalServerError",
+                        "ServiceUnavailable",
+                        "NotFound"
+                    ],
+                    "x-ms-enum": {
+                        "name": "ErrorCodeValue",
+                        "modelAsString": false
+                    },
+                    "description": "Error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Error message."
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Error target."
+                },
+                "innererror": {
+                    "$ref": "#/definitions/InnerError",
+                    "description": "Inner error contains more specific information."
+                },
+                "details": {
+                    "type": "array",
+                    "description": "Details about specific errors that led to this reported error.",
+                    "items": {
+                        "$ref": "#/definitions/TextAnalyticsError"
+                    }
+                }
+            }
+        },
+        "TextAnalyticsWarning": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "enum": [
+                        "LongWordsInDocument",
+                        "DocumentTruncated"
+                    ],
+                    "x-ms-enum": {
+                        "name": "WarningCodeValue",
+                        "modelAsString": true
+                    },
+                    "description": "Error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Warning message."
+                },
+                "targetRef": {
+                    "type": "string",
+                    "description": "A JSON pointer reference indicating the target object."
+                }
+            }
+        },
+        "InnerError": {
+            "type": "object",
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "enum": [
+                        "InvalidParameterValue",
+                        "InvalidRequestBodyFormat",
+                        "EmptyRequest",
+                        "MissingInputRecords",
+                        "InvalidDocument",
+                        "ModelVersionIncorrect",
+                        "InvalidDocumentBatch",
+                        "UnsupportedLanguageCode",
+                        "InvalidCountryHint"
+                    ],
+                    "x-ms-enum": {
+                        "name": "InnerErrorCodeValue",
+                        "modelAsString": true
+                    },
+                    "description": "Error code."
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Error message."
+                },
+                "details": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Error details."
+                },
+                "target": {
+                    "type": "string",
+                    "description": "Error target."
+                },
+                "innererror": {
+                    "$ref": "#/definitions/InnerError",
+                    "description": "Inner error contains more specific information."
+                }
+            }
+        },
+        "RequestStatistics": {
+            "type": "object",
+            "required": [
+                "documentsCount",
+                "validDocumentsCount",
+                "erroneousDocumentsCount",
+                "transactionsCount"
+            ],
+            "properties": {
+                "documentsCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of documents submitted in the request."
+                },
+                "validDocumentsCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of valid documents. This excludes empty, over-size limit or non-supported languages documents."
+                },
+                "erroneousDocumentsCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of invalid documents. This includes empty, over-size limit or non-supported languages documents."
+                },
+                "transactionsCount": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Number of transactions for the request."
+                }
+            },
+            "description": "if showStats=true was specified in the request this field will contain information about the request payload."
+        },
+        "DocumentStatistics": {
+            "type": "object",
+            "required": [
+                "charactersCount",
+                "transactionsCount"
+            ],
+            "properties": {
+                "charactersCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of text elements recognized in the document."
+                },
+                "transactionsCount": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "Number of transactions for the document."
+                }
+            },
+            "description": "if showStats=true was specified in the request this field will contain information about the document payload."
+        },
+        "LanguageBatchInput": {
+            "type": "object",
+            "required": [
+                "documents"
+            ],
+            "properties": {
+                "documents": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/LanguageInput"
+                    }
+                }
+            }
+        },
+        "LanguageInput": {
+            "type": "object",
+            "required": [
+                "id",
+                "text"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique, non-empty document identifier."
+                },
+                "text": {
+                    "type": "string"
+                },
+                "countryHint": {
+                    "type": "string"
+                }
+            }
+        },
+        "LanguageResult": {
+            "type": "object",
+            "required": [
+                "documents",
+                "errors",
+                "modelVersion"
+            ],
+            "properties": {
+                "documents": {
+                    "type": "array",
+                    "description": "Response by document",
+                    "items": {
+                        "$ref": "#/definitions/DocumentLanguage"
+                    }
+                },
+                "errors": {
+                    "type": "array",
+                    "description": "Errors by document id.",
+                    "items": {
+                        "$ref": "#/definitions/DocumentError"
+                    }
+                },
+                "statistics": {
+                    "$ref": "#/definitions/RequestStatistics"
+                },
+                "modelVersion": {
+                    "type": "string",
+                    "description": "This field indicates which model is used for scoring."
+                }
+            }
+        },
+        "DocumentLanguage": {
+            "type": "object",
+            "required": [
+                "id",
+                "detectedLanguage",
+                "warnings"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Unique, non-empty document identifier."
+                },
+                "detectedLanguage": {
+                    "description": "Detected Language.",
+                    "$ref": "#/definitions/DetectedLanguage"
+                },
+                "warnings": {
+                    "type": "array",
+                    "description": "Warnings encountered while processing document.",
+                    "items": {
+                        "$ref": "#/definitions/TextAnalyticsWarning"
+                    }
+                },
+                "statistics": {
+                    "description": "if showStats=true was specified in the request this field will contain information about the document payload.",
+                    "$ref": "#/definitions/DocumentStatistics"
+                }
+            }
+        },
+        "DetectedLanguage": {
+            "type": "object",
+            "required": [
+                "name",
+                "iso6391Name",
+                "confidenceScore"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Long name of a detected language (e.g. English, French)."
+                },
+                "iso6391Name": {
+                    "type": "string",
+                    "description": "A two letter representation of the detected language according to the ISO 639-1 standard (e.g. en, fr)."
+                },
+                "confidenceScore": {
+                    "type": "number",
+                    "format": "double",
+                    "description": "A confidence score between 0 and 1. Scores close to 1 indicate 100% certainty that the identified language is true."
+                }
+            }
+        }
+    },
+    "parameters": {
+        "ApiVersion": {
+            "name": "ApiVersion",
+            "description": "Text Analytics API version (for example, v3.0).",
+            "x-ms-parameter-location": "client",
+            "required": true,
+            "type": "string",
+            "enum": [
+                "v3.1"
+            ],
+            "in": "path",
+            "x-ms-skip-url-encoding": true
+        },
+        "Endpoint": {
+            "name": "Endpoint",
+            "description": "Supported Cognitive Services endpoints (protocol and hostname, for example: https://westus.api.cognitive.microsoft.com).",
+            "x-ms-parameter-location": "client",
+            "required": true,
+            "type": "string",
+            "in": "path",
+            "x-ms-skip-url-encoding": true
+        },
+        "ShowStats": {
+            "name": "showStats",
+            "in": "query",
+            "description": "(Optional) if set to true, response will contain request and document level statistics.",
+            "type": "boolean",
+            "required": false,
+            "x-ms-parameter-location": "method"
+        },
+        "LoggingOptOut": {
+            "name": "loggingOptOut",
+            "in": "query",
+            "description": "(Optional) If set to true, you opt-out of having your text input logged for troubleshooting. By default, Text Analytics logs your input text for 48 hours, solely to allow for troubleshooting issues in providing you with the Text Analytics natural language processing functions. Setting this parameter to true, disables input logging and may limit our ability to remediate issues that occur.  Please see Cognitive Services Compliance and Privacy notes at https://aka.ms/cs-compliance for additional details, and Microsoft Responsible AI principles at https://www.microsoft.com/en-us/ai/responsible-ai.",
+            "type": "boolean",
+            "required": false,
+            "x-ms-parameter-location": "method"
+        },
+        "ModelVersion": {
+            "name": "model-version",
+            "in": "query",
+            "description": "(Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. ",
+            "type": "string",
+            "required": false,
+            "x-ms-parameter-location": "method"
+        },
+        "MultiLanguageInput": {
+            "in": "body",
+            "name": "input",
+            "description": "Collection of documents to analyze.",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/MultiLanguageBatchInput"
+            },
+            "x-ms-parameter-location": "method"
+        },
+        "LanguageInput": {
+            "in": "body",
+            "name": "input",
+            "description": "Collection of documents to analyze for language endpoint.",
+            "required": true,
+            "schema": {
+                "$ref": "#/definitions/LanguageBatchInput"
+            },
+            "x-ms-parameter-location": "method"
+        }
+    }
+}
