@@ -1,10 +1,10 @@
 **Note**:
 
-This branch (main) is for the latest V6 version of the TS/JS SDK generator - [@autorest/typescript](https://www.npmjs.com/package/@autorest/typescript).
+This branch (main) is for the latest version of the TS/JS SDK generator - [@autorest/typescript](https://www.npmjs.com/package/@autorest/typescript).
 
 This latest version has redesigned the generated SDKs, introduced several new flags such as `licenseHeader`, `generateMetadata`, `useCoreV2`, `hideClients`, etc., and introduced new and updated methods for Long Running operations.
 
-If you are interested in the earlier V4 version of the TS/JS SDK generator - [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript), it is available [here](https://github.com/Azure/autorest.typescript/tree/v4x)
+If you are interested in the earlier version of the TS/JS SDK generator - [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript), it is available [here](https://github.com/Azure/autorest.typescript/tree/v4x)
 
 # TypeScript Plugin for Autorest
 
