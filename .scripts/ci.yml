@@ -22,9 +22,16 @@ stages:
         steps:
           - template: build.yml
           - script: |
-              export DEV_VERSION=$(node -p -e "require('./package.json').version")-alpha.$BUILD_BUILDNUMBER
+              export MAIN_VERSION=$(node -p -e "require('./package.json').version")
+              echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
+              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$BUILD_BUILDNUMBER
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
+            name: SetMainVersion
+          - script: |
               npm version --no-git-tag-version $DEV_VERSION
+            condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+            name: SetDevVersion
+          - script: |
               export TAR_NAME=$(npm pack -q)
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackArtifacts
