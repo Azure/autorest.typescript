@@ -1,6 +1,6 @@
 {
     "name": "@autorest/typescript",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0-beta.2",
     "scripts": {
         "build": "tsc -p . && npm run copyFiles",
         "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
