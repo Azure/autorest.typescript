@@ -127,7 +127,7 @@ export const enum KnownWarningCodeValue {
  * Defines values for WarningCodeValue. \
  * {@link KnownWarningCodeValue} can be used interchangeably with WarningCodeValue,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LongWordsInDocument** \
  * **DocumentTruncated**
  */
@@ -150,7 +150,7 @@ export const enum KnownInnerErrorCodeValue {
  * Defines values for InnerErrorCodeValue. \
  * {@link KnownInnerErrorCodeValue} can be used interchangeably with InnerErrorCodeValue,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **InvalidParameterValue** \
  * **InvalidRequestBodyFormat** \
  * **EmptyRequest** \
