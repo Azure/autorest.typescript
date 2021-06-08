@@ -674,7 +674,7 @@ export const enum KnownAccessTier {
  * Defines values for AccessTier. \
  * {@link KnownAccessTier} can be used interchangeably with AccessTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **P4** \
  * **P6** \
  * **P10** \
@@ -702,7 +702,7 @@ export const enum KnownArchiveStatus {
  * Defines values for ArchiveStatus. \
  * {@link KnownArchiveStatus} can be used interchangeably with ArchiveStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **rehydrate-pending-to-hot** \
  * **rehydrate-pending-to-cool**
  */
@@ -718,7 +718,7 @@ export const enum KnownRehydratePriority {
  * Defines values for RehydratePriority. \
  * {@link KnownRehydratePriority} can be used interchangeably with RehydratePriority,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **High** \
  * **Standard**
  */
@@ -734,7 +734,7 @@ export const enum KnownPublicAccessType {
  * Defines values for PublicAccessType. \
  * {@link KnownPublicAccessType} can be used interchangeably with PublicAccessType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **container** \
  * **blob**
  */
@@ -751,7 +751,7 @@ export const enum KnownGeoReplicationStatusType {
  * Defines values for GeoReplicationStatusType. \
  * {@link KnownGeoReplicationStatusType} can be used interchangeably with GeoReplicationStatusType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **live** \
  * **bootstrap** \
  * **unavailable**
@@ -878,7 +878,7 @@ export const enum KnownStorageErrorCode {
  * Defines values for StorageErrorCode. \
  * {@link KnownStorageErrorCode} can be used interchangeably with StorageErrorCode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AccountAlreadyExists** \
  * **AccountBeingCreated** \
  * **AccountIsDisabled** \
@@ -1013,7 +1013,7 @@ export const enum KnownPremiumPageBlobAccessTier {
  * Defines values for PremiumPageBlobAccessTier. \
  * {@link KnownPremiumPageBlobAccessTier} can be used interchangeably with PremiumPageBlobAccessTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **P4** \
  * **P6** \
  * **P10** \
@@ -1040,7 +1040,7 @@ export const enum KnownBlobExpiryOptions {
  * Defines values for BlobExpiryOptions. \
  * {@link KnownBlobExpiryOptions} can be used interchangeably with BlobExpiryOptions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NeverExpire** \
  * **RelativeToCreation** \
  * **RelativeToNow** \

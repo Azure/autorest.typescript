@@ -208,7 +208,7 @@ export const enum KnownGet6ItemsItem {
  * Defines values for Get6ItemsItem. \
  * {@link KnownGet6ItemsItem} can be used interchangeably with Get6ItemsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \
@@ -236,7 +236,7 @@ export const enum KnownHead6ItemsItem {
  * Defines values for Head6ItemsItem. \
  * {@link KnownHead6ItemsItem} can be used interchangeably with Head6ItemsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \
@@ -264,7 +264,7 @@ export const enum KnownGet7ItemsItem {
  * Defines values for Get7ItemsItem. \
  * {@link KnownGet7ItemsItem} can be used interchangeably with Get7ItemsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \
@@ -292,7 +292,7 @@ export const enum KnownHead7ItemsItem {
  * Defines values for Head7ItemsItem. \
  * {@link KnownHead7ItemsItem} can be used interchangeably with Head7ItemsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \
@@ -320,7 +320,7 @@ export const enum KnownEnum4 {
  * Defines values for Enum4. \
  * {@link KnownEnum4} can be used interchangeably with Enum4,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \
@@ -348,7 +348,7 @@ export const enum KnownEnum5 {
  * Defines values for Enum5. \
  * {@link KnownEnum5} can be used interchangeably with Enum5,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **key** \
  * **label** \
  * **content_type** \

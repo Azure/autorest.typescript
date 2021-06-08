@@ -71,7 +71,7 @@ export const enum KnownPetStatus {
  * Defines values for PetStatus. \
  * {@link KnownPetStatus} can be used interchangeably with PetStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **available** \
  * **pending** \
  * **sold**
@@ -89,7 +89,7 @@ export const enum KnownOrderStatus {
  * Defines values for OrderStatus. \
  * {@link KnownOrderStatus} can be used interchangeably with OrderStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **placed** \
  * **approved** \
  * **delivered**

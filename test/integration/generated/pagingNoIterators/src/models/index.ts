@@ -103,7 +103,7 @@ export const enum KnownOperationResultStatus {
  * Defines values for OperationResultStatus. \
  * {@link KnownOperationResultStatus} can be used interchangeably with OperationResultStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Failed** \
  * **canceled** \

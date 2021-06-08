@@ -489,7 +489,7 @@ function getExtensibleChoiceDescription(choice: UnionDetails) {
   return [
     `${choice.description} \\`,
     ...(hasEnum ? [enumLink] : []),
-    `### Know values supported by the service`,
+    `### Known values supported by the service`,
     valueDescriptions
   ].join(" \n");
 }

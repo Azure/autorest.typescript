@@ -214,7 +214,7 @@ export const enum KnownCMYKColors {
  * Defines values for CMYKColors. \
  * {@link KnownCMYKColors} can be used interchangeably with CMYKColors,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **cyan** \
  * **Magenta** \
  * **YELLOW** \
@@ -231,7 +231,7 @@ export const enum KnownMyKind {
  * Defines values for MyKind. \
  * {@link KnownMyKind} can be used interchangeably with MyKind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Kind1**
  */
 export type MyKind = string;
@@ -251,7 +251,7 @@ export const enum KnownGoblinSharkColor {
  * Defines values for GoblinSharkColor. \
  * {@link KnownGoblinSharkColor} can be used interchangeably with GoblinSharkColor,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **pink** \
  * **gray** \
  * **brown** \

@@ -563,7 +563,7 @@ export const enum KnownProductPropertiesProvisioningStateValues {
  * Defines values for ProductPropertiesProvisioningStateValues. \
  * {@link KnownProductPropertiesProvisioningStateValues} can be used interchangeably with ProductPropertiesProvisioningStateValues,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Failed** \
  * **canceled** \
@@ -597,7 +597,7 @@ export const enum KnownSubProductPropertiesProvisioningStateValues {
  * Defines values for SubProductPropertiesProvisioningStateValues. \
  * {@link KnownSubProductPropertiesProvisioningStateValues} can be used interchangeably with SubProductPropertiesProvisioningStateValues,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Failed** \
  * **canceled** \
@@ -631,7 +631,7 @@ export const enum KnownOperationResultStatus {
  * Defines values for OperationResultStatus. \
  * {@link KnownOperationResultStatus} can be used interchangeably with OperationResultStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Failed** \
  * **canceled** \

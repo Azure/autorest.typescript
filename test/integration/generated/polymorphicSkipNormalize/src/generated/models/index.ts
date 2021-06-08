@@ -571,7 +571,7 @@ export const enum KnownMediaGraphParameterType {
  * Defines values for MediaGraphParameterType. \
  * {@link KnownMediaGraphParameterType} can be used interchangeably with MediaGraphParameterType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **String**: A string parameter value. \
  * **SecretString**: A string to hold sensitive information as parameter value. \
  * **Int**: A 32-bit signed integer as parameter value. \
@@ -590,7 +590,7 @@ export const enum KnownMediaGraphOutputSelectorProperty {
  * Defines values for MediaGraphOutputSelectorProperty. \
  * {@link KnownMediaGraphOutputSelectorProperty} can be used interchangeably with MediaGraphOutputSelectorProperty,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **mediaType**: The stream's MIME type or subtype.
  */
 export type MediaGraphOutputSelectorProperty = string;
@@ -607,7 +607,7 @@ export const enum KnownMediaGraphOutputSelectorOperator {
  * Defines values for MediaGraphOutputSelectorOperator. \
  * {@link KnownMediaGraphOutputSelectorOperator} can be used interchangeably with MediaGraphOutputSelectorOperator,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **is**: A media type is the same type or a subtype. \
  * **isNot**: A media type is not the same type or a subtype.
  */
@@ -629,7 +629,7 @@ export const enum KnownMediaGraphInstanceState {
  * Defines values for MediaGraphInstanceState. \
  * {@link KnownMediaGraphInstanceState} can be used interchangeably with MediaGraphInstanceState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Inactive**: The media graph instance is idle and not processing media. \
  * **Activating**: The media graph instance is transitioning into the active state. \
  * **Active**: The media graph instance is active and processing media. \
@@ -649,7 +649,7 @@ export const enum KnownMediaGraphRtspTransport {
  * Defines values for MediaGraphRtspTransport. \
  * {@link KnownMediaGraphRtspTransport} can be used interchangeably with MediaGraphRtspTransport,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Http**: HTTP\/HTTPS transport. This should be used when HTTP tunneling is desired. \
  * **Tcp**: TCP transport. This should be used when HTTP tunneling is NOT desired.
  */
@@ -669,7 +669,7 @@ export const enum KnownMediaGraphMotionDetectionSensitivity {
  * Defines values for MediaGraphMotionDetectionSensitivity. \
  * {@link KnownMediaGraphMotionDetectionSensitivity} can be used interchangeably with MediaGraphMotionDetectionSensitivity,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Low**: Low Sensitivity. \
  * **Medium**: Medium Sensitivity. \
  * **High**: High Sensitivity.
@@ -690,7 +690,7 @@ export const enum KnownMediaGraphImageScaleMode {
  * Defines values for MediaGraphImageScaleMode. \
  * {@link KnownMediaGraphImageScaleMode} can be used interchangeably with MediaGraphImageScaleMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **PreserveAspectRatio**: Use the same aspect ratio as the input frame. \
  * **Pad**: Center pad the input frame to match the given dimensions. \
  * **Stretch**: Stretch input frame to match given dimensions.
@@ -709,7 +709,7 @@ export const enum KnownMediaGraphGrpcExtensionDataTransferMode {
  * Defines values for MediaGraphGrpcExtensionDataTransferMode. \
  * {@link KnownMediaGraphGrpcExtensionDataTransferMode} can be used interchangeably with MediaGraphGrpcExtensionDataTransferMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Embedded**: Frames are transferred embedded into the gRPC messages. \
  * **SharedMemory**: Frames are transferred through shared memory.
  */
@@ -745,7 +745,7 @@ export const enum KnownMediaGraphImageFormatRawPixelFormat {
  * Defines values for MediaGraphImageFormatRawPixelFormat. \
  * {@link KnownMediaGraphImageFormatRawPixelFormat} can be used interchangeably with MediaGraphImageFormatRawPixelFormat,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Yuv420p**: Planar YUV 4:2:0, 12bpp, (1 Cr and Cb sample per 2x2 Y samples). \
  * **Rgb565be**: Packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), big-endian. \
  * **Rgb565le**: Packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), little-endian. \

@@ -29,7 +29,7 @@ export const enum KnownEnum0 {
  * Defines values for Enum0. \
  * {@link KnownEnum0} can be used interchangeably with Enum0,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **foo1** \
  * **foo2** \
  * **foo3**
@@ -47,7 +47,7 @@ export const enum KnownEnum1 {
  * Defines values for Enum1. \
  * {@link KnownEnum1} can be used interchangeably with Enum1,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **foo1** \
  * **foo2** \
  * **foo3**

@@ -21,7 +21,7 @@ export const enum KnownIntEnum {
  * Defines values for IntEnum. \
  * {@link KnownIntEnum} can be used interchangeably with IntEnum,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **200** \
  * **403** \
  * **405** \
@@ -43,7 +43,7 @@ export const enum KnownFloatEnum {
  * Defines values for FloatEnum. \
  * {@link KnownFloatEnum} can be used interchangeably with FloatEnum,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **200.4** \
  * **403.4** \
  * **405.3** \

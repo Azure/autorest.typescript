@@ -134,7 +134,7 @@ export const enum KnownFlattenedProductPropertiesProvisioningStateValues {
  * Defines values for FlattenedProductPropertiesProvisioningStateValues. \
  * {@link KnownFlattenedProductPropertiesProvisioningStateValues} can be used interchangeably with FlattenedProductPropertiesProvisioningStateValues,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Failed** \
  * **canceled** \
