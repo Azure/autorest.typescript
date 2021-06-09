@@ -41,6 +41,7 @@ In addition to the [list of Autorest flags](https://github.com/Azure/autorest/bl
 | `--tracing-info`                | Controls specification of meta info attached to requests for tracing purposes                                                                                                                                                                                                                                                        |
 | `--disable-async-iterators`     | Does not generate async iterators needed for paging operations                                                                                                                                                                                                                                                                       |
 | `--allow-insecure-connection`   | Allow generated clients to make requests to HTTP endpoints                                                                                                                                                                                                                                                                           |
+| `--skip-lib-check`              | Sets `skipLibCheck` to `true` in the `tsconfig.json` file of the generated SDK.                                                                                                                                                                                                                                                      |
 
 ## Contributing
 
