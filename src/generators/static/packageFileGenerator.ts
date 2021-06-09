@@ -60,6 +60,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
     keywords: [],
     author: "",
     license: "ISC",
+    engines: {
+      node: ">=12.0.0"
+    },
     dependencies: {
       "@azure-rest/core-client": "1.0.0-beta.4",
       "@azure/core-auth": "^1.1.4",
@@ -105,6 +108,9 @@ function regularAutorestPackage(
       packageDetails.description ||
       `A generated SDK for ${clientDetails.name}.`,
     version: packageDetails.version,
+    engines: {
+      node: ">=12.0.0"
+    },
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
