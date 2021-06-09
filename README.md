@@ -1,14 +1,8 @@
-**Note**:
-
-This branch (main) is for the latest version of the TS/JS SDK generator - [@autorest/typescript](https://www.npmjs.com/package/@autorest/typescript).
-
-This latest version has redesigned the generated SDKs, introduced several new flags such as `licenseHeader`, `generateMetadata`, `useCoreV2`, `hideClients`, etc., and introduced new and updated methods for Long Running operations.
-
-If you are interested in the earlier version of the TS/JS SDK generator - [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript), it is available [here](https://github.com/Azure/autorest.typescript/tree/v4x)
-
 # TypeScript Plugin for Autorest
 
 [Autorest](https://github.com/Azure/autorest/blob/master/docs/readme.md) is a suite of tools to automatically generate SDKs for cloud services. This project provides an autorest extension that generates SDKs in TypeScript.
+
+> **Note**: This project, [@autorest/typescript](https://www.npmjs.com/package/@autorest/typescript) is the latest version of the TS/JS SDK generator and is currently in preview. The earlier stable version of the SDK generator [@microsoft.azure/autorest.typescript](https://www.npmjs.com/package/@microsoft.azure/autorest.typescript) is available in the [v4x branch of the Azure/autorest.typescript repository](https://github.com/Azure/autorest.typescript/tree/v4x).
 
 ## Auto-generate your package in TypeScript using Autorest
 
