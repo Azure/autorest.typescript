@@ -10,8 +10,8 @@ This is a sample server Petstore server.  You can find out more about Swagger at
 
 ### Currently supported environments
 
-- Node.js version 10.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
 
 ### Install the `petstore` package

@@ -10,8 +10,8 @@ XMS Error Response Extensions
 
 ### Currently supported environments
 
-- Node.js version 10.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
 
 ### Install the `xms-error-responses` package
