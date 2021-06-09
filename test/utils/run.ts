@@ -24,7 +24,8 @@ export async function runAutorest(
     hideClients,
     ignoreNullableOnOptional,
     title,
-    restLevelClient
+    restLevelClient,
+    skipLibCheck
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -79,6 +80,9 @@ export async function runAutorest(
   }
   if (packageDetails.version !== "") {
     commandArguments.push(`--package-version=${packageDetails.version}`);
+  }
+  if (skipLibCheck) {
+    commandArguments.push(`--skip-lib-check=${!!skipLibCheck}`);
   }
 
   commandArguments.push(

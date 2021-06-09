@@ -46,16 +46,23 @@ const restLevelTsConfig = {
 };
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient } = getAutorestOptions();
+  const {
+    generateMetadata,
+    restLevelClient,
+    skipLibCheck
+  } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
-  const tsConfigContents = restLevelClient
+  const tsConfigContents: any = restLevelClient
     ? restLevelTsConfig
     : highLevelTsConfig;
 
+  if (skipLibCheck) {
+    tsConfigContents.compilerOptions["skipLibCheck"] = true;
+  }
   project.createSourceFile("tsconfig.json", JSON.stringify(tsConfigContents), {
     overwrite: true
   });

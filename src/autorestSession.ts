@@ -24,6 +24,7 @@ export interface AutorestOptions {
   disablePagingAsyncIterators?: boolean;
   skipEnumValidation?: boolean;
   azureOutputDirectory?: string;
+  skipLibCheck?: boolean;
 }
 
 let host: Host;

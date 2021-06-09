@@ -29,6 +29,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const allowInsecureConnection = await getAllowInsecureConnection(host);
   const skipEnumValidation = await getSkipEnumValidation(host);
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
+  const skipLibCheck = await getSkipLibCheck(host);
 
   return {
     azureArm,
@@ -49,7 +50,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     disablePagingAsyncIterators,
     skipEnumValidation,
     title,
-    azureOutputDirectory
+    azureOutputDirectory,
+    skipLibCheck
   };
 }
 
@@ -61,6 +63,10 @@ async function getSkipEnumValidation(host: Host): Promise<boolean> {
 
 async function getAllowInsecureConnection(host: Host): Promise<boolean> {
   return (await host.GetValue("allow-insecure-connection")) || false;
+}
+
+async function getSkipLibCheck(host: Host): Promise<boolean> {
+  return (await host.GetValue("skip-lib-check")) || false;
 }
 
 async function getIgnoreNullableOnOptional(host: Host): Promise<boolean> {

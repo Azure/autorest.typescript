@@ -17,6 +17,7 @@ interface SwaggerConfig {
   useCoreV2?: boolean;
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
+  skipLibCheck?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -665,6 +666,13 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false
   },
+  skiplibcheck: {
+    swaggerOrConfig: "test/integration/swaggers/license-header.json",
+    clientName: "SkipLibCheckClient",
+    packageName: "skip-lib-check",
+    addCredentials: false,
+    skipLibCheck: true
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -701,6 +709,7 @@ const generateSwaggers = async (
       ignoreNullableOnOptional,
       useCoreV2,
       allowInsecureConnection,
+      skipLibCheck,
       restLevelClient
     } = testSwaggers[name];
 
@@ -734,7 +743,8 @@ const generateSwaggers = async (
         ignoreNullableOnOptional,
         useCoreV2,
         allowInsecureConnection,
-        restLevelClient
+        restLevelClient,
+        skipLibCheck
       },
       isDebugging
     );
