@@ -14,7 +14,7 @@ export interface MultiLanguageBatchInput {
   documents: TextDocumentInput[];
 }
 
-/** Contains an input document to be analyzed by the service. */
+/** An object representing an individual text document to be analyzed by the Text Analytics service. The document contains a unique document ID, the full text of the document, and the language of the document's text. */
 export interface TextDocumentInput {
   /** A unique, non-empty document identifier. */
   id: string;
@@ -391,6 +391,7 @@ export interface LanguageBatchInput {
   documents: DetectLanguageInput[];
 }
 
+/** An input to the language detection operation. This object specifies a unique document id, as well as the full text of a document and a hint indicating the document's country of origin to assist the text analytics predictive model in detecting the document's language. */
 export interface DetectLanguageInput {
   /** Unique, non-empty document identifier. */
   id: string;
