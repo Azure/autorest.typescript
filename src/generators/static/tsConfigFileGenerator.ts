@@ -9,7 +9,7 @@ const highLevelTsConfig = {
     module: "es6",
     moduleResolution: "node",
     strict: true,
-    target: "es5",
+    target: "es6",
     sourceMap: true,
     declarationMap: true,
     esModuleInterop: true,
