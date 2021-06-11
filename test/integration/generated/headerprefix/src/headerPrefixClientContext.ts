@@ -22,6 +22,14 @@ export class HeaderPrefixClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} headerprefix/1.0.0-preview1`
+        : `headerprefix/1.0.0-preview1`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

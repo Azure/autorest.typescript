@@ -25,6 +25,14 @@ export class BodyDateTimeRfc1123ClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} body-datetime-rfc1123/1.0.0-preview1`
+        : `body-datetime-rfc1123/1.0.0-preview1`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

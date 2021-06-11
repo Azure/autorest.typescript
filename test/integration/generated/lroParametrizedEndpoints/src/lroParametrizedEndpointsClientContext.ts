@@ -25,6 +25,14 @@ export class LroParametrizedEndpointsClientContext extends coreClient.ServiceCli
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} lro-parameterized-endpoints/1.0.0-preview1`
+        : `lro-parameterized-endpoints/1.0.0-preview1`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

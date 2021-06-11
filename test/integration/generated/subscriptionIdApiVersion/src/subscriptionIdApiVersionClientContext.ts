@@ -35,6 +35,14 @@ export class SubscriptionIdApiVersionClientContext extends coreClient.ServiceCli
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} subscriptionid-apiversion/1.0.0-preview1`
+        : `subscriptionid-apiversion/1.0.0-preview1`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

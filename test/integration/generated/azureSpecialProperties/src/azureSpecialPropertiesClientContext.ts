@@ -42,6 +42,15 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
       requestContentType: "application/json; charset=utf-8",
       credential: credentials
     };
+
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} azure-special-properties/1.0.0-preview1`
+        : `azure-special-properties/1.0.0-preview1`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     if (!options.credentialScopes) {
       options.credentialScopes = [
         "https://microsoft.com/.default",
