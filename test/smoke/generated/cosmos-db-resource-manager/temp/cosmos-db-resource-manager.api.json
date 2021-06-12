@@ -5852,7 +5852,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!CompositePathSortOrder:type",
-          "docComment": "/**\n * Defines values for CompositePathSortOrder. \\ {@link KnownCompositePathSortOrder} can be used interchangeably with CompositePathSortOrder, this enum contains the known values that the service supports. ### Know values supported by the service **Ascending** \\ **Descending**\n */\n",
+          "docComment": "/**\n * Defines values for CompositePathSortOrder. \\ {@link KnownCompositePathSortOrder} can be used interchangeably with CompositePathSortOrder, this enum contains the known values that the service supports. ### Known values supported by the service **Ascending** \\ **Descending**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5877,7 +5877,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!ConflictResolutionMode:type",
-          "docComment": "/**\n * Defines values for ConflictResolutionMode. \\ {@link KnownConflictResolutionMode} can be used interchangeably with ConflictResolutionMode, this enum contains the known values that the service supports. ### Know values supported by the service **LastWriterWins** \\ **Custom**\n */\n",
+          "docComment": "/**\n * Defines values for ConflictResolutionMode. \\ {@link KnownConflictResolutionMode} can be used interchangeably with ConflictResolutionMode, this enum contains the known values that the service supports. ### Known values supported by the service **LastWriterWins** \\ **Custom**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5994,7 +5994,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!ConnectorOffer:type",
-          "docComment": "/**\n * Defines values for ConnectorOffer. \\ {@link KnownConnectorOffer} can be used interchangeably with ConnectorOffer, this enum contains the known values that the service supports. ### Know values supported by the service **Small**\n */\n",
+          "docComment": "/**\n * Defines values for ConnectorOffer. \\ {@link KnownConnectorOffer} can be used interchangeably with ConnectorOffer, this enum contains the known values that the service supports. ### Known values supported by the service **Small**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7811,7 +7811,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountKind:type",
-          "docComment": "/**\n * Defines values for DatabaseAccountKind. \\ {@link KnownDatabaseAccountKind} can be used interchangeably with DatabaseAccountKind, this enum contains the known values that the service supports. ### Know values supported by the service **GlobalDocumentDB** \\ **MongoDB** \\ **Parse**\n */\n",
+          "docComment": "/**\n * Defines values for DatabaseAccountKind. \\ {@link KnownDatabaseAccountKind} can be used interchangeably with DatabaseAccountKind, this enum contains the known values that the service supports. ### Known values supported by the service **GlobalDocumentDB** \\ **MongoDB** \\ **Parse**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -12568,7 +12568,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!DataType:type",
-          "docComment": "/**\n * Defines values for DataType. \\ {@link KnownDataType} can be used interchangeably with DataType, this enum contains the known values that the service supports. ### Know values supported by the service **String** \\ **Number** \\ **Point** \\ **Polygon** \\ **LineString** \\ **MultiPolygon**\n */\n",
+          "docComment": "/**\n * Defines values for DataType. \\ {@link KnownDataType} can be used interchangeably with DataType, this enum contains the known values that the service supports. ### Known values supported by the service **String** \\ **Number** \\ **Point** \\ **Polygon** \\ **LineString** \\ **MultiPolygon**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -16923,7 +16923,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!IndexingMode:type",
-          "docComment": "/**\n * Defines values for IndexingMode. \\ {@link KnownIndexingMode} can be used interchangeably with IndexingMode, this enum contains the known values that the service supports. ### Know values supported by the service **Consistent** \\ **Lazy** \\ **None**\n */\n",
+          "docComment": "/**\n * Defines values for IndexingMode. \\ {@link KnownIndexingMode} can be used interchangeably with IndexingMode, this enum contains the known values that the service supports. ### Known values supported by the service **Consistent** \\ **Lazy** \\ **None**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -17135,7 +17135,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!IndexKind:type",
-          "docComment": "/**\n * Defines values for IndexKind. \\ {@link KnownIndexKind} can be used interchangeably with IndexKind, this enum contains the known values that the service supports. ### Know values supported by the service **Hash** \\ **Range** \\ **Spatial**\n */\n",
+          "docComment": "/**\n * Defines values for IndexKind. \\ {@link KnownIndexKind} can be used interchangeably with IndexKind, this enum contains the known values that the service supports. ### Known values supported by the service **Hash** \\ **Range** \\ **Spatial**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -17160,7 +17160,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!KeyKind:type",
-          "docComment": "/**\n * Defines values for KeyKind. \\ {@link KnownKeyKind} can be used interchangeably with KeyKind, this enum contains the known values that the service supports. ### Know values supported by the service **primary** \\ **secondary** \\ **primaryReadonly** \\ **secondaryReadonly**\n */\n",
+          "docComment": "/**\n * Defines values for KeyKind. \\ {@link KnownKeyKind} can be used interchangeably with KeyKind, this enum contains the known values that the service supports. ### Known values supported by the service **primary** \\ **secondary** \\ **primaryReadonly** \\ **secondaryReadonly**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -23498,7 +23498,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!NotebookWorkspaceName:type",
-          "docComment": "/**\n * Defines values for NotebookWorkspaceName. \\ {@link KnownNotebookWorkspaceName} can be used interchangeably with NotebookWorkspaceName, this enum contains the known values that the service supports. ### Know values supported by the service **default**\n */\n",
+          "docComment": "/**\n * Defines values for NotebookWorkspaceName. \\ {@link KnownNotebookWorkspaceName} can be used interchangeably with NotebookWorkspaceName, this enum contains the known values that the service supports. ### Known values supported by the service **default**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -26213,7 +26213,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PartitionKind:type",
-          "docComment": "/**\n * Defines values for PartitionKind. \\ {@link KnownPartitionKind} can be used interchangeably with PartitionKind, this enum contains the known values that the service supports. ### Know values supported by the service **Hash** \\ **Range**\n */\n",
+          "docComment": "/**\n * Defines values for PartitionKind. \\ {@link KnownPartitionKind} can be used interchangeably with PartitionKind, this enum contains the known values that the service supports. ### Known values supported by the service **Hash** \\ **Range**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -27220,7 +27220,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PrimaryAggregationType:type",
-          "docComment": "/**\n * Defines values for PrimaryAggregationType. \\ {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **Average** \\ **Total** \\ **Minimum** \\ **Maximum** \\ **Last**\n */\n",
+          "docComment": "/**\n * Defines values for PrimaryAggregationType. \\ {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType, this enum contains the known values that the service supports. ### Known values supported by the service **None** \\ **Average** \\ **Total** \\ **Minimum** \\ **Maximum** \\ **Last**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -29098,7 +29098,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!PublicNetworkAccess:type",
-          "docComment": "/**\n * Defines values for PublicNetworkAccess. \\ {@link KnownPublicNetworkAccess} can be used interchangeably with PublicNetworkAccess, this enum contains the known values that the service supports. ### Know values supported by the service **Enabled** \\ **Disabled**\n */\n",
+          "docComment": "/**\n * Defines values for PublicNetworkAccess. \\ {@link KnownPublicNetworkAccess} can be used interchangeably with PublicNetworkAccess, this enum contains the known values that the service supports. ### Known values supported by the service **Enabled** \\ **Disabled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -29326,7 +29326,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!SpatialType:type",
-          "docComment": "/**\n * Defines values for SpatialType. \\ {@link KnownSpatialType} can be used interchangeably with SpatialType, this enum contains the known values that the service supports. ### Know values supported by the service **Point** \\ **LineString** \\ **Polygon** \\ **MultiPolygon**\n */\n",
+          "docComment": "/**\n * Defines values for SpatialType. \\ {@link KnownSpatialType} can be used interchangeably with SpatialType, this enum contains the known values that the service supports. ### Known values supported by the service **Point** \\ **LineString** \\ **Polygon** \\ **MultiPolygon**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -39464,7 +39464,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!TriggerOperation:type",
-          "docComment": "/**\n * Defines values for TriggerOperation. \\ {@link KnownTriggerOperation} can be used interchangeably with TriggerOperation, this enum contains the known values that the service supports. ### Know values supported by the service **All** \\ **Create** \\ **Update** \\ **Delete** \\ **Replace**\n */\n",
+          "docComment": "/**\n * Defines values for TriggerOperation. \\ {@link KnownTriggerOperation} can be used interchangeably with TriggerOperation, this enum contains the known values that the service supports. ### Known values supported by the service **All** \\ **Create** \\ **Update** \\ **Delete** \\ **Replace**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -39489,7 +39489,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!TriggerType:type",
-          "docComment": "/**\n * Defines values for TriggerType. \\ {@link KnownTriggerType} can be used interchangeably with TriggerType, this enum contains the known values that the service supports. ### Know values supported by the service **Pre** \\ **Post**\n */\n",
+          "docComment": "/**\n * Defines values for TriggerType. \\ {@link KnownTriggerType} can be used interchangeably with TriggerType, this enum contains the known values that the service supports. ### Known values supported by the service **Pre** \\ **Post**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -39601,7 +39601,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "cosmos-db-resource-manager!UnitType:type",
-          "docComment": "/**\n * Defines values for UnitType. \\ {@link KnownUnitType} can be used interchangeably with UnitType, this enum contains the known values that the service supports. ### Know values supported by the service **Count** \\ **Bytes** \\ **Seconds** \\ **Percent** \\ **CountPerSecond** \\ **BytesPerSecond** \\ **Milliseconds**\n */\n",
+          "docComment": "/**\n * Defines values for UnitType. \\ {@link KnownUnitType} can be used interchangeably with UnitType, this enum contains the known values that the service supports. ### Known values supported by the service **Count** \\ **Bytes** \\ **Seconds** \\ **Percent** \\ **CountPerSecond** \\ **BytesPerSecond** \\ **Milliseconds**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

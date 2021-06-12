@@ -160,7 +160,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!CertificatePermissions:type",
-          "docComment": "/**\n * Defines values for CertificatePermissions. \\ {@link KnownCertificatePermissions} can be used interchangeably with CertificatePermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **delete** \\ **create** \\ **import** \\ **update** \\ **managecontacts** \\ **getissuers** \\ **listissuers** \\ **setissuers** \\ **deleteissuers** \\ **manageissuers** \\ **recover** \\ **purge** \\ **backup** \\ **restore**\n */\n",
+          "docComment": "/**\n * Defines values for CertificatePermissions. \\ {@link KnownCertificatePermissions} can be used interchangeably with CertificatePermissions, this enum contains the known values that the service supports. ### Known values supported by the service **get** \\ **list** \\ **delete** \\ **create** \\ **import** \\ **update** \\ **managecontacts** \\ **getissuers** \\ **listissuers** \\ **setissuers** \\ **deleteissuers** \\ **manageissuers** \\ **recover** \\ **purge** \\ **backup** \\ **restore**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -782,7 +782,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!KeyPermissions:type",
-          "docComment": "/**\n * Defines values for KeyPermissions. \\ {@link KnownKeyPermissions} can be used interchangeably with KeyPermissions, this enum contains the known values that the service supports. ### Know values supported by the service **encrypt** \\ **decrypt** \\ **wrapKey** \\ **unwrapKey** \\ **sign** \\ **verify** \\ **get** \\ **list** \\ **create** \\ **update** \\ **import** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
+          "docComment": "/**\n * Defines values for KeyPermissions. \\ {@link KnownKeyPermissions} can be used interchangeably with KeyPermissions, this enum contains the known values that the service supports. ### Known values supported by the service **encrypt** \\ **decrypt** \\ **wrapKey** \\ **unwrapKey** \\ **sign** \\ **verify** \\ **get** \\ **list** \\ **create** \\ **update** \\ **import** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2971,7 +2971,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!NetworkRuleAction:type",
-          "docComment": "/**\n * Defines values for NetworkRuleAction. \\ {@link KnownNetworkRuleAction} can be used interchangeably with NetworkRuleAction, this enum contains the known values that the service supports. ### Know values supported by the service **Allow** \\ **Deny**\n */\n",
+          "docComment": "/**\n * Defines values for NetworkRuleAction. \\ {@link KnownNetworkRuleAction} can be used interchangeably with NetworkRuleAction, this enum contains the known values that the service supports. ### Known values supported by the service **Allow** \\ **Deny**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -2996,7 +2996,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!NetworkRuleBypassOptions:type",
-          "docComment": "/**\n * Defines values for NetworkRuleBypassOptions. \\ {@link KnownNetworkRuleBypassOptions} can be used interchangeably with NetworkRuleBypassOptions, this enum contains the known values that the service supports. ### Know values supported by the service **AzureServices** \\ **None**\n */\n",
+          "docComment": "/**\n * Defines values for NetworkRuleBypassOptions. \\ {@link KnownNetworkRuleBypassOptions} can be used interchangeably with NetworkRuleBypassOptions, this enum contains the known values that the service supports. ### Known values supported by the service **AzureServices** \\ **None**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3974,7 +3974,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!PrivateEndpointConnectionProvisioningState:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState. \\ {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Succeeded** \\ **Creating** \\ **Updating** \\ **Deleting** \\ **Failed** \\ **Disconnected**\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointConnectionProvisioningState. \\ {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState, this enum contains the known values that the service supports. ### Known values supported by the service **Succeeded** \\ **Creating** \\ **Updating** \\ **Deleting** \\ **Failed** \\ **Disconnected**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4839,7 +4839,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!PrivateEndpointServiceConnectionStatus:type",
-          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus. \\ {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus, this enum contains the known values that the service supports. ### Know values supported by the service **Pending** \\ **Approved** \\ **Rejected** \\ **Disconnected**\n */\n",
+          "docComment": "/**\n * Defines values for PrivateEndpointServiceConnectionStatus. \\ {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus, this enum contains the known values that the service supports. ### Known values supported by the service **Pending** \\ **Approved** \\ **Rejected** \\ **Disconnected**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5432,7 +5432,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!SecretPermissions:type",
-          "docComment": "/**\n * Defines values for SecretPermissions. \\ {@link KnownSecretPermissions} can be used interchangeably with SecretPermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **set** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
+          "docComment": "/**\n * Defines values for SecretPermissions. \\ {@link KnownSecretPermissions} can be used interchangeably with SecretPermissions, this enum contains the known values that the service supports. ### Known values supported by the service **get** \\ **list** \\ **set** \\ **delete** \\ **backup** \\ **restore** \\ **recover** \\ **purge**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5571,7 +5571,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!SkuFamily:type",
-          "docComment": "/**\n * Defines values for SkuFamily. \\ {@link KnownSkuFamily} can be used interchangeably with SkuFamily, this enum contains the known values that the service supports. ### Know values supported by the service **A**\n */\n",
+          "docComment": "/**\n * Defines values for SkuFamily. \\ {@link KnownSkuFamily} can be used interchangeably with SkuFamily, this enum contains the known values that the service supports. ### Known values supported by the service **A**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5621,7 +5621,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "keyvault-resource-manager!StoragePermissions:type",
-          "docComment": "/**\n * Defines values for StoragePermissions. \\ {@link KnownStoragePermissions} can be used interchangeably with StoragePermissions, this enum contains the known values that the service supports. ### Know values supported by the service **get** \\ **list** \\ **delete** \\ **set** \\ **update** \\ **regeneratekey** \\ **recover** \\ **purge** \\ **backup** \\ **restore** \\ **setsas** \\ **listsas** \\ **getsas** \\ **deletesas**\n */\n",
+          "docComment": "/**\n * Defines values for StoragePermissions. \\ {@link KnownStoragePermissions} can be used interchangeably with StoragePermissions, this enum contains the known values that the service supports. ### Known values supported by the service **get** \\ **list** \\ **delete** \\ **set** \\ **update** \\ **regeneratekey** \\ **recover** \\ **purge** \\ **backup** \\ **restore** \\ **setsas** \\ **listsas** \\ **getsas** \\ **deletesas**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

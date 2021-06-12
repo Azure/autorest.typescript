@@ -35,10 +35,10 @@ export class UserAgentCoreV1ClientContext extends coreHttp.ServiceClient {
       options = {};
     }
 
-    const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+    const defaultUserAgent = `${packageName}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
     options.userAgent = options.userAgent
-      ? `${options.userAgent} ${packageName}/${packageVersion} ${defaultUserAgent}`
-      : `${packageName}/${packageVersion} ${defaultUserAgent}`;
+      ? `${options.userAgent} ${defaultUserAgent}`
+      : `${defaultUserAgent}`;
 
     super(undefined, options);
 

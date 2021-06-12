@@ -5738,7 +5738,7 @@ export const enum KnownConnectionPolicyName {
  * Defines values for ConnectionPolicyName. \
  * {@link KnownConnectionPolicyName} can be used interchangeably with ConnectionPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type ConnectionPolicyName = string;
@@ -5752,7 +5752,7 @@ export const enum KnownSecurityAlertPolicyName {
  * Defines values for SecurityAlertPolicyName. \
  * {@link KnownSecurityAlertPolicyName} can be used interchangeably with SecurityAlertPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type SecurityAlertPolicyName = string;
@@ -5766,7 +5766,7 @@ export const enum KnownGeoBackupPolicyName {
  * Defines values for GeoBackupPolicyName. \
  * {@link KnownGeoBackupPolicyName} can be used interchangeably with GeoBackupPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default**
  */
 export type GeoBackupPolicyName = string;
@@ -5793,7 +5793,7 @@ export const enum KnownDatabaseEdition {
  * Defines values for DatabaseEdition. \
  * {@link KnownDatabaseEdition} can be used interchangeably with DatabaseEdition,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Web** \
  * **Business** \
  * **Basic** \
@@ -5884,7 +5884,7 @@ export const enum KnownServiceObjectiveName {
  * Defines values for ServiceObjectiveName. \
  * {@link KnownServiceObjectiveName} can be used interchangeably with ServiceObjectiveName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **System** \
  * **System0** \
  * **System1** \
@@ -5962,7 +5962,7 @@ export const enum KnownExtensionName {
  * Defines values for ExtensionName. \
  * {@link KnownExtensionName} can be used interchangeably with ExtensionName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **import**
  */
 export type ExtensionName = string;
@@ -5981,7 +5981,7 @@ export const enum KnownUnitType {
  * Defines values for UnitType. \
  * {@link KnownUnitType} can be used interchangeably with UnitType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **count** \
  * **bytes** \
  * **seconds** \
@@ -6005,7 +6005,7 @@ export const enum KnownPrimaryAggregationType {
  * Defines values for PrimaryAggregationType. \
  * {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Average** \
  * **Count** \
@@ -6029,7 +6029,7 @@ export const enum KnownUnitDefinitionType {
  * Defines values for UnitDefinitionType. \
  * {@link KnownUnitDefinitionType} can be used interchangeably with UnitDefinitionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Count** \
  * **Bytes** \
  * **Seconds** \
@@ -6052,7 +6052,7 @@ export const enum KnownElasticPoolEdition {
  * Defines values for ElasticPoolEdition. \
  * {@link KnownElasticPoolEdition} can be used interchangeably with ElasticPoolEdition,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **Standard** \
  * **Premium** \
@@ -6073,7 +6073,7 @@ export const enum KnownReplicationState {
  * Defines values for ReplicationState. \
  * {@link KnownReplicationState} can be used interchangeably with ReplicationState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **PENDING** \
  * **SEEDING** \
  * **CATCH_UP** \
@@ -6090,7 +6090,7 @@ export const enum KnownTransparentDataEncryptionName {
  * Defines values for TransparentDataEncryptionName. \
  * {@link KnownTransparentDataEncryptionName} can be used interchangeably with TransparentDataEncryptionName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **current**
  */
 export type TransparentDataEncryptionName = string;
@@ -6105,7 +6105,7 @@ export const enum KnownTransparentDataEncryptionActivityStatus {
  * Defines values for TransparentDataEncryptionActivityStatus. \
  * {@link KnownTransparentDataEncryptionActivityStatus} can be used interchangeably with TransparentDataEncryptionActivityStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Encrypting** \
  * **Decrypting**
  */
@@ -6120,7 +6120,7 @@ export const enum KnownEncryptionProtectorName {
  * Defines values for EncryptionProtectorName. \
  * {@link KnownEncryptionProtectorName} can be used interchangeably with EncryptionProtectorName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **current**
  */
 export type EncryptionProtectorName = string;
@@ -6135,7 +6135,7 @@ export const enum KnownServerKeyType {
  * Defines values for ServerKeyType. \
  * {@link KnownServerKeyType} can be used interchangeably with ServerKeyType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ServiceManaged** \
  * **AzureKeyVault**
  */
@@ -6151,7 +6151,7 @@ export const enum KnownReadWriteEndpointFailoverPolicy {
  * Defines values for ReadWriteEndpointFailoverPolicy. \
  * {@link KnownReadWriteEndpointFailoverPolicy} can be used interchangeably with ReadWriteEndpointFailoverPolicy,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Manual** \
  * **Automatic**
  */
@@ -6167,7 +6167,7 @@ export const enum KnownReadOnlyEndpointFailoverPolicy {
  * Defines values for ReadOnlyEndpointFailoverPolicy. \
  * {@link KnownReadOnlyEndpointFailoverPolicy} can be used interchangeably with ReadOnlyEndpointFailoverPolicy,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled** \
  * **Enabled**
  */
@@ -6183,7 +6183,7 @@ export const enum KnownFailoverGroupReplicationRole {
  * Defines values for FailoverGroupReplicationRole. \
  * {@link KnownFailoverGroupReplicationRole} can be used interchangeably with FailoverGroupReplicationRole,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Primary** \
  * **Secondary**
  */
@@ -6199,7 +6199,7 @@ export const enum KnownOperationOrigin {
  * Defines values for OperationOrigin. \
  * {@link KnownOperationOrigin} can be used interchangeably with OperationOrigin,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **user** \
  * **system**
  */
@@ -6216,7 +6216,7 @@ export const enum KnownSyncAgentState {
  * Defines values for SyncAgentState. \
  * {@link KnownSyncAgentState} can be used interchangeably with SyncAgentState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Online** \
  * **Offline** \
  * **NeverConnected**
@@ -6233,7 +6233,7 @@ export const enum KnownSyncMemberDbType {
  * Defines values for SyncMemberDbType. \
  * {@link KnownSyncMemberDbType} can be used interchangeably with SyncMemberDbType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AzureSqlDatabase** \
  * **SqlServerDatabase**
  */
@@ -6251,7 +6251,7 @@ export const enum KnownEnum21 {
  * Defines values for Enum21. \
  * {@link KnownEnum21} can be used interchangeably with Enum21,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **All** \
  * **Error** \
  * **Warning** \
@@ -6271,7 +6271,7 @@ export const enum KnownSyncGroupLogType {
  * Defines values for SyncGroupLogType. \
  * {@link KnownSyncGroupLogType} can be used interchangeably with SyncGroupLogType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **All** \
  * **Error** \
  * **Warning** \
@@ -6289,7 +6289,7 @@ export const enum KnownSyncConflictResolutionPolicy {
  * Defines values for SyncConflictResolutionPolicy. \
  * {@link KnownSyncConflictResolutionPolicy} can be used interchangeably with SyncConflictResolutionPolicy,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **HubWin** \
  * **MemberWin**
  */
@@ -6308,7 +6308,7 @@ export const enum KnownSyncGroupState {
  * Defines values for SyncGroupState. \
  * {@link KnownSyncGroupState} can be used interchangeably with SyncGroupState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotReady** \
  * **Error** \
  * **Warning** \
@@ -6328,7 +6328,7 @@ export const enum KnownSyncDirection {
  * Defines values for SyncDirection. \
  * {@link KnownSyncDirection} can be used interchangeably with SyncDirection,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Bidirectional** \
  * **OneWayMemberToHub** \
  * **OneWayHubToMember**
@@ -6361,7 +6361,7 @@ export const enum KnownSyncMemberState {
  * Defines values for SyncMemberState. \
  * {@link KnownSyncMemberState} can be used interchangeably with SyncMemberState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SyncInProgress** \
  * **SyncSucceeded** \
  * **SyncFailed** \
@@ -6396,7 +6396,7 @@ export const enum KnownVirtualNetworkRuleState {
  * Defines values for VirtualNetworkRuleState. \
  * {@link KnownVirtualNetworkRuleState} can be used interchangeably with VirtualNetworkRuleState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Initializing** \
  * **InProgress** \
  * **Ready** \
@@ -6414,7 +6414,7 @@ export const enum KnownVulnerabilityAssessmentName {
  * Defines values for VulnerabilityAssessmentName. \
  * {@link KnownVulnerabilityAssessmentName} can be used interchangeably with VulnerabilityAssessmentName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type VulnerabilityAssessmentName = string;
@@ -6432,7 +6432,7 @@ export const enum KnownJobAgentState {
  * Defines values for JobAgentState. \
  * {@link KnownJobAgentState} can be used interchangeably with JobAgentState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Ready** \
  * **Updating** \
@@ -6459,7 +6459,7 @@ export const enum KnownJobExecutionLifecycle {
  * Defines values for JobExecutionLifecycle. \
  * {@link KnownJobExecutionLifecycle} can be used interchangeably with JobExecutionLifecycle,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Created** \
  * **InProgress** \
  * **WaitingForChildJobExecutions** \
@@ -6486,7 +6486,7 @@ export const enum KnownProvisioningState {
  * Defines values for ProvisioningState. \
  * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Created** \
  * **InProgress** \
  * **Succeeded** \
@@ -6508,7 +6508,7 @@ export const enum KnownJobTargetType {
  * Defines values for JobTargetType. \
  * {@link KnownJobTargetType} can be used interchangeably with JobTargetType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TargetGroup** \
  * **SqlDatabase** \
  * **SqlElasticPool** \
@@ -6526,7 +6526,7 @@ export const enum KnownJobStepActionType {
  * Defines values for JobStepActionType. \
  * {@link KnownJobStepActionType} can be used interchangeably with JobStepActionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TSql**
  */
 export type JobStepActionType = string;
@@ -6540,7 +6540,7 @@ export const enum KnownJobStepActionSource {
  * Defines values for JobStepActionSource. \
  * {@link KnownJobStepActionSource} can be used interchangeably with JobStepActionSource,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Inline**
  */
 export type JobStepActionSource = string;
@@ -6554,7 +6554,7 @@ export const enum KnownJobStepOutputType {
  * Defines values for JobStepOutputType. \
  * {@link KnownJobStepOutputType} can be used interchangeably with JobStepOutputType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SqlDatabase**
  */
 export type JobStepOutputType = string;
@@ -6570,7 +6570,7 @@ export const enum KnownLongTermRetentionDatabaseState {
  * Defines values for LongTermRetentionDatabaseState. \
  * {@link KnownLongTermRetentionDatabaseState} can be used interchangeably with LongTermRetentionDatabaseState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **All** \
  * **Live** \
  * **Deleted**
@@ -6586,7 +6586,7 @@ export const enum KnownLongTermRetentionPolicyName {
  * Defines values for LongTermRetentionPolicyName. \
  * {@link KnownLongTermRetentionPolicyName} can be used interchangeably with LongTermRetentionPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type LongTermRetentionPolicyName = string;
@@ -6600,7 +6600,7 @@ export const enum KnownManagedShortTermRetentionPolicyName {
  * Defines values for ManagedShortTermRetentionPolicyName. \
  * {@link KnownManagedShortTermRetentionPolicyName} can be used interchangeably with ManagedShortTermRetentionPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type ManagedShortTermRetentionPolicyName = string;
@@ -6614,7 +6614,7 @@ export const enum KnownSecurityAlertPolicyNameAutoGenerated {
  * Defines values for SecurityAlertPolicyNameAutoGenerated. \
  * {@link KnownSecurityAlertPolicyNameAutoGenerated} can be used interchangeably with SecurityAlertPolicyNameAutoGenerated,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default**
  */
 export type SecurityAlertPolicyNameAutoGenerated = string;
@@ -6628,7 +6628,7 @@ export const enum KnownManagedInstanceAdministratorType {
  * Defines values for ManagedInstanceAdministratorType. \
  * {@link KnownManagedInstanceAdministratorType} can be used interchangeably with ManagedInstanceAdministratorType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ActiveDirectory**
  */
 export type ManagedInstanceAdministratorType = string;
@@ -6647,7 +6647,7 @@ export const enum KnownManagementOperationState {
  * Defines values for ManagementOperationState. \
  * {@link KnownManagementOperationState} can be used interchangeably with ManagementOperationState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Pending** \
  * **InProgress** \
  * **Succeeded** \
@@ -6675,7 +6675,7 @@ export const enum KnownCreateMode {
  * Defines values for CreateMode. \
  * {@link KnownCreateMode} can be used interchangeably with CreateMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default** \
  * **Copy** \
  * **Secondary** \
@@ -6700,7 +6700,7 @@ export const enum KnownSampleName {
  * Defines values for SampleName. \
  * {@link KnownSampleName} can be used interchangeably with SampleName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AdventureWorksLT** \
  * **WideWorldImportersStd** \
  * **WideWorldImportersFull**
@@ -6736,7 +6736,7 @@ export const enum KnownDatabaseStatus {
  * Defines values for DatabaseStatus. \
  * {@link KnownDatabaseStatus} can be used interchangeably with DatabaseStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Online** \
  * **Restoring** \
  * **RecoveryPending** \
@@ -6771,7 +6771,7 @@ export const enum KnownCatalogCollationType {
  * Defines values for CatalogCollationType. \
  * {@link KnownCatalogCollationType} can be used interchangeably with CatalogCollationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DATABASE_DEFAULT** \
  * **SQL_Latin1_General_CP1_CI_AS**
  */
@@ -6787,7 +6787,7 @@ export const enum KnownDatabaseLicenseType {
  * Defines values for DatabaseLicenseType. \
  * {@link KnownDatabaseLicenseType} can be used interchangeably with DatabaseLicenseType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LicenseIncluded** \
  * **BasePrice**
  */
@@ -6803,7 +6803,7 @@ export const enum KnownDatabaseReadScale {
  * Defines values for DatabaseReadScale. \
  * {@link KnownDatabaseReadScale} can be used interchangeably with DatabaseReadScale,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -6820,7 +6820,7 @@ export const enum KnownElasticPoolState {
  * Defines values for ElasticPoolState. \
  * {@link KnownElasticPoolState} can be used interchangeably with ElasticPoolState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Ready** \
  * **Disabled**
@@ -6837,7 +6837,7 @@ export const enum KnownElasticPoolLicenseType {
  * Defines values for ElasticPoolLicenseType. \
  * {@link KnownElasticPoolLicenseType} can be used interchangeably with ElasticPoolLicenseType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LicenseIncluded** \
  * **BasePrice**
  */
@@ -6853,7 +6853,7 @@ export const enum KnownVulnerabilityAssessmentScanTriggerType {
  * Defines values for VulnerabilityAssessmentScanTriggerType. \
  * {@link KnownVulnerabilityAssessmentScanTriggerType} can be used interchangeably with VulnerabilityAssessmentScanTriggerType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **OnDemand** \
  * **Recurring**
  */
@@ -6871,7 +6871,7 @@ export const enum KnownVulnerabilityAssessmentScanState {
  * Defines values for VulnerabilityAssessmentScanState. \
  * {@link KnownVulnerabilityAssessmentScanState} can be used interchangeably with VulnerabilityAssessmentScanState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Passed** \
  * **Failed** \
  * **FailedToRun** \
@@ -6889,7 +6889,7 @@ export const enum KnownInstanceFailoverGroupReplicationRole {
  * Defines values for InstanceFailoverGroupReplicationRole. \
  * {@link KnownInstanceFailoverGroupReplicationRole} can be used interchangeably with InstanceFailoverGroupReplicationRole,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Primary** \
  * **Secondary**
  */
@@ -6904,7 +6904,7 @@ export const enum KnownShortTermRetentionPolicyName {
  * Defines values for ShortTermRetentionPolicyName. \
  * {@link KnownShortTermRetentionPolicyName} can be used interchangeably with ShortTermRetentionPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type ShortTermRetentionPolicyName = string;
@@ -6919,7 +6919,7 @@ export const enum KnownInstancePoolLicenseType {
  * Defines values for InstancePoolLicenseType. \
  * {@link KnownInstancePoolLicenseType} can be used interchangeably with InstancePoolLicenseType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LicenseIncluded** \
  * **BasePrice**
  */
@@ -6934,7 +6934,7 @@ export const enum KnownIdentityType {
  * Defines values for IdentityType. \
  * {@link KnownIdentityType} can be used interchangeably with IdentityType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SystemAssigned**
  */
 export type IdentityType = string;
@@ -6949,7 +6949,7 @@ export const enum KnownManagedServerCreateMode {
  * Defines values for ManagedServerCreateMode. \
  * {@link KnownManagedServerCreateMode} can be used interchangeably with ManagedServerCreateMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default** \
  * **PointInTimeRestore**
  */
@@ -6965,7 +6965,7 @@ export const enum KnownManagedInstanceLicenseType {
  * Defines values for ManagedInstanceLicenseType. \
  * {@link KnownManagedInstanceLicenseType} can be used interchangeably with ManagedInstanceLicenseType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LicenseIncluded** \
  * **BasePrice**
  */
@@ -6982,7 +6982,7 @@ export const enum KnownManagedInstanceProxyOverride {
  * Defines values for ManagedInstanceProxyOverride. \
  * {@link KnownManagedInstanceProxyOverride} can be used interchangeably with ManagedInstanceProxyOverride,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Proxy** \
  * **Redirect** \
  * **Default**
@@ -6999,7 +6999,7 @@ export const enum KnownReplicaType {
  * Defines values for ReplicaType. \
  * {@link KnownReplicaType} can be used interchangeably with ReplicaType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Primary** \
  * **ReadableSecondary**
  */
@@ -7017,7 +7017,7 @@ export const enum KnownPrivateLinkServiceConnectionStateStatus {
  * Defines values for PrivateLinkServiceConnectionStateStatus. \
  * {@link KnownPrivateLinkServiceConnectionStateStatus} can be used interchangeably with PrivateLinkServiceConnectionStateStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Approved** \
  * **Pending** \
  * **Rejected** \
@@ -7034,7 +7034,7 @@ export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
  * Defines values for PrivateLinkServiceConnectionStateActionsRequire. \
  * {@link KnownPrivateLinkServiceConnectionStateActionsRequire} can be used interchangeably with PrivateLinkServiceConnectionStateActionsRequire,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None**
  */
 export type PrivateLinkServiceConnectionStateActionsRequire = string;
@@ -7052,7 +7052,7 @@ export const enum KnownPrivateEndpointProvisioningState {
  * Defines values for PrivateEndpointProvisioningState. \
  * {@link KnownPrivateEndpointProvisioningState} can be used interchangeably with PrivateEndpointProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Approving** \
  * **Ready** \
  * **Dropping** \
@@ -7071,7 +7071,7 @@ export const enum KnownServerPublicNetworkAccess {
  * Defines values for ServerPublicNetworkAccess. \
  * {@link KnownServerPublicNetworkAccess} can be used interchangeably with ServerPublicNetworkAccess,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -7090,7 +7090,7 @@ export const enum KnownCapabilityGroup {
  * Defines values for CapabilityGroup. \
  * {@link KnownCapabilityGroup} can be used interchangeably with CapabilityGroup,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **supportedEditions** \
  * **supportedElasticPoolEditions** \
  * **supportedManagedInstanceVersions** \
@@ -7111,7 +7111,7 @@ export const enum KnownMaxSizeUnit {
  * Defines values for MaxSizeUnit. \
  * {@link KnownMaxSizeUnit} can be used interchangeably with MaxSizeUnit,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Megabytes** \
  * **Gigabytes** \
  * **Terabytes** \
@@ -7132,7 +7132,7 @@ export const enum KnownLogSizeUnit {
  * Defines values for LogSizeUnit. \
  * {@link KnownLogSizeUnit} can be used interchangeably with LogSizeUnit,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Megabytes** \
  * **Gigabytes** \
  * **Terabytes** \
@@ -7151,7 +7151,7 @@ export const enum KnownPerformanceLevelUnit {
  * Defines values for PerformanceLevelUnit. \
  * {@link KnownPerformanceLevelUnit} can be used interchangeably with PerformanceLevelUnit,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DTU** \
  * **VCores**
  */
@@ -7166,7 +7166,7 @@ export const enum KnownPauseDelayTimeUnit {
  * Defines values for PauseDelayTimeUnit. \
  * {@link KnownPauseDelayTimeUnit} can be used interchangeably with PauseDelayTimeUnit,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Minutes**
  */
 export type PauseDelayTimeUnit = string;
@@ -7182,7 +7182,7 @@ export const enum KnownStorageCapabilityStorageAccountType {
  * Defines values for StorageCapabilityStorageAccountType. \
  * {@link KnownStorageCapabilityStorageAccountType} can be used interchangeably with StorageCapabilityStorageAccountType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **GRS** \
  * **LRS** \
  * **ZRS**
@@ -7200,7 +7200,7 @@ export const enum KnownDatabaseState {
  * Defines values for DatabaseState. \
  * {@link KnownDatabaseState} can be used interchangeably with DatabaseState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **All** \
  * **Live** \
  * **Deleted**
@@ -7216,7 +7216,7 @@ export const enum KnownManagedInstanceLongTermRetentionPolicyName {
  * Defines values for ManagedInstanceLongTermRetentionPolicyName. \
  * {@link KnownManagedInstanceLongTermRetentionPolicyName} can be used interchangeably with ManagedInstanceLongTermRetentionPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type ManagedInstanceLongTermRetentionPolicyName = string;
@@ -7230,7 +7230,7 @@ export const enum KnownRestoreDetailsName {
  * Defines values for RestoreDetailsName. \
  * {@link KnownRestoreDetailsName} can be used interchangeably with RestoreDetailsName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default**
  */
 export type RestoreDetailsName = string;
@@ -7250,7 +7250,7 @@ export const enum KnownManagedDatabaseStatus {
  * Defines values for ManagedDatabaseStatus. \
  * {@link KnownManagedDatabaseStatus} can be used interchangeably with ManagedDatabaseStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Online** \
  * **Offline** \
  * **Shutdown** \
@@ -7274,7 +7274,7 @@ export const enum KnownManagedDatabaseCreateMode {
  * Defines values for ManagedDatabaseCreateMode. \
  * {@link KnownManagedDatabaseCreateMode} can be used interchangeably with ManagedDatabaseCreateMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default** \
  * **RestoreExternalBackup** \
  * **PointInTimeRestore** \
@@ -7292,7 +7292,7 @@ export const enum KnownAdministratorName {
  * Defines values for AdministratorName. \
  * {@link KnownAdministratorName} can be used interchangeably with AdministratorName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ActiveDirectory**
  */
 export type AdministratorName = string;
@@ -7306,7 +7306,7 @@ export const enum KnownAdministratorType {
  * Defines values for AdministratorType. \
  * {@link KnownAdministratorType} can be used interchangeably with AdministratorType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ActiveDirectory**
  */
 export type AdministratorType = string;

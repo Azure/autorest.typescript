@@ -234,7 +234,7 @@ export const enum KnownProvisioningState {
  * Defines values for ProvisioningState. \
  * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Accepted** \
  * **Running** \
  * **Ready** \

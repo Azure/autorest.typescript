@@ -31,10 +31,11 @@ export class OperationGroupClashClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const packageDetails = `operationgroupclash/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} operationgroupclash/1.0.0-preview1`
-        : `operationgroupclash/1.0.0-preview1`;
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
     options.userAgentOptions = {
       userAgentPrefix: userAgentPrefix
     };

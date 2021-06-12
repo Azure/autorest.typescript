@@ -3,6 +3,9 @@
   "author": "Microsoft Corporation",
   "description": "A generated SDK for DeploymentScriptsClient.",
   "version": "1.0.0-beta.1",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "dependencies": {
     "@azure/core-lro": "^1.0.5",
     "@azure/core-paging": "^1.1.1",
@@ -54,7 +57,8 @@
     "src/**/*.ts",
     "README.md",
     "rollup.config.js",
-    "tsconfig.json"
+    "tsconfig.json",
+    "review/*"
   ],
   "scripts": {
     "build": "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",

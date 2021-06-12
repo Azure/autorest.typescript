@@ -3563,7 +3563,7 @@ export const enum KnownProximityPlacementGroupType {
  * Defines values for ProximityPlacementGroupType. \
  * {@link KnownProximityPlacementGroupType} can be used interchangeably with ProximityPlacementGroupType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard** \
  * **Ultra**
  */
@@ -3579,7 +3579,7 @@ export const enum KnownHyperVGenerationTypes {
  * Defines values for HyperVGenerationTypes. \
  * {@link KnownHyperVGenerationTypes} can be used interchangeably with HyperVGenerationTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **V1** \
  * **V2**
  */
@@ -3759,7 +3759,7 @@ export const enum KnownVirtualMachineSizeTypes {
  * Defines values for VirtualMachineSizeTypes. \
  * {@link KnownVirtualMachineSizeTypes} can be used interchangeably with VirtualMachineSizeTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic_A0** \
  * **Basic_A1** \
  * **Basic_A2** \
@@ -3938,7 +3938,7 @@ export const enum KnownDiffDiskOptions {
  * Defines values for DiffDiskOptions. \
  * {@link KnownDiffDiskOptions} can be used interchangeably with DiffDiskOptions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Local**
  */
 export type DiffDiskOptions = string;
@@ -3953,7 +3953,7 @@ export const enum KnownDiffDiskPlacement {
  * Defines values for DiffDiskPlacement. \
  * {@link KnownDiffDiskPlacement} can be used interchangeably with DiffDiskPlacement,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **CacheDisk** \
  * **ResourceDisk**
  */
@@ -3970,7 +3970,7 @@ export const enum KnownDiskCreateOptionTypes {
  * Defines values for DiskCreateOptionTypes. \
  * {@link KnownDiskCreateOptionTypes} can be used interchangeably with DiskCreateOptionTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **FromImage** \
  * **Empty** \
  * **Attach**
@@ -3989,7 +3989,7 @@ export const enum KnownStorageAccountTypes {
  * Defines values for StorageAccountTypes. \
  * {@link KnownStorageAccountTypes} can be used interchangeably with StorageAccountTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_LRS** \
  * **Premium_LRS** \
  * **StandardSSD_LRS** \
@@ -4008,7 +4008,7 @@ export const enum KnownVirtualMachinePriorityTypes {
  * Defines values for VirtualMachinePriorityTypes. \
  * {@link KnownVirtualMachinePriorityTypes} can be used interchangeably with VirtualMachinePriorityTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Regular** \
  * **Low** \
  * **Spot**
@@ -4025,7 +4025,7 @@ export const enum KnownVirtualMachineEvictionPolicyTypes {
  * Defines values for VirtualMachineEvictionPolicyTypes. \
  * {@link KnownVirtualMachineEvictionPolicyTypes} can be used interchangeably with VirtualMachineEvictionPolicyTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Deallocate** \
  * **Delete**
  */
@@ -4041,7 +4041,7 @@ export const enum KnownHyperVGenerationType {
  * Defines values for HyperVGenerationType. \
  * {@link KnownHyperVGenerationType} can be used interchangeably with HyperVGenerationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **V1** \
  * **V2**
  */
@@ -4057,7 +4057,7 @@ export const enum KnownIPVersion {
  * Defines values for IPVersion. \
  * {@link KnownIPVersion} can be used interchangeably with IPVersion,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IPv4** \
  * **IPv6**
  */
@@ -4074,7 +4074,7 @@ export const enum KnownVirtualMachineScaleSetScaleInRules {
  * Defines values for VirtualMachineScaleSetScaleInRules. \
  * {@link KnownVirtualMachineScaleSetScaleInRules} can be used interchangeably with VirtualMachineScaleSetScaleInRules,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default** \
  * **OldestVM** \
  * **NewestVM**
@@ -4083,15 +4083,17 @@ export type VirtualMachineScaleSetScaleInRules = string;
 
 /** Known values of {@link OrchestrationServiceNames} that the service accepts. */
 export const enum KnownOrchestrationServiceNames {
-  AutomaticRepairs = "AutomaticRepairs"
+  AutomaticRepairs = "AutomaticRepairs",
+  DummyOrchestrationServiceName = "DummyOrchestrationServiceName"
 }
 
 /**
  * Defines values for OrchestrationServiceNames. \
  * {@link KnownOrchestrationServiceNames} can be used interchangeably with OrchestrationServiceNames,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
- * **AutomaticRepairs**
+ * ### Known values supported by the service
+ * **AutomaticRepairs** \
+ * **DummyOrchestrationServiceName**
  */
 export type OrchestrationServiceNames = string;
 
@@ -4106,7 +4108,7 @@ export const enum KnownOrchestrationServiceState {
  * Defines values for OrchestrationServiceState. \
  * {@link KnownOrchestrationServiceState} can be used interchangeably with OrchestrationServiceState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotRunning** \
  * **Running** \
  * **Suspended**
@@ -4123,7 +4125,7 @@ export const enum KnownOrchestrationServiceStateAction {
  * Defines values for OrchestrationServiceStateAction. \
  * {@link KnownOrchestrationServiceStateAction} can be used interchangeably with OrchestrationServiceStateAction,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Resume** \
  * **Suspend**
  */
@@ -4145,7 +4147,7 @@ export const enum KnownDiskStorageAccountTypes {
  * Defines values for DiskStorageAccountTypes. \
  * {@link KnownDiskStorageAccountTypes} can be used interchangeably with DiskStorageAccountTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_LRS**: Standard HDD locally redundant storage. Best for backup, non-critical, and infrequent access. \
  * **Premium_LRS**: Premium SSD locally redundant storage. Best for production and performance sensitive workloads. \
  * **StandardSSD_LRS**: Standard SSD locally redundant storage. Best for web servers, lightly used enterprise applications and dev\/test. \
@@ -4163,7 +4165,7 @@ export const enum KnownHyperVGeneration {
  * Defines values for HyperVGeneration. \
  * {@link KnownHyperVGeneration} can be used interchangeably with HyperVGeneration,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **V1** \
  * **V2**
  */
@@ -4191,7 +4193,7 @@ export const enum KnownDiskCreateOption {
  * Defines values for DiskCreateOption. \
  * {@link KnownDiskCreateOption} can be used interchangeably with DiskCreateOption,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Empty**: Create an empty data disk of a size given by diskSizeGB. \
  * **Attach**: Disk will be attached to a VM. \
  * **FromImage**: Create a new disk from a platform image specified by the given imageReference or galleryImageReference. \
@@ -4222,7 +4224,7 @@ export const enum KnownDiskState {
  * Defines values for DiskState. \
  * {@link KnownDiskState} can be used interchangeably with DiskState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unattached**: The disk is not being used and can be attached to a VM. \
  * **Attached**: The disk is currently mounted to a running VM. \
  * **Reserved**: The disk is mounted to a stopped-deallocated VM \
@@ -4244,7 +4246,7 @@ export const enum KnownEncryptionType {
  * Defines values for EncryptionType. \
  * {@link KnownEncryptionType} can be used interchangeably with EncryptionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **EncryptionAtRestWithPlatformKey**: Disk is encrypted with XStore managed key at rest. It is the default encryption type. \
  * **EncryptionAtRestWithCustomerKey**: Disk is encrypted with Customer managed key at rest.
  */
@@ -4261,7 +4263,7 @@ export const enum KnownAccessLevel {
  * Defines values for AccessLevel. \
  * {@link KnownAccessLevel} can be used interchangeably with AccessLevel,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Read** \
  * **Write**
@@ -4282,7 +4284,7 @@ export const enum KnownSnapshotStorageAccountTypes {
  * Defines values for SnapshotStorageAccountTypes. \
  * {@link KnownSnapshotStorageAccountTypes} can be used interchangeably with SnapshotStorageAccountTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_LRS**: Standard HDD locally redundant storage \
  * **Premium_LRS**: Premium SSD locally redundant storage \
  * **Standard_ZRS**: Standard zone redundant storage
@@ -4298,7 +4300,7 @@ export const enum KnownDiskEncryptionSetIdentityType {
  * Defines values for DiskEncryptionSetIdentityType. \
  * {@link KnownDiskEncryptionSetIdentityType} can be used interchangeably with DiskEncryptionSetIdentityType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SystemAssigned**
  */
 export type DiskEncryptionSetIdentityType = string;
@@ -4317,7 +4319,7 @@ export const enum KnownGalleryPropertiesProvisioningState {
  * Defines values for GalleryPropertiesProvisioningState. \
  * {@link KnownGalleryPropertiesProvisioningState} can be used interchangeably with GalleryPropertiesProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Updating** \
  * **Failed** \
@@ -4341,7 +4343,7 @@ export const enum KnownGalleryImagePropertiesProvisioningState {
  * Defines values for GalleryImagePropertiesProvisioningState. \
  * {@link KnownGalleryImagePropertiesProvisioningState} can be used interchangeably with GalleryImagePropertiesProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Updating** \
  * **Failed** \
@@ -4362,7 +4364,7 @@ export const enum KnownStorageAccountType {
  * Defines values for StorageAccountType. \
  * {@link KnownStorageAccountType} can be used interchangeably with StorageAccountType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_LRS** \
  * **Standard_ZRS** \
  * **Premium_LRS**
@@ -4383,7 +4385,7 @@ export const enum KnownGalleryImageVersionPropertiesProvisioningState {
  * Defines values for GalleryImageVersionPropertiesProvisioningState. \
  * {@link KnownGalleryImageVersionPropertiesProvisioningState} can be used interchangeably with GalleryImageVersionPropertiesProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Updating** \
  * **Failed** \
@@ -4405,7 +4407,7 @@ export const enum KnownAggregatedReplicationState {
  * Defines values for AggregatedReplicationState. \
  * {@link KnownAggregatedReplicationState} can be used interchangeably with AggregatedReplicationState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **InProgress** \
  * **Completed** \
@@ -4425,7 +4427,7 @@ export const enum KnownReplicationState {
  * Defines values for ReplicationState. \
  * {@link KnownReplicationState} can be used interchangeably with ReplicationState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Replicating** \
  * **Completed** \
@@ -4442,7 +4444,7 @@ export const enum KnownReplicationStatusTypes {
  * Defines values for ReplicationStatusTypes. \
  * {@link KnownReplicationStatusTypes} can be used interchangeably with ReplicationStatusTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ReplicationStatus**
  */
 export type ReplicationStatusTypes = string;
@@ -4461,7 +4463,7 @@ export const enum KnownGalleryApplicationVersionPropertiesProvisioningState {
  * Defines values for GalleryApplicationVersionPropertiesProvisioningState. \
  * {@link KnownGalleryApplicationVersionPropertiesProvisioningState} can be used interchangeably with GalleryApplicationVersionPropertiesProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Updating** \
  * **Failed** \
@@ -4482,7 +4484,7 @@ export const enum KnownContainerServiceMasterProfileCount {
  * Defines values for ContainerServiceMasterProfileCount. \
  * {@link KnownContainerServiceMasterProfileCount} can be used interchangeably with ContainerServiceMasterProfileCount,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **1** \
  * **3** \
  * **5**
@@ -4544,7 +4546,7 @@ export const enum KnownContainerServiceVMSizeTypes {
  * Defines values for ContainerServiceVMSizeTypes. \
  * {@link KnownContainerServiceVMSizeTypes} can be used interchangeably with ContainerServiceVMSizeTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_A0** \
  * **Standard_A1** \
  * **Standard_A2** \
@@ -4605,7 +4607,7 @@ export const enum KnownAvailabilitySetSkuTypes {
  * Defines values for AvailabilitySetSkuTypes. \
  * {@link KnownAvailabilitySetSkuTypes} can be used interchangeably with AvailabilitySetSkuTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Classic** \
  * **Aligned**
  */

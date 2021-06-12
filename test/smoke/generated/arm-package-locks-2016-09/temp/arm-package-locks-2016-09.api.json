@@ -288,7 +288,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-locks-2016-09!LockLevel:type",
-          "docComment": "/**\n * Defines values for LockLevel. \\ {@link KnownLockLevel} can be used interchangeably with LockLevel, this enum contains the known values that the service supports. ### Know values supported by the service **NotSpecified** \\ **CanNotDelete** \\ **ReadOnly**\n */\n",
+          "docComment": "/**\n * Defines values for LockLevel. \\ {@link KnownLockLevel} can be used interchangeably with LockLevel, this enum contains the known values that the service supports. ### Known values supported by the service **NotSpecified** \\ **CanNotDelete** \\ **ReadOnly**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

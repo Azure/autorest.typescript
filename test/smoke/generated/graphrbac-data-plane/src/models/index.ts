@@ -754,7 +754,7 @@ export const enum KnownUserType {
  * Defines values for UserType. \
  * {@link KnownUserType} can be used interchangeably with UserType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Member** \
  * **Guest**
  */
@@ -771,7 +771,7 @@ export const enum KnownGroupMembershipClaimTypes {
  * Defines values for GroupMembershipClaimTypes. \
  * {@link KnownGroupMembershipClaimTypes} can be used interchangeably with GroupMembershipClaimTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **SecurityGroup** \
  * **All**
@@ -788,7 +788,7 @@ export const enum KnownConsentType {
  * Defines values for ConsentType. \
  * {@link KnownConsentType} can be used interchangeably with ConsentType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AllPrincipals** \
  * **Principal**
  */

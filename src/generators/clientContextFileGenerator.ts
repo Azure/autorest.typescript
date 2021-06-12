@@ -252,10 +252,10 @@ function writeDefaultOptions(
      options = {};
   }
 
-  const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
+  const defaultUserAgent = \`\${packageName}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
   options.userAgent = options.userAgent
-  ? \`\${options.userAgent} \${packageName}/\${packageVersion} \${defaultUserAgent}\`
-  : \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
+  ? \`\${options.userAgent} \${defaultUserAgent}\`
+  : \`\${defaultUserAgent}\`;
 
   ${addScopes}
 
@@ -270,12 +270,11 @@ function writeDefaultOptions(
   }
   ${defaults}
 
+  const packageDetails = \`${packageDetails.name}/${packageDetails.version}\`;
   const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? \`\${options.userAgentOptions.userAgentPrefix} ${
-          packageDetails.name
-        }/${packageDetails.version}\`
-        : \`${packageDetails.name}/${packageDetails.version}\`;
+        ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
+        : \`\${packageDetails}\`;
   options.userAgentOptions = {
     userAgentPrefix: userAgentPrefix
   };

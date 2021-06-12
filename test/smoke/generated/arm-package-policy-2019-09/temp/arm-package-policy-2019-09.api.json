@@ -60,7 +60,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!EnforcementMode:type",
-          "docComment": "/**\n * Defines values for EnforcementMode. \\ {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode, this enum contains the known values that the service supports. ### Know values supported by the service **Default**: The policy effect is enforced during resource creation or update. \\ **DoNotEnforce**: The policy effect is not enforced during resource creation or update.\n */\n",
+          "docComment": "/**\n * Defines values for EnforcementMode. \\ {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode, this enum contains the known values that the service supports. ### Known values supported by the service **Default**: The policy effect is enforced during resource creation or update. \\ **DoNotEnforce**: The policy effect is not enforced during resource creation or update.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -938,7 +938,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!ParameterType:type",
-          "docComment": "/**\n * Defines values for ParameterType. \\ {@link KnownParameterType} can be used interchangeably with ParameterType, this enum contains the known values that the service supports. ### Know values supported by the service **String** \\ **Array** \\ **Object** \\ **Boolean** \\ **Integer** \\ **Float** \\ **DateTime**\n */\n",
+          "docComment": "/**\n * Defines values for ParameterType. \\ {@link KnownParameterType} can be used interchangeably with ParameterType, this enum contains the known values that the service supports. ### Known values supported by the service **String** \\ **Array** \\ **Object** \\ **Boolean** \\ **Integer** \\ **Float** \\ **DateTime**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -7796,7 +7796,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-policy-2019-09!PolicyType:type",
-          "docComment": "/**\n * Defines values for PolicyType. \\ {@link KnownPolicyType} can be used interchangeably with PolicyType, this enum contains the known values that the service supports. ### Know values supported by the service **NotSpecified** \\ **BuiltIn** \\ **Custom** \\ **Static**\n */\n",
+          "docComment": "/**\n * Defines values for PolicyType. \\ {@link KnownPolicyType} can be used interchangeably with PolicyType, this enum contains the known values that the service supports. ### Known values supported by the service **NotSpecified** \\ **BuiltIn** \\ **Custom** \\ **Static**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

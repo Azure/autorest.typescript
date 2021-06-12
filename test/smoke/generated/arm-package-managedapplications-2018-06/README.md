@@ -1,27 +1,31 @@
-## Azure ApplicationClient SDK for JavaScript
+# Application client library for JavaScript
 
-This package contains an isomorphic SDK for ApplicationClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Application client.
+
+ARM applications
+
+[Package (NPM)](https://www.npmjs.com/package/arm-package-managedapplications-2018-06) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `arm-package-managedapplications-2018-06` package
+
+Install the Application client library for JavaScript with `npm`:
 
 ```bash
 npm install arm-package-managedapplications-2018-06
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### ApplicationClient
 
-## Related projects
+`ApplicationClient` is the primary interface for developers using the Application client library. Explore the methods on this client object to understand the different features of the Application service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

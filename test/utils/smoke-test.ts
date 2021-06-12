@@ -8,7 +8,14 @@ import { onExit } from "./childProcessOnExit";
 import { appendFileSync } from "fs";
 import { runAutorest } from "./run";
 
-const SMOKE_PATH = joinPath(".", "test", "smoke", "generated");
+const SMOKE_PATH = joinPath(
+  `${__dirname}`,
+  "..",
+  "..",
+  "test",
+  "smoke",
+  "generated"
+);
 
 const logError = (str: string) => console.error(bold.red(str));
 const logSuccess = (str: string) => console.log(bold.greenBright(str));

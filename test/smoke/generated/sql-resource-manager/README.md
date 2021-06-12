@@ -1,27 +1,31 @@
-## Azure SqlManagementClient SDK for JavaScript
+# SqlManagement client library for JavaScript
 
-This package contains an isomorphic SDK for SqlManagementClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for SqlManagement client.
+
+The Azure SQL Database management API provides a RESTful set of web services that interact with Azure SQL Database services to manage your databases. The API enables you to create, retrieve, update, and delete databases.
+
+[Package (NPM)](https://www.npmjs.com/package/sql-resource-manager) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `sql-resource-manager` package
+
+Install the SqlManagement client library for JavaScript with `npm`:
 
 ```bash
 npm install sql-resource-manager
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### SqlManagementClient
 
-## Related projects
+`SqlManagementClient` is the primary interface for developers using the SqlManagement client library. Explore the methods on this client object to understand the different features of the SqlManagement service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

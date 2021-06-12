@@ -25,10 +25,11 @@ export class XmsErrorResponsesClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const packageDetails = `xms-error-responses/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} xms-error-responses/1.0.0-preview1`
-        : `xms-error-responses/1.0.0-preview1`;
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
     options.userAgentOptions = {
       userAgentPrefix: userAgentPrefix
     };

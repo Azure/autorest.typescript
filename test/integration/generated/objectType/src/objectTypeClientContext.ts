@@ -25,10 +25,11 @@ export class ObjectTypeClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
+    const packageDetails = `object-type/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
-        ? `${options.userAgentOptions.userAgentPrefix} object-type/1.0.0-preview1`
-        : `object-type/1.0.0-preview1`;
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
     options.userAgentOptions = {
       userAgentPrefix: userAgentPrefix
     };
