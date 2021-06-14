@@ -1,3 +1,8 @@
+## 1.0.0-beta.3 (2021-06-14)
+
+- [BugFix] Changed the target of the generated SDKs from `es5` to `es6`. Please refer [#1004](https://github.com/Azure/autorest.typescript/issues/1004) and [#1027](https://github.com/Azure/autorest.typescript/pull/1027) for further details.
+- [BugFix] Changed the default user agent of the generated SDKs to align with the SDK guidelines. Please refer [#1005](https://github.com/Azure/autorest.typescript/issues/1005) and [#1033](https://github.com/Azure/autorest.typescript/pull/1033) for further details.
+
 ## 1.0.0-beta.2 (2021-06-07)
 
 - [BugFix] Removed the erroneous `@azure/core-util` package dependency and added the `delay` function inline in LRO methods. Please refer [#993](https://github.com/Azure/autorest.typescript/issues/993) and [#1007](https://github.com/Azure/autorest.typescript/pull/1007) for further details.
