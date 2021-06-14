@@ -6,6 +6,7 @@ import { OperationArguments, OperationSpec } from "@azure/core-client";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import {
   FinalStateVia,
+  PollerConfig,
   ResumablePollOperationState,
   SendOperationFn
 } from "./models";
@@ -14,12 +15,16 @@ import { createGetLROState, initializeState, LROState } from "./stateMachine";
 
 export class GenericPollOperation<TResult>
   implements PollOperation<PollOperationState<TResult>, TResult> {
-  private getLROState?: (pollingURL: string) => Promise<LROState<TResult>>;
+  private getLROState?: (
+    pollingURL: string,
+    pollerConfig: PollerConfig
+  ) => Promise<LROState<TResult>>;
   constructor(
     public state: PollOperationState<TResult>,
     private initialOperationArguments: OperationArguments,
     private initialOperationSpec: OperationSpec,
     private sendOperation: SendOperationFn<TResult>,
+    private pollerConfig: PollerConfig,
     private finalStateVia?: FinalStateVia
   ) {}
 
@@ -78,7 +83,10 @@ export class GenericPollOperation<TResult>
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");
       }
-      const currentState = await this.getLROState(state.pollingURL);
+      const currentState = await this.getLROState(
+        state.pollingURL,
+        this.pollerConfig
+      );
       if (currentState.done) {
         state.result = currentState.flatResponse;
         state.isCompleted = true;

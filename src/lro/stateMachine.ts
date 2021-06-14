@@ -17,6 +17,7 @@ import {
   FinalStateVia,
   LROConfig,
   LROResult,
+  PollerConfig,
   ResumablePollOperationState,
   SendOperationFn
 } from "./models";
@@ -103,7 +104,10 @@ export function createGetLROState<TResult>(
   spec: OperationSpec,
   config: LROConfig,
   finalStateVia?: FinalStateVia
-): (pollingURL: string) => Promise<LROState<TResult>> {
+): (
+  pollingURL: string,
+  pollerConfig: PollerConfig
+) => Promise<LROState<TResult>> {
   const step = createTransition(
     sendOperationFn,
     args,
@@ -113,6 +117,7 @@ export function createGetLROState<TResult>(
   );
   const customerCallback = args?.options?.onResponse;
   let response: LROState<TResult> | undefined = undefined;
+  let retryAfter: string | undefined = undefined;
   const poll = createPollingMethod(
     sendOperationFn,
     {
@@ -124,6 +129,7 @@ export function createGetLROState<TResult>(
           flatResponse: unknown
         ): void => {
           response = step(rawResponse, flatResponse as TResult);
+          retryAfter = rawResponse.headers.get("Retry-After");
           if (response.done) {
             customerCallback?.(rawResponse, flatResponse);
           }
@@ -133,10 +139,34 @@ export function createGetLROState<TResult>(
     spec,
     config.mode
   );
-  return async (path: string): Promise<LROState<TResult>> => {
+  return async (
+    path: string,
+    pollerConfig: PollerConfig
+  ): Promise<LROState<TResult>> => {
     await poll(path);
+    if (retryAfter !== undefined) {
+      const retryAfterInMs = parseInt(retryAfter);
+      pollerConfig.intervalInMs = isNaN(retryAfterInMs)
+        ? calculatePollingIntervalFromDate(
+            new Date(retryAfter),
+            pollerConfig.intervalInMs
+          )
+        : retryAfterInMs;
+    }
     return response!;
   };
+}
+
+function calculatePollingIntervalFromDate(
+  retryAfterDate: Date,
+  defaultIntervalInMs: number
+): number {
+  const timeNow = Math.floor(new Date().getTime());
+  const retryAfterTime = retryAfterDate.getTime();
+  if (timeNow < retryAfterTime) {
+    return retryAfterTime - timeNow;
+  }
+  return defaultIntervalInMs;
 }
 
 /**
