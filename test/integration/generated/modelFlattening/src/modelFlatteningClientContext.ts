@@ -25,7 +25,7 @@ export class ModelFlatteningClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
-    const packageDetails = `model-flattening/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-model-flattening/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

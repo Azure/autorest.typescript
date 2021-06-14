@@ -21,7 +21,7 @@ describe("Integration tests for User Agents", () => {
     const array = result._response.request.headers
       .get("user-agent")!
       .match(
-        /useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
+        /azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
       );
 
     assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -39,7 +39,7 @@ describe("Integration tests for User Agents", () => {
     const array = result._response.request.headers
       .get("user-agent")!
       .match(
-        /CustomUserAgentPrefix useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
+        /CustomUserAgentPrefix azsdk-js-useragent-corev1\/1\.0\.0-preview1 core-http\/.* Node\/v.* OS\/.*/g
       );
 
     assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -57,7 +57,7 @@ describe("Integration tests for User Agents", () => {
           const array = response.request.headers
             .get("user-agent")!
             .match(
-              /useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
+              /azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
             );
 
           assert.equal(array!.length, 1, "Unexpected User Agent Value");
@@ -81,7 +81,7 @@ describe("Integration tests for User Agents", () => {
           const array = response.request.headers
             .get("user-agent")!
             .match(
-              /CustomUserAgentPrefix useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
+              /CustomUserAgentPrefix azsdk-js-useragent-corev2\/1\.0\.0-preview1 core-rest-pipeline\/.* Node\/v.* OS\/.*/g
             );
 
           assert.equal(array!.length, 1, "Unexpected User Agent Value");

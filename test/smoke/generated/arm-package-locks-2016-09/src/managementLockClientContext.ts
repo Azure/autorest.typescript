@@ -42,7 +42,7 @@ export class ManagementLockClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `arm-package-locks-2016-09/1.0.0-beta.1`;
+    const packageDetails = `azsdk-js-arm-package-locks-2016-09/1.0.0-beta.1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

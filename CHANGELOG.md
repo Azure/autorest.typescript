@@ -1,7 +1,7 @@
 ## 1.0.0-beta.3 (2021-06-14)
 
 - [BugFix] Changed the target of the generated SDKs from `es5` to `es6`. Please refer [#1004](https://github.com/Azure/autorest.typescript/issues/1004) and [#1027](https://github.com/Azure/autorest.typescript/pull/1027) for further details.
-- [BugFix] Changed the default user agent of the generated SDKs to align with the SDK guidelines. Please refer [#1005](https://github.com/Azure/autorest.typescript/issues/1005) and [#1033](https://github.com/Azure/autorest.typescript/pull/1033) for further details.
+- [BugFix] Changed the default user agent of the generated SDKs to align with the SDK guidelines. Please refer [#1005](https://github.com/Azure/autorest.typescript/issues/1005) and [#1033](https://github.com/Azure/autorest.typescript/pull/1033) for further details. **Note**: The default-user agent will follow the format of `azsdk-js-<package-name>/<package-version> core-<package-name>/<core-package-version> ....`. If the user/custom code adds `azsdk-js-<package-name>/<package-version>` as custom user agent string, then it should be removed with this version update.
 
 ## 1.0.0-beta.2 (2021-06-07)
 
