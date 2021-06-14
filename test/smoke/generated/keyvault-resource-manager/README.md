@@ -1,27 +1,31 @@
-## Azure KeyVaultManagementClient SDK for JavaScript
+# KeyVaultManagement client library for JavaScript
 
-This package contains an isomorphic SDK for KeyVaultManagementClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for KeyVaultManagement client.
+
+The Azure management API provides a RESTful set of web services that interact with Azure Key Vault.
+
+[Package (NPM)](https://www.npmjs.com/package/keyvault-resource-manager) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `keyvault-resource-manager` package
+
+Install the KeyVaultManagement client library for JavaScript with `npm`:
 
 ```bash
 npm install keyvault-resource-manager
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### KeyVaultManagementClient
 
-## Related projects
+`KeyVaultManagementClient` is the primary interface for developers using the KeyVaultManagement client library. Explore the methods on this client object to understand the different features of the KeyVaultManagement service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

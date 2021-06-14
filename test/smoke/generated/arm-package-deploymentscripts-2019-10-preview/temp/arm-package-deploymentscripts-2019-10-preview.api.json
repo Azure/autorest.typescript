@@ -355,7 +355,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type",
-          "docComment": "/**\n * Defines values for CleanupOptions. \\ {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions, this enum contains the known values that the service supports. ### Know values supported by the service **Always** \\ **OnSuccess** \\ **OnExpiration**\n */\n",
+          "docComment": "/**\n * Defines values for CleanupOptions. \\ {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions, this enum contains the known values that the service supports. ### Known values supported by the service **Always** \\ **OnSuccess** \\ **OnExpiration**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -421,7 +421,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type",
-          "docComment": "/**\n * Defines values for CreatedByType. \\ {@link KnownCreatedByType} can be used interchangeably with CreatedByType, this enum contains the known values that the service supports. ### Know values supported by the service **User** \\ **Application** \\ **ManagedIdentity** \\ **Key**\n */\n",
+          "docComment": "/**\n * Defines values for CreatedByType. \\ {@link KnownCreatedByType} can be used interchangeably with CreatedByType, this enum contains the known values that the service supports. ### Known values supported by the service **User** \\ **Application** \\ **ManagedIdentity** \\ **Key**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3545,7 +3545,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type",
-          "docComment": "/**\n * Defines values for ManagedServiceIdentityType. \\ {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType, this enum contains the known values that the service supports. ### Know values supported by the service **UserAssigned**\n */\n",
+          "docComment": "/**\n * Defines values for ManagedServiceIdentityType. \\ {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType, this enum contains the known values that the service supports. ### Known values supported by the service **UserAssigned**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -3867,7 +3867,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type",
-          "docComment": "/**\n * Defines values for ScriptProvisioningState. \\ {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState, this enum contains the known values that the service supports. ### Know values supported by the service **Creating** \\ **ProvisioningResources** \\ **Running** \\ **Succeeded** \\ **Failed** \\ **Canceled**\n */\n",
+          "docComment": "/**\n * Defines values for ScriptProvisioningState. \\ {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState, this enum contains the known values that the service supports. ### Known values supported by the service **Creating** \\ **ProvisioningResources** \\ **Running** \\ **Succeeded** \\ **Failed** \\ **Canceled**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -4062,7 +4062,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type",
-          "docComment": "/**\n * Defines values for ScriptType. \\ {@link KnownScriptType} can be used interchangeably with ScriptType, this enum contains the known values that the service supports. ### Know values supported by the service **AzurePowerShell** \\ **AzureCLI**\n */\n",
+          "docComment": "/**\n * Defines values for ScriptType. \\ {@link KnownScriptType} can be used interchangeably with ScriptType, this enum contains the known values that the service supports. ### Known values supported by the service **AzurePowerShell** \\ **AzureCLI**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

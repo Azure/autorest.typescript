@@ -278,7 +278,7 @@ export const enum KnownEnforcementMode {
  * Defines values for EnforcementMode. \
  * {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default**: The policy effect is enforced during resource creation or update. \
  * **DoNotEnforce**: The policy effect is not enforced during resource creation or update.
  */
@@ -296,7 +296,7 @@ export const enum KnownPolicyType {
  * Defines values for PolicyType. \
  * {@link KnownPolicyType} can be used interchangeably with PolicyType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotSpecified** \
  * **BuiltIn** \
  * **Custom** \
@@ -319,7 +319,7 @@ export const enum KnownParameterType {
  * Defines values for ParameterType. \
  * {@link KnownParameterType} can be used interchangeably with ParameterType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **String** \
  * **Array** \
  * **Object** \

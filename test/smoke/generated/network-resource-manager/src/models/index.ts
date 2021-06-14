@@ -8158,7 +8158,7 @@ export const enum KnownApplicationGatewaySkuName {
  * Defines values for ApplicationGatewaySkuName. \
  * {@link KnownApplicationGatewaySkuName} can be used interchangeably with ApplicationGatewaySkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_Small** \
  * **Standard_Medium** \
  * **Standard_Large** \
@@ -8181,7 +8181,7 @@ export const enum KnownApplicationGatewayTier {
  * Defines values for ApplicationGatewayTier. \
  * {@link KnownApplicationGatewayTier} can be used interchangeably with ApplicationGatewayTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard** \
  * **WAF** \
  * **Standard_v2** \
@@ -8200,7 +8200,7 @@ export const enum KnownApplicationGatewaySslProtocol {
  * Defines values for ApplicationGatewaySslProtocol. \
  * {@link KnownApplicationGatewaySslProtocol} can be used interchangeably with ApplicationGatewaySslProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TLSv1_0** \
  * **TLSv1_1** \
  * **TLSv1_2**
@@ -8217,7 +8217,7 @@ export const enum KnownApplicationGatewaySslPolicyType {
  * Defines values for ApplicationGatewaySslPolicyType. \
  * {@link KnownApplicationGatewaySslPolicyType} can be used interchangeably with ApplicationGatewaySslPolicyType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Predefined** \
  * **Custom**
  */
@@ -8234,7 +8234,7 @@ export const enum KnownApplicationGatewaySslPolicyName {
  * Defines values for ApplicationGatewaySslPolicyName. \
  * {@link KnownApplicationGatewaySslPolicyName} can be used interchangeably with ApplicationGatewaySslPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AppGwSslPolicy20150501** \
  * **AppGwSslPolicy20170401** \
  * **AppGwSslPolicy20170401S**
@@ -8277,7 +8277,7 @@ export const enum KnownApplicationGatewaySslCipherSuite {
  * Defines values for ApplicationGatewaySslCipherSuite. \
  * {@link KnownApplicationGatewaySslCipherSuite} can be used interchangeably with ApplicationGatewaySslCipherSuite,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384** \
  * **TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256** \
  * **TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA** \
@@ -8321,7 +8321,7 @@ export const enum KnownApplicationGatewayOperationalState {
  * Defines values for ApplicationGatewayOperationalState. \
  * {@link KnownApplicationGatewayOperationalState} can be used interchangeably with ApplicationGatewayOperationalState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Stopped** \
  * **Starting** \
  * **Running** \
@@ -8341,7 +8341,7 @@ export const enum KnownProvisioningState {
  * Defines values for ProvisioningState. \
  * {@link KnownProvisioningState} can be used interchangeably with ProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Updating** \
  * **Deleting** \
@@ -8359,7 +8359,7 @@ export const enum KnownIPAllocationMethod {
  * Defines values for IPAllocationMethod. \
  * {@link KnownIPAllocationMethod} can be used interchangeably with IPAllocationMethod,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Static** \
  * **Dynamic**
  */
@@ -8375,7 +8375,7 @@ export const enum KnownApplicationGatewayProtocol {
  * Defines values for ApplicationGatewayProtocol. \
  * {@link KnownApplicationGatewayProtocol} can be used interchangeably with ApplicationGatewayProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Http** \
  * **Https**
  */
@@ -8391,7 +8391,7 @@ export const enum KnownIPVersion {
  * Defines values for IPVersion. \
  * {@link KnownIPVersion} can be used interchangeably with IPVersion,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IPv4** \
  * **IPv6**
  */
@@ -8411,7 +8411,7 @@ export const enum KnownSecurityRuleProtocol {
  * Defines values for SecurityRuleProtocol. \
  * {@link KnownSecurityRuleProtocol} can be used interchangeably with SecurityRuleProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Udp** \
  * **Icmp** \
@@ -8431,7 +8431,7 @@ export const enum KnownSecurityRuleAccess {
  * Defines values for SecurityRuleAccess. \
  * {@link KnownSecurityRuleAccess} can be used interchangeably with SecurityRuleAccess,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
@@ -8447,7 +8447,7 @@ export const enum KnownSecurityRuleDirection {
  * Defines values for SecurityRuleDirection. \
  * {@link KnownSecurityRuleDirection} can be used interchangeably with SecurityRuleDirection,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Inbound** \
  * **Outbound**
  */
@@ -8462,7 +8462,7 @@ export const enum KnownFlowLogFormatType {
  * Defines values for FlowLogFormatType. \
  * {@link KnownFlowLogFormatType} can be used interchangeably with FlowLogFormatType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **JSON**
  */
 export type FlowLogFormatType = string;
@@ -8480,7 +8480,7 @@ export const enum KnownRouteNextHopType {
  * Defines values for RouteNextHopType. \
  * {@link KnownRouteNextHopType} can be used interchangeably with RouteNextHopType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **VirtualNetworkGateway** \
  * **VnetLocal** \
  * **Internet** \
@@ -8499,7 +8499,7 @@ export const enum KnownPublicIPAddressSkuName {
  * Defines values for PublicIPAddressSkuName. \
  * {@link KnownPublicIPAddressSkuName} can be used interchangeably with PublicIPAddressSkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **Standard**
  */
@@ -8515,7 +8515,7 @@ export const enum KnownDdosSettingsProtectionCoverage {
  * Defines values for DdosSettingsProtectionCoverage. \
  * {@link KnownDdosSettingsProtectionCoverage} can be used interchangeably with DdosSettingsProtectionCoverage,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **Standard**
  */
@@ -8532,7 +8532,7 @@ export const enum KnownVirtualNetworkPeeringState {
  * Defines values for VirtualNetworkPeeringState. \
  * {@link KnownVirtualNetworkPeeringState} can be used interchangeably with VirtualNetworkPeeringState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Initiated** \
  * **Connected** \
  * **Disconnected**
@@ -8550,7 +8550,7 @@ export const enum KnownTransportProtocol {
  * Defines values for TransportProtocol. \
  * {@link KnownTransportProtocol} can be used interchangeably with TransportProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Udp** \
  * **Tcp** \
  * **All**
@@ -8567,7 +8567,7 @@ export const enum KnownApplicationGatewayCookieBasedAffinity {
  * Defines values for ApplicationGatewayCookieBasedAffinity. \
  * {@link KnownApplicationGatewayCookieBasedAffinity} can be used interchangeably with ApplicationGatewayCookieBasedAffinity,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -8583,7 +8583,7 @@ export const enum KnownApplicationGatewayCustomErrorStatusCode {
  * Defines values for ApplicationGatewayCustomErrorStatusCode. \
  * {@link KnownApplicationGatewayCustomErrorStatusCode} can be used interchangeably with ApplicationGatewayCustomErrorStatusCode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **HttpStatus403** \
  * **HttpStatus502**
  */
@@ -8599,7 +8599,7 @@ export const enum KnownApplicationGatewayRequestRoutingRuleType {
  * Defines values for ApplicationGatewayRequestRoutingRuleType. \
  * {@link KnownApplicationGatewayRequestRoutingRuleType} can be used interchangeably with ApplicationGatewayRequestRoutingRuleType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **PathBasedRouting**
  */
@@ -8617,7 +8617,7 @@ export const enum KnownApplicationGatewayRedirectType {
  * Defines values for ApplicationGatewayRedirectType. \
  * {@link KnownApplicationGatewayRedirectType} can be used interchangeably with ApplicationGatewayRedirectType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Permanent** \
  * **Found** \
  * **SeeOther** \
@@ -8635,7 +8635,7 @@ export const enum KnownApplicationGatewayFirewallMode {
  * Defines values for ApplicationGatewayFirewallMode. \
  * {@link KnownApplicationGatewayFirewallMode} can be used interchangeably with ApplicationGatewayFirewallMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Detection** \
  * **Prevention**
  */
@@ -8654,7 +8654,7 @@ export const enum KnownApplicationGatewayBackendHealthServerHealth {
  * Defines values for ApplicationGatewayBackendHealthServerHealth. \
  * {@link KnownApplicationGatewayBackendHealthServerHealth} can be used interchangeably with ApplicationGatewayBackendHealthServerHealth,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Up** \
  * **Down** \
@@ -8673,7 +8673,7 @@ export const enum KnownAzureFirewallRCActionType {
  * Defines values for AzureFirewallRCActionType. \
  * {@link KnownAzureFirewallRCActionType} can be used interchangeably with AzureFirewallRCActionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
@@ -8690,7 +8690,7 @@ export const enum KnownAzureFirewallApplicationRuleProtocolType {
  * Defines values for AzureFirewallApplicationRuleProtocolType. \
  * {@link KnownAzureFirewallApplicationRuleProtocolType} can be used interchangeably with AzureFirewallApplicationRuleProtocolType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Http** \
  * **Https** \
  * **Mssql**
@@ -8707,7 +8707,7 @@ export const enum KnownAzureFirewallNatRCActionType {
  * Defines values for AzureFirewallNatRCActionType. \
  * {@link KnownAzureFirewallNatRCActionType} can be used interchangeably with AzureFirewallNatRCActionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Snat** \
  * **Dnat**
  */
@@ -8725,7 +8725,7 @@ export const enum KnownAzureFirewallNetworkRuleProtocol {
  * Defines values for AzureFirewallNetworkRuleProtocol. \
  * {@link KnownAzureFirewallNetworkRuleProtocol} can be used interchangeably with AzureFirewallNetworkRuleProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TCP** \
  * **UDP** \
  * **Any** \
@@ -8744,7 +8744,7 @@ export const enum KnownAzureFirewallThreatIntelMode {
  * Defines values for AzureFirewallThreatIntelMode. \
  * {@link KnownAzureFirewallThreatIntelMode} can be used interchangeably with AzureFirewallThreatIntelMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Alert** \
  * **Deny** \
  * **Off**
@@ -8761,7 +8761,7 @@ export const enum KnownAzureFirewallSkuName {
  * Defines values for AzureFirewallSkuName. \
  * {@link KnownAzureFirewallSkuName} can be used interchangeably with AzureFirewallSkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AZFW_VNet** \
  * **AZFW_Hub**
  */
@@ -8777,7 +8777,7 @@ export const enum KnownAzureFirewallSkuTier {
  * Defines values for AzureFirewallSkuTier. \
  * {@link KnownAzureFirewallSkuTier} can be used interchangeably with AzureFirewallSkuTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard** \
  * **Premium**
  */
@@ -8793,7 +8793,7 @@ export const enum KnownBastionConnectProtocol {
  * Defines values for BastionConnectProtocol. \
  * {@link KnownBastionConnectProtocol} can be used interchangeably with BastionConnectProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SSH** \
  * **RDP**
  */
@@ -8810,7 +8810,7 @@ export const enum KnownDdosCustomPolicyProtocol {
  * Defines values for DdosCustomPolicyProtocol. \
  * {@link KnownDdosCustomPolicyProtocol} can be used interchangeably with DdosCustomPolicyProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Udp** \
  * **Syn**
@@ -8829,7 +8829,7 @@ export const enum KnownDdosCustomPolicyTriggerSensitivityOverride {
  * Defines values for DdosCustomPolicyTriggerSensitivityOverride. \
  * {@link KnownDdosCustomPolicyTriggerSensitivityOverride} can be used interchangeably with DdosCustomPolicyTriggerSensitivityOverride,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Relaxed** \
  * **Low** \
  * **Default** \
@@ -8847,7 +8847,7 @@ export const enum KnownAuthorizationUseStatus {
  * Defines values for AuthorizationUseStatus. \
  * {@link KnownAuthorizationUseStatus} can be used interchangeably with AuthorizationUseStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Available** \
  * **InUse**
  */
@@ -8864,7 +8864,7 @@ export const enum KnownExpressRoutePeeringType {
  * Defines values for ExpressRoutePeeringType. \
  * {@link KnownExpressRoutePeeringType} can be used interchangeably with ExpressRoutePeeringType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AzurePublicPeering** \
  * **AzurePrivatePeering** \
  * **MicrosoftPeering**
@@ -8881,7 +8881,7 @@ export const enum KnownExpressRoutePeeringState {
  * Defines values for ExpressRoutePeeringState. \
  * {@link KnownExpressRoutePeeringState} can be used interchangeably with ExpressRoutePeeringState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled** \
  * **Enabled**
  */
@@ -8899,7 +8899,7 @@ export const enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
  * Defines values for ExpressRouteCircuitPeeringAdvertisedPublicPrefixState. \
  * {@link KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState} can be used interchangeably with ExpressRouteCircuitPeeringAdvertisedPublicPrefixState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotConfigured** \
  * **Configuring** \
  * **Configured** \
@@ -8917,7 +8917,7 @@ export const enum KnownExpressRouteCircuitPeeringState {
  * Defines values for ExpressRouteCircuitPeeringState. \
  * {@link KnownExpressRouteCircuitPeeringState} can be used interchangeably with ExpressRouteCircuitPeeringState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled** \
  * **Enabled**
  */
@@ -8934,7 +8934,7 @@ export const enum KnownCircuitConnectionStatus {
  * Defines values for CircuitConnectionStatus. \
  * {@link KnownCircuitConnectionStatus} can be used interchangeably with CircuitConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Connected** \
  * **Connecting** \
  * **Disconnected**
@@ -8953,7 +8953,7 @@ export const enum KnownExpressRouteCircuitSkuTier {
  * Defines values for ExpressRouteCircuitSkuTier. \
  * {@link KnownExpressRouteCircuitSkuTier} can be used interchangeably with ExpressRouteCircuitSkuTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard** \
  * **Premium** \
  * **Basic** \
@@ -8971,7 +8971,7 @@ export const enum KnownExpressRouteCircuitSkuFamily {
  * Defines values for ExpressRouteCircuitSkuFamily. \
  * {@link KnownExpressRouteCircuitSkuFamily} can be used interchangeably with ExpressRouteCircuitSkuFamily,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **UnlimitedData** \
  * **MeteredData**
  */
@@ -8989,7 +8989,7 @@ export const enum KnownServiceProviderProvisioningState {
  * Defines values for ServiceProviderProvisioningState. \
  * {@link KnownServiceProviderProvisioningState} can be used interchangeably with ServiceProviderProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotProvisioned** \
  * **Provisioning** \
  * **Provisioned** \
@@ -9007,7 +9007,7 @@ export const enum KnownExpressRoutePortsEncapsulation {
  * Defines values for ExpressRoutePortsEncapsulation. \
  * {@link KnownExpressRoutePortsEncapsulation} can be used interchangeably with ExpressRoutePortsEncapsulation,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Dot1Q** \
  * **QinQ**
  */
@@ -9023,7 +9023,7 @@ export const enum KnownExpressRouteLinkConnectorType {
  * Defines values for ExpressRouteLinkConnectorType. \
  * {@link KnownExpressRouteLinkConnectorType} can be used interchangeably with ExpressRouteLinkConnectorType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LC** \
  * **SC**
  */
@@ -9039,7 +9039,7 @@ export const enum KnownExpressRouteLinkAdminState {
  * Defines values for ExpressRouteLinkAdminState. \
  * {@link KnownExpressRouteLinkAdminState} can be used interchangeably with ExpressRouteLinkAdminState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -9055,7 +9055,7 @@ export const enum KnownExpressRouteLinkMacSecCipher {
  * Defines values for ExpressRouteLinkMacSecCipher. \
  * {@link KnownExpressRouteLinkMacSecCipher} can be used interchangeably with ExpressRouteLinkMacSecCipher,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **gcm-aes-128** \
  * **gcm-aes-256**
  */
@@ -9071,7 +9071,7 @@ export const enum KnownFirewallPolicyIntrusionSystemMode {
  * Defines values for FirewallPolicyIntrusionSystemMode. \
  * {@link KnownFirewallPolicyIntrusionSystemMode} can be used interchangeably with FirewallPolicyIntrusionSystemMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -9087,7 +9087,7 @@ export const enum KnownFirewallPolicyRuleType {
  * Defines values for FirewallPolicyRuleType. \
  * {@link KnownFirewallPolicyRuleType} can be used interchangeably with FirewallPolicyRuleType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **FirewallPolicyNatRule** \
  * **FirewallPolicyFilterRule**
  */
@@ -9103,7 +9103,7 @@ export const enum KnownIpAllocationType {
  * Defines values for IpAllocationType. \
  * {@link KnownIpAllocationType} can be used interchangeably with IpAllocationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Undefined** \
  * **Hypernet**
  */
@@ -9119,7 +9119,7 @@ export const enum KnownLoadBalancerSkuName {
  * Defines values for LoadBalancerSkuName. \
  * {@link KnownLoadBalancerSkuName} can be used interchangeably with LoadBalancerSkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **Standard**
  */
@@ -9136,7 +9136,7 @@ export const enum KnownLoadDistribution {
  * Defines values for LoadDistribution. \
  * {@link KnownLoadDistribution} can be used interchangeably with LoadDistribution,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Default** \
  * **SourceIP** \
  * **SourceIPProtocol**
@@ -9154,7 +9154,7 @@ export const enum KnownProbeProtocol {
  * Defines values for ProbeProtocol. \
  * {@link KnownProbeProtocol} can be used interchangeably with ProbeProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Http** \
  * **Tcp** \
  * **Https**
@@ -9172,7 +9172,7 @@ export const enum KnownLoadBalancerOutboundRuleProtocol {
  * Defines values for LoadBalancerOutboundRuleProtocol. \
  * {@link KnownLoadBalancerOutboundRuleProtocol} can be used interchangeably with LoadBalancerOutboundRuleProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Udp** \
  * **All**
@@ -9188,7 +9188,7 @@ export const enum KnownNatGatewaySkuName {
  * Defines values for NatGatewaySkuName. \
  * {@link KnownNatGatewaySkuName} can be used interchangeably with NatGatewaySkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard**
  */
 export type NatGatewaySkuName = string;
@@ -9205,7 +9205,7 @@ export const enum KnownEffectiveRouteSource {
  * Defines values for EffectiveRouteSource. \
  * {@link KnownEffectiveRouteSource} can be used interchangeably with EffectiveRouteSource,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **User** \
  * **VirtualNetworkGateway** \
@@ -9223,7 +9223,7 @@ export const enum KnownEffectiveRouteState {
  * Defines values for EffectiveRouteState. \
  * {@link KnownEffectiveRouteState} can be used interchangeably with EffectiveRouteState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Active** \
  * **Invalid**
  */
@@ -9240,7 +9240,7 @@ export const enum KnownEffectiveSecurityRuleProtocol {
  * Defines values for EffectiveSecurityRuleProtocol. \
  * {@link KnownEffectiveSecurityRuleProtocol} can be used interchangeably with EffectiveSecurityRuleProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Udp** \
  * **All**
@@ -9257,7 +9257,7 @@ export const enum KnownAssociationType {
  * Defines values for AssociationType. \
  * {@link KnownAssociationType} can be used interchangeably with AssociationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Associated** \
  * **Contains**
  */
@@ -9273,7 +9273,7 @@ export const enum KnownDirection {
  * Defines values for Direction. \
  * {@link KnownDirection} can be used interchangeably with Direction,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Inbound** \
  * **Outbound**
  */
@@ -9289,7 +9289,7 @@ export const enum KnownIpFlowProtocol {
  * Defines values for IpFlowProtocol. \
  * {@link KnownIpFlowProtocol} can be used interchangeably with IpFlowProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TCP** \
  * **UDP**
  */
@@ -9305,7 +9305,7 @@ export const enum KnownAccess {
  * Defines values for Access. \
  * {@link KnownAccess} can be used interchangeably with Access,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
@@ -9325,7 +9325,7 @@ export const enum KnownNextHopType {
  * Defines values for NextHopType. \
  * {@link KnownNextHopType} can be used interchangeably with NextHopType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Internet** \
  * **VirtualAppliance** \
  * **VirtualNetworkGateway** \
@@ -9346,7 +9346,7 @@ export const enum KnownPcProtocol {
  * Defines values for PcProtocol. \
  * {@link KnownPcProtocol} can be used interchangeably with PcProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TCP** \
  * **UDP** \
  * **Any**
@@ -9366,7 +9366,7 @@ export const enum KnownPcStatus {
  * Defines values for PcStatus. \
  * {@link KnownPcStatus} can be used interchangeably with PcStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotStarted** \
  * **Running** \
  * **Stopped** \
@@ -9388,7 +9388,7 @@ export const enum KnownPcError {
  * Defines values for PcError. \
  * {@link KnownPcError} can be used interchangeably with PcError,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **InternalError** \
  * **AgentStopped** \
  * **CaptureFailed** \
@@ -9409,7 +9409,7 @@ export const enum KnownProtocol {
  * Defines values for Protocol. \
  * {@link KnownProtocol} can be used interchangeably with Protocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Http** \
  * **Https** \
@@ -9426,7 +9426,7 @@ export const enum KnownHttpMethod {
  * Defines values for HttpMethod. \
  * {@link KnownHttpMethod} can be used interchangeably with HttpMethod,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Get**
  */
 export type HttpMethod = string;
@@ -9442,7 +9442,7 @@ export const enum KnownOrigin {
  * Defines values for Origin. \
  * {@link KnownOrigin} can be used interchangeably with Origin,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Local** \
  * **Inbound** \
  * **Outbound**
@@ -9459,7 +9459,7 @@ export const enum KnownSeverity {
  * Defines values for Severity. \
  * {@link KnownSeverity} can be used interchangeably with Severity,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Error** \
  * **Warning**
  */
@@ -9482,7 +9482,7 @@ export const enum KnownIssueType {
  * Defines values for IssueType. \
  * {@link KnownIssueType} can be used interchangeably with IssueType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **AgentStopped** \
  * **GuestFirewall** \
@@ -9507,7 +9507,7 @@ export const enum KnownConnectionStatus {
  * Defines values for ConnectionStatus. \
  * {@link KnownConnectionStatus} can be used interchangeably with ConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Connected** \
  * **Disconnected** \
@@ -9526,7 +9526,7 @@ export const enum KnownVerbosityLevel {
  * Defines values for VerbosityLevel. \
  * {@link KnownVerbosityLevel} can be used interchangeably with VerbosityLevel,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Normal** \
  * **Minimum** \
  * **Full**
@@ -9542,7 +9542,7 @@ export const enum KnownConnectionMonitorEndpointFilterType {
  * Defines values for ConnectionMonitorEndpointFilterType. \
  * {@link KnownConnectionMonitorEndpointFilterType} can be used interchangeably with ConnectionMonitorEndpointFilterType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Include**
  */
 export type ConnectionMonitorEndpointFilterType = string;
@@ -9556,7 +9556,7 @@ export const enum KnownConnectionMonitorEndpointFilterItemType {
  * Defines values for ConnectionMonitorEndpointFilterItemType. \
  * {@link KnownConnectionMonitorEndpointFilterItemType} can be used interchangeably with ConnectionMonitorEndpointFilterItemType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AgentAddress**
  */
 export type ConnectionMonitorEndpointFilterItemType = string;
@@ -9572,7 +9572,7 @@ export const enum KnownConnectionMonitorTestConfigurationProtocol {
  * Defines values for ConnectionMonitorTestConfigurationProtocol. \
  * {@link KnownConnectionMonitorTestConfigurationProtocol} can be used interchangeably with ConnectionMonitorTestConfigurationProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Tcp** \
  * **Http** \
  * **Icmp**
@@ -9589,7 +9589,7 @@ export const enum KnownPreferredIPVersion {
  * Defines values for PreferredIPVersion. \
  * {@link KnownPreferredIPVersion} can be used interchangeably with PreferredIPVersion,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IPv4** \
  * **IPv6**
  */
@@ -9605,7 +9605,7 @@ export const enum KnownHttpConfigurationMethod {
  * Defines values for HttpConfigurationMethod. \
  * {@link KnownHttpConfigurationMethod} can be used interchangeably with HttpConfigurationMethod,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Get** \
  * **Post**
  */
@@ -9620,7 +9620,7 @@ export const enum KnownOutputType {
  * Defines values for OutputType. \
  * {@link KnownOutputType} can be used interchangeably with OutputType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Workspace**
  */
 export type OutputType = string;
@@ -9635,7 +9635,7 @@ export const enum KnownConnectionMonitorType {
  * Defines values for ConnectionMonitorType. \
  * {@link KnownConnectionMonitorType} can be used interchangeably with ConnectionMonitorType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **MultiEndpoint** \
  * **SingleSourceDestination**
  */
@@ -9652,7 +9652,7 @@ export const enum KnownConnectionMonitorSourceStatus {
  * Defines values for ConnectionMonitorSourceStatus. \
  * {@link KnownConnectionMonitorSourceStatus} can be used interchangeably with ConnectionMonitorSourceStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Active** \
  * **Inactive**
@@ -9670,7 +9670,7 @@ export const enum KnownConnectionState {
  * Defines values for ConnectionState. \
  * {@link KnownConnectionState} can be used interchangeably with ConnectionState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Reachable** \
  * **Unreachable** \
  * **Unknown**
@@ -9688,7 +9688,7 @@ export const enum KnownEvaluationState {
  * Defines values for EvaluationState. \
  * {@link KnownEvaluationState} can be used interchangeably with EvaluationState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotStarted** \
  * **InProgress** \
  * **Completed**
@@ -9704,7 +9704,7 @@ export const enum KnownPublicIPPrefixSkuName {
  * Defines values for PublicIPPrefixSkuName. \
  * {@link KnownPublicIPPrefixSkuName} can be used interchangeably with PublicIPPrefixSkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard**
  */
 export type PublicIPPrefixSkuName = string;
@@ -9718,7 +9718,7 @@ export const enum KnownRouteFilterRuleType {
  * Defines values for RouteFilterRuleType. \
  * {@link KnownRouteFilterRuleType} can be used interchangeably with RouteFilterRuleType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Community**
  */
 export type RouteFilterRuleType = string;
@@ -9734,7 +9734,7 @@ export const enum KnownSecurityProviderName {
  * Defines values for SecurityProviderName. \
  * {@link KnownSecurityProviderName} can be used interchangeably with SecurityProviderName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ZScaler** \
  * **IBoss** \
  * **Checkpoint**
@@ -9753,7 +9753,7 @@ export const enum KnownSecurityPartnerProviderConnectionStatus {
  * Defines values for SecurityPartnerProviderConnectionStatus. \
  * {@link KnownSecurityPartnerProviderConnectionStatus} can be used interchangeably with SecurityPartnerProviderConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **PartiallyConnected** \
  * **Connected** \
@@ -9770,7 +9770,7 @@ export const enum KnownUsageUnit {
  * Defines values for UsageUnit. \
  * {@link KnownUsageUnit} can be used interchangeably with UsageUnit,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Count**
  */
 export type UsageUnit = string;
@@ -9785,7 +9785,7 @@ export const enum KnownVirtualNetworkGatewayType {
  * Defines values for VirtualNetworkGatewayType. \
  * {@link KnownVirtualNetworkGatewayType} can be used interchangeably with VirtualNetworkGatewayType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Vpn** \
  * **ExpressRoute**
  */
@@ -9801,7 +9801,7 @@ export const enum KnownVpnType {
  * Defines values for VpnType. \
  * {@link KnownVpnType} can be used interchangeably with VpnType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **PolicyBased** \
  * **RouteBased**
  */
@@ -9818,7 +9818,7 @@ export const enum KnownVpnGatewayGeneration {
  * Defines values for VpnGatewayGeneration. \
  * {@link KnownVpnGatewayGeneration} can be used interchangeably with VpnGatewayGeneration,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Generation1** \
  * **Generation2**
@@ -9850,7 +9850,7 @@ export const enum KnownVirtualNetworkGatewaySkuName {
  * Defines values for VirtualNetworkGatewaySkuName. \
  * {@link KnownVirtualNetworkGatewaySkuName} can be used interchangeably with VirtualNetworkGatewaySkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **HighPerformance** \
  * **Standard** \
@@ -9896,7 +9896,7 @@ export const enum KnownVirtualNetworkGatewaySkuTier {
  * Defines values for VirtualNetworkGatewaySkuTier. \
  * {@link KnownVirtualNetworkGatewaySkuTier} can be used interchangeably with VirtualNetworkGatewaySkuTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Basic** \
  * **HighPerformance** \
  * **Standard** \
@@ -9928,7 +9928,7 @@ export const enum KnownVpnClientProtocol {
  * Defines values for VpnClientProtocol. \
  * {@link KnownVpnClientProtocol} can be used interchangeably with VpnClientProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IkeV2** \
  * **SSTP** \
  * **OpenVPN**
@@ -9952,7 +9952,7 @@ export const enum KnownIpsecEncryption {
  * Defines values for IpsecEncryption. \
  * {@link KnownIpsecEncryption} can be used interchangeably with IpsecEncryption,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **DES** \
  * **DES3** \
@@ -9979,7 +9979,7 @@ export const enum KnownIpsecIntegrity {
  * Defines values for IpsecIntegrity. \
  * {@link KnownIpsecIntegrity} can be used interchangeably with IpsecIntegrity,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **MD5** \
  * **SHA1** \
  * **SHA256** \
@@ -10004,7 +10004,7 @@ export const enum KnownIkeEncryption {
  * Defines values for IkeEncryption. \
  * {@link KnownIkeEncryption} can be used interchangeably with IkeEncryption,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DES** \
  * **DES3** \
  * **AES128** \
@@ -10029,7 +10029,7 @@ export const enum KnownIkeIntegrity {
  * Defines values for IkeIntegrity. \
  * {@link KnownIkeIntegrity} can be used interchangeably with IkeIntegrity,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **MD5** \
  * **SHA1** \
  * **SHA256** \
@@ -10055,7 +10055,7 @@ export const enum KnownDhGroup {
  * Defines values for DhGroup. \
  * {@link KnownDhGroup} can be used interchangeably with DhGroup,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **DHGroup1** \
  * **DHGroup2** \
@@ -10084,7 +10084,7 @@ export const enum KnownPfsGroup {
  * Defines values for PfsGroup. \
  * {@link KnownPfsGroup} can be used interchangeably with PfsGroup,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **PFS1** \
  * **PFS2** \
@@ -10109,7 +10109,7 @@ export const enum KnownVirtualNetworkGatewayConnectionType {
  * Defines values for VirtualNetworkGatewayConnectionType. \
  * {@link KnownVirtualNetworkGatewayConnectionType} can be used interchangeably with VirtualNetworkGatewayConnectionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IPsec** \
  * **Vnet2Vnet** \
  * **ExpressRoute** \
@@ -10127,7 +10127,7 @@ export const enum KnownVirtualNetworkGatewayConnectionProtocol {
  * Defines values for VirtualNetworkGatewayConnectionProtocol. \
  * {@link KnownVirtualNetworkGatewayConnectionProtocol} can be used interchangeably with VirtualNetworkGatewayConnectionProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IKEv2** \
  * **IKEv1**
  */
@@ -10145,7 +10145,7 @@ export const enum KnownVirtualNetworkGatewayConnectionStatus {
  * Defines values for VirtualNetworkGatewayConnectionStatus. \
  * {@link KnownVirtualNetworkGatewayConnectionStatus} can be used interchangeably with VirtualNetworkGatewayConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Connecting** \
  * **Connected** \
@@ -10163,7 +10163,7 @@ export const enum KnownProcessorArchitecture {
  * Defines values for ProcessorArchitecture. \
  * {@link KnownProcessorArchitecture} can be used interchangeably with ProcessorArchitecture,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Amd64** \
  * **X86**
  */
@@ -10179,7 +10179,7 @@ export const enum KnownAuthenticationMethod {
  * Defines values for AuthenticationMethod. \
  * {@link KnownAuthenticationMethod} can be used interchangeably with AuthenticationMethod,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **EAPTLS** \
  * **EAPMSCHAPv2**
  */
@@ -10198,7 +10198,7 @@ export const enum KnownBgpPeerState {
  * Defines values for BgpPeerState. \
  * {@link KnownBgpPeerState} can be used interchangeably with BgpPeerState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Stopped** \
  * **Idle** \
@@ -10219,7 +10219,7 @@ export const enum KnownOfficeTrafficCategory {
  * Defines values for OfficeTrafficCategory. \
  * {@link KnownOfficeTrafficCategory} can be used interchangeably with OfficeTrafficCategory,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Optimize** \
  * **OptimizeAndAllow** \
  * **All** \
@@ -10237,7 +10237,7 @@ export const enum KnownVirtualWanSecurityProviderType {
  * Defines values for VirtualWanSecurityProviderType. \
  * {@link KnownVirtualWanSecurityProviderType} can be used interchangeably with VirtualWanSecurityProviderType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **External** \
  * **Native**
  */
@@ -10253,7 +10253,7 @@ export const enum KnownVpnGatewayTunnelingProtocol {
  * Defines values for VpnGatewayTunnelingProtocol. \
  * {@link KnownVpnGatewayTunnelingProtocol} can be used interchangeably with VpnGatewayTunnelingProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IkeV2** \
  * **OpenVPN**
  */
@@ -10270,7 +10270,7 @@ export const enum KnownVpnAuthenticationType {
  * Defines values for VpnAuthenticationType. \
  * {@link KnownVpnAuthenticationType} can be used interchangeably with VpnAuthenticationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Certificate** \
  * **Radius** \
  * **AAD**
@@ -10289,7 +10289,7 @@ export const enum KnownVpnConnectionStatus {
  * Defines values for VpnConnectionStatus. \
  * {@link KnownVpnConnectionStatus} can be used interchangeably with VpnConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Connecting** \
  * **Connected** \
@@ -10307,7 +10307,7 @@ export const enum KnownWebApplicationFirewallEnabledState {
  * Defines values for WebApplicationFirewallEnabledState. \
  * {@link KnownWebApplicationFirewallEnabledState} can be used interchangeably with WebApplicationFirewallEnabledState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled** \
  * **Enabled**
  */
@@ -10323,7 +10323,7 @@ export const enum KnownWebApplicationFirewallMode {
  * Defines values for WebApplicationFirewallMode. \
  * {@link KnownWebApplicationFirewallMode} can be used interchangeably with WebApplicationFirewallMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Prevention** \
  * **Detection**
  */
@@ -10339,7 +10339,7 @@ export const enum KnownWebApplicationFirewallRuleType {
  * Defines values for WebApplicationFirewallRuleType. \
  * {@link KnownWebApplicationFirewallRuleType} can be used interchangeably with WebApplicationFirewallRuleType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **MatchRule** \
  * **Invalid**
  */
@@ -10361,7 +10361,7 @@ export const enum KnownWebApplicationFirewallMatchVariable {
  * Defines values for WebApplicationFirewallMatchVariable. \
  * {@link KnownWebApplicationFirewallMatchVariable} can be used interchangeably with WebApplicationFirewallMatchVariable,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RemoteAddr** \
  * **RequestMethod** \
  * **QueryString** \
@@ -10392,7 +10392,7 @@ export const enum KnownWebApplicationFirewallOperator {
  * Defines values for WebApplicationFirewallOperator. \
  * {@link KnownWebApplicationFirewallOperator} can be used interchangeably with WebApplicationFirewallOperator,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **IPMatch** \
  * **Equal** \
  * **Contains** \
@@ -10421,7 +10421,7 @@ export const enum KnownWebApplicationFirewallTransform {
  * Defines values for WebApplicationFirewallTransform. \
  * {@link KnownWebApplicationFirewallTransform} can be used interchangeably with WebApplicationFirewallTransform,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Lowercase** \
  * **Trim** \
  * **UrlDecode** \
@@ -10442,7 +10442,7 @@ export const enum KnownWebApplicationFirewallAction {
  * Defines values for WebApplicationFirewallAction. \
  * {@link KnownWebApplicationFirewallAction} can be used interchangeably with WebApplicationFirewallAction,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Block** \
  * **Log**
@@ -10463,7 +10463,7 @@ export const enum KnownWebApplicationFirewallPolicyResourceState {
  * Defines values for WebApplicationFirewallPolicyResourceState. \
  * {@link KnownWebApplicationFirewallPolicyResourceState} can be used interchangeably with WebApplicationFirewallPolicyResourceState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **Enabling** \
  * **Enabled** \
@@ -10484,7 +10484,7 @@ export const enum KnownOwaspCrsExclusionEntryMatchVariable {
  * Defines values for OwaspCrsExclusionEntryMatchVariable. \
  * {@link KnownOwaspCrsExclusionEntryMatchVariable} can be used interchangeably with OwaspCrsExclusionEntryMatchVariable,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RequestHeaderNames** \
  * **RequestCookieNames** \
  * **RequestArgNames**
@@ -10504,7 +10504,7 @@ export const enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
  * Defines values for OwaspCrsExclusionEntrySelectorMatchOperator. \
  * {@link KnownOwaspCrsExclusionEntrySelectorMatchOperator} can be used interchangeably with OwaspCrsExclusionEntrySelectorMatchOperator,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Equals** \
  * **Contains** \
  * **StartsWith** \
@@ -10522,7 +10522,7 @@ export const enum KnownManagedRuleEnabledState {
  * Defines values for ManagedRuleEnabledState. \
  * {@link KnownManagedRuleEnabledState} can be used interchangeably with ManagedRuleEnabledState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled**
  */
 export type ManagedRuleEnabledState = string;
@@ -10536,7 +10536,7 @@ export const enum KnownFirewallPolicyNatRuleActionType {
  * Defines values for FirewallPolicyNatRuleActionType. \
  * {@link KnownFirewallPolicyNatRuleActionType} can be used interchangeably with FirewallPolicyNatRuleActionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DNAT**
  */
 export type FirewallPolicyNatRuleActionType = string;
@@ -10552,7 +10552,7 @@ export const enum KnownFirewallPolicyRuleConditionType {
  * Defines values for FirewallPolicyRuleConditionType. \
  * {@link KnownFirewallPolicyRuleConditionType} can be used interchangeably with FirewallPolicyRuleConditionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ApplicationRuleCondition** \
  * **NetworkRuleCondition** \
  * **NatRuleCondition**
@@ -10569,7 +10569,7 @@ export const enum KnownFirewallPolicyFilterRuleActionType {
  * Defines values for FirewallPolicyFilterRuleActionType. \
  * {@link KnownFirewallPolicyFilterRuleActionType} can be used interchangeably with FirewallPolicyFilterRuleActionType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
@@ -10585,7 +10585,7 @@ export const enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
  * Defines values for FirewallPolicyRuleConditionApplicationProtocolType. \
  * {@link KnownFirewallPolicyRuleConditionApplicationProtocolType} can be used interchangeably with FirewallPolicyRuleConditionApplicationProtocolType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Http** \
  * **Https**
  */
@@ -10603,7 +10603,7 @@ export const enum KnownFirewallPolicyRuleConditionNetworkProtocol {
  * Defines values for FirewallPolicyRuleConditionNetworkProtocol. \
  * {@link KnownFirewallPolicyRuleConditionNetworkProtocol} can be used interchangeably with FirewallPolicyRuleConditionNetworkProtocol,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TCP** \
  * **UDP** \
  * **Any** \
@@ -10622,7 +10622,7 @@ export const enum KnownNetworkOperationStatus {
  * Defines values for NetworkOperationStatus. \
  * {@link KnownNetworkOperationStatus} can be used interchangeably with NetworkOperationStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **InProgress** \
  * **Succeeded** \
  * **Failed**
@@ -10641,7 +10641,7 @@ export const enum KnownTunnelConnectionStatus {
  * Defines values for TunnelConnectionStatus. \
  * {@link KnownTunnelConnectionStatus} can be used interchangeably with TunnelConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Connecting** \
  * **Connected** \
@@ -10661,7 +10661,7 @@ export const enum KnownHubVirtualNetworkConnectionStatus {
  * Defines values for HubVirtualNetworkConnectionStatus. \
  * {@link KnownHubVirtualNetworkConnectionStatus} can be used interchangeably with HubVirtualNetworkConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Unknown** \
  * **Connecting** \
  * **Connected** \

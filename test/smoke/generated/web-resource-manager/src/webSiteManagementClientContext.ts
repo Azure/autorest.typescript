@@ -43,6 +43,15 @@ export class WebSiteManagementClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
+    const packageDetails = `azsdk-js-web-resource-manager/1.0.0-beta.1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+    options.userAgentOptions = {
+      userAgentPrefix: userAgentPrefix
+    };
+
     const optionsWithDefaults = {
       ...defaults,
       ...options,

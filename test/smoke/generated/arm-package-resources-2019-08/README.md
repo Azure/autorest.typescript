@@ -1,27 +1,31 @@
-## Azure ResourceManagementClient SDK for JavaScript
+# ResourceManagement client library for JavaScript
 
-This package contains an isomorphic SDK for ResourceManagementClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for ResourceManagement client.
+
+Provides operations for working with resources and resource groups.
+
+[Package (NPM)](https://www.npmjs.com/package/arm-package-resources-2019-08) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `arm-package-resources-2019-08` package
+
+Install the ResourceManagement client library for JavaScript with `npm`:
 
 ```bash
 npm install arm-package-resources-2019-08
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### ResourceManagementClient
 
-## Related projects
+`ResourceManagementClient` is the primary interface for developers using the ResourceManagement client library. Explore the methods on this client object to understand the different features of the ResourceManagement service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

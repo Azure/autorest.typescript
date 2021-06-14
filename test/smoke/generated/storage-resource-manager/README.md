@@ -1,27 +1,31 @@
-## Azure StorageManagementClient SDK for JavaScript
+# StorageManagement client library for JavaScript
 
-This package contains an isomorphic SDK for StorageManagementClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for StorageManagement client.
+
+The Azure Storage Management API.
+
+[Package (NPM)](https://www.npmjs.com/package/storage-resource-manager) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `storage-resource-manager` package
+
+Install the StorageManagement client library for JavaScript with `npm`:
 
 ```bash
 npm install storage-resource-manager
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### StorageManagementClient
 
-## Related projects
+`StorageManagementClient` is the primary interface for developers using the StorageManagement client library. Explore the methods on this client object to understand the different features of the StorageManagement service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

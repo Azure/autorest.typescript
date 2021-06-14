@@ -34,10 +34,13 @@
     "test/integration/generated/appconfigurationexport/*.ts",
     "test/integration/generated/mapperrequired/*.ts",
     "test/integration/generated/nameChecker/*.ts",
+    "test/integration/generated/useragentcorev1/*.ts",
+    "test/integration/generated/useragentcorev2/*.ts",
     "test/integration/licenseHeader.spec.ts",
     "test/integration/bodyFormData.spec.ts",
     "test/integration/appConfigurationExport.spec.ts",
     "test/integration/mapperRequired.spec.ts",
+    "test/integration/userAgents.spec.ts",
     "test/integration/nameChecker.spec.ts"
   ]
 }

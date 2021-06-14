@@ -665,6 +665,24 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false
   },
+  useragentcorev1: {
+    swaggerOrConfig: "subscriptionId-apiVersion.json",
+    clientName: "UserAgentCoreV1Client",
+    packageName: "useragent-corev1",
+    licenseHeader: true,
+    useCoreV2: false,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
+  useragentcorev2: {
+    swaggerOrConfig: "subscriptionId-apiVersion.json",
+    clientName: "UserAgentCoreV2Client",
+    packageName: "useragent-corev2",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
