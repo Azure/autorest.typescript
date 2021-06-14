@@ -42,16 +42,19 @@ export class LROPoller<TResult> extends Poller<
       ? JSON.parse(resumeFrom).state
       : {};
 
+    const futureThis = { pollerConfig: { intervalInMs } };
     const operation = new GenericPollOperation(
       state,
       initialOperationArguments,
       initialOperationSpec,
       sendOperation,
+      futureThis.pollerConfig,
       finalStateVia
     );
     super(operation);
 
     this.intervalInMs = intervalInMs;
+    futureThis.pollerConfig = this as any;
   }
 
   /**
