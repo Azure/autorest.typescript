@@ -228,7 +228,7 @@ function writeDefaultOptions(
   hasLRO: boolean,
   clientDetails: ClientDetails
 ) {
-  const { useCoreV2, credentialScopes } = getAutorestOptions();
+  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
 
   const credentialScopesValues = getCredentialScopesValue(credentialScopes);
   const addScopes = credentialScopes
@@ -250,14 +250,14 @@ function writeDefaultOptions(
     ? `// Initializing default values for options
   if (!options) {
      options = {};
-   }
+  }
 
-  if (!options.userAgent) {
-     const defaultUserAgent = coreHttp.getDefaultUserAgentValue();
-     options.userAgent = \`\${packageName}/\${packageVersion} \${defaultUserAgent}\`;
-   }
+  const defaultUserAgent = \`azsdk-js-\${packageName.replace("@azure/","")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
+  options.userAgent = options.userAgent
+  ? \`\${options.userAgent} \${defaultUserAgent}\`
+  : \`\${defaultUserAgent}\`;
 
-   ${addScopes}
+  ${addScopes}
 
   super(${hasCredentials ? "credentials" : `undefined`}, options);
   
@@ -269,6 +269,19 @@ function writeDefaultOptions(
     options = {};
   }
   ${defaults}
+
+  const packageDetails = \`azsdk-js-${packageDetails.name.replace(
+    "@azure/",
+    ""
+  )}/${packageDetails.version}\`;
+  const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
+        : \`\${packageDetails}\`;
+  options.userAgentOptions = {
+    userAgentPrefix: userAgentPrefix
+  };
+  
   ${addScopes}
   const optionsWithDefaults = {
     ...defaults,
