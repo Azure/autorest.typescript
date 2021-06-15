@@ -1,27 +1,31 @@
-## Azure NetworkManagementClient SDK for JavaScript
+# NetworkManagement client library for JavaScript
 
-This package contains an isomorphic SDK for NetworkManagementClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for NetworkManagement client.
+
+Network Client
+
+[Package (NPM)](https://www.npmjs.com/package/network-resource-manager) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `network-resource-manager` package
+
+Install the NetworkManagement client library for JavaScript with `npm`:
 
 ```bash
 npm install network-resource-manager
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### NetworkManagementClient
 
-## Related projects
+`NetworkManagementClient` is the primary interface for developers using the NetworkManagement client library. Explore the methods on this client object to understand the different features of the NetworkManagement service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

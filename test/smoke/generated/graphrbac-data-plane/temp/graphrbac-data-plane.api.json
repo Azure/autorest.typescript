@@ -3308,7 +3308,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!ConsentType:type",
-          "docComment": "/**\n * Defines values for ConsentType. \\ {@link KnownConsentType} can be used interchangeably with ConsentType, this enum contains the known values that the service supports. ### Know values supported by the service **AllPrincipals** \\ **Principal**\n */\n",
+          "docComment": "/**\n * Defines values for ConsentType. \\ {@link KnownConsentType} can be used interchangeably with ConsentType, this enum contains the known values that the service supports. ### Known values supported by the service **AllPrincipals** \\ **Principal**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -5874,7 +5874,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!GroupMembershipClaimTypes:type",
-          "docComment": "/**\n * Defines values for GroupMembershipClaimTypes. \\ {@link KnownGroupMembershipClaimTypes} can be used interchangeably with GroupMembershipClaimTypes, this enum contains the known values that the service supports. ### Know values supported by the service **None** \\ **SecurityGroup** \\ **All**\n */\n",
+          "docComment": "/**\n * Defines values for GroupMembershipClaimTypes. \\ {@link KnownGroupMembershipClaimTypes} can be used interchangeably with GroupMembershipClaimTypes, this enum contains the known values that the service supports. ### Known values supported by the service **None** \\ **SecurityGroup** \\ **All**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -14515,7 +14515,7 @@
         {
           "kind": "TypeAlias",
           "canonicalReference": "graphrbac-data-plane!UserType:type",
-          "docComment": "/**\n * Defines values for UserType. \\ {@link KnownUserType} can be used interchangeably with UserType, this enum contains the known values that the service supports. ### Know values supported by the service **Member** \\ **Guest**\n */\n",
+          "docComment": "/**\n * Defines values for UserType. \\ {@link KnownUserType} can be used interchangeably with UserType, this enum contains the known values that the service supports. ### Known values supported by the service **Member** \\ **Guest**\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",

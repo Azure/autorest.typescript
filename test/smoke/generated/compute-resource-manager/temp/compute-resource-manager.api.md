@@ -2049,7 +2049,9 @@ export const enum KnownIPVersion {
 // @public
 export const enum KnownOrchestrationServiceNames {
     // (undocumented)
-    AutomaticRepairs = "AutomaticRepairs"
+    AutomaticRepairs = "AutomaticRepairs",
+    // (undocumented)
+    DummyOrchestrationServiceName = "DummyOrchestrationServiceName"
 }
 
 // @public

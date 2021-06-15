@@ -1661,7 +1661,7 @@ export const enum KnownSkuName {
  * Defines values for SkuName. \
  * {@link KnownSkuName} can be used interchangeably with SkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Standard_LRS** \
  * **Standard_GRS** \
  * **Standard_RAGRS** \
@@ -1686,7 +1686,7 @@ export const enum KnownKind {
  * Defines values for Kind. \
  * {@link KnownKind} can be used interchangeably with Kind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Storage** \
  * **StorageV2** \
  * **BlobStorage** \
@@ -1705,7 +1705,7 @@ export const enum KnownReasonCode {
  * Defines values for ReasonCode. \
  * {@link KnownReasonCode} can be used interchangeably with ReasonCode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **QuotaId** \
  * **NotAvailableForSubscription**
  */
@@ -1721,7 +1721,7 @@ export const enum KnownKeyType {
  * Defines values for KeyType. \
  * {@link KnownKeyType} can be used interchangeably with KeyType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Service** \
  * **Account**
  */
@@ -1737,7 +1737,7 @@ export const enum KnownKeySource {
  * Defines values for KeySource. \
  * {@link KnownKeySource} can be used interchangeably with KeySource,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Microsoft.Storage** \
  * **Microsoft.Keyvault**
  */
@@ -1755,7 +1755,7 @@ export const enum KnownBypass {
  * Defines values for Bypass. \
  * {@link KnownBypass} can be used interchangeably with Bypass,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Logging** \
  * **Metrics** \
@@ -1774,7 +1774,7 @@ export const enum KnownDirectoryServiceOptions {
  * Defines values for DirectoryServiceOptions. \
  * {@link KnownDirectoryServiceOptions} can be used interchangeably with DirectoryServiceOptions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **AADDS** \
  * **AD**
@@ -1791,7 +1791,7 @@ export const enum KnownLargeFileSharesState {
  * Defines values for LargeFileSharesState. \
  * {@link KnownLargeFileSharesState} can be used interchangeably with LargeFileSharesState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Disabled** \
  * **Enabled**
  */
@@ -1807,7 +1807,7 @@ export const enum KnownRoutingChoice {
  * Defines values for RoutingChoice. \
  * {@link KnownRoutingChoice} can be used interchangeably with RoutingChoice,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **MicrosoftRouting** \
  * **InternetRouting**
  */
@@ -1824,7 +1824,7 @@ export const enum KnownGeoReplicationStatus {
  * Defines values for GeoReplicationStatus. \
  * {@link KnownGeoReplicationStatus} can be used interchangeably with GeoReplicationStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Live** \
  * **Bootstrap** \
  * **Unavailable**
@@ -1842,7 +1842,7 @@ export const enum KnownPrivateEndpointServiceConnectionStatus {
  * Defines values for PrivateEndpointServiceConnectionStatus. \
  * {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Pending** \
  * **Approved** \
  * **Rejected**
@@ -1861,7 +1861,7 @@ export const enum KnownPrivateEndpointConnectionProvisioningState {
  * Defines values for PrivateEndpointConnectionProvisioningState. \
  * {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Creating** \
  * **Deleting** \
@@ -1880,7 +1880,7 @@ export const enum KnownBlobRestoreProgressStatus {
  * Defines values for BlobRestoreProgressStatus. \
  * {@link KnownBlobRestoreProgressStatus} can be used interchangeably with BlobRestoreProgressStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **InProgress** \
  * **Complete** \
  * **Failed**
@@ -1899,7 +1899,7 @@ export const enum KnownServices {
  * Defines values for Services. \
  * {@link KnownServices} can be used interchangeably with Services,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **b** \
  * **q** \
  * **t** \
@@ -1918,7 +1918,7 @@ export const enum KnownSignedResourceTypes {
  * Defines values for SignedResourceTypes. \
  * {@link KnownSignedResourceTypes} can be used interchangeably with SignedResourceTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **s** \
  * **c** \
  * **o**
@@ -1941,7 +1941,7 @@ export const enum KnownPermissions {
  * Defines values for Permissions. \
  * {@link KnownPermissions} can be used interchangeably with Permissions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **r** \
  * **d** \
  * **w** \
@@ -1965,7 +1965,7 @@ export const enum KnownSignedResource {
  * Defines values for SignedResource. \
  * {@link KnownSignedResource} can be used interchangeably with SignedResource,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **b** \
  * **c** \
  * **f** \
@@ -1982,7 +1982,7 @@ export const enum KnownManagementPolicyName {
  * Defines values for ManagementPolicyName. \
  * {@link KnownManagementPolicyName} can be used interchangeably with ManagementPolicyName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type ManagementPolicyName = string;
@@ -1996,7 +1996,7 @@ export const enum KnownRuleType {
  * Defines values for RuleType. \
  * {@link KnownRuleType} can be used interchangeably with RuleType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Lifecycle**
  */
 export type RuleType = string;
@@ -2011,7 +2011,7 @@ export const enum KnownEncryptionScopeSource {
  * Defines values for EncryptionScopeSource. \
  * {@link KnownEncryptionScopeSource} can be used interchangeably with EncryptionScopeSource,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Microsoft.Storage** \
  * **Microsoft.KeyVault**
  */
@@ -2027,7 +2027,7 @@ export const enum KnownEncryptionScopeState {
  * Defines values for EncryptionScopeState. \
  * {@link KnownEncryptionScopeState} can be used interchangeably with EncryptionScopeState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -2048,7 +2048,7 @@ export const enum KnownCorsRuleAllowedMethodsItem {
  * Defines values for CorsRuleAllowedMethodsItem. \
  * {@link KnownCorsRuleAllowedMethodsItem} can be used interchangeably with CorsRuleAllowedMethodsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DELETE** \
  * **GET** \
  * **HEAD** \
@@ -2069,7 +2069,7 @@ export const enum KnownLeaseStatus {
  * Defines values for LeaseStatus. \
  * {@link KnownLeaseStatus} can be used interchangeably with LeaseStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Locked** \
  * **Unlocked**
  */
@@ -2088,7 +2088,7 @@ export const enum KnownLeaseState {
  * Defines values for LeaseState. \
  * {@link KnownLeaseState} can be used interchangeably with LeaseState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Available** \
  * **Leased** \
  * **Expired** \
@@ -2107,7 +2107,7 @@ export const enum KnownLeaseDuration {
  * Defines values for LeaseDuration. \
  * {@link KnownLeaseDuration} can be used interchangeably with LeaseDuration,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Infinite** \
  * **Fixed**
  */
@@ -2123,7 +2123,7 @@ export const enum KnownImmutabilityPolicyState {
  * Defines values for ImmutabilityPolicyState. \
  * {@link KnownImmutabilityPolicyState} can be used interchangeably with ImmutabilityPolicyState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Locked** \
  * **Unlocked**
  */
@@ -2140,7 +2140,7 @@ export const enum KnownImmutabilityPolicyUpdateType {
  * Defines values for ImmutabilityPolicyUpdateType. \
  * {@link KnownImmutabilityPolicyUpdateType} can be used interchangeably with ImmutabilityPolicyUpdateType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **put** \
  * **lock** \
  * **extend**
@@ -2160,7 +2160,7 @@ export const enum KnownLeaseContainerRequestAction {
  * Defines values for LeaseContainerRequestAction. \
  * {@link KnownLeaseContainerRequestAction} can be used interchangeably with LeaseContainerRequestAction,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Acquire** \
  * **Renew** \
  * **Change** \
@@ -2179,7 +2179,7 @@ export const enum KnownEnabledProtocols {
  * Defines values for EnabledProtocols. \
  * {@link KnownEnabledProtocols} can be used interchangeably with EnabledProtocols,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SMB** \
  * **NFS**
  */
@@ -2196,7 +2196,7 @@ export const enum KnownRootSquashType {
  * Defines values for RootSquashType. \
  * {@link KnownRootSquashType} can be used interchangeably with RootSquashType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NoRootSquash** \
  * **RootSquash** \
  * **AllSquash**
@@ -2215,7 +2215,7 @@ export const enum KnownShareAccessTier {
  * Defines values for ShareAccessTier. \
  * {@link KnownShareAccessTier} can be used interchangeably with ShareAccessTier,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **TransactionOptimized** \
  * **Hot** \
  * **Cool** \

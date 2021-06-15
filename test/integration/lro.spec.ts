@@ -169,7 +169,7 @@ describe("LROs", () => {
   });
 
   describe("Location Strategy", () => {
-    it("should handle post202Retry200", async () => {
+    it.only("should handle post202Retry200", async () => {
       await client.lROs.beginPost202Retry200AndWait({
         ...LROOptions,
         ...responseStatusChecker

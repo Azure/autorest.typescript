@@ -1502,7 +1502,7 @@ export const enum KnownDatabaseAccountKind {
  * Defines values for DatabaseAccountKind. \
  * {@link KnownDatabaseAccountKind} can be used interchangeably with DatabaseAccountKind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **GlobalDocumentDB** \
  * **MongoDB** \
  * **Parse**
@@ -1518,7 +1518,7 @@ export const enum KnownConnectorOffer {
  * Defines values for ConnectorOffer. \
  * {@link KnownConnectorOffer} can be used interchangeably with ConnectorOffer,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Small**
  */
 export type ConnectorOffer = string;
@@ -1533,7 +1533,7 @@ export const enum KnownPublicNetworkAccess {
  * Defines values for PublicNetworkAccess. \
  * {@link KnownPublicNetworkAccess} can be used interchangeably with PublicNetworkAccess,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Enabled** \
  * **Disabled**
  */
@@ -1551,7 +1551,7 @@ export const enum KnownKeyKind {
  * Defines values for KeyKind. \
  * {@link KnownKeyKind} can be used interchangeably with KeyKind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **primary** \
  * **secondary** \
  * **primaryReadonly** \
@@ -1574,7 +1574,7 @@ export const enum KnownUnitType {
  * Defines values for UnitType. \
  * {@link KnownUnitType} can be used interchangeably with UnitType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Count** \
  * **Bytes** \
  * **Seconds** \
@@ -1599,7 +1599,7 @@ export const enum KnownPrimaryAggregationType {
  * Defines values for PrimaryAggregationType. \
  * {@link KnownPrimaryAggregationType} can be used interchangeably with PrimaryAggregationType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Average** \
  * **Total** \
@@ -1620,7 +1620,7 @@ export const enum KnownIndexingMode {
  * Defines values for IndexingMode. \
  * {@link KnownIndexingMode} can be used interchangeably with IndexingMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Consistent** \
  * **Lazy** \
  * **None**
@@ -1641,7 +1641,7 @@ export const enum KnownDataType {
  * Defines values for DataType. \
  * {@link KnownDataType} can be used interchangeably with DataType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **String** \
  * **Number** \
  * **Point** \
@@ -1662,7 +1662,7 @@ export const enum KnownIndexKind {
  * Defines values for IndexKind. \
  * {@link KnownIndexKind} can be used interchangeably with IndexKind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Hash** \
  * **Range** \
  * **Spatial**
@@ -1679,7 +1679,7 @@ export const enum KnownCompositePathSortOrder {
  * Defines values for CompositePathSortOrder. \
  * {@link KnownCompositePathSortOrder} can be used interchangeably with CompositePathSortOrder,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Ascending** \
  * **Descending**
  */
@@ -1697,7 +1697,7 @@ export const enum KnownSpatialType {
  * Defines values for SpatialType. \
  * {@link KnownSpatialType} can be used interchangeably with SpatialType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Point** \
  * **LineString** \
  * **Polygon** \
@@ -1715,7 +1715,7 @@ export const enum KnownPartitionKind {
  * Defines values for PartitionKind. \
  * {@link KnownPartitionKind} can be used interchangeably with PartitionKind,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Hash** \
  * **Range**
  */
@@ -1731,7 +1731,7 @@ export const enum KnownConflictResolutionMode {
  * Defines values for ConflictResolutionMode. \
  * {@link KnownConflictResolutionMode} can be used interchangeably with ConflictResolutionMode,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **LastWriterWins** \
  * **Custom**
  */
@@ -1747,7 +1747,7 @@ export const enum KnownTriggerType {
  * Defines values for TriggerType. \
  * {@link KnownTriggerType} can be used interchangeably with TriggerType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Pre** \
  * **Post**
  */
@@ -1766,7 +1766,7 @@ export const enum KnownTriggerOperation {
  * Defines values for TriggerOperation. \
  * {@link KnownTriggerOperation} can be used interchangeably with TriggerOperation,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **All** \
  * **Create** \
  * **Update** \
@@ -1784,7 +1784,7 @@ export const enum KnownNotebookWorkspaceName {
  * Defines values for NotebookWorkspaceName. \
  * {@link KnownNotebookWorkspaceName} can be used interchangeably with NotebookWorkspaceName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **default**
  */
 export type NotebookWorkspaceName = string;

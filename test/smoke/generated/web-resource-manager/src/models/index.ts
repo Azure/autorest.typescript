@@ -5927,7 +5927,7 @@ export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificate
  * Defines values for AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem. \
  * {@link KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RegistrationStatusNotSupportedForRenewal** \
  * **ExpirationNotInRenewalTimeRange** \
  * **SubscriptionNotActive**
@@ -5945,7 +5945,7 @@ export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServi
  * Defines values for AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem. \
  * {@link KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} can be used interchangeably with AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RegistrationStatusNotSupportedForRenewal** \
  * **ExpirationNotInRenewalTimeRange** \
  * **SubscriptionNotActive**
@@ -5963,7 +5963,7 @@ export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
  * Defines values for DomainPropertiesDomainNotRenewableReasonsItem. \
  * {@link KnownDomainPropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPropertiesDomainNotRenewableReasonsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RegistrationStatusNotSupportedForRenewal** \
  * **ExpirationNotInRenewalTimeRange** \
  * **SubscriptionNotActive**
@@ -5981,7 +5981,7 @@ export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsIte
  * Defines values for DomainPatchResourcePropertiesDomainNotRenewableReasonsItem. \
  * {@link KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem} can be used interchangeably with DomainPatchResourcePropertiesDomainNotRenewableReasonsItem,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **RegistrationStatusNotSupportedForRenewal** \
  * **ExpirationNotInRenewalTimeRange** \
  * **SubscriptionNotActive**
@@ -6000,7 +6000,7 @@ export const enum KnownEnum4 {
  * Defines values for Enum4. \
  * {@link KnownEnum4} can be used interchangeably with Enum4,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Windows** \
  * **Linux** \
  * **WindowsFunctions** \
@@ -6020,7 +6020,7 @@ export const enum KnownEnum5 {
  * Defines values for Enum5. \
  * {@link KnownEnum5} can be used interchangeably with Enum5,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Windows** \
  * **Linux** \
  * **WindowsFunctions** \
@@ -6039,7 +6039,7 @@ export const enum KnownResourceScopeType {
  * Defines values for ResourceScopeType. \
  * {@link KnownResourceScopeType} can be used interchangeably with ResourceScopeType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ServerFarm** \
  * **Subscription** \
  * **WebSite**
@@ -6062,7 +6062,7 @@ export const enum KnownCheckNameResourceTypes {
  * Defines values for CheckNameResourceTypes. \
  * {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Site** \
  * **Slot** \
  * **HostingEnvironment** \
@@ -6084,7 +6084,7 @@ export const enum KnownInAvailabilityReasonType {
  * Defines values for InAvailabilityReasonType. \
  * {@link KnownInAvailabilityReasonType} can be used interchangeably with InAvailabilityReasonType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Invalid** \
  * **AlreadyExists**
  */
@@ -6108,7 +6108,7 @@ export const enum KnownSkuName {
  * Defines values for SkuName. \
  * {@link KnownSkuName} can be used interchangeably with SkuName,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Free** \
  * **Shared** \
  * **Basic** \
@@ -6132,7 +6132,7 @@ export const enum KnownValidateResourceTypes {
  * Defines values for ValidateResourceTypes. \
  * {@link KnownValidateResourceTypes} can be used interchangeably with ValidateResourceTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **ServerFarm** \
  * **Site**
  */
@@ -6160,7 +6160,7 @@ export const enum KnownScmType {
  * Defines values for ScmType. \
  * {@link KnownScmType} can be used interchangeably with ScmType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **None** \
  * **Dropbox** \
  * **Tfs** \
@@ -6189,7 +6189,7 @@ export const enum KnownSupportedTlsVersions {
  * Defines values for SupportedTlsVersions. \
  * {@link KnownSupportedTlsVersions} can be used interchangeably with SupportedTlsVersions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **1.0** \
  * **1.1** \
  * **1.2**
@@ -6207,7 +6207,7 @@ export const enum KnownFtpsState {
  * Defines values for FtpsState. \
  * {@link KnownFtpsState} can be used interchangeably with FtpsState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AllAllowed** \
  * **FtpsOnly** \
  * **Disabled**
@@ -6226,7 +6226,7 @@ export const enum KnownDatabaseType {
  * Defines values for DatabaseType. \
  * {@link KnownDatabaseType} can be used interchangeably with DatabaseType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **SqlAzure** \
  * **MySql** \
  * **LocalMySql** \
@@ -6245,7 +6245,7 @@ export const enum KnownRouteType {
  * Defines values for RouteType. \
  * {@link KnownRouteType} can be used interchangeably with RouteType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **DEFAULT** \
  * **INHERITED** \
  * **STATIC**
@@ -6263,7 +6263,7 @@ export const enum KnownPublishingProfileFormat {
  * Defines values for PublishingProfileFormat. \
  * {@link KnownPublishingProfileFormat} can be used interchangeably with PublishingProfileFormat,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **FileZilla3** \
  * **WebDeploy** \
  * **Ftp**
@@ -6285,7 +6285,7 @@ export const enum KnownBuildStatus {
  * Defines values for BuildStatus. \
  * {@link KnownBuildStatus} can be used interchangeably with BuildStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **WaitingForDeployment** \
  * **Uploading** \
  * **Deploying** \
@@ -6306,7 +6306,7 @@ export const enum KnownTriggerTypes {
  * Defines values for TriggerTypes. \
  * {@link KnownTriggerTypes} can be used interchangeably with TriggerTypes,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **HttpTrigger** \
  * **Unknown**
  */

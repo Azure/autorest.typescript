@@ -1,27 +1,31 @@
-## Azure FeatureClient SDK for JavaScript
+# Feature client library for JavaScript
 
-This package contains an isomorphic SDK for FeatureClient.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for Feature client.
+
+Azure Feature Exposure Control (AFEC) provides a mechanism for the resource providers to control feature exposure to users. Resource providers typically use this mechanism to provide public/private preview for new features prior to making them generally available. Users need to explicitly register for AFEC features to get access to such functionality.
+
+[Package (NPM)](https://www.npmjs.com/package/arm-package-features-2015-12) |
+
+## Getting started
 
 ### Currently supported environments
 
-- Node.js version 8.x.x or higher
-- Browser JavaScript
+- [LTS versions of Node.js](https://nodejs.org/about/releases/)
+- Latest versions of Safari, Chrome, Edge and Firefox.
 
-### How to Install
+
+### Install the `arm-package-features-2015-12` package
+
+Install the Feature client library for JavaScript with `npm`:
 
 ```bash
 npm install arm-package-features-2015-12
 ```
 
-### How to use
 
-#### Sample code
+## Key concepts
 
-Refer the sample code in the [azure-sdk-for-js/samples](https://github.com/Azure/azure-sdk-for-js/tree/master/samples) folder.
+### FeatureClient
 
-## Related projects
+`FeatureClient` is the primary interface for developers using the Feature client library. Explore the methods on this client object to understand the different features of the Feature service that you can access.
 
-- [Microsoft Azure SDK for Javascript](https://github.com/Azure/azure-sdk-for-js)
-
-
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-js%2Fsdk%2Fcdn%2Farm-cdn%2FREADME.png)

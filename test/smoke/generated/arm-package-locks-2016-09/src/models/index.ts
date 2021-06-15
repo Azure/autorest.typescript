@@ -84,7 +84,7 @@ export const enum KnownLockLevel {
  * Defines values for LockLevel. \
  * {@link KnownLockLevel} can be used interchangeably with LockLevel,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **NotSpecified** \
  * **CanNotDelete** \
  * **ReadOnly**

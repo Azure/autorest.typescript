@@ -486,7 +486,7 @@ export const enum KnownSkuFamily {
  * Defines values for SkuFamily. \
  * {@link KnownSkuFamily} can be used interchangeably with SkuFamily,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **A**
  */
 export type SkuFamily = string;
@@ -515,7 +515,7 @@ export const enum KnownKeyPermissions {
  * Defines values for KeyPermissions. \
  * {@link KnownKeyPermissions} can be used interchangeably with KeyPermissions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **encrypt** \
  * **decrypt** \
  * **wrapKey** \
@@ -551,7 +551,7 @@ export const enum KnownSecretPermissions {
  * Defines values for SecretPermissions. \
  * {@link KnownSecretPermissions} can be used interchangeably with SecretPermissions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **get** \
  * **list** \
  * **set** \
@@ -587,7 +587,7 @@ export const enum KnownCertificatePermissions {
  * Defines values for CertificatePermissions. \
  * {@link KnownCertificatePermissions} can be used interchangeably with CertificatePermissions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **get** \
  * **list** \
  * **delete** \
@@ -629,7 +629,7 @@ export const enum KnownStoragePermissions {
  * Defines values for StoragePermissions. \
  * {@link KnownStoragePermissions} can be used interchangeably with StoragePermissions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **get** \
  * **list** \
  * **delete** \
@@ -657,7 +657,7 @@ export const enum KnownNetworkRuleBypassOptions {
  * Defines values for NetworkRuleBypassOptions. \
  * {@link KnownNetworkRuleBypassOptions} can be used interchangeably with NetworkRuleBypassOptions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AzureServices** \
  * **None**
  */
@@ -673,7 +673,7 @@ export const enum KnownNetworkRuleAction {
  * Defines values for NetworkRuleAction. \
  * {@link KnownNetworkRuleAction} can be used interchangeably with NetworkRuleAction,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Allow** \
  * **Deny**
  */
@@ -691,7 +691,7 @@ export const enum KnownPrivateEndpointServiceConnectionStatus {
  * Defines values for PrivateEndpointServiceConnectionStatus. \
  * {@link KnownPrivateEndpointServiceConnectionStatus} can be used interchangeably with PrivateEndpointServiceConnectionStatus,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Pending** \
  * **Approved** \
  * **Rejected** \
@@ -713,7 +713,7 @@ export const enum KnownPrivateEndpointConnectionProvisioningState {
  * Defines values for PrivateEndpointConnectionProvisioningState. \
  * {@link KnownPrivateEndpointConnectionProvisioningState} can be used interchangeably with PrivateEndpointConnectionProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Succeeded** \
  * **Creating** \
  * **Updating** \

@@ -371,7 +371,7 @@ export const enum KnownManagedServiceIdentityType {
  * Defines values for ManagedServiceIdentityType. \
  * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **UserAssigned**
  */
 export type ManagedServiceIdentityType = string;
@@ -386,7 +386,7 @@ export const enum KnownScriptType {
  * Defines values for ScriptType. \
  * {@link KnownScriptType} can be used interchangeably with ScriptType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **AzurePowerShell** \
  * **AzureCLI**
  */
@@ -404,7 +404,7 @@ export const enum KnownCreatedByType {
  * Defines values for CreatedByType. \
  * {@link KnownCreatedByType} can be used interchangeably with CreatedByType,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **User** \
  * **Application** \
  * **ManagedIdentity** \
@@ -423,7 +423,7 @@ export const enum KnownCleanupOptions {
  * Defines values for CleanupOptions. \
  * {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Always** \
  * **OnSuccess** \
  * **OnExpiration**
@@ -444,7 +444,7 @@ export const enum KnownScriptProvisioningState {
  * Defines values for ScriptProvisioningState. \
  * {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState,
  *  this enum contains the known values that the service supports.
- * ### Know values supported by the service
+ * ### Known values supported by the service
  * **Creating** \
  * **ProvisioningResources** \
  * **Running** \
