@@ -44,6 +44,7 @@ export class LROPoller<TResult> extends Poller<
     super(operation);
 
     this.intervalInMs = intervalInMs;
+    operation.setPollerConfig(this as any);
   }
 
   /**

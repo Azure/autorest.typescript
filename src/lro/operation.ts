@@ -6,6 +6,7 @@ import { OperationArguments, OperationSpec } from "@azure/core-client";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import {
   FinalStateVia,
+  PollerConfig,
   ResumablePollOperationState,
   SendOperationFn
 } from "./models";
@@ -14,7 +15,11 @@ import { createGetLROState, initializeState, LROState } from "./stateMachine";
 
 export class GenericPollOperation<TResult>
   implements PollOperation<PollOperationState<TResult>, TResult> {
-  private getLROState?: (pollingURL: string) => Promise<LROState<TResult>>;
+  private getLROState?: (
+    pollingURL: string,
+    pollerConfig: PollerConfig
+  ) => Promise<LROState<TResult>>;
+  private pollerConfig?: PollerConfig;
   constructor(
     public state: PollOperationState<TResult>,
     private initialOperationArguments: OperationArguments,
@@ -22,6 +27,10 @@ export class GenericPollOperation<TResult>
     private sendOperation: SendOperationFn<TResult>,
     private finalStateVia?: FinalStateVia
   ) {}
+
+  public setPollerConfig(pollerConfig: PollerConfig) {
+    this.pollerConfig = pollerConfig;
+  }
 
   /**
    * General update function for LROPoller, the general process is as follows
@@ -78,7 +87,10 @@ export class GenericPollOperation<TResult>
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");
       }
-      const currentState = await this.getLROState(state.pollingURL);
+      const currentState = await this.getLROState(
+        state.pollingURL,
+        this.pollerConfig!
+      );
       if (currentState.done) {
         state.result = currentState.flatResponse;
         state.isCompleted = true;

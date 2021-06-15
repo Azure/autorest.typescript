@@ -38,3 +38,7 @@ export type ResumablePollOperationState<T> = PollOperationState<T> & {
   config?: LROConfig;
   pollingURL?: string;
 };
+
+export interface PollerConfig {
+  intervalInMs: number;
+}
