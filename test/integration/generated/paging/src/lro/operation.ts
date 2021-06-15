@@ -27,14 +27,18 @@ export class GenericPollOperation<TResult>
     pollingURL: string,
     pollerConfig: PollerConfig
   ) => Promise<LROState<TResult>>;
+  private pollerConfig?: PollerConfig;
   constructor(
     public state: PollOperationState<TResult>,
     private initialOperationArguments: OperationArguments,
     private initialOperationSpec: OperationSpec,
     private sendOperation: SendOperationFn<TResult>,
-    private pollerConfig: PollerConfig,
     private finalStateVia?: FinalStateVia
   ) {}
+
+  public setPollerConfig(pollerConfig: PollerConfig) {
+    this.pollerConfig = pollerConfig;
+  }
 
   /**
    * General update function for LROPoller, the general process is as follows
@@ -93,7 +97,7 @@ export class GenericPollOperation<TResult>
       }
       const currentState = await this.getLROState(
         state.pollingURL,
-        this.pollerConfig
+        this.pollerConfig!
       );
       if (currentState.done) {
         state.result = currentState.flatResponse;
