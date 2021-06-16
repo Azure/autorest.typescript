@@ -4,16 +4,30 @@
 import {
   OperationArguments,
   OperationSpec,
-  OperationResponseMap
+  OperationResponseMap,
+  FullOperationResponse
 } from "@azure/core-client";
-import { LROMode, LROResult, SendOperationFn } from "./models";
+import {
+  GetLROState,
+  LROMode,
+  LROResult,
+  LROState,
+  PollingOperation
+} from "./models";
+import { terminalStates } from "./stateMachine";
+
+export type SendOperationFn<T> = (
+  args: OperationArguments,
+  spec: OperationSpec
+) => Promise<LROResult<T>>;
 
 export function createPollingMethod<TResult>(
   sendOperationFn: SendOperationFn<TResult>,
+  getLROState: GetLROState<TResult>,
   args: OperationArguments,
   spec: OperationSpec,
   mode?: LROMode
-): (path?: string) => Promise<LROResult<TResult>> {
+): PollingOperation<TResult> {
   /**
    * Polling calls will always return a status object i.e. {"status": "success"}
    * these intermediate responses are not described in the swagger so we need to
@@ -48,36 +62,179 @@ export function createPollingMethod<TResult>(
       };
     }, {} as { [responseCode: string]: OperationResponseMap });
   }
+  let response: LROState<TResult> | undefined = undefined;
+  const customerCallback = args?.options?.onResponse;
+  const updatedArgs = {
+    ...args,
+    options: {
+      ...args.options,
+      onResponse: (
+        rawResponse: FullOperationResponse,
+        flatResponse: unknown
+      ): void => {
+        response = getLROState(
+          {
+            statusCode: rawResponse.status,
+            body: rawResponse.parsedBody,
+            headers: rawResponse.headers.toJSON()
+          },
+          flatResponse as TResult
+        );
+        if (response.done) {
+          customerCallback?.(rawResponse, flatResponse);
+        }
+      }
+    }
+  };
   // Make sure we don't send any body to the get request
   const { requestBody, responses, ...restSpec } = spec;
   if (mode === "AzureAsync") {
     return async (path?: string) => {
-      return sendOperationFn(args, {
+      await sendOperationFn(updatedArgs, {
         ...restSpec,
         responses: getCompositeMappers(responses),
         httpMethod: "GET",
         ...(path && { path })
       });
+      return response!;
     };
   }
   return async (path?: string) => {
-    return sendOperationFn(args, {
+    await sendOperationFn(updatedArgs, {
       ...restSpec,
       responses: responses,
       httpMethod: "GET",
       ...(path && { path })
     });
+    return response!;
   };
 }
 
 export function createRetrieveAzureAsyncResource<TResult>(
   sendOperationFn: SendOperationFn<TResult>,
+  getLROState: GetLROState<TResult>,
   args: OperationArguments,
   spec: OperationSpec
-): (path?: string) => Promise<LROResult<TResult>> {
+): PollingOperation<TResult> {
   const updatedArgs = { ...args };
   if (updatedArgs.options) {
     (updatedArgs.options as any).shouldDeserialize = true;
   }
-  return createPollingMethod(sendOperationFn, updatedArgs, spec);
+  return createPollingMethod(sendOperationFn, getLROState, updatedArgs, spec);
+}
+
+/**
+ * We need to selectively deserialize our responses, only deserializing if we
+ * are in a final LRO response, not deserializing any polling non-terminal responses
+ */
+export function shouldDeserializeLRO(finalStateVia?: string) {
+  let initialOperationInfo: LROResponseInfo | undefined;
+  let isInitialRequest = true;
+
+  return (response: FullOperationResponse) => {
+    if (response.status < 200 || response.status >= 300) {
+      return true;
+    }
+
+    if (!initialOperationInfo) {
+      initialOperationInfo = getLROData(response);
+    } else {
+      isInitialRequest = false;
+    }
+
+    if (
+      initialOperationInfo.azureAsyncOperation ||
+      initialOperationInfo.operationLocation
+    ) {
+      return (
+        !isInitialRequest &&
+        isAsyncOperationFinalResponse(
+          response,
+          initialOperationInfo,
+          finalStateVia
+        )
+      );
+    }
+
+    if (initialOperationInfo.location) {
+      return isLocationFinalResponse(response);
+    }
+
+    if (initialOperationInfo.requestMethod === "PUT") {
+      return isBodyPollingFinalResponse(response);
+    }
+
+    return true;
+  };
+}
+
+function isAsyncOperationFinalResponse(
+  response: FullOperationResponse,
+  initialOperationInfo: LROResponseInfo,
+  finalStateVia?: string
+): boolean {
+  const status: string = response.parsedBody?.status || "Succeeded";
+  if (!terminalStates.includes(status.toLowerCase())) {
+    return false;
+  }
+
+  if (initialOperationInfo.requestMethod === "DELETE") {
+    return true;
+  }
+
+  if (
+    initialOperationInfo.requestMethod === "PUT" &&
+    finalStateVia &&
+    finalStateVia.toLowerCase() === "azure-asyncoperation"
+  ) {
+    return true;
+  }
+
+  if (
+    initialOperationInfo.requestMethod !== "PUT" &&
+    !initialOperationInfo.location
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function isLocationFinalResponse(response: FullOperationResponse): boolean {
+  return response.status !== 202;
+}
+
+function isBodyPollingFinalResponse(response: FullOperationResponse): boolean {
+  const provisioningState: string =
+    response.parsedBody?.properties?.provisioningState || "Succeeded";
+
+  if (terminalStates.includes(provisioningState.toLowerCase())) {
+    return true;
+  }
+
+  return false;
+}
+
+interface LROResponseInfo {
+  requestMethod: string;
+  azureAsyncOperation?: string;
+  operationLocation?: string;
+  location?: string;
+}
+
+function getLROData(result: FullOperationResponse): LROResponseInfo {
+  return {
+    azureAsyncOperation: result.headers.get("azure-asyncoperation"),
+    operationLocation: result.headers.get("operation-location"),
+    location: result.headers.get("location"),
+    requestMethod: result.request.method
+  };
+}
+
+export function getSpecPath(spec: OperationSpec): string {
+  if (spec.path) {
+    return spec.path;
+  } else {
+    throw Error("Bad spec: request path is not found!");
+  }
 }

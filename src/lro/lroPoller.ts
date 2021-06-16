@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 
 import { Poller, PollOperationState } from "@azure/core-lro";
-import { OperationArguments, OperationSpec } from "@azure/core-client";
-import { FinalStateVia, SendOperationFn } from "./models";
+import { LRO } from "./models";
 import { GenericPollOperation } from "./operation";
 
 export interface LROPollerOptions {
@@ -25,22 +24,13 @@ export class LROPoller<TResult> extends Poller<
 
   constructor(
     { intervalInMs = 2000, resumeFrom }: LROPollerOptions,
-    initialOperationArguments: OperationArguments,
-    initialOperationSpec: OperationSpec,
-    sendOperation: SendOperationFn<TResult>,
-    finalStateVia?: FinalStateVia
+    lro: LRO<TResult>
   ) {
     const state: PollOperationState<TResult> = resumeFrom
       ? JSON.parse(resumeFrom).state
       : {};
 
-    const operation = new GenericPollOperation(
-      state,
-      initialOperationArguments,
-      initialOperationSpec,
-      sendOperation,
-      finalStateVia
-    );
+    const operation = new GenericPollOperation(state, lro);
     super(operation);
 
     this.intervalInMs = intervalInMs;

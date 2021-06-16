@@ -1,18 +1,21 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FullOperationResponse } from "@azure/core-client";
-import { FinalStateVia, LROResult } from "./models";
-import { failureStates, LROState, successStates } from "./stateMachine";
+import {
+  FinalStateVia,
+  LROResult,
+  LROState,
+  RawResponse,
+  RetrieveAzureAsyncResourceOperation
+} from "./models";
+import { failureStates, successStates } from "./stateMachine";
 
-function getResponseStatus(rawResponse: FullOperationResponse): string {
-  const { status } =
-    rawResponse.parsedBody ??
-    (rawResponse.bodyAsText ? JSON.parse(rawResponse.bodyAsText) : {});
+function getResponseStatus(rawResponse: RawResponse): string {
+  const { status } = rawResponse.body ?? {};
   return status?.toLowerCase() ?? "succeeded";
 }
 
-function isAzureAsyncPollingDone(rawResponse: FullOperationResponse) {
+function isAzureAsyncPollingDone(rawResponse: RawResponse) {
   const state = getResponseStatus(rawResponse);
   if (failureStates.includes(state)) {
     throw new Error(`Operation status: ${state}`);
@@ -21,15 +24,12 @@ function isAzureAsyncPollingDone(rawResponse: FullOperationResponse) {
 }
 
 export function processAzureAsyncOperationResult<TResult>(
-  restrieveResource: (path?: string) => Promise<LROResult<TResult>>,
+  restrieveResource: RetrieveAzureAsyncResourceOperation<TResult>,
   resourceLocation?: string,
   finalStateVia?: FinalStateVia
-): (
-  rawResponse: FullOperationResponse,
-  flatResponse: TResult
-) => LROState<TResult> {
+): (rawResponse: RawResponse, flatResponse: TResult) => LROState<TResult> {
   return (
-    rawResponse: FullOperationResponse,
+    rawResponse: RawResponse,
     flatResponse: TResult
   ): LROState<TResult> => {
     if (isAzureAsyncPollingDone(rawResponse)) {

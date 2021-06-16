@@ -1,2 +1,3 @@
-export { shouldDeserializeLRO } from "./requestUtils";
+export { shouldDeserializeLRO } from "./pollingMethod";
 export { LROPoller } from "./lroPoller";
+export { createGetLROState, createInitializeState } from "./stateMachine";
