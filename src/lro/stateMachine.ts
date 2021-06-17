@@ -34,7 +34,7 @@ export function createGetLROState<TResult>(
   switch (config.mode) {
     case "AzureAsync": {
       return processAzureAsyncOperationResult(
-        lroPrimitives.retrieveAzureAsyncResource,
+        lroPrimitives.retrieveAzureAsyncResource!,
         config.resourceLocation,
         finalStateVia
       );
@@ -65,7 +65,7 @@ export function createPollForLROState<TResult>(
     pollerConfig: PollerConfig
   ): Promise<LROState<TResult>> => {
     const response = await lroPrimitives.sendPollRequest(path);
-    let retryAfter: string | undefined =
+    const retryAfter: string | undefined =
       response.rawResponse.headers["Retry-After"];
     if (retryAfter !== undefined) {
       const retryAfterInMs = parseInt(retryAfter);
@@ -103,7 +103,7 @@ export function createInitializeState<TResult>(
   state: ResumablePollOperationState<TResult>,
   requestPath: string,
   requestMethod: string
-): (rawResponse: RawResponse, flatResponse: unknown) => void {
+): (rawResponse: RawResponse, flatResponse: unknown) => boolean {
   return (rawResponse: RawResponse, flatResponse: unknown) => {
     state.initialRawResponse = rawResponse;
     state.isStarted = true;
@@ -122,5 +122,6 @@ export function createInitializeState<TResult>(
       state.result = flatResponse as TResult;
       state.isCompleted = true;
     }
+    return !!state.isCompleted;
   };
 }

@@ -9,12 +9,15 @@ import {
 } from "@azure/core-client";
 import {
   GetLROState,
+  InitializePollerState,
+  LRO,
   LROMode,
   LROResult,
   LROState,
-  PollingOperation
+  PollingOperation,
+  ResumablePollOperationState
 } from "./models";
-import { terminalStates } from "./stateMachine";
+import { createGetLROState, terminalStates } from "./stateMachine";
 
 export type SendOperationFn<T> = (
   args: OperationArguments,
@@ -236,5 +239,52 @@ export function getSpecPath(spec: OperationSpec): string {
     return spec.path;
   } else {
     throw Error("Bad spec: request path is not found!");
+  }
+}
+
+class CoreClientLRO<T> implements LRO<T> {
+  constructor(
+    private sendOperationFn: SendOperationFn<T>,
+    private args: OperationArguments,
+    private spec: OperationSpec,
+    public requestPath: string,
+    public requestMethod: string
+  ) {}
+  public async sendInitialRequest(
+    initializeState: InitializePollerState
+  ): Promise<LROResult<T>> {
+    const { onResponse, ...restOptions } = this.args.options || {};
+    return this.sendOperationFn(
+      {
+        ...this.args,
+        options: {
+          ...restOptions,
+          onResponse: (
+            rawResponse: FullOperationResponse,
+            flatResponse: unknown
+          ) => {
+            const isCompleted = initializeState(
+              {
+                statusCode: rawResponse.status,
+                body: rawResponse.parsedBody,
+                headers: rawResponse.headers.toJSON()
+              },
+              flatResponse
+            );
+            if (isCompleted) {
+              onResponse?.(rawResponse, flatResponse);
+            }
+          }
+        }
+      },
+      this.spec
+    );
+  }
+
+  public async sendPollRequest(path?: string): Promise<LROState<T>> {
+    return {} as any;
+  }
+  public async retrieveAzureAsyncResource(path?: string): Promise<LROState<T>> {
+    return {} as any;
   }
 }
