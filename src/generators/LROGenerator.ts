@@ -13,8 +13,9 @@ export async function generateLROFiles(
   if (!hasAnyLRO(clientDetails.operationGroups)) {
     return;
   }
-
-  const lroDir = joinPath(__dirname, "..", "..", "..", "src", "lro");
+  const baseTargetPath = srcPath || "";
+  const srcDir = joinPath(__dirname, "..", "..", "..", "src");
+  const lroDir = joinPath(srcDir, "lro");
   const lroFiles = await promises.readdir(lroDir);
 
   for (let i = 0; i < lroFiles.length; i++) {
@@ -23,11 +24,22 @@ export async function generateLROFiles(
     const fileContent = await promises.readFile(filePath, "utf-8");
 
     project.createSourceFile(
-      joinPath(srcPath || "", "lro", file),
+      joinPath(baseTargetPath, "lro", file),
       fileContent,
       { overwrite: true }
     );
   }
+  const fileContent = await promises.readFile(
+    joinPath(srcDir, "coreClientLRO.ts"),
+    "utf-8"
+  );
+  project.createSourceFile(
+    joinPath(baseTargetPath, "coreClientLRO.ts"),
+    fileContent,
+    {
+      overwrite: true
+    }
+  );
 }
 
 function hasAnyLRO(operationGroups: OperationGroupDetails[]) {

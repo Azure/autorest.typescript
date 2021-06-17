@@ -1,8 +1,15 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FinalStateVia, LRO, LROResult, LROState, RawResponse } from "./models";
-import { failureStates, successStates } from "./stateMachine";
+import {
+  failureStates,
+  FinalStateVia,
+  LRO,
+  LROResult,
+  LROState,
+  RawResponse,
+  successStates
+} from "./models";
 
 function getResponseStatus(rawResponse: RawResponse): string {
   const { status } = rawResponse.body ?? {};

@@ -133,7 +133,13 @@ export function transformOperationSpec(
   return operationSpecDetails;
 }
 
-export function extractHttpDetails({ path, method }: OperationRequestDetails) {
+export function extractHttpDetails({
+  path,
+  method
+}: OperationRequestDetails): {
+  path: string;
+  httpMethod: HttpMethods;
+} {
   return {
     path,
     httpMethod: method.toUpperCase() as HttpMethods

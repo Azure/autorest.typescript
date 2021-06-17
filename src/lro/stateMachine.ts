@@ -19,10 +19,6 @@ import {
 import { processPassthroughOperationResult } from "./passthrough";
 import { getPollingURL, inferLROMode } from "./requestUtils";
 
-export const successStates = ["succeeded"];
-export const failureStates = ["failed", "canceled", "cancelled"];
-export const terminalStates = successStates.concat(failureStates);
-
 /**
  * creates a stepping function that maps an LRO state to another.
  */

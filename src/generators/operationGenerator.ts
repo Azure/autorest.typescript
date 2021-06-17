@@ -739,13 +739,15 @@ function addOperationOverloads(
 function compileOperationOptionsToRequestOptionsBase(
   options: string,
   isLRO: boolean,
-  finalStateVia: string
+  finalStateVia?: string
 ): string {
   const { useCoreV2 } = getAutorestOptions();
   // In LRO we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
   return isLRO
-    ? `this.getOperationOptions(${options}, "${finalStateVia}")`
+    ? `this.getOperationOptions(${options}${
+        finalStateVia === undefined ? "" : ", ${finalStateVia}"
+      })`
     : !useCoreV2
     ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
     : `options || {}`;
@@ -1326,8 +1328,12 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller", "CoreClientLRO", "shouldDeserializeLRO"],
+      namedImports: ["LROPoller"],
       moduleSpecifier: `../lro`
+    });
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["CoreClientLRO", "shouldDeserializeLRO"],
+      moduleSpecifier: `../coreClientLRO`
     });
     operationGroupFile.addImportDeclaration({
       namedImports: ["PollerLike", "PollOperationState"],

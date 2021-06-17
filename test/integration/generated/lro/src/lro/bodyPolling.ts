@@ -9,8 +9,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { LROState, RawResponse } from "./models";
-import { failureStates, successStates } from "./stateMachine";
+import { failureStates, LROState, RawResponse, successStates } from "./models";
 
 function getProvisioningState(rawResponse: RawResponse): string {
   const { properties, provisioningState } = rawResponse.body ?? {};

@@ -6,6 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export { shouldDeserializeLRO, CoreClientLRO } from "./pollingMethod";
 export { LROPoller } from "./lroPoller";
-export { createGetLROState, createInitializeState } from "./stateMachine";
+export { createGetLROState } from "./stateMachine";
+export {
+  FinalStateVia,
+  GetLROState,
+  InitializePollerState,
+  LRO,
+  LROConfig,
+  LROMode,
+  LROResult,
+  LROState,
+  PollingOperation,
+  terminalStates
+} from "./models";

@@ -11,7 +11,8 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, CoreClientLRO, shouldDeserializeLRO } from "../lro";
+import { LROPoller } from "../lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsPut200SucceededOptionalParams,
