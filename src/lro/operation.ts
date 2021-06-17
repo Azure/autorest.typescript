@@ -20,7 +20,7 @@ export class GenericPollOperation<TResult>
   ) => Promise<LROState<TResult>>;
   private pollerConfig?: PollerConfig;
   constructor(
-    public state: PollOperationState<TResult>,
+    public state: ResumablePollOperationState<TResult>,
     private lro: LRO<TResult>
   ) {}
 
@@ -47,7 +47,7 @@ export class GenericPollOperation<TResult>
     abortSignal?: AbortSignalLike | undefined;
     fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
   }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
-    const state = this.state as ResumablePollOperationState<TResult>;
+    const state = this.state;
     if (!state.isStarted) {
       const initializeState = createInitializeState(
         state,
@@ -62,7 +62,7 @@ export class GenericPollOperation<TResult>
         if (state.config === undefined) {
           throw new Error("Bad state: LRO mode is undefined");
         }
-        this.getLROState = createPollForLROState(this.lro);
+        this.getLROState = createPollForLROState(this.lro, state.config);
       }
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");

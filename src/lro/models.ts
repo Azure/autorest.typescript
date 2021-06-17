@@ -90,7 +90,10 @@ export type InitializePollerState = (
 export type SendInitialRequestOperation<T> = (
   initializeState: InitializePollerState
 ) => Promise<LROResult<T>>;
-export type SendPollRequestOperation<T> = PollingOperation<T>;
+export type SendPollRequestOperation<T> = (
+  config: LROConfig,
+  path?: string
+) => Promise<LROState<T>>;
 export type RetrieveAzureAsyncResourceOperation<T> = PollingOperation<T>;
 export type GetLROState<T> = (
   rawResponse: RawResponse,

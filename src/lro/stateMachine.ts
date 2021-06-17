@@ -55,7 +55,8 @@ export function createGetLROState<TResult>(
  * Creates a polling operation that returns a LRO state.
  */
 export function createPollForLROState<TResult>(
-  lroPrimitives: LRO<TResult>
+  lroPrimitives: LRO<TResult>,
+  config: LROConfig
 ): (
   pollingURL: string,
   pollerConfig: PollerConfig
@@ -64,7 +65,7 @@ export function createPollForLROState<TResult>(
     path: string,
     pollerConfig: PollerConfig
   ): Promise<LROState<TResult>> => {
-    const response = await lroPrimitives.sendPollRequest(path);
+    const response = await lroPrimitives.sendPollRequest(config, path);
     const retryAfter: string | undefined =
       response.rawResponse.headers["Retry-After"];
     if (retryAfter !== undefined) {

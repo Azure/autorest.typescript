@@ -8,9 +8,11 @@ import {
   FullOperationResponse
 } from "@azure/core-client";
 import {
+  FinalStateVia,
   GetLROState,
   InitializePollerState,
   LRO,
+  LROConfig,
   LROMode,
   LROResult,
   LROState,
@@ -247,8 +249,9 @@ class CoreClientLRO<T> implements LRO<T> {
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
     private spec: OperationSpec,
-    public requestPath: string,
-    public requestMethod: string
+    private finalStateVia?: FinalStateVia,
+    public requestPath: string = spec.path!,
+    public requestMethod: string = spec.httpMethod
   ) {}
   public async sendInitialRequest(
     initializeState: InitializePollerState
@@ -281,8 +284,18 @@ class CoreClientLRO<T> implements LRO<T> {
     );
   }
 
-  public async sendPollRequest(path?: string): Promise<LROState<T>> {
-    return {} as any;
+  public async sendPollRequest(
+    config: LROConfig,
+    path?: string
+  ): Promise<LROState<T>> {
+    const getLROState = createGetLROState(this, config, this.finalStateVia);
+    return createPollingMethod(
+      this.sendOperationFn,
+      getLROState,
+      this.args,
+      this.spec,
+      config.mode
+    )(path);
   }
   public async retrieveAzureAsyncResource(path?: string): Promise<LROState<T>> {
     return {} as any;
