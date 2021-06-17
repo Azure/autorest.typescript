@@ -2,19 +2,8 @@
 // Licensed under the MIT License.
 
 import { Poller, PollOperationState } from "@azure/core-lro";
-import { LRO } from "./models";
+import { LRO, LROPollerOptions } from "./models";
 import { GenericPollOperation } from "./operation";
-
-export interface LROPollerOptions {
-  /**
-   * Defines how much time the poller is going to wait before making a new request to the service.
-   */
-  intervalInMs?: number;
-  /**
-   * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
-   */
-  resumeFrom?: string;
-}
 
 export class LROPoller<TResult> extends Poller<
   PollOperationState<TResult>,

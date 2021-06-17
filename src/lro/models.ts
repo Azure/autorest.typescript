@@ -3,6 +3,17 @@
 
 import { PollOperationState } from "@azure/core-lro";
 
+export interface LROPollerOptions {
+  /**
+   * Defines how much time the poller is going to wait before making a new request to the service.
+   */
+  intervalInMs?: number;
+  /**
+   * A serialized poller which can be used to resume an existing paused Long-Running-Operation.
+   */
+  resumeFrom?: string;
+}
+
 /**
  * A HttpHeaders collection represented as a simple JSON object.
  */
@@ -86,19 +97,6 @@ interface LROInProgressState<T> extends LROResult<T> {
  */
 export type LROState<T> = LROTerminalState<T> | LROInProgressState<T>;
 
-export type PollingOperation<T> = (path?: string) => Promise<LROState<T>>;
-export type InitializePollerState = (
-  rawResponse: RawResponse,
-  flatResponse: unknown
-) => boolean;
-export type SendInitialRequestOperation<T> = (
-  initializeState: InitializePollerState
-) => Promise<LROResult<T>>;
-export type SendPollRequestOperation<T> = (
-  config: LROConfig,
-  path?: string
-) => Promise<LROState<T>>;
-export type RetrieveAzureAsyncResourceOperation<T> = PollingOperation<T>;
 export type GetLROState<T> = (
   rawResponse: RawResponse,
   flatResponse: T
@@ -119,13 +117,18 @@ export interface LRO<T> {
   /**
    * A function that can be used to send initial request to the service.
    */
-  sendInitialRequest: SendInitialRequestOperation<T>;
+  sendInitialRequest: (
+    initializeState: (
+      rawResponse: RawResponse,
+      flatResponse: unknown
+    ) => boolean
+  ) => Promise<LROResult<T>>;
   /**
    * A function that can be used to poll for the current state of a long running operation.
    */
-  sendPollRequest: SendPollRequestOperation<T>;
+  sendPollRequest: (config: LROConfig, path?: string) => Promise<LROState<T>>;
   /**
    * A function that can be used to retrieve the provisioned azure resource.
    */
-  retrieveAzureAsyncResource: RetrieveAzureAsyncResourceOperation<T>;
+  retrieveAzureAsyncResource: (path?: string) => Promise<LROState<T>>;
 }

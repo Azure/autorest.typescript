@@ -11,12 +11,14 @@ export { createGetLROState } from "./stateMachine";
 export {
   FinalStateVia,
   GetLROState,
-  InitializePollerState,
+  RawResponse,
+  RawHttpHeaders,
+  LROBody,
   LRO,
   LROConfig,
   LROMode,
   LROResult,
   LROState,
-  PollingOperation,
+  LROPollerOptions,
   terminalStates
 } from "./models";

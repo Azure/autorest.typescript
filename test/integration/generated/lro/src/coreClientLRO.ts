@@ -18,15 +18,14 @@ import {
 import {
   FinalStateVia,
   GetLROState,
-  InitializePollerState,
   LRO,
   LROConfig,
   LROMode,
   LROResult,
   LROState,
-  PollingOperation,
   createGetLROState,
-  terminalStates
+  terminalStates,
+  RawResponse
 } from "./lro";
 
 export type SendOperationFn<T> = (
@@ -40,7 +39,7 @@ export function createPollingMethod<TResult>(
   args: OperationArguments,
   spec: OperationSpec,
   mode?: LROMode
-): PollingOperation<TResult> {
+): (path?: string) => Promise<LROState<TResult>> {
   /**
    * Polling calls will always return a status object i.e. {"status": "success"}
    * these intermediate responses are not described in the swagger so we need to
@@ -249,7 +248,10 @@ export class CoreClientLRO<T> implements LRO<T> {
     public requestMethod: string = spec.httpMethod
   ) {}
   public async sendInitialRequest(
-    initializeState: InitializePollerState
+    initializeState: (
+      rawResponse: RawResponse,
+      flatResponse: unknown
+    ) => boolean
   ): Promise<LROResult<T>> {
     const { onResponse, ...restOptions } = this.args.options || {};
     return this.sendOperationFn(
