@@ -48,9 +48,6 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
-    options.userAgentOptions = {
-      userAgentPrefix: userAgentPrefix
-    };
 
     if (!options.credentialScopes) {
       options.credentialScopes = [
@@ -61,6 +58,9 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
     const optionsWithDefaults = {
       ...defaults,
       ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
       baseUri: options.endpoint || "http://localhost:3000"
     };
     super(optionsWithDefaults);

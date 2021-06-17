@@ -39,11 +39,13 @@ export class UserAgentCoreV1ClientContext extends coreHttp.ServiceClient {
       "@azure/",
       ""
     )}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
-    options.userAgent = options.userAgent
-      ? `${options.userAgent} ${defaultUserAgent}`
-      : `${defaultUserAgent}`;
 
-    super(undefined, options);
+    super(undefined, {
+      ...options,
+      userAgent: options.userAgent
+        ? `${options.userAgent} ${defaultUserAgent}`
+        : `${defaultUserAgent}`
+    });
 
     this.requestContentType = "application/json; charset=utf-8";
     this.baseUri = options.endpoint || "http://localhost:3000";
