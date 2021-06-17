@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, CoreClientLRO, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
@@ -120,15 +120,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putNonRetry400OperationSpec,
-      sendOperation
+      putNonRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -184,15 +191,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putNonRetry201Creating400OperationSpec,
-      sendOperation
+      putNonRetry201Creating400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -249,15 +263,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putNonRetry201Creating400InvalidJsonOperationSpec,
-      sendOperation
+      putNonRetry201Creating400InvalidJsonOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -316,15 +337,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetry400OperationSpec,
-      sendOperation
+      putAsyncRelativeRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -380,15 +408,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteNonRetry400OperationSpec,
-      sendOperation
+      deleteNonRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -443,15 +478,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      delete202NonRetry400OperationSpec,
-      sendOperation
+      delete202NonRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -507,15 +549,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteAsyncRelativeRetry400OperationSpec,
-      sendOperation
+      deleteAsyncRelativeRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -571,15 +620,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postNonRetry400OperationSpec,
-      sendOperation
+      postNonRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -634,15 +690,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      post202NonRetry400OperationSpec,
-      sendOperation
+      post202NonRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -698,15 +761,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRelativeRetry400OperationSpec,
-      sendOperation
+      postAsyncRelativeRetry400OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -762,15 +832,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putError201NoProvisioningStatePayloadOperationSpec,
-      sendOperation
+      putError201NoProvisioningStatePayloadOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -829,15 +906,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetryNoStatusOperationSpec,
-      sendOperation
+      putAsyncRelativeRetryNoStatusOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -896,15 +980,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetryNoStatusPayloadOperationSpec,
-      sendOperation
+      putAsyncRelativeRetryNoStatusPayloadOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -958,15 +1049,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      delete204SucceededOperationSpec,
-      sendOperation
+      delete204SucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1022,15 +1120,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteAsyncRelativeRetryNoStatusOperationSpec,
-      sendOperation
+      deleteAsyncRelativeRetryNoStatusOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1086,15 +1191,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      post202NoLocationOperationSpec,
-      sendOperation
+      post202NoLocationOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1151,15 +1263,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRelativeRetryNoPayloadOperationSpec,
-      sendOperation
+      postAsyncRelativeRetryNoPayloadOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1217,15 +1336,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      put200InvalidJsonOperationSpec,
-      sendOperation
+      put200InvalidJsonOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1282,15 +1408,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetryInvalidHeaderOperationSpec,
-      sendOperation
+      putAsyncRelativeRetryInvalidHeaderOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1350,15 +1483,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetryInvalidJsonPollingOperationSpec,
-      sendOperation
+      putAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1418,15 +1558,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      delete202RetryInvalidHeaderOperationSpec,
-      sendOperation
+      delete202RetryInvalidHeaderOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1483,15 +1630,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteAsyncRelativeRetryInvalidHeaderOperationSpec,
-      sendOperation
+      deleteAsyncRelativeRetryInvalidHeaderOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1552,15 +1706,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec,
-      sendOperation
+      deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1619,15 +1780,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      post202RetryInvalidHeaderOperationSpec,
-      sendOperation
+      post202RetryInvalidHeaderOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1685,15 +1853,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRelativeRetryInvalidHeaderOperationSpec,
-      sendOperation
+      postAsyncRelativeRetryInvalidHeaderOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1754,15 +1929,22 @@ export class LrosaDsImpl implements LrosaDs {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRelativeRetryInvalidJsonPollingOperationSpec,
-      sendOperation
+      postAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

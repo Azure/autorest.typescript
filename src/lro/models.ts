@@ -123,5 +123,5 @@ export interface LRO<T> {
   /**
    * A function that can be used to retrieve the provisioned azure resource.
    */
-  retrieveAzureAsyncResource?: RetrieveAzureAsyncResourceOperation<T>;
+  retrieveAzureAsyncResource: RetrieveAzureAsyncResourceOperation<T>;
 }

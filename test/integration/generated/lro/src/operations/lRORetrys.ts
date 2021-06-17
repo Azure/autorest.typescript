@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, CoreClientLRO, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
@@ -85,15 +85,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      put201CreatingSucceeded200OperationSpec,
-      sendOperation
+      put201CreatingSucceeded200OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -152,15 +159,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRelativeRetrySucceededOperationSpec,
-      sendOperation
+      putAsyncRelativeRetrySucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -221,15 +235,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteProvisioning202Accepted200SucceededOperationSpec,
-      sendOperation
+      deleteProvisioning202Accepted200SucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -289,15 +310,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      delete202Retry200OperationSpec,
-      sendOperation
+      delete202Retry200OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -354,15 +382,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      deleteAsyncRelativeRetrySucceededOperationSpec,
-      sendOperation
+      deleteAsyncRelativeRetrySucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -419,15 +454,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      post202Retry200OperationSpec,
-      sendOperation
+      post202Retry200OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -485,15 +527,22 @@ export class LRORetrysImpl implements LRORetrys {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRelativeRetrySucceededOperationSpec,
-      sendOperation
+      postAsyncRelativeRetrySucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import {
-  FinalStateVia,
-  LROResult,
-  LROState,
-  RawResponse,
-  RetrieveAzureAsyncResourceOperation
-} from "./models";
+import { FinalStateVia, LRO, LROResult, LROState, RawResponse } from "./models";
 import { failureStates, successStates } from "./stateMachine";
 
 function getResponseStatus(rawResponse: RawResponse): string {
@@ -24,7 +18,7 @@ function isAzureAsyncPollingDone(rawResponse: RawResponse) {
 }
 
 export function processAzureAsyncOperationResult<TResult>(
-  restrieveResource: RetrieveAzureAsyncResourceOperation<TResult>,
+  lro: LRO<TResult>,
   resourceLocation?: string,
   finalStateVia?: FinalStateVia
 ): (rawResponse: RawResponse, flatResponse: TResult) => LROState<TResult> {
@@ -46,12 +40,12 @@ export function processAzureAsyncOperationResult<TResult>(
             > {
               switch (finalStateVia) {
                 case "original-uri":
-                  return restrieveResource();
+                  return lro.retrieveAzureAsyncResource();
                 case "azure-async-operation":
                   return Promise.resolve(undefined);
                 case "location":
                 default:
-                  return restrieveResource(resourceLocation);
+                  return lro.retrieveAzureAsyncResource(resourceLocation);
               }
             }
             const finalResponse = await sendFinalRequest();

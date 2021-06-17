@@ -963,16 +963,19 @@ function writeLROOperationBody(
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return { flatResponse, rawResponse: {
+        statusCode: currentRawResponse!.status,
+        body: currentRawResponse!.parsedBody,
+        headers: currentRawResponse!.headers.toJSON()
+      }};
   }`;
 
   methodDeclaration.addStatements([
     sendOperationStatement,
+    `const lro = new CoreClientLRO(sendOperation,${operationParamsName},
+      ${operationSpecName},${finalStateStr})`,
     `return new LROPoller({intervalInMs: options?.updateIntervalInMs},
-      ${operationParamsName},
-      ${operationSpecName},
-      sendOperation,
-      ${finalStateStr}
+      lro
     );`
   ]);
 
@@ -1323,7 +1326,7 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller", "shouldDeserializeLRO"],
+      namedImports: ["LROPoller", "CoreClientLRO", "shouldDeserializeLRO"],
       moduleSpecifier: `../lro`
     });
     operationGroupFile.addImportDeclaration({

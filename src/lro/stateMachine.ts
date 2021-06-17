@@ -34,7 +34,7 @@ export function createGetLROState<TResult>(
   switch (config.mode) {
     case "AzureAsync": {
       return processAzureAsyncOperationResult(
-        lroPrimitives.retrieveAzureAsyncResource!,
+        lroPrimitives,
         config.resourceLocation,
         finalStateVia
       );

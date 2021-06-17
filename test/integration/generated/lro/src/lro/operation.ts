@@ -10,16 +10,15 @@
 // Licensed under the MIT License.
 
 import { AbortSignalLike } from "@azure/abort-controller";
-import { OperationArguments, OperationSpec } from "@azure/core-client";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import {
-  FinalStateVia,
   PollerConfig,
   ResumablePollOperationState,
-  SendOperationFn
+  LRO,
+  LROState
 } from "./models";
 import { getPollingURL } from "./requestUtils";
-import { createGetLROState, initializeState, LROState } from "./stateMachine";
+import { createInitializeState, createPollForLROState } from "./stateMachine";
 
 export class GenericPollOperation<TResult>
   implements PollOperation<PollOperationState<TResult>, TResult> {
@@ -29,11 +28,8 @@ export class GenericPollOperation<TResult>
   ) => Promise<LROState<TResult>>;
   private pollerConfig?: PollerConfig;
   constructor(
-    public state: PollOperationState<TResult>,
-    private initialOperationArguments: OperationArguments,
-    private initialOperationSpec: OperationSpec,
-    private sendOperation: SendOperationFn<TResult>,
-    private finalStateVia?: FinalStateVia
+    public state: ResumablePollOperationState<TResult>,
+    private lro: LRO<TResult>
   ) {}
 
   public setPollerConfig(pollerConfig: PollerConfig) {
@@ -59,24 +55,14 @@ export class GenericPollOperation<TResult>
     abortSignal?: AbortSignalLike | undefined;
     fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
   }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
-    const state = this.state as ResumablePollOperationState<TResult>;
-    const { onResponse, ...restOptions } =
-      this.initialOperationArguments.options || {};
+    const state = this.state;
     if (!state.isStarted) {
-      await this.sendOperation(
-        {
-          ...this.initialOperationArguments,
-          options: {
-            ...restOptions,
-            onResponse: initializeState(
-              state,
-              this.initialOperationSpec,
-              onResponse
-            )
-          }
-        },
-        this.initialOperationSpec
+      const initializeState = createInitializeState(
+        state,
+        this.lro.requestPath,
+        this.lro.requestMethod
       );
+      await this.lro.sendInitialRequest(initializeState);
     }
 
     if (!state.isCompleted) {
@@ -84,13 +70,7 @@ export class GenericPollOperation<TResult>
         if (state.config === undefined) {
           throw new Error("Bad state: LRO mode is undefined");
         }
-        this.getLROState = createGetLROState(
-          this.sendOperation,
-          this.initialOperationArguments,
-          this.initialOperationSpec,
-          state.config,
-          this.finalStateVia
-        );
+        this.getLROState = createPollForLROState(this.lro, state.config);
       }
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");

@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
+import { LROPoller, CoreClientLRO, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
@@ -80,15 +80,22 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      putAsyncRetrySucceededOperationSpec,
-      sendOperation
+      putAsyncRetrySucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -149,15 +156,22 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      put201CreatingSucceeded200OperationSpec,
-      sendOperation
+      put201CreatingSucceeded200OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -217,15 +231,22 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      post202Retry200OperationSpec,
-      sendOperation
+      post202Retry200OperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -285,15 +306,22 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { options },
-      postAsyncRetrySucceededOperationSpec,
-      sendOperation
+      postAsyncRetrySucceededOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

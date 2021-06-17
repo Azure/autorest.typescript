@@ -9,11 +9,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FullOperationResponse } from "@azure/core-client";
-import { LROState } from "./stateMachine";
+import { LROState, RawResponse } from "./models";
 
 export function processPassthroughOperationResult<TResult>(
-  rawResponse: FullOperationResponse,
+  rawResponse: RawResponse,
   flatResponse: TResult
 ): LROState<TResult> {
   return {

@@ -16,8 +16,7 @@ import {
   LROMode,
   LROResult,
   LROState,
-  PollingOperation,
-  ResumablePollOperationState
+  PollingOperation
 } from "./models";
 import { createGetLROState, terminalStates } from "./stateMachine";
 
@@ -113,19 +112,6 @@ export function createPollingMethod<TResult>(
     });
     return response!;
   };
-}
-
-export function createRetrieveAzureAsyncResource<TResult>(
-  sendOperationFn: SendOperationFn<TResult>,
-  getLROState: GetLROState<TResult>,
-  args: OperationArguments,
-  spec: OperationSpec
-): PollingOperation<TResult> {
-  const updatedArgs = { ...args };
-  if (updatedArgs.options) {
-    (updatedArgs.options as any).shouldDeserialize = true;
-  }
-  return createPollingMethod(sendOperationFn, getLROState, updatedArgs, spec);
 }
 
 /**
@@ -244,7 +230,7 @@ export function getSpecPath(spec: OperationSpec): string {
   }
 }
 
-class CoreClientLRO<T> implements LRO<T> {
+export class CoreClientLRO<T> implements LRO<T> {
   constructor(
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
@@ -298,6 +284,19 @@ class CoreClientLRO<T> implements LRO<T> {
     )(path);
   }
   public async retrieveAzureAsyncResource(path?: string): Promise<LROState<T>> {
-    return {} as any;
+    const updatedArgs = { ...this.args };
+    if (updatedArgs.options) {
+      (updatedArgs.options as any).shouldDeserialize = true;
+    }
+    return createPollingMethod(
+      this.sendOperationFn,
+      (rawResponse, flatResponse) => ({
+        rawResponse,
+        flatResponse,
+        done: true
+      }),
+      updatedArgs,
+      this.spec
+    )(path);
   }
 }
