@@ -27,7 +27,7 @@ export class PetStoreContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "http://petstore.swagger.io/v2"
     };

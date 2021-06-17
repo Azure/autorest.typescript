@@ -35,7 +35,7 @@ export class ReportClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "http://localhost:3000"
     };

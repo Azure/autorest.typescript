@@ -35,7 +35,7 @@ export class CustomUrlClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "http://{accountName}{host}"
     };

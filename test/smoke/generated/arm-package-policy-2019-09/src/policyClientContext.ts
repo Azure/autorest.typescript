@@ -52,7 +52,7 @@ export class PolicyClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "https://management.azure.com"
     };

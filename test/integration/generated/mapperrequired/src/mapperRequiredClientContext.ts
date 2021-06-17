@@ -40,7 +40,7 @@ export class MapperRequiredClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "{$host}"
     };

@@ -286,7 +286,7 @@ function writeDefaultOptions(
     ...defaults,
     ...options,
     userAgentOptions: {
-      userAgentPrefix: userAgentPrefix
+      userAgentPrefix
     },
     baseUri: ${getEndpoint(clientDetails.endpoint)}
   };

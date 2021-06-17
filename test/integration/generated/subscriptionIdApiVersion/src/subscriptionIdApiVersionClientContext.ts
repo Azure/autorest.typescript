@@ -45,7 +45,7 @@ export class SubscriptionIdApiVersionClientContext extends coreClient.ServiceCli
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "http://localhost:3000"
     };

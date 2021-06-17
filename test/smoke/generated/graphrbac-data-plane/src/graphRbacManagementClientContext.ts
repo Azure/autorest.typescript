@@ -52,7 +52,7 @@ export class GraphRbacManagementClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "https://graph.windows.net"
     };

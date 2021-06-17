@@ -42,7 +42,7 @@ export class GeneratedClientContext extends coreClient.ServiceClient {
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "{Endpoint}/text/analytics/v3.1-preview.4"
     };

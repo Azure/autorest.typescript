@@ -35,7 +35,7 @@ export class LroParametrizedEndpointsClientContext extends coreClient.ServiceCli
       ...defaults,
       ...options,
       userAgentOptions: {
-        userAgentPrefix: userAgentPrefix
+        userAgentPrefix
       },
       baseUri: options.endpoint || "http://{accountName}{host}"
     };
