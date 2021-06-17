@@ -28,13 +28,13 @@ export class NoOperationsClientContext extends coreClient.ServiceClient {
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
-    options.userAgentOptions = {
-      userAgentPrefix: userAgentPrefix
-    };
 
     const optionsWithDefaults = {
       ...defaults,
       ...options,
+      userAgentOptions: {
+        userAgentPrefix: userAgentPrefix
+      },
       baseUri: options.endpoint
     };
     super(optionsWithDefaults);

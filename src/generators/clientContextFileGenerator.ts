@@ -253,13 +253,15 @@ function writeDefaultOptions(
   }
 
   const defaultUserAgent = \`azsdk-js-\${packageName.replace("@azure/","")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
-  options.userAgent = options.userAgent
-  ? \`\${options.userAgent} \${defaultUserAgent}\`
-  : \`\${defaultUserAgent}\`;
-
+  
   ${addScopes}
 
-  super(${hasCredentials ? "credentials" : `undefined`}, options);
+  super(${hasCredentials ? "credentials" : `undefined`}, {
+    ...options,
+    userAgent: options.userAgent
+      ? \`\${options.userAgent} \${defaultUserAgent}\`
+      : \`\${defaultUserAgent}\`
+  });
   
   this.requestContentType = "application/json; charset=utf-8";
   
@@ -278,14 +280,14 @@ function writeDefaultOptions(
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
         : \`\${packageDetails}\`;
-  options.userAgentOptions = {
-    userAgentPrefix: userAgentPrefix
-  };
   
   ${addScopes}
   const optionsWithDefaults = {
     ...defaults,
     ...options,
+    userAgentOptions: {
+      userAgentPrefix: userAgentPrefix
+    },
     baseUri: ${getEndpoint(clientDetails.endpoint)}
   };
   super(optionsWithDefaults);

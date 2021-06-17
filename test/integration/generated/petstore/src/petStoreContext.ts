@@ -22,13 +22,13 @@ export class PetStoreContext extends coreClient.ServiceClient {
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
-    options.userAgentOptions = {
-      userAgentPrefix: userAgentPrefix
-    };
 
     const optionsWithDefaults = {
       ...defaults,
       ...options,
+      userAgentOptions: {
+        userAgentPrefix: userAgentPrefix
+      },
       baseUri: options.endpoint || "http://petstore.swagger.io/v2"
     };
     super(optionsWithDefaults);
