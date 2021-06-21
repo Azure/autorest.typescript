@@ -167,9 +167,7 @@ function regularAutorestPackage(
       "rollup.config.js",
       "tsconfig.json",
       "review/*",
-      "api-extractor.json",
-      "CHANGELOG.md",
-      "_meta.json"
+      "CHANGELOG.md"
     ],
     scripts: {
       build:
