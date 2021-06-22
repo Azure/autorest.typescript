@@ -1,3 +1,8 @@
+## 6.0.0-beta.4 (2021-06-22)
+
+- [BugFix] Update LRO's `intervalInMs` from the `Retry-After` header. Please refer [#1036](https://github.com/Azure/autorest.typescript/pull/1036) and [#1034](https://github.com/Azure/autorest.typescript/issues/1034) for further details.
+- [BugFix] Stop mutating options bag in the client context constructor. Please refer [#1042](https://github.com/Azure/autorest.typescript/pull/1042) and [#1039](https://github.com/Azure/autorest.typescript/issues/1039) for further details.
+
 ## 1.0.0-beta.3 (2021-06-14)
 
 - [BugFix] Changed the target of the generated SDKs from `es5` to `es6`. Please refer [#1004](https://github.com/Azure/autorest.typescript/issues/1004) and [#1027](https://github.com/Azure/autorest.typescript/pull/1027) for further details.
