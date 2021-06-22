@@ -418,10 +418,7 @@ export interface DocumentsGetOptionalParams
 }
 
 /** Contains response data for the get operation. */
-export type DocumentsGetResponse = {
-  /** The parsed response body. */
-  body: any;
-};
+export type DocumentsGetResponse = Record<string, unknown>;
 
 /** Optional parameters. */
 export interface DocumentsSuggestGetOptionalParams

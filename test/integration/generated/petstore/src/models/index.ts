@@ -23,13 +23,6 @@ export interface Tag {
   name?: string;
 }
 
-export interface PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema {
-  /** Updated name of the pet */
-  name?: string;
-  /** Updated status of the pet */
-  status?: string;
-}
-
 export interface Order {
   /** NOTE: This property will not be serialized. It can only be populated by the server. */
   readonly id?: number;
@@ -51,6 +44,13 @@ export interface User {
   phone?: string;
   /** User Status */
   userStatus?: number;
+}
+
+export interface PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema {
+  /** Updated name of the pet */
+  name?: string;
+  /** Updated status of the pet */
+  status?: string;
 }
 
 export interface PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFormDataSchema {
@@ -97,7 +97,14 @@ export const enum KnownOrderStatus {
 export type OrderStatus = string;
 
 /** Optional parameters. */
-export interface PetStoreAddPetUsingByteArrayOptionalParams
+export interface PetStoreAddPetUsingByteArray$binaryOptionalParams
+  extends coreClient.OperationOptions {
+  /** Pet object in the form of byte array */
+  body?: coreRestPipeline.RequestBodyType;
+}
+
+/** Optional parameters. */
+export interface PetStoreAddPetUsingByteArray$xmlOptionalParams
   extends coreClient.OperationOptions {
   /** Pet object in the form of byte array */
   body?: coreRestPipeline.RequestBodyType;
@@ -169,7 +176,10 @@ export type PetStoreGetPetByIdResponse = Pet;
 /** Optional parameters. */
 export interface PetStoreUpdatePetWithFormOptionalParams
   extends coreClient.OperationOptions {
-  status?: PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema;
+  /** Updated name of the pet */
+  name?: string;
+  /** Updated status of the pet */
+  status?: string;
 }
 
 /** Optional parameters. */

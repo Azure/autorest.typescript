@@ -15,7 +15,9 @@ import {
   ArraySchema,
   DictionarySchema,
   DateTimeSchema,
-  CodeModel
+  CodeModel,
+  AnyObjectSchema,
+  AnySchema
 } from "@autorest/codemodel";
 import {
   BaseMapper,
@@ -378,12 +380,12 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
 function transformDictionaryMapper(pipelineValue: PipelineValue) {
   const { schema, options } = pipelineValue;
 
-  if (!isSchemaType([SchemaType.Dictionary], schema)) {
+  if (!isSchemaType([SchemaType.Dictionary, SchemaType.AnyObject], schema)) {
     return pipelineValue;
   }
+  let dictionarySchema = schema as DictionarySchema | AnyObjectSchema;
 
-  const dictionarySchema = schema as DictionarySchema;
-  const elementSchema = dictionarySchema.elementType;
+  const elementSchema = isDictionarySchema(dictionarySchema) ? dictionarySchema.elementType : new AnySchema("Schema for AnyObject type");
   const mapper = buildMapper(
     schema,
     { name: MapperType.Dictionary, value: getMapperOrRef(elementSchema) },
@@ -395,6 +397,14 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
     mapper,
     isHandled: true
   };
+}
+
+function isDictionarySchema(schema: Schema): schema is DictionarySchema {
+  return schema.type === SchemaType.Dictionary
+}
+
+function isAnyObjectSchema(schema: Schema): schema is AnyObjectSchema {
+  return schema.type === SchemaType.AnyObject
 }
 
 function transformArrayMapper(pipelineValue: PipelineValue) {
@@ -782,6 +792,7 @@ export function getMapperTypeFromSchema(type: SchemaType, format?: string) {
     case SchemaType.Time:
       return MapperType.String;
     case SchemaType.Dictionary:
+    case SchemaType.AnyObject:
       return MapperType.Dictionary;
     case SchemaType.Integer:
     case SchemaType.Number:

@@ -121,32 +121,6 @@ export const Tag: coreClient.CompositeMapper = {
   }
 };
 
-export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
-  serializedName:
-    "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-  type: {
-    name: "Composite",
-    className:
-      "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
-    modelProperties: {
-      name: {
-        serializedName: "name",
-        xmlName: "name",
-        type: {
-          name: "String"
-        }
-      },
-      status: {
-        serializedName: "status",
-        xmlName: "status",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const Order: coreClient.CompositeMapper = {
   serializedName: "Order",
   xmlName: "Order",
@@ -262,6 +236,32 @@ export const User: coreClient.CompositeMapper = {
         xmlName: "userStatus",
         type: {
           name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
+  serializedName:
+    "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
+  type: {
+    name: "Composite",
+    className:
+      "PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema",
+    modelProperties: {
+      name: {
+        serializedName: "name",
+        xmlName: "name",
+        type: {
+          name: "String"
+        }
+      },
+      status: {
+        serializedName: "status",
+        xmlName: "status",
+        type: {
+          name: "String"
         }
       }
     }

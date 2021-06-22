@@ -82,7 +82,7 @@ export interface ErrorAdditionalInfo {
    * The additional info.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly info?: any;
+  readonly info?: Record<string, unknown>;
 }
 
 /** Deployment operation parameters. */
@@ -96,11 +96,11 @@ export interface Deployment {
 /** Deployment properties. */
 export interface DeploymentProperties {
   /** The template content. You use this element when you want to pass the template syntax directly in the request rather than link to an existing template. It can be a JObject or well-formed JSON string. Use either the templateLink property or the template property, but not both. */
-  template?: any;
+  template?: Record<string, unknown>;
   /** The URI of the template. Use either the templateLink property or the template property, but not both. */
   templateLink?: TemplateLink;
   /** Name and value pairs that define the deployment parameters for the template. You use this element when you want to provide the parameter values directly in the request rather than link to an existing parameter file. Use either the parametersLink property or the parameters property, but not both. It can be a JObject or a well formed JSON string. */
-  parameters?: any;
+  parameters?: Record<string, unknown>;
   /** The URI of parameters file. You use this element to link to an existing parameters file. Use either the parametersLink property or the parameters property, but not both. */
   parametersLink?: ParametersLink;
   /** The mode that is used to deploy resources. This value can be either Incremental or Complete. In Incremental mode, resources are deployed without deleting existing resources that are not included in the template. In Complete mode, resources are deployed and existing resources in the resource group that are not included in the template are deleted. Be careful when using Complete mode as you may unintentionally delete resources. */
@@ -187,17 +187,17 @@ export interface DeploymentPropertiesExtended {
    */
   readonly duration?: string;
   /** Key/value pairs that represent deployment output. */
-  outputs?: any;
+  outputs?: Record<string, unknown>;
   /** The list of resource providers needed for the deployment. */
   providers?: Provider[];
   /** The list of deployment dependencies. */
   dependencies?: Dependency[];
   /** The template content. Use only one of Template or TemplateLink. */
-  template?: any;
+  template?: Record<string, unknown>;
   /** The URI referencing the template. Use only one of Template or TemplateLink. */
   templateLink?: TemplateLink;
   /** Deployment parameters. Use only one of Parameters or ParametersLink. */
-  parameters?: any;
+  parameters?: Record<string, unknown>;
   /** The URI referencing the parameters. Use only one of Parameters or ParametersLink. */
   parametersLink?: ParametersLink;
   /** The deployment mode. Possible values are Incremental and Complete. */
@@ -312,7 +312,7 @@ export interface DeploymentValidateResult {
 /** The deployment export result. */
 export interface DeploymentExportResult {
   /** The template content. */
-  template?: any;
+  template?: Record<string, unknown>;
 }
 
 /** List of deployments. */
@@ -365,9 +365,9 @@ export interface WhatIfChange {
   /** Type of change that will be made to the resource when the deployment is executed. */
   changeType: ChangeType;
   /** The snapshot of the resource before the deployment is executed. */
-  before?: any;
+  before?: Record<string, unknown>;
   /** The predicted snapshot of the resource after the deployment is executed. */
-  after?: any;
+  after?: Record<string, unknown>;
   /** The predicted changes to resource properties. */
   delta?: WhatIfPropertyChange[];
 }
@@ -379,9 +379,9 @@ export interface WhatIfPropertyChange {
   /** The type of property change. */
   propertyChangeType: PropertyChangeType;
   /** The value of the property before the deployment is executed. */
-  before?: any;
+  before?: Record<string, unknown>;
   /** The value of the property after the deployment is executed. */
-  after?: any;
+  after?: Record<string, unknown>;
   /** Nested property changes. */
   children?: WhatIfPropertyChange[];
 }
@@ -406,6 +406,29 @@ export interface ResourceListResult {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly nextLink?: string;
+}
+
+/** Specified resource. */
+export interface Resource {
+  /**
+   * Resource ID
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
 }
 
 /** Plan for the resource. */
@@ -471,29 +494,6 @@ export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentities
   readonly clientId?: string;
 }
 
-/** Specified resource. */
-export interface Resource {
-  /**
-   * Resource ID
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
-}
-
 /** Resource group information. */
 export interface ResourceGroup {
   /**
@@ -553,7 +553,7 @@ export interface ExportTemplateRequest {
 /** Resource group export result. */
 export interface ResourceGroupExportResult {
   /** The template content. */
-  template?: any;
+  template?: Record<string, unknown>;
   /** The template export error. */
   error?: ErrorResponse;
 }
@@ -671,7 +671,7 @@ export interface DeploymentOperationProperties {
    * Operation status message.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly statusMessage?: any;
+  readonly statusMessage?: Record<string, unknown>;
   /**
    * The target resource.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -702,7 +702,7 @@ export interface TargetResource {
 /** HTTP message. */
 export interface HttpMessage {
   /** HTTP message content. */
-  content?: any;
+  content?: Record<string, unknown>;
 }
 
 /** List of deployment operations. */
@@ -779,7 +779,7 @@ export type GenericResource = Resource & {
   /** The plan of the resource. */
   plan?: Plan;
   /** The resource properties. */
-  properties?: any;
+  properties?: Record<string, unknown>;
   /** The kind of the resource. */
   kind?: string;
   /** ID of the resource that manages this resource. */

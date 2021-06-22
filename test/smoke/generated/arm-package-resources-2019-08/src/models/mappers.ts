@@ -178,7 +178,8 @@ export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
         serializedName: "info",
         readOnly: true,
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -215,7 +216,8 @@ export const DeploymentProperties: coreClient.CompositeMapper = {
       template: {
         serializedName: "template",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       templateLink: {
@@ -228,7 +230,8 @@ export const DeploymentProperties: coreClient.CompositeMapper = {
       parameters: {
         serializedName: "parameters",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       parametersLink: {
@@ -424,7 +427,8 @@ export const DeploymentPropertiesExtended: coreClient.CompositeMapper = {
       outputs: {
         serializedName: "outputs",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       providers: {
@@ -454,7 +458,8 @@ export const DeploymentPropertiesExtended: coreClient.CompositeMapper = {
       template: {
         serializedName: "template",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       templateLink: {
@@ -467,7 +472,8 @@ export const DeploymentPropertiesExtended: coreClient.CompositeMapper = {
       parameters: {
         serializedName: "parameters",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       parametersLink: {
@@ -792,7 +798,8 @@ export const DeploymentExportResult: coreClient.CompositeMapper = {
       template: {
         serializedName: "template",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -952,13 +959,15 @@ export const WhatIfChange: coreClient.CompositeMapper = {
       before: {
         serializedName: "before",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       after: {
         serializedName: "after",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       delta: {
@@ -1000,13 +1009,15 @@ export const WhatIfPropertyChange: coreClient.CompositeMapper = {
       before: {
         serializedName: "before",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       after: {
         serializedName: "after",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       children: {
@@ -1075,6 +1086,49 @@ export const ResourceListResult: coreClient.CompositeMapper = {
         readOnly: true,
         type: {
           name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const Resource: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "Resource",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      name: {
+        serializedName: "name",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      type: {
+        serializedName: "type",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      tags: {
+        serializedName: "tags",
+        type: {
+          name: "Dictionary",
+          value: { type: { name: "String" } }
         }
       }
     }
@@ -1237,49 +1291,6 @@ export const ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentitiesAddi
   }
 };
 
-export const Resource: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "Resource",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      name: {
-        serializedName: "name",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      type: {
-        serializedName: "type",
-        readOnly: true,
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      tags: {
-        serializedName: "tags",
-        type: {
-          name: "Dictionary",
-          value: { type: { name: "String" } }
-        }
-      }
-    }
-  }
-};
-
 export const ResourceGroup: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1422,7 +1433,8 @@ export const ResourceGroupExportResult: coreClient.CompositeMapper = {
       template: {
         serializedName: "template",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       error: {
@@ -1683,7 +1695,8 @@ export const DeploymentOperationProperties: coreClient.CompositeMapper = {
         serializedName: "statusMessage",
         readOnly: true,
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       targetResource: {
@@ -1746,7 +1759,8 @@ export const HttpMessage: coreClient.CompositeMapper = {
       content: {
         serializedName: "content",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -1952,7 +1966,8 @@ export const GenericResource: coreClient.CompositeMapper = {
       properties: {
         serializedName: "properties",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       kind: {

@@ -50,7 +50,8 @@ export const putObject: OperationParameter = {
     serializedName: "putObject",
     required: true,
     type: {
-      name: "any"
+      name: "Dictionary",
+      value: { type: { name: "any" } }
     }
   }
 };
