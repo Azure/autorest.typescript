@@ -9,19 +9,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { FullOperationResponse } from "@azure/core-client";
-import { failureStates, LROState, successStates } from "./stateMachine";
+import { failureStates, LROStatus, RawResponse, successStates } from "./models";
 
-function getProvisioningState(rawResponse: FullOperationResponse): string {
-  const { properties, provisioningState } =
-    rawResponse.parsedBody ??
-    (rawResponse.bodyAsText ? JSON.parse(rawResponse.bodyAsText) : {});
+function getProvisioningState(rawResponse: RawResponse): string {
+  const { properties, provisioningState } = rawResponse.body ?? {};
   const state: string | undefined =
     properties?.provisioningState ?? provisioningState;
   return state?.toLowerCase() ?? "succeeded";
 }
 
-export function isBodyPollingDone(rawResponse: FullOperationResponse) {
+export function isBodyPollingDone(rawResponse: RawResponse) {
   const state = getProvisioningState(rawResponse);
   if (failureStates.includes(state)) {
     throw new Error(`Provisioning state: ${state}`);
@@ -34,9 +31,9 @@ export function isBodyPollingDone(rawResponse: FullOperationResponse) {
  * from the result to determine the current operation state
  */
 export function processBodyPollingOperationResult<TResult>(
-  rawResponse: FullOperationResponse,
+  rawResponse: RawResponse,
   flatResponse: TResult
-): LROState<TResult> {
+): LROStatus<TResult> {
   return {
     rawResponse,
     flatResponse,

@@ -9,7 +9,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { LROState, RawResponse } from "./models";
+import { LROStatus, RawResponse } from "./models";
 
 function isLocationPollingDone(rawResponse: RawResponse) {
   const code = rawResponse.statusCode;
@@ -22,7 +22,7 @@ function isLocationPollingDone(rawResponse: RawResponse) {
 export function processLocationPollingOperationResult<TResult>(
   rawResponse: RawResponse,
   flatResponse: TResult
-): LROState<TResult> {
+): LROStatus<TResult> {
   return {
     rawResponse,
     flatResponse,

@@ -7,18 +7,18 @@
  */
 
 export { LROPoller } from "./lroPoller";
-export { createGetLROState } from "./stateMachine";
+export { createGetLROStatusFromResponse } from "./stateMachine";
 export {
   FinalStateVia,
-  GetLROState,
+  GetLROStatusFromResponse,
   RawResponse,
   RawHttpHeaders,
   LROBody,
   LRO,
   LROConfig,
   LROMode,
-  LROResult,
-  LROState,
+  LROResponse,
+  LROStatus,
   LROPollerOptions,
   terminalStates
 } from "./models";

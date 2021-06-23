@@ -10,30 +10,28 @@
 // Licensed under the MIT License.
 
 import { AbortSignalLike } from "@azure/abort-controller";
-import { OperationArguments, OperationSpec } from "@azure/core-client";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import {
-  FinalStateVia,
   PollerConfig,
   ResumablePollOperationState,
-  SendOperationFn
+  LRO,
+  LROStatus
 } from "./models";
 import { getPollingURL } from "./requestUtils";
-import { createGetLROState, initializeState, LROState } from "./stateMachine";
+import { createInitializeState, createPollForLROStatus } from "./stateMachine";
 
-export class GenericPollOperation<TResult>
-  implements PollOperation<PollOperationState<TResult>, TResult> {
-  private getLROState?: (
+export class GenericPollOperation<
+  TResult,
+  TState extends PollOperationState<TResult>
+> implements PollOperation<TState, TResult> {
+  private GetLROStatusFromResponse?: (
     pollingURL: string,
     pollerConfig: PollerConfig
-  ) => Promise<LROState<TResult>>;
+  ) => Promise<LROStatus<TResult>>;
   private pollerConfig?: PollerConfig;
   constructor(
-    public state: PollOperationState<TResult>,
-    private initialOperationArguments: OperationArguments,
-    private initialOperationSpec: OperationSpec,
-    private sendOperation: SendOperationFn<TResult>,
-    private finalStateVia?: FinalStateVia
+    public state: TState & ResumablePollOperationState<TResult>,
+    private lro: LRO<TResult>
   ) {}
 
   public setPollerConfig(pollerConfig: PollerConfig) {
@@ -57,45 +55,32 @@ export class GenericPollOperation<TResult>
    */
   async update(options?: {
     abortSignal?: AbortSignalLike | undefined;
-    fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
-  }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
-    const state = this.state as ResumablePollOperationState<TResult>;
-    const { onResponse, ...restOptions } =
-      this.initialOperationArguments.options || {};
+    fireProgress?: ((state: TState) => void) | undefined;
+  }): Promise<PollOperation<TState, TResult>> {
+    const state = this.state;
     if (!state.isStarted) {
-      await this.sendOperation(
-        {
-          ...this.initialOperationArguments,
-          options: {
-            ...restOptions,
-            onResponse: initializeState(
-              state,
-              this.initialOperationSpec,
-              onResponse
-            )
-          }
-        },
-        this.initialOperationSpec
+      const initializeState = createInitializeState(
+        state,
+        this.lro.requestPath,
+        this.lro.requestMethod
       );
+      await this.lro.sendInitialRequest(initializeState);
     }
 
     if (!state.isCompleted) {
-      if (this.getLROState === undefined) {
+      if (this.GetLROStatusFromResponse === undefined) {
         if (state.config === undefined) {
           throw new Error("Bad state: LRO mode is undefined");
         }
-        this.getLROState = createGetLROState(
-          this.sendOperation,
-          this.initialOperationArguments,
-          this.initialOperationSpec,
-          state.config,
-          this.finalStateVia
+        this.GetLROStatusFromResponse = createPollForLROStatus(
+          this.lro,
+          state.config
         );
       }
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");
       }
-      const currentState = await this.getLROState(
+      const currentState = await this.GetLROStatusFromResponse(
         state.pollingURL,
         this.pollerConfig!
       );
@@ -103,7 +88,8 @@ export class GenericPollOperation<TResult>
         state.result = currentState.flatResponse;
         state.isCompleted = true;
       } else {
-        this.getLROState = currentState.next ?? this.getLROState;
+        this.GetLROStatusFromResponse =
+          currentState.next ?? this.GetLROStatusFromResponse;
         state.pollingURL = getPollingURL(
           currentState.rawResponse,
           state.pollingURL
@@ -116,7 +102,7 @@ export class GenericPollOperation<TResult>
     return this;
   }
 
-  async cancel(): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
+  async cancel(): Promise<PollOperation<TState, TResult>> {
     this.state.isCancelled = true;
     return this;
   }

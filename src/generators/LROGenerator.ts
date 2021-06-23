@@ -9,10 +9,11 @@ export async function generateLROFiles(
   clientDetails: ClientDetails,
   project: Project
 ) {
-  const { srcPath } = getAutorestOptions();
+  const { srcPath, useCoreV2 } = getAutorestOptions();
   if (!hasAnyLRO(clientDetails.operationGroups)) {
     return;
   }
+  const LROClassFile = useCoreV2 ? "coreClientLRO.ts" : "coreHttpLRO.ts";
   const baseTargetPath = srcPath || "";
   const srcDir = joinPath(__dirname, "..", "..", "..", "src");
   const lroDir = joinPath(srcDir, "lro");
@@ -30,11 +31,11 @@ export async function generateLROFiles(
     );
   }
   const fileContent = await promises.readFile(
-    joinPath(srcDir, "coreClientLRO.ts"),
+    joinPath(srcDir, LROClassFile),
     "utf-8"
   );
   project.createSourceFile(
-    joinPath(baseTargetPath, "coreClientLRO.ts"),
+    joinPath(baseTargetPath, LROClassFile),
     fileContent,
     {
       overwrite: true

@@ -13,8 +13,9 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LROPoller } from "../lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -213,15 +214,22 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { sourceResourceGroupName, parameters, options },
-      moveResourcesOperationSpec,
-      sendOperation
+      moveResourcesOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -291,15 +299,22 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { sourceResourceGroupName, parameters, options },
-      validateMoveResourcesOperationSpec,
-      sendOperation
+      validateMoveResourcesOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -419,11 +434,18 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         resourceProviderNamespace,
@@ -433,9 +455,9 @@ export class ResourcesImpl implements Resources {
         apiVersion,
         options
       },
-      deleteOperationSpec,
-      sendOperation
+      deleteOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -526,11 +548,18 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         resourceProviderNamespace,
@@ -541,9 +570,9 @@ export class ResourcesImpl implements Resources {
         parameters,
         options
       },
-      createOrUpdateOperationSpec,
-      sendOperation
+      createOrUpdateOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -637,11 +666,18 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         resourceProviderNamespace,
@@ -652,9 +688,9 @@ export class ResourcesImpl implements Resources {
         parameters,
         options
       },
-      updateOperationSpec,
-      sendOperation
+      updateOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -787,15 +823,22 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceId, apiVersion, options },
-      deleteByIdOperationSpec,
-      sendOperation
+      deleteByIdOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -864,15 +907,22 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceId, apiVersion, parameters, options },
-      createOrUpdateByIdOperationSpec,
-      sendOperation
+      createOrUpdateByIdOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -948,15 +998,22 @@ export class ResourcesImpl implements Resources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceId, apiVersion, parameters, options },
-      updateByIdOperationSpec,
-      sendOperation
+      updateByIdOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

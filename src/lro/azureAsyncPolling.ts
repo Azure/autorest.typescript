@@ -5,8 +5,8 @@ import {
   failureStates,
   FinalStateVia,
   LRO,
-  LROResult,
-  LROState,
+  LROResponse,
+  LROStatus,
   RawResponse,
   successStates
 } from "./models";
@@ -28,11 +28,11 @@ export function processAzureAsyncOperationResult<TResult>(
   lro: LRO<TResult>,
   resourceLocation?: string,
   finalStateVia?: FinalStateVia
-): (rawResponse: RawResponse, flatResponse: TResult) => LROState<TResult> {
+): (rawResponse: RawResponse, flatResponse: TResult) => LROStatus<TResult> {
   return (
     rawResponse: RawResponse,
     flatResponse: TResult
-  ): LROState<TResult> => {
+  ): LROStatus<TResult> => {
     if (isAzureAsyncPollingDone(rawResponse)) {
       if (resourceLocation === undefined) {
         return { rawResponse, flatResponse, done: true };
@@ -43,7 +43,7 @@ export function processAzureAsyncOperationResult<TResult>(
           done: false,
           next: async () => {
             async function sendFinalRequest(): Promise<
-              LROResult<TResult> | undefined
+              LROResponse<TResult> | undefined
             > {
               switch (finalStateVia) {
                 case "original-uri":

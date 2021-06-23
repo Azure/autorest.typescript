@@ -746,7 +746,7 @@ function compileOperationOptionsToRequestOptionsBase(
   // the private getOperationOptions function instead of the one in core-http
   return isLRO
     ? `this.getOperationOptions(${options}${
-        finalStateVia === undefined ? "" : ", ${finalStateVia}"
+        finalStateVia === undefined ? "" : `, "${finalStateVia}"`
       })`
     : !useCoreV2
     ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
@@ -933,14 +933,22 @@ function writeLROOperationBody(
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
 
   const finalStateStr = finalStateVia ? `"${finalStateVia.toLowerCase()}"` : "";
-  let sendOperationStatement = !useCoreV2
-    ? `const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
-    ${getTracingTryCatchStatement(
-      sendRequestStatement,
-      responseName,
-      isTracingEnabled
-    )}
-  }`
+  const sendOperationStatement = !useCoreV2
+    ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
+      ${getTracingTryCatchStatement(
+        sendRequestStatement,
+        responseName,
+        isTracingEnabled
+      )}
+      };
+      const sendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) => {
+        const response = await directSendOperation(args, spec);
+        return { flatResponse:response, rawResponse: {
+          statusCode: response._response.status,
+          body: (response._response as any)?.parsedBody ?? {},
+          headers: response._response.headers.rawHeaders()
+        }};
+    }`
     : `const directSendOperation = async (args: coreClient.OperationArguments, spec: coreClient.OperationSpec): Promise<${responseName}> => {
     ${getTracingTryCatchStatement(
       sendRequestStatement,
@@ -971,10 +979,10 @@ function writeLROOperationBody(
         headers: currentRawResponse!.headers.toJSON()
       }};
   }`;
-
+  const LROClassName = useCoreV2 ? "CoreClientLRO" : "CoreHttpLRO";
   methodDeclaration.addStatements([
     sendOperationStatement,
-    `const lro = new CoreClientLRO(sendOperation,${operationParamsName},
+    `const lro = new ${LROClassName}(sendOperation,${operationParamsName},
       ${operationSpecName},${finalStateStr})`,
     `return new LROPoller({intervalInMs: options?.updateIntervalInMs},
       lro
@@ -1328,17 +1336,24 @@ function addImports(
 
   if (hasLROOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller"],
-      moduleSpecifier: `../lro`
-    });
-    operationGroupFile.addImportDeclaration({
-      namedImports: ["CoreClientLRO", "shouldDeserializeLRO"],
-      moduleSpecifier: `../coreClientLRO`
-    });
-    operationGroupFile.addImportDeclaration({
       namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["LROPoller"],
+      moduleSpecifier: `../lro`
+    });
+    if (useCoreV2) {
+      operationGroupFile.addImportDeclaration({
+        namedImports: ["CoreClientLRO", "shouldDeserializeLRO"],
+        moduleSpecifier: `../coreClientLRO`
+      });
+    } else {
+      operationGroupFile.addImportDeclaration({
+        namedImports: ["CoreHttpLRO", "shouldDeserializeLRO"],
+        moduleSpecifier: `../coreHttpLRO`
+      });
+    }
   }
 }
 

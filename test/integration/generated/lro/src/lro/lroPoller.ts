@@ -10,20 +10,20 @@
 // Licensed under the MIT License.
 
 import { Poller, PollOperationState } from "@azure/core-lro";
-import { LRO, LROPollerOptions } from "./models";
+import { LRO, LROPollerOptions, ResumablePollOperationState } from "./models";
 import { GenericPollOperation } from "./operation";
 
-export class LROPoller<TResult> extends Poller<
-  PollOperationState<TResult>,
-  TResult
-> {
+export class LROPoller<
+  TResult,
+  TState extends PollOperationState<TResult>
+> extends Poller<TState, TResult> {
   private intervalInMs: number;
 
   constructor(
     { intervalInMs = 2000, resumeFrom }: LROPollerOptions,
     lro: LRO<TResult>
   ) {
-    const state: PollOperationState<TResult> = resumeFrom
+    const state: TState & ResumablePollOperationState<TResult> = resumeFrom
       ? JSON.parse(resumeFrom).state
       : {};
 

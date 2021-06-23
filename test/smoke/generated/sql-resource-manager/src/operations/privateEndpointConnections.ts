@@ -13,8 +13,9 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LROPoller } from "../lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
 import {
   PrivateEndpointConnection,
   PrivateEndpointConnectionsListByServerNextOptionalParams,
@@ -184,11 +185,18 @@ export class PrivateEndpointConnectionsImpl
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         serverName,
@@ -196,9 +204,9 @@ export class PrivateEndpointConnectionsImpl
         parameters,
         options
       },
-      createOrUpdateOperationSpec,
-      sendOperation
+      createOrUpdateOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -270,15 +278,22 @@ export class PrivateEndpointConnectionsImpl
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, serverName, privateEndpointConnectionName, options },
-      deleteOperationSpec,
-      sendOperation
+      deleteOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

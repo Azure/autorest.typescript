@@ -11,6 +11,9 @@
 
 import { PollOperationState } from "@azure/core-lro";
 
+/**
+ * Options for the LRO poller.
+ */
 export interface LROPollerOptions {
   /**
    * Defines how much time the poller is going to wait before making a new request to the service.
@@ -50,7 +53,7 @@ export interface RawResponse {
   body?: LROBody;
 }
 
-export interface LROResult<T> {
+export interface LROResponse<T> {
   flatResponse: T;
   rawResponse: RawResponse;
 }
@@ -78,7 +81,7 @@ export interface PollerConfig {
 /**
  * The type of a terminal state of an LRO.
  */
-interface LROTerminalState<T> extends LROResult<T> {
+interface LROTerminalState<T> extends LROResponse<T> {
   /**
    * Whether the operation has finished.
    */
@@ -88,7 +91,7 @@ interface LROTerminalState<T> extends LROResult<T> {
 /**
  * The type of an in-progress state of an LRO.
  */
-interface LROInProgressState<T> extends LROResult<T> {
+interface LROInProgressState<T> extends LROResponse<T> {
   /**
    * Whether the operation has finished.
    */
@@ -97,21 +100,21 @@ interface LROInProgressState<T> extends LROResult<T> {
    * The request to be sent next if it is different from the standard polling one.
    * Notice that it will disregard any polling URLs provided to it.
    */
-  next?: () => Promise<LROState<T>>;
+  next?: () => Promise<LROStatus<T>>;
 }
 
 /**
  * The type of an LRO state which is a tagged union of terminal and in-progress states.
  */
-export type LROState<T> = LROTerminalState<T> | LROInProgressState<T>;
+export type LROStatus<T> = LROTerminalState<T> | LROInProgressState<T>;
 
-export type GetLROState<T> = (
+export type GetLROStatusFromResponse<T> = (
   rawResponse: RawResponse,
   flatResponse: T
-) => LROState<T>;
+) => LROStatus<T>;
 
 /**
- * Description of a long running operation
+ * Description of a long running operation.
  */
 export interface LRO<T> {
   /**
@@ -130,13 +133,13 @@ export interface LRO<T> {
       rawResponse: RawResponse,
       flatResponse: unknown
     ) => boolean
-  ) => Promise<LROResult<T>>;
+  ) => Promise<LROResponse<T>>;
   /**
-   * A function that can be used to poll for the current state of a long running operation.
+   * A function that can be used to poll for the current status of a long running operation.
    */
-  sendPollRequest: (config: LROConfig, path?: string) => Promise<LROState<T>>;
+  sendPollRequest: (config: LROConfig, path?: string) => Promise<LROStatus<T>>;
   /**
    * A function that can be used to retrieve the provisioned azure resource.
    */
-  retrieveAzureAsyncResource: (path?: string) => Promise<LROState<T>>;
+  retrieveAzureAsyncResource: (path?: string) => Promise<LROStatus<T>>;
 }

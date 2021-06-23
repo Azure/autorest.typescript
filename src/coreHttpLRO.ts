@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import {
+  HttpOperationResponse,
   OperationArguments,
-  OperationSpec,
-  OperationResponseMap,
-  FullOperationResponse
-} from "@azure/core-client";
+  OperationResponse,
+  OperationSpec
+} from "@azure/core-http";
 import {
   FinalStateVia,
   GetLROStatusFromResponse,
@@ -27,7 +27,7 @@ export type SendOperationFn<T> = (
 
 export function createPollingMethod<TResult>(
   sendOperationFn: SendOperationFn<TResult>,
-  GetLROStatusFromResponse: GetLROStatusFromResponse<TResult>,
+  getLROStatusFromResponse: GetLROStatusFromResponse<TResult>,
   args: OperationArguments,
   spec: OperationSpec,
   mode?: LROMode
@@ -40,9 +40,9 @@ export function createPollingMethod<TResult>(
    * @param responses Original set of responses defined in the operation
    */
   function getCompositeMappers(responses: {
-    [responseCode: string]: OperationResponseMap;
+    [responseCode: string]: OperationResponse;
   }): {
-    [responseCode: string]: OperationResponseMap;
+    [responseCode: string]: OperationResponse;
   } {
     return Object.keys(responses).reduce((acc, statusCode) => {
       return {
@@ -64,53 +64,29 @@ export function createPollingMethod<TResult>(
           }
         }
       };
-    }, {} as { [responseCode: string]: OperationResponseMap });
+    }, {} as { [responseCode: string]: OperationResponse });
   }
-  let response: LROStatus<TResult> | undefined = undefined;
-  const customerCallback = args?.options?.onResponse;
-  const updatedArgs = {
-    ...args,
-    options: {
-      ...args.options,
-      onResponse: (
-        rawResponse: FullOperationResponse,
-        flatResponse: unknown
-      ): void => {
-        response = GetLROStatusFromResponse(
-          {
-            statusCode: rawResponse.status,
-            body: rawResponse.parsedBody,
-            headers: rawResponse.headers.toJSON()
-          },
-          flatResponse as TResult
-        );
-        if (response.done) {
-          customerCallback?.(rawResponse, flatResponse);
-        }
-      }
-    }
-  };
   // Make sure we don't send any body to the get request
   const { requestBody, responses, ...restSpec } = spec;
   if (mode === "AzureAsync") {
     return async (path?: string) => {
-      await sendOperationFn(updatedArgs, {
+      const { flatResponse, rawResponse } = await sendOperationFn(args, {
         ...restSpec,
         responses: getCompositeMappers(responses),
         httpMethod: "GET",
         ...(path && { path })
       });
-      return response!;
+      return getLROStatusFromResponse(rawResponse, flatResponse as TResult);
     };
   }
   return async (path?: string) => {
-    await sendOperationFn(updatedArgs, {
+    const { flatResponse, rawResponse } = await sendOperationFn(args, {
       ...restSpec,
       responses: responses,
       httpMethod: "GET",
       ...(path && { path })
     });
-    return response!;
+    return getLROStatusFromResponse(rawResponse, flatResponse as TResult);
   };
 }
 
@@ -122,7 +98,7 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
   let initialOperationInfo: LROResponseInfo | undefined;
   let isInitialRequest = true;
 
-  return (response: FullOperationResponse) => {
+  return (response: HttpOperationResponse) => {
     if (response.status < 200 || response.status >= 300) {
       return true;
     }
@@ -160,7 +136,7 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
 }
 
 function isAsyncOperationFinalResponse(
-  response: FullOperationResponse,
+  response: HttpOperationResponse,
   initialOperationInfo: LROResponseInfo,
   finalStateVia?: string
 ): boolean {
@@ -191,11 +167,11 @@ function isAsyncOperationFinalResponse(
   return false;
 }
 
-function isLocationFinalResponse(response: FullOperationResponse): boolean {
+function isLocationFinalResponse(response: HttpOperationResponse): boolean {
   return response.status !== 202;
 }
 
-function isBodyPollingFinalResponse(response: FullOperationResponse): boolean {
+function isBodyPollingFinalResponse(response: HttpOperationResponse): boolean {
   const provisioningState: string =
     response.parsedBody?.properties?.provisioningState || "Succeeded";
 
@@ -213,7 +189,7 @@ interface LROResponseInfo {
   location?: string;
 }
 
-function getLROData(result: FullOperationResponse): LROResponseInfo {
+function getLROData(result: HttpOperationResponse): LROResponseInfo {
   return {
     azureAsyncOperation: result.headers.get("azure-asyncoperation"),
     operationLocation: result.headers.get("operation-location"),
@@ -230,7 +206,7 @@ export function getSpecPath(spec: OperationSpec): string {
   }
 }
 
-export class CoreClientLRO<T> implements LRO<T> {
+export class CoreHttpLRO<T> implements LRO<T> {
   constructor(
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
@@ -245,32 +221,9 @@ export class CoreClientLRO<T> implements LRO<T> {
       flatResponse: unknown
     ) => boolean
   ): Promise<LROResponse<T>> {
-    const { onResponse, ...restOptions } = this.args.options || {};
-    return this.sendOperationFn(
-      {
-        ...this.args,
-        options: {
-          ...restOptions,
-          onResponse: (
-            rawResponse: FullOperationResponse,
-            flatResponse: unknown
-          ) => {
-            const isCompleted = initializeState(
-              {
-                statusCode: rawResponse.status,
-                body: rawResponse.parsedBody,
-                headers: rawResponse.headers.toJSON()
-              },
-              flatResponse
-            );
-            if (isCompleted) {
-              onResponse?.(rawResponse, flatResponse);
-            }
-          }
-        }
-      },
-      this.spec
-    );
+    const response = await this.sendOperationFn(this.args, this.spec);
+    initializeState(response.rawResponse, response.flatResponse);
+    return response;
   }
 
   public async sendPollRequest(

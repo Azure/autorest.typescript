@@ -11,7 +11,7 @@ import {
   FinalStateVia,
   LRO,
   LROConfig,
-  LROState,
+  LROStatus,
   PollerConfig,
   RawResponse,
   ResumablePollOperationState
@@ -22,11 +22,11 @@ import { getPollingURL, inferLROMode } from "./requestUtils";
 /**
  * creates a stepping function that maps an LRO state to another.
  */
-export function createGetLROState<TResult>(
+export function createGetLROStatusFromResponse<TResult>(
   lroPrimitives: LRO<TResult>,
   config: LROConfig,
   finalStateVia?: FinalStateVia
-): (rawResponse: RawResponse, flatResponse: TResult) => LROState<TResult> {
+): (rawResponse: RawResponse, flatResponse: TResult) => LROStatus<TResult> {
   switch (config.mode) {
     case "AzureAsync": {
       return processAzureAsyncOperationResult(
@@ -50,17 +50,17 @@ export function createGetLROState<TResult>(
 /**
  * Creates a polling operation that returns a LRO state.
  */
-export function createPollForLROState<TResult>(
+export function createPollForLROStatus<TResult>(
   lroPrimitives: LRO<TResult>,
   config: LROConfig
 ): (
   pollingURL: string,
   pollerConfig: PollerConfig
-) => Promise<LROState<TResult>> {
+) => Promise<LROStatus<TResult>> {
   return async (
     path: string,
     pollerConfig: PollerConfig
-  ): Promise<LROState<TResult>> => {
+  ): Promise<LROStatus<TResult>> => {
     const response = await lroPrimitives.sendPollRequest(config, path);
     const retryAfter: string | undefined =
       response.rawResponse.headers["Retry-After"];
@@ -96,7 +96,7 @@ function calculatePollingIntervalFromDate(
  * @param callback callback to be called when the operation is done
  * @returns callback that initializes the state of the polling operation
  */
-export function createInitializeState<TResult>(
+export function createInitializeState<TResult, TState>(
   state: ResumablePollOperationState<TResult>,
   requestPath: string,
   requestMethod: string

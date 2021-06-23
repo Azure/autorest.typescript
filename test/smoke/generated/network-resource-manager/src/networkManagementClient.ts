@@ -10,8 +10,9 @@ import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LROPoller } from "./lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "./coreClientLRO";
 import {
   ApplicationGatewaysImpl,
   ApplicationSecurityGroupsImpl,
@@ -755,16 +756,23 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, bastionHostName, bslRequest, options },
       putBastionShareableLinkOperationSpec,
-      sendOperation,
       "location"
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -809,16 +817,23 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, bastionHostName, bslRequest, options },
       deleteBastionShareableLinkOperationSpec,
-      sendOperation,
       "location"
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -907,16 +922,23 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, bastionHostName, options },
       getActiveSessionsOperationSpec,
-      sendOperation,
       "location"
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1024,16 +1046,23 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, virtualWANName, vpnClientParams, options },
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
-      sendOperation,
       "location"
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

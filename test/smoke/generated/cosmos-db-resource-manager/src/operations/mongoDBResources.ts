@@ -13,8 +13,9 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
-import { LROPoller, shouldDeserializeLRO } from "../lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LROPoller } from "../lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
 import {
   MongoDBDatabaseGetResults,
   MongoDBResourcesListMongoDBDatabasesOptionalParams,
@@ -273,11 +274,18 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         accountName,
@@ -285,9 +293,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         createUpdateMongoDBDatabaseParameters,
         options
       },
-      createUpdateMongoDBDatabaseOperationSpec,
-      sendOperation
+      createUpdateMongoDBDatabaseOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -358,15 +366,22 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, accountName, databaseName, options },
-      deleteMongoDBDatabaseOperationSpec,
-      sendOperation
+      deleteMongoDBDatabaseOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -463,11 +478,18 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         accountName,
@@ -475,9 +497,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         updateThroughputParameters,
         options
       },
-      updateMongoDBDatabaseThroughputOperationSpec,
-      sendOperation
+      updateMongoDBDatabaseThroughputOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -598,11 +620,18 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         accountName,
@@ -611,9 +640,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         createUpdateMongoDBCollectionParameters,
         options
       },
-      createUpdateMongoDBCollectionOperationSpec,
-      sendOperation
+      createUpdateMongoDBCollectionOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -689,15 +718,22 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { resourceGroupName, accountName, databaseName, collectionName, options },
-      deleteMongoDBCollectionOperationSpec,
-      sendOperation
+      deleteMongoDBCollectionOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -801,11 +837,18 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       {
         resourceGroupName,
         accountName,
@@ -814,9 +857,9 @@ export class MongoDBResourcesImpl implements MongoDBResources {
         updateThroughputParameters,
         options
       },
-      updateMongoDBCollectionThroughputOperationSpec,
-      sendOperation
+      updateMongoDBCollectionThroughputOperationSpec
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

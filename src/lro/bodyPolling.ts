@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { failureStates, LROState, RawResponse, successStates } from "./models";
+import { failureStates, LROStatus, RawResponse, successStates } from "./models";
 
 function getProvisioningState(rawResponse: RawResponse): string {
   const { properties, provisioningState } = rawResponse.body ?? {};
@@ -25,7 +25,7 @@ export function isBodyPollingDone(rawResponse: RawResponse) {
 export function processBodyPollingOperationResult<TResult>(
   rawResponse: RawResponse,
   flatResponse: TResult
-): LROState<TResult> {
+): LROStatus<TResult> {
   return {
     rawResponse,
     flatResponse,

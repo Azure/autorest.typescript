@@ -7,8 +7,9 @@
  */
 
 import * as coreClient from "@azure/core-client";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LROPoller } from "./lro";
+import { CoreClientLRO, shouldDeserializeLRO } from "./coreClientLRO";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
 import { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";
@@ -72,16 +73,23 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLRO(
+      sendOperation,
       { accountName, options },
       pollWithParameterizedEndpointsOperationSpec,
-      sendOperation,
       "location"
     );
+    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

@@ -7,20 +7,22 @@ import {
   PollerConfig,
   ResumablePollOperationState,
   LRO,
-  LROState
+  LROStatus
 } from "./models";
 import { getPollingURL } from "./requestUtils";
-import { createInitializeState, createPollForLROState } from "./stateMachine";
+import { createInitializeState, createPollForLROStatus } from "./stateMachine";
 
-export class GenericPollOperation<TResult>
-  implements PollOperation<PollOperationState<TResult>, TResult> {
-  private getLROState?: (
+export class GenericPollOperation<
+  TResult,
+  TState extends PollOperationState<TResult>
+> implements PollOperation<TState, TResult> {
+  private GetLROStatusFromResponse?: (
     pollingURL: string,
     pollerConfig: PollerConfig
-  ) => Promise<LROState<TResult>>;
+  ) => Promise<LROStatus<TResult>>;
   private pollerConfig?: PollerConfig;
   constructor(
-    public state: ResumablePollOperationState<TResult>,
+    public state: TState & ResumablePollOperationState<TResult>,
     private lro: LRO<TResult>
   ) {}
 
@@ -45,8 +47,8 @@ export class GenericPollOperation<TResult>
    */
   async update(options?: {
     abortSignal?: AbortSignalLike | undefined;
-    fireProgress?: ((state: PollOperationState<TResult>) => void) | undefined;
-  }): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
+    fireProgress?: ((state: TState) => void) | undefined;
+  }): Promise<PollOperation<TState, TResult>> {
     const state = this.state;
     if (!state.isStarted) {
       const initializeState = createInitializeState(
@@ -58,16 +60,19 @@ export class GenericPollOperation<TResult>
     }
 
     if (!state.isCompleted) {
-      if (this.getLROState === undefined) {
+      if (this.GetLROStatusFromResponse === undefined) {
         if (state.config === undefined) {
           throw new Error("Bad state: LRO mode is undefined");
         }
-        this.getLROState = createPollForLROState(this.lro, state.config);
+        this.GetLROStatusFromResponse = createPollForLROStatus(
+          this.lro,
+          state.config
+        );
       }
       if (state.pollingURL === undefined) {
         throw new Error("Bad state: polling URL is undefined");
       }
-      const currentState = await this.getLROState(
+      const currentState = await this.GetLROStatusFromResponse(
         state.pollingURL,
         this.pollerConfig!
       );
@@ -75,7 +80,8 @@ export class GenericPollOperation<TResult>
         state.result = currentState.flatResponse;
         state.isCompleted = true;
       } else {
-        this.getLROState = currentState.next ?? this.getLROState;
+        this.GetLROStatusFromResponse =
+          currentState.next ?? this.GetLROStatusFromResponse;
         state.pollingURL = getPollingURL(
           currentState.rawResponse,
           state.pollingURL
@@ -88,7 +94,7 @@ export class GenericPollOperation<TResult>
     return this;
   }
 
-  async cancel(): Promise<PollOperation<PollOperationState<TResult>, TResult>> {
+  async cancel(): Promise<PollOperation<TState, TResult>> {
     this.state.isCancelled = true;
     return this;
   }
