@@ -147,6 +147,10 @@ export function getTypeForSchema(
         usedModels.push(elementTypeName);
       }
       break;
+    case SchemaType.AnyObject:
+      kind = PropertyKind.Dictionary
+      typeName = `Record<string, unknown>`;
+      break;
     case SchemaType.Number:
     case SchemaType.Integer:
       typeName = "number";

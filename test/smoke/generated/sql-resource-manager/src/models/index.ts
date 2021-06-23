@@ -537,7 +537,7 @@ export interface Operation {
    * Additional descriptions for the operation.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly properties?: { [propertyName: string]: any };
+  readonly properties?: { [propertyName: string]: Record<string, unknown> };
 }
 
 /** Display metadata associated with the operation. */

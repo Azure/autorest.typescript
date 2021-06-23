@@ -79,7 +79,7 @@ export interface ResourceLink {
     readonly id?: string;
     readonly name?: string;
     properties?: ResourceLinkProperties;
-    readonly type?: any;
+    readonly type?: Record<string, unknown>;
 }
 
 // @public

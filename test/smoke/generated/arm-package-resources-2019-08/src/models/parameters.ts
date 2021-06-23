@@ -192,7 +192,8 @@ export const template: OperationParameter = {
     serializedName: "template",
     required: true,
     type: {
-      name: "any"
+      name: "Dictionary",
+      value: { type: { name: "any" } }
     }
   }
 };

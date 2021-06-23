@@ -19,6 +19,31 @@ export interface AppServiceCertificateOrderCollection {
   readonly nextLink?: string;
 }
 
+/** Azure resource. This resource is tracked in Azure Resource Manager */
+export interface Resource {
+  /**
+   * Resource Id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource Name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /** Kind of resource. */
+  kind?: string;
+  /** Resource Location. */
+  location: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource tags. */
+  tags?: { [propertyName: string]: string };
+}
+
 /** Key Vault container for a certificate that is purchased through Azure. */
 export interface AppServiceCertificate {
   /** Key Vault resource Id. */
@@ -79,31 +104,6 @@ export interface CertificateDetails {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rawData?: string;
-}
-
-/** Azure resource. This resource is tracked in Azure Resource Manager */
-export interface Resource {
-  /**
-   * Resource Id.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource Name.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /** Kind of resource. */
-  kind?: string;
-  /** Resource Location. */
-  location: string;
-  /**
-   * Resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource tags. */
-  tags?: { [propertyName: string]: string };
 }
 
 /** App Service error response. */
@@ -4665,7 +4665,7 @@ export type ContinuousWebJob = ProxyOnlyResource & {
   /** Using SDK? */
   usingSdk?: boolean;
   /** Job settings. */
-  settings?: { [propertyName: string]: any };
+  settings?: { [propertyName: string]: Record<string, unknown> };
 };
 
 /** User credentials used for publishing activity. */
@@ -4771,7 +4771,7 @@ export type FunctionEnvelope = ProxyOnlyResource & {
   /** Function URI. */
   href?: string;
   /** Config information. */
-  config?: any;
+  config?: Record<string, unknown>;
   /** File list. */
   files?: { [propertyName: string]: string };
   /** Test data used when testing via the Azure Portal. */
@@ -5390,7 +5390,7 @@ export type TriggeredWebJob = ProxyOnlyResource & {
   /** Using SDK? */
   usingSdk?: boolean;
   /** Job settings. */
-  settings?: { [propertyName: string]: any };
+  settings?: { [propertyName: string]: Record<string, unknown> };
 };
 
 /** Triggered Web Job History. List of Triggered Web Job Run Information elements. */
@@ -5422,7 +5422,7 @@ export type WebJob = ProxyOnlyResource & {
   /** Using SDK? */
   usingSdk?: boolean;
   /** Job settings. */
-  settings?: { [propertyName: string]: any };
+  settings?: { [propertyName: string]: Record<string, unknown> };
 };
 
 /** ARM resource for a static site when patching */
@@ -9797,10 +9797,10 @@ export interface WebAppsDeletePrivateEndpointConnectionOptionalParams
 }
 
 /** Contains response data for the deletePrivateEndpointConnection operation. */
-export type WebAppsDeletePrivateEndpointConnectionResponse = {
-  /** The parsed response body. */
-  body: any;
-};
+export type WebAppsDeletePrivateEndpointConnectionResponse = Record<
+  string,
+  unknown
+>;
 
 /** Optional parameters. */
 export interface WebAppsGetPrivateLinkResourcesOptionalParams
@@ -11592,10 +11592,7 @@ export interface AppServicePlansGetServerFarmSkusOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getServerFarmSkus operation. */
-export type AppServicePlansGetServerFarmSkusResponse = {
-  /** The parsed response body. */
-  body: any;
-};
+export type AppServicePlansGetServerFarmSkusResponse = Record<string, unknown>;
 
 /** Optional parameters. */
 export interface AppServicePlansListUsagesOptionalParams

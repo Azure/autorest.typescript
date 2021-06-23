@@ -15,16 +15,6 @@ export type DirectoryObjectUnion =
   | ADGroup
   | ServicePrincipal;
 
-/** Contains information about a sign-in name of a local account user in an Azure Active Directory B2C tenant. */
-export interface SignInName {
-  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
-  [property: string]: any;
-  /** A string value that can be used to classify user sign-in types in your directory, such as 'emailAddress' or 'userName'. */
-  type?: string;
-  /** The sign-in used by the local account. Must be unique across the company/tenant. For example, 'johnc@example.com'. */
-  value?: string;
-}
-
 /** Represents an Azure Active Directory object. */
 export interface DirectoryObject {
   /** Polymorphic discriminator, which specifies the different types this object can be */
@@ -41,6 +31,16 @@ export interface DirectoryObject {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly deletionTimestamp?: Date;
+}
+
+/** Contains information about a sign-in name of a local account user in an Azure Active Directory B2C tenant. */
+export interface SignInName {
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
+  [property: string]: any;
+  /** A string value that can be used to classify user sign-in types in your directory, such as 'emailAddress' or 'userName'. */
+  type?: string;
+  /** The sign-in used by the local account. Must be unique across the company/tenant. For example, 'johnc@example.com'. */
+  value?: string;
 }
 
 /** Active Directory error information. */
@@ -207,7 +207,7 @@ export interface OptionalClaim {
   /** Is this a required claim. */
   essential?: boolean;
   /** Any object */
-  additionalProperties?: any;
+  additionalProperties?: Record<string, unknown>;
 }
 
 /** Active Directory Password Credential information. */
@@ -404,16 +404,6 @@ export interface ServicePrincipalObjectResult {
   odataMetadata?: string;
 }
 
-/** The password profile associated with a user. */
-export interface PasswordProfile {
-  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
-  [property: string]: any;
-  /** Password */
-  password: string;
-  /** Whether to force a password change on next login. */
-  forceChangePasswordNextLogin?: boolean;
-}
-
 export interface UserBase {
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
   [property: string]: any;
@@ -427,6 +417,16 @@ export interface UserBase {
   surname?: string;
   /** A string value that can be used to classify user types in your directory, such as 'Member' and 'Guest'. */
   userType?: UserType;
+}
+
+/** The password profile associated with a user. */
+export interface PasswordProfile {
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
+  [property: string]: any;
+  /** Password */
+  password: string;
+  /** Whether to force a password change on next login. */
+  forceChangePasswordNextLogin?: boolean;
 }
 
 /** Server response for Get tenant users API call. */

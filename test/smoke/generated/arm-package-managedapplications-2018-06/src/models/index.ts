@@ -8,18 +8,27 @@
 
 import * as coreClient from "@azure/core-client";
 
-/** Plan for the managed application. */
-export interface Plan {
-  /** The plan name. */
-  name: string;
-  /** The publisher ID. */
-  publisher: string;
-  /** The product code. */
-  product: string;
-  /** The promotion code. */
-  promotionCode?: string;
-  /** The plan's version. */
-  version: string;
+/** Resource information. */
+export interface Resource {
+  /**
+   * Resource ID
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
 }
 
 /** SKU for the resource. */
@@ -54,27 +63,18 @@ export interface Identity {
   type?: "SystemAssigned";
 }
 
-/** Resource information. */
-export interface Resource {
-  /**
-   * Resource ID
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
+/** Plan for the managed application. */
+export interface Plan {
+  /** The plan name. */
+  name: string;
+  /** The publisher ID. */
+  publisher: string;
+  /** The product code. */
+  product: string;
+  /** The promotion code. */
+  promotionCode?: string;
+  /** The plan's version. */
+  version: string;
 }
 
 /** Error response indicates managed application is not able to process the incoming request. The reason is provided in the error message. */
@@ -156,12 +156,12 @@ export type Application = GenericResource & {
   /** The fully qualified path of managed application definition Id. */
   applicationDefinitionId?: string;
   /** Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string. */
-  parameters?: any;
+  parameters?: Record<string, unknown>;
   /**
    * Name and value pairs that define the managed application outputs.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly outputs?: any;
+  readonly outputs?: Record<string, unknown>;
   /**
    * The managed application provisioning state.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -186,9 +186,9 @@ export type ApplicationDefinition = GenericResource & {
   /** The managed application definition package file Uri. Use this element */
   packageFileUri?: string;
   /** The inline main template json which has resources to be provisioned. It can be a JObject or well-formed JSON string. */
-  mainTemplate?: any;
+  mainTemplate?: Record<string, unknown>;
   /** The createUiDefinition json for the backing template with Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string. */
-  createUiDefinition?: any;
+  createUiDefinition?: Record<string, unknown>;
 };
 
 /** Information about managed application. */
@@ -202,12 +202,12 @@ export type ApplicationPatchable = GenericResource & {
   /** The fully qualified path of managed application definition Id. */
   applicationDefinitionId?: string;
   /** Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string. */
-  parameters?: any;
+  parameters?: Record<string, unknown>;
   /**
    * Name and value pairs that define the managed application outputs.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly outputs?: any;
+  readonly outputs?: Record<string, unknown>;
   /**
    * The managed application provisioning state.
    * NOTE: This property will not be serialized. It can only be populated by the server.

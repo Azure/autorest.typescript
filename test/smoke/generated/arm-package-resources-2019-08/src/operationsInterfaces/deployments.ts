@@ -792,7 +792,7 @@ export interface Deployments {
    * @param options The options parameters.
    */
   calculateTemplateHash(
-    template: any,
+    template: Record<string, unknown>,
     options?: DeploymentsCalculateTemplateHashOptionalParams
   ): Promise<DeploymentsCalculateTemplateHashResponse>;
 }

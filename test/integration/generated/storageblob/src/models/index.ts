@@ -582,6 +582,8 @@ export interface CpkInfo {
   encryptionKey?: string;
   /** The SHA-256 hash of the provided encryption key. Must be provided if the x-ms-encryption-key header is provided. */
   encryptionKeySha256?: string;
+  /** The algorithm used to produce the encryption key hash. Currently, the only accepted value is "AES256". Must be provided if the x-ms-encryption-key header is provided. */
+  encryptionAlgorithm?: "AES256";
 }
 
 /** Parameter group */

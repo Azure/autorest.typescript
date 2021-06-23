@@ -64,7 +64,7 @@ export interface Deployment {
 
 // @public
 export interface DeploymentExportResult {
-    template?: any;
+    template?: Record<string, unknown>;
 }
 
 // @public
@@ -105,7 +105,7 @@ export interface DeploymentOperationProperties {
     readonly response?: HttpMessage;
     readonly serviceRequestId?: string;
     readonly statusCode?: string;
-    readonly statusMessage?: any;
+    readonly statusMessage?: Record<string, unknown>;
     readonly targetResource?: TargetResource;
     readonly timestamp?: Date;
 }
@@ -250,9 +250,9 @@ export interface DeploymentProperties {
     debugSetting?: DebugSetting;
     mode: DeploymentMode;
     onErrorDeployment?: OnErrorDeployment;
-    parameters?: any;
+    parameters?: Record<string, unknown>;
     parametersLink?: ParametersLink;
-    template?: any;
+    template?: Record<string, unknown>;
     templateLink?: TemplateLink;
 }
 
@@ -264,12 +264,12 @@ export interface DeploymentPropertiesExtended {
     readonly duration?: string;
     mode?: DeploymentMode;
     onErrorDeployment?: OnErrorDeploymentExtended;
-    outputs?: any;
-    parameters?: any;
+    outputs?: Record<string, unknown>;
+    parameters?: Record<string, unknown>;
     parametersLink?: ParametersLink;
     providers?: Provider[];
     readonly provisioningState?: string;
-    template?: any;
+    template?: Record<string, unknown>;
     templateLink?: TemplateLink;
     readonly timestamp?: Date;
 }
@@ -300,7 +300,7 @@ export interface Deployments {
     beginWhatIfAndWait(resourceGroupName: string, deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfOptionalParams): Promise<DeploymentsWhatIfResponse>;
     beginWhatIfAtSubscriptionScope(deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams): Promise<PollerLike<PollOperationState<DeploymentsWhatIfAtSubscriptionScopeResponse>, DeploymentsWhatIfAtSubscriptionScopeResponse>>;
     beginWhatIfAtSubscriptionScopeAndWait(deploymentName: string, parameters: DeploymentWhatIf, options?: DeploymentsWhatIfAtSubscriptionScopeOptionalParams): Promise<DeploymentsWhatIfAtSubscriptionScopeResponse>;
-    calculateTemplateHash(template: any, options?: DeploymentsCalculateTemplateHashOptionalParams): Promise<DeploymentsCalculateTemplateHashResponse>;
+    calculateTemplateHash(template: Record<string, unknown>, options?: DeploymentsCalculateTemplateHashOptionalParams): Promise<DeploymentsCalculateTemplateHashResponse>;
     cancel(resourceGroupName: string, deploymentName: string, options?: DeploymentsCancelOptionalParams): Promise<void>;
     cancelAtManagementGroupScope(groupId: string, deploymentName: string, options?: DeploymentsCancelAtManagementGroupScopeOptionalParams): Promise<void>;
     cancelAtScope(scope: string, deploymentName: string, options?: DeploymentsCancelAtScopeOptionalParams): Promise<void>;
@@ -704,7 +704,7 @@ export interface DeploymentWhatIfSettings {
 
 // @public
 export interface ErrorAdditionalInfo {
-    readonly info?: any;
+    readonly info?: Record<string, unknown>;
     readonly type?: string;
 }
 
@@ -726,7 +726,7 @@ export interface ExportTemplateRequest {
 // @public
 export type GenericResource = Resource & {
     plan?: Plan;
-    properties?: any;
+    properties?: Record<string, unknown>;
     kind?: string;
     managedBy?: string;
     sku?: Sku;
@@ -749,7 +749,7 @@ export interface GenericResourceFilter {
 
 // @public
 export interface HttpMessage {
-    content?: any;
+    content?: Record<string, unknown>;
 }
 
 // @public
@@ -965,7 +965,7 @@ export interface ResourceGroup {
 // @public
 export interface ResourceGroupExportResult {
     error?: ErrorResponse;
-    template?: any;
+    template?: Record<string, unknown>;
 }
 
 // @public
@@ -1389,8 +1389,8 @@ export interface TemplateLink {
 
 // @public
 export interface WhatIfChange {
-    after?: any;
-    before?: any;
+    after?: Record<string, unknown>;
+    before?: Record<string, unknown>;
     changeType: ChangeType;
     delta?: WhatIfPropertyChange[];
     resourceId: string;
@@ -1405,8 +1405,8 @@ export interface WhatIfOperationResult {
 
 // @public
 export interface WhatIfPropertyChange {
-    after?: any;
-    before?: any;
+    after?: Record<string, unknown>;
+    before?: Record<string, unknown>;
     children?: WhatIfPropertyChange[];
     path: string;
     propertyChangeType: PropertyChangeType;

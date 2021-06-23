@@ -628,8 +628,13 @@
                   "text": "template?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -640,7 +645,7 @@
               "name": "template",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             }
           ],
@@ -1192,8 +1197,13 @@
                   "text": "readonly statusMessage?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -1204,7 +1214,7 @@
               "name": "statusMessage",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -3490,8 +3500,13 @@
                   "text": "parameters?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -3502,7 +3517,7 @@
               "name": "parameters",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -3541,8 +3556,13 @@
                   "text": "template?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -3553,7 +3573,7 @@
               "name": "template",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -3766,8 +3786,13 @@
                   "text": "outputs?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -3778,7 +3803,7 @@
               "name": "outputs",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -3791,8 +3816,13 @@
                   "text": "parameters?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -3803,7 +3833,7 @@
               "name": "parameters",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -3897,8 +3927,13 @@
                   "text": "template?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -3909,7 +3944,7 @@
               "name": "template",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -6365,8 +6400,13 @@
                   "text": "calculateTemplateHash(template: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -6405,8 +6445,8 @@
                 }
               ],
               "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
+                "startIndex": 6,
+                "endIndex": 10
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -6415,14 +6455,14 @@
                   "parameterName": "template",
                   "parameterTypeTokenRange": {
                     "startIndex": 1,
-                    "endIndex": 2
+                    "endIndex": 3
                   }
                 },
                 {
                   "parameterName": "options",
                   "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
+                    "startIndex": 4,
+                    "endIndex": 5
                   }
                 }
               ],
@@ -12741,8 +12781,13 @@
                   "text": "readonly info?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -12753,7 +12798,7 @@
               "name": "info",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -13026,7 +13071,16 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    properties?: any;\n    kind?: string;\n    managedBy?: string;\n    sku?: "
+              "text": ";\n    properties?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    kind?: string;\n    managedBy?: string;\n    sku?: "
             },
             {
               "kind": "Reference",
@@ -13055,7 +13109,7 @@
           "name": "GenericResource",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 9
+            "endIndex": 11
           }
         },
         {
@@ -13220,8 +13274,13 @@
                   "text": "content?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -13232,7 +13291,7 @@
               "name": "content",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             }
           ],
@@ -16148,8 +16207,13 @@
                   "text": "template?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -16160,7 +16224,7 @@
               "name": "template",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             }
           ],
@@ -24358,8 +24422,13 @@
                   "text": "after?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -24370,7 +24439,7 @@
               "name": "after",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -24383,8 +24452,13 @@
                   "text": "before?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -24395,7 +24469,7 @@
               "name": "before",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -24602,8 +24676,13 @@
                   "text": "after?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -24614,7 +24693,7 @@
               "name": "after",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -24627,8 +24706,13 @@
                   "text": "before?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -24639,7 +24723,7 @@
               "name": "before",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {

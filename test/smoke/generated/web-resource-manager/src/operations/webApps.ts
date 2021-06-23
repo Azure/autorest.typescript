@@ -22816,16 +22816,24 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     },
     201: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     },
     202: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     },
     204: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse

@@ -371,10 +371,10 @@ const putSimpleProductWithGroupingOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: {
     parameterPath: {
-      capacity: ["options", "capacity"],
       productId: ["flattenParameterGroup", "productId"],
       description: ["flattenParameterGroup", "description"],
       maxProductDisplayName: ["flattenParameterGroup", "maxProductDisplayName"],
+      capacity: ["flattenParameterGroup", "capacity"],
       genericValue: ["flattenParameterGroup", "genericValue"],
       odataValue: ["flattenParameterGroup", "odataValue"]
     },

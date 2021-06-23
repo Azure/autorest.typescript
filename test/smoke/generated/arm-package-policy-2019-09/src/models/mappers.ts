@@ -101,7 +101,8 @@ export const PolicyAssignment: coreClient.CompositeMapper = {
       metadata: {
         serializedName: "properties.metadata",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       enforcementMode: {
@@ -122,7 +123,8 @@ export const ParameterValuesValue: coreClient.CompositeMapper = {
       value: {
         serializedName: "value",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -269,7 +271,8 @@ export const ErrorAdditionalInfo: coreClient.CompositeMapper = {
         serializedName: "info",
         readOnly: true,
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       }
     }
@@ -356,13 +359,15 @@ export const PolicyDefinition: coreClient.CompositeMapper = {
       policyRule: {
         serializedName: "properties.policyRule",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       metadata: {
         serializedName: "properties.metadata",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       parameters: {
@@ -395,7 +400,8 @@ export const ParameterDefinitionsValue: coreClient.CompositeMapper = {
           name: "Sequence",
           element: {
             type: {
-              name: "any"
+              name: "Dictionary",
+              value: { type: { name: "any" } }
             }
           }
         }
@@ -403,7 +409,8 @@ export const ParameterDefinitionsValue: coreClient.CompositeMapper = {
       defaultValue: {
         serializedName: "defaultValue",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       metadata: {
@@ -513,7 +520,8 @@ export const PolicySetDefinition: coreClient.CompositeMapper = {
       metadata: {
         serializedName: "properties.metadata",
         type: {
-          name: "any"
+          name: "Dictionary",
+          value: { type: { name: "any" } }
         }
       },
       parameters: {

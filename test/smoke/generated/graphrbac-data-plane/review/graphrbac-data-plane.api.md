@@ -673,7 +673,7 @@ export type ObjectsGetObjectsByObjectIdsResponse = DirectoryObjectListResult;
 
 // @public
 export interface OptionalClaim {
-    additionalProperties?: any;
+    additionalProperties?: Record<string, unknown>;
     essential?: boolean;
     name?: string;
     source?: string;

@@ -43,7 +43,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    * @param options The options parameters.
    */
   put(
-    putObject: any,
+    putObject: Record<string, unknown>,
     options?: ObjectTypeClientPutOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest({ putObject, options }, putOperationSpec);
@@ -57,10 +57,14 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     },
     default: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     }
   },
   urlParameters: [Parameters.$host],
@@ -73,7 +77,9 @@ const putOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {},
     default: {
-      bodyMapper: { type: { name: "any" } }
+      bodyMapper: {
+        type: { name: "Dictionary", value: { type: { name: "any" } } }
+      }
     }
   },
   requestBody: Parameters.putObject,

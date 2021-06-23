@@ -146,6 +146,11 @@ export const maxProductDisplayName1: OperationParameter = {
   mapper: SimpleProductMapper
 };
 
+export const capacity1: OperationParameter = {
+  parameterPath: ["flattenParameterGroup", "capacity"],
+  mapper: SimpleProductMapper
+};
+
 export const genericValue1: OperationParameter = {
   parameterPath: ["flattenParameterGroup", "genericValue"],
   mapper: SimpleProductMapper
