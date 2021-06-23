@@ -14,20 +14,20 @@ export enum AutorestParams {
 
 const getArmReadmes = (): SpecDefinition[] => {
   const armTags = [
-    // "package-features-2015-12",
-    // "package-locks-2016-09",
-    // "package-policy-2019-09",
-    "package-resources-2019-08"
-    // "package-subscriptions-2019-06",
-    // "package-links-2016-09",
-    // "package-managedapplications-2018-06",
-    // "package-deploymentscripts-2019-10-preview"
+    "package-features-2015-12",
+    "package-locks-2016-09",
+    "package-policy-2019-09",
+    "package-resources-2019-08",
+    "package-subscriptions-2019-06",
+    "package-links-2016-09",
+    "package-managedapplications-2018-06",
+    "package-deploymentscripts-2019-10-preview"
   ];
   return armTags.map(tag => ({
     path: "./.tmp/specs/specification/resources/resource-manager/readme.md",
     params: [`--tag=${tag}`],
     outputFolderName: `arm-${tag}`,
-    buildTag: "debug"
+    buildTag: "ci_1"
   }));
 };
 
