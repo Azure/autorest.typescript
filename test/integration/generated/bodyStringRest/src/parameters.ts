@@ -6,7 +6,7 @@ import { RefColorConstant } from "./models";
 
 export type StringGetNullParameters = RequestParameters;
 
-interface StringPutNullBodyParam {
+export interface StringPutNullBodyParam {
   body?: string;
 }
 
@@ -22,7 +22,7 @@ export type StringGetNotProvidedParameters = RequestParameters;
 export type StringGetBase64EncodedParameters = RequestParameters;
 export type StringGetBase64UrlEncodedParameters = RequestParameters;
 
-interface StringPutBase64UrlEncodedBodyParam {
+export interface StringPutBase64UrlEncodedBodyParam {
   body: Uint8Array;
 }
 
@@ -31,7 +31,7 @@ export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedBodyP
 export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
 export type EnumGetNotExpandableParameters = RequestParameters;
 
-interface EnumPutNotExpandableBodyParam {
+export interface EnumPutNotExpandableBodyParam {
   body: "red color" | "green-color" | "blue_color";
 }
 
@@ -39,7 +39,7 @@ export type EnumPutNotExpandableParameters = EnumPutNotExpandableBodyParam &
   RequestParameters;
 export type EnumGetReferencedParameters = RequestParameters;
 
-interface EnumPutReferencedBodyParam {
+export interface EnumPutReferencedBodyParam {
   body: "red color" | "green-color" | "blue_color";
 }
 
@@ -47,7 +47,7 @@ export type EnumPutReferencedParameters = EnumPutReferencedBodyParam &
   RequestParameters;
 export type EnumGetReferencedConstantParameters = RequestParameters;
 
-interface EnumPutReferencedConstantBodyParam {
+export interface EnumPutReferencedConstantBodyParam {
   body: RefColorConstant;
 }
 

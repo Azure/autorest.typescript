@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { ErrorModel, RefColorConstant } from "./models";
 
 /** Get null string value value */
@@ -12,7 +11,7 @@ export interface StringGetNull200Response extends HttpResponse {
 }
 
 /** Get null string value value */
-export interface StringGetNull500Response extends HttpResponse {
+export interface StringGetNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -24,7 +23,7 @@ export interface StringPutNull200Response extends HttpResponse {
 }
 
 /** Set string value null */
-export interface StringPutNull500Response extends HttpResponse {
+export interface StringPutNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -36,7 +35,7 @@ export interface StringGetEmpty200Response extends HttpResponse {
 }
 
 /** Get empty string value value '' */
-export interface StringGetEmpty500Response extends HttpResponse {
+export interface StringGetEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -48,7 +47,7 @@ export interface StringPutEmpty200Response extends HttpResponse {
 }
 
 /** Set string value empty '' */
-export interface StringPutEmpty500Response extends HttpResponse {
+export interface StringPutEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -60,7 +59,7 @@ export interface StringGetMbcs200Response extends HttpResponse {
 }
 
 /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-export interface StringGetMbcs500Response extends HttpResponse {
+export interface StringGetMbcsdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -72,7 +71,7 @@ export interface StringPutMbcs200Response extends HttpResponse {
 }
 
 /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
-export interface StringPutMbcs500Response extends HttpResponse {
+export interface StringPutMbcsdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -84,7 +83,7 @@ export interface StringGetWhitespace200Response extends HttpResponse {
 }
 
 /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-export interface StringGetWhitespace500Response extends HttpResponse {
+export interface StringGetWhitespacedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -96,7 +95,7 @@ export interface StringPutWhitespace200Response extends HttpResponse {
 }
 
 /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
-export interface StringPutWhitespace500Response extends HttpResponse {
+export interface StringPutWhitespacedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -108,7 +107,7 @@ export interface StringGetNotProvided200Response extends HttpResponse {
 }
 
 /** Get String value when no string value is sent in response payload */
-export interface StringGetNotProvided500Response extends HttpResponse {
+export interface StringGetNotProvideddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -120,7 +119,7 @@ export interface StringGetBase64Encoded200Response extends HttpResponse {
 }
 
 /** Get value that is base64 encoded */
-export interface StringGetBase64Encoded500Response extends HttpResponse {
+export interface StringGetBase64EncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -132,7 +131,7 @@ export interface StringGetBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Get value that is base64url encoded */
-export interface StringGetBase64UrlEncoded500Response extends HttpResponse {
+export interface StringGetBase64UrlEncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -144,7 +143,7 @@ export interface StringPutBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Put value that is base64url encoded */
-export interface StringPutBase64UrlEncoded500Response extends HttpResponse {
+export interface StringPutBase64UrlEncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -156,7 +155,8 @@ export interface StringGetNullBase64UrlEncoded200Response extends HttpResponse {
 }
 
 /** Get null value that is expected to be base64url encoded */
-export interface StringGetNullBase64UrlEncoded500Response extends HttpResponse {
+export interface StringGetNullBase64UrlEncodeddefaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -168,7 +168,7 @@ export interface EnumGetNotExpandable200Response extends HttpResponse {
 }
 
 /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-export interface EnumGetNotExpandable500Response extends HttpResponse {
+export interface EnumGetNotExpandabledefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -180,7 +180,7 @@ export interface EnumPutNotExpandable200Response extends HttpResponse {
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-export interface EnumPutNotExpandable500Response extends HttpResponse {
+export interface EnumPutNotExpandabledefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -192,7 +192,7 @@ export interface EnumGetReferenced200Response extends HttpResponse {
 }
 
 /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
-export interface EnumGetReferenced500Response extends HttpResponse {
+export interface EnumGetReferenceddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -204,7 +204,7 @@ export interface EnumPutReferenced200Response extends HttpResponse {
 }
 
 /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
-export interface EnumPutReferenced500Response extends HttpResponse {
+export interface EnumPutReferenceddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -216,7 +216,7 @@ export interface EnumGetReferencedConstant200Response extends HttpResponse {
 }
 
 /** Get value 'green-color' from the constant. */
-export interface EnumGetReferencedConstant500Response extends HttpResponse {
+export interface EnumGetReferencedConstantdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -228,7 +228,7 @@ export interface EnumPutReferencedConstant200Response extends HttpResponse {
 }
 
 /** Sends value 'green-color' from a constant */
-export interface EnumPutReferencedConstant500Response extends HttpResponse {
+export interface EnumPutReferencedConstantdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }

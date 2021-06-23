@@ -24,43 +24,43 @@ import {
 } from "./parameters";
 import {
   StringGetNull200Response,
-  StringGetNull500Response,
+  StringGetNulldefaultResponse,
   StringPutNull200Response,
-  StringPutNull500Response,
+  StringPutNulldefaultResponse,
   StringGetEmpty200Response,
-  StringGetEmpty500Response,
+  StringGetEmptydefaultResponse,
   StringPutEmpty200Response,
-  StringPutEmpty500Response,
+  StringPutEmptydefaultResponse,
   StringGetMbcs200Response,
-  StringGetMbcs500Response,
+  StringGetMbcsdefaultResponse,
   StringPutMbcs200Response,
-  StringPutMbcs500Response,
+  StringPutMbcsdefaultResponse,
   StringGetWhitespace200Response,
-  StringGetWhitespace500Response,
+  StringGetWhitespacedefaultResponse,
   StringPutWhitespace200Response,
-  StringPutWhitespace500Response,
+  StringPutWhitespacedefaultResponse,
   StringGetNotProvided200Response,
-  StringGetNotProvided500Response,
+  StringGetNotProvideddefaultResponse,
   StringGetBase64Encoded200Response,
-  StringGetBase64Encoded500Response,
+  StringGetBase64EncodeddefaultResponse,
   StringGetBase64UrlEncoded200Response,
-  StringGetBase64UrlEncoded500Response,
+  StringGetBase64UrlEncodeddefaultResponse,
   StringPutBase64UrlEncoded200Response,
-  StringPutBase64UrlEncoded500Response,
+  StringPutBase64UrlEncodeddefaultResponse,
   StringGetNullBase64UrlEncoded200Response,
-  StringGetNullBase64UrlEncoded500Response,
+  StringGetNullBase64UrlEncodeddefaultResponse,
   EnumGetNotExpandable200Response,
-  EnumGetNotExpandable500Response,
+  EnumGetNotExpandabledefaultResponse,
   EnumPutNotExpandable200Response,
-  EnumPutNotExpandable500Response,
+  EnumPutNotExpandabledefaultResponse,
   EnumGetReferenced200Response,
-  EnumGetReferenced500Response,
+  EnumGetReferenceddefaultResponse,
   EnumPutReferenced200Response,
-  EnumPutReferenced500Response,
+  EnumPutReferenceddefaultResponse,
   EnumGetReferencedConstant200Response,
-  EnumGetReferencedConstant500Response,
+  EnumGetReferencedConstantdefaultResponse,
   EnumPutReferencedConstant200Response,
-  EnumPutReferencedConstant500Response
+  EnumPutReferencedConstantdefaultResponse
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
@@ -69,51 +69,57 @@ export interface StringGetNull {
   /** Get null string value value */
   get(
     options?: StringGetNullParameters
-  ): Promise<StringGetNull200Response | StringGetNull500Response>;
+  ): Promise<StringGetNull200Response | StringGetNulldefaultResponse>;
   /** Set string value null */
   put(
     options?: StringPutNullParameters
-  ): Promise<StringPutNull200Response | StringPutNull500Response>;
+  ): Promise<StringPutNull200Response | StringPutNulldefaultResponse>;
 }
 
 export interface StringGetEmpty {
   /** Get empty string value value '' */
   get(
     options?: StringGetEmptyParameters
-  ): Promise<StringGetEmpty200Response | StringGetEmpty500Response>;
+  ): Promise<StringGetEmpty200Response | StringGetEmptydefaultResponse>;
   /** Set string value empty '' */
   put(
     options?: StringPutEmptyParameters
-  ): Promise<StringPutEmpty200Response | StringPutEmpty500Response>;
+  ): Promise<StringPutEmpty200Response | StringPutEmptydefaultResponse>;
 }
 
 export interface StringGetMbcs {
   /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   get(
     options?: StringGetMbcsParameters
-  ): Promise<StringGetMbcs200Response | StringGetMbcs500Response>;
+  ): Promise<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
   /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   put(
     options?: StringPutMbcsParameters
-  ): Promise<StringPutMbcs200Response | StringPutMbcs500Response>;
+  ): Promise<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
 }
 
 export interface StringGetWhitespace {
   /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   get(
     options?: StringGetWhitespaceParameters
-  ): Promise<StringGetWhitespace200Response | StringGetWhitespace500Response>;
+  ): Promise<
+    StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
+  >;
   /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   put(
     options?: StringPutWhitespaceParameters
-  ): Promise<StringPutWhitespace200Response | StringPutWhitespace500Response>;
+  ): Promise<
+    StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
+  >;
 }
 
 export interface StringGetNotProvided {
   /** Get String value when no string value is sent in response payload */
   get(
     options?: StringGetNotProvidedParameters
-  ): Promise<StringGetNotProvided200Response | StringGetNotProvided500Response>;
+  ): Promise<
+    StringGetNotProvided200Response | StringGetNotProvideddefaultResponse
+  >;
 }
 
 export interface StringGetBase64Encoded {
@@ -121,7 +127,7 @@ export interface StringGetBase64Encoded {
   get(
     options?: StringGetBase64EncodedParameters
   ): Promise<
-    StringGetBase64Encoded200Response | StringGetBase64Encoded500Response
+    StringGetBase64Encoded200Response | StringGetBase64EncodeddefaultResponse
   >;
 }
 
@@ -130,13 +136,15 @@ export interface StringGetBase64UrlEncoded {
   get(
     options?: StringGetBase64UrlEncodedParameters
   ): Promise<
-    StringGetBase64UrlEncoded200Response | StringGetBase64UrlEncoded500Response
+    | StringGetBase64UrlEncoded200Response
+    | StringGetBase64UrlEncodeddefaultResponse
   >;
   /** Put value that is base64url encoded */
   put(
     options: StringPutBase64UrlEncodedParameters
   ): Promise<
-    StringPutBase64UrlEncoded200Response | StringPutBase64UrlEncoded500Response
+    | StringPutBase64UrlEncoded200Response
+    | StringPutBase64UrlEncodeddefaultResponse
   >;
 }
 
@@ -146,7 +154,7 @@ export interface StringGetNullBase64UrlEncoded {
     options?: StringGetNullBase64UrlEncodedParameters
   ): Promise<
     | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncoded500Response
+    | StringGetNullBase64UrlEncodeddefaultResponse
   >;
 }
 
@@ -154,22 +162,26 @@ export interface EnumGetNotExpandable {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
     options?: EnumGetNotExpandableParameters
-  ): Promise<EnumGetNotExpandable200Response | EnumGetNotExpandable500Response>;
+  ): Promise<
+    EnumGetNotExpandable200Response | EnumGetNotExpandabledefaultResponse
+  >;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
     options: EnumPutNotExpandableParameters
-  ): Promise<EnumPutNotExpandable200Response | EnumPutNotExpandable500Response>;
+  ): Promise<
+    EnumPutNotExpandable200Response | EnumPutNotExpandabledefaultResponse
+  >;
 }
 
 export interface EnumGetReferenced {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
     options?: EnumGetReferencedParameters
-  ): Promise<EnumGetReferenced200Response | EnumGetReferenced500Response>;
+  ): Promise<EnumGetReferenced200Response | EnumGetReferenceddefaultResponse>;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
     options: EnumPutReferencedParameters
-  ): Promise<EnumPutReferenced200Response | EnumPutReferenced500Response>;
+  ): Promise<EnumPutReferenced200Response | EnumPutReferenceddefaultResponse>;
 }
 
 export interface EnumGetReferencedConstant {
@@ -177,13 +189,15 @@ export interface EnumGetReferencedConstant {
   get(
     options?: EnumGetReferencedConstantParameters
   ): Promise<
-    EnumGetReferencedConstant200Response | EnumGetReferencedConstant500Response
+    | EnumGetReferencedConstant200Response
+    | EnumGetReferencedConstantdefaultResponse
   >;
   /** Sends value 'green-color' from a constant */
   put(
     options: EnumPutReferencedConstantParameters
   ): Promise<
-    EnumPutReferencedConstant200Response | EnumPutReferencedConstant500Response
+    | EnumPutReferencedConstant200Response
+    | EnumPutReferencedConstantdefaultResponse
   >;
 }
 

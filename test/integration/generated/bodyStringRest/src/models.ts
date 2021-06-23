@@ -12,5 +12,3 @@ export interface RefColorConstant {
   /** Sample string. */
   field1?: string;
 }
-
-export type Colors = "red color" | "green-color" | "blue_color";
