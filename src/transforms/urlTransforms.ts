@@ -23,11 +23,14 @@ export function transformBaseUrl(codeModel: CodeModel): EndpointDetails {
   let parameterName: string | undefined;
 
   if (!$host) {
-    // No support yet for multi-baseUrl yet Issue #553
-    const { requests } = codeModel.operationGroups[0].operations[0];
-    parameterName = getEndpointParameter(codeModel);
-    isCustom = true;
-    endpoint = requests![0].protocol.http!.uri;
+    // There are some swaggers that contain no operations for those we'll keep an empty endpoint
+    if (codeModel.operationGroups && codeModel.operationGroups.length) {
+      // No support yet for multi-baseUrl yet Issue #553
+      const { requests } = codeModel.operationGroups[0].operations[0];
+      parameterName = getEndpointParameter(codeModel);
+      isCustom = true;
+      endpoint = requests![0].protocol.http!.uri;
+    }
   } else {
     endpoint = $host.clientDefaultValue;
   }
