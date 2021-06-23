@@ -77,8 +77,9 @@ export interface DictionaryWrapper {
   defaultProgram?: Record<string, string>;
 }
 
-export interface Siamese extends Cat {
-  breed?: string;
+export interface Pet {
+  id?: number;
+  name?: string;
 }
 
 export interface Cat extends Pet {
@@ -90,12 +91,11 @@ export interface Dog extends Pet {
   food?: string;
 }
 
-export interface Pet {
-  id?: number;
-  name?: string;
+export interface Siamese extends Cat {
+  breed?: string;
 }
 
-export interface Fish {
+export interface FishBase {
   species?: string;
   length: number;
   siblings?: Array<Fish>;
@@ -108,7 +108,7 @@ export interface Fish {
     | "cookiecuttershark";
 }
 
-export interface DotFish {
+export interface DotFishBase {
   fishType: string;
   species?: string;
   "fish.type": "DotSalmon";
@@ -121,13 +121,13 @@ export interface DotFishMarket {
   fishes?: Array<DotFish>;
 }
 
-export interface DotSalmon extends DotFish {
+export interface DotSalmon extends DotFishBase {
   location?: string;
   iswild?: boolean;
   "fish.type": "DotSalmon";
 }
 
-export interface Salmon extends Fish {
+export interface SalmonBase extends FishBase {
   location?: string;
   iswild?: boolean;
   fishtype: "salmon" | "smart_salmon";
@@ -138,44 +138,56 @@ export interface ReadonlyObj {
   size?: number;
 }
 
-export interface MyBaseType {
+export interface MyBaseTypeBase {
   propB1?: string;
-  propBH1?: string;
+  helper?: MyBaseHelperType;
   kind: "Kind1";
 }
 
-export interface SmartSalmon extends Salmon, Record<string, unknown> {
+export interface MyBaseHelperType {
+  propBH1?: string;
+}
+
+export interface SmartSalmon extends SalmonBase, Record<string, unknown> {
   collegeDegree?: string;
   fishtype: "smart_salmon";
 }
 
-export interface Shark extends Fish {
+export interface SharkBase extends FishBase {
   age?: number;
   birthday: Date;
   fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
 }
 
-export interface Sawshark extends Shark {
+export interface Sawshark extends SharkBase {
   picture?: Uint8Array;
   fishtype: "sawshark";
 }
 
-export interface Goblinshark extends Shark {
+export interface Goblinshark extends SharkBase {
   jawsize?: number;
   /** Colors possible */
   color?: "pink" | "gray" | "brown" | "RED" | "red";
   fishtype: "goblin";
 }
 
-export interface Cookiecuttershark extends Shark {
+export interface Cookiecuttershark extends SharkBase {
   fishtype: "cookiecuttershark";
 }
 
-export interface MyDerivedType extends MyBaseType {
+export interface MyDerivedType extends MyBaseTypeBase {
   propD1?: string;
   kind: "Kind1";
 }
 
-export type CMYKColors = "cyan" | "Magenta" | "YELLOW" | "blacK";
-export type MyKind = "Kind1";
-export type GoblinSharkColor = "pink" | "gray" | "brown" | "RED" | "red";
+export type Fish =
+  | Salmon
+  | SmartSalmon
+  | Shark
+  | Sawshark
+  | Goblinshark
+  | Cookiecuttershark;
+export type DotFish = DotSalmon;
+export type Salmon = SalmonBase | SmartSalmon;
+export type MyBaseType = MyDerivedType;
+export type Shark = SharkBase | Sawshark | Goblinshark | Cookiecuttershark;

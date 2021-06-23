@@ -1,7 +1,9 @@
 import { CodeModel } from "@autorest/codemodel";
 import { Project } from "ts-morph";
-import { buildObjectInterfaces } from "./generateObjectTypes";
-import { buildChoicesTypeAliases } from "./generateChoicesTypes";
+import {
+  buildObjectInterfaces,
+  buildPolymorphicAliases
+} from "./generateObjectTypes";
 
 /**
  * Generates types to represent schema definitions in the swagger
@@ -14,8 +16,7 @@ export function generateSchemaTypes(model: CodeModel, project: Project) {
   });
 
   const objectsDefinitions = buildObjectInterfaces(model, importedModels);
-  const choicesDefinitions = buildChoicesTypeAliases(model);
-
+  const objectTypeAliases = buildPolymorphicAliases(model);
   modelsFile.addInterfaces(objectsDefinitions);
-  modelsFile.addTypeAliases(choicesDefinitions);
+  modelsFile.addTypeAliases(objectTypeAliases);
 }

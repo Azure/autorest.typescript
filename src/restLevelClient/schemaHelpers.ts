@@ -10,6 +10,7 @@ import {
   Schema,
   SchemaType
 } from "@autorest/codemodel";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 
 /**
@@ -23,7 +24,7 @@ export function getElementType(
 ): string {
   if (isArraySchema(schema)) {
     // Recursively find out the type for the elements in the array.
-    return `Array<${getElementType(schema.elementType)}>`;
+    return `Array<${getElementType(schema.elementType, importedModels)}>`;
   }
 
   if (isPrimitiveSchema(schema)) {
@@ -41,7 +42,10 @@ export function getElementType(
   }
 
   if (isDictionarySchema(schema)) {
-    return `Record<string, ${getElementType(schema.elementType)}>`;
+    return `Record<string, ${getElementType(
+      schema.elementType,
+      importedModels
+    )}>`;
   }
 
   throw new Error(`Don't know how to get type for schema ${schema.type}`);
@@ -124,7 +128,7 @@ function primitiveSchemaToType(schema: PrimitiveSchema): string {
  */
 function getObjectInfo(schema: ObjectSchema) {
   const name = normalizeName(
-    schema.language.default.name,
+    getLanguageMetadata(schema.language).name,
     NameType.Interface,
     true
   );

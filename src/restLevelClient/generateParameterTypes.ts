@@ -4,6 +4,7 @@ import {
   Project,
   StructureKind
 } from "ts-morph";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getPropertySignature } from "./getPropertySignature";
 
@@ -31,7 +32,7 @@ export function generateParameterInterfaces(
   for (const operation of operations) {
     const internalReferences = new Set<string>();
     const operationName = normalizeName(
-      operation.language.typescript!.name,
+      getLanguageMetadata(operation.language).name,
       NameType.Interface
     );
     const parameterInterfaceName = `${operationName}Parameters`;
@@ -101,6 +102,7 @@ function buildBodyParametersDefinition(
   internalReferences.add(bodyParameterInterfaceName);
 
   return {
+    isExported: true,
     kind: StructureKind.Interface,
     name: bodyParameterInterfaceName,
     properties: [

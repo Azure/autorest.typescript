@@ -1,5 +1,6 @@
 import { Parameter, Property } from "@autorest/codemodel";
 import { PropertySignatureStructure, StructureKind } from "ts-morph";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getElementType } from "./schemaHelpers";
 
 /**
@@ -12,9 +13,10 @@ export function getPropertySignature(
   property: Property | Parameter,
   importedModels = new Set<string>()
 ): PropertySignatureStructure {
-  const propertyName = `"${property.language.default.serializedName ||
-    property.language.default.name}"`;
-  const description = property.language.default.description;
+  const propertyLangMetadata = getLanguageMetadata(property.language);
+  const propertyName = `"${propertyLangMetadata.serializedName ||
+    propertyLangMetadata.name}"`;
+  const description = propertyLangMetadata.description;
   const type = getElementType(property.schema, importedModels);
   return {
     name: propertyName,

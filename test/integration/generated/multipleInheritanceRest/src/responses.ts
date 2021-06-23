@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { Horse, ErrorModel, Pet, Feline, Cat, Kitten } from "./models";
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
@@ -12,7 +11,7 @@ export interface GetHorse200Response extends HttpResponse {
 }
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
-export interface GetHorse500Response extends HttpResponse {
+export interface GetHorsedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -30,7 +29,7 @@ export interface GetPet200Response extends HttpResponse {
 }
 
 /** Get a pet with name 'Peanut' */
-export interface GetPet500Response extends HttpResponse {
+export interface GetPetdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -48,7 +47,7 @@ export interface GetFeline200Response extends HttpResponse {
 }
 
 /** Get a feline where meows and hisses are true */
-export interface GetFeline500Response extends HttpResponse {
+export interface GetFelinedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -66,7 +65,7 @@ export interface GetCat200Response extends HttpResponse {
 }
 
 /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
-export interface GetCat500Response extends HttpResponse {
+export interface GetCatdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -84,7 +83,7 @@ export interface GetKitten200Response extends HttpResponse {
 }
 
 /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
-export interface GetKitten500Response extends HttpResponse {
+export interface GetKittendefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }

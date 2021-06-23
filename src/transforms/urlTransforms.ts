@@ -53,10 +53,10 @@ function getEndpointParameter(codeModel: CodeModel) {
   // Currently only support one parametrized host
   if (
     !uriParameters.length ||
-    !uriParameters[0].language.default.serializedName
+    !getLanguageMetadata(uriParameters[0].language).serializedName
   ) {
     return;
   }
 
-  return uriParameters[0].language.default.serializedName;
+  return getLanguageMetadata(uriParameters[0].language).serializedName;
 }

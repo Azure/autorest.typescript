@@ -2,7 +2,6 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import {
   BasicDef,
   ErrorModel,
@@ -35,7 +34,7 @@ export interface BasicGetValid200Response extends HttpResponse {
 }
 
 /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
-export interface BasicGetValid500Response extends HttpResponse {
+export interface BasicGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -47,7 +46,7 @@ export interface BasicPutValid200Response extends HttpResponse {
 }
 
 /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
-export interface BasicPutValid500Response extends HttpResponse {
+export interface BasicPutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -59,7 +58,7 @@ export interface BasicGetInvalid200Response extends HttpResponse {
 }
 
 /** Get a basic complex type that is invalid for the local strong type */
-export interface BasicGetInvalid500Response extends HttpResponse {
+export interface BasicGetInvaliddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -71,7 +70,7 @@ export interface BasicGetEmpty200Response extends HttpResponse {
 }
 
 /** Get a basic complex type that is empty */
-export interface BasicGetEmpty500Response extends HttpResponse {
+export interface BasicGetEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -83,7 +82,7 @@ export interface BasicGetNull200Response extends HttpResponse {
 }
 
 /** Get a basic complex type whose properties are null */
-export interface BasicGetNull500Response extends HttpResponse {
+export interface BasicGetNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -95,7 +94,7 @@ export interface BasicGetNotProvided200Response extends HttpResponse {
 }
 
 /** Get a basic complex type while the server doesn't provide a response payload */
-export interface BasicGetNotProvided500Response extends HttpResponse {
+export interface BasicGetNotProvideddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -107,7 +106,7 @@ export interface PrimitiveGetInt200Response extends HttpResponse {
 }
 
 /** Get complex types with integer properties */
-export interface PrimitiveGetInt500Response extends HttpResponse {
+export interface PrimitiveGetIntdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -119,7 +118,7 @@ export interface PrimitivePutInt200Response extends HttpResponse {
 }
 
 /** Put complex types with integer properties */
-export interface PrimitivePutInt500Response extends HttpResponse {
+export interface PrimitivePutIntdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -131,7 +130,7 @@ export interface PrimitiveGetLong200Response extends HttpResponse {
 }
 
 /** Get complex types with long properties */
-export interface PrimitiveGetLong500Response extends HttpResponse {
+export interface PrimitiveGetLongdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -143,7 +142,7 @@ export interface PrimitivePutLong200Response extends HttpResponse {
 }
 
 /** Put complex types with long properties */
-export interface PrimitivePutLong500Response extends HttpResponse {
+export interface PrimitivePutLongdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -155,7 +154,7 @@ export interface PrimitiveGetFloat200Response extends HttpResponse {
 }
 
 /** Get complex types with float properties */
-export interface PrimitiveGetFloat500Response extends HttpResponse {
+export interface PrimitiveGetFloatdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -167,7 +166,7 @@ export interface PrimitivePutFloat200Response extends HttpResponse {
 }
 
 /** Put complex types with float properties */
-export interface PrimitivePutFloat500Response extends HttpResponse {
+export interface PrimitivePutFloatdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -179,7 +178,7 @@ export interface PrimitiveGetDouble200Response extends HttpResponse {
 }
 
 /** Get complex types with double properties */
-export interface PrimitiveGetDouble500Response extends HttpResponse {
+export interface PrimitiveGetDoubledefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -191,7 +190,7 @@ export interface PrimitivePutDouble200Response extends HttpResponse {
 }
 
 /** Put complex types with double properties */
-export interface PrimitivePutDouble500Response extends HttpResponse {
+export interface PrimitivePutDoubledefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -203,7 +202,7 @@ export interface PrimitiveGetBool200Response extends HttpResponse {
 }
 
 /** Get complex types with bool properties */
-export interface PrimitiveGetBool500Response extends HttpResponse {
+export interface PrimitiveGetBooldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -215,7 +214,7 @@ export interface PrimitivePutBool200Response extends HttpResponse {
 }
 
 /** Put complex types with bool properties */
-export interface PrimitivePutBool500Response extends HttpResponse {
+export interface PrimitivePutBooldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -227,7 +226,7 @@ export interface PrimitiveGetString200Response extends HttpResponse {
 }
 
 /** Get complex types with string properties */
-export interface PrimitiveGetString500Response extends HttpResponse {
+export interface PrimitiveGetStringdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -239,7 +238,7 @@ export interface PrimitivePutString200Response extends HttpResponse {
 }
 
 /** Put complex types with string properties */
-export interface PrimitivePutString500Response extends HttpResponse {
+export interface PrimitivePutStringdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -251,7 +250,7 @@ export interface PrimitiveGetDate200Response extends HttpResponse {
 }
 
 /** Get complex types with date properties */
-export interface PrimitiveGetDate500Response extends HttpResponse {
+export interface PrimitiveGetDatedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -263,7 +262,7 @@ export interface PrimitivePutDate200Response extends HttpResponse {
 }
 
 /** Put complex types with date properties */
-export interface PrimitivePutDate500Response extends HttpResponse {
+export interface PrimitivePutDatedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -275,7 +274,7 @@ export interface PrimitiveGetDateTime200Response extends HttpResponse {
 }
 
 /** Get complex types with datetime properties */
-export interface PrimitiveGetDateTime500Response extends HttpResponse {
+export interface PrimitiveGetDateTimedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -287,7 +286,7 @@ export interface PrimitivePutDateTime200Response extends HttpResponse {
 }
 
 /** Put complex types with datetime properties */
-export interface PrimitivePutDateTime500Response extends HttpResponse {
+export interface PrimitivePutDateTimedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -299,7 +298,8 @@ export interface PrimitiveGetDateTimeRfc1123200Response extends HttpResponse {
 }
 
 /** Get complex types with datetimeRfc1123 properties */
-export interface PrimitiveGetDateTimeRfc1123500Response extends HttpResponse {
+export interface PrimitiveGetDateTimeRfc1123defaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -311,7 +311,8 @@ export interface PrimitivePutDateTimeRfc1123200Response extends HttpResponse {
 }
 
 /** Put complex types with datetimeRfc1123 properties */
-export interface PrimitivePutDateTimeRfc1123500Response extends HttpResponse {
+export interface PrimitivePutDateTimeRfc1123defaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -323,7 +324,7 @@ export interface PrimitiveGetDuration200Response extends HttpResponse {
 }
 
 /** Get complex types with duration properties */
-export interface PrimitiveGetDuration500Response extends HttpResponse {
+export interface PrimitiveGetDurationdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -335,7 +336,7 @@ export interface PrimitivePutDuration200Response extends HttpResponse {
 }
 
 /** Put complex types with duration properties */
-export interface PrimitivePutDuration500Response extends HttpResponse {
+export interface PrimitivePutDurationdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -347,7 +348,7 @@ export interface PrimitiveGetByte200Response extends HttpResponse {
 }
 
 /** Get complex types with byte properties */
-export interface PrimitiveGetByte500Response extends HttpResponse {
+export interface PrimitiveGetBytedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -359,7 +360,7 @@ export interface PrimitivePutByte200Response extends HttpResponse {
 }
 
 /** Put complex types with byte properties */
-export interface PrimitivePutByte500Response extends HttpResponse {
+export interface PrimitivePutBytedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -371,7 +372,7 @@ export interface ArrayGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types with array property */
-export interface ArrayGetValid500Response extends HttpResponse {
+export interface ArrayGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -383,7 +384,7 @@ export interface ArrayPutValid200Response extends HttpResponse {
 }
 
 /** Put complex types with array property */
-export interface ArrayPutValid500Response extends HttpResponse {
+export interface ArrayPutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -395,7 +396,7 @@ export interface ArrayGetEmpty200Response extends HttpResponse {
 }
 
 /** Get complex types with array property which is empty */
-export interface ArrayGetEmpty500Response extends HttpResponse {
+export interface ArrayGetEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -407,7 +408,7 @@ export interface ArrayPutEmpty200Response extends HttpResponse {
 }
 
 /** Put complex types with array property which is empty */
-export interface ArrayPutEmpty500Response extends HttpResponse {
+export interface ArrayPutEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -419,7 +420,7 @@ export interface ArrayGetNotProvided200Response extends HttpResponse {
 }
 
 /** Get complex types with array property while server doesn't provide a response payload */
-export interface ArrayGetNotProvided500Response extends HttpResponse {
+export interface ArrayGetNotProvideddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -431,7 +432,7 @@ export interface DictionaryGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types with dictionary property */
-export interface DictionaryGetValid500Response extends HttpResponse {
+export interface DictionaryGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -443,7 +444,7 @@ export interface DictionaryPutValid200Response extends HttpResponse {
 }
 
 /** Put complex types with dictionary property */
-export interface DictionaryPutValid500Response extends HttpResponse {
+export interface DictionaryPutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -455,7 +456,7 @@ export interface DictionaryGetEmpty200Response extends HttpResponse {
 }
 
 /** Get complex types with dictionary property which is empty */
-export interface DictionaryGetEmpty500Response extends HttpResponse {
+export interface DictionaryGetEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -467,7 +468,7 @@ export interface DictionaryPutEmpty200Response extends HttpResponse {
 }
 
 /** Put complex types with dictionary property which is empty */
-export interface DictionaryPutEmpty500Response extends HttpResponse {
+export interface DictionaryPutEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -479,7 +480,7 @@ export interface DictionaryGetNull200Response extends HttpResponse {
 }
 
 /** Get complex types with dictionary property which is null */
-export interface DictionaryGetNull500Response extends HttpResponse {
+export interface DictionaryGetNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -491,7 +492,7 @@ export interface DictionaryGetNotProvided200Response extends HttpResponse {
 }
 
 /** Get complex types with dictionary property while server doesn't provide a response payload */
-export interface DictionaryGetNotProvided500Response extends HttpResponse {
+export interface DictionaryGetNotProvideddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -503,7 +504,7 @@ export interface InheritanceGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types that extend others */
-export interface InheritanceGetValid500Response extends HttpResponse {
+export interface InheritanceGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -515,7 +516,7 @@ export interface InheritancePutValid200Response extends HttpResponse {
 }
 
 /** Put complex types that extend others */
-export interface InheritancePutValid500Response extends HttpResponse {
+export interface InheritancePutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -527,7 +528,7 @@ export interface PolymorphismGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types that are polymorphic */
-export interface PolymorphismGetValid500Response extends HttpResponse {
+export interface PolymorphismGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -539,7 +540,7 @@ export interface PolymorphismPutValid200Response extends HttpResponse {
 }
 
 /** Put complex types that are polymorphic */
-export interface PolymorphismPutValid500Response extends HttpResponse {
+export interface PolymorphismPutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -551,7 +552,7 @@ export interface PolymorphismGetDotSyntax200Response extends HttpResponse {
 }
 
 /** Get complex types that are polymorphic, JSON key contains a dot */
-export interface PolymorphismGetDotSyntax500Response extends HttpResponse {
+export interface PolymorphismGetDotSyntaxdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -564,7 +565,7 @@ export interface PolymorphismGetComposedWithDiscriminator200Response
 }
 
 /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire. */
-export interface PolymorphismGetComposedWithDiscriminator500Response
+export interface PolymorphismGetComposedWithDiscriminatordefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModel;
@@ -578,7 +579,7 @@ export interface PolymorphismGetComposedWithoutDiscriminator200Response
 }
 
 /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property. */
-export interface PolymorphismGetComposedWithoutDiscriminator500Response
+export interface PolymorphismGetComposedWithoutDiscriminatordefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModel;
@@ -591,7 +592,8 @@ export interface PolymorphismGetComplicated200Response extends HttpResponse {
 }
 
 /** Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
-export interface PolymorphismGetComplicated500Response extends HttpResponse {
+export interface PolymorphismGetComplicateddefaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -603,7 +605,8 @@ export interface PolymorphismPutComplicated200Response extends HttpResponse {
 }
 
 /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
-export interface PolymorphismPutComplicated500Response extends HttpResponse {
+export interface PolymorphismPutComplicateddefaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -616,7 +619,7 @@ export interface PolymorphismPutMissingDiscriminator200Response
 }
 
 /** Put complex types that are polymorphic, omitting the discriminator */
-export interface PolymorphismPutMissingDiscriminator500Response
+export interface PolymorphismPutMissingDiscriminatordefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModel;
@@ -630,7 +633,7 @@ export interface PolymorphismPutValidMissingRequired200Response
 }
 
 /** Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client */
-export interface PolymorphismPutValidMissingRequired500Response
+export interface PolymorphismPutValidMissingRequireddefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModel;
@@ -643,7 +646,8 @@ export interface PolymorphicrecursiveGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types that are polymorphic and have recursive references */
-export interface PolymorphicrecursiveGetValid500Response extends HttpResponse {
+export interface PolymorphicrecursiveGetValiddefaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -655,7 +659,8 @@ export interface PolymorphicrecursivePutValid200Response extends HttpResponse {
 }
 
 /** Put complex types that are polymorphic and have recursive references */
-export interface PolymorphicrecursivePutValid500Response extends HttpResponse {
+export interface PolymorphicrecursivePutValiddefaultResponse
+  extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -667,7 +672,7 @@ export interface ReadonlypropertyGetValid200Response extends HttpResponse {
 }
 
 /** Get complex types that have readonly properties */
-export interface ReadonlypropertyGetValid500Response extends HttpResponse {
+export interface ReadonlypropertyGetValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }
@@ -679,7 +684,7 @@ export interface ReadonlypropertyPutValid200Response extends HttpResponse {
 }
 
 /** Put complex types that have readonly properties */
-export interface ReadonlypropertyPutValid500Response extends HttpResponse {
+export interface ReadonlypropertyPutValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
 }

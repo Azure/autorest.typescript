@@ -3,60 +3,146 @@ import {
   ComplexSchema,
   isObjectSchema,
   ObjectSchema,
-  Parameter,
   Property
 } from "@autorest/codemodel";
 import { Channel } from "@autorest/extension-base";
 import {
   InterfaceDeclarationStructure,
+  Program,
   PropertySignatureStructure,
-  StructureKind
+  StructureKind,
+  TypeAliasDeclarationStructure
 } from "ts-morph";
 import { getSession } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { isDictionarySchema } from "./schemaHelpers";
 import { getPropertySignature } from "./getPropertySignature";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 
 /**
  * Generates interfaces for ObjectSchemas
  */
-
 export function buildObjectInterfaces(
   model: CodeModel,
   importedModels: Set<string>
 ): InterfaceDeclarationStructure[] {
   const objectSchemas = model.schemas.objects ?? [];
   const objectInterfaces: InterfaceDeclarationStructure[] = [];
+
   for (const objectSchema of objectSchemas) {
-    let baseName = normalizeName(
-      objectSchema.language.default.name,
-      NameType.Interface,
-      true /** guard name */
-    );
-    const properties = objectSchema.properties ?? [];
-
-    // Get the polymorphic property and value if there is any for the given object.
-
-    let propertySignatures = getPropertySignatures(properties, importedModels);
-
-    // Add the polymorphic property if exists
-    propertySignatures = addDiscriminatorProperty(
+    const baseName = getObjectBaseName(objectSchema);
+    const interfaceDeclaration = getObjectInterfaceDeclaration(
+      baseName,
       objectSchema,
-      propertySignatures
+      importedModels
     );
 
-    // Calculate the parents of the current object
-    const extendFrom = getImmediateParentsNames(objectSchema);
-
-    objectInterfaces.push({
-      kind: StructureKind.Interface,
-      name: baseName,
-      isExported: true,
-      properties: propertySignatures,
-      ...(extendFrom && { extends: extendFrom })
-    });
+    objectInterfaces.push(interfaceDeclaration);
   }
   return objectInterfaces;
+}
+
+export function buildPolymorphicAliases(model: CodeModel) {
+  // We'll add aliases for polymorphic objects
+  const objectAliases: TypeAliasDeclarationStructure[] = [];
+  const objectSchemas = model.schemas.objects ?? [];
+  for (const objectSchema of objectSchemas) {
+    const baseName = getObjectBaseName(objectSchema);
+    const typeAlias = getPolymorphicTypeAlias(baseName, objectSchema);
+    if (typeAlias) {
+      objectAliases.push(typeAlias);
+    }
+  }
+
+  return objectAliases;
+}
+
+/**
+ * Gets a base name for an object schema this is tipically used with suffixes when building interface or type names
+ */
+function getObjectBaseName(objectSchema: ObjectSchema) {
+  return normalizeName(
+    getLanguageMetadata(objectSchema.language).name,
+    NameType.Interface,
+    true /** guard name */
+  );
+}
+
+/**
+ * If the current object is a Polymorphic parent, we need to create
+ * a type alias with the union of its children to enable polymorphism
+ */
+function getPolymorphicTypeAlias(
+  baseName: string,
+  objectSchema: ObjectSchema
+): TypeAliasDeclarationStructure | undefined {
+  if (!isPolymorphicParent(objectSchema)) {
+    return undefined;
+  }
+
+  const unionTypes: string[] = [];
+
+  // If the object itself has a discriminatorValue add its base to the union
+  if (objectSchema.discriminatorValue) {
+    unionTypes.push(`${baseName}Base`);
+  }
+
+  for (const child of objectSchema.children?.all ?? []) {
+    const name = normalizeName(
+      getLanguageMetadata(child.language).name,
+      NameType.Interface,
+      true /** shouldGuard */
+    );
+
+    unionTypes.push(name);
+  }
+
+  return {
+    kind: StructureKind.TypeAlias,
+    name: baseName,
+    type: unionTypes.join(" | "),
+    isExported: true
+  };
+}
+
+/**
+ * Builds the interface for the current object schema. If it is a polymorphic
+ * root node it will suffix it with Base.
+ */
+function getObjectInterfaceDeclaration(
+  baseName: string,
+  objectSchema: ObjectSchema,
+  importedModels: Set<string>
+): InterfaceDeclarationStructure {
+  let interfaceName = baseName;
+  if (isPolymorphicParent(objectSchema)) {
+    interfaceName = `${baseName}Base`;
+  }
+
+  const properties = objectSchema.properties ?? [];
+
+  let propertySignatures = getPropertySignatures(properties, importedModels);
+
+  // Add the polymorphic property if exists
+  propertySignatures = addDiscriminatorProperty(
+    objectSchema,
+    propertySignatures
+  );
+
+  // Calculate the parents of the current object
+  const extendFrom = getImmediateParentsNames(objectSchema);
+
+  return {
+    kind: StructureKind.Interface,
+    name: interfaceName,
+    isExported: true,
+    properties: propertySignatures,
+    ...(extendFrom && { extends: extendFrom })
+  };
+}
+
+function isPolymorphicParent(objectSchema: ObjectSchema) {
+  return objectSchema.children?.immediate.length && objectSchema.discriminator;
 }
 
 function addDiscriminatorProperty(
@@ -96,7 +182,9 @@ function getDiscriminatorProperty(
   if (discriminators) {
     if (discriminatorPropertyName === undefined) {
       message({
-        Text: `getDiscriminatorProperty: Expected object ${objectSchema.language.default.name} to have a discriminator in its hierarchy but found none`,
+        Text: `getDiscriminatorProperty: Expected object ${
+          getLanguageMetadata(objectSchema.language).name
+        } to have a discriminator in its hierarchy but found none`,
         Channel: Channel.Warning
       });
       return;
@@ -202,28 +290,19 @@ function getImmediateParentsNames(objectSchema: ObjectSchema): string[] {
   // Get the rest of the parents excluding any DictionarySchemas
   const parents = objectSchema.parents.immediate
     .filter(p => !isDictionarySchema(p))
-    .map(parent =>
-      normalizeName(
-        parent.language.default.name,
+    .map(parent => {
+      const name = normalizeName(
+        getLanguageMetadata(parent.language).name,
         NameType.Interface,
         true /** shouldGuard */
-      )
-    );
+      );
+
+      return isObjectSchema(parent) && isPolymorphicParent(parent)
+        ? `${name}Base`
+        : name;
+    });
 
   return [...parents, ...extendFrom];
-}
-
-function isBaseObjectSchema(objectSchema: ObjectSchema): boolean {
-  const selfName = normalizeName(
-    objectSchema.language.default.name,
-    NameType.Interface
-  );
-
-  return (
-    objectSchema.parents?.immediate?.length === 1 &&
-    objectSchema.parents.immediate[0].language.default.name === selfName &&
-    !Boolean(objectSchema.properties?.length)
-  );
 }
 
 function getPropertySignatures(

@@ -25,7 +25,7 @@ import {
 
 export type BasicGetValidParameters = RequestParameters;
 
-interface BasicPutValidBodyParam {
+export interface BasicPutValidBodyParam {
   body: BasicDef;
 }
 
@@ -37,7 +37,7 @@ export type BasicGetNullParameters = RequestParameters;
 export type BasicGetNotProvidedParameters = RequestParameters;
 export type PrimitiveGetIntParameters = RequestParameters;
 
-interface PrimitivePutIntBodyParam {
+export interface PrimitivePutIntBodyParam {
   body: IntWrapper;
 }
 
@@ -45,7 +45,7 @@ export type PrimitivePutIntParameters = PrimitivePutIntBodyParam &
   RequestParameters;
 export type PrimitiveGetLongParameters = RequestParameters;
 
-interface PrimitivePutLongBodyParam {
+export interface PrimitivePutLongBodyParam {
   body: LongWrapper;
 }
 
@@ -53,7 +53,7 @@ export type PrimitivePutLongParameters = PrimitivePutLongBodyParam &
   RequestParameters;
 export type PrimitiveGetFloatParameters = RequestParameters;
 
-interface PrimitivePutFloatBodyParam {
+export interface PrimitivePutFloatBodyParam {
   body: FloatWrapper;
 }
 
@@ -61,7 +61,7 @@ export type PrimitivePutFloatParameters = PrimitivePutFloatBodyParam &
   RequestParameters;
 export type PrimitiveGetDoubleParameters = RequestParameters;
 
-interface PrimitivePutDoubleBodyParam {
+export interface PrimitivePutDoubleBodyParam {
   body: DoubleWrapper;
 }
 
@@ -69,7 +69,7 @@ export type PrimitivePutDoubleParameters = PrimitivePutDoubleBodyParam &
   RequestParameters;
 export type PrimitiveGetBoolParameters = RequestParameters;
 
-interface PrimitivePutBoolBodyParam {
+export interface PrimitivePutBoolBodyParam {
   body: BooleanWrapper;
 }
 
@@ -77,7 +77,7 @@ export type PrimitivePutBoolParameters = PrimitivePutBoolBodyParam &
   RequestParameters;
 export type PrimitiveGetStringParameters = RequestParameters;
 
-interface PrimitivePutStringBodyParam {
+export interface PrimitivePutStringBodyParam {
   body: StringWrapper;
 }
 
@@ -85,7 +85,7 @@ export type PrimitivePutStringParameters = PrimitivePutStringBodyParam &
   RequestParameters;
 export type PrimitiveGetDateParameters = RequestParameters;
 
-interface PrimitivePutDateBodyParam {
+export interface PrimitivePutDateBodyParam {
   body: DateWrapper;
 }
 
@@ -93,7 +93,7 @@ export type PrimitivePutDateParameters = PrimitivePutDateBodyParam &
   RequestParameters;
 export type PrimitiveGetDateTimeParameters = RequestParameters;
 
-interface PrimitivePutDateTimeBodyParam {
+export interface PrimitivePutDateTimeBodyParam {
   body: DatetimeWrapper;
 }
 
@@ -101,7 +101,7 @@ export type PrimitivePutDateTimeParameters = PrimitivePutDateTimeBodyParam &
   RequestParameters;
 export type PrimitiveGetDateTimeRfc1123Parameters = RequestParameters;
 
-interface PrimitivePutDateTimeRfc1123BodyParam {
+export interface PrimitivePutDateTimeRfc1123BodyParam {
   body: Datetimerfc1123Wrapper;
 }
 
@@ -109,7 +109,7 @@ export type PrimitivePutDateTimeRfc1123Parameters = PrimitivePutDateTimeRfc1123B
   RequestParameters;
 export type PrimitiveGetDurationParameters = RequestParameters;
 
-interface PrimitivePutDurationBodyParam {
+export interface PrimitivePutDurationBodyParam {
   body: DurationWrapper;
 }
 
@@ -117,7 +117,7 @@ export type PrimitivePutDurationParameters = PrimitivePutDurationBodyParam &
   RequestParameters;
 export type PrimitiveGetByteParameters = RequestParameters;
 
-interface PrimitivePutByteBodyParam {
+export interface PrimitivePutByteBodyParam {
   body: ByteWrapper;
 }
 
@@ -125,7 +125,7 @@ export type PrimitivePutByteParameters = PrimitivePutByteBodyParam &
   RequestParameters;
 export type ArrayGetValidParameters = RequestParameters;
 
-interface ArrayPutValidBodyParam {
+export interface ArrayPutValidBodyParam {
   body: ArrayWrapper;
 }
 
@@ -133,7 +133,7 @@ export type ArrayPutValidParameters = ArrayPutValidBodyParam &
   RequestParameters;
 export type ArrayGetEmptyParameters = RequestParameters;
 
-interface ArrayPutEmptyBodyParam {
+export interface ArrayPutEmptyBodyParam {
   body: ArrayWrapper;
 }
 
@@ -142,7 +142,7 @@ export type ArrayPutEmptyParameters = ArrayPutEmptyBodyParam &
 export type ArrayGetNotProvidedParameters = RequestParameters;
 export type DictionaryGetValidParameters = RequestParameters;
 
-interface DictionaryPutValidBodyParam {
+export interface DictionaryPutValidBodyParam {
   body: DictionaryWrapper;
 }
 
@@ -150,7 +150,7 @@ export type DictionaryPutValidParameters = DictionaryPutValidBodyParam &
   RequestParameters;
 export type DictionaryGetEmptyParameters = RequestParameters;
 
-interface DictionaryPutEmptyBodyParam {
+export interface DictionaryPutEmptyBodyParam {
   body: DictionaryWrapper;
 }
 
@@ -160,7 +160,7 @@ export type DictionaryGetNullParameters = RequestParameters;
 export type DictionaryGetNotProvidedParameters = RequestParameters;
 export type InheritanceGetValidParameters = RequestParameters;
 
-interface InheritancePutValidBodyParam {
+export interface InheritancePutValidBodyParam {
   body: Siamese;
 }
 
@@ -168,7 +168,7 @@ export type InheritancePutValidParameters = InheritancePutValidBodyParam &
   RequestParameters;
 export type PolymorphismGetValidParameters = RequestParameters;
 
-interface PolymorphismPutValidBodyParam {
+export interface PolymorphismPutValidBodyParam {
   body: Fish;
 }
 
@@ -179,21 +179,21 @@ export type PolymorphismGetComposedWithDiscriminatorParameters = RequestParamete
 export type PolymorphismGetComposedWithoutDiscriminatorParameters = RequestParameters;
 export type PolymorphismGetComplicatedParameters = RequestParameters;
 
-interface PolymorphismPutComplicatedBodyParam {
+export interface PolymorphismPutComplicatedBodyParam {
   body: Salmon;
 }
 
 export type PolymorphismPutComplicatedParameters = PolymorphismPutComplicatedBodyParam &
   RequestParameters;
 
-interface PolymorphismPutMissingDiscriminatorBodyParam {
+export interface PolymorphismPutMissingDiscriminatorBodyParam {
   body: Salmon;
 }
 
 export type PolymorphismPutMissingDiscriminatorParameters = PolymorphismPutMissingDiscriminatorBodyParam &
   RequestParameters;
 
-interface PolymorphismPutValidMissingRequiredBodyParam {
+export interface PolymorphismPutValidMissingRequiredBodyParam {
   body: Fish;
 }
 
@@ -201,7 +201,7 @@ export type PolymorphismPutValidMissingRequiredParameters = PolymorphismPutValid
   RequestParameters;
 export type PolymorphicrecursiveGetValidParameters = RequestParameters;
 
-interface PolymorphicrecursivePutValidBodyParam {
+export interface PolymorphicrecursivePutValidBodyParam {
   body: Fish;
 }
 
@@ -209,7 +209,7 @@ export type PolymorphicrecursivePutValidParameters = PolymorphicrecursivePutVali
   RequestParameters;
 export type ReadonlypropertyGetValidParameters = RequestParameters;
 
-interface ReadonlypropertyPutValidBodyParam {
+export interface ReadonlypropertyPutValidBodyParam {
   body: ReadonlyObj;
 }
 

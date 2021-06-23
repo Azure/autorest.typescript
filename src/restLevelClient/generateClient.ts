@@ -25,6 +25,7 @@ import { getAutorestOptions, getSession } from "../autorestSession";
 import { transformBaseUrl } from "../transforms/urlTransforms";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema } from "./schemaHelpers";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 type PathParameter = { name: string; description?: string };
 
 type Methods = {
@@ -46,7 +47,10 @@ type Paths = {
 };
 
 export function generatePathFirstClient(model: CodeModel, project: Project) {
-  const name = normalizeName(model.language.default.name, NameType.File);
+  const name = normalizeName(
+    getLanguageMetadata(model.language).name,
+    NameType.File
+  );
   const clientFile = project.createSourceFile(`src/${name}.ts`, undefined, {
     overwrite: true
   });
@@ -57,16 +61,17 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
   const pathDictionary: Paths = {};
   for (const operationGroup of model.operationGroups) {
     for (const operation of operationGroup.operations) {
-      const operationName = operation.language.typescript!.name;
-      const operationDescription = operation.language.default.description;
+      const operationName = getLanguageMetadata(operation.language).name;
+      const operationDescription = getLanguageMetadata(operation.language)
+        .description;
       const pathParameters: PathParameter[] =
         operation.parameters
           ?.filter(p => p.protocol.http?.in === ParameterLocation.Path)
           .map(p => {
+            const languageMetadata = getLanguageMetadata(p.language);
             return {
-              name:
-                p.language.default.serializedName || p.language.default.name,
-              description: p.language.default.description
+              name: languageMetadata.serializedName || languageMetadata.name,
+              description: languageMetadata.description
             };
           }) || [];
 
@@ -115,7 +120,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
     )
   });
 
-  const clientName = model.language.default.name;
+  const clientName = getLanguageMetadata(model.language).name;
   const uriParameter = getClientUriParameter();
 
   const { addCredentials, credentialKeyHeaderName } = getAutorestOptions();
@@ -187,7 +192,9 @@ function getOperationOptionsType(
   operation: Operation,
   importedParameters = new Set<string>()
 ) {
-  const paramsName = `${operation.language.typescript!.name}Parameters`;
+  const paramsName = `${
+    getLanguageMetadata(operation.language).name
+  }Parameters`;
   importedParameters.add(paramsName);
 
   return paramsName;
@@ -265,7 +272,10 @@ function getApiVersion(): string | undefined {
         gp.implementation === ImplementationLocation.Client &&
         gp.protocol.http?.in === ParameterLocation.Query
     )
-    .find(param => param.language.default.serializedName === "api-version");
+    .find(
+      param =>
+        getLanguageMetadata(param.language).serializedName === "api-version"
+    );
 
   if (apiVersionParam && isConstantSchema(apiVersionParam.schema)) {
     return apiVersionParam.schema.value.value.toString();

@@ -6,35 +6,35 @@ import { Horse, Pet, Feline, Cat, Kitten } from "./models";
 
 export type GetHorseParameters = RequestParameters;
 
-interface PutHorseBodyParam {
+export interface PutHorseBodyParam {
   body: Horse;
 }
 
 export type PutHorseParameters = PutHorseBodyParam & RequestParameters;
 export type GetPetParameters = RequestParameters;
 
-interface PutPetBodyParam {
+export interface PutPetBodyParam {
   body: Pet;
 }
 
 export type PutPetParameters = PutPetBodyParam & RequestParameters;
 export type GetFelineParameters = RequestParameters;
 
-interface PutFelineBodyParam {
+export interface PutFelineBodyParam {
   body: Feline;
 }
 
 export type PutFelineParameters = PutFelineBodyParam & RequestParameters;
 export type GetCatParameters = RequestParameters;
 
-interface PutCatBodyParam {
+export interface PutCatBodyParam {
   body: Cat;
 }
 
 export type PutCatParameters = PutCatBodyParam & RequestParameters;
 export type GetKittenParameters = RequestParameters;
 
-interface PutKittenBodyParam {
+export interface PutKittenBodyParam {
   body: Kitten;
 }
 

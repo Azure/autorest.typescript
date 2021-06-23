@@ -4,6 +4,7 @@ import {
   SchemaResponse,
   Response
 } from "@autorest/codemodel";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { isSchemaResponse } from "../utils/schemaHelpers";
 
@@ -13,9 +14,8 @@ export function getResponseTypeName(
 ) {
   const statusCode = getStatusCode(response);
 
-  const schemaResponse = responseToSchemaResponse(response);
   return normalizeName(
-    `${operation.language.default.name}${statusCode}Response`,
+    `${getLanguageMetadata(operation.language).name}${statusCode}Response`,
     NameType.Interface
   );
 }
@@ -48,9 +48,9 @@ export function getStatusCode(response: Response): string {
   // Swagger can define a catch all status code "default" to get any other status code not explicitly defined
   // however default is not a valid HTTP status code. We are setting 500 as a catch all status code instead
   // which is a valid http status
-  if (statusCode === "default") {
-    return `"500"`;
-  }
+  // if (statusCode === "default") {
+  //   return `"500"`;
+  // }
 
   return `"${statusCode}"`;
 }

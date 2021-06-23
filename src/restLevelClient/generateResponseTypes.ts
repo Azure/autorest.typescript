@@ -18,6 +18,7 @@ import {
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getElementType } from "./schemaHelpers";
+import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
   const responsesFile = project.createSourceFile(
@@ -31,6 +32,8 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
   // Set used to track down which models need to be imported
   let importedModels = new Set<string>();
   const operations = getAllOperationRequests(model);
+  // Track if we need to import RawHttpHeaders
+  let hasHeaders = false;
 
   for (const operation of operations) {
     const responses = mergeResponsesAndExceptions(operation);
@@ -42,10 +45,11 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
 
       let schemaResponse: SchemaResponse = responseToSchemaResponse(response);
       const statusCode = getStatusCode(schemaResponse);
+      const operationLanguageMetadata = getLanguageMetadata(operation.language);
 
       // Building the response type base name
       const baseResponseName = normalizeName(
-        `${operation.language.default.name}${statusCode}`,
+        `${operationLanguageMetadata.name}${statusCode}`,
         NameType.Interface
       );
 
@@ -57,11 +61,15 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
         baseResponseName
       );
 
+      if (headersInterface) {
+        hasHeaders = true;
+      }
+
       const bodyType = getBodyTypeName(schemaResponse, importedModels);
 
       // Get the information to build the Response Interface
       const responseTypeName = getResponseTypeName(operation, schemaResponse);
-      const responseTypeDescription = operation.language.default.description;
+      const responseTypeDescription = operationLanguageMetadata.description;
       const responseProperties = getResponseInterfaceProperties(
         schemaResponse,
         bodyType,
@@ -95,10 +103,12 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   ]);
 
-  responsesFile.addImportDeclaration({
-    namedImports: ["RawHttpHeaders"],
-    moduleSpecifier: "@azure/core-rest-pipeline"
-  });
+  if (hasHeaders) {
+    responsesFile.addImportDeclaration({
+      namedImports: ["RawHttpHeaders"],
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
+  }
 
   responsesFile.addImportDeclarations([
     {
@@ -117,7 +127,9 @@ function getResponseInterfaceProperties(
   headersInterfaceName?: string
 ) {
   const statusCode = getStatusCode(response);
-  const responseProperties = [{ name: "status", type: statusCode }];
+  const responseProperties = [
+    { name: "status", type: statusCode === `"default"` ? `"500"` : statusCode }
+  ];
 
   if (bodyTypeName) {
     responseProperties.push({
@@ -166,7 +178,7 @@ function getResponseHeaderInterfaceDefinition(
       isExported: true,
       name: headersInterfaceName,
       properties: response.protocol.http?.headers.map((h: HttpHeader) => {
-        const description = h.language.default.description;
+        const description = getLanguageMetadata(h.language).description;
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
