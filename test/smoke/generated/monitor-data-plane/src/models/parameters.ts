@@ -9,18 +9,6 @@
 import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 import { AzureMetricsDocument as AzureMetricsDocumentMapper } from "../models/mappers";
 
-export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
-  mapper: {
-    defaultValue: "application/json",
-    isConstant: true,
-    serializedName: "Content-Type",
-    type: {
-      name: "String"
-    }
-  }
-};
-
 export const body: OperationParameter = {
   parameterPath: "body",
   mapper: AzureMetricsDocumentMapper
@@ -50,7 +38,7 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType1: OperationParameter = {
+export const contentType: OperationParameter = {
   parameterPath: "contentType",
   mapper: {
     serializedName: "Content-Type",

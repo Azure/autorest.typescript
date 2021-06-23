@@ -47780,7 +47780,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    readonly schema?: string;\n    readonly contentVersion?: string;\n    readonly parameters?: any;\n    readonly resources?: any[];\n}"
+              "text": " & {\n    readonly schema?: string;\n    readonly contentVersion?: string;\n    readonly parameters?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly resources?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>[];\n}"
             },
             {
               "kind": "Content",
@@ -47791,7 +47809,7 @@
           "name": "VirtualMachineCaptureResult",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 3
+            "endIndex": 7
           }
         },
         {
@@ -47835,7 +47853,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: any;\n    protectedSettings?: any;\n    readonly provisioningState?: string;\n    instanceView?: "
+              "text": " & {\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    protectedSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly provisioningState?: string;\n    instanceView?: "
             },
             {
               "kind": "Reference",
@@ -47855,7 +47891,7 @@
           "name": "VirtualMachineExtension",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 5
+            "endIndex": 9
           }
         },
         {
@@ -50196,7 +50232,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    forceUpdateTag?: string;\n    publisher?: string;\n    type?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: any;\n    protectedSettings?: any;\n}"
+              "text": " & {\n    forceUpdateTag?: string;\n    publisher?: string;\n    type?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    protectedSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n}"
             },
             {
               "kind": "Content",
@@ -50207,7 +50261,7 @@
           "name": "VirtualMachineExtensionUpdate",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 3
+            "endIndex": 7
           }
         },
         {
@@ -55965,7 +56019,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    name?: string;\n    readonly type?: string;\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: any;\n    protectedSettings?: any;\n    readonly provisioningState?: string;\n    provisionAfterExtensions?: string[];\n}"
+              "text": " & {\n    name?: string;\n    readonly type?: string;\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    protectedSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly provisioningState?: string;\n    provisionAfterExtensions?: string[];\n}"
             },
             {
               "kind": "Content",
@@ -55976,7 +56048,7 @@
           "name": "VirtualMachineScaleSetExtension",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 3
+            "endIndex": 7
           }
         },
         {
@@ -57562,7 +57634,25 @@
             },
             {
               "kind": "Content",
-              "text": " & {\n    readonly name?: string;\n    readonly type?: string;\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: any;\n    protectedSettings?: any;\n    readonly provisioningState?: string;\n    provisionAfterExtensions?: string[];\n}"
+              "text": " & {\n    readonly name?: string;\n    readonly type?: string;\n    forceUpdateTag?: string;\n    publisher?: string;\n    typePropertiesType?: string;\n    typeHandlerVersion?: string;\n    autoUpgradeMinorVersion?: boolean;\n    settings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    protectedSettings?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly provisioningState?: string;\n    provisionAfterExtensions?: string[];\n}"
             },
             {
               "kind": "Content",
@@ -57573,7 +57663,7 @@
           "name": "VirtualMachineScaleSetExtensionUpdate",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 3
+            "endIndex": 7
           }
         },
         {

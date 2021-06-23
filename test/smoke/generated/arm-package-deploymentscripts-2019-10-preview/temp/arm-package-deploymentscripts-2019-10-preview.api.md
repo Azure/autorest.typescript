@@ -18,7 +18,7 @@ export type AzureCliScript = DeploymentScript & {
     readonly provisioningState?: ScriptProvisioningState;
     readonly status?: ScriptStatus;
     readonly outputs?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
     primaryScriptUri?: string;
     supportingScriptUris?: string[];
@@ -44,7 +44,7 @@ export type AzurePowerShellScript = DeploymentScript & {
     readonly provisioningState?: ScriptProvisioningState;
     readonly status?: ScriptStatus;
     readonly outputs?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
     primaryScriptUri?: string;
     supportingScriptUris?: string[];
@@ -102,7 +102,7 @@ export interface DeploymentScriptPropertiesBase {
     cleanupPreference?: CleanupOptions;
     containerSettings?: ContainerConfiguration;
     readonly outputs?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
     readonly provisioningState?: ScriptProvisioningState;
     readonly status?: ScriptStatus;
@@ -242,7 +242,7 @@ export interface EnvironmentVariable {
 
 // @public
 export interface ErrorAdditionalInfo {
-    readonly info?: any;
+    readonly info?: Record<string, unknown>;
     readonly type?: string;
 }
 

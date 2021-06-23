@@ -18,7 +18,7 @@ export type EnforcementMode = string;
 
 // @public
 export interface ErrorAdditionalInfo {
-    readonly info?: any;
+    readonly info?: Record<string, unknown>;
     readonly type?: string;
 }
 
@@ -76,8 +76,8 @@ export const enum KnownPolicyType {
 
 // @public
 export interface ParameterDefinitionsValue {
-    allowedValues?: any[];
-    defaultValue?: any;
+    allowedValues?: Record<string, unknown>[];
+    defaultValue?: Record<string, unknown>;
     metadata?: ParameterDefinitionsValueMetadata;
     type?: ParameterType;
 }
@@ -94,7 +94,7 @@ export type ParameterType = string;
 
 // @public
 export interface ParameterValuesValue {
-    value?: any;
+    value?: Record<string, unknown>;
 }
 
 // @public
@@ -105,7 +105,7 @@ export interface PolicyAssignment {
     readonly id?: string;
     identity?: Identity;
     location?: string;
-    metadata?: any;
+    metadata?: Record<string, unknown>;
     readonly name?: string;
     notScopes?: string[];
     parameters?: {
@@ -275,13 +275,13 @@ export interface PolicyDefinition {
     description?: string;
     displayName?: string;
     readonly id?: string;
-    metadata?: any;
+    metadata?: Record<string, unknown>;
     mode?: string;
     readonly name?: string;
     parameters?: {
         [propertyName: string]: ParameterDefinitionsValue;
     };
-    policyRule?: any;
+    policyRule?: Record<string, unknown>;
     policyType?: PolicyType;
     readonly type?: string;
 }
@@ -415,7 +415,7 @@ export interface PolicySetDefinition {
     description?: string;
     displayName?: string;
     readonly id?: string;
-    metadata?: any;
+    metadata?: Record<string, unknown>;
     readonly name?: string;
     parameters?: {
         [propertyName: string]: ParameterDefinitionsValue;

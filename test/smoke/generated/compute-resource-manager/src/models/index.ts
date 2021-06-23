@@ -51,6 +51,29 @@ export interface ComputeOperationValue {
   readonly provider?: string;
 }
 
+/** The Resource model definition. */
+export interface Resource {
+  /**
+   * Resource Id
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource location */
+  location: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
+}
+
 export interface SubResource {
   /** Resource Id */
   id?: string;
@@ -78,29 +101,6 @@ export interface Sku {
   tier?: string;
   /** Specifies the number of virtual machines in the scale set. */
   capacity?: number;
-}
-
-/** The Resource model definition. */
-export interface Resource {
-  /**
-   * Resource Id
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource location */
-  location: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
 }
 
 /** The Update Resource model definition. */
@@ -2360,159 +2360,6 @@ export interface ManagedArtifact {
   id: string;
 }
 
-export type SubResourceWithColocationStatus = SubResource & {
-  /** Describes colocation status of a resource in the Proximity Placement Group. */
-  colocationStatus?: InstanceViewStatus;
-};
-
-/** Virtual machine image resource information. */
-export type VirtualMachineImageResource = SubResource & {
-  /** The name of the resource. */
-  name: string;
-  /** The supported Azure location of the resource. */
-  location: string;
-  /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
-  tags?: { [propertyName: string]: string };
-};
-
-/** Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set. */
-export type ImageReference = SubResource & {
-  /** The image publisher. */
-  publisher?: string;
-  /** Specifies the offer of the platform image or marketplace image used to create the virtual machine. */
-  offer?: string;
-  /** The image SKU. */
-  sku?: string;
-  /** Specifies the version of the platform image or marketplace image used to create the virtual machine. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available. */
-  version?: string;
-  /**
-   * Specifies in decimal numbers, the version of platform image or marketplace image used to create the virtual machine. This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly exactVersion?: string;
-};
-
-/** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
-export type DiskEncryptionSetParameters = SubResource & {};
-
-/** The parameters of a managed disk. */
-export type ManagedDiskParameters = SubResource & {
-  /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
-  storageAccountType?: StorageAccountTypes;
-  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
-  diskEncryptionSet?: DiskEncryptionSetParameters;
-};
-
-/** Describes a network interface reference. */
-export type NetworkInterfaceReference = SubResource & {
-  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
-  primary?: boolean;
-};
-
-/** Output of virtual machine capture operation. */
-export type VirtualMachineCaptureResult = SubResource & {
-  /**
-   * the schema of the captured virtual machine
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly schema?: string;
-  /**
-   * the version of the content
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly contentVersion?: string;
-  /**
-   * parameters of the captured virtual machine
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly parameters?: any;
-  /**
-   * a list of resource items of the captured virtual machine
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly resources?: any[];
-};
-
-/** Describes a virtual machine scale set network profile's IP configuration. */
-export type VirtualMachineScaleSetIPConfiguration = SubResource & {
-  /** The IP configuration name. */
-  name: string;
-  /** Specifies the identifier of the subnet. */
-  subnet?: ApiEntityReference;
-  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
-  primary?: boolean;
-  /** The publicIPAddressConfiguration. */
-  publicIPAddressConfiguration?: VirtualMachineScaleSetPublicIPAddressConfiguration;
-  /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. */
-  privateIPAddressVersion?: IPVersion;
-  /** Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of multiple application gateways. Multiple scale sets cannot use the same application gateway. */
-  applicationGatewayBackendAddressPools?: SubResource[];
-  /** Specifies an array of references to application security group. */
-  applicationSecurityGroups?: SubResource[];
-  /** Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer. */
-  loadBalancerBackendAddressPools?: SubResource[];
-  /** Specifies an array of references to inbound Nat pools of the load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer */
-  loadBalancerInboundNatPools?: SubResource[];
-};
-
-/** Describes a virtual machine scale set network profile's network configurations. */
-export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
-  /** The network configuration name. */
-  name: string;
-  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
-  primary?: boolean;
-  /** Specifies whether the network interface is accelerated networking-enabled. */
-  enableAcceleratedNetworking?: boolean;
-  /** The network security group. */
-  networkSecurityGroup?: SubResource;
-  /** The dns settings to be applied on the network interfaces. */
-  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
-  /** Specifies the IP configurations of the network interface. */
-  ipConfigurations?: VirtualMachineScaleSetIPConfiguration[];
-  /** Whether IP forwarding enabled on this NIC. */
-  enableIPForwarding?: boolean;
-};
-
-/** Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network */
-export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
-  /** The IP configuration name. */
-  name?: string;
-  /** The subnet. */
-  subnet?: ApiEntityReference;
-  /** Specifies the primary IP Configuration in case the network interface has more than one IP Configuration. */
-  primary?: boolean;
-  /** The publicIPAddressConfiguration. */
-  publicIPAddressConfiguration?: VirtualMachineScaleSetUpdatePublicIPAddressConfiguration;
-  /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. */
-  privateIPAddressVersion?: IPVersion;
-  /** The application gateway backend address pools. */
-  applicationGatewayBackendAddressPools?: SubResource[];
-  /** Specifies an array of references to application security group. */
-  applicationSecurityGroups?: SubResource[];
-  /** The load balancer backend address pools. */
-  loadBalancerBackendAddressPools?: SubResource[];
-  /** The load balancer inbound nat pools. */
-  loadBalancerInboundNatPools?: SubResource[];
-};
-
-/** Describes a virtual machine scale set network profile's network configurations. */
-export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
-  /** The network configuration name. */
-  name?: string;
-  /** Whether this is a primary NIC on a virtual machine. */
-  primary?: boolean;
-  /** Specifies whether the network interface is accelerated networking-enabled. */
-  enableAcceleratedNetworking?: boolean;
-  /** The network security group. */
-  networkSecurityGroup?: SubResource;
-  /** The dns settings to be applied on the network interfaces. */
-  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
-  /** The virtual machine scale set IP Configuration. */
-  ipConfigurations?: VirtualMachineScaleSetUpdateIPConfiguration[];
-  /** Whether IP forwarding enabled on this NIC. */
-  enableIPForwarding?: boolean;
-};
-
 /** Specifies information about the availability set that the virtual machine should be assigned to. Virtual machines specified in the same availability set are allocated to different nodes to maximize availability. For more information about availability sets, see [Manage the availability of virtual machines](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-manage-availability?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). <br><br> For more information on Azure planned maintenance, see [Planned maintenance for virtual machines in Azure](https://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-planned-maintenance?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) <br><br> Currently, a VM can only be added to availability set at creation time. An existing VM cannot be added to an availability set. */
 export type AvailabilitySet = Resource & {
   /** Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'. */
@@ -2638,9 +2485,9 @@ export type VirtualMachineExtension = Resource & {
   /** Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. */
   autoUpgradeMinorVersion?: boolean;
   /** Json formatted public settings for the extension. */
-  settings?: any;
+  settings?: Record<string, unknown>;
   /** The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. */
-  protectedSettings?: any;
+  protectedSettings?: Record<string, unknown>;
   /**
    * The provisioning state, which only appears in the response.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3116,6 +2963,159 @@ export type ContainerService = Resource & {
   diagnosticsProfile?: ContainerServiceDiagnosticsProfile;
 };
 
+export type SubResourceWithColocationStatus = SubResource & {
+  /** Describes colocation status of a resource in the Proximity Placement Group. */
+  colocationStatus?: InstanceViewStatus;
+};
+
+/** Virtual machine image resource information. */
+export type VirtualMachineImageResource = SubResource & {
+  /** The name of the resource. */
+  name: string;
+  /** The supported Azure location of the resource. */
+  location: string;
+  /** Specifies the tags that are assigned to the virtual machine. For more information about using tags, see [Using tags to organize your Azure resources](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-using-tags.md). */
+  tags?: { [propertyName: string]: string };
+};
+
+/** Specifies information about the image to use. You can specify information about platform images, marketplace images, or virtual machine images. This element is required when you want to use a platform image, marketplace image, or virtual machine image, but is not used in other creation operations. NOTE: Image reference publisher and offer can only be set when you create the scale set. */
+export type ImageReference = SubResource & {
+  /** The image publisher. */
+  publisher?: string;
+  /** Specifies the offer of the platform image or marketplace image used to create the virtual machine. */
+  offer?: string;
+  /** The image SKU. */
+  sku?: string;
+  /** Specifies the version of the platform image or marketplace image used to create the virtual machine. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available. */
+  version?: string;
+  /**
+   * Specifies in decimal numbers, the version of platform image or marketplace image used to create the virtual machine. This readonly field differs from 'version', only if the value specified in 'version' field is 'latest'.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly exactVersion?: string;
+};
+
+/** Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. <br><br> NOTE: The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details. */
+export type DiskEncryptionSetParameters = SubResource & {};
+
+/** The parameters of a managed disk. */
+export type ManagedDiskParameters = SubResource & {
+  /** Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk. */
+  storageAccountType?: StorageAccountTypes;
+  /** Specifies the customer managed disk encryption set resource id for the managed disk. */
+  diskEncryptionSet?: DiskEncryptionSetParameters;
+};
+
+/** Describes a network interface reference. */
+export type NetworkInterfaceReference = SubResource & {
+  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
+  primary?: boolean;
+};
+
+/** Output of virtual machine capture operation. */
+export type VirtualMachineCaptureResult = SubResource & {
+  /**
+   * the schema of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly schema?: string;
+  /**
+   * the version of the content
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly contentVersion?: string;
+  /**
+   * parameters of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly parameters?: Record<string, unknown>;
+  /**
+   * a list of resource items of the captured virtual machine
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly resources?: Record<string, unknown>[];
+};
+
+/** Describes a virtual machine scale set network profile's IP configuration. */
+export type VirtualMachineScaleSetIPConfiguration = SubResource & {
+  /** The IP configuration name. */
+  name: string;
+  /** Specifies the identifier of the subnet. */
+  subnet?: ApiEntityReference;
+  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
+  primary?: boolean;
+  /** The publicIPAddressConfiguration. */
+  publicIPAddressConfiguration?: VirtualMachineScaleSetPublicIPAddressConfiguration;
+  /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. */
+  privateIPAddressVersion?: IPVersion;
+  /** Specifies an array of references to backend address pools of application gateways. A scale set can reference backend address pools of multiple application gateways. Multiple scale sets cannot use the same application gateway. */
+  applicationGatewayBackendAddressPools?: SubResource[];
+  /** Specifies an array of references to application security group. */
+  applicationSecurityGroups?: SubResource[];
+  /** Specifies an array of references to backend address pools of load balancers. A scale set can reference backend address pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer. */
+  loadBalancerBackendAddressPools?: SubResource[];
+  /** Specifies an array of references to inbound Nat pools of the load balancers. A scale set can reference inbound nat pools of one public and one internal load balancer. Multiple scale sets cannot use the same load balancer */
+  loadBalancerInboundNatPools?: SubResource[];
+};
+
+/** Describes a virtual machine scale set network profile's network configurations. */
+export type VirtualMachineScaleSetNetworkConfiguration = SubResource & {
+  /** The network configuration name. */
+  name: string;
+  /** Specifies the primary network interface in case the virtual machine has more than 1 network interface. */
+  primary?: boolean;
+  /** Specifies whether the network interface is accelerated networking-enabled. */
+  enableAcceleratedNetworking?: boolean;
+  /** The network security group. */
+  networkSecurityGroup?: SubResource;
+  /** The dns settings to be applied on the network interfaces. */
+  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
+  /** Specifies the IP configurations of the network interface. */
+  ipConfigurations?: VirtualMachineScaleSetIPConfiguration[];
+  /** Whether IP forwarding enabled on this NIC. */
+  enableIPForwarding?: boolean;
+};
+
+/** Describes a virtual machine scale set network profile's IP configuration. NOTE: The subnet of a scale set may be modified as long as the original subnet and the new subnet are in the same virtual network */
+export type VirtualMachineScaleSetUpdateIPConfiguration = SubResource & {
+  /** The IP configuration name. */
+  name?: string;
+  /** The subnet. */
+  subnet?: ApiEntityReference;
+  /** Specifies the primary IP Configuration in case the network interface has more than one IP Configuration. */
+  primary?: boolean;
+  /** The publicIPAddressConfiguration. */
+  publicIPAddressConfiguration?: VirtualMachineScaleSetUpdatePublicIPAddressConfiguration;
+  /** Available from Api-Version 2017-03-30 onwards, it represents whether the specific ipconfiguration is IPv4 or IPv6. Default is taken as IPv4.  Possible values are: 'IPv4' and 'IPv6'. */
+  privateIPAddressVersion?: IPVersion;
+  /** The application gateway backend address pools. */
+  applicationGatewayBackendAddressPools?: SubResource[];
+  /** Specifies an array of references to application security group. */
+  applicationSecurityGroups?: SubResource[];
+  /** The load balancer backend address pools. */
+  loadBalancerBackendAddressPools?: SubResource[];
+  /** The load balancer inbound nat pools. */
+  loadBalancerInboundNatPools?: SubResource[];
+};
+
+/** Describes a virtual machine scale set network profile's network configurations. */
+export type VirtualMachineScaleSetUpdateNetworkConfiguration = SubResource & {
+  /** The network configuration name. */
+  name?: string;
+  /** Whether this is a primary NIC on a virtual machine. */
+  primary?: boolean;
+  /** Specifies whether the network interface is accelerated networking-enabled. */
+  enableAcceleratedNetworking?: boolean;
+  /** The network security group. */
+  networkSecurityGroup?: SubResource;
+  /** The dns settings to be applied on the network interfaces. */
+  dnsSettings?: VirtualMachineScaleSetNetworkConfigurationDnsSettings;
+  /** The virtual machine scale set IP Configuration. */
+  ipConfigurations?: VirtualMachineScaleSetUpdateIPConfiguration[];
+  /** Whether IP forwarding enabled on this NIC. */
+  enableIPForwarding?: boolean;
+};
+
 /** Specifies information about the availability set that the virtual machine should be assigned to. Only tags may be updated. */
 export type AvailabilitySetUpdate = UpdateResource & {
   /** Sku of the availability set */
@@ -3205,9 +3205,9 @@ export type VirtualMachineExtensionUpdate = UpdateResource & {
   /** Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. */
   autoUpgradeMinorVersion?: boolean;
   /** Json formatted public settings for the extension. */
-  settings?: any;
+  settings?: Record<string, unknown>;
   /** The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. */
-  protectedSettings?: any;
+  protectedSettings?: Record<string, unknown>;
 };
 
 /** The source user image virtual hard disk. Only tags may be updated. */
@@ -3326,9 +3326,9 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
   /** Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. */
   autoUpgradeMinorVersion?: boolean;
   /** Json formatted public settings for the extension. */
-  settings?: any;
+  settings?: Record<string, unknown>;
   /** The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. */
-  protectedSettings?: any;
+  protectedSettings?: Record<string, unknown>;
   /**
    * The provisioning state, which only appears in the response.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3361,9 +3361,9 @@ export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
   /** Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true. */
   autoUpgradeMinorVersion?: boolean;
   /** Json formatted public settings for the extension. */
-  settings?: any;
+  settings?: Record<string, unknown>;
   /** The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. */
-  protectedSettings?: any;
+  protectedSettings?: Record<string, unknown>;
   /**
    * The provisioning state, which only appears in the response.
    * NOTE: This property will not be serialized. It can only be populated by the server.
