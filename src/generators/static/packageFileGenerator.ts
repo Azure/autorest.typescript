@@ -46,8 +46,10 @@ export function generatePackageJson(
  * or High Level Client
  */
 function restLevelPackage(packageDetails: PackageDetails) {
+  const { azureArm } = getAutorestOptions();
   return {
     name: `${packageDetails.name}`,
+    "sdk-type": `${azureArm ? "management" : "client"}`,
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
     main: "esm/index.js",
@@ -55,7 +57,28 @@ function restLevelPackage(packageDetails: PackageDetails) {
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
       build: "tsc --build && npm run extract-api",
-      "extract-api": "mkdirp ./review && api-extractor run --local"
+      "extract-api": "mkdirp ./review && api-extractor run --local",
+      pack: "npm pack 2>&1",
+      lint: "echo skipped",
+      audit: "echo skipped",
+      clean: "echo skipped",
+      "build:node": "echo skipped",
+      "build:browser": "echo skipped",
+      "build:test": "echo skipped",
+      "build:samples": "echo skipped.",
+      "check-format": "echo skipped",
+      "execute:samples": "echo skipped",
+      format: "echo skipped",
+      prebuild: "echo skipped",
+      "test:node": "echo skipped",
+      "test:browser": "echo skipped",
+      "unit-test": "echo skipped",
+      "unit-test:node": "echo skipped",
+      "unit-test:browser": "echo skipped",
+      "integration-test:browser": "echo skipped",
+      "integration-test:node": "echo skipped",
+      "integration-test": "echo skipped",
+      docs: "echo skipped"
     },
     keywords: [],
     author: "",
@@ -77,7 +100,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "ts-node": "^9.1.1",
       typescript: "~4.2.4",
       mkdirp: "^1.0.4"
-    }
+    },
+    sideEffects: false,
+    autoPublish: true
   };
 }
 
@@ -93,7 +118,8 @@ function regularAutorestPackage(
     srcPath,
     useCoreV2,
     tracingInfo,
-    disablePagingAsyncIterators
+    disablePagingAsyncIterators,
+    azureArm
   } = getAutorestOptions();
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
@@ -103,6 +129,7 @@ function regularAutorestPackage(
 
   return {
     name: packageDetails.name,
+    "sdk-type": `${azureArm ? "management" : "client"}`,
     author: "Microsoft Corporation",
     description:
       packageDetails.description ||
@@ -174,7 +201,29 @@ function regularAutorestPackage(
         "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm install && npm run build",
-      "extract-api": "api-extractor run --local"
+      pack: "npm pack 2>&1",
+      "extract-api": "mkdirp ./review && api-extractor run --local",
+      lint: "echo skipped",
+      audit: "echo skipped",
+      clean: "echo skipped",
+      "build:node": "echo skipped",
+      "build:browser": "echo skipped",
+      "build:test": "echo skipped",
+      "build:samples": "echo skipped.",
+      "check-format": "echo skipped",
+      "execute:samples": "echo skipped",
+      format: "echo skipped",
+      test: "echo skipped",
+      prebuild: "echo skipped",
+      "test:node": "echo skipped",
+      "test:browser": "echo skipped",
+      "unit-test": "echo skipped",
+      "unit-test:node": "echo skipped",
+      "unit-test:browser": "echo skipped",
+      "integration-test:browser": "echo skipped",
+      "integration-test:node": "echo skipped",
+      "integration-test": "echo skipped",
+      docs: "echo skipped"
     },
     sideEffects: false,
     autoPublish: true
