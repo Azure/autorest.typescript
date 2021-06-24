@@ -1,5 +1,6 @@
 {
   "name": "url-multi",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for UrlMultiClient.",
   "version": "1.0.0-preview1",

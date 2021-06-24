@@ -1,5 +1,6 @@
 {
   "name": "cosmos-db-resource-manager",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CosmosDBManagementClient.",
   "version": "1.0.0-beta.1",

@@ -1,5 +1,6 @@
 {
   "name": "zzzReport",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ReportClient.",
   "version": "1.0.0-preview1",

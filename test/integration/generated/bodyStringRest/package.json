@@ -1,5 +1,6 @@
 {
   "name": "body-string-rest",
+  "sdk-type": "management",
   "version": "1.0.0-preview1",
   "description": "",
   "main": "esm/index.js",

@@ -1,5 +1,6 @@
 {
   "name": "monitor-data-plane",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MonitorClient.",
   "version": "1.0.0-beta.1",

@@ -1,5 +1,6 @@
 {
   "name": "msi-resource-manager",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ManagedServiceIdentityClient.",
   "version": "1.0.0-beta.1",

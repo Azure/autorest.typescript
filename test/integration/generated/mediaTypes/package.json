@@ -1,5 +1,6 @@
 {
   "name": "media-types-service",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MediaTypesClient.",
   "version": "1.0.0-preview1",

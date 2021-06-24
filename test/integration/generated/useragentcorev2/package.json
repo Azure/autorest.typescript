@@ -1,5 +1,6 @@
 {
   "name": "useragent-corev2",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for UserAgentCoreV2Client.",
   "version": "1.0.0-preview1",

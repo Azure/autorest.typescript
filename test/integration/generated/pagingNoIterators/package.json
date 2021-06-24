@@ -1,5 +1,6 @@
 {
   "name": "paging-no-iterators",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for PagingNoIteratorsClient.",
   "version": "1.0.0-preview1",

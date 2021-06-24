@@ -1,5 +1,6 @@
 {
   "name": "no-mappers",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NoMappersClient.",
   "version": "1.0.0-preview1",

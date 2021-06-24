@@ -1,5 +1,6 @@
 {
   "name": "storage-resource-manager",
+  "sdk-type": "management",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for StorageManagementClient.",
   "version": "1.0.0-beta.1",

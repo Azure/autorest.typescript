@@ -46,8 +46,10 @@ export function generatePackageJson(
  * or High Level Client
  */
 function restLevelPackage(packageDetails: PackageDetails) {
+  const { azureArm } = getAutorestOptions();
   return {
     name: `${packageDetails.name}`,
+    "sdk-type": `${azureArm ? "management" : "client"}`,
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
     main: "esm/index.js",
@@ -93,7 +95,8 @@ function regularAutorestPackage(
     srcPath,
     useCoreV2,
     tracingInfo,
-    disablePagingAsyncIterators
+    disablePagingAsyncIterators,
+    azureArm
   } = getAutorestOptions();
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
@@ -103,6 +106,7 @@ function regularAutorestPackage(
 
   return {
     name: packageDetails.name,
+    "sdk-type": `${azureArm ? "management" : "client"}`,
     author: "Microsoft Corporation",
     description:
       packageDetails.description ||
