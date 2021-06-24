@@ -1,17 +1,22 @@
-import { getHost } from "../autorestSession";
+import { getHost, getSession } from "../autorestSession";
 import { Project, IndentationText } from "ts-morph";
 import { generatePackageJson } from "../generators/static/packageFileGenerator";
 import { generateLicenseFile } from "../generators/static/licenseFileGenerator";
 import { generateTsConfig } from "../generators/static/tsConfigFileGenerator";
 import { generateApiExtractorConfig } from "../generators/static/apiExtractorConfig";
+import { generateResponseInterfaces } from "./generateResponseTypes";
+import { performCodeModelMutations } from "./mutateCodeModel";
+import { generateSchemaTypes } from "./generateSchemaTypes";
 import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
-
+import { generateParameterInterfaces } from "./generateParameterTypes";
+import { generatePathFirstClient } from "./generateClient";
 /**
  * Generates a Rest Level Client library
  */
 export async function generateRestLevelClient() {
   const host = getHost();
+  const { model } = getSession();
 
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -20,10 +25,15 @@ export async function generateRestLevelClient() {
     }
   });
 
+  performCodeModelMutations(model);
   generatePackageJson(project);
   generateLicenseFile(project);
   generateTsConfig(project);
   generateApiExtractorConfig(project);
+  generateResponseInterfaces(model, project);
+  generateSchemaTypes(model, project);
+  generateParameterInterfaces(model, project);
+  generatePathFirstClient(model, project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();

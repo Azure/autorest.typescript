@@ -125,6 +125,15 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: false
   },
+  bodyComplexRest: {
+    swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
+    clientName: "BodyComplexRestClient",
+    packageName: "body-complex-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
   bodyComplexWithTracing: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "bodyComplexWithTracing",
@@ -347,6 +356,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false
+  },
+  multipleInheritanceRest: {
+    swaggerOrConfig: "multiple-inheritance.json",
+    clientName: "MultipleInheritanceRestClient",
+    packageName: "multiple-inheritance-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    restLevelClient: true
   },
   noMappers: {
     swaggerOrConfig: "test/integration/swaggers/no-mappers.json",

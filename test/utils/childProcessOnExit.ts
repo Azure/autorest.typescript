@@ -1,7 +1,7 @@
 import { ChildProcess } from "child_process";
 
 export const onExit = (childProcess: ChildProcess) => {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     childProcess.once("exit", (code: number, signal: string) => {
       if (code === 0) {
         resolve();
