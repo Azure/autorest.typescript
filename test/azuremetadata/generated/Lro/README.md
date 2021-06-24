@@ -1,6 +1,6 @@
 ## Azure AutoRestLongRunningOperationTestService SDK for JavaScript
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for AutoRestLongRunningOperationTestService.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AutoRestLongRunningOperationTestService.
 
 ### Currently supported environments
 

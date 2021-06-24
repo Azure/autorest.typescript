@@ -1,6 +1,6 @@
 ## An isomorphic javascript sdk for - AutoRestSwaggerBATService
 
-This package contains an isomorphic SDK (runs both in node.js and in browsers) for AutoRestSwaggerBATService.
+This package contains an isomorphic SDK (runs both in Node.js and in browsers) for AutoRestSwaggerBATService.
 
 ### Currently supported environments
 

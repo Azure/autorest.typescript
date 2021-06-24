@@ -994,7 +994,7 @@ namespace AutoRest.TypeScript.Model
             }
             else
             {
-                builder.Line($"This package contains an isomorphic SDK (runs both in node.js and in browsers) for {Name}.");
+                builder.Line($"This package contains an isomorphic SDK (runs both in Node.js and in browsers) for {Name}.");
             }
         }
 
