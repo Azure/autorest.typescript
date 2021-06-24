@@ -1,6 +1,6 @@
 {
   "name": "graphrbac-data-plane",
-  "sdk-type": "management",
+  "sdk-type": "client",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for GraphRbacManagementClient.",
   "version": "1.0.0-beta.1",
