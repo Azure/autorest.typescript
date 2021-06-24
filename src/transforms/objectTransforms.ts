@@ -273,10 +273,7 @@ function transformPolymorphicObject(
       uberParent.discriminator!.property.language
     ).name;
 
-    const children = schema.children.all;
-    const childDiscriminators = children
-      .map(c => (c as ObjectSchema).discriminatorValue)
-      .filter(c => !!c) as string[];
+    const childDiscriminators = getChildrenDiscriminators(schema);
 
     const propertyToMark = objectDetails.properties.find(
       p => p.name === discriminatorProperty
@@ -292,17 +289,25 @@ function transformPolymorphicObject(
   } else {
     discriminatorPath = `${uberParentName}.${schema.discriminatorValue}`;
     if (uberParent.discriminator) {
+      const childDiscriminators = getChildrenDiscriminators(schema);
       discriminatorValues = {
         [getLanguageMetadata(uberParent.discriminator.property.language)
-          .name]: [schema.discriminatorValue!]
+          .name]: [schema.discriminatorValue!, ...childDiscriminators]
       };
     }
   }
 
   return {
+    ...objectDetails,
     discriminatorValues,
     discriminatorPath,
-    unionName,
-    ...objectDetails
+    unionName
   } as PolymorphicObjectDetails;
+}
+
+function getChildrenDiscriminators(objectSchema: ObjectSchema) {
+  const children = objectSchema.children?.all ?? [];
+  return children
+    .map(c => (c as ObjectSchema).discriminatorValue)
+    .filter(c => !!c) as string[];
 }
