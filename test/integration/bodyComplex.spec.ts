@@ -627,7 +627,7 @@ const clientOptions = {
           const { fishtype, ...requestBody } = getFish();
 
           const response = await testClient.polymorphism.putMissingDiscriminator(
-            requestBody as Salmon
+            requestBody as any
           );
 
           const picture = (response.siblings![1] as Sawshark).picture || [];

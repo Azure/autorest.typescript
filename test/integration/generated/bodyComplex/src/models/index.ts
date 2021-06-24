@@ -146,14 +146,14 @@ export type Cat = Pet & {
 
 export type Salmon = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "salmon";
+  fishtype: "salmon" | "smart_salmon";
   location?: string;
   iswild?: boolean;
 };
 
 export type Shark = Fish & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  fishtype: "shark";
+  fishtype: "shark" | "sawshark" | "goblin" | "cookiecuttershark";
   age?: number;
   birthday: Date;
 };

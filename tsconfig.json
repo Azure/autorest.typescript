@@ -21,7 +21,8 @@
     "newLine": "LF",
     "outDir": "dist",
     "rootDir": ".",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "strictNullChecks": true
   },
   "include": ["src"],
   "exclude": ["dist", "resources", "node_modules", "**/*.d.ts", "generated"]

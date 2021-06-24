@@ -84,6 +84,18 @@ typescript-scope/emitter:
 output-artifact: typescript-files
 ```
 
+### REST Client Generator overrides
+
+```yaml $(rest-level-client)
+modelerfour:
+  # this runs a pre-namer step to clean up names
+  prenamer: true
+  flatten-models: false
+  flatten-payloads: false
+  always-create-content-type-parameter: true
+  group-parameters: false
+```
+
 ## Help
 
 ```yaml
