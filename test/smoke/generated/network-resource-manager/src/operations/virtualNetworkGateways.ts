@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   VirtualNetworkGateway,
   VirtualNetworkGatewaysListNextOptionalParams,
@@ -263,13 +263,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -361,13 +361,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       deleteOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -446,13 +446,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       updateTagsOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -564,13 +564,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       resetOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -642,13 +642,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       resetVpnClientSharedKeyOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -731,13 +731,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       generatevpnclientpackageOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -823,13 +823,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       generateVpnProfileOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -912,13 +912,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnProfilePackageUrlOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -996,13 +996,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       getBgpPeerStatusOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1097,13 +1097,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       getLearnedRoutesOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1184,13 +1184,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, peer, options },
       getAdvertisedRoutesOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1277,7 +1277,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1288,7 +1288,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       setVpnclientIpsecParametersOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1374,13 +1374,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnclientIpsecParametersOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1484,13 +1484,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       startPacketCaptureOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1570,13 +1570,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, parameters, options },
       stopPacketCaptureOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1660,13 +1660,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, options },
       getVpnclientConnectionHealthOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1741,13 +1741,13 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkGatewayName, request, options },
       disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

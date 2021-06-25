@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   WorkloadClassifier,
   WorkloadClassifiersListByWorkloadGroupNextOptionalParams,
@@ -227,7 +227,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -240,7 +240,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       },
       createOrUpdateOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -332,7 +332,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -344,7 +344,7 @@ export class WorkloadClassifiersImpl implements WorkloadClassifiers {
       },
       deleteOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

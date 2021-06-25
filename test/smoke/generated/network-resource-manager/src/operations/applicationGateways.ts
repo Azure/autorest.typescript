@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ApplicationGateway,
   ApplicationGatewaysListNextOptionalParams,
@@ -262,13 +262,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, options },
       deleteOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -364,13 +364,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, parameters, options },
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -489,13 +489,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, options },
       startOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -567,13 +567,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, options },
       stopOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -650,13 +650,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, options },
       backendHealthOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -736,13 +736,13 @@ export class ApplicationGatewaysImpl implements ApplicationGateways {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, applicationGatewayName, probeRequest, options },
       backendHealthOnDemandOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

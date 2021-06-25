@@ -12,8 +12,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
@@ -131,12 +131,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putNonRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -202,12 +202,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putNonRetry201Creating400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -274,12 +274,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putNonRetry201Creating400InvalidJsonOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -348,12 +348,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putAsyncRelativeRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -419,12 +419,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       deleteNonRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -489,12 +489,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       delete202NonRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -560,12 +560,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       deleteAsyncRelativeRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -631,12 +631,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       postNonRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -701,12 +701,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       post202NonRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -772,12 +772,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       postAsyncRelativeRetry400OperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -843,12 +843,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putError201NoProvisioningStatePayloadOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -917,12 +917,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -991,12 +991,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1060,12 +1060,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       delete204SucceededOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1131,12 +1131,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1202,12 +1202,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       post202NoLocationOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1274,12 +1274,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       postAsyncRelativeRetryNoPayloadOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1347,12 +1347,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       put200InvalidJsonOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1419,12 +1419,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1494,12 +1494,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1569,12 +1569,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       delete202RetryInvalidHeaderOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1641,12 +1641,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1717,12 +1717,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1791,12 +1791,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       post202RetryInvalidHeaderOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1864,12 +1864,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       postAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1940,12 +1940,12 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { options },
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

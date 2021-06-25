@@ -95,8 +95,8 @@ function regularAutorestPackage(
     tracingInfo,
     disablePagingAsyncIterators
   } = getAutorestOptions();
-  const hasLRO = clientDetails.operationGroups.some(og =>
-    og.operations.some(o => o.isLRO)
+  const hasLro = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLro)
   );
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;
@@ -112,7 +112,7 @@ function regularAutorestPackage(
       node: ">=12.0.0"
     },
     dependencies: {
-      ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
+      ...(hasLro && { "@azure/core-lro": "^1.0.5" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),

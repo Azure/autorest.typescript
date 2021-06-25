@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ExpressRouteCrossConnection,
   ExpressRouteCrossConnectionsListNextOptionalParams,
@@ -249,13 +249,13 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, crossConnectionName, parameters, options },
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -364,7 +364,7 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -376,7 +376,7 @@ export class ExpressRouteCrossConnectionsImpl
       listArpTableOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -466,7 +466,7 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -478,7 +478,7 @@ export class ExpressRouteCrossConnectionsImpl
       listRoutesTableSummaryOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -566,7 +566,7 @@ export class ExpressRouteCrossConnectionsImpl
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -578,7 +578,7 @@ export class ExpressRouteCrossConnectionsImpl
       listRoutesTableOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

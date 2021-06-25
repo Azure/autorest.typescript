@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   DatabaseAccountGetResults,
   DatabaseAccountsListOptionalParams,
@@ -414,12 +414,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, updateParameters, options },
       updateOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -502,12 +502,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, createUpdateParameters, options },
       createOrUpdateOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -583,12 +583,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, options },
       deleteOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -665,12 +665,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, failoverParameters, options },
       failoverPriorityChangeOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -809,12 +809,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, regionParameterForOffline, options },
       offlineRegionOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -891,12 +891,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, regionParameterForOnline, options },
       onlineRegionOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1007,12 +1007,12 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, keyToRegenerate, options },
       regenerateKeyOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

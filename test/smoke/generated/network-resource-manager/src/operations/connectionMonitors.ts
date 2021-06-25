@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ConnectionMonitorResult,
   ConnectionMonitorsListOptionalParams,
@@ -167,7 +167,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -179,7 +179,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -278,13 +278,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, networkWatcherName, connectionMonitorName, options },
       deleteOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -388,13 +388,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, networkWatcherName, connectionMonitorName, options },
       stopOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -471,13 +471,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, networkWatcherName, connectionMonitorName, options },
       startOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -559,13 +559,13 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, networkWatcherName, connectionMonitorName, options },
       queryOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

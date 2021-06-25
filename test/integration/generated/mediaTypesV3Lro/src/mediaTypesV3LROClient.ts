@@ -9,8 +9,8 @@
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "./lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "./coreClientLRO";
+import { LroPoller } from "./lro";
+import { CoreClientLro, shouldDeserializeLro } from "./coreClientLro";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
@@ -39,7 +39,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+      shouldDeserialize: shouldDeserializeLro(finalStateVia)
     };
     return operationOptions;
   }
@@ -147,12 +147,12 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       operationArguments,
       operationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

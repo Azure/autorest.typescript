@@ -164,20 +164,20 @@ function addPageableMethods(codeModel: CodeModel) {
       // NextLink methods should always send GET requests
       // More info: https://github.com/Azure/autorest/tree/master/docs/extensions#x-ms-pageable
       nextLinkRequestProtocol.method = "GET";
-      let isLRO = false;
+      let isLro = false;
 
-      // NextLink method can not be LRO
+      // NextLink method can not be Lro
       if (
         nextLinkMethod.extensions &&
         "x-ms-long-running-operation" in nextLinkMethod.extensions
       ) {
         delete nextLinkMethod.extensions["x-ms-long-running-operation"];
-        isLRO = true;
+        isLro = true;
       }
 
-      // Make sure there is a 200 response defined since LRO operations
+      // Make sure there is a 200 response defined since Lro operations
       // are only required to define the initial response in SWAGGER
-      inject200Response(nextLinkMethod, isLRO);
+      inject200Response(nextLinkMethod, isLro);
 
       // Create the nextLink parameter.
       // This will appear as a required parameter to the "Next" operation.
@@ -218,16 +218,16 @@ function addPageableMethods(codeModel: CodeModel) {
 
 /**
  * This function injects a 200 response definition if not present.
- * This is needed because SWAGGER only requires LRO operations to define
+ * This is needed because SWAGGER only requires Lro operations to define
  * the initial request response. By injecting 200 response definition we
  * allow core-http deserialization to handle it as success rather that failure
  * as by default it treats any response not defined as an error
  * @param nextLinkMethod method to inject the 200 response to
- * @param isLRO whether or not the operation is LRO
+ * @param isLro whether or not the operation is Lro
  */
-function inject200Response(nextLinkMethod: Operation, isLRO: boolean) {
-  // Only inject for LRO operations
-  if (!isLRO) {
+function inject200Response(nextLinkMethod: Operation, isLro: boolean) {
+  // Only inject for Lro operations
+  if (!isLro) {
     return;
   }
 
@@ -249,7 +249,7 @@ function inject200Response(nextLinkMethod: Operation, isLRO: boolean) {
 
     if (!successResponse) {
       throw new Error(
-        "Expected nextLink of LRO operation to have a success response defined"
+        "Expected nextLink of Lro operation to have a success response defined"
       );
     }
 

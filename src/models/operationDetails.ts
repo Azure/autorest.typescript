@@ -73,7 +73,7 @@ export interface OperationDetails {
   typeDetails: TypeDetails;
   mediaTypes: Set<KnownMediaType>;
   pagination?: PaginationDetails;
-  isLRO: boolean;
+  isLro: boolean;
   lroOptions?: { "final-state-via": string };
   scope?: Scope;
   namePrefix?: string;

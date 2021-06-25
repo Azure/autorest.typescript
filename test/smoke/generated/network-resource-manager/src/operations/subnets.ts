@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   Subnet,
   SubnetsListNextOptionalParams,
@@ -169,13 +169,13 @@ export class SubnetsImpl implements Subnets {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualNetworkName, subnetName, options },
       deleteOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -278,7 +278,7 @@ export class SubnetsImpl implements Subnets {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -290,7 +290,7 @@ export class SubnetsImpl implements Subnets {
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -373,7 +373,7 @@ export class SubnetsImpl implements Subnets {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -385,7 +385,7 @@ export class SubnetsImpl implements Subnets {
       prepareNetworkPoliciesOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -469,7 +469,7 @@ export class SubnetsImpl implements Subnets {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -481,7 +481,7 @@ export class SubnetsImpl implements Subnets {
       unprepareNetworkPoliciesOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

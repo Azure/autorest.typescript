@@ -14,8 +14,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "../lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "../coreClientLRO";
+import { LroPoller } from "../lro";
+import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   SqlDatabaseGetResults,
   SqlResourcesListSqlDatabasesOptionalParams,
@@ -537,7 +537,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -548,7 +548,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlDatabaseOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -628,12 +628,12 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, databaseName, options },
       deleteSqlDatabaseOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -738,7 +738,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -749,7 +749,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlDatabaseThroughputOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -879,7 +879,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -891,7 +891,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlContainerOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -976,12 +976,12 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, accountName, databaseName, containerName, options },
       deleteSqlContainerOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1092,7 +1092,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1104,7 +1104,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlContainerThroughputOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1251,7 +1251,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1264,7 +1264,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlStoredProcedureOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1355,7 +1355,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1367,7 +1367,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlStoredProcedureOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1515,7 +1515,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1528,7 +1528,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlUserDefinedFunctionOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1619,7 +1619,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1631,7 +1631,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlUserDefinedFunctionOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1776,7 +1776,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1789,7 +1789,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlTriggerOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1879,7 +1879,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       {
         resourceGroupName,
@@ -1891,7 +1891,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlTriggerOperationSpec
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

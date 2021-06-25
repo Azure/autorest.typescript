@@ -145,7 +145,10 @@ describe("LROs", () => {
         await client.lROs.beginPut200Acceptedcanceled200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Provisioning state: canceled");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: canceled."
+        );
       }
     });
 
@@ -163,7 +166,10 @@ describe("LROs", () => {
         await client.lROs.beginPut201CreatingFailed200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Provisioning state: failed");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: failed."
+        );
       }
     });
   });
@@ -181,7 +187,10 @@ describe("LROs", () => {
         await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation failed");
+        assert.equal(
+          e.message,
+          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
+        );
       }
     });
 
@@ -190,7 +199,10 @@ describe("LROs", () => {
         await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation failed");
+        assert.equal(
+          e.message,
+          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
+        );
       }
     });
 
@@ -234,7 +246,10 @@ describe("LROs", () => {
         await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation failed");
+        assert.equal(
+          e.message,
+          "Received unexpected HTTP status code 204 while polling. This may indicate a server issue."
+        );
       }
     });
 

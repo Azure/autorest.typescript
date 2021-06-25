@@ -11,8 +11,8 @@ import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LROPoller } from "./lro";
-import { CoreClientLRO, shouldDeserializeLRO } from "./coreClientLRO";
+import { LroPoller } from "./lro";
+import { CoreClientLro, shouldDeserializeLro } from "./coreClientLro";
 import {
   ApplicationGatewaysImpl,
   ApplicationSecurityGroupsImpl,
@@ -766,13 +766,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, bastionHostName, bslRequest, options },
       putBastionShareableLinkOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -827,13 +827,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, bastionHostName, bslRequest, options },
       deleteBastionShareableLinkOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -932,13 +932,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, bastionHostName, options },
       getActiveSessionsOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**
@@ -1056,13 +1056,13 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       };
     };
 
-    const lro = new CoreClientLRO(
+    const lro = new CoreClientLro(
       sendOperation,
       { resourceGroupName, virtualWANName, vpnClientParams, options },
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
       "location"
     );
-    return new LROPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
   }
 
   /**

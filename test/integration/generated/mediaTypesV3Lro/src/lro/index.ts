@@ -6,19 +6,21 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export { LROPoller } from "./lroPoller";
-export { createGetLROStatusFromResponse } from "./stateMachine";
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT license.
+
+export { LroPoller } from "./lroPoller";
+export { createGetLroStatusFromResponse } from "./stateMachine";
 export {
   FinalStateVia,
-  GetLROStatusFromResponse,
+  GetLroStatusFromResponse,
   RawResponse,
-  RawHttpHeaders,
-  LROBody,
-  LRO,
-  LROConfig,
-  LROMode,
-  LROResponse,
-  LROStatus,
-  LROPollerOptions,
-  terminalStates
+  LongRunningOperation,
+  LroConfig,
+  LroMode,
+  LroResponse,
+  LroStatus,
+  LroTerminalState,
+  LroInProgressState,
+  LroPollerOptions
 } from "./models";

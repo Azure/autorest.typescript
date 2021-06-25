@@ -35,8 +35,8 @@ export function generateClientContext(
     param => param.implementationLocation === ImplementationLocation.Client
   );
 
-  const hasLRO = clientDetails.operationGroups.some(og =>
-    og.operations.some(o => o.isLRO)
+  const hasLro = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLro)
   );
 
   const clientContextClassName = `${clientDetails.className}Context`;
@@ -82,11 +82,11 @@ export function generateClientContext(
       clientParams,
       clientDetails
     },
-    hasLRO
+    hasLro
   );
 
   const hasCredentials = !!addCredentials;
-  writeImports(sourceFile, hasLRO, importedModels, hasCredentials);
+  writeImports(sourceFile, hasLro, importedModels, hasCredentials);
   sourceFile.fixUnusedIdentifiers();
 }
 
@@ -97,7 +97,7 @@ interface WriteConstructorBodyParameters {
 
 function writeImports(
   sourceFile: SourceFile,
-  hasLRO: boolean,
+  hasLro: boolean,
   importedModels: Set<string>,
   hasCredentials: boolean
 ) {
@@ -163,7 +163,7 @@ function writeClassProperties(
 function writeConstructorBody(
   classConstructor: ConstructorDeclaration,
   { clientParams, clientDetails }: WriteConstructorBodyParameters,
-  hasLRO: boolean
+  hasLro: boolean
 ) {
   const { useCoreV2 } = getAutorestOptions();
 
@@ -176,7 +176,7 @@ function writeConstructorBody(
     writeStatement(
       writeDefaultOptions(
         clientParams.some(p => p.name === "credentials"),
-        hasLRO,
+        hasLro,
         clientDetails
       )
     )
@@ -225,7 +225,7 @@ function getCredentialScopesValue(credentialScopes?: string | string[]) {
 
 function writeDefaultOptions(
   hasCredentials: boolean,
-  hasLRO: boolean,
+  hasLro: boolean,
   clientDetails: ClientDetails
 ) {
   const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();

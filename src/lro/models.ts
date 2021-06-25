@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+// Licensed under the MIT license.
 
 import { PollOperationState } from "@azure/core-lro";
 
 /**
- * Options for the LRO poller.
+ * Options for the Lro poller.
  */
-export interface LROPollerOptions {
+export interface LroPollerOptions {
   /**
    * Defines how much time the poller is going to wait before making a new request to the service.
    */
@@ -17,43 +17,66 @@ export interface LROPollerOptions {
   resumeFrom?: string;
 }
 
-/**
- * A HttpHeaders collection represented as a simple JSON object.
- */
-export declare type RawHttpHeaders = {
-  [headerName: string]: string;
-};
-
 export const successStates = ["succeeded"];
 export const failureStates = ["failed", "canceled", "cancelled"];
+/**
+ * The Lro states that signal that the Lro has completed.
+ */
 export const terminalStates = successStates.concat(failureStates);
 
+/**
+ * The potential location of the result of the Lro if specified by the Lro extension in the swagger.
+ */
 export type FinalStateVia =
   | "azure-async-operation"
   | "location"
   | "original-uri";
 
-export interface LROBody extends Record<string, unknown> {
+/**
+ * The type of a Lro response body. This is just a convenience type for checking the status of the operation.
+ */
+
+export interface LroBody extends Record<string, unknown> {
+  /** The status of the operation. */
   status?: string;
+  /** The state of the provisioning process */
   provisioningState?: string;
+  /** The properties of the provisioning process */
   properties?: { provisioningState?: string } & Record<string, unknown>;
 }
 
+/**
+ * Simple type of the raw response.
+ */
 export interface RawResponse {
+  /** The HTTP status code */
   statusCode: number;
-  headers: RawHttpHeaders;
-  body?: LROBody;
+  /** A HttpHeaders collection in the response represented as a simple JSON object where all header names have been normalized to be lower-case. */
+  headers: {
+    [headerName: string]: string;
+  };
+  /** The parsed response body */
+  body?: unknown;
 }
 
-export interface LROResponse<T> {
+/**
+ * The type of the response of a Lro.
+ */
+export interface LroResponse<T> {
   flatResponse: T;
   rawResponse: RawResponse;
 }
 
-export type LROMode = "AzureAsync" | "Location" | "Body";
+/** The type of which Lro implementation being followed by a specific API. */
+export type LroMode = "AzureAsync" | "Location" | "Body";
 
-export interface LROConfig {
-  mode?: LROMode;
+/**
+ * The configuration of a Lro to determine how to perform polling and checking whether the operation has completed.
+ */
+export interface LroConfig {
+  /** The Lro mode */
+  mode?: LroMode;
+  /** The path of a provisioned resource */
   resourceLocation?: string;
 }
 
@@ -62,7 +85,7 @@ export interface LROConfig {
  */
 export type ResumablePollOperationState<T> = PollOperationState<T> & {
   initialRawResponse?: RawResponse;
-  config?: LROConfig;
+  config?: LroConfig;
   pollingURL?: string;
 };
 
@@ -71,9 +94,9 @@ export interface PollerConfig {
 }
 
 /**
- * The type of a terminal state of an LRO.
+ * The type of a terminal state of an Lro.
  */
-interface LROTerminalState<T> extends LROResponse<T> {
+export interface LroTerminalState<T> extends LroResponse<T> {
   /**
    * Whether the operation has finished.
    */
@@ -81,9 +104,9 @@ interface LROTerminalState<T> extends LROResponse<T> {
 }
 
 /**
- * The type of an in-progress state of an LRO.
+ * The type of an in-progress state of an Lro.
  */
-interface LROInProgressState<T> extends LROResponse<T> {
+export interface LroInProgressState<T> extends LroResponse<T> {
   /**
    * Whether the operation has finished.
    */
@@ -92,23 +115,26 @@ interface LROInProgressState<T> extends LROResponse<T> {
    * The request to be sent next if it is different from the standard polling one.
    * Notice that it will disregard any polling URLs provided to it.
    */
-  next?: () => Promise<LROStatus<T>>;
+  next?: () => Promise<LroStatus<T>>;
 }
 
 /**
- * The type of an LRO state which is a tagged union of terminal and in-progress states.
+ * The type of an Lro state which is a tagged union of terminal and in-progress states.
  */
-export type LROStatus<T> = LROTerminalState<T> | LROInProgressState<T>;
+export type LroStatus<T> = LroTerminalState<T> | LroInProgressState<T>;
 
-export type GetLROStatusFromResponse<T> = (
+/**
+ * The type of the getLroStatusFromResponse method. It takes the response as input and returns along the response whether the operation has finished.
+ */
+export type GetLroStatusFromResponse<T> = (
   rawResponse: RawResponse,
   flatResponse: T
-) => LROStatus<T>;
+) => LroStatus<T>;
 
 /**
  * Description of a long running operation.
  */
-export interface LRO<T> {
+export interface LongRunningOperation<T> {
   /**
    * The request path.
    */
@@ -125,13 +151,13 @@ export interface LRO<T> {
       rawResponse: RawResponse,
       flatResponse: unknown
     ) => boolean
-  ) => Promise<LROResponse<T>>;
+  ) => Promise<LroResponse<T>>;
   /**
    * A function that can be used to poll for the current status of a long running operation.
    */
-  sendPollRequest: (config: LROConfig, path?: string) => Promise<LROStatus<T>>;
+  sendPollRequest: (config: LroConfig, path: string) => Promise<LroStatus<T>>;
   /**
    * A function that can be used to retrieve the provisioned azure resource.
    */
-  retrieveAzureAsyncResource: (path?: string) => Promise<LROStatus<T>>;
+  retrieveAzureAsyncResource: (path?: string) => Promise<LroStatus<T>>;
 }

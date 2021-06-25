@@ -1,22 +1,23 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+// Licensed under the MIT license.
 
 import {
   failureStates,
   FinalStateVia,
-  LRO,
-  LROResponse,
-  LROStatus,
+  LongRunningOperation,
+  LroBody,
+  LroResponse,
+  LroStatus,
   RawResponse,
   successStates
 } from "./models";
 
 function getResponseStatus(rawResponse: RawResponse): string {
-  const { status } = rawResponse.body ?? {};
+  const { status } = (rawResponse.body as LroBody) ?? {};
   return status?.toLowerCase() ?? "succeeded";
 }
 
-function isAzureAsyncPollingDone(rawResponse: RawResponse) {
+function isAzureAsyncPollingDone(rawResponse: RawResponse): boolean {
   const state = getResponseStatus(rawResponse);
   if (failureStates.includes(state)) {
     throw new Error(`Operation status: ${state}`);
@@ -24,15 +25,28 @@ function isAzureAsyncPollingDone(rawResponse: RawResponse) {
   return successStates.includes(state);
 }
 
+async function sendFinalRequest<TResult>(
+  lro: LongRunningOperation<TResult>,
+  finalStateVia?: FinalStateVia,
+  resourceLocation?: string
+): Promise<LroResponse<TResult> | undefined> {
+  switch (finalStateVia) {
+    case "original-uri":
+      return lro.retrieveAzureAsyncResource();
+    case "azure-async-operation":
+      return Promise.resolve(undefined);
+    case "location":
+    default:
+      return lro.retrieveAzureAsyncResource(resourceLocation);
+  }
+}
+
 export function processAzureAsyncOperationResult<TResult>(
-  lro: LRO<TResult>,
+  lro: LongRunningOperation<TResult>,
   resourceLocation?: string,
   finalStateVia?: FinalStateVia
-): (rawResponse: RawResponse, flatResponse: TResult) => LROStatus<TResult> {
-  return (
-    rawResponse: RawResponse,
-    flatResponse: TResult
-  ): LROStatus<TResult> => {
+): (rawResponse: RawResponse, flatResponse: TResult) => LroStatus<TResult> {
+  return (rawResponse: RawResponse, flatResponse: TResult): LroStatus<TResult> => {
     if (isAzureAsyncPollingDone(rawResponse)) {
       if (resourceLocation === undefined) {
         return { rawResponse, flatResponse, done: true };
@@ -42,20 +56,7 @@ export function processAzureAsyncOperationResult<TResult>(
           flatResponse,
           done: false,
           next: async () => {
-            async function sendFinalRequest(): Promise<
-              LROResponse<TResult> | undefined
-            > {
-              switch (finalStateVia) {
-                case "original-uri":
-                  return lro.retrieveAzureAsyncResource();
-                case "azure-async-operation":
-                  return Promise.resolve(undefined);
-                case "location":
-                default:
-                  return lro.retrieveAzureAsyncResource(resourceLocation);
-              }
-            }
-            const finalResponse = await sendFinalRequest();
+            const finalResponse = await sendFinalRequest(lro, finalStateVia, resourceLocation);
             return {
               ...(finalResponse ?? {
                 rawResponse,

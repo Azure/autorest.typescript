@@ -1,37 +1,37 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+// Licensed under the MIT license.
 
 import { AbortSignalLike } from "@azure/abort-controller";
 import { PollOperation, PollOperationState } from "@azure/core-lro";
 import {
   PollerConfig,
   ResumablePollOperationState,
-  LRO,
-  LROStatus
+  LongRunningOperation,
+  LroStatus
 } from "./models";
-import { getPollingURL } from "./requestUtils";
-import { createInitializeState, createPollForLROStatus } from "./stateMachine";
+import { getPollingUrl } from "./requestUtils";
+import { createInitializeState, createPollForLroStatus } from "./stateMachine";
 
 export class GenericPollOperation<
   TResult,
   TState extends PollOperationState<TResult>
 > implements PollOperation<TState, TResult> {
-  private GetLROStatusFromResponse?: (
+  private GetLroStatusFromResponse?: (
     pollingURL: string,
     pollerConfig: PollerConfig
-  ) => Promise<LROStatus<TResult>>;
+  ) => Promise<LroStatus<TResult>>;
   private pollerConfig?: PollerConfig;
   constructor(
     public state: TState & ResumablePollOperationState<TResult>,
-    private lro: LRO<TResult>
+    private lro: LongRunningOperation<TResult>
   ) {}
 
-  public setPollerConfig(pollerConfig: PollerConfig) {
+  public setPollerConfig(pollerConfig: PollerConfig): void {
     this.pollerConfig = pollerConfig;
   }
 
   /**
-   * General update function for LROPoller, the general process is as follows
+   * General update function for LroPoller, the general process is as follows
    * 1. Check initial operation result to determine the strategy to use
    *  - Strategies: Location, Azure-AsyncOperation, Original Uri
    * 2. Check if the operation result has a terminal state
@@ -60,19 +60,23 @@ export class GenericPollOperation<
     }
 
     if (!state.isCompleted) {
-      if (this.GetLROStatusFromResponse === undefined) {
+      if (this.GetLroStatusFromResponse === undefined) {
         if (state.config === undefined) {
-          throw new Error("Bad state: LRO mode is undefined");
+          throw new Error(
+            "Bad state: Lro mode is undefined. Please check if the serialized state is well-formed."
+          );
         }
-        this.GetLROStatusFromResponse = createPollForLROStatus(
+        this.GetLroStatusFromResponse = createPollForLroStatus(
           this.lro,
           state.config
         );
       }
       if (state.pollingURL === undefined) {
-        throw new Error("Bad state: polling URL is undefined");
+        throw new Error(
+          "Bad state: polling URL is undefined. Please check if the serialized state is well-formed."
+        );
       }
-      const currentState = await this.GetLROStatusFromResponse(
+      const currentState = await this.GetLroStatusFromResponse(
         state.pollingURL,
         this.pollerConfig!
       );
@@ -80,17 +84,15 @@ export class GenericPollOperation<
         state.result = currentState.flatResponse;
         state.isCompleted = true;
       } else {
-        this.GetLROStatusFromResponse =
-          currentState.next ?? this.GetLROStatusFromResponse;
-        state.pollingURL = getPollingURL(
+        this.GetLroStatusFromResponse =
+          currentState.next ?? this.GetLroStatusFromResponse;
+        state.pollingURL = getPollingUrl(
           currentState.rawResponse,
           state.pollingURL
         );
       }
     }
-    if (options?.fireProgress !== undefined) {
-      options.fireProgress(state);
-    }
+    options?.fireProgress?.(state);
     return this;
   }
 

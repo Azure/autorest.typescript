@@ -17,29 +17,32 @@ import {
 } from "@azure/core-client";
 import {
   FinalStateVia,
-  GetLROStatusFromResponse,
-  LRO,
-  LROConfig,
-  LROMode,
-  LROResponse,
-  LROStatus,
-  createGetLROStatusFromResponse,
-  terminalStates,
+  GetLroStatusFromResponse,
+  LongRunningOperation,
+  LroConfig,
+  LroMode,
+  LroResponse,
+  LroStatus,
+  createGetLroStatusFromResponse,
   RawResponse
 } from "./lro";
+
+export const successStates = ["succeeded"];
+export const failureStates = ["failed", "canceled", "cancelled"];
+export const terminalStates = successStates.concat(failureStates);
 
 export type SendOperationFn<T> = (
   args: OperationArguments,
   spec: OperationSpec
-) => Promise<LROResponse<T>>;
+) => Promise<LroResponse<T>>;
 
 export function createPollingMethod<TResult>(
   sendOperationFn: SendOperationFn<TResult>,
-  GetLROStatusFromResponse: GetLROStatusFromResponse<TResult>,
+  GetLroStatusFromResponse: GetLroStatusFromResponse<TResult>,
   args: OperationArguments,
   spec: OperationSpec,
-  mode?: LROMode
-): (path?: string) => Promise<LROStatus<TResult>> {
+  mode?: LroMode
+): (path?: string) => Promise<LroStatus<TResult>> {
   /**
    * Polling calls will always return a status object i.e. {"status": "success"}
    * these intermediate responses are not described in the swagger so we need to
@@ -74,7 +77,7 @@ export function createPollingMethod<TResult>(
       };
     }, {} as { [responseCode: string]: OperationResponseMap });
   }
-  let response: LROStatus<TResult> | undefined = undefined;
+  let response: LroStatus<TResult> | undefined = undefined;
   const customerCallback = args?.options?.onResponse;
   const updatedArgs = {
     ...args,
@@ -84,7 +87,7 @@ export function createPollingMethod<TResult>(
         rawResponse: FullOperationResponse,
         flatResponse: unknown
       ): void => {
-        response = GetLROStatusFromResponse(
+        response = GetLroStatusFromResponse(
           {
             statusCode: rawResponse.status,
             body: rawResponse.parsedBody,
@@ -124,10 +127,10 @@ export function createPollingMethod<TResult>(
 
 /**
  * We need to selectively deserialize our responses, only deserializing if we
- * are in a final LRO response, not deserializing any polling non-terminal responses
+ * are in a final Lro response, not deserializing any polling non-terminal responses
  */
-export function shouldDeserializeLRO(finalStateVia?: string) {
-  let initialOperationInfo: LROResponseInfo | undefined;
+export function shouldDeserializeLro(finalStateVia?: string) {
+  let initialOperationInfo: LroResponseInfo | undefined;
   let isInitialRequest = true;
 
   return (response: FullOperationResponse) => {
@@ -136,7 +139,7 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
     }
 
     if (!initialOperationInfo) {
-      initialOperationInfo = getLROData(response);
+      initialOperationInfo = getLroData(response);
     } else {
       isInitialRequest = false;
     }
@@ -169,7 +172,7 @@ export function shouldDeserializeLRO(finalStateVia?: string) {
 
 function isAsyncOperationFinalResponse(
   response: FullOperationResponse,
-  initialOperationInfo: LROResponseInfo,
+  initialOperationInfo: LroResponseInfo,
   finalStateVia?: string
 ): boolean {
   const status: string = response.parsedBody?.status || "Succeeded";
@@ -214,14 +217,14 @@ function isBodyPollingFinalResponse(response: FullOperationResponse): boolean {
   return false;
 }
 
-interface LROResponseInfo {
+interface LroResponseInfo {
   requestMethod: string;
   azureAsyncOperation?: string;
   operationLocation?: string;
   location?: string;
 }
 
-function getLROData(result: FullOperationResponse): LROResponseInfo {
+function getLroData(result: FullOperationResponse): LroResponseInfo {
   return {
     azureAsyncOperation: result.headers.get("azure-asyncoperation"),
     operationLocation: result.headers.get("operation-location"),
@@ -238,7 +241,7 @@ export function getSpecPath(spec: OperationSpec): string {
   }
 }
 
-export class CoreClientLRO<T> implements LRO<T> {
+export class CoreClientLro<T> implements LongRunningOperation<T> {
   constructor(
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
@@ -252,7 +255,7 @@ export class CoreClientLRO<T> implements LRO<T> {
       rawResponse: RawResponse,
       flatResponse: unknown
     ) => boolean
-  ): Promise<LROResponse<T>> {
+  ): Promise<LroResponse<T>> {
     const { onResponse, ...restOptions } = this.args.options || {};
     return this.sendOperationFn(
       {
@@ -282,17 +285,17 @@ export class CoreClientLRO<T> implements LRO<T> {
   }
 
   public async sendPollRequest(
-    config: LROConfig,
-    path?: string
-  ): Promise<LROStatus<T>> {
-    const getLROStatusFromResponse = createGetLROStatusFromResponse(
+    config: LroConfig,
+    path: string
+  ): Promise<LroStatus<T>> {
+    const getLroStatusFromResponse = createGetLroStatusFromResponse(
       this,
       config,
       this.finalStateVia
     );
     return createPollingMethod(
       this.sendOperationFn,
-      getLROStatusFromResponse,
+      getLroStatusFromResponse,
       this.args,
       this.spec,
       config.mode
@@ -301,7 +304,7 @@ export class CoreClientLRO<T> implements LRO<T> {
 
   public async retrieveAzureAsyncResource(
     path?: string
-  ): Promise<LROStatus<T>> {
+  ): Promise<LroStatus<T>> {
     const updatedArgs = { ...this.args };
     if (updatedArgs.options) {
       (updatedArgs.options as any).shouldDeserialize = true;

@@ -144,7 +144,7 @@ export function writeGetOperationOptions(
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia),
+      shouldDeserialize: shouldDeserializeLro(finalStateVia),
     };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
@@ -152,7 +152,7 @@ export function writeGetOperationOptions(
     const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia),
+      shouldDeserialize: shouldDeserializeLro(finalStateVia),
     };
     return operationOptions;`
   });
@@ -447,7 +447,7 @@ function getReturnType(
     modelNames
   );
 
-  return operation.isLRO
+  return operation.isLro
     ? `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
     : `Promise<${responseName}>`;
 }
@@ -506,7 +506,7 @@ function addClass(
     false /** isInline */
   );
 
-  if (hasLROOperation(operationGroupDetails)) {
+  if (hasLroOperation(operationGroupDetails)) {
     writeGetOperationOptions(operationGroupClass);
   }
 
@@ -579,7 +579,7 @@ export function writeOperations(
       docs: [
         generateOperationJSDoc(baseMethodParameters, operation.description)
       ],
-      isAsync: operation.isLRO || Boolean(tracingInfo)
+      isAsync: operation.isLro || Boolean(tracingInfo)
     });
 
     addOperationOverloads(
@@ -601,7 +601,7 @@ export function writeOperations(
     /**
      * Create a simple method that blocks and waits for the result
      */
-    if (operation.isLRO && operation.pagination === undefined) {
+    if (operation.isLro && operation.pagination === undefined) {
       const responseName = getOperationResponseType(
         operation,
         importedModels,
@@ -734,17 +734,17 @@ function addOperationOverloads(
 /**
  * Convert OperationOptions to RequestBaseOptions
  * @param options the name of the options parameter.
- * @param isLRO whether the operation is an LRO.
+ * @param isLro whether the operation is an Lro.
  */
 function compileOperationOptionsToRequestOptionsBase(
   options: string,
-  isLRO: boolean,
+  isLro: boolean,
   finalStateVia?: string
 ): string {
   const { useCoreV2 } = getAutorestOptions();
-  // In LRO we have a couple extra properties to add that's why we use
+  // In Lro we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
-  return isLRO
+  return isLro
     ? `this.getOperationOptions(${options}${
         finalStateVia === undefined ? "" : `, "${finalStateVia}"`
       })`
@@ -784,13 +784,13 @@ function writeNoOverloadsOperationBody(
     // Options from createSpan should be used as operation options, updating
     options = compileOperationOptionsToRequestOptionsBase(
       updatedOptionsName,
-      operation.isLRO,
+      operation.isLro,
       finalStateVia
     );
   } else {
     options = compileOperationOptionsToRequestOptionsBase(
       vanillaOptionsName,
-      operation.isLRO,
+      operation.isLro,
       finalStateVia
     );
   }
@@ -812,9 +812,9 @@ function writeNoOverloadsOperationBody(
     );
   }
 
-  if (operation.isLRO) {
+  if (operation.isLro) {
     if (!useCoreV2) {
-      writeLROOperationBody(
+      writeLroOperationBody(
         "operationArguments",
         responseName,
         operationSpecName,
@@ -824,7 +824,7 @@ function writeNoOverloadsOperationBody(
         !!tracingInfo
       );
     } else {
-      writeLROOperationBody(
+      writeLroOperationBody(
         `{${sendParams}}`,
         responseName,
         operationSpecName,
@@ -919,7 +919,7 @@ function getTracingTryCatchStatement(
   }
 }
 
-function writeLROOperationBody(
+function writeLroOperationBody(
   operationParamsName: string,
   responseName: string,
   operationSpecName: string,
@@ -979,12 +979,12 @@ function writeLROOperationBody(
         headers: currentRawResponse!.headers.toJSON()
       }};
   }`;
-  const LROClassName = useCoreV2 ? "CoreClientLRO" : "CoreHttpLRO";
+  const LroClassName = useCoreV2 ? "CoreClientLro" : "CoreHttpLro";
   methodDeclaration.addStatements([
     sendOperationStatement,
-    `const lro = new ${LROClassName}(sendOperation,${operationParamsName},
+    `const lro = new ${LroClassName}(sendOperation,${operationParamsName},
       ${operationSpecName},${finalStateStr})`,
-    `return new LROPoller({intervalInMs: options?.updateIntervalInMs},
+    `return new LroPoller({intervalInMs: options?.updateIntervalInMs},
       lro
     );`
   ]);
@@ -1100,7 +1100,7 @@ function writeMultiMediaTypeOperationBody(
       tracingStatement,
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         outputOptionsVarName,
-        operation.isLRO,
+        operation.isLro,
         finalStateVia
       )};`
     ]);
@@ -1108,13 +1108,13 @@ function writeMultiMediaTypeOperationBody(
     operationMethod.addStatements([
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         optionsVarName,
-        operation.isLRO,
+        operation.isLro,
         finalStateVia
       )};`
     ]);
   }
 
-  if (!operation.isLRO) {
+  if (!operation.isLro) {
     writeSendOperationRequest(
       responseName,
       operationMethod,
@@ -1124,7 +1124,7 @@ function writeMultiMediaTypeOperationBody(
       "operationArguments"
     );
   } else {
-    writeLROOperationBody(
+    writeLroOperationBody(
       "operationArguments",
       responseName,
       "operationSpec",
@@ -1334,29 +1334,29 @@ function addImports(
     moduleSpecifier: `../${clientContextFileName}`
   });
 
-  if (hasLROOperation(operationGroupDetails)) {
+  if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
       namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LROPoller"],
+      namedImports: ["LroPoller"],
       moduleSpecifier: `../lro`
     });
     if (useCoreV2) {
       operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreClientLRO", "shouldDeserializeLRO"],
-        moduleSpecifier: `../coreClientLRO`
+        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
+        moduleSpecifier: `../coreClientLro`
       });
     } else {
       operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreHttpLRO", "shouldDeserializeLRO"],
-        moduleSpecifier: `../coreHttpLRO`
+        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
+        moduleSpecifier: `../coreHttpLro`
       });
     }
   }
 }
 
-export function hasLROOperation(operationGroupDetails: OperationGroupDetails) {
-  return operationGroupDetails.operations.some(o => o.isLRO);
+export function hasLroOperation(operationGroupDetails: OperationGroupDetails) {
+  return operationGroupDetails.operations.some(o => o.isLro);
 }

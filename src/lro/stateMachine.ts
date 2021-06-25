@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
+// Licensed under the MIT license.
 
 import { processAzureAsyncOperationResult } from "./azureAsyncPolling";
 import {
@@ -9,24 +9,25 @@ import {
 import { processLocationPollingOperationResult } from "./locationPolling";
 import {
   FinalStateVia,
-  LRO,
-  LROConfig,
-  LROStatus,
+  GetLroStatusFromResponse,
+  LongRunningOperation,
+  LroConfig,
+  LroStatus,
   PollerConfig,
   RawResponse,
   ResumablePollOperationState
 } from "./models";
 import { processPassthroughOperationResult } from "./passthrough";
-import { getPollingURL, inferLROMode } from "./requestUtils";
+import { getPollingUrl, inferLroMode } from "./requestUtils";
 
 /**
- * creates a stepping function that maps an LRO state to another.
+ * creates a stepping function that maps an Lro state to another.
  */
-export function createGetLROStatusFromResponse<TResult>(
-  lroPrimitives: LRO<TResult>,
-  config: LROConfig,
+export function createGetLroStatusFromResponse<TResult>(
+  lroPrimitives: LongRunningOperation<TResult>,
+  config: LroConfig,
   finalStateVia?: FinalStateVia
-): (rawResponse: RawResponse, flatResponse: TResult) => LROStatus<TResult> {
+): GetLroStatusFromResponse<TResult> {
   switch (config.mode) {
     case "AzureAsync": {
       return processAzureAsyncOperationResult(
@@ -48,22 +49,22 @@ export function createGetLROStatusFromResponse<TResult>(
 }
 
 /**
- * Creates a polling operation that returns a LRO state.
+ * Creates a polling operation that returns a Lro state.
  */
-export function createPollForLROStatus<TResult>(
-  lroPrimitives: LRO<TResult>,
-  config: LROConfig
+export function createPollForLroStatus<TResult>(
+  lroPrimitives: LongRunningOperation<TResult>,
+  config: LroConfig
 ): (
   pollingURL: string,
   pollerConfig: PollerConfig
-) => Promise<LROStatus<TResult>> {
+) => Promise<LroStatus<TResult>> {
   return async (
     path: string,
     pollerConfig: PollerConfig
-  ): Promise<LROStatus<TResult>> => {
+  ): Promise<LroStatus<TResult>> => {
     const response = await lroPrimitives.sendPollRequest(config, path);
     const retryAfter: string | undefined =
-      response.rawResponse.headers["Retry-After"];
+      response.rawResponse.headers["retry-after"];
     if (retryAfter !== undefined) {
       const retryAfterInMs = parseInt(retryAfter);
       pollerConfig.intervalInMs = isNaN(retryAfterInMs)
@@ -73,7 +74,7 @@ export function createPollForLROStatus<TResult>(
           )
         : retryAfterInMs;
     }
-    return response!;
+    return response;
   };
 }
 
@@ -91,12 +92,12 @@ function calculatePollingIntervalFromDate(
 
 /**
  * Creates a callback to be used to initialize the polling operation state.
- * @param state of the polling operation
- * @param operationSpec of the LRO
- * @param callback callback to be called when the operation is done
+ * @param state - of the polling operation
+ * @param operationSpec - of the Lro
+ * @param callback - callback to be called when the operation is done
  * @returns callback that initializes the state of the polling operation
  */
-export function createInitializeState<TResult, TState>(
+export function createInitializeState<TResult>(
   state: ResumablePollOperationState<TResult>,
   requestPath: string,
   requestMethod: string
@@ -104,8 +105,8 @@ export function createInitializeState<TResult, TState>(
   return (rawResponse: RawResponse, flatResponse: unknown) => {
     state.initialRawResponse = rawResponse;
     state.isStarted = true;
-    state.pollingURL = getPollingURL(state.initialRawResponse, requestPath);
-    state.config = inferLROMode(
+    state.pollingURL = getPollingUrl(state.initialRawResponse, requestPath);
+    state.config = inferLroMode(
       requestPath,
       requestMethod,
       state.initialRawResponse
@@ -119,6 +120,6 @@ export function createInitializeState<TResult, TState>(
       state.result = flatResponse as TResult;
       state.isCompleted = true;
     }
-    return !!state.isCompleted;
+    return Boolean(state.isCompleted);
   };
 }
