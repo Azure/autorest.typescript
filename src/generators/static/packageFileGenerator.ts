@@ -141,6 +141,7 @@ function regularAutorestPackage(
     },
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
+      ...(hasLRO && { "@azure/abort-controller": "^1.0.4" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
