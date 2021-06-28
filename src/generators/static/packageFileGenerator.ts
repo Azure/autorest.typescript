@@ -119,7 +119,8 @@ function regularAutorestPackage(
     useCoreV2,
     tracingInfo,
     disablePagingAsyncIterators,
-    azureArm
+    azureArm,
+    addCredentials
   } = getAutorestOptions();
   const hasLRO = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLRO)
@@ -143,6 +144,7 @@ function regularAutorestPackage(
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.1.4" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "1.0.0-beta.2"
       }),
