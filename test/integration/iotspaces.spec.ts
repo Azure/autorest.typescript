@@ -3,8 +3,6 @@ import { TokenCredential } from "@azure/core-auth";
 import { assert } from "chai";
 
 describe("Integration tests for IoTSpaces", () => {
-  let client: IoTSpacesClient;
-
   it("should create a client successfully", async () => {
     const expectedScopes = [
       "https://microsoft.com/.default",
@@ -21,7 +19,10 @@ describe("Integration tests for IoTSpaces", () => {
       }
     };
 
-    client = new IoTSpacesClient(mockCredential);
+    const client: IoTSpacesClient = new IoTSpacesClient(mockCredential, {
+      credentialScopes: expectedScopes
+    });
+
     assert.notEqual(client, null);
   });
 });
