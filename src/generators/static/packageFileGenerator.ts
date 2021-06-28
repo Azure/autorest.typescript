@@ -88,7 +88,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     },
     dependencies: {
       "@azure-rest/core-client": "1.0.0-beta.4",
-      "@azure/core-auth": "^1.1.4",
+      "@azure/core-auth": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.0.4"
     },
     devDependencies: {
@@ -141,11 +141,11 @@ function regularAutorestPackage(
     },
     dependencies: {
       ...(hasLRO && { "@azure/core-lro": "^1.0.5" }),
-      ...(hasLRO && { "@azure/abort-controller": "^1.0.4" }),
+      ...(hasLRO && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
-      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.1.4" }),
+      ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "1.0.0-beta.2"
       }),
