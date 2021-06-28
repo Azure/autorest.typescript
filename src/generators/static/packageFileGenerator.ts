@@ -147,7 +147,7 @@ function regularAutorestPackage(
       ...(useCoreV2 && { "@azure/core-client": "^1.1.2" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "1.0.0-beta.2"
+        "@azure/core-rest-pipeline": "^1.0.4"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "1.0.0-preview.11",
