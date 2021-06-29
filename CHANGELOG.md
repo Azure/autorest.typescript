@@ -1,3 +1,10 @@
+## 6.0.0-beta.5 (2021-06-29)
+
+- [Feature] `CHANGELOG.md` file is added to the published package. Please refer [#1052](https://github.com/Azure/autorest.typescript/pull/1052) and [#1028](https://github.com/Azure/autorest.typescript/issues/1028) for further details.
+- [Feature] Added ability to generate Rest level clients with the option `--rest-level-client`. Please refer [#1055](https://github.com/Azure/autorest.typescript/pull/1055) for further details.
+- [Feature] Added `sdk-type` and other default scripts to the generated `package.json` file. Please refer [#1074](https://github.com/Azure/autorest.typescript/pull/1074) and [#1049](https://github.com/Azure/autorest.typescript/issues/1049) for further details.
+- [BugFix] Added `@azure/core-auth` and `@azure/abort-controller` packages to the appropriate `package.json` file. Please refer [#1082](https://github.com/Azure/autorest.typescript/pull/1082) and [#1066](https://github.com/Azure/autorest.typescript/issues/1066) for further details.
+
 ## 6.0.0-beta.4 (2021-06-22)
 
 - [BugFix] Update LRO's `intervalInMs` from the `Retry-After` header. Please refer [#1036](https://github.com/Azure/autorest.typescript/pull/1036) and [#1034](https://github.com/Azure/autorest.typescript/issues/1034) for further details.
