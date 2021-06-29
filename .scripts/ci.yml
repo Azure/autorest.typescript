@@ -25,9 +25,12 @@ stages:
               $MAIN_VERSION=$(node -p -e "require('./package.json').version")
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]$MAIN_VERSION"
               Write-Host "Main Version: $MAIN_VERSION"
-              $DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(BUILD.BUILDNUMBER)
-              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
-              Write-Host "Dev version: $DEV_VERSION"
+              Write-Host "Build number: $(Build.BuildNumber)"
+              $DevVersion=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
+              Write-Host "Dev version: $DevVersion"
+              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DevVersion"
+              Write-Host "Dev version: $(DEV_VERSION)"
+
             name: SetMainVersion
           - script: |
               npm version --no-git-tag-version $DEV_VERSION
