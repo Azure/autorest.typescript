@@ -24,7 +24,7 @@ stages:
           - script: |
               export MAIN_VERSION=$(node -p -e "require('./package.json').version")
               echo "##vso[task.setvariable variable=MAIN_VERSION;isOutput=true;]MAIN_VERSION"
-              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$BUILD_BUILDNUMBER
+              export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
               echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
             name: SetMainVersion
           - script: |
