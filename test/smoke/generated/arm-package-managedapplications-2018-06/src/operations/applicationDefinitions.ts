@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ApplicationDefinition,
@@ -172,7 +172,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       { resourceGroupName, applicationDefinitionName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -256,7 +256,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       { resourceGroupName, applicationDefinitionName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -370,7 +370,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       { applicationDefinitionId, options },
       deleteByIdOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -452,7 +452,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       { applicationDefinitionId, parameters, options },
       createOrUpdateByIdOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

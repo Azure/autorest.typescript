@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   Metric,
@@ -415,7 +415,7 @@ export class ElasticPoolsImpl implements ElasticPools {
       { resourceGroupName, serverName, elasticPoolName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -502,7 +502,7 @@ export class ElasticPoolsImpl implements ElasticPools {
       { resourceGroupName, serverName, elasticPoolName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -593,7 +593,7 @@ export class ElasticPoolsImpl implements ElasticPools {
       { resourceGroupName, serverName, elasticPoolName, parameters, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -680,7 +680,7 @@ export class ElasticPoolsImpl implements ElasticPools {
       { resourceGroupName, serverName, elasticPoolName, options },
       failoverOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

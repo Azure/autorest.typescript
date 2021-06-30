@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   AppServiceEnvironmentResource,
@@ -1706,7 +1706,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, hostingEnvironmentEnvelope, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1786,7 +1786,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1919,7 +1919,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, vnetInfo, options },
       changeVnetOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2075,7 +2075,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, multiRolePoolEnvelope, options },
       createOrUpdateMultiRolePoolOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2306,7 +2306,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, options },
       resumeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2403,7 +2403,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, options },
       suspendOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2525,7 +2525,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       { resourceGroupName, name, workerPoolName, workerPoolEnvelope, options },
       createOrUpdateWorkerPoolOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

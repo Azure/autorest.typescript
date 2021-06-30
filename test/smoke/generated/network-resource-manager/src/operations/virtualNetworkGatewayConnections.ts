@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   VirtualNetworkGatewayConnection,
@@ -181,7 +181,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -280,7 +280,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       deleteOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -370,7 +370,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       updateTagsOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -466,7 +466,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       setSharedKeyOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -602,7 +602,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       resetSharedKeyOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -694,7 +694,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       startPacketCaptureOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -787,7 +787,7 @@ export class VirtualNetworkGatewayConnectionsImpl
       stopPacketCaptureOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

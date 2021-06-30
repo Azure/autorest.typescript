@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ConnectionMonitorResult,
@@ -179,7 +179,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -284,7 +284,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       deleteOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -394,7 +394,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       stopOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -477,7 +477,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       startOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -565,7 +565,7 @@ export class ConnectionMonitorsImpl implements ConnectionMonitors {
       queryOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

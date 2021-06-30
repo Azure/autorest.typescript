@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   Gallery,
@@ -207,7 +207,7 @@ export class GalleriesImpl implements Galleries {
       { resourceGroupName, galleryName, gallery, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -296,7 +296,7 @@ export class GalleriesImpl implements Galleries {
       { resourceGroupName, galleryName, gallery, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -394,7 +394,7 @@ export class GalleriesImpl implements Galleries {
       { resourceGroupName, galleryName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

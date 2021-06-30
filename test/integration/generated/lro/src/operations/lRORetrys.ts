@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
@@ -101,7 +101,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       put201CreatingSucceeded200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -175,7 +175,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       putAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -251,7 +251,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       deleteProvisioning202Accepted200SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -326,7 +326,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       delete202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -398,7 +398,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       deleteAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -470,7 +470,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       post202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -543,7 +543,7 @@ export class LRORetrysImpl implements LRORetrys {
       { options },
       postAsyncRelativeRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

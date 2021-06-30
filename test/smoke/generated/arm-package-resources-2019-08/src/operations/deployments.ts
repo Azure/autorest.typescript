@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   DeploymentExtended,
@@ -418,7 +418,7 @@ export class DeploymentsImpl implements Deployments {
       { scope, deploymentName, options },
       deleteAtScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -525,7 +525,7 @@ export class DeploymentsImpl implements Deployments {
       { scope, deploymentName, parameters, options },
       createOrUpdateAtScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -697,7 +697,7 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, options },
       deleteAtTenantScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -794,7 +794,7 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, parameters, options },
       createOrUpdateAtTenantScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -955,7 +955,7 @@ export class DeploymentsImpl implements Deployments {
       { groupId, deploymentName, options },
       deleteAtManagementGroupScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1064,7 +1064,7 @@ export class DeploymentsImpl implements Deployments {
       { groupId, deploymentName, parameters, options },
       createOrUpdateAtManagementGroupScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1236,7 +1236,7 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, options },
       deleteAtSubscriptionScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1336,7 +1336,7 @@ export class DeploymentsImpl implements Deployments {
       { deploymentName, parameters, options },
       createOrUpdateAtSubscriptionScopeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1469,7 +1469,7 @@ export class DeploymentsImpl implements Deployments {
       whatIfAtSubscriptionScopeOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1582,7 +1582,7 @@ export class DeploymentsImpl implements Deployments {
       { resourceGroupName, deploymentName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1693,7 +1693,7 @@ export class DeploymentsImpl implements Deployments {
       { resourceGroupName, deploymentName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1840,7 +1840,7 @@ export class DeploymentsImpl implements Deployments {
       whatIfOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

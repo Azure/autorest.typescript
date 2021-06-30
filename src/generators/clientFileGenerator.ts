@@ -116,7 +116,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       moduleSpecifier: "@azure/core-lro"
     });
     clientFile.addImportDeclaration({
-      namedImports: ["LroPoller"],
+      namedImports: ["LroEngine"],
       moduleSpecifier: `./lro`
     });
     if (useCoreV2) {

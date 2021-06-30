@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   SqlDatabaseGetResults,
@@ -548,7 +548,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -633,7 +633,7 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteSqlDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -749,7 +749,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlDatabaseThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -891,7 +891,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlContainerOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -981,7 +981,7 @@ export class SqlResourcesImpl implements SqlResources {
       { resourceGroupName, accountName, databaseName, containerName, options },
       deleteSqlContainerOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1104,7 +1104,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       updateSqlContainerThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1264,7 +1264,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlStoredProcedureOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1367,7 +1367,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlStoredProcedureOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1528,7 +1528,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlUserDefinedFunctionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1631,7 +1631,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlUserDefinedFunctionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1789,7 +1789,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       createUpdateSqlTriggerOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1891,7 +1891,7 @@ export class SqlResourcesImpl implements SqlResources {
       },
       deleteSqlTriggerOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

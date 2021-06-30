@@ -1,27 +1,19 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import {
-  failureStates,
-  LroBody,
-  LroStatus,
-  RawResponse,
-  successStates
-} from "./models";
+import { failureStates, LroBody, LroStatus, RawResponse, successStates } from "./models";
+import { isExpectedPollingResponse } from "./requestUtils";
 
 function getProvisioningState(rawResponse: RawResponse): string {
   const { properties, provisioningState } = (rawResponse.body as LroBody) ?? {};
-  const state: string | undefined =
-    properties?.provisioningState ?? provisioningState;
+  const state: string | undefined = properties?.provisioningState ?? provisioningState;
   return state?.toLowerCase() ?? "succeeded";
 }
 
 export function isBodyPollingDone(rawResponse: RawResponse): boolean {
   const state = getProvisioningState(rawResponse);
-  if (failureStates.includes(state)) {
-    throw new Error(
-      `The long running operation has failed. The provisioning state: ${state}.`
-    );
+  if (isExpectedPollingResponse(rawResponse) || failureStates.includes(state)) {
+    throw new Error(`The long running operation has failed. The provisioning state: ${state}.`);
   }
   return successStates.includes(state);
 }

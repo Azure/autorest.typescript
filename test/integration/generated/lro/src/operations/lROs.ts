@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   LROsPut200SucceededOptionalParams,
@@ -167,7 +167,7 @@ export class LROsImpl implements LROs {
       { options },
       put200SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -239,7 +239,7 @@ export class LROsImpl implements LROs {
       { options },
       put201SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -311,7 +311,7 @@ export class LROsImpl implements LROs {
       { options },
       post202ListOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -383,7 +383,7 @@ export class LROsImpl implements LROs {
       { options },
       put200SucceededNoStateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -455,7 +455,7 @@ export class LROsImpl implements LROs {
       { options },
       put202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -528,7 +528,7 @@ export class LROsImpl implements LROs {
       { options },
       put201CreatingSucceeded200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -602,7 +602,7 @@ export class LROsImpl implements LROs {
       { options },
       put200UpdatingSucceeded204OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -676,7 +676,7 @@ export class LROsImpl implements LROs {
       { options },
       put201CreatingFailed200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -750,7 +750,7 @@ export class LROsImpl implements LROs {
       { options },
       put200Acceptedcanceled200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -823,7 +823,7 @@ export class LROsImpl implements LROs {
       { options },
       putNoHeaderInRetryOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -896,7 +896,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -970,7 +970,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncNoRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1044,7 +1044,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncRetryFailedOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1118,7 +1118,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncNoRetrycanceledOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1191,7 +1191,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncNoHeaderInRetryOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1262,7 +1262,7 @@ export class LROsImpl implements LROs {
       { options },
       putNonResourceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1332,7 +1332,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncNonResourceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1402,7 +1402,7 @@ export class LROsImpl implements LROs {
       { options },
       putSubResourceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1472,7 +1472,7 @@ export class LROsImpl implements LROs {
       { options },
       putAsyncSubResourceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1544,7 +1544,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteProvisioning202Accepted200SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1620,7 +1620,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteProvisioning202DeletingFailed200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1696,7 +1696,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteProvisioning202Deletingcanceled200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1765,7 +1765,7 @@ export class LROsImpl implements LROs {
       { options },
       delete204SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1836,7 +1836,7 @@ export class LROsImpl implements LROs {
       { options },
       delete202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1908,7 +1908,7 @@ export class LROsImpl implements LROs {
       { options },
       delete202NoRetry204OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1980,7 +1980,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteNoHeaderInRetryOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2052,7 +2052,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteAsyncNoHeaderInRetryOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2124,7 +2124,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteAsyncRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2196,7 +2196,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteAsyncNoRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2268,7 +2268,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteAsyncRetryFailedOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2340,7 +2340,7 @@ export class LROsImpl implements LROs {
       { options },
       deleteAsyncRetrycanceledOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2412,7 +2412,7 @@ export class LROsImpl implements LROs {
       { options },
       post200WithPayloadOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2484,7 +2484,7 @@ export class LROsImpl implements LROs {
       { options },
       post202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2556,7 +2556,7 @@ export class LROsImpl implements LROs {
       { options },
       post202NoRetry204OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2629,7 +2629,7 @@ export class LROsImpl implements LROs {
       postDoubleHeadersFinalLocationGetOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2703,7 +2703,7 @@ export class LROsImpl implements LROs {
       postDoubleHeadersFinalAzureHeaderGetOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2781,7 +2781,7 @@ export class LROsImpl implements LROs {
       { options },
       postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2857,7 +2857,7 @@ export class LROsImpl implements LROs {
       { options },
       postAsyncRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -2931,7 +2931,7 @@ export class LROsImpl implements LROs {
       { options },
       postAsyncNoRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -3005,7 +3005,7 @@ export class LROsImpl implements LROs {
       { options },
       postAsyncRetryFailedOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -3079,7 +3079,7 @@ export class LROsImpl implements LROs {
       { options },
       postAsyncRetrycanceledOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

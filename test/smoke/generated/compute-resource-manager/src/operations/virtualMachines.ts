@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   VirtualMachine,
@@ -358,7 +358,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       captureOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -447,7 +447,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -535,7 +535,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, parameters, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -615,7 +615,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -723,7 +723,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       convertToManagedDisksOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -802,7 +802,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       deallocateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -947,7 +947,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       powerOffOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1021,7 +1021,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       reapplyOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1094,7 +1094,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       restartOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1167,7 +1167,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       startOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1240,7 +1240,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       redeployOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1313,7 +1313,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       reimageOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1386,7 +1386,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       { resourceGroupName, vmName, options },
       performMaintenanceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1489,7 +1489,7 @@ export class VirtualMachinesImpl implements VirtualMachines {
       runCommandOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

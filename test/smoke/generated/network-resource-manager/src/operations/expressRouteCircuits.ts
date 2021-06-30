@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   ExpressRouteCircuit,
@@ -207,7 +207,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       deleteOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -309,7 +309,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -419,7 +419,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       listArpTableOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -514,7 +514,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       listRoutesTableOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -609,7 +609,7 @@ export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
       listRoutesTableSummaryOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

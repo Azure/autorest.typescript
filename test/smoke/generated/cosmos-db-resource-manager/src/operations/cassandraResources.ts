@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   CassandraKeyspaceGetResults,
@@ -297,7 +297,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       },
       createUpdateCassandraKeyspaceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -383,7 +383,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       { resourceGroupName, accountName, keyspaceName, options },
       deleteCassandraKeyspaceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -501,7 +501,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       },
       updateCassandraKeyspaceThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -644,7 +644,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       },
       createUpdateCassandraTableOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -735,7 +735,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       { resourceGroupName, accountName, keyspaceName, tableName, options },
       deleteCassandraTableOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -861,7 +861,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       },
       updateCassandraTableThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

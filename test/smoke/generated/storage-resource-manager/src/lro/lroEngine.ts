@@ -12,24 +12,22 @@
 import { Poller, PollOperationState } from "@azure/core-lro";
 import {
   LongRunningOperation,
-  LroPollerOptions,
+  LroEngineOptions,
   ResumablePollOperationState
 } from "./models";
 import { GenericPollOperation } from "./operation";
 
 /**
- * The Lro Engine, a class that performs polling.
+ * The LRO Engine, a class that performs polling.
  */
-export class LroPoller<
+export class LroEngine<
   TResult,
   TState extends PollOperationState<TResult>
 > extends Poller<TState, TResult> {
   private intervalInMs: number;
 
-  constructor(
-    { intervalInMs = 2000, resumeFrom }: LroPollerOptions,
-    lro: LongRunningOperation<TResult>
-  ) {
+  constructor(lro: LongRunningOperation<TResult>, options?: LroEngineOptions) {
+    const { intervalInMs = 2000, resumeFrom } = options || {};
     const state: TState & ResumablePollOperationState<TResult> = resumeFrom
       ? JSON.parse(resumeFrom).state
       : {};

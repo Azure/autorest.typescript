@@ -70,3 +70,36 @@ export function inferLroMode(
   }
   return {};
 }
+
+export class RestError extends Error {
+  public statusCode?: number;
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.name = "RestError";
+    this.statusCode = statusCode;
+
+    Object.setPrototypeOf(this, RestError.prototype);
+  }
+}
+
+export function isExpectedInitialResponse(rawResponse: RawResponse): boolean {
+  const code = rawResponse.statusCode;
+  if (![203, 204, 202, 201, 200, 500].includes(code)) {
+    throw new RestError(
+      `Received unexpected HTTP status code ${code} in the initial response. This may indicate a server issue.`,
+      code
+    );
+  }
+  return false;
+}
+
+export function isExpectedPollingResponse(rawResponse: RawResponse): boolean {
+  const code = rawResponse.statusCode;
+  if (![202, 201, 200, 500].includes(code)) {
+    throw new RestError(
+      `Received unexpected HTTP status code ${code} while polling. This may indicate a server issue.`,
+      code
+    );
+  }
+  return false;
+}

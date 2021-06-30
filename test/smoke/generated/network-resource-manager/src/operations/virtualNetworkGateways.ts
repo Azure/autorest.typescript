@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { NetworkManagementClientContext } from "../networkManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   VirtualNetworkGateway,
@@ -269,7 +269,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       createOrUpdateOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -367,7 +367,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       deleteOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -452,7 +452,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       updateTagsOperationSpec,
       "azure-async-operation"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -570,7 +570,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       resetOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -648,7 +648,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       resetVpnClientSharedKeyOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -737,7 +737,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       generatevpnclientpackageOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -829,7 +829,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       generateVpnProfileOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -918,7 +918,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getVpnProfilePackageUrlOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1002,7 +1002,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getBgpPeerStatusOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1103,7 +1103,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getLearnedRoutesOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1190,7 +1190,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getAdvertisedRoutesOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1288,7 +1288,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       setVpnclientIpsecParametersOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1380,7 +1380,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getVpnclientIpsecParametersOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1490,7 +1490,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       startPacketCaptureOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1576,7 +1576,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       stopPacketCaptureOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1666,7 +1666,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       getVpnclientConnectionHealthOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1747,7 +1747,7 @@ export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
       disconnectVirtualNetworkGatewayVpnConnectionsOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

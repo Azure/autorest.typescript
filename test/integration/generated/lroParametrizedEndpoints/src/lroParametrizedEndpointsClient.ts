@@ -8,7 +8,7 @@
 
 import * as coreClient from "@azure/core-client";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "./lro";
+import { LroEngine } from "./lro";
 import { CoreClientLro, shouldDeserializeLro } from "./coreClientLro";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
@@ -89,7 +89,7 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
       pollWithParameterizedEndpointsOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

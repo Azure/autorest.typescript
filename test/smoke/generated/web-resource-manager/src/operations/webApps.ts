@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   Site,
@@ -5143,7 +5143,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, siteEnvelope, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -5401,7 +5401,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, backupId, request, options },
       restoreOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -5812,7 +5812,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, options },
       listPublishingCredentialsOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -6454,7 +6454,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, mSDeploy, options },
       createMSDeployOperationOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -6613,7 +6613,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, functionName, functionEnvelope, options },
       createFunctionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -7250,7 +7250,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -7571,7 +7571,7 @@ export class WebAppsImpl implements WebApps {
       { subscriptionName, resourceGroupName, name, migrationOptions, options },
       migrateStorageOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -7661,7 +7661,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, migrationRequestEnvelope, options },
       migrateMySqlOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -7898,7 +7898,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, options },
       startWebSiteNetworkTraceOperationOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -8516,7 +8516,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, request, options },
       restoreFromBackupBlobOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -8598,7 +8598,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, restoreRequest, options },
       restoreFromDeletedAppOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -8681,7 +8681,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, restoreRequest, options },
       restoreSnapshotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -8805,7 +8805,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, siteExtensionId, options },
       installSiteExtensionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -8907,7 +8907,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, copySlotEntity, options },
       copyProductionSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -9036,7 +9036,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, siteEnvelope, options },
       createOrUpdateSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -9325,7 +9325,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, backupId, slot, request, options },
       restoreSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -9754,7 +9754,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, options },
       listPublishingCredentialsSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -10442,7 +10442,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, mSDeploy, options },
       createMSDeployOperationSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -10621,7 +10621,7 @@ export class WebAppsImpl implements WebApps {
       },
       createInstanceFunctionSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -11344,7 +11344,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -11879,7 +11879,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, options },
       startWebSiteNetworkTraceOperationSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -12309,7 +12309,7 @@ export class WebAppsImpl implements WebApps {
       },
       approveOrRejectPrivateEndpointConnectionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -12399,7 +12399,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, privateEndpointConnectionName, options },
       deletePrivateEndpointConnectionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -12820,7 +12820,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, request, options },
       restoreFromBackupBlobSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -12908,7 +12908,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, restoreRequest, options },
       restoreFromDeletedAppSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -12996,7 +12996,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, restoreRequest, options },
       restoreSnapshotSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -13132,7 +13132,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, siteExtensionId, slot, options },
       installSiteExtensionSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -13244,7 +13244,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, copySlotEntity, options },
       copySlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -13356,7 +13356,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, slotSwapEntity, options },
       swapSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -13508,7 +13508,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, siteSourceControl, options },
       createOrUpdateSourceControlSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -13661,7 +13661,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slot, options },
       startNetworkTraceSlotOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -14239,7 +14239,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, slotSwapEntity, options },
       swapSlotWithProductionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -14377,7 +14377,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, siteSourceControl, options },
       createOrUpdateSourceControlOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -14515,7 +14515,7 @@ export class WebAppsImpl implements WebApps {
       { resourceGroupName, name, options },
       startNetworkTraceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   GremlinDatabaseGetResults,
@@ -295,7 +295,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       createUpdateGremlinDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -381,7 +381,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteGremlinDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -499,7 +499,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       updateGremlinDatabaseThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -641,7 +641,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       createUpdateGremlinGraphOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -731,7 +731,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       { resourceGroupName, accountName, databaseName, graphName, options },
       deleteGremlinGraphOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -855,7 +855,7 @@ export class GremlinResourcesImpl implements GremlinResources {
       },
       updateGremlinGraphThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

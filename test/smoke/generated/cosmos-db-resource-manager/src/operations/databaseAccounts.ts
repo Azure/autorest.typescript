@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   DatabaseAccountGetResults,
@@ -419,7 +419,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, updateParameters, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -507,7 +507,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, createUpdateParameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -588,7 +588,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -670,7 +670,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, failoverParameters, options },
       failoverPriorityChangeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -814,7 +814,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, regionParameterForOffline, options },
       offlineRegionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -896,7 +896,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, regionParameterForOnline, options },
       onlineRegionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1012,7 +1012,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       { resourceGroupName, accountName, keyToRegenerate, options },
       regenerateKeyOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

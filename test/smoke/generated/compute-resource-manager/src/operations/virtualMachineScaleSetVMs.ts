@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   VirtualMachineScaleSetVM,
@@ -185,7 +185,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -268,7 +268,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageAllOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -353,7 +353,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       deallocateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -444,7 +444,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -529,7 +529,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -668,7 +668,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       powerOffOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -752,7 +752,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       restartOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -834,7 +834,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       startOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -917,7 +917,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       redeployOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1000,7 +1000,7 @@ export class VirtualMachineScaleSetVMsImpl
       { resourceGroupName, vmScaleSetName, instanceId, options },
       performMaintenanceOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1110,7 +1110,7 @@ export class VirtualMachineScaleSetVMsImpl
       runCommandOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

@@ -16,7 +16,7 @@ import {
 } from "./bodyPolling";
 import { processLocationPollingOperationResult } from "./locationPolling";
 import {
-  FinalStateVia,
+  LroResourceLocationConfig,
   GetLroStatusFromResponse,
   LongRunningOperation,
   LroConfig,
@@ -26,15 +26,19 @@ import {
   ResumablePollOperationState
 } from "./models";
 import { processPassthroughOperationResult } from "./passthrough";
-import { getPollingUrl, inferLroMode } from "./requestUtils";
+import {
+  getPollingUrl,
+  inferLroMode,
+  isExpectedInitialResponse
+} from "./requestUtils";
 
 /**
- * creates a stepping function that maps an Lro state to another.
+ * creates a stepping function that maps an LRO state to another.
  */
 export function createGetLroStatusFromResponse<TResult>(
   lroPrimitives: LongRunningOperation<TResult>,
   config: LroConfig,
-  finalStateVia?: FinalStateVia
+  finalStateVia?: LroResourceLocationConfig
 ): GetLroStatusFromResponse<TResult> {
   switch (config.mode) {
     case "AzureAsync": {
@@ -57,9 +61,9 @@ export function createGetLroStatusFromResponse<TResult>(
 }
 
 /**
- * Creates a polling operation that returns a Lro state.
+ * Creates a polling operation that returns a LRO state.
  */
-export function createPollForLroStatus<TResult>(
+export function createPollForLROStatus<TResult>(
   lroPrimitives: LongRunningOperation<TResult>,
   config: LroConfig
 ): (
@@ -101,7 +105,7 @@ function calculatePollingIntervalFromDate(
 /**
  * Creates a callback to be used to initialize the polling operation state.
  * @param state - of the polling operation
- * @param operationSpec - of the Lro
+ * @param operationSpec - of the LRO
  * @param callback - callback to be called when the operation is done
  * @returns callback that initializes the state of the polling operation
  */
@@ -111,6 +115,7 @@ export function createInitializeState<TResult>(
   requestMethod: string
 ): (rawResponse: RawResponse, flatResponse: unknown) => boolean {
   return (rawResponse: RawResponse, flatResponse: unknown) => {
+    if (isExpectedInitialResponse(rawResponse)) return true;
     state.initialRawResponse = rawResponse;
     state.isStarted = true;
     state.pollingURL = getPollingUrl(state.initialRawResponse, requestPath);

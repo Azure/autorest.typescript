@@ -8,7 +8,7 @@ import {
   FullOperationResponse
 } from "@azure/core-client";
 import {
-  FinalStateVia,
+  LroResourceLocationConfig,
   GetLroStatusFromResponse,
   LongRunningOperation,
   LroConfig,
@@ -238,7 +238,7 @@ export class CoreClientLro<T> implements LongRunningOperation<T> {
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
     private spec: OperationSpec,
-    private finalStateVia?: FinalStateVia,
+    private finalStateVia?: LroResourceLocationConfig,
     public requestPath: string = spec.path!,
     public requestMethod: string = spec.httpMethod
   ) {}
@@ -296,7 +296,7 @@ export class CoreClientLro<T> implements LongRunningOperation<T> {
 
   public async retrieveAzureAsyncResource(
     path?: string
-  ): Promise<LroStatus<T>> {
+  ): Promise<LroResponse<T>> {
     const updatedArgs = { ...this.args };
     if (updatedArgs.options) {
       (updatedArgs.options as any).shouldDeserialize = true;

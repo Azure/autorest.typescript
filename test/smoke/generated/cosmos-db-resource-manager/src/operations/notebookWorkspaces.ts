@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   NotebookWorkspace,
@@ -213,7 +213,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -299,7 +299,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -400,7 +400,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       regenerateAuthTokenOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -482,7 +482,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       startOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

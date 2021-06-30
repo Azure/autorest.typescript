@@ -11,7 +11,7 @@ import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "./lro";
+import { LroEngine } from "./lro";
 import { CoreClientLro, shouldDeserializeLro } from "./coreClientLro";
 import {
   ApplicationGatewaysImpl,
@@ -772,7 +772,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       putBastionShareableLinkOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -833,7 +833,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       deleteBastionShareableLinkOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -938,7 +938,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       getActiveSessionsOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1062,7 +1062,7 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
       generatevirtualwanvpnserverconfigurationvpnprofileOperationSpec,
       "location"
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

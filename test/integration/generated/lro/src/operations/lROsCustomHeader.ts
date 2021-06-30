@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
@@ -96,7 +96,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       putAsyncRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -172,7 +172,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       put201CreatingSucceeded200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -247,7 +247,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       post202Retry200OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -322,7 +322,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       { options },
       postAsyncRetrySucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

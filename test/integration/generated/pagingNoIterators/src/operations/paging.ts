@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { PagingNoIteratorsClientContext } from "../pagingNoIteratorsClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   PagingGetNoItemNamePagesOptionalParams,
@@ -375,7 +375,7 @@ export class PagingImpl implements Paging {
       { options },
       getMultiplePagesLROOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

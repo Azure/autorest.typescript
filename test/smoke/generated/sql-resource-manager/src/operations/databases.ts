@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   Metric,
@@ -435,7 +435,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, parameters, options },
       importOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -536,7 +536,7 @@ export class DatabasesImpl implements Databases {
       },
       createImportOperationOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -634,7 +634,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, parameters, options },
       exportOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -808,7 +808,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, parameters, options },
       createOrUpdateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -895,7 +895,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, options },
       deleteOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -986,7 +986,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, parameters, options },
       updateOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1098,7 +1098,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, options },
       pauseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1187,7 +1187,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, options },
       resumeOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1271,7 +1271,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, options },
       upgradeDataWarehouseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1377,7 +1377,7 @@ export class DatabasesImpl implements Databases {
       { resourceGroupName, serverName, databaseName, options },
       failoverOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

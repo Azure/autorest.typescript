@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   MongoDBDatabaseGetResults,
@@ -295,7 +295,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       createUpdateMongoDBDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -381,7 +381,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, options },
       deleteMongoDBDatabaseOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -499,7 +499,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       updateMongoDBDatabaseThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -642,7 +642,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       createUpdateMongoDBCollectionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -733,7 +733,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       { resourceGroupName, accountName, databaseName, collectionName, options },
       deleteMongoDBCollectionOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -859,7 +859,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       },
       updateMongoDBCollectionThroughputOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
-import { LroPoller } from "../lro";
+import { LroEngine } from "../lro";
 import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
 import {
   LrosaDsPutNonRetry400OptionalParams,
@@ -136,7 +136,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -207,7 +207,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry201Creating400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -279,7 +279,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putNonRetry201Creating400InvalidJsonOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -353,7 +353,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -424,7 +424,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteNonRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -494,7 +494,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete202NonRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -565,7 +565,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -636,7 +636,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postNonRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -706,7 +706,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202NonRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -777,7 +777,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetry400OperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -848,7 +848,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putError201NoProvisioningStatePayloadOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -922,7 +922,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -996,7 +996,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1065,7 +1065,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete204SucceededOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1136,7 +1136,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryNoStatusOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1207,7 +1207,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202NoLocationOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1279,7 +1279,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryNoPayloadOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1352,7 +1352,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       put200InvalidJsonOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1424,7 +1424,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1499,7 +1499,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1574,7 +1574,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       delete202RetryInvalidHeaderOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1646,7 +1646,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1722,7 +1722,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1796,7 +1796,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       post202RetryInvalidHeaderOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1869,7 +1869,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryInvalidHeaderOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**
@@ -1945,7 +1945,7 @@ export class LrosaDsImpl implements LrosaDs {
       { options },
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec
     );
-    return new LroPoller({ intervalInMs: options?.updateIntervalInMs }, lro);
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

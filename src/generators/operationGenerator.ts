@@ -984,9 +984,7 @@ function writeLroOperationBody(
     sendOperationStatement,
     `const lro = new ${LroClassName}(sendOperation,${operationParamsName},
       ${operationSpecName},${finalStateStr})`,
-    `return new LroPoller({intervalInMs: options?.updateIntervalInMs},
-      lro
-    );`
+    `return new LroEngine(lro,{intervalInMs: options?.updateIntervalInMs});`
   ]);
 
   methodDeclaration.setReturnType(
@@ -1340,7 +1338,7 @@ function addImports(
       moduleSpecifier: "@azure/core-lro"
     });
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LroPoller"],
+      namedImports: ["LroEngine"],
       moduleSpecifier: `../lro`
     });
     if (useCoreV2) {
