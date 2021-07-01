@@ -1,6 +1,6 @@
 {
   "name": "header",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for HeaderClient.",
   "version": "1.0.0-preview1",

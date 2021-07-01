@@ -1,6 +1,6 @@
 {
   "name": "lro-parameterized-endpoints",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for LroParametrizedEndpointsClient.",
   "version": "1.0.0-preview1",

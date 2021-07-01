@@ -1,6 +1,6 @@
 {
   "name": "arm-package-features-2015-12",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for FeatureClient.",
   "version": "1.0.0-beta.1",

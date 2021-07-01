@@ -1,6 +1,6 @@
 {
   "name": "custom-url-MoreOptions",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CustomUrlMoreOptionsClient.",
   "version": "1.0.0-preview1",

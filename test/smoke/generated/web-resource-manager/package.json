@@ -1,6 +1,6 @@
 {
   "name": "web-resource-manager",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for WebSiteManagementClient.",
   "version": "1.0.0-beta.1",

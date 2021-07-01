@@ -1,6 +1,6 @@
 {
   "name": "subscriptionid-apiversion",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SubscriptionIdApiVersionClient.",
   "version": "1.0.0-preview1",
