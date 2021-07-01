@@ -1,6 +1,6 @@
 {
   "name": "multiple-inheritance",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MultipleInheritanceClient.",
   "version": "1.0.0-preview1",

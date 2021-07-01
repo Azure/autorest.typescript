@@ -1,6 +1,6 @@
 {
   "name": "custom-url-paging",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CustomUrlPagingClient.",
   "version": "1.0.0-preview1",

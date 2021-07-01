@@ -1,6 +1,6 @@
 {
   "name": "arm-package-subscriptions-2019-06",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SubscriptionClient.",
   "version": "1.0.0-beta.1",

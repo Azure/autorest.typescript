@@ -1,6 +1,6 @@
 {
   "name": "body-boolean-quirks",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyBooleanQuirksClient.",
   "version": "1.0.0-preview1",

@@ -1,6 +1,6 @@
 {
   "name": "arm-package-resources-2019-08",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ResourceManagementClient.",
   "version": "1.0.0-beta.1",

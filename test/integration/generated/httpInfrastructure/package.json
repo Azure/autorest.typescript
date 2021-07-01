@@ -1,6 +1,6 @@
 {
   "name": "httpInfrastructure",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for HttpInfrastructureClient.",
   "version": "1.0.0-preview1",

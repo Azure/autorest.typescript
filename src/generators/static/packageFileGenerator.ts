@@ -49,7 +49,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const { azureArm } = getAutorestOptions();
   return {
     name: `${packageDetails.name}`,
-    "sdk-type": `${azureArm ? "management" : "client"}`,
+    "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
     main: "esm/index.js",
@@ -130,7 +130,7 @@ function regularAutorestPackage(
 
   return {
     name: packageDetails.name,
-    "sdk-type": `${azureArm ? "management" : "client"}`,
+    "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     author: "Microsoft Corporation",
     description:
       packageDetails.description ||

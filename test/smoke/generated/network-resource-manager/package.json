@@ -1,6 +1,6 @@
 {
   "name": "network-resource-manager",
-  "sdk-type": "management",
+  "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NetworkManagementClient.",
   "version": "1.0.0-beta.1",
