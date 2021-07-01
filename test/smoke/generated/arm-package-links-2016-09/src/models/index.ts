@@ -52,7 +52,7 @@ export interface ResourceLink {
    * The resource link object.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly type?: any;
+  readonly type?: Record<string, unknown>;
   /** Properties for resource link. */
   properties?: ResourceLinkProperties;
 }

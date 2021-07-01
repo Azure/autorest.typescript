@@ -97,9 +97,8 @@ const createOperationSpec: coreClient.OperationSpec = {
     Parameters.resourceName
   ],
   headerParameters: [
-    Parameters.contentType,
     Parameters.accept,
-    Parameters.contentType1,
+    Parameters.contentType,
     Parameters.contentLength,
     Parameters.authorization
   ],

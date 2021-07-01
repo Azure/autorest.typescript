@@ -13,6 +13,25 @@ export type DeploymentScriptUnion =
   | AzurePowerShellScript
   | AzureCliScript;
 
+/** Common properties for all Azure resources. */
+export interface AzureResourceBase {
+  /**
+   * String Id used to locate any resource on Azure.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Name of this resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Type of this resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+}
+
 /** Managed identity generic object. */
 export interface ManagedServiceIdentity {
   /** Type of the managed identity. */
@@ -43,25 +62,6 @@ export interface SystemData {
   lastModifiedByType?: CreatedByType;
   /** The type of identity that last modified the resource. */
   lastModifiedAt?: Date;
-}
-
-/** Common properties for all Azure resources. */
-export interface AzureResourceBase {
-  /**
-   * String Id used to locate any resource on Azure.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Name of this resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Type of this resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
 }
 
 /** Deployment scripts error response. */
@@ -110,7 +110,7 @@ export interface ErrorAdditionalInfo {
    * The additional info.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly info?: any;
+  readonly info?: Record<string, unknown>;
 }
 
 /** List of deployment scripts. */
@@ -152,7 +152,7 @@ export interface DeploymentScriptPropertiesBase {
    * List of script outputs.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly outputs?: { [propertyName: string]: any };
+  readonly outputs?: { [propertyName: string]: Record<string, unknown> };
 }
 
 /** Settings to customize ACI container instance. */
@@ -298,7 +298,7 @@ export type AzurePowerShellScript = DeploymentScript & {
    * List of script outputs.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly outputs?: { [propertyName: string]: any };
+  readonly outputs?: { [propertyName: string]: Record<string, unknown> };
   /** Uri for the script. This is the entry point for the external script. */
   primaryScriptUri?: string;
   /** Supporting files for the external script. */
@@ -341,7 +341,7 @@ export type AzureCliScript = DeploymentScript & {
    * List of script outputs.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly outputs?: { [propertyName: string]: any };
+  readonly outputs?: { [propertyName: string]: Record<string, unknown> };
   /** Uri for the script. This is the entry point for the external script. */
   primaryScriptUri?: string;
   /** Supporting files for the external script. */

@@ -40,7 +40,25 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    kind: string;\n    managedResourceGroupId: string;\n    applicationDefinitionId?: string;\n    parameters?: any;\n    readonly outputs?: any;\n    readonly provisioningState?: "
+              "text": ";\n    kind: string;\n    managedResourceGroupId: string;\n    applicationDefinitionId?: string;\n    parameters?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly outputs?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly provisioningState?: "
             },
             {
               "kind": "Reference",
@@ -60,7 +78,7 @@
           "name": "Application",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {
@@ -658,7 +676,25 @@
             },
             {
               "kind": "Content",
-              "text": "[];\n    description?: string;\n    packageFileUri?: string;\n    mainTemplate?: any;\n    createUiDefinition?: any;\n}"
+              "text": "[];\n    description?: string;\n    packageFileUri?: string;\n    mainTemplate?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    createUiDefinition?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n}"
             },
             {
               "kind": "Content",
@@ -669,7 +705,7 @@
           "name": "ApplicationDefinition",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 9
+            "endIndex": 13
           }
         },
         {
@@ -2500,7 +2536,25 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    kind?: string;\n    managedResourceGroupId?: string;\n    applicationDefinitionId?: string;\n    parameters?: any;\n    readonly outputs?: any;\n    readonly provisioningState?: "
+              "text": ";\n    kind?: string;\n    managedResourceGroupId?: string;\n    applicationDefinitionId?: string;\n    parameters?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly outputs?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    readonly provisioningState?: "
             },
             {
               "kind": "Reference",
@@ -2520,7 +2574,7 @@
           "name": "ApplicationPatchable",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 7
+            "endIndex": 11
           }
         },
         {

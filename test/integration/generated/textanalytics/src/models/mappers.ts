@@ -8,57 +8,6 @@
 
 import * as coreClient from "@azure/core-client";
 
-export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "MultiLanguageBatchInput",
-    modelProperties: {
-      documents: {
-        serializedName: "documents",
-        required: true,
-        type: {
-          name: "Sequence",
-          element: {
-            type: {
-              name: "Composite",
-              className: "TextDocumentInput"
-            }
-          }
-        }
-      }
-    }
-  }
-};
-
-export const TextDocumentInput: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TextDocumentInput",
-    modelProperties: {
-      id: {
-        serializedName: "id",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      text: {
-        serializedName: "text",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      language: {
-        serializedName: "language",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const JobDescriptor: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -314,6 +263,57 @@ export const EntityLinkingTaskParameters: coreClient.CompositeMapper = {
   }
 };
 
+export const MultiLanguageBatchInput: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "MultiLanguageBatchInput",
+    modelProperties: {
+      documents: {
+        serializedName: "documents",
+        required: true,
+        type: {
+          name: "Sequence",
+          element: {
+            type: {
+              name: "Composite",
+              className: "TextDocumentInput"
+            }
+          }
+        }
+      }
+    }
+  }
+};
+
+export const TextDocumentInput: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TextDocumentInput",
+    modelProperties: {
+      id: {
+        serializedName: "id",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      text: {
+        serializedName: "text",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      language: {
+        serializedName: "language",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const ErrorResponse: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -422,43 +422,6 @@ export const InnerError: coreClient.CompositeMapper = {
         type: {
           name: "Composite",
           className: "InnerError"
-        }
-      }
-    }
-  }
-};
-
-export const TextDocumentBatchStatistics: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "TextDocumentBatchStatistics",
-    modelProperties: {
-      documentCount: {
-        serializedName: "documentsCount",
-        required: true,
-        type: {
-          name: "Number"
-        }
-      },
-      validDocumentCount: {
-        serializedName: "validDocumentsCount",
-        required: true,
-        type: {
-          name: "Number"
-        }
-      },
-      erroneousDocumentCount: {
-        serializedName: "erroneousDocumentsCount",
-        required: true,
-        type: {
-          name: "Number"
-        }
-      },
-      transactionCount: {
-        serializedName: "transactionsCount",
-        required: true,
-        type: {
-          name: "Number"
         }
       }
     }
@@ -893,6 +856,43 @@ export const DocumentError: coreClient.CompositeMapper = {
         type: {
           name: "Composite",
           className: "TextAnalyticsError"
+        }
+      }
+    }
+  }
+};
+
+export const TextDocumentBatchStatistics: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "TextDocumentBatchStatistics",
+    modelProperties: {
+      documentCount: {
+        serializedName: "documentsCount",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      validDocumentCount: {
+        serializedName: "validDocumentsCount",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      erroneousDocumentCount: {
+        serializedName: "erroneousDocumentsCount",
+        required: true,
+        type: {
+          name: "Number"
+        }
+      },
+      transactionCount: {
+        serializedName: "transactionsCount",
+        required: true,
+        type: {
+          name: "Number"
         }
       }
     }

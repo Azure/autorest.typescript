@@ -5094,7 +5094,7 @@ export interface Operation {
     readonly name?: string;
     readonly origin?: OperationOrigin;
     readonly properties?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
 }
 

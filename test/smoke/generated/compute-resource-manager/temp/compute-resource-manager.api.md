@@ -3487,8 +3487,8 @@ export interface VirtualMachineCaptureParameters {
 export type VirtualMachineCaptureResult = SubResource & {
     readonly schema?: string;
     readonly contentVersion?: string;
-    readonly parameters?: any;
-    readonly resources?: any[];
+    readonly parameters?: Record<string, unknown>;
+    readonly resources?: Record<string, unknown>[];
 };
 
 // @public
@@ -3501,8 +3501,8 @@ export type VirtualMachineExtension = Resource & {
     typePropertiesType?: string;
     typeHandlerVersion?: string;
     autoUpgradeMinorVersion?: boolean;
-    settings?: any;
-    protectedSettings?: any;
+    settings?: Record<string, unknown>;
+    protectedSettings?: Record<string, unknown>;
     readonly provisioningState?: string;
     instanceView?: VirtualMachineExtensionInstanceView;
 };
@@ -3629,8 +3629,8 @@ export type VirtualMachineExtensionUpdate = UpdateResource & {
     type?: string;
     typeHandlerVersion?: string;
     autoUpgradeMinorVersion?: boolean;
-    settings?: any;
-    protectedSettings?: any;
+    settings?: Record<string, unknown>;
+    protectedSettings?: Record<string, unknown>;
 };
 
 // @public
@@ -3856,8 +3856,8 @@ export type VirtualMachineScaleSetExtension = SubResourceReadOnly & {
     typePropertiesType?: string;
     typeHandlerVersion?: string;
     autoUpgradeMinorVersion?: boolean;
-    settings?: any;
-    protectedSettings?: any;
+    settings?: Record<string, unknown>;
+    protectedSettings?: Record<string, unknown>;
     readonly provisioningState?: string;
     provisionAfterExtensions?: string[];
 };
@@ -3940,8 +3940,8 @@ export type VirtualMachineScaleSetExtensionUpdate = SubResourceReadOnly & {
     typePropertiesType?: string;
     typeHandlerVersion?: string;
     autoUpgradeMinorVersion?: boolean;
-    settings?: any;
-    protectedSettings?: any;
+    settings?: Record<string, unknown>;
+    protectedSettings?: Record<string, unknown>;
     readonly provisioningState?: string;
     provisionAfterExtensions?: string[];
 };

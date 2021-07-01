@@ -11,7 +11,7 @@ describe("ObjectType", () => {
 
   it("should get an object", async () => {
     const result = await client.get();
-    assert.deepStrictEqual(result as any, {
+    assert.deepStrictEqual(result, {
       message: "An object was successfully returned"
     });
   });

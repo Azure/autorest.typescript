@@ -39,13 +39,13 @@ export class CustomUrlMoreOptionsClientContext extends coreClient.ServiceClient 
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
-    options.userAgentOptions = {
-      userAgentPrefix: userAgentPrefix
-    };
 
     const optionsWithDefaults = {
       ...defaults,
       ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
       baseUri: options.endpoint || "{vault}{secret}{dnsSuffix}"
     };
     super(optionsWithDefaults);

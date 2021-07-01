@@ -5,13 +5,12 @@ import {
 } from "@azure/core-client";
 import {
   Pet as PetMapper,
-  PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema as PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchemaMapper,
   Order as OrderMapper,
   User as UserMapper
 } from "../models/mappers";
 
 export const contentType: OperationParameter = {
-  parameterPath: ["options", "contentType"],
+  parameterPath: "contentType",
   mapper: {
     defaultValue: "application/json",
     isConstant: true,
@@ -23,6 +22,29 @@ export const contentType: OperationParameter = {
 };
 
 export const body: OperationParameter = {
+  parameterPath: ["options", "body"],
+  mapper: {
+    serializedName: "body",
+    xmlName: "body",
+    type: {
+      name: "Stream"
+    }
+  }
+};
+
+export const contentType1: OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "application/xml",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const body1: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: {
     serializedName: "body",
@@ -46,7 +68,7 @@ export const $host: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const contentType1: OperationParameter = {
+export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/json",
@@ -58,7 +80,7 @@ export const contentType1: OperationParameter = {
   }
 };
 
-export const body1: OperationParameter = {
+export const body2: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: PetMapper
 };
@@ -124,7 +146,7 @@ export const petId: OperationURLParameter = {
   }
 };
 
-export const contentType2: OperationParameter = {
+export const contentType3: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "application/x-www-form-urlencoded",
@@ -136,9 +158,26 @@ export const contentType2: OperationParameter = {
   }
 };
 
+export const name: OperationParameter = {
+  parameterPath: ["options", "name"],
+  mapper: {
+    serializedName: "name",
+    xmlName: "name",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const status1: OperationParameter = {
   parameterPath: ["options", "status"],
-  mapper: PathsN18Gb4PetPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchemaMapper
+  mapper: {
+    serializedName: "status",
+    xmlName: "status",
+    type: {
+      name: "String"
+    }
+  }
 };
 
 export const petId1: OperationURLParameter = {
@@ -164,7 +203,7 @@ export const apiKey: OperationParameter = {
   }
 };
 
-export const contentType3: OperationParameter = {
+export const contentType4: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
     defaultValue: "multipart/form-data",
@@ -198,7 +237,7 @@ export const file: OperationParameter = {
   }
 };
 
-export const body2: OperationParameter = {
+export const body3: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: OrderMapper
 };
@@ -215,12 +254,12 @@ export const orderId: OperationURLParameter = {
   }
 };
 
-export const body3: OperationParameter = {
+export const body4: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: UserMapper
 };
 
-export const body4: OperationParameter = {
+export const body5: OperationParameter = {
   parameterPath: ["options", "body"],
   mapper: {
     serializedName: "body",

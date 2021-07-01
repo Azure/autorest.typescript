@@ -144,21 +144,6 @@ export const ResourceCollection: coreClient.CompositeMapper = {
   }
 };
 
-export const GenericUrl: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "GenericUrl",
-    modelProperties: {
-      genericValue: {
-        serializedName: "generic_value",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const BaseProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -173,6 +158,21 @@ export const BaseProduct: coreClient.CompositeMapper = {
       },
       description: {
         serializedName: "base_product_description",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const GenericUrl: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "GenericUrl",
+    modelProperties: {
+      genericValue: {
+        serializedName: "generic_value",
         type: {
           name: "String"
         }
@@ -216,22 +216,6 @@ export const FlattenedProduct: coreClient.CompositeMapper = {
   }
 };
 
-export const ProductUrl: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ProductUrl",
-    modelProperties: {
-      ...GenericUrl.type.modelProperties,
-      odataValue: {
-        serializedName: "@odata\\.value",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
 export const SimpleProduct: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -260,6 +244,22 @@ export const SimpleProduct: coreClient.CompositeMapper = {
       },
       odataValue: {
         serializedName: "details.max_product_image.@odata\\.value",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const ProductUrl: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ProductUrl",
+    modelProperties: {
+      ...GenericUrl.type.modelProperties,
+      odataValue: {
+        serializedName: "@odata\\.value",
         type: {
           name: "String"
         }

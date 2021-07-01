@@ -16,8 +16,8 @@ export type Application = GenericResource & {
     kind: string;
     managedResourceGroupId: string;
     applicationDefinitionId?: string;
-    parameters?: any;
-    readonly outputs?: any;
+    parameters?: Record<string, unknown>;
+    readonly outputs?: Record<string, unknown>;
     readonly provisioningState?: ProvisioningState;
 };
 
@@ -67,8 +67,8 @@ export type ApplicationDefinition = GenericResource & {
     artifacts?: ApplicationArtifact[];
     description?: string;
     packageFileUri?: string;
-    mainTemplate?: any;
-    createUiDefinition?: any;
+    mainTemplate?: Record<string, unknown>;
+    createUiDefinition?: Record<string, unknown>;
 };
 
 // @public
@@ -165,8 +165,8 @@ export type ApplicationPatchable = GenericResource & {
     kind?: string;
     managedResourceGroupId?: string;
     applicationDefinitionId?: string;
-    parameters?: any;
-    readonly outputs?: any;
+    parameters?: Record<string, unknown>;
+    readonly outputs?: Record<string, unknown>;
     readonly provisioningState?: ProvisioningState;
 };
 

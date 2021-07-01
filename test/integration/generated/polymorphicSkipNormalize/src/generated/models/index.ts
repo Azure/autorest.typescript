@@ -316,7 +316,14 @@ export type MediaGraphInstanceSetRequestBody = MethodRequest &
 
 export type ItemNonSetRequestBase = MethodRequest & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  methodName: "ItemNonSetRequestBase";
+  methodName:
+    | "ItemNonSetRequestBase"
+    | "GraphTopologyGet"
+    | "GraphTopologyDelete"
+    | "GraphInstanceGet"
+    | "GraphInstanceActivate"
+    | "GraphInstanceDeactivate"
+    | "GraphInstanceDelete";
   /** method name */
   name: string;
 };
@@ -366,7 +373,11 @@ export type MediaGraphMotionDetectionProcessor = MediaGraphProcessor & {
 /** Processor that allows for extensions outside of the Live Video Analytics Edge module to be integrated into the graph. It is the base class for various different kinds of extension processor types. */
 export type MediaGraphExtensionProcessorBase = MediaGraphProcessor & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  "@type": "#Microsoft.Media.MediaGraphExtensionProcessorBase";
+  "@type":
+    | "#Microsoft.Media.MediaGraphExtensionProcessorBase"
+    | "#Microsoft.Media.MediaGraphCognitiveServicesVisionExtension"
+    | "#Microsoft.Media.MediaGraphGrpcExtension"
+    | "#Microsoft.Media.MediaGraphHttpExtension";
   /** Endpoint to which this processor should connect. */
   endpoint: MediaGraphEndpointUnion;
   /** Describes the parameters of the image that is sent as input to the endpoint. */

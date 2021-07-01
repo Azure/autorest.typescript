@@ -995,8 +995,13 @@
                   "text": "readonly type?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -1007,7 +1012,7 @@
               "name": "type",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             }
           ],

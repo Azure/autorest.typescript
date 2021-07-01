@@ -76,7 +76,16 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: any;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
+              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
             },
             {
               "kind": "Reference",
@@ -96,7 +105,7 @@
           "name": "AzureCliScript",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 15
+            "endIndex": 17
           }
         },
         {
@@ -199,7 +208,16 @@
             },
             {
               "kind": "Content",
-              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: any;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
+              "text": ";\n    readonly outputs?: {\n        [propertyName: string]: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Record",
+              "canonicalReference": "!Record:type"
+            },
+            {
+              "kind": "Content",
+              "text": "<string, unknown>;\n    };\n    primaryScriptUri?: string;\n    supportingScriptUris?: string[];\n    scriptContent?: string;\n    arguments?: string;\n    environmentVariables?: "
             },
             {
               "kind": "Reference",
@@ -219,7 +237,7 @@
           "name": "AzurePowerShellScript",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 15
+            "endIndex": 17
           }
         },
         {
@@ -647,7 +665,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "{\n        [propertyName: string]: any;\n    }"
+                  "text": "{\n        [propertyName: string]: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<string, unknown>;\n    }"
                 },
                 {
                   "kind": "Content",
@@ -658,7 +685,7 @@
               "name": "outputs",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 4
               }
             },
             {
@@ -2861,8 +2888,13 @@
                   "text": "readonly info?: "
                 },
                 {
+                  "kind": "Reference",
+                  "text": "Record",
+                  "canonicalReference": "!Record:type"
+                },
+                {
                   "kind": "Content",
-                  "text": "any"
+                  "text": "<string, unknown>"
                 },
                 {
                   "kind": "Content",
@@ -2873,7 +2905,7 @@
               "name": "info",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {

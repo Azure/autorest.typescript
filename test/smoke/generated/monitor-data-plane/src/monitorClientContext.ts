@@ -40,13 +40,13 @@ export class MonitorClientContext extends coreClient.ServiceClient {
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
         : `${packageDetails}`;
-    options.userAgentOptions = {
-      userAgentPrefix: userAgentPrefix
-    };
 
     const optionsWithDefaults = {
       ...defaults,
       ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
       baseUri: options.endpoint || "https://monitoring.azure.com"
     };
     super(optionsWithDefaults);

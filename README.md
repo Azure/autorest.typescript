@@ -53,9 +53,9 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ## Autorest Typescript Plugin Configuration
 
 ```yaml
-version: 3.1.2
+version: 3.4.5
 use-extension:
-  "@autorest/modelerfour": "4.15.456"
+  "@autorest/modelerfour": "4.19.3"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -82,6 +82,18 @@ typescript-scope/emitter:
   input-artifact: typescript-files
 
 output-artifact: typescript-files
+```
+
+### REST Client Generator overrides
+
+```yaml $(rest-level-client)
+modelerfour:
+  # this runs a pre-namer step to clean up names
+  prenamer: true
+  flatten-models: false
+  flatten-payloads: false
+  always-create-content-type-parameter: true
+  group-parameters: false
 ```
 
 ## Help

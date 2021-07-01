@@ -1111,9 +1111,7 @@ export interface AppServicePlansGetServerFarmSkusOptionalParams extends coreClie
 }
 
 // @public
-export type AppServicePlansGetServerFarmSkusResponse = {
-    body: any;
-};
+export type AppServicePlansGetServerFarmSkusResponse = Record<string, unknown>;
 
 // @public
 export interface AppServicePlansGetVnetFromServerFarmOptionalParams extends coreClient.OperationOptions {
@@ -1777,7 +1775,7 @@ export type ContinuousWebJob = ProxyOnlyResource & {
     error?: string;
     usingSdk?: boolean;
     settings?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
 };
 
@@ -2765,7 +2763,7 @@ export type FunctionEnvelope = ProxyOnlyResource & {
     testDataHref?: string;
     secretsFileHref?: string;
     href?: string;
-    config?: any;
+    config?: Record<string, unknown>;
     files?: {
         [propertyName: string]: string;
     };
@@ -5268,7 +5266,7 @@ export type TriggeredWebJob = ProxyOnlyResource & {
     error?: string;
     usingSdk?: boolean;
     settings?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
 };
 
@@ -6283,9 +6281,7 @@ export interface WebAppsDeletePrivateEndpointConnectionOptionalParams extends co
 }
 
 // @public
-export type WebAppsDeletePrivateEndpointConnectionResponse = {
-    body: any;
-};
+export type WebAppsDeletePrivateEndpointConnectionResponse = Record<string, unknown>;
 
 // @public
 export interface WebAppsDeleteProcessOptionalParams extends coreClient.OperationOptions {
@@ -8694,7 +8690,7 @@ export type WebJob = ProxyOnlyResource & {
     error?: string;
     usingSdk?: boolean;
     settings?: {
-        [propertyName: string]: any;
+        [propertyName: string]: Record<string, unknown>;
     };
 };
 

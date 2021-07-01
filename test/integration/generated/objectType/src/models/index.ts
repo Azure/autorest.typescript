@@ -13,10 +13,7 @@ export interface ObjectTypeClientGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ObjectTypeClientGetResponse = {
-  /** The parsed response body. */
-  body: any;
-};
+export type ObjectTypeClientGetResponse = Record<string, unknown>;
 
 /** Optional parameters. */
 export interface ObjectTypeClientPutOptionalParams
