@@ -29,7 +29,7 @@ import { processPassthroughOperationResult } from "./passthrough";
 import {
   getPollingUrl,
   inferLroMode,
-  isExpectedInitialResponse
+  isUnexpectedInitialResponse
 } from "./requestUtils";
 
 /**
@@ -38,14 +38,14 @@ import {
 export function createGetLroStatusFromResponse<TResult>(
   lroPrimitives: LongRunningOperation<TResult>,
   config: LroConfig,
-  finalStateVia?: LroResourceLocationConfig
+  lroResourceLocationConfig?: LroResourceLocationConfig
 ): GetLroStatusFromResponse<TResult> {
   switch (config.mode) {
     case "AzureAsync": {
       return processAzureAsyncOperationResult(
         lroPrimitives,
         config.resourceLocation,
-        finalStateVia
+        lroResourceLocationConfig
       );
     }
     case "Location": {
@@ -115,7 +115,7 @@ export function createInitializeState<TResult>(
   requestMethod: string
 ): (rawResponse: RawResponse, flatResponse: unknown) => boolean {
   return (rawResponse: RawResponse, flatResponse: unknown) => {
-    if (isExpectedInitialResponse(rawResponse)) return true;
+    if (isUnexpectedInitialResponse(rawResponse)) return true;
     state.initialRawResponse = rawResponse;
     state.isStarted = true;
     state.pollingURL = getPollingUrl(state.initialRawResponse, requestPath);

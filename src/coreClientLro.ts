@@ -121,7 +121,7 @@ export function createPollingMethod<TResult>(
  * We need to selectively deserialize our responses, only deserializing if we
  * are in a final Lro response, not deserializing any polling non-terminal responses
  */
-export function shouldDeserializeLro(finalStateVia?: string) {
+export function shouldDeserializeLro(lroResourceLocationConfig?: string) {
   let initialOperationInfo: LroResponseInfo | undefined;
   let isInitialRequest = true;
 
@@ -145,7 +145,7 @@ export function shouldDeserializeLro(finalStateVia?: string) {
         isAsyncOperationFinalResponse(
           response,
           initialOperationInfo,
-          finalStateVia
+          lroResourceLocationConfig
         )
       );
     }
@@ -165,7 +165,7 @@ export function shouldDeserializeLro(finalStateVia?: string) {
 function isAsyncOperationFinalResponse(
   response: FullOperationResponse,
   initialOperationInfo: LroResponseInfo,
-  finalStateVia?: string
+  lroResourceLocationConfig?: string
 ): boolean {
   const status: string = response.parsedBody?.status || "Succeeded";
   if (!terminalStates.includes(status.toLowerCase())) {
@@ -178,8 +178,8 @@ function isAsyncOperationFinalResponse(
 
   if (
     initialOperationInfo.requestMethod === "PUT" &&
-    finalStateVia &&
-    finalStateVia.toLowerCase() === "azure-asyncoperation"
+    lroResourceLocationConfig &&
+    lroResourceLocationConfig.toLowerCase() === "azure-asyncoperation"
   ) {
     return true;
   }
@@ -238,7 +238,7 @@ export class CoreClientLro<T> implements LongRunningOperation<T> {
     private sendOperationFn: SendOperationFn<T>,
     private args: OperationArguments,
     private spec: OperationSpec,
-    private finalStateVia?: LroResourceLocationConfig,
+    private lroResourceLocationConfig?: LroResourceLocationConfig,
     public requestPath: string = spec.path!,
     public requestMethod: string = spec.httpMethod
   ) {}
@@ -283,7 +283,7 @@ export class CoreClientLro<T> implements LongRunningOperation<T> {
     const getLroStatusFromResponse = createGetLroStatusFromResponse(
       this,
       config,
-      this.finalStateVia
+      this.lroResourceLocationConfig
     );
     return createPollingMethod(
       this.sendOperationFn,

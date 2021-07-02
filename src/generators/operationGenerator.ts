@@ -134,7 +134,11 @@ export function writeGetOperationOptions(
       : "getOperationOptions<TOptions extends coreClient.OperationOptions>",
     parameters: [
       { name: "options", type: "TOptions | undefined" },
-      { name: "finalStateVia", type: "string", hasQuestionToken: true }
+      {
+        name: "lroResourceLocationConfig",
+        type: "string",
+        hasQuestionToken: true
+      }
     ],
     returnType: !useCoreV2
       ? `coreHttp.RequestOptionsBase`
@@ -144,7 +148,7 @@ export function writeGetOperationOptions(
     const operationOptions: coreHttp.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(finalStateVia),
+      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig),
     };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
@@ -152,7 +156,7 @@ export function writeGetOperationOptions(
     const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(finalStateVia),
+      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig),
     };
     return operationOptions;`
   });
@@ -739,14 +743,16 @@ function addOperationOverloads(
 function compileOperationOptionsToRequestOptionsBase(
   options: string,
   isLro: boolean,
-  finalStateVia?: string
+  lroResourceLocationConfig?: string
 ): string {
   const { useCoreV2 } = getAutorestOptions();
   // In Lro we have a couple extra properties to add that's why we use
   // the private getOperationOptions function instead of the one in core-http
   return isLro
     ? `this.getOperationOptions(${options}${
-        finalStateVia === undefined ? "" : `, "${finalStateVia}"`
+        lroResourceLocationConfig === undefined
+          ? ""
+          : `, "${lroResourceLocationConfig}"`
       })`
     : !useCoreV2
     ? `coreHttp.operationOptionsToRequestOptionsBase(options || {})`
@@ -762,7 +768,7 @@ function writeNoOverloadsOperationBody(
   isInline: boolean
 ): void {
   const { useCoreV2, tracingInfo } = getAutorestOptions();
-  const finalStateVia =
+  const lroResourceLocationConfig =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
   const operationSpecName = `${operation.name}OperationSpec`;
@@ -785,13 +791,13 @@ function writeNoOverloadsOperationBody(
     options = compileOperationOptionsToRequestOptionsBase(
       updatedOptionsName,
       operation.isLro,
-      finalStateVia
+      lroResourceLocationConfig
     );
   } else {
     options = compileOperationOptionsToRequestOptionsBase(
       vanillaOptionsName,
       operation.isLro,
-      finalStateVia
+      lroResourceLocationConfig
     );
   }
 
@@ -819,7 +825,7 @@ function writeNoOverloadsOperationBody(
         responseName,
         operationSpecName,
         operationMethod,
-        finalStateVia,
+        lroResourceLocationConfig,
         isInline,
         !!tracingInfo
       );
@@ -829,7 +835,7 @@ function writeNoOverloadsOperationBody(
         responseName,
         operationSpecName,
         operationMethod,
-        finalStateVia,
+        lroResourceLocationConfig,
         isInline,
         !!tracingInfo
       );
@@ -924,7 +930,7 @@ function writeLroOperationBody(
   responseName: string,
   operationSpecName: string,
   methodDeclaration: MethodDeclaration,
-  finalStateVia?: string,
+  lroResourceLocationConfig?: string,
   isInline?: boolean,
   isTracingEnabled = false
 ) {
@@ -932,7 +938,9 @@ function writeLroOperationBody(
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
 
-  const finalStateStr = finalStateVia ? `"${finalStateVia.toLowerCase()}"` : "";
+  const finalStateStr = lroResourceLocationConfig
+    ? `"${lroResourceLocationConfig.toLowerCase()}"`
+    : "";
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
       ${getTracingTryCatchStatement(
@@ -1085,7 +1093,7 @@ function writeMultiMediaTypeOperationBody(
   }`
   ]);
 
-  const finalStateVia =
+  const lroResourceLocationConfig =
     operation.lroOptions && operation.lroOptions["final-state-via"];
 
   if (tracingInfo) {
@@ -1099,7 +1107,7 @@ function writeMultiMediaTypeOperationBody(
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         outputOptionsVarName,
         operation.isLro,
-        finalStateVia
+        lroResourceLocationConfig
       )};`
     ]);
   } else {
@@ -1107,7 +1115,7 @@ function writeMultiMediaTypeOperationBody(
       `operationArguments.options = ${compileOperationOptionsToRequestOptionsBase(
         optionsVarName,
         operation.isLro,
-        finalStateVia
+        lroResourceLocationConfig
       )};`
     ]);
   }
@@ -1127,7 +1135,7 @@ function writeMultiMediaTypeOperationBody(
       responseName,
       "operationSpec",
       operationMethod,
-      finalStateVia,
+      lroResourceLocationConfig,
       isInline,
       !!tracingInfo
     );

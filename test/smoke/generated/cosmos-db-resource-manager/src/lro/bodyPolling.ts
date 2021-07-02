@@ -16,7 +16,7 @@ import {
   RawResponse,
   successStates
 } from "./models";
-import { isExpectedPollingResponse } from "./requestUtils";
+import { isUnexpectedPollingResponse } from "./requestUtils";
 
 function getProvisioningState(rawResponse: RawResponse): string {
   const { properties, provisioningState } = (rawResponse.body as LroBody) ?? {};
@@ -27,7 +27,10 @@ function getProvisioningState(rawResponse: RawResponse): string {
 
 export function isBodyPollingDone(rawResponse: RawResponse): boolean {
   const state = getProvisioningState(rawResponse);
-  if (isExpectedPollingResponse(rawResponse) || failureStates.includes(state)) {
+  if (
+    isUnexpectedPollingResponse(rawResponse) ||
+    failureStates.includes(state)
+  ) {
     throw new Error(
       `The long running operation has failed. The provisioning state: ${state}.`
     );

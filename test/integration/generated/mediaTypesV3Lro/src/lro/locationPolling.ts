@@ -10,11 +10,11 @@
 // Licensed under the MIT license.
 
 import { LroStatus, RawResponse } from "./models";
-import { isExpectedPollingResponse } from "./requestUtils";
+import { isUnexpectedPollingResponse } from "./requestUtils";
 
 function isLocationPollingDone(rawResponse: RawResponse): boolean {
   return (
-    !isExpectedPollingResponse(rawResponse) && rawResponse.statusCode !== 202
+    !isUnexpectedPollingResponse(rawResponse) && rawResponse.statusCode !== 202
   );
 }
 

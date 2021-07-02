@@ -34,12 +34,12 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
 
   private getOperationOptions<TOptions extends coreClient.OperationOptions>(
     options: TOptions | undefined,
-    finalStateVia?: string
+    lroResourceLocationConfig?: string
   ): coreClient.OperationOptions {
     const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(finalStateVia)
+      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig)
     };
     return operationOptions;
   }
