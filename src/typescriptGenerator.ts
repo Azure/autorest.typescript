@@ -21,7 +21,7 @@ import { generateRollupConfig } from "./generators/static/rollupConfigFileGenera
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
 import { generateParameters } from "./generators/parametersGenerator";
-import { generateLROFiles } from "./generators/LROGenerator";
+import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 
@@ -96,7 +96,7 @@ export async function generateTypeScriptLibrary(
   generateOperationsInterfaces(clientDetails, project);
   generateParameters(clientDetails, project);
   generateIndexFile(clientDetails, project);
-  await generateLROFiles(clientDetails, project);
+  await generateLroFiles(clientDetails, project);
   generateTracingFile(project);
 
   const licenseHeader = `

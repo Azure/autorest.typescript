@@ -143,7 +143,7 @@ function writeOptionsParameter(
     {
       mediaTypes: operationRequestMediaTypes,
       operationFullName: operation.fullName,
-      operationIsLro: operation.isLRO
+      operationIsLro: operation.isLro
     }
   );
 }
@@ -153,7 +153,7 @@ function writeOptionsParameter(
  * the response body and headers
  */
 function writeResponseTypes(
-  { responses, name, typeDetails: operationType, isLRO }: OperationDetails,
+  { responses, name, typeDetails: operationType, isLro }: OperationDetails,
   modelsIndexFile: SourceFile,
   allModelsNames: Set<string>
 ) {
@@ -181,7 +181,7 @@ function writeResponseTypes(
           name: responseName,
           docs: [`Contains response data for the ${name} operation.`],
           isExported: true,
-          type: buildResponseType(operation, isLRO),
+          type: buildResponseType(operation, isLro),
           leadingTrivia: writer => writer.blankLine(),
           kind: StructureKind.TypeAlias
         });

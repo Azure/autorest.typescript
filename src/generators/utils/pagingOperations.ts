@@ -240,7 +240,7 @@ function getPublicMethodName(operation: OperationDetails) {
   } else {
     initialOperationName = normalizeName(initialOperationName, NameType.Class);
   }
-  return operation.isLRO
+  return operation.isLro
     ? `beginList${initialOperationName}AndWait`
     : `list${initialOperationName}`;
 }
@@ -358,8 +358,8 @@ function writePageMethod(
     `let result = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`
   ];
 
-  if (operation.isLRO) {
-    // Since this is also an LRO operation, we need to poll until done to get the result
+  if (operation.isLro) {
+    // Since this is also an Lro operation, we need to poll until done to get the result
     firstRequestStatements = [
       `const poller = await this.${pagingMethodSettings.initialMethod.name}(${initialMethodParameters});`,
       `let result: any = await poller.pollUntilDone();`

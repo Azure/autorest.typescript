@@ -112,7 +112,7 @@ function getReturnType(
     modelNames
   );
 
-  return operation.isLRO
+  return operation.isLro
     ? `Promise<PollerLike<PollOperationState<${responseName}>,${responseName}>>`
     : `Promise<${responseName}>`;
 }
@@ -208,7 +208,7 @@ export function writeOperations(
       /**
        * Create a simple method that blocks and waits for the result
        */
-      if (operation.isLRO && operation.pagination === undefined) {
+      if (operation.isLro && operation.pagination === undefined) {
         const responseName = getOperationResponseType(
           operation,
           importedModels,
@@ -257,7 +257,7 @@ function addImports(
     });
   }
 
-  if (hasLROOperation(operationGroupDetails)) {
+  if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
       namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
@@ -265,6 +265,6 @@ function addImports(
   }
 }
 
-function hasLROOperation(operationGroupDetails: OperationGroupDetails) {
-  return operationGroupDetails.operations.some(o => o.isLRO);
+function hasLroOperation(operationGroupDetails: OperationGroupDetails) {
+  return operationGroupDetails.operations.some(o => o.isLro);
 }

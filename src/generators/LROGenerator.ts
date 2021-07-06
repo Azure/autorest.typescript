@@ -5,16 +5,18 @@ import { promises } from "fs";
 import { join as joinPath } from "path";
 import { getAutorestOptions } from "../autorestSession";
 
-export async function generateLROFiles(
+export async function generateLroFiles(
   clientDetails: ClientDetails,
   project: Project
 ) {
-  const { srcPath } = getAutorestOptions();
-  if (!hasAnyLRO(clientDetails.operationGroups)) {
+  const { srcPath, useCoreV2 } = getAutorestOptions();
+  if (!hasAnyLro(clientDetails.operationGroups)) {
     return;
   }
-
-  const lroDir = joinPath(__dirname, "..", "..", "..", "src", "lro");
+  const LroClassFile = useCoreV2 ? "coreClientLro.ts" : "coreHttpLro.ts";
+  const baseTargetPath = srcPath || "";
+  const srcDir = joinPath(__dirname, "..", "..", "..", "src");
+  const lroDir = joinPath(srcDir, "lro");
   const lroFiles = await promises.readdir(lroDir);
 
   for (let i = 0; i < lroFiles.length; i++) {
@@ -23,13 +25,24 @@ export async function generateLROFiles(
     const fileContent = await promises.readFile(filePath, "utf-8");
 
     project.createSourceFile(
-      joinPath(srcPath || "", "lro", file),
+      joinPath(baseTargetPath, "lro", file),
       fileContent,
       { overwrite: true }
     );
   }
+  const fileContent = await promises.readFile(
+    joinPath(srcDir, LroClassFile),
+    "utf-8"
+  );
+  project.createSourceFile(
+    joinPath(baseTargetPath, LroClassFile),
+    fileContent,
+    {
+      overwrite: true
+    }
+  );
 }
 
-function hasAnyLRO(operationGroups: OperationGroupDetails[]) {
-  return operationGroups.some(og => og.operations.some(o => o.isLRO));
+function hasAnyLro(operationGroups: OperationGroupDetails[]) {
+  return operationGroups.some(og => og.operations.some(o => o.isLro));
 }

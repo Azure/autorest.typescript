@@ -49,7 +49,7 @@ describe("clientFileGenerator", () => {
             parameters: [],
             requests: [],
             responses: [],
-            isLRO: false,
+            isLro: false,
             lroOptions,
             mediaTypes,
             typeDetails
@@ -62,7 +62,7 @@ describe("clientFileGenerator", () => {
             parameters: [],
             requests: [],
             responses: [],
-            isLRO: false,
+            isLro: false,
             lroOptions,
             mediaTypes,
             typeDetails

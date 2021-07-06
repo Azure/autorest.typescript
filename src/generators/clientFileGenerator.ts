@@ -108,17 +108,28 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   addPagingEsNextRef(flattenedInlineOperations, clientFile);
   addPagingImports(flattenedInlineOperations, clientFile);
 
-  const hasLRO = inlineOperations.some(og => og.operations.some(o => o.isLRO));
+  const hasLro = inlineOperations.some(og => og.operations.some(o => o.isLro));
 
-  if (hasInlineOperations && hasLRO) {
-    clientFile.addImportDeclaration({
-      namedImports: ["LROPoller", "shouldDeserializeLRO"],
-      moduleSpecifier: "./lro"
-    });
+  if (hasInlineOperations && hasLro) {
     clientFile.addImportDeclaration({
       namedImports: ["PollerLike", "PollOperationState"],
       moduleSpecifier: "@azure/core-lro"
     });
+    clientFile.addImportDeclaration({
+      namedImports: ["LroEngine"],
+      moduleSpecifier: `./lro`
+    });
+    if (useCoreV2) {
+      clientFile.addImportDeclaration({
+        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
+        moduleSpecifier: `./coreClientLro`
+      });
+    } else {
+      clientFile.addImportDeclaration({
+        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
+        moduleSpecifier: `./coreHttpLro`
+      });
+    }
   }
 
   if (hasImportedOperations) {
@@ -191,7 +202,7 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     clientFile,
     clientClass,
     clientDetails,
-    hasLRO,
+    hasLro,
     importedModels
   );
 
@@ -319,7 +330,7 @@ function writeClientOperations(
   file: SourceFile,
   classDeclaration: ClassDeclaration,
   clientDetails: ClientDetails,
-  hasLRO: boolean,
+  hasLro: boolean,
   importedModels: Set<string>
 ) {
   const allModelsNames = getAllModelsNames(clientDetails);
@@ -327,7 +338,7 @@ function writeClientOperations(
   const hasMappers = !!clientDetails.mappers.length;
   // Add top level operation groups as client properties
   if (!!topLevelGroup) {
-    if (hasLRO) {
+    if (hasLro) {
       writeGetOperationOptions(classDeclaration);
     }
     writeOperations(

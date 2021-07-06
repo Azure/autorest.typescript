@@ -8,8 +8,9 @@
 
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
-import { LROPoller, shouldDeserializeLRO } from "./lro";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { LroEngine } from "./lro";
+import { CoreClientLro, shouldDeserializeLro } from "./coreClientLro";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
@@ -33,12 +34,12 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
 
   private getOperationOptions<TOptions extends coreClient.OperationOptions>(
     options: TOptions | undefined,
-    finalStateVia?: string
+    lroResourceLocationConfig?: string
   ): coreClient.OperationOptions {
     const operationOptions: coreClient.OperationOptions = options || {};
     operationOptions.requestOptions = {
       ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLRO(finalStateVia)
+      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig)
     };
     return operationOptions;
   }
@@ -106,7 +107,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         `"contentType" must be a valid value but instead was "${args[0]}".`
       );
     }
-    operationArguments.options = this.getOperationOptions(options, "undefined");
+    operationArguments.options = this.getOperationOptions(options);
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
@@ -136,15 +137,22 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
         }
       };
       const flatResponse = await directSendOperation(updatedArgs, spec);
-      return { flatResponse, rawResponse: currentRawResponse! };
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
     };
 
-    return new LROPoller(
-      { intervalInMs: options?.updateIntervalInMs },
+    const lro = new CoreClientLro(
+      sendOperation,
       operationArguments,
-      operationSpec,
-      sendOperation
+      operationSpec
     );
+    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
   }
 
   /**

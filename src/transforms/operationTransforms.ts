@@ -133,7 +133,13 @@ export function transformOperationSpec(
   return operationSpecDetails;
 }
 
-export function extractHttpDetails({ path, method }: OperationRequestDetails) {
+export function extractHttpDetails({
+  path,
+  method
+}: OperationRequestDetails): {
+  path: string;
+  httpMethod: HttpMethods;
+} {
   return {
     path,
     httpMethod: method.toUpperCase() as HttpMethods
@@ -143,7 +149,7 @@ export function extractHttpDetails({ path, method }: OperationRequestDetails) {
 export function extractSpecResponses({
   name,
   responses,
-  isLRO
+  isLro
 }: OperationDetails): OperationSpecResponses {
   if (!responses || !responses.length) {
     throw new Error(`The operation ${name} contains no responses`);
@@ -151,7 +157,7 @@ export function extractSpecResponses({
 
   let enhancedResponses = responses;
 
-  if (isLRO) {
+  if (isLro) {
     enhancedResponses = injectMissingResponses(responses);
   }
 
@@ -390,7 +396,7 @@ export async function transformOperation(
     usedModels: [typeName]
   };
 
-  const isLRO: boolean = Boolean(
+  const isLro: boolean = Boolean(
     operation.extensions && operation.extensions["x-ms-long-running-operation"]
   );
   const lroOptions =
@@ -412,10 +418,10 @@ export async function transformOperation(
   );
   const hasMultipleResponses = responses.filter(r => !r.isError).length > 1;
 
-  // If this is an LRO operation only consider the first success response,
-  // this is because LRO operations swagger defines initial and final operation
+  // If this is an Lro operation only consider the first success response,
+  // this is because Lro operations swagger defines initial and final operation
   // responses in the same operation.
-  if (isLRO && hasMultipleResponses) {
+  if (isLro && hasMultipleResponses) {
     const errorResponses = responses.filter(r => r.isError);
     responses = [responses[0], ...errorResponses];
   }
@@ -435,7 +441,7 @@ export async function transformOperation(
     responses,
     mediaTypes,
     pagination,
-    isLRO,
+    isLro,
     lroOptions
   };
 }
