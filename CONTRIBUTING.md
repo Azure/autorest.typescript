@@ -83,7 +83,7 @@ Let us say your test input will be called `testUserCase.json`.
 
 ```
 testUserCase: {
-    swaggerOrConfig: "testUserCase.json",
+    swaggerOrConfig: "test/integration/swaggers/testUserCase.json",
     clientName: "TestUserCaseClient",
     packageName: "test-user-case",
     licenseHeader: true,
