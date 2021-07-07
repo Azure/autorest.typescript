@@ -35,7 +35,7 @@ export function generateLicenseFile(project: Project) {
   }
 
   if (licenseHeader) {
-    project.createSourceFile("LICENSE.txt", mitLicenseText.trim(), {
+    project.createSourceFile("LICENSE", mitLicenseText.trim(), {
       overwrite: true
     });
   }

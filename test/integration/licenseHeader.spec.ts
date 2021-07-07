@@ -15,7 +15,7 @@ describe("License Header Parameter", () => {
 
   it("sdk must not have a license file", async () => {
     const licenseFileExists: boolean = fs.existsSync(
-      "./test/integration/generated/noLicenseHeader/LICENSE.txt"
+      "./test/integration/generated/noLicenseHeader/LICENSE"
     );
 
     expect(licenseFileExists).to.equal(false, "Unexpected License File");
@@ -34,7 +34,7 @@ describe("License Header Parameter", () => {
 
   it("sdk must have a license file", async () => {
     const licenseFileExists: boolean = fs.existsSync(
-      "./test/integration/generated/licenseHeader/LICENSE.txt"
+      "./test/integration/generated/licenseHeader/LICENSE"
     );
 
     expect(licenseFileExists).to.equal(true, "Expected License File");
