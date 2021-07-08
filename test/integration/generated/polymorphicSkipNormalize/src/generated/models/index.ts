@@ -565,7 +565,7 @@ export type MediaGraphHttpExtension = MediaGraphExtensionProcessorBase & {
 };
 
 /** Known values of {@link MediaGraphParameterType} that the service accepts. */
-export const enum KnownMediaGraphParameterType {
+export enum KnownMediaGraphParameterType {
   /** A string parameter value. */
   String = "String",
   /** A string to hold sensitive information as parameter value. */
@@ -592,7 +592,7 @@ export const enum KnownMediaGraphParameterType {
 export type MediaGraphParameterType = string;
 
 /** Known values of {@link MediaGraphOutputSelectorProperty} that the service accepts. */
-export const enum KnownMediaGraphOutputSelectorProperty {
+export enum KnownMediaGraphOutputSelectorProperty {
   /** The stream's MIME type or subtype. */
   MediaType = "mediaType"
 }
@@ -607,7 +607,7 @@ export const enum KnownMediaGraphOutputSelectorProperty {
 export type MediaGraphOutputSelectorProperty = string;
 
 /** Known values of {@link MediaGraphOutputSelectorOperator} that the service accepts. */
-export const enum KnownMediaGraphOutputSelectorOperator {
+export enum KnownMediaGraphOutputSelectorOperator {
   /** A media type is the same type or a subtype. */
   Is = "is",
   /** A media type is not the same type or a subtype. */
@@ -625,7 +625,7 @@ export const enum KnownMediaGraphOutputSelectorOperator {
 export type MediaGraphOutputSelectorOperator = string;
 
 /** Known values of {@link MediaGraphInstanceState} that the service accepts. */
-export const enum KnownMediaGraphInstanceState {
+export enum KnownMediaGraphInstanceState {
   /** The media graph instance is idle and not processing media. */
   Inactive = "Inactive",
   /** The media graph instance is transitioning into the active state. */
@@ -649,7 +649,7 @@ export const enum KnownMediaGraphInstanceState {
 export type MediaGraphInstanceState = string;
 
 /** Known values of {@link MediaGraphRtspTransport} that the service accepts. */
-export const enum KnownMediaGraphRtspTransport {
+export enum KnownMediaGraphRtspTransport {
   /** HTTP/HTTPS transport. This should be used when HTTP tunneling is desired. */
   Http = "Http",
   /** TCP transport. This should be used when HTTP tunneling is NOT desired. */
@@ -667,7 +667,7 @@ export const enum KnownMediaGraphRtspTransport {
 export type MediaGraphRtspTransport = string;
 
 /** Known values of {@link MediaGraphMotionDetectionSensitivity} that the service accepts. */
-export const enum KnownMediaGraphMotionDetectionSensitivity {
+export enum KnownMediaGraphMotionDetectionSensitivity {
   /** Low Sensitivity. */
   Low = "Low",
   /** Medium Sensitivity. */
@@ -688,7 +688,7 @@ export const enum KnownMediaGraphMotionDetectionSensitivity {
 export type MediaGraphMotionDetectionSensitivity = string;
 
 /** Known values of {@link MediaGraphImageScaleMode} that the service accepts. */
-export const enum KnownMediaGraphImageScaleMode {
+export enum KnownMediaGraphImageScaleMode {
   /** Use the same aspect ratio as the input frame. */
   PreserveAspectRatio = "PreserveAspectRatio",
   /** Center pad the input frame to match the given dimensions. */
@@ -709,7 +709,7 @@ export const enum KnownMediaGraphImageScaleMode {
 export type MediaGraphImageScaleMode = string;
 
 /** Known values of {@link MediaGraphGrpcExtensionDataTransferMode} that the service accepts. */
-export const enum KnownMediaGraphGrpcExtensionDataTransferMode {
+export enum KnownMediaGraphGrpcExtensionDataTransferMode {
   /** Frames are transferred embedded into the gRPC messages. */
   Embedded = "Embedded",
   /** Frames are transferred through shared memory. */
@@ -727,7 +727,7 @@ export const enum KnownMediaGraphGrpcExtensionDataTransferMode {
 export type MediaGraphGrpcExtensionDataTransferMode = string;
 
 /** Known values of {@link MediaGraphImageFormatRawPixelFormat} that the service accepts. */
-export const enum KnownMediaGraphImageFormatRawPixelFormat {
+export enum KnownMediaGraphImageFormatRawPixelFormat {
   /** Planar YUV 4:2:0, 12bpp, (1 Cr and Cb sample per 2x2 Y samples). */
   Yuv420P = "Yuv420p",
   /** Packed RGB 5:6:5, 16bpp, (msb)   5R 6G 5B(lsb), big-endian. */

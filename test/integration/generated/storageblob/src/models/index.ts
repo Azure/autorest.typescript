@@ -655,7 +655,7 @@ export interface AppendPositionAccessConditions {
 }
 
 /** Known values of {@link AccessTier} that the service accepts. */
-export const enum KnownAccessTier {
+export enum KnownAccessTier {
   P4 = "P4",
   P6 = "P6",
   P10 = "P10",
@@ -695,7 +695,7 @@ export const enum KnownAccessTier {
 export type AccessTier = string;
 
 /** Known values of {@link ArchiveStatus} that the service accepts. */
-export const enum KnownArchiveStatus {
+export enum KnownArchiveStatus {
   RehydratePendingToHot = "rehydrate-pending-to-hot",
   RehydratePendingToCool = "rehydrate-pending-to-cool"
 }
@@ -711,7 +711,7 @@ export const enum KnownArchiveStatus {
 export type ArchiveStatus = string;
 
 /** Known values of {@link RehydratePriority} that the service accepts. */
-export const enum KnownRehydratePriority {
+export enum KnownRehydratePriority {
   High = "High",
   Standard = "Standard"
 }
@@ -727,7 +727,7 @@ export const enum KnownRehydratePriority {
 export type RehydratePriority = string;
 
 /** Known values of {@link PublicAccessType} that the service accepts. */
-export const enum KnownPublicAccessType {
+export enum KnownPublicAccessType {
   Container = "container",
   Blob = "blob"
 }
@@ -743,7 +743,7 @@ export const enum KnownPublicAccessType {
 export type PublicAccessType = string;
 
 /** Known values of {@link GeoReplicationStatusType} that the service accepts. */
-export const enum KnownGeoReplicationStatusType {
+export enum KnownGeoReplicationStatusType {
   Live = "live",
   Bootstrap = "bootstrap",
   Unavailable = "unavailable"
@@ -761,7 +761,7 @@ export const enum KnownGeoReplicationStatusType {
 export type GeoReplicationStatusType = string;
 
 /** Known values of {@link StorageErrorCode} that the service accepts. */
-export const enum KnownStorageErrorCode {
+export enum KnownStorageErrorCode {
   AccountAlreadyExists = "AccountAlreadyExists",
   AccountBeingCreated = "AccountBeingCreated",
   AccountIsDisabled = "AccountIsDisabled",
@@ -997,7 +997,7 @@ export const enum KnownStorageErrorCode {
 export type StorageErrorCode = string;
 
 /** Known values of {@link PremiumPageBlobAccessTier} that the service accepts. */
-export const enum KnownPremiumPageBlobAccessTier {
+export enum KnownPremiumPageBlobAccessTier {
   P4 = "P4",
   P6 = "P6",
   P10 = "P10",
@@ -1031,7 +1031,7 @@ export const enum KnownPremiumPageBlobAccessTier {
 export type PremiumPageBlobAccessTier = string;
 
 /** Known values of {@link BlobExpiryOptions} that the service accepts. */
-export const enum KnownBlobExpiryOptions {
+export enum KnownBlobExpiryOptions {
   NeverExpire = "NeverExpire",
   RelativeToCreation = "RelativeToCreation",
   RelativeToNow = "RelativeToNow",

@@ -444,7 +444,7 @@ const writeExtensibleChoice = (
   ) {
     const enumName = getExtensibleEnumName(choice);
     modelsIndexFile.addEnum({
-      isConst: true,
+      isConst: false,
       isExported: true,
       name: enumName,
       docs: [

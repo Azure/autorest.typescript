@@ -17,7 +17,7 @@ export interface PetDef {
 }
 
 /** Known values of {@link DaysOfWeekExtensibleEnum} that the service accepts. */
-export const enum KnownDaysOfWeekExtensibleEnum {
+export enum KnownDaysOfWeekExtensibleEnum {
   Monday = "Monday",
   Tuesday = "Tuesday",
   Wednesday = "Wednesday",
@@ -43,7 +43,7 @@ export const enum KnownDaysOfWeekExtensibleEnum {
 export type DaysOfWeekExtensibleEnum = string;
 
 /** Known values of {@link IntEnum} that the service accepts. */
-export const enum KnownIntEnum {
+export enum KnownIntEnum {
   /** This is a really long comment to see what wrapping looks like. This comment is really long and it should wrap for readability. Please wrap. This should wrap. */
   One = "1",
   /** two */

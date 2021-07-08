@@ -29,7 +29,7 @@ export interface CloudErrorBody {
 }
 
 /** Known values of {@link AttestationType} that the service accepts. */
-export const enum KnownAttestationType {
+export enum KnownAttestationType {
   /** Intel Software Guard eXtensions */
   SgxEnclave = "SgxEnclave",
   /** OpenEnclave extensions to SGX */
@@ -50,7 +50,7 @@ export const enum KnownAttestationType {
 export type AttestationType = string;
 
 /** Known values of {@link DataType} that the service accepts. */
-export const enum KnownDataType {
+export enum KnownDataType {
   /** The contents of the field should be treated as binary and not interpreted by MAA. */
   Binary = "Binary",
   /** The contents of the field should be treated as a JSON object and may be further interpreted by MAA. */

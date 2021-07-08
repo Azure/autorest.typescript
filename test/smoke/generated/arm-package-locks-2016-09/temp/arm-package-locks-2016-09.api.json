@@ -214,7 +214,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLockLevel "
+              "text": "export declare enum KnownLockLevel "
             }
           ],
           "releaseTag": "Public",

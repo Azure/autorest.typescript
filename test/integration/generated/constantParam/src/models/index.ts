@@ -118,7 +118,7 @@ export interface ErrorResponse {
 }
 
 /** Known values of {@link WarningCodeValue} that the service accepts. */
-export const enum KnownWarningCodeValue {
+export enum KnownWarningCodeValue {
   LongWordsInDocument = "LongWordsInDocument",
   DocumentTruncated = "DocumentTruncated"
 }
@@ -134,7 +134,7 @@ export const enum KnownWarningCodeValue {
 export type WarningCodeValue = string;
 
 /** Known values of {@link InnerErrorCodeValue} that the service accepts. */
-export const enum KnownInnerErrorCodeValue {
+export enum KnownInnerErrorCodeValue {
   InvalidParameterValue = "InvalidParameterValue",
   InvalidRequestBodyFormat = "InvalidRequestBodyFormat",
   EmptyRequest = "EmptyRequest",

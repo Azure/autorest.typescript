@@ -478,7 +478,7 @@ export interface PrivateEndpointConnectionsDeleteHeaders {
 }
 
 /** Known values of {@link SkuFamily} that the service accepts. */
-export const enum KnownSkuFamily {
+export enum KnownSkuFamily {
   A = "A"
 }
 
@@ -492,7 +492,7 @@ export const enum KnownSkuFamily {
 export type SkuFamily = string;
 
 /** Known values of {@link KeyPermissions} that the service accepts. */
-export const enum KnownKeyPermissions {
+export enum KnownKeyPermissions {
   Encrypt = "encrypt",
   Decrypt = "decrypt",
   WrapKey = "wrapKey",
@@ -536,7 +536,7 @@ export const enum KnownKeyPermissions {
 export type KeyPermissions = string;
 
 /** Known values of {@link SecretPermissions} that the service accepts. */
-export const enum KnownSecretPermissions {
+export enum KnownSecretPermissions {
   Get = "get",
   List = "list",
   Set = "set",
@@ -564,7 +564,7 @@ export const enum KnownSecretPermissions {
 export type SecretPermissions = string;
 
 /** Known values of {@link CertificatePermissions} that the service accepts. */
-export const enum KnownCertificatePermissions {
+export enum KnownCertificatePermissions {
   Get = "get",
   List = "list",
   Delete = "delete",
@@ -608,7 +608,7 @@ export const enum KnownCertificatePermissions {
 export type CertificatePermissions = string;
 
 /** Known values of {@link StoragePermissions} that the service accepts. */
-export const enum KnownStoragePermissions {
+export enum KnownStoragePermissions {
   Get = "get",
   List = "list",
   Delete = "delete",
@@ -648,7 +648,7 @@ export const enum KnownStoragePermissions {
 export type StoragePermissions = string;
 
 /** Known values of {@link NetworkRuleBypassOptions} that the service accepts. */
-export const enum KnownNetworkRuleBypassOptions {
+export enum KnownNetworkRuleBypassOptions {
   AzureServices = "AzureServices",
   None = "None"
 }
@@ -664,7 +664,7 @@ export const enum KnownNetworkRuleBypassOptions {
 export type NetworkRuleBypassOptions = string;
 
 /** Known values of {@link NetworkRuleAction} that the service accepts. */
-export const enum KnownNetworkRuleAction {
+export enum KnownNetworkRuleAction {
   Allow = "Allow",
   Deny = "Deny"
 }
@@ -680,7 +680,7 @@ export const enum KnownNetworkRuleAction {
 export type NetworkRuleAction = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
-export const enum KnownPrivateEndpointServiceConnectionStatus {
+export enum KnownPrivateEndpointServiceConnectionStatus {
   Pending = "Pending",
   Approved = "Approved",
   Rejected = "Rejected",
@@ -700,7 +700,7 @@ export const enum KnownPrivateEndpointServiceConnectionStatus {
 export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
-export const enum KnownPrivateEndpointConnectionProvisioningState {
+export enum KnownPrivateEndpointConnectionProvisioningState {
   Succeeded = "Succeeded",
   Creating = "Creating",
   Updating = "Updating",

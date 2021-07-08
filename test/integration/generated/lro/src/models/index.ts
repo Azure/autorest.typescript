@@ -545,7 +545,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
 }
 
 /** Known values of {@link ProductPropertiesProvisioningStateValues} that the service accepts. */
-export const enum KnownProductPropertiesProvisioningStateValues {
+export enum KnownProductPropertiesProvisioningStateValues {
   Succeeded = "Succeeded",
   Failed = "Failed",
   Canceled = "canceled",
@@ -579,7 +579,7 @@ export const enum KnownProductPropertiesProvisioningStateValues {
 export type ProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link SubProductPropertiesProvisioningStateValues} that the service accepts. */
-export const enum KnownSubProductPropertiesProvisioningStateValues {
+export enum KnownSubProductPropertiesProvisioningStateValues {
   Succeeded = "Succeeded",
   Failed = "Failed",
   Canceled = "canceled",
@@ -613,7 +613,7 @@ export const enum KnownSubProductPropertiesProvisioningStateValues {
 export type SubProductPropertiesProvisioningStateValues = string;
 
 /** Known values of {@link OperationResultStatus} that the service accepts. */
-export const enum KnownOperationResultStatus {
+export enum KnownOperationResultStatus {
   Succeeded = "Succeeded",
   Failed = "Failed",
   Canceled = "canceled",

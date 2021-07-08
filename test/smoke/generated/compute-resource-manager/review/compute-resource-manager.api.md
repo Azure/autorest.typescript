@@ -353,13 +353,10 @@ export interface ContainerServiceListResult {
 
 // @public
 export interface ContainerServiceMasterProfile {
-    count?: ContainerServiceMasterProfileCount;
+    count?: Enum31;
     dnsPrefix: string;
     readonly fqdn?: string;
 }
-
-// @public
-export type ContainerServiceMasterProfileCount = number;
 
 // @public
 export interface ContainerServiceOrchestratorProfile {
@@ -1023,6 +1020,9 @@ export interface EncryptionSettingsElement {
 
 // @public
 export type EncryptionType = string;
+
+// @public
+export type Enum31 = number;
 
 // @public
 export interface Galleries {
@@ -1748,7 +1748,7 @@ export interface KeyVaultSecretReference {
 }
 
 // @public
-export const enum KnownAccessLevel {
+export enum KnownAccessLevel {
     // (undocumented)
     None = "None",
     // (undocumented)
@@ -1758,7 +1758,7 @@ export const enum KnownAccessLevel {
 }
 
 // @public
-export const enum KnownAggregatedReplicationState {
+export enum KnownAggregatedReplicationState {
     // (undocumented)
     Completed = "Completed",
     // (undocumented)
@@ -1770,7 +1770,7 @@ export const enum KnownAggregatedReplicationState {
 }
 
 // @public
-export const enum KnownAvailabilitySetSkuTypes {
+export enum KnownAvailabilitySetSkuTypes {
     // (undocumented)
     Aligned = "Aligned",
     // (undocumented)
@@ -1778,17 +1778,7 @@ export const enum KnownAvailabilitySetSkuTypes {
 }
 
 // @public
-export const enum KnownContainerServiceMasterProfileCount {
-    // (undocumented)
-    Five = 5,
-    // (undocumented)
-    One = 1,
-    // (undocumented)
-    Three = 3
-}
-
-// @public
-export const enum KnownContainerServiceVMSizeTypes {
+export enum KnownContainerServiceVMSizeTypes {
     // (undocumented)
     StandardA0 = "Standard_A0",
     // (undocumented)
@@ -1886,13 +1876,13 @@ export const enum KnownContainerServiceVMSizeTypes {
 }
 
 // @public
-export const enum KnownDiffDiskOptions {
+export enum KnownDiffDiskOptions {
     // (undocumented)
     Local = "Local"
 }
 
 // @public
-export const enum KnownDiffDiskPlacement {
+export enum KnownDiffDiskPlacement {
     // (undocumented)
     CacheDisk = "CacheDisk",
     // (undocumented)
@@ -1900,7 +1890,7 @@ export const enum KnownDiffDiskPlacement {
 }
 
 // @public
-export const enum KnownDiskCreateOption {
+export enum KnownDiskCreateOption {
     Attach = "Attach",
     Copy = "Copy",
     Empty = "Empty",
@@ -1911,7 +1901,7 @@ export const enum KnownDiskCreateOption {
 }
 
 // @public
-export const enum KnownDiskCreateOptionTypes {
+export enum KnownDiskCreateOptionTypes {
     // (undocumented)
     Attach = "Attach",
     // (undocumented)
@@ -1921,13 +1911,13 @@ export const enum KnownDiskCreateOptionTypes {
 }
 
 // @public
-export const enum KnownDiskEncryptionSetIdentityType {
+export enum KnownDiskEncryptionSetIdentityType {
     // (undocumented)
     SystemAssigned = "SystemAssigned"
 }
 
 // @public
-export const enum KnownDiskState {
+export enum KnownDiskState {
     ActiveSAS = "ActiveSAS",
     ActiveUpload = "ActiveUpload",
     Attached = "Attached",
@@ -1937,7 +1927,7 @@ export const enum KnownDiskState {
 }
 
 // @public
-export const enum KnownDiskStorageAccountTypes {
+export enum KnownDiskStorageAccountTypes {
     PremiumLRS = "Premium_LRS",
     StandardLRS = "Standard_LRS",
     StandardSSDLRS = "StandardSSD_LRS",
@@ -1945,13 +1935,23 @@ export const enum KnownDiskStorageAccountTypes {
 }
 
 // @public
-export const enum KnownEncryptionType {
+export enum KnownEncryptionType {
     EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey",
     EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey"
 }
 
 // @public
-export const enum KnownGalleryApplicationVersionPropertiesProvisioningState {
+export enum KnownEnum31 {
+    // (undocumented)
+    Five = 5,
+    // (undocumented)
+    One = 1,
+    // (undocumented)
+    Three = 3
+}
+
+// @public
+export enum KnownGalleryApplicationVersionPropertiesProvisioningState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -1967,7 +1967,7 @@ export const enum KnownGalleryApplicationVersionPropertiesProvisioningState {
 }
 
 // @public
-export const enum KnownGalleryImagePropertiesProvisioningState {
+export enum KnownGalleryImagePropertiesProvisioningState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -1983,7 +1983,7 @@ export const enum KnownGalleryImagePropertiesProvisioningState {
 }
 
 // @public
-export const enum KnownGalleryImageVersionPropertiesProvisioningState {
+export enum KnownGalleryImageVersionPropertiesProvisioningState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -1999,7 +1999,7 @@ export const enum KnownGalleryImageVersionPropertiesProvisioningState {
 }
 
 // @public
-export const enum KnownGalleryPropertiesProvisioningState {
+export enum KnownGalleryPropertiesProvisioningState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -2015,7 +2015,7 @@ export const enum KnownGalleryPropertiesProvisioningState {
 }
 
 // @public
-export const enum KnownHyperVGeneration {
+export enum KnownHyperVGeneration {
     // (undocumented)
     V1 = "V1",
     // (undocumented)
@@ -2023,7 +2023,7 @@ export const enum KnownHyperVGeneration {
 }
 
 // @public
-export const enum KnownHyperVGenerationType {
+export enum KnownHyperVGenerationType {
     // (undocumented)
     V1 = "V1",
     // (undocumented)
@@ -2031,7 +2031,7 @@ export const enum KnownHyperVGenerationType {
 }
 
 // @public
-export const enum KnownHyperVGenerationTypes {
+export enum KnownHyperVGenerationTypes {
     // (undocumented)
     V1 = "V1",
     // (undocumented)
@@ -2039,7 +2039,7 @@ export const enum KnownHyperVGenerationTypes {
 }
 
 // @public
-export const enum KnownIPVersion {
+export enum KnownIPVersion {
     // (undocumented)
     IPv4 = "IPv4",
     // (undocumented)
@@ -2047,7 +2047,7 @@ export const enum KnownIPVersion {
 }
 
 // @public
-export const enum KnownOrchestrationServiceNames {
+export enum KnownOrchestrationServiceNames {
     // (undocumented)
     AutomaticRepairs = "AutomaticRepairs",
     // (undocumented)
@@ -2055,7 +2055,7 @@ export const enum KnownOrchestrationServiceNames {
 }
 
 // @public
-export const enum KnownOrchestrationServiceState {
+export enum KnownOrchestrationServiceState {
     // (undocumented)
     NotRunning = "NotRunning",
     // (undocumented)
@@ -2065,7 +2065,7 @@ export const enum KnownOrchestrationServiceState {
 }
 
 // @public
-export const enum KnownOrchestrationServiceStateAction {
+export enum KnownOrchestrationServiceStateAction {
     // (undocumented)
     Resume = "Resume",
     // (undocumented)
@@ -2073,7 +2073,7 @@ export const enum KnownOrchestrationServiceStateAction {
 }
 
 // @public
-export const enum KnownProximityPlacementGroupType {
+export enum KnownProximityPlacementGroupType {
     // (undocumented)
     Standard = "Standard",
     // (undocumented)
@@ -2081,7 +2081,7 @@ export const enum KnownProximityPlacementGroupType {
 }
 
 // @public
-export const enum KnownReplicationState {
+export enum KnownReplicationState {
     // (undocumented)
     Completed = "Completed",
     // (undocumented)
@@ -2093,20 +2093,20 @@ export const enum KnownReplicationState {
 }
 
 // @public
-export const enum KnownReplicationStatusTypes {
+export enum KnownReplicationStatusTypes {
     // (undocumented)
     ReplicationStatus = "ReplicationStatus"
 }
 
 // @public
-export const enum KnownSnapshotStorageAccountTypes {
+export enum KnownSnapshotStorageAccountTypes {
     PremiumLRS = "Premium_LRS",
     StandardLRS = "Standard_LRS",
     StandardZRS = "Standard_ZRS"
 }
 
 // @public
-export const enum KnownStorageAccountType {
+export enum KnownStorageAccountType {
     // (undocumented)
     PremiumLRS = "Premium_LRS",
     // (undocumented)
@@ -2116,7 +2116,7 @@ export const enum KnownStorageAccountType {
 }
 
 // @public
-export const enum KnownStorageAccountTypes {
+export enum KnownStorageAccountTypes {
     // (undocumented)
     PremiumLRS = "Premium_LRS",
     // (undocumented)
@@ -2128,7 +2128,7 @@ export const enum KnownStorageAccountTypes {
 }
 
 // @public
-export const enum KnownVirtualMachineEvictionPolicyTypes {
+export enum KnownVirtualMachineEvictionPolicyTypes {
     // (undocumented)
     Deallocate = "Deallocate",
     // (undocumented)
@@ -2136,7 +2136,7 @@ export const enum KnownVirtualMachineEvictionPolicyTypes {
 }
 
 // @public
-export const enum KnownVirtualMachinePriorityTypes {
+export enum KnownVirtualMachinePriorityTypes {
     // (undocumented)
     Low = "Low",
     // (undocumented)
@@ -2146,7 +2146,7 @@ export const enum KnownVirtualMachinePriorityTypes {
 }
 
 // @public
-export const enum KnownVirtualMachineScaleSetScaleInRules {
+export enum KnownVirtualMachineScaleSetScaleInRules {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -2156,7 +2156,7 @@ export const enum KnownVirtualMachineScaleSetScaleInRules {
 }
 
 // @public
-export const enum KnownVirtualMachineSizeTypes {
+export enum KnownVirtualMachineSizeTypes {
     // (undocumented)
     BasicA0 = "Basic_A0",
     // (undocumented)

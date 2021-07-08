@@ -1300,7 +1300,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownCertificatePermissions "
+              "text": "export declare enum KnownCertificatePermissions "
             }
           ],
           "releaseTag": "Public",
@@ -1651,7 +1651,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownKeyPermissions "
+              "text": "export declare enum KnownKeyPermissions "
             }
           ],
           "releaseTag": "Public",
@@ -2002,7 +2002,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownNetworkRuleAction "
+              "text": "export declare enum KnownNetworkRuleAction "
             }
           ],
           "releaseTag": "Public",
@@ -2059,7 +2059,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownNetworkRuleBypassOptions "
+              "text": "export declare enum KnownNetworkRuleBypassOptions "
             }
           ],
           "releaseTag": "Public",
@@ -2116,7 +2116,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPrivateEndpointConnectionProvisioningState "
+              "text": "export declare enum KnownPrivateEndpointConnectionProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -2257,7 +2257,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPrivateEndpointServiceConnectionStatus "
+              "text": "export declare enum KnownPrivateEndpointServiceConnectionStatus "
             }
           ],
           "releaseTag": "Public",
@@ -2356,7 +2356,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSecretPermissions "
+              "text": "export declare enum KnownSecretPermissions "
             }
           ],
           "releaseTag": "Public",
@@ -2539,7 +2539,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSkuFamily "
+              "text": "export declare enum KnownSkuFamily "
             }
           ],
           "releaseTag": "Public",
@@ -2575,7 +2575,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownStoragePermissions "
+              "text": "export declare enum KnownStoragePermissions "
             }
           ],
           "releaseTag": "Public",

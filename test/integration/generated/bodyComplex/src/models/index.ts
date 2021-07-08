@@ -203,7 +203,7 @@ export type Cookiecuttershark = Shark & {
 };
 
 /** Known values of {@link CMYKColors} that the service accepts. */
-export const enum KnownCMYKColors {
+export enum KnownCMYKColors {
   Cyan = "cyan",
   Magenta = "Magenta",
   Yellow = "YELLOW",
@@ -223,7 +223,7 @@ export const enum KnownCMYKColors {
 export type CMYKColors = string;
 
 /** Known values of {@link MyKind} that the service accepts. */
-export const enum KnownMyKind {
+export enum KnownMyKind {
   Kind1 = "Kind1"
 }
 
@@ -237,7 +237,7 @@ export const enum KnownMyKind {
 export type MyKind = string;
 
 /** Known values of {@link GoblinSharkColor} that the service accepts. */
-export const enum KnownGoblinSharkColor {
+export enum KnownGoblinSharkColor {
   Pink = "pink",
   Gray = "gray",
   Brown = "brown",

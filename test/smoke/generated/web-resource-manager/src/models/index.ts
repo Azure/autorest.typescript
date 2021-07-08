@@ -5917,7 +5917,7 @@ export type ResourceHealthMetadataDef = ProxyOnlyResource & {
 };
 
 /** Known values of {@link AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts. */
-export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
+export enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
   SubscriptionNotActive = "SubscriptionNotActive"
@@ -5935,7 +5935,7 @@ export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificate
 export type AppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem = string;
 
 /** Known values of {@link AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem} that the service accepts. */
-export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
+export enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
   SubscriptionNotActive = "SubscriptionNotActive"
@@ -5953,7 +5953,7 @@ export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServi
 export type AppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem = string;
 
 /** Known values of {@link DomainPropertiesDomainNotRenewableReasonsItem} that the service accepts. */
-export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
+export enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
   SubscriptionNotActive = "SubscriptionNotActive"
@@ -5971,7 +5971,7 @@ export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
 export type DomainPropertiesDomainNotRenewableReasonsItem = string;
 
 /** Known values of {@link DomainPatchResourcePropertiesDomainNotRenewableReasonsItem} that the service accepts. */
-export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
+export enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
   RegistrationStatusNotSupportedForRenewal = "RegistrationStatusNotSupportedForRenewal",
   ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
   SubscriptionNotActive = "SubscriptionNotActive"
@@ -5989,7 +5989,7 @@ export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsIte
 export type DomainPatchResourcePropertiesDomainNotRenewableReasonsItem = string;
 
 /** Known values of {@link Enum4} that the service accepts. */
-export const enum KnownEnum4 {
+export enum KnownEnum4 {
   Windows = "Windows",
   Linux = "Linux",
   WindowsFunctions = "WindowsFunctions",
@@ -6009,7 +6009,7 @@ export const enum KnownEnum4 {
 export type Enum4 = string;
 
 /** Known values of {@link Enum5} that the service accepts. */
-export const enum KnownEnum5 {
+export enum KnownEnum5 {
   Windows = "Windows",
   Linux = "Linux",
   WindowsFunctions = "WindowsFunctions",
@@ -6029,7 +6029,7 @@ export const enum KnownEnum5 {
 export type Enum5 = string;
 
 /** Known values of {@link ResourceScopeType} that the service accepts. */
-export const enum KnownResourceScopeType {
+export enum KnownResourceScopeType {
   ServerFarm = "ServerFarm",
   Subscription = "Subscription",
   WebSite = "WebSite"
@@ -6047,7 +6047,7 @@ export const enum KnownResourceScopeType {
 export type ResourceScopeType = string;
 
 /** Known values of {@link CheckNameResourceTypes} that the service accepts. */
-export const enum KnownCheckNameResourceTypes {
+export enum KnownCheckNameResourceTypes {
   Site = "Site",
   Slot = "Slot",
   HostingEnvironment = "HostingEnvironment",
@@ -6075,7 +6075,7 @@ export const enum KnownCheckNameResourceTypes {
 export type CheckNameResourceTypes = string;
 
 /** Known values of {@link InAvailabilityReasonType} that the service accepts. */
-export const enum KnownInAvailabilityReasonType {
+export enum KnownInAvailabilityReasonType {
   Invalid = "Invalid",
   AlreadyExists = "AlreadyExists"
 }
@@ -6091,7 +6091,7 @@ export const enum KnownInAvailabilityReasonType {
 export type InAvailabilityReasonType = string;
 
 /** Known values of {@link SkuName} that the service accepts. */
-export const enum KnownSkuName {
+export enum KnownSkuName {
   Free = "Free",
   Shared = "Shared",
   Basic = "Basic",
@@ -6123,7 +6123,7 @@ export const enum KnownSkuName {
 export type SkuName = string;
 
 /** Known values of {@link ValidateResourceTypes} that the service accepts. */
-export const enum KnownValidateResourceTypes {
+export enum KnownValidateResourceTypes {
   ServerFarm = "ServerFarm",
   Site = "Site"
 }
@@ -6139,7 +6139,7 @@ export const enum KnownValidateResourceTypes {
 export type ValidateResourceTypes = string;
 
 /** Known values of {@link ScmType} that the service accepts. */
-export const enum KnownScmType {
+export enum KnownScmType {
   None = "None",
   Dropbox = "Dropbox",
   Tfs = "Tfs",
@@ -6179,7 +6179,7 @@ export const enum KnownScmType {
 export type ScmType = string;
 
 /** Known values of {@link SupportedTlsVersions} that the service accepts. */
-export const enum KnownSupportedTlsVersions {
+export enum KnownSupportedTlsVersions {
   One0 = "1.0",
   One1 = "1.1",
   One2 = "1.2"
@@ -6197,7 +6197,7 @@ export const enum KnownSupportedTlsVersions {
 export type SupportedTlsVersions = string;
 
 /** Known values of {@link FtpsState} that the service accepts. */
-export const enum KnownFtpsState {
+export enum KnownFtpsState {
   AllAllowed = "AllAllowed",
   FtpsOnly = "FtpsOnly",
   Disabled = "Disabled"
@@ -6215,7 +6215,7 @@ export const enum KnownFtpsState {
 export type FtpsState = string;
 
 /** Known values of {@link DatabaseType} that the service accepts. */
-export const enum KnownDatabaseType {
+export enum KnownDatabaseType {
   SqlAzure = "SqlAzure",
   MySql = "MySql",
   LocalMySql = "LocalMySql",
@@ -6235,7 +6235,7 @@ export const enum KnownDatabaseType {
 export type DatabaseType = string;
 
 /** Known values of {@link RouteType} that the service accepts. */
-export const enum KnownRouteType {
+export enum KnownRouteType {
   Default = "DEFAULT",
   Inherited = "INHERITED",
   Static = "STATIC"
@@ -6253,7 +6253,7 @@ export const enum KnownRouteType {
 export type RouteType = string;
 
 /** Known values of {@link PublishingProfileFormat} that the service accepts. */
-export const enum KnownPublishingProfileFormat {
+export enum KnownPublishingProfileFormat {
   FileZilla3 = "FileZilla3",
   WebDeploy = "WebDeploy",
   Ftp = "Ftp"
@@ -6271,7 +6271,7 @@ export const enum KnownPublishingProfileFormat {
 export type PublishingProfileFormat = string;
 
 /** Known values of {@link BuildStatus} that the service accepts. */
-export const enum KnownBuildStatus {
+export enum KnownBuildStatus {
   WaitingForDeployment = "WaitingForDeployment",
   Uploading = "Uploading",
   Deploying = "Deploying",
@@ -6297,7 +6297,7 @@ export const enum KnownBuildStatus {
 export type BuildStatus = string;
 
 /** Known values of {@link TriggerTypes} that the service accepts. */
-export const enum KnownTriggerTypes {
+export enum KnownTriggerTypes {
   HttpTrigger = "HttpTrigger",
   Unknown = "Unknown"
 }
