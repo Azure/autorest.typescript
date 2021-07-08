@@ -1,8 +1,37 @@
-# Azure Typescript/Javascript SDK Generator Development
+# Contributing
 
-This contributing guide helps you to start working with and contributing to the Azure Typescript/Javascript SDK Generator.
+This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
-## Prerequisites
+When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments
+
+# How to contribute to the Azure SDK for Javascript
+
+There are many ways that you can contribute to the Azure SDK for JavaScript project:
+
+- Submit a bug
+- Submit a code fix for a bug
+- Submit additions or modifications to the documentation
+- Submit a feature request
+
+All code submissions will be reviewed and tested by the team, and those that meet a high bar for both quality and design/roadmap appropriateness will be merged into the source. Be sure to follow the existing file/folder structure when adding new boards or sensors.
+
+If you encounter any bugs with the library please file an issue in the [Issues](https://github.com/Azure/azure-sdk-for-js/issues) section of the project.
+
+## Things to keep in mind when contributing
+
+Some guidance for when you make a contribution:
+
+- Add/update unit tests and code as required by your change
+- Make sure you run all the unit tests on the affected platform(s)/languages. If the change is in common code, generally running on one platform would be acceptable.
+- Run end-to-end tests or simple sample code to make sure the lib works in an end-to-end scenario.
+
+## Big contributions
+
+If your contribution is significantly big it is better to first check with the project developers in order to make sure the change aligns with the long term plans. This can be done simply by submitting a question via the GitHub Issues section.
+
+Want to get started hacking on the code? Great! Keep reading. This contributing guide helps you to start working with and contributing to the Azure Typescript/Javascript SDK Generator.
 
 ### General Autorest generation design
 
