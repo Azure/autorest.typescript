@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 The Azure management API provides a RESTful set of web services that interact with Azure Key Vault.
 
 [Package (NPM)](https://www.npmjs.com/package/keyvault-resource-manager) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

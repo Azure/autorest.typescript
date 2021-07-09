@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 Provides operations for working with resources and resource groups.
 
 [Package (NPM)](https://www.npmjs.com/package/arm-package-resources-2019-08) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
