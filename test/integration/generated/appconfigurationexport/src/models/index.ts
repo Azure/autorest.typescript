@@ -193,7 +193,7 @@ export interface AppConfigurationClientGetRevisionsNextHeaders {
 }
 
 /** Known values of {@link Get6ItemsItem} that the service accepts. */
-export const enum KnownGet6ItemsItem {
+export enum KnownGet6ItemsItem {
   Key = "key",
   Label = "label",
   ContentType = "content_type",
@@ -221,7 +221,7 @@ export const enum KnownGet6ItemsItem {
 export type Get6ItemsItem = string;
 
 /** Known values of {@link Head6ItemsItem} that the service accepts. */
-export const enum KnownHead6ItemsItem {
+export enum KnownHead6ItemsItem {
   Key = "key",
   Label = "label",
   ContentType = "content_type",
@@ -249,7 +249,7 @@ export const enum KnownHead6ItemsItem {
 export type Head6ItemsItem = string;
 
 /** Known values of {@link Get7ItemsItem} that the service accepts. */
-export const enum KnownGet7ItemsItem {
+export enum KnownGet7ItemsItem {
   Key = "key",
   Label = "label",
   ContentType = "content_type",
@@ -277,7 +277,7 @@ export const enum KnownGet7ItemsItem {
 export type Get7ItemsItem = string;
 
 /** Known values of {@link Head7ItemsItem} that the service accepts. */
-export const enum KnownHead7ItemsItem {
+export enum KnownHead7ItemsItem {
   Key = "key",
   Label = "label",
   ContentType = "content_type",
@@ -305,7 +305,7 @@ export const enum KnownHead7ItemsItem {
 export type Head7ItemsItem = string;
 
 /** Known values of {@link Enum4} that the service accepts. */
-export const enum KnownEnum4 {
+export enum KnownEnum4 {
   Key = "key",
   Label = "label",
   ContentType = "content_type",
@@ -333,7 +333,7 @@ export const enum KnownEnum4 {
 export type Enum4 = string;
 
 /** Known values of {@link Enum5} that the service accepts. */
-export const enum KnownEnum5 {
+export enum KnownEnum5 {
   Key = "key",
   Label = "label",
   ContentType = "content_type",

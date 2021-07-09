@@ -3010,7 +3010,7 @@ export type KeyVaultReferenceResource = ProxyOnlyResource & {
 export type KeyVaultSecretStatus = "Initialized" | "WaitingOnCertificateOrder" | "Succeeded" | "CertificateOrderFailed" | "OperationNotPermittedOnKeyVault" | "AzureServiceUnauthorizedToAccessKeyVault" | "KeyVaultDoesNotExist" | "KeyVaultSecretDoesNotExist" | "UnknownError" | "ExternalPrivateKey" | "Unknown";
 
 // @public
-export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
+export enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServiceCertificateNotRenewableReasonsItem {
     // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
     // (undocumented)
@@ -3020,7 +3020,7 @@ export const enum KnownAppServiceCertificateOrderPatchResourcePropertiesAppServi
 }
 
 // @public
-export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
+export enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificateNotRenewableReasonsItem {
     // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
     // (undocumented)
@@ -3030,7 +3030,7 @@ export const enum KnownAppServiceCertificateOrderPropertiesAppServiceCertificate
 }
 
 // @public
-export const enum KnownBuildStatus {
+export enum KnownBuildStatus {
     // (undocumented)
     Deleting = "Deleting",
     // (undocumented)
@@ -3048,7 +3048,7 @@ export const enum KnownBuildStatus {
 }
 
 // @public
-export const enum KnownCheckNameResourceTypes {
+export enum KnownCheckNameResourceTypes {
     // (undocumented)
     HostingEnvironment = "HostingEnvironment",
     // (undocumented)
@@ -3068,7 +3068,7 @@ export const enum KnownCheckNameResourceTypes {
 }
 
 // @public
-export const enum KnownDatabaseType {
+export enum KnownDatabaseType {
     // (undocumented)
     LocalMySql = "LocalMySql",
     // (undocumented)
@@ -3080,7 +3080,7 @@ export const enum KnownDatabaseType {
 }
 
 // @public
-export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
+export enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsItem {
     // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
     // (undocumented)
@@ -3090,7 +3090,7 @@ export const enum KnownDomainPatchResourcePropertiesDomainNotRenewableReasonsIte
 }
 
 // @public
-export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
+export enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
     // (undocumented)
     ExpirationNotInRenewalTimeRange = "ExpirationNotInRenewalTimeRange",
     // (undocumented)
@@ -3100,7 +3100,7 @@ export const enum KnownDomainPropertiesDomainNotRenewableReasonsItem {
 }
 
 // @public
-export const enum KnownEnum4 {
+export enum KnownEnum4 {
     // (undocumented)
     Linux = "Linux",
     // (undocumented)
@@ -3112,7 +3112,7 @@ export const enum KnownEnum4 {
 }
 
 // @public
-export const enum KnownEnum5 {
+export enum KnownEnum5 {
     // (undocumented)
     Linux = "Linux",
     // (undocumented)
@@ -3124,7 +3124,7 @@ export const enum KnownEnum5 {
 }
 
 // @public
-export const enum KnownFtpsState {
+export enum KnownFtpsState {
     // (undocumented)
     AllAllowed = "AllAllowed",
     // (undocumented)
@@ -3134,7 +3134,7 @@ export const enum KnownFtpsState {
 }
 
 // @public
-export const enum KnownInAvailabilityReasonType {
+export enum KnownInAvailabilityReasonType {
     // (undocumented)
     AlreadyExists = "AlreadyExists",
     // (undocumented)
@@ -3142,7 +3142,7 @@ export const enum KnownInAvailabilityReasonType {
 }
 
 // @public
-export const enum KnownPublishingProfileFormat {
+export enum KnownPublishingProfileFormat {
     // (undocumented)
     FileZilla3 = "FileZilla3",
     // (undocumented)
@@ -3152,7 +3152,7 @@ export const enum KnownPublishingProfileFormat {
 }
 
 // @public
-export const enum KnownResourceScopeType {
+export enum KnownResourceScopeType {
     // (undocumented)
     ServerFarm = "ServerFarm",
     // (undocumented)
@@ -3162,7 +3162,7 @@ export const enum KnownResourceScopeType {
 }
 
 // @public
-export const enum KnownRouteType {
+export enum KnownRouteType {
     // (undocumented)
     Default = "DEFAULT",
     // (undocumented)
@@ -3172,7 +3172,7 @@ export const enum KnownRouteType {
 }
 
 // @public
-export const enum KnownScmType {
+export enum KnownScmType {
     // (undocumented)
     BitbucketGit = "BitbucketGit",
     // (undocumented)
@@ -3204,7 +3204,7 @@ export const enum KnownScmType {
 }
 
 // @public
-export const enum KnownSkuName {
+export enum KnownSkuName {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -3228,7 +3228,7 @@ export const enum KnownSkuName {
 }
 
 // @public
-export const enum KnownSupportedTlsVersions {
+export enum KnownSupportedTlsVersions {
     // (undocumented)
     One0 = "1.0",
     // (undocumented)
@@ -3238,7 +3238,7 @@ export const enum KnownSupportedTlsVersions {
 }
 
 // @public
-export const enum KnownTriggerTypes {
+export enum KnownTriggerTypes {
     // (undocumented)
     HttpTrigger = "HttpTrigger",
     // (undocumented)
@@ -3246,7 +3246,7 @@ export const enum KnownTriggerTypes {
 }
 
 // @public
-export const enum KnownValidateResourceTypes {
+export enum KnownValidateResourceTypes {
     // (undocumented)
     ServerFarm = "ServerFarm",
     // (undocumented)

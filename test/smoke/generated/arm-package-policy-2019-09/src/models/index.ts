@@ -267,7 +267,7 @@ export interface PolicySetDefinitionListResult {
 }
 
 /** Known values of {@link EnforcementMode} that the service accepts. */
-export const enum KnownEnforcementMode {
+export enum KnownEnforcementMode {
   /** The policy effect is enforced during resource creation or update. */
   Default = "Default",
   /** The policy effect is not enforced during resource creation or update. */
@@ -285,7 +285,7 @@ export const enum KnownEnforcementMode {
 export type EnforcementMode = string;
 
 /** Known values of {@link PolicyType} that the service accepts. */
-export const enum KnownPolicyType {
+export enum KnownPolicyType {
   NotSpecified = "NotSpecified",
   BuiltIn = "BuiltIn",
   Custom = "Custom",
@@ -305,7 +305,7 @@ export const enum KnownPolicyType {
 export type PolicyType = string;
 
 /** Known values of {@link ParameterType} that the service accepts. */
-export const enum KnownParameterType {
+export enum KnownParameterType {
   String = "String",
   Array = "Array",
   Object = "Object",

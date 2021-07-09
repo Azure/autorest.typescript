@@ -9491,7 +9491,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownBlobRestoreProgressStatus "
+              "text": "export declare enum KnownBlobRestoreProgressStatus "
             }
           ],
           "releaseTag": "Public",
@@ -9569,7 +9569,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownBypass "
+              "text": "export declare enum KnownBypass "
             }
           ],
           "releaseTag": "Public",
@@ -9668,7 +9668,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownCorsRuleAllowedMethodsItem "
+              "text": "export declare enum KnownCorsRuleAllowedMethodsItem "
             }
           ],
           "releaseTag": "Public",
@@ -9830,7 +9830,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDirectoryServiceOptions "
+              "text": "export declare enum KnownDirectoryServiceOptions "
             }
           ],
           "releaseTag": "Public",
@@ -9908,7 +9908,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownEnabledProtocols "
+              "text": "export declare enum KnownEnabledProtocols "
             }
           ],
           "releaseTag": "Public",
@@ -9965,7 +9965,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownEncryptionScopeSource "
+              "text": "export declare enum KnownEncryptionScopeSource "
             }
           ],
           "releaseTag": "Public",
@@ -10022,7 +10022,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownEncryptionScopeState "
+              "text": "export declare enum KnownEncryptionScopeState "
             }
           ],
           "releaseTag": "Public",
@@ -10079,7 +10079,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGeoReplicationStatus "
+              "text": "export declare enum KnownGeoReplicationStatus "
             }
           ],
           "releaseTag": "Public",
@@ -10157,7 +10157,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownImmutabilityPolicyState "
+              "text": "export declare enum KnownImmutabilityPolicyState "
             }
           ],
           "releaseTag": "Public",
@@ -10214,7 +10214,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownImmutabilityPolicyUpdateType "
+              "text": "export declare enum KnownImmutabilityPolicyUpdateType "
             }
           ],
           "releaseTag": "Public",
@@ -10292,7 +10292,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownKeySource "
+              "text": "export declare enum KnownKeySource "
             }
           ],
           "releaseTag": "Public",
@@ -10349,7 +10349,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownKeyType "
+              "text": "export declare enum KnownKeyType "
             }
           ],
           "releaseTag": "Public",
@@ -10406,7 +10406,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownKind "
+              "text": "export declare enum KnownKind "
             }
           ],
           "releaseTag": "Public",
@@ -10526,7 +10526,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLargeFileSharesState "
+              "text": "export declare enum KnownLargeFileSharesState "
             }
           ],
           "releaseTag": "Public",
@@ -10583,7 +10583,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLeaseContainerRequestAction "
+              "text": "export declare enum KnownLeaseContainerRequestAction "
             }
           ],
           "releaseTag": "Public",
@@ -10703,7 +10703,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLeaseDuration "
+              "text": "export declare enum KnownLeaseDuration "
             }
           ],
           "releaseTag": "Public",
@@ -10760,7 +10760,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLeaseState "
+              "text": "export declare enum KnownLeaseState "
             }
           ],
           "releaseTag": "Public",
@@ -10880,7 +10880,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownLeaseStatus "
+              "text": "export declare enum KnownLeaseStatus "
             }
           ],
           "releaseTag": "Public",
@@ -10937,7 +10937,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownManagementPolicyName "
+              "text": "export declare enum KnownManagementPolicyName "
             }
           ],
           "releaseTag": "Public",
@@ -10973,7 +10973,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPermissions "
+              "text": "export declare enum KnownPermissions "
             }
           ],
           "releaseTag": "Public",
@@ -11156,7 +11156,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPrivateEndpointConnectionProvisioningState "
+              "text": "export declare enum KnownPrivateEndpointConnectionProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -11255,7 +11255,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPrivateEndpointServiceConnectionStatus "
+              "text": "export declare enum KnownPrivateEndpointServiceConnectionStatus "
             }
           ],
           "releaseTag": "Public",
@@ -11333,7 +11333,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownReasonCode "
+              "text": "export declare enum KnownReasonCode "
             }
           ],
           "releaseTag": "Public",
@@ -11390,7 +11390,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownRootSquashType "
+              "text": "export declare enum KnownRootSquashType "
             }
           ],
           "releaseTag": "Public",
@@ -11468,7 +11468,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownRoutingChoice "
+              "text": "export declare enum KnownRoutingChoice "
             }
           ],
           "releaseTag": "Public",
@@ -11525,7 +11525,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownRuleType "
+              "text": "export declare enum KnownRuleType "
             }
           ],
           "releaseTag": "Public",
@@ -11561,7 +11561,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownServices "
+              "text": "export declare enum KnownServices "
             }
           ],
           "releaseTag": "Public",
@@ -11660,7 +11660,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownShareAccessTier "
+              "text": "export declare enum KnownShareAccessTier "
             }
           ],
           "releaseTag": "Public",
@@ -11759,7 +11759,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSignedResource "
+              "text": "export declare enum KnownSignedResource "
             }
           ],
           "releaseTag": "Public",
@@ -11858,7 +11858,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSignedResourceTypes "
+              "text": "export declare enum KnownSignedResourceTypes "
             }
           ],
           "releaseTag": "Public",
@@ -11936,7 +11936,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSkuName "
+              "text": "export declare enum KnownSkuName "
             }
           ],
           "releaseTag": "Public",

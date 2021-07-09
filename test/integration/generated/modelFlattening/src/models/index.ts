@@ -118,7 +118,7 @@ export interface FlattenParameterGroup {
 }
 
 /** Known values of {@link FlattenedProductPropertiesProvisioningStateValues} that the service accepts. */
-export const enum KnownFlattenedProductPropertiesProvisioningStateValues {
+export enum KnownFlattenedProductPropertiesProvisioningStateValues {
   Succeeded = "Succeeded",
   Failed = "Failed",
   Canceled = "canceled",

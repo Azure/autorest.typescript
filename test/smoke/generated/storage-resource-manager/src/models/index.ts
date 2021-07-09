@@ -1646,7 +1646,7 @@ export interface BlobContainersExtendImmutabilityPolicyHeaders {
 }
 
 /** Known values of {@link SkuName} that the service accepts. */
-export const enum KnownSkuName {
+export enum KnownSkuName {
   StandardLRS = "Standard_LRS",
   StandardGRS = "Standard_GRS",
   StandardRagrs = "Standard_RAGRS",
@@ -1674,7 +1674,7 @@ export const enum KnownSkuName {
 export type SkuName = string;
 
 /** Known values of {@link Kind} that the service accepts. */
-export const enum KnownKind {
+export enum KnownKind {
   Storage = "Storage",
   StorageV2 = "StorageV2",
   BlobStorage = "BlobStorage",
@@ -1696,7 +1696,7 @@ export const enum KnownKind {
 export type Kind = string;
 
 /** Known values of {@link ReasonCode} that the service accepts. */
-export const enum KnownReasonCode {
+export enum KnownReasonCode {
   QuotaId = "QuotaId",
   NotAvailableForSubscription = "NotAvailableForSubscription"
 }
@@ -1712,7 +1712,7 @@ export const enum KnownReasonCode {
 export type ReasonCode = string;
 
 /** Known values of {@link KeyType} that the service accepts. */
-export const enum KnownKeyType {
+export enum KnownKeyType {
   Service = "Service",
   Account = "Account"
 }
@@ -1728,7 +1728,7 @@ export const enum KnownKeyType {
 export type KeyType = string;
 
 /** Known values of {@link KeySource} that the service accepts. */
-export const enum KnownKeySource {
+export enum KnownKeySource {
   MicrosoftStorage = "Microsoft.Storage",
   MicrosoftKeyvault = "Microsoft.Keyvault"
 }
@@ -1744,7 +1744,7 @@ export const enum KnownKeySource {
 export type KeySource = string;
 
 /** Known values of {@link Bypass} that the service accepts. */
-export const enum KnownBypass {
+export enum KnownBypass {
   None = "None",
   Logging = "Logging",
   Metrics = "Metrics",
@@ -1764,7 +1764,7 @@ export const enum KnownBypass {
 export type Bypass = string;
 
 /** Known values of {@link DirectoryServiceOptions} that the service accepts. */
-export const enum KnownDirectoryServiceOptions {
+export enum KnownDirectoryServiceOptions {
   None = "None",
   Aadds = "AADDS",
   AD = "AD"
@@ -1782,7 +1782,7 @@ export const enum KnownDirectoryServiceOptions {
 export type DirectoryServiceOptions = string;
 
 /** Known values of {@link LargeFileSharesState} that the service accepts. */
-export const enum KnownLargeFileSharesState {
+export enum KnownLargeFileSharesState {
   Disabled = "Disabled",
   Enabled = "Enabled"
 }
@@ -1798,7 +1798,7 @@ export const enum KnownLargeFileSharesState {
 export type LargeFileSharesState = string;
 
 /** Known values of {@link RoutingChoice} that the service accepts. */
-export const enum KnownRoutingChoice {
+export enum KnownRoutingChoice {
   MicrosoftRouting = "MicrosoftRouting",
   InternetRouting = "InternetRouting"
 }
@@ -1814,7 +1814,7 @@ export const enum KnownRoutingChoice {
 export type RoutingChoice = string;
 
 /** Known values of {@link GeoReplicationStatus} that the service accepts. */
-export const enum KnownGeoReplicationStatus {
+export enum KnownGeoReplicationStatus {
   Live = "Live",
   Bootstrap = "Bootstrap",
   Unavailable = "Unavailable"
@@ -1832,7 +1832,7 @@ export const enum KnownGeoReplicationStatus {
 export type GeoReplicationStatus = string;
 
 /** Known values of {@link PrivateEndpointServiceConnectionStatus} that the service accepts. */
-export const enum KnownPrivateEndpointServiceConnectionStatus {
+export enum KnownPrivateEndpointServiceConnectionStatus {
   Pending = "Pending",
   Approved = "Approved",
   Rejected = "Rejected"
@@ -1850,7 +1850,7 @@ export const enum KnownPrivateEndpointServiceConnectionStatus {
 export type PrivateEndpointServiceConnectionStatus = string;
 
 /** Known values of {@link PrivateEndpointConnectionProvisioningState} that the service accepts. */
-export const enum KnownPrivateEndpointConnectionProvisioningState {
+export enum KnownPrivateEndpointConnectionProvisioningState {
   Succeeded = "Succeeded",
   Creating = "Creating",
   Deleting = "Deleting",
@@ -1870,7 +1870,7 @@ export const enum KnownPrivateEndpointConnectionProvisioningState {
 export type PrivateEndpointConnectionProvisioningState = string;
 
 /** Known values of {@link BlobRestoreProgressStatus} that the service accepts. */
-export const enum KnownBlobRestoreProgressStatus {
+export enum KnownBlobRestoreProgressStatus {
   InProgress = "InProgress",
   Complete = "Complete",
   Failed = "Failed"
@@ -1888,7 +1888,7 @@ export const enum KnownBlobRestoreProgressStatus {
 export type BlobRestoreProgressStatus = string;
 
 /** Known values of {@link Services} that the service accepts. */
-export const enum KnownServices {
+export enum KnownServices {
   B = "b",
   Q = "q",
   T = "t",
@@ -1908,7 +1908,7 @@ export const enum KnownServices {
 export type Services = string;
 
 /** Known values of {@link SignedResourceTypes} that the service accepts. */
-export const enum KnownSignedResourceTypes {
+export enum KnownSignedResourceTypes {
   S = "s",
   C = "c",
   O = "o"
@@ -1926,7 +1926,7 @@ export const enum KnownSignedResourceTypes {
 export type SignedResourceTypes = string;
 
 /** Known values of {@link Permissions} that the service accepts. */
-export const enum KnownPermissions {
+export enum KnownPermissions {
   R = "r",
   D = "d",
   W = "w",
@@ -1954,7 +1954,7 @@ export const enum KnownPermissions {
 export type Permissions = string;
 
 /** Known values of {@link SignedResource} that the service accepts. */
-export const enum KnownSignedResource {
+export enum KnownSignedResource {
   B = "b",
   C = "c",
   F = "f",
@@ -1974,7 +1974,7 @@ export const enum KnownSignedResource {
 export type SignedResource = string;
 
 /** Known values of {@link ManagementPolicyName} that the service accepts. */
-export const enum KnownManagementPolicyName {
+export enum KnownManagementPolicyName {
   Default = "default"
 }
 
@@ -1988,7 +1988,7 @@ export const enum KnownManagementPolicyName {
 export type ManagementPolicyName = string;
 
 /** Known values of {@link RuleType} that the service accepts. */
-export const enum KnownRuleType {
+export enum KnownRuleType {
   Lifecycle = "Lifecycle"
 }
 
@@ -2002,7 +2002,7 @@ export const enum KnownRuleType {
 export type RuleType = string;
 
 /** Known values of {@link EncryptionScopeSource} that the service accepts. */
-export const enum KnownEncryptionScopeSource {
+export enum KnownEncryptionScopeSource {
   MicrosoftStorage = "Microsoft.Storage",
   MicrosoftKeyVault = "Microsoft.KeyVault"
 }
@@ -2018,7 +2018,7 @@ export const enum KnownEncryptionScopeSource {
 export type EncryptionScopeSource = string;
 
 /** Known values of {@link EncryptionScopeState} that the service accepts. */
-export const enum KnownEncryptionScopeState {
+export enum KnownEncryptionScopeState {
   Enabled = "Enabled",
   Disabled = "Disabled"
 }
@@ -2034,7 +2034,7 @@ export const enum KnownEncryptionScopeState {
 export type EncryptionScopeState = string;
 
 /** Known values of {@link CorsRuleAllowedMethodsItem} that the service accepts. */
-export const enum KnownCorsRuleAllowedMethodsItem {
+export enum KnownCorsRuleAllowedMethodsItem {
   Delete = "DELETE",
   GET = "GET",
   Head = "HEAD",
@@ -2060,7 +2060,7 @@ export const enum KnownCorsRuleAllowedMethodsItem {
 export type CorsRuleAllowedMethodsItem = string;
 
 /** Known values of {@link LeaseStatus} that the service accepts. */
-export const enum KnownLeaseStatus {
+export enum KnownLeaseStatus {
   Locked = "Locked",
   Unlocked = "Unlocked"
 }
@@ -2076,7 +2076,7 @@ export const enum KnownLeaseStatus {
 export type LeaseStatus = string;
 
 /** Known values of {@link LeaseState} that the service accepts. */
-export const enum KnownLeaseState {
+export enum KnownLeaseState {
   Available = "Available",
   Leased = "Leased",
   Expired = "Expired",
@@ -2098,7 +2098,7 @@ export const enum KnownLeaseState {
 export type LeaseState = string;
 
 /** Known values of {@link LeaseDuration} that the service accepts. */
-export const enum KnownLeaseDuration {
+export enum KnownLeaseDuration {
   Infinite = "Infinite",
   Fixed = "Fixed"
 }
@@ -2114,7 +2114,7 @@ export const enum KnownLeaseDuration {
 export type LeaseDuration = string;
 
 /** Known values of {@link ImmutabilityPolicyState} that the service accepts. */
-export const enum KnownImmutabilityPolicyState {
+export enum KnownImmutabilityPolicyState {
   Locked = "Locked",
   Unlocked = "Unlocked"
 }
@@ -2130,7 +2130,7 @@ export const enum KnownImmutabilityPolicyState {
 export type ImmutabilityPolicyState = string;
 
 /** Known values of {@link ImmutabilityPolicyUpdateType} that the service accepts. */
-export const enum KnownImmutabilityPolicyUpdateType {
+export enum KnownImmutabilityPolicyUpdateType {
   Put = "put",
   Lock = "lock",
   Extend = "extend"
@@ -2148,7 +2148,7 @@ export const enum KnownImmutabilityPolicyUpdateType {
 export type ImmutabilityPolicyUpdateType = string;
 
 /** Known values of {@link LeaseContainerRequestAction} that the service accepts. */
-export const enum KnownLeaseContainerRequestAction {
+export enum KnownLeaseContainerRequestAction {
   Acquire = "Acquire",
   Renew = "Renew",
   Change = "Change",
@@ -2170,7 +2170,7 @@ export const enum KnownLeaseContainerRequestAction {
 export type LeaseContainerRequestAction = string;
 
 /** Known values of {@link EnabledProtocols} that the service accepts. */
-export const enum KnownEnabledProtocols {
+export enum KnownEnabledProtocols {
   SMB = "SMB",
   NFS = "NFS"
 }
@@ -2186,7 +2186,7 @@ export const enum KnownEnabledProtocols {
 export type EnabledProtocols = string;
 
 /** Known values of {@link RootSquashType} that the service accepts. */
-export const enum KnownRootSquashType {
+export enum KnownRootSquashType {
   NoRootSquash = "NoRootSquash",
   RootSquash = "RootSquash",
   AllSquash = "AllSquash"
@@ -2204,7 +2204,7 @@ export const enum KnownRootSquashType {
 export type RootSquashType = string;
 
 /** Known values of {@link ShareAccessTier} that the service accepts. */
-export const enum KnownShareAccessTier {
+export enum KnownShareAccessTier {
   TransactionOptimized = "TransactionOptimized",
   Hot = "Hot",
   Cool = "Cool",

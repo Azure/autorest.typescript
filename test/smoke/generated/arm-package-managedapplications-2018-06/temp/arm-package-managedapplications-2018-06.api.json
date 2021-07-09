@@ -5025,7 +5025,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownProvisioningState "
+              "text": "export declare enum KnownProvisioningState "
             }
           ],
           "releaseTag": "Public",

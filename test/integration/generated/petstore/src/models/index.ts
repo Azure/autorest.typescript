@@ -61,7 +61,7 @@ export interface PathsQ1AtbnPetPetidUploadimagePostRequestbodyContentMultipartFo
 }
 
 /** Known values of {@link PetStatus} that the service accepts. */
-export const enum KnownPetStatus {
+export enum KnownPetStatus {
   Available = "available",
   Pending = "pending",
   Sold = "sold"
@@ -79,7 +79,7 @@ export const enum KnownPetStatus {
 export type PetStatus = string;
 
 /** Known values of {@link OrderStatus} that the service accepts. */
-export const enum KnownOrderStatus {
+export enum KnownOrderStatus {
   Placed = "placed",
   Approved = "approved",
   Delivered = "delivered"

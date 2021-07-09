@@ -256,7 +256,7 @@ export interface ErrorResponse {
 }
 
 // @public
-export const enum KnownCleanupOptions {
+export enum KnownCleanupOptions {
     // (undocumented)
     Always = "Always",
     // (undocumented)
@@ -266,7 +266,7 @@ export const enum KnownCleanupOptions {
 }
 
 // @public
-export const enum KnownCreatedByType {
+export enum KnownCreatedByType {
     // (undocumented)
     Application = "Application",
     // (undocumented)
@@ -278,13 +278,13 @@ export const enum KnownCreatedByType {
 }
 
 // @public
-export const enum KnownManagedServiceIdentityType {
+export enum KnownManagedServiceIdentityType {
     // (undocumented)
     UserAssigned = "UserAssigned"
 }
 
 // @public
-export const enum KnownScriptProvisioningState {
+export enum KnownScriptProvisioningState {
     // (undocumented)
     Canceled = "Canceled",
     // (undocumented)
@@ -300,7 +300,7 @@ export const enum KnownScriptProvisioningState {
 }
 
 // @public
-export const enum KnownScriptType {
+export enum KnownScriptType {
     // (undocumented)
     AzureCLI = "AzureCLI",
     // (undocumented)

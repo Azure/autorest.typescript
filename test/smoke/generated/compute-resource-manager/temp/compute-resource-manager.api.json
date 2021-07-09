@@ -27154,7 +27154,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownAccessLevel "
+              "text": "export declare enum KnownAccessLevel "
             }
           ],
           "releaseTag": "Public",
@@ -27232,7 +27232,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownAggregatedReplicationState "
+              "text": "export declare enum KnownAggregatedReplicationState "
             }
           ],
           "releaseTag": "Public",
@@ -27331,7 +27331,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownAvailabilitySetSkuTypes "
+              "text": "export declare enum KnownAvailabilitySetSkuTypes "
             }
           ],
           "releaseTag": "Public",
@@ -27388,7 +27388,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownContainerServiceMasterProfileCount "
+              "text": "export declare enum KnownContainerServiceMasterProfileCount "
             }
           ],
           "releaseTag": "Public",
@@ -27466,7 +27466,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownContainerServiceVMSizeTypes "
+              "text": "export declare enum KnownContainerServiceVMSizeTypes "
             }
           ],
           "releaseTag": "Public",
@@ -28468,7 +28468,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiffDiskOptions "
+              "text": "export declare enum KnownDiffDiskOptions "
             }
           ],
           "releaseTag": "Public",
@@ -28504,7 +28504,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiffDiskPlacement "
+              "text": "export declare enum KnownDiffDiskPlacement "
             }
           ],
           "releaseTag": "Public",
@@ -28561,7 +28561,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiskCreateOption "
+              "text": "export declare enum KnownDiskCreateOption "
             }
           ],
           "releaseTag": "Public",
@@ -28723,7 +28723,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiskCreateOptionTypes "
+              "text": "export declare enum KnownDiskCreateOptionTypes "
             }
           ],
           "releaseTag": "Public",
@@ -28801,7 +28801,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiskEncryptionSetIdentityType "
+              "text": "export declare enum KnownDiskEncryptionSetIdentityType "
             }
           ],
           "releaseTag": "Public",
@@ -28837,7 +28837,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiskState "
+              "text": "export declare enum KnownDiskState "
             }
           ],
           "releaseTag": "Public",
@@ -28978,7 +28978,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDiskStorageAccountTypes "
+              "text": "export declare enum KnownDiskStorageAccountTypes "
             }
           ],
           "releaseTag": "Public",
@@ -29077,7 +29077,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownEncryptionType "
+              "text": "export declare enum KnownEncryptionType "
             }
           ],
           "releaseTag": "Public",
@@ -29134,7 +29134,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGalleryApplicationVersionPropertiesProvisioningState "
+              "text": "export declare enum KnownGalleryApplicationVersionPropertiesProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -29275,7 +29275,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGalleryImagePropertiesProvisioningState "
+              "text": "export declare enum KnownGalleryImagePropertiesProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -29416,7 +29416,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGalleryImageVersionPropertiesProvisioningState "
+              "text": "export declare enum KnownGalleryImageVersionPropertiesProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -29557,7 +29557,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGalleryPropertiesProvisioningState "
+              "text": "export declare enum KnownGalleryPropertiesProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -29698,7 +29698,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownHyperVGeneration "
+              "text": "export declare enum KnownHyperVGeneration "
             }
           ],
           "releaseTag": "Public",
@@ -29755,7 +29755,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownHyperVGenerationType "
+              "text": "export declare enum KnownHyperVGenerationType "
             }
           ],
           "releaseTag": "Public",
@@ -29812,7 +29812,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownHyperVGenerationTypes "
+              "text": "export declare enum KnownHyperVGenerationTypes "
             }
           ],
           "releaseTag": "Public",
@@ -29869,7 +29869,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownIPVersion "
+              "text": "export declare enum KnownIPVersion "
             }
           ],
           "releaseTag": "Public",
@@ -29926,7 +29926,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownOrchestrationServiceNames "
+              "text": "export declare enum KnownOrchestrationServiceNames "
             }
           ],
           "releaseTag": "Public",
@@ -29983,7 +29983,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownOrchestrationServiceState "
+              "text": "export declare enum KnownOrchestrationServiceState "
             }
           ],
           "releaseTag": "Public",
@@ -30061,7 +30061,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownOrchestrationServiceStateAction "
+              "text": "export declare enum KnownOrchestrationServiceStateAction "
             }
           ],
           "releaseTag": "Public",
@@ -30118,7 +30118,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownProximityPlacementGroupType "
+              "text": "export declare enum KnownProximityPlacementGroupType "
             }
           ],
           "releaseTag": "Public",
@@ -30175,7 +30175,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownReplicationState "
+              "text": "export declare enum KnownReplicationState "
             }
           ],
           "releaseTag": "Public",
@@ -30274,7 +30274,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownReplicationStatusTypes "
+              "text": "export declare enum KnownReplicationStatusTypes "
             }
           ],
           "releaseTag": "Public",
@@ -30310,7 +30310,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSnapshotStorageAccountTypes "
+              "text": "export declare enum KnownSnapshotStorageAccountTypes "
             }
           ],
           "releaseTag": "Public",
@@ -30388,7 +30388,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownStorageAccountType "
+              "text": "export declare enum KnownStorageAccountType "
             }
           ],
           "releaseTag": "Public",
@@ -30466,7 +30466,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownStorageAccountTypes "
+              "text": "export declare enum KnownStorageAccountTypes "
             }
           ],
           "releaseTag": "Public",
@@ -30565,7 +30565,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownVirtualMachineEvictionPolicyTypes "
+              "text": "export declare enum KnownVirtualMachineEvictionPolicyTypes "
             }
           ],
           "releaseTag": "Public",
@@ -30622,7 +30622,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownVirtualMachinePriorityTypes "
+              "text": "export declare enum KnownVirtualMachinePriorityTypes "
             }
           ],
           "releaseTag": "Public",
@@ -30700,7 +30700,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownVirtualMachineScaleSetScaleInRules "
+              "text": "export declare enum KnownVirtualMachineScaleSetScaleInRules "
             }
           ],
           "releaseTag": "Public",
@@ -30778,7 +30778,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownVirtualMachineSizeTypes "
+              "text": "export declare enum KnownVirtualMachineSizeTypes "
             }
           ],
           "releaseTag": "Public",

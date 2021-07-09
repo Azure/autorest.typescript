@@ -207,7 +207,7 @@ export type DeletedSecretItem = SecretItem & {
 };
 
 /** Known values of {@link ApiVersion72Preview} that the service accepts. */
-export const enum KnownApiVersion72Preview {
+export enum KnownApiVersion72Preview {
   /** Api Version '7.2-preview' */
   Seven2Preview = "7.2-preview"
 }
@@ -222,7 +222,7 @@ export const enum KnownApiVersion72Preview {
 export type ApiVersion72Preview = string;
 
 /** Known values of {@link DeletionRecoveryLevel} that the service accepts. */
-export const enum KnownDeletionRecoveryLevel {
+export enum KnownDeletionRecoveryLevel {
   /** Denotes a vault state in which deletion is an irreversible operation, without the possibility for recovery. This level corresponds to no protection being available against a Delete operation; the data is irretrievably lost upon accepting a Delete operation at the entity level or higher (vault, resource group, subscription etc.) */
   Purgeable = "Purgeable",
   /** Denotes a vault state in which deletion is recoverable, and which also permits immediate and permanent deletion (i.e. purge). This level guarantees the recoverability of the deleted entity during the retention interval (90 days), unless a Purge operation is requested, or the subscription is cancelled. System wil permanently delete it after 90 days, if not recovered */

@@ -19,7 +19,7 @@ export interface Product {
 }
 
 /** Known values of {@link Enum0} that the service accepts. */
-export const enum KnownEnum0 {
+export enum KnownEnum0 {
   Foo1 = "foo1",
   Foo2 = "foo2",
   Foo3 = "foo3"
@@ -37,7 +37,7 @@ export const enum KnownEnum0 {
 export type Enum0 = string;
 
 /** Known values of {@link Enum1} that the service accepts. */
-export const enum KnownEnum1 {
+export enum KnownEnum1 {
   Foo1 = "foo1",
   Foo2 = "foo2",
   Foo3 = "foo3"

@@ -560,7 +560,7 @@ export interface KeyCredentialsUpdateParameters {
 }
 
 // @public
-export const enum KnownConsentType {
+export enum KnownConsentType {
     // (undocumented)
     AllPrincipals = "AllPrincipals",
     // (undocumented)
@@ -568,7 +568,7 @@ export const enum KnownConsentType {
 }
 
 // @public
-export const enum KnownGroupMembershipClaimTypes {
+export enum KnownGroupMembershipClaimTypes {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -578,7 +578,7 @@ export const enum KnownGroupMembershipClaimTypes {
 }
 
 // @public
-export const enum KnownUserType {
+export enum KnownUserType {
     // (undocumented)
     Guest = "Guest",
     // (undocumented)

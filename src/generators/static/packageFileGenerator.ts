@@ -194,6 +194,7 @@ function regularAutorestPackage(
       "esm/**/*.d.ts.map",
       `${srcPath}/**/*.ts`,
       "README.md",
+      "LICENSE",
       "rollup.config.js",
       "tsconfig.json",
       "review/*",

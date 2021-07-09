@@ -17189,7 +17189,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownCompositePathSortOrder "
+              "text": "export declare enum KnownCompositePathSortOrder "
             }
           ],
           "releaseTag": "Public",
@@ -17246,7 +17246,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownConflictResolutionMode "
+              "text": "export declare enum KnownConflictResolutionMode "
             }
           ],
           "releaseTag": "Public",
@@ -17303,7 +17303,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownConnectorOffer "
+              "text": "export declare enum KnownConnectorOffer "
             }
           ],
           "releaseTag": "Public",
@@ -17339,7 +17339,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDatabaseAccountKind "
+              "text": "export declare enum KnownDatabaseAccountKind "
             }
           ],
           "releaseTag": "Public",
@@ -17417,7 +17417,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownDataType "
+              "text": "export declare enum KnownDataType "
             }
           ],
           "releaseTag": "Public",
@@ -17558,7 +17558,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownIndexingMode "
+              "text": "export declare enum KnownIndexingMode "
             }
           ],
           "releaseTag": "Public",
@@ -17636,7 +17636,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownIndexKind "
+              "text": "export declare enum KnownIndexKind "
             }
           ],
           "releaseTag": "Public",
@@ -17714,7 +17714,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownKeyKind "
+              "text": "export declare enum KnownKeyKind "
             }
           ],
           "releaseTag": "Public",
@@ -17813,7 +17813,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownNotebookWorkspaceName "
+              "text": "export declare enum KnownNotebookWorkspaceName "
             }
           ],
           "releaseTag": "Public",
@@ -17849,7 +17849,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPartitionKind "
+              "text": "export declare enum KnownPartitionKind "
             }
           ],
           "releaseTag": "Public",
@@ -17906,7 +17906,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPrimaryAggregationType "
+              "text": "export declare enum KnownPrimaryAggregationType "
             }
           ],
           "releaseTag": "Public",
@@ -18047,7 +18047,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPublicNetworkAccess "
+              "text": "export declare enum KnownPublicNetworkAccess "
             }
           ],
           "releaseTag": "Public",
@@ -18104,7 +18104,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownSpatialType "
+              "text": "export declare enum KnownSpatialType "
             }
           ],
           "releaseTag": "Public",
@@ -18203,7 +18203,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownTriggerOperation "
+              "text": "export declare enum KnownTriggerOperation "
             }
           ],
           "releaseTag": "Public",
@@ -18323,7 +18323,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownTriggerType "
+              "text": "export declare enum KnownTriggerType "
             }
           ],
           "releaseTag": "Public",
@@ -18380,7 +18380,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownUnitType "
+              "text": "export declare enum KnownUnitType "
             }
           ],
           "releaseTag": "Public",

@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 
 /** Known values of {@link IntEnum} that the service accepts. */
-export const enum KnownIntEnum {
+export enum KnownIntEnum {
   TwoHundred = 200,
   FourHundredThree = 403,
   FourHundredFive = 405,
@@ -31,7 +31,7 @@ export const enum KnownIntEnum {
 export type IntEnum = number;
 
 /** Known values of {@link FloatEnum} that the service accepts. */
-export const enum KnownFloatEnum {
+export enum KnownFloatEnum {
   TwoHundred4 = 200.4,
   FourHundredThree4 = 403.4,
   FourHundredFive3 = 405.3,

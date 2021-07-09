@@ -403,7 +403,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownEnforcementMode "
+              "text": "export declare enum KnownEnforcementMode "
             }
           ],
           "releaseTag": "Public",
@@ -460,7 +460,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownParameterType "
+              "text": "export declare enum KnownParameterType "
             }
           ],
           "releaseTag": "Public",
@@ -622,7 +622,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownPolicyType "
+              "text": "export declare enum KnownPolicyType "
             }
           ],
           "releaseTag": "Public",

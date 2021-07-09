@@ -363,7 +363,7 @@ export type AzureCliScript = DeploymentScript & {
 };
 
 /** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
-export const enum KnownManagedServiceIdentityType {
+export enum KnownManagedServiceIdentityType {
   UserAssigned = "UserAssigned"
 }
 
@@ -377,7 +377,7 @@ export const enum KnownManagedServiceIdentityType {
 export type ManagedServiceIdentityType = string;
 
 /** Known values of {@link ScriptType} that the service accepts. */
-export const enum KnownScriptType {
+export enum KnownScriptType {
   AzurePowerShell = "AzurePowerShell",
   AzureCLI = "AzureCLI"
 }
@@ -393,7 +393,7 @@ export const enum KnownScriptType {
 export type ScriptType = string;
 
 /** Known values of {@link CreatedByType} that the service accepts. */
-export const enum KnownCreatedByType {
+export enum KnownCreatedByType {
   User = "User",
   Application = "Application",
   ManagedIdentity = "ManagedIdentity",
@@ -413,7 +413,7 @@ export const enum KnownCreatedByType {
 export type CreatedByType = string;
 
 /** Known values of {@link CleanupOptions} that the service accepts. */
-export const enum KnownCleanupOptions {
+export enum KnownCleanupOptions {
   Always = "Always",
   OnSuccess = "OnSuccess",
   OnExpiration = "OnExpiration"
@@ -431,7 +431,7 @@ export const enum KnownCleanupOptions {
 export type CleanupOptions = string;
 
 /** Known values of {@link ScriptProvisioningState} that the service accepts. */
-export const enum KnownScriptProvisioningState {
+export enum KnownScriptProvisioningState {
   Creating = "Creating",
   ProvisioningResources = "ProvisioningResources",
   Running = "Running",

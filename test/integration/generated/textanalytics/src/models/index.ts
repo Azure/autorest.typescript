@@ -587,7 +587,7 @@ export interface GeneratedClientHealthHeaders {
 }
 
 /** Known values of {@link StringIndexType} that the service accepts. */
-export const enum KnownStringIndexType {
+export enum KnownStringIndexType {
   /** Returned offset and length values will correspond to TextElements (Graphemes and Grapheme clusters) confirming to the Unicode 8.0.0 standard. Use this option if your application is written in .Net Framework or .Net Core and you will be using StringInfo. */
   TextElementsV8 = "TextElements_v8",
   /** Returned offset and length values will correspond to Unicode code points. Use this option if your application is written in a language that support Unicode, for example Python. */
@@ -608,7 +608,7 @@ export const enum KnownStringIndexType {
 export type StringIndexType = string;
 
 /** Known values of {@link PiiTaskParametersDomain} that the service accepts. */
-export const enum KnownPiiTaskParametersDomain {
+export enum KnownPiiTaskParametersDomain {
   Phi = "phi",
   None = "none"
 }
@@ -624,7 +624,7 @@ export const enum KnownPiiTaskParametersDomain {
 export type PiiTaskParametersDomain = string;
 
 /** Known values of {@link PiiCategory} that the service accepts. */
-export const enum KnownPiiCategory {
+export enum KnownPiiCategory {
   ABARoutingNumber = "ABARoutingNumber",
   ARNationalIdentityNumber = "ARNationalIdentityNumber",
   AUBankAccountNumber = "AUBankAccountNumber",
@@ -982,7 +982,7 @@ export const enum KnownPiiCategory {
 export type PiiCategory = string;
 
 /** Known values of {@link InnerErrorCodeValue} that the service accepts. */
-export const enum KnownInnerErrorCodeValue {
+export enum KnownInnerErrorCodeValue {
   InvalidParameterValue = "InvalidParameterValue",
   InvalidRequestBodyFormat = "InvalidRequestBodyFormat",
   EmptyRequest = "EmptyRequest",
@@ -1012,7 +1012,7 @@ export const enum KnownInnerErrorCodeValue {
 export type InnerErrorCodeValue = string;
 
 /** Known values of {@link WarningCode} that the service accepts. */
-export const enum KnownWarningCode {
+export enum KnownWarningCode {
   LongWordsInDocument = "LongWordsInDocument",
   DocumentTruncated = "DocumentTruncated"
 }
@@ -1028,7 +1028,7 @@ export const enum KnownWarningCode {
 export type WarningCode = string;
 
 /** Known values of {@link RelationType} that the service accepts. */
-export const enum KnownRelationType {
+export enum KnownRelationType {
   Abbreviation = "Abbreviation",
   DirectionOfBodyStructure = "DirectionOfBodyStructure",
   DirectionOfCondition = "DirectionOfCondition",

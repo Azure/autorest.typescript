@@ -946,7 +946,7 @@ export type IndexKind = string;
 export type KeyKind = string;
 
 // @public
-export const enum KnownCompositePathSortOrder {
+export enum KnownCompositePathSortOrder {
     // (undocumented)
     Ascending = "Ascending",
     // (undocumented)
@@ -954,7 +954,7 @@ export const enum KnownCompositePathSortOrder {
 }
 
 // @public
-export const enum KnownConflictResolutionMode {
+export enum KnownConflictResolutionMode {
     // (undocumented)
     Custom = "Custom",
     // (undocumented)
@@ -962,13 +962,13 @@ export const enum KnownConflictResolutionMode {
 }
 
 // @public
-export const enum KnownConnectorOffer {
+export enum KnownConnectorOffer {
     // (undocumented)
     Small = "Small"
 }
 
 // @public
-export const enum KnownDatabaseAccountKind {
+export enum KnownDatabaseAccountKind {
     // (undocumented)
     GlobalDocumentDB = "GlobalDocumentDB",
     // (undocumented)
@@ -978,7 +978,7 @@ export const enum KnownDatabaseAccountKind {
 }
 
 // @public
-export const enum KnownDataType {
+export enum KnownDataType {
     // (undocumented)
     LineString = "LineString",
     // (undocumented)
@@ -994,7 +994,7 @@ export const enum KnownDataType {
 }
 
 // @public
-export const enum KnownIndexingMode {
+export enum KnownIndexingMode {
     // (undocumented)
     Consistent = "Consistent",
     // (undocumented)
@@ -1004,7 +1004,7 @@ export const enum KnownIndexingMode {
 }
 
 // @public
-export const enum KnownIndexKind {
+export enum KnownIndexKind {
     // (undocumented)
     Hash = "Hash",
     // (undocumented)
@@ -1014,7 +1014,7 @@ export const enum KnownIndexKind {
 }
 
 // @public
-export const enum KnownKeyKind {
+export enum KnownKeyKind {
     // (undocumented)
     Primary = "primary",
     // (undocumented)
@@ -1026,13 +1026,13 @@ export const enum KnownKeyKind {
 }
 
 // @public
-export const enum KnownNotebookWorkspaceName {
+export enum KnownNotebookWorkspaceName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownPartitionKind {
+export enum KnownPartitionKind {
     // (undocumented)
     Hash = "Hash",
     // (undocumented)
@@ -1040,7 +1040,7 @@ export const enum KnownPartitionKind {
 }
 
 // @public
-export const enum KnownPrimaryAggregationType {
+export enum KnownPrimaryAggregationType {
     // (undocumented)
     Average = "Average",
     // (undocumented)
@@ -1056,7 +1056,7 @@ export const enum KnownPrimaryAggregationType {
 }
 
 // @public
-export const enum KnownPublicNetworkAccess {
+export enum KnownPublicNetworkAccess {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -1064,7 +1064,7 @@ export const enum KnownPublicNetworkAccess {
 }
 
 // @public
-export const enum KnownSpatialType {
+export enum KnownSpatialType {
     // (undocumented)
     LineString = "LineString",
     // (undocumented)
@@ -1076,7 +1076,7 @@ export const enum KnownSpatialType {
 }
 
 // @public
-export const enum KnownTriggerOperation {
+export enum KnownTriggerOperation {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -1090,7 +1090,7 @@ export const enum KnownTriggerOperation {
 }
 
 // @public
-export const enum KnownTriggerType {
+export enum KnownTriggerType {
     // (undocumented)
     Post = "Post",
     // (undocumented)
@@ -1098,7 +1098,7 @@ export const enum KnownTriggerType {
 }
 
 // @public
-export const enum KnownUnitType {
+export enum KnownUnitType {
     // (undocumented)
     Bytes = "Bytes",
     // (undocumented)

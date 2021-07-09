@@ -5730,7 +5730,7 @@ export type ManagedDatabase = TrackedResource & {
 };
 
 /** Known values of {@link ConnectionPolicyName} that the service accepts. */
-export const enum KnownConnectionPolicyName {
+export enum KnownConnectionPolicyName {
   Default = "default"
 }
 
@@ -5744,7 +5744,7 @@ export const enum KnownConnectionPolicyName {
 export type ConnectionPolicyName = string;
 
 /** Known values of {@link SecurityAlertPolicyName} that the service accepts. */
-export const enum KnownSecurityAlertPolicyName {
+export enum KnownSecurityAlertPolicyName {
   Default = "default"
 }
 
@@ -5758,7 +5758,7 @@ export const enum KnownSecurityAlertPolicyName {
 export type SecurityAlertPolicyName = string;
 
 /** Known values of {@link GeoBackupPolicyName} that the service accepts. */
-export const enum KnownGeoBackupPolicyName {
+export enum KnownGeoBackupPolicyName {
   Default = "Default"
 }
 
@@ -5772,7 +5772,7 @@ export const enum KnownGeoBackupPolicyName {
 export type GeoBackupPolicyName = string;
 
 /** Known values of {@link DatabaseEdition} that the service accepts. */
-export const enum KnownDatabaseEdition {
+export enum KnownDatabaseEdition {
   Web = "Web",
   Business = "Business",
   Basic = "Basic",
@@ -5812,7 +5812,7 @@ export const enum KnownDatabaseEdition {
 export type DatabaseEdition = string;
 
 /** Known values of {@link ServiceObjectiveName} that the service accepts. */
-export const enum KnownServiceObjectiveName {
+export enum KnownServiceObjectiveName {
   System = "System",
   System0 = "System0",
   System1 = "System1",
@@ -5954,7 +5954,7 @@ export const enum KnownServiceObjectiveName {
 export type ServiceObjectiveName = string;
 
 /** Known values of {@link ExtensionName} that the service accepts. */
-export const enum KnownExtensionName {
+export enum KnownExtensionName {
   Import = "import"
 }
 
@@ -5968,7 +5968,7 @@ export const enum KnownExtensionName {
 export type ExtensionName = string;
 
 /** Known values of {@link UnitType} that the service accepts. */
-export const enum KnownUnitType {
+export enum KnownUnitType {
   Count = "count",
   Bytes = "bytes",
   Seconds = "seconds",
@@ -5992,7 +5992,7 @@ export const enum KnownUnitType {
 export type UnitType = string;
 
 /** Known values of {@link PrimaryAggregationType} that the service accepts. */
-export const enum KnownPrimaryAggregationType {
+export enum KnownPrimaryAggregationType {
   None = "None",
   Average = "Average",
   Count = "Count",
@@ -6016,7 +6016,7 @@ export const enum KnownPrimaryAggregationType {
 export type PrimaryAggregationType = string;
 
 /** Known values of {@link UnitDefinitionType} that the service accepts. */
-export const enum KnownUnitDefinitionType {
+export enum KnownUnitDefinitionType {
   Count = "Count",
   Bytes = "Bytes",
   Seconds = "Seconds",
@@ -6040,7 +6040,7 @@ export const enum KnownUnitDefinitionType {
 export type UnitDefinitionType = string;
 
 /** Known values of {@link ElasticPoolEdition} that the service accepts. */
-export const enum KnownElasticPoolEdition {
+export enum KnownElasticPoolEdition {
   Basic = "Basic",
   Standard = "Standard",
   Premium = "Premium",
@@ -6062,7 +6062,7 @@ export const enum KnownElasticPoolEdition {
 export type ElasticPoolEdition = string;
 
 /** Known values of {@link ReplicationState} that the service accepts. */
-export const enum KnownReplicationState {
+export enum KnownReplicationState {
   Pending = "PENDING",
   Seeding = "SEEDING",
   CatchUP = "CATCH_UP",
@@ -6082,7 +6082,7 @@ export const enum KnownReplicationState {
 export type ReplicationState = string;
 
 /** Known values of {@link TransparentDataEncryptionName} that the service accepts. */
-export const enum KnownTransparentDataEncryptionName {
+export enum KnownTransparentDataEncryptionName {
   Current = "current"
 }
 
@@ -6096,7 +6096,7 @@ export const enum KnownTransparentDataEncryptionName {
 export type TransparentDataEncryptionName = string;
 
 /** Known values of {@link TransparentDataEncryptionActivityStatus} that the service accepts. */
-export const enum KnownTransparentDataEncryptionActivityStatus {
+export enum KnownTransparentDataEncryptionActivityStatus {
   Encrypting = "Encrypting",
   Decrypting = "Decrypting"
 }
@@ -6112,7 +6112,7 @@ export const enum KnownTransparentDataEncryptionActivityStatus {
 export type TransparentDataEncryptionActivityStatus = string;
 
 /** Known values of {@link EncryptionProtectorName} that the service accepts. */
-export const enum KnownEncryptionProtectorName {
+export enum KnownEncryptionProtectorName {
   Current = "current"
 }
 
@@ -6126,7 +6126,7 @@ export const enum KnownEncryptionProtectorName {
 export type EncryptionProtectorName = string;
 
 /** Known values of {@link ServerKeyType} that the service accepts. */
-export const enum KnownServerKeyType {
+export enum KnownServerKeyType {
   ServiceManaged = "ServiceManaged",
   AzureKeyVault = "AzureKeyVault"
 }
@@ -6142,7 +6142,7 @@ export const enum KnownServerKeyType {
 export type ServerKeyType = string;
 
 /** Known values of {@link ReadWriteEndpointFailoverPolicy} that the service accepts. */
-export const enum KnownReadWriteEndpointFailoverPolicy {
+export enum KnownReadWriteEndpointFailoverPolicy {
   Manual = "Manual",
   Automatic = "Automatic"
 }
@@ -6158,7 +6158,7 @@ export const enum KnownReadWriteEndpointFailoverPolicy {
 export type ReadWriteEndpointFailoverPolicy = string;
 
 /** Known values of {@link ReadOnlyEndpointFailoverPolicy} that the service accepts. */
-export const enum KnownReadOnlyEndpointFailoverPolicy {
+export enum KnownReadOnlyEndpointFailoverPolicy {
   Disabled = "Disabled",
   Enabled = "Enabled"
 }
@@ -6174,7 +6174,7 @@ export const enum KnownReadOnlyEndpointFailoverPolicy {
 export type ReadOnlyEndpointFailoverPolicy = string;
 
 /** Known values of {@link FailoverGroupReplicationRole} that the service accepts. */
-export const enum KnownFailoverGroupReplicationRole {
+export enum KnownFailoverGroupReplicationRole {
   Primary = "Primary",
   Secondary = "Secondary"
 }
@@ -6190,7 +6190,7 @@ export const enum KnownFailoverGroupReplicationRole {
 export type FailoverGroupReplicationRole = string;
 
 /** Known values of {@link OperationOrigin} that the service accepts. */
-export const enum KnownOperationOrigin {
+export enum KnownOperationOrigin {
   User = "user",
   System = "system"
 }
@@ -6206,7 +6206,7 @@ export const enum KnownOperationOrigin {
 export type OperationOrigin = string;
 
 /** Known values of {@link SyncAgentState} that the service accepts. */
-export const enum KnownSyncAgentState {
+export enum KnownSyncAgentState {
   Online = "Online",
   Offline = "Offline",
   NeverConnected = "NeverConnected"
@@ -6224,7 +6224,7 @@ export const enum KnownSyncAgentState {
 export type SyncAgentState = string;
 
 /** Known values of {@link SyncMemberDbType} that the service accepts. */
-export const enum KnownSyncMemberDbType {
+export enum KnownSyncMemberDbType {
   AzureSqlDatabase = "AzureSqlDatabase",
   SqlServerDatabase = "SqlServerDatabase"
 }
@@ -6240,7 +6240,7 @@ export const enum KnownSyncMemberDbType {
 export type SyncMemberDbType = string;
 
 /** Known values of {@link Enum21} that the service accepts. */
-export const enum KnownEnum21 {
+export enum KnownEnum21 {
   All = "All",
   Error = "Error",
   Warning = "Warning",
@@ -6260,7 +6260,7 @@ export const enum KnownEnum21 {
 export type Enum21 = string;
 
 /** Known values of {@link SyncGroupLogType} that the service accepts. */
-export const enum KnownSyncGroupLogType {
+export enum KnownSyncGroupLogType {
   All = "All",
   Error = "Error",
   Warning = "Warning",
@@ -6280,7 +6280,7 @@ export const enum KnownSyncGroupLogType {
 export type SyncGroupLogType = string;
 
 /** Known values of {@link SyncConflictResolutionPolicy} that the service accepts. */
-export const enum KnownSyncConflictResolutionPolicy {
+export enum KnownSyncConflictResolutionPolicy {
   HubWin = "HubWin",
   MemberWin = "MemberWin"
 }
@@ -6296,7 +6296,7 @@ export const enum KnownSyncConflictResolutionPolicy {
 export type SyncConflictResolutionPolicy = string;
 
 /** Known values of {@link SyncGroupState} that the service accepts. */
-export const enum KnownSyncGroupState {
+export enum KnownSyncGroupState {
   NotReady = "NotReady",
   Error = "Error",
   Warning = "Warning",
@@ -6318,7 +6318,7 @@ export const enum KnownSyncGroupState {
 export type SyncGroupState = string;
 
 /** Known values of {@link SyncDirection} that the service accepts. */
-export const enum KnownSyncDirection {
+export enum KnownSyncDirection {
   Bidirectional = "Bidirectional",
   OneWayMemberToHub = "OneWayMemberToHub",
   OneWayHubToMember = "OneWayHubToMember"
@@ -6336,7 +6336,7 @@ export const enum KnownSyncDirection {
 export type SyncDirection = string;
 
 /** Known values of {@link SyncMemberState} that the service accepts. */
-export const enum KnownSyncMemberState {
+export enum KnownSyncMemberState {
   SyncInProgress = "SyncInProgress",
   SyncSucceeded = "SyncSucceeded",
   SyncFailed = "SyncFailed",
@@ -6384,7 +6384,7 @@ export const enum KnownSyncMemberState {
 export type SyncMemberState = string;
 
 /** Known values of {@link VirtualNetworkRuleState} that the service accepts. */
-export const enum KnownVirtualNetworkRuleState {
+export enum KnownVirtualNetworkRuleState {
   Initializing = "Initializing",
   InProgress = "InProgress",
   Ready = "Ready",
@@ -6406,7 +6406,7 @@ export const enum KnownVirtualNetworkRuleState {
 export type VirtualNetworkRuleState = string;
 
 /** Known values of {@link VulnerabilityAssessmentName} that the service accepts. */
-export const enum KnownVulnerabilityAssessmentName {
+export enum KnownVulnerabilityAssessmentName {
   Default = "default"
 }
 
@@ -6420,7 +6420,7 @@ export const enum KnownVulnerabilityAssessmentName {
 export type VulnerabilityAssessmentName = string;
 
 /** Known values of {@link JobAgentState} that the service accepts. */
-export const enum KnownJobAgentState {
+export enum KnownJobAgentState {
   Creating = "Creating",
   Ready = "Ready",
   Updating = "Updating",
@@ -6442,7 +6442,7 @@ export const enum KnownJobAgentState {
 export type JobAgentState = string;
 
 /** Known values of {@link JobExecutionLifecycle} that the service accepts. */
-export const enum KnownJobExecutionLifecycle {
+export enum KnownJobExecutionLifecycle {
   Created = "Created",
   InProgress = "InProgress",
   WaitingForChildJobExecutions = "WaitingForChildJobExecutions",
@@ -6474,7 +6474,7 @@ export const enum KnownJobExecutionLifecycle {
 export type JobExecutionLifecycle = string;
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
-export const enum KnownProvisioningState {
+export enum KnownProvisioningState {
   Created = "Created",
   InProgress = "InProgress",
   Succeeded = "Succeeded",
@@ -6496,7 +6496,7 @@ export const enum KnownProvisioningState {
 export type ProvisioningState = string;
 
 /** Known values of {@link JobTargetType} that the service accepts. */
-export const enum KnownJobTargetType {
+export enum KnownJobTargetType {
   TargetGroup = "TargetGroup",
   SqlDatabase = "SqlDatabase",
   SqlElasticPool = "SqlElasticPool",
@@ -6518,7 +6518,7 @@ export const enum KnownJobTargetType {
 export type JobTargetType = string;
 
 /** Known values of {@link JobStepActionType} that the service accepts. */
-export const enum KnownJobStepActionType {
+export enum KnownJobStepActionType {
   TSql = "TSql"
 }
 
@@ -6532,7 +6532,7 @@ export const enum KnownJobStepActionType {
 export type JobStepActionType = string;
 
 /** Known values of {@link JobStepActionSource} that the service accepts. */
-export const enum KnownJobStepActionSource {
+export enum KnownJobStepActionSource {
   Inline = "Inline"
 }
 
@@ -6546,7 +6546,7 @@ export const enum KnownJobStepActionSource {
 export type JobStepActionSource = string;
 
 /** Known values of {@link JobStepOutputType} that the service accepts. */
-export const enum KnownJobStepOutputType {
+export enum KnownJobStepOutputType {
   SqlDatabase = "SqlDatabase"
 }
 
@@ -6560,7 +6560,7 @@ export const enum KnownJobStepOutputType {
 export type JobStepOutputType = string;
 
 /** Known values of {@link LongTermRetentionDatabaseState} that the service accepts. */
-export const enum KnownLongTermRetentionDatabaseState {
+export enum KnownLongTermRetentionDatabaseState {
   All = "All",
   Live = "Live",
   Deleted = "Deleted"
@@ -6578,7 +6578,7 @@ export const enum KnownLongTermRetentionDatabaseState {
 export type LongTermRetentionDatabaseState = string;
 
 /** Known values of {@link LongTermRetentionPolicyName} that the service accepts. */
-export const enum KnownLongTermRetentionPolicyName {
+export enum KnownLongTermRetentionPolicyName {
   Default = "default"
 }
 
@@ -6592,7 +6592,7 @@ export const enum KnownLongTermRetentionPolicyName {
 export type LongTermRetentionPolicyName = string;
 
 /** Known values of {@link ManagedShortTermRetentionPolicyName} that the service accepts. */
-export const enum KnownManagedShortTermRetentionPolicyName {
+export enum KnownManagedShortTermRetentionPolicyName {
   Default = "default"
 }
 
@@ -6606,7 +6606,7 @@ export const enum KnownManagedShortTermRetentionPolicyName {
 export type ManagedShortTermRetentionPolicyName = string;
 
 /** Known values of {@link SecurityAlertPolicyNameAutoGenerated} that the service accepts. */
-export const enum KnownSecurityAlertPolicyNameAutoGenerated {
+export enum KnownSecurityAlertPolicyNameAutoGenerated {
   Default = "Default"
 }
 
@@ -6620,7 +6620,7 @@ export const enum KnownSecurityAlertPolicyNameAutoGenerated {
 export type SecurityAlertPolicyNameAutoGenerated = string;
 
 /** Known values of {@link ManagedInstanceAdministratorType} that the service accepts. */
-export const enum KnownManagedInstanceAdministratorType {
+export enum KnownManagedInstanceAdministratorType {
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -6634,7 +6634,7 @@ export const enum KnownManagedInstanceAdministratorType {
 export type ManagedInstanceAdministratorType = string;
 
 /** Known values of {@link ManagementOperationState} that the service accepts. */
-export const enum KnownManagementOperationState {
+export enum KnownManagementOperationState {
   Pending = "Pending",
   InProgress = "InProgress",
   Succeeded = "Succeeded",
@@ -6658,7 +6658,7 @@ export const enum KnownManagementOperationState {
 export type ManagementOperationState = string;
 
 /** Known values of {@link CreateMode} that the service accepts. */
-export const enum KnownCreateMode {
+export enum KnownCreateMode {
   Default = "Default",
   Copy = "Copy",
   Secondary = "Secondary",
@@ -6690,7 +6690,7 @@ export const enum KnownCreateMode {
 export type CreateMode = string;
 
 /** Known values of {@link SampleName} that the service accepts. */
-export const enum KnownSampleName {
+export enum KnownSampleName {
   AdventureWorksLT = "AdventureWorksLT",
   WideWorldImportersStd = "WideWorldImportersStd",
   WideWorldImportersFull = "WideWorldImportersFull"
@@ -6708,7 +6708,7 @@ export const enum KnownSampleName {
 export type SampleName = string;
 
 /** Known values of {@link DatabaseStatus} that the service accepts. */
-export const enum KnownDatabaseStatus {
+export enum KnownDatabaseStatus {
   Online = "Online",
   Restoring = "Restoring",
   RecoveryPending = "RecoveryPending",
@@ -6762,7 +6762,7 @@ export const enum KnownDatabaseStatus {
 export type DatabaseStatus = string;
 
 /** Known values of {@link CatalogCollationType} that the service accepts. */
-export const enum KnownCatalogCollationType {
+export enum KnownCatalogCollationType {
   DatabaseDefault = "DATABASE_DEFAULT",
   SQLLatin1GeneralCP1CIAS = "SQL_Latin1_General_CP1_CI_AS"
 }
@@ -6778,7 +6778,7 @@ export const enum KnownCatalogCollationType {
 export type CatalogCollationType = string;
 
 /** Known values of {@link DatabaseLicenseType} that the service accepts. */
-export const enum KnownDatabaseLicenseType {
+export enum KnownDatabaseLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
 }
@@ -6794,7 +6794,7 @@ export const enum KnownDatabaseLicenseType {
 export type DatabaseLicenseType = string;
 
 /** Known values of {@link DatabaseReadScale} that the service accepts. */
-export const enum KnownDatabaseReadScale {
+export enum KnownDatabaseReadScale {
   Enabled = "Enabled",
   Disabled = "Disabled"
 }
@@ -6810,7 +6810,7 @@ export const enum KnownDatabaseReadScale {
 export type DatabaseReadScale = string;
 
 /** Known values of {@link ElasticPoolState} that the service accepts. */
-export const enum KnownElasticPoolState {
+export enum KnownElasticPoolState {
   Creating = "Creating",
   Ready = "Ready",
   Disabled = "Disabled"
@@ -6828,7 +6828,7 @@ export const enum KnownElasticPoolState {
 export type ElasticPoolState = string;
 
 /** Known values of {@link ElasticPoolLicenseType} that the service accepts. */
-export const enum KnownElasticPoolLicenseType {
+export enum KnownElasticPoolLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
 }
@@ -6844,7 +6844,7 @@ export const enum KnownElasticPoolLicenseType {
 export type ElasticPoolLicenseType = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanTriggerType} that the service accepts. */
-export const enum KnownVulnerabilityAssessmentScanTriggerType {
+export enum KnownVulnerabilityAssessmentScanTriggerType {
   OnDemand = "OnDemand",
   Recurring = "Recurring"
 }
@@ -6860,7 +6860,7 @@ export const enum KnownVulnerabilityAssessmentScanTriggerType {
 export type VulnerabilityAssessmentScanTriggerType = string;
 
 /** Known values of {@link VulnerabilityAssessmentScanState} that the service accepts. */
-export const enum KnownVulnerabilityAssessmentScanState {
+export enum KnownVulnerabilityAssessmentScanState {
   Passed = "Passed",
   Failed = "Failed",
   FailedToRun = "FailedToRun",
@@ -6880,7 +6880,7 @@ export const enum KnownVulnerabilityAssessmentScanState {
 export type VulnerabilityAssessmentScanState = string;
 
 /** Known values of {@link InstanceFailoverGroupReplicationRole} that the service accepts. */
-export const enum KnownInstanceFailoverGroupReplicationRole {
+export enum KnownInstanceFailoverGroupReplicationRole {
   Primary = "Primary",
   Secondary = "Secondary"
 }
@@ -6896,7 +6896,7 @@ export const enum KnownInstanceFailoverGroupReplicationRole {
 export type InstanceFailoverGroupReplicationRole = string;
 
 /** Known values of {@link ShortTermRetentionPolicyName} that the service accepts. */
-export const enum KnownShortTermRetentionPolicyName {
+export enum KnownShortTermRetentionPolicyName {
   Default = "default"
 }
 
@@ -6910,7 +6910,7 @@ export const enum KnownShortTermRetentionPolicyName {
 export type ShortTermRetentionPolicyName = string;
 
 /** Known values of {@link InstancePoolLicenseType} that the service accepts. */
-export const enum KnownInstancePoolLicenseType {
+export enum KnownInstancePoolLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
 }
@@ -6926,7 +6926,7 @@ export const enum KnownInstancePoolLicenseType {
 export type InstancePoolLicenseType = string;
 
 /** Known values of {@link IdentityType} that the service accepts. */
-export const enum KnownIdentityType {
+export enum KnownIdentityType {
   SystemAssigned = "SystemAssigned"
 }
 
@@ -6940,7 +6940,7 @@ export const enum KnownIdentityType {
 export type IdentityType = string;
 
 /** Known values of {@link ManagedServerCreateMode} that the service accepts. */
-export const enum KnownManagedServerCreateMode {
+export enum KnownManagedServerCreateMode {
   Default = "Default",
   PointInTimeRestore = "PointInTimeRestore"
 }
@@ -6956,7 +6956,7 @@ export const enum KnownManagedServerCreateMode {
 export type ManagedServerCreateMode = string;
 
 /** Known values of {@link ManagedInstanceLicenseType} that the service accepts. */
-export const enum KnownManagedInstanceLicenseType {
+export enum KnownManagedInstanceLicenseType {
   LicenseIncluded = "LicenseIncluded",
   BasePrice = "BasePrice"
 }
@@ -6972,7 +6972,7 @@ export const enum KnownManagedInstanceLicenseType {
 export type ManagedInstanceLicenseType = string;
 
 /** Known values of {@link ManagedInstanceProxyOverride} that the service accepts. */
-export const enum KnownManagedInstanceProxyOverride {
+export enum KnownManagedInstanceProxyOverride {
   Proxy = "Proxy",
   Redirect = "Redirect",
   Default = "Default"
@@ -6990,7 +6990,7 @@ export const enum KnownManagedInstanceProxyOverride {
 export type ManagedInstanceProxyOverride = string;
 
 /** Known values of {@link ReplicaType} that the service accepts. */
-export const enum KnownReplicaType {
+export enum KnownReplicaType {
   Primary = "Primary",
   ReadableSecondary = "ReadableSecondary"
 }
@@ -7006,7 +7006,7 @@ export const enum KnownReplicaType {
 export type ReplicaType = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateStatus} that the service accepts. */
-export const enum KnownPrivateLinkServiceConnectionStateStatus {
+export enum KnownPrivateLinkServiceConnectionStateStatus {
   Approved = "Approved",
   Pending = "Pending",
   Rejected = "Rejected",
@@ -7026,7 +7026,7 @@ export const enum KnownPrivateLinkServiceConnectionStateStatus {
 export type PrivateLinkServiceConnectionStateStatus = string;
 
 /** Known values of {@link PrivateLinkServiceConnectionStateActionsRequire} that the service accepts. */
-export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
+export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
   None = "None"
 }
 
@@ -7040,7 +7040,7 @@ export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
 export type PrivateLinkServiceConnectionStateActionsRequire = string;
 
 /** Known values of {@link PrivateEndpointProvisioningState} that the service accepts. */
-export const enum KnownPrivateEndpointProvisioningState {
+export enum KnownPrivateEndpointProvisioningState {
   Approving = "Approving",
   Ready = "Ready",
   Dropping = "Dropping",
@@ -7062,7 +7062,7 @@ export const enum KnownPrivateEndpointProvisioningState {
 export type PrivateEndpointProvisioningState = string;
 
 /** Known values of {@link ServerPublicNetworkAccess} that the service accepts. */
-export const enum KnownServerPublicNetworkAccess {
+export enum KnownServerPublicNetworkAccess {
   Enabled = "Enabled",
   Disabled = "Disabled"
 }
@@ -7078,7 +7078,7 @@ export const enum KnownServerPublicNetworkAccess {
 export type ServerPublicNetworkAccess = string;
 
 /** Known values of {@link CapabilityGroup} that the service accepts. */
-export const enum KnownCapabilityGroup {
+export enum KnownCapabilityGroup {
   SupportedEditions = "supportedEditions",
   SupportedElasticPoolEditions = "supportedElasticPoolEditions",
   SupportedManagedInstanceVersions = "supportedManagedInstanceVersions",
@@ -7100,7 +7100,7 @@ export const enum KnownCapabilityGroup {
 export type CapabilityGroup = string;
 
 /** Known values of {@link MaxSizeUnit} that the service accepts. */
-export const enum KnownMaxSizeUnit {
+export enum KnownMaxSizeUnit {
   Megabytes = "Megabytes",
   Gigabytes = "Gigabytes",
   Terabytes = "Terabytes",
@@ -7120,7 +7120,7 @@ export const enum KnownMaxSizeUnit {
 export type MaxSizeUnit = string;
 
 /** Known values of {@link LogSizeUnit} that the service accepts. */
-export const enum KnownLogSizeUnit {
+export enum KnownLogSizeUnit {
   Megabytes = "Megabytes",
   Gigabytes = "Gigabytes",
   Terabytes = "Terabytes",
@@ -7142,7 +7142,7 @@ export const enum KnownLogSizeUnit {
 export type LogSizeUnit = string;
 
 /** Known values of {@link PerformanceLevelUnit} that the service accepts. */
-export const enum KnownPerformanceLevelUnit {
+export enum KnownPerformanceLevelUnit {
   DTU = "DTU",
   VCores = "VCores"
 }
@@ -7158,7 +7158,7 @@ export const enum KnownPerformanceLevelUnit {
 export type PerformanceLevelUnit = string;
 
 /** Known values of {@link PauseDelayTimeUnit} that the service accepts. */
-export const enum KnownPauseDelayTimeUnit {
+export enum KnownPauseDelayTimeUnit {
   Minutes = "Minutes"
 }
 
@@ -7172,7 +7172,7 @@ export const enum KnownPauseDelayTimeUnit {
 export type PauseDelayTimeUnit = string;
 
 /** Known values of {@link StorageCapabilityStorageAccountType} that the service accepts. */
-export const enum KnownStorageCapabilityStorageAccountType {
+export enum KnownStorageCapabilityStorageAccountType {
   GRS = "GRS",
   LRS = "LRS",
   ZRS = "ZRS"
@@ -7190,7 +7190,7 @@ export const enum KnownStorageCapabilityStorageAccountType {
 export type StorageCapabilityStorageAccountType = string;
 
 /** Known values of {@link DatabaseState} that the service accepts. */
-export const enum KnownDatabaseState {
+export enum KnownDatabaseState {
   All = "All",
   Live = "Live",
   Deleted = "Deleted"
@@ -7208,7 +7208,7 @@ export const enum KnownDatabaseState {
 export type DatabaseState = string;
 
 /** Known values of {@link ManagedInstanceLongTermRetentionPolicyName} that the service accepts. */
-export const enum KnownManagedInstanceLongTermRetentionPolicyName {
+export enum KnownManagedInstanceLongTermRetentionPolicyName {
   Default = "default"
 }
 
@@ -7222,7 +7222,7 @@ export const enum KnownManagedInstanceLongTermRetentionPolicyName {
 export type ManagedInstanceLongTermRetentionPolicyName = string;
 
 /** Known values of {@link RestoreDetailsName} that the service accepts. */
-export const enum KnownRestoreDetailsName {
+export enum KnownRestoreDetailsName {
   Default = "Default"
 }
 
@@ -7236,7 +7236,7 @@ export const enum KnownRestoreDetailsName {
 export type RestoreDetailsName = string;
 
 /** Known values of {@link ManagedDatabaseStatus} that the service accepts. */
-export const enum KnownManagedDatabaseStatus {
+export enum KnownManagedDatabaseStatus {
   Online = "Online",
   Offline = "Offline",
   Shutdown = "Shutdown",
@@ -7262,7 +7262,7 @@ export const enum KnownManagedDatabaseStatus {
 export type ManagedDatabaseStatus = string;
 
 /** Known values of {@link ManagedDatabaseCreateMode} that the service accepts. */
-export const enum KnownManagedDatabaseCreateMode {
+export enum KnownManagedDatabaseCreateMode {
   Default = "Default",
   RestoreExternalBackup = "RestoreExternalBackup",
   PointInTimeRestore = "PointInTimeRestore",
@@ -7284,7 +7284,7 @@ export const enum KnownManagedDatabaseCreateMode {
 export type ManagedDatabaseCreateMode = string;
 
 /** Known values of {@link AdministratorName} that the service accepts. */
-export const enum KnownAdministratorName {
+export enum KnownAdministratorName {
   ActiveDirectory = "ActiveDirectory"
 }
 
@@ -7298,7 +7298,7 @@ export const enum KnownAdministratorName {
 export type AdministratorName = string;
 
 /** Known values of {@link AdministratorType} that the service accepts. */
-export const enum KnownAdministratorType {
+export enum KnownAdministratorType {
   ActiveDirectory = "ActiveDirectory"
 }
 

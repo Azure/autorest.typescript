@@ -2543,19 +2543,19 @@ export interface JobVersionsListByJobOptionalParams extends coreClient.Operation
 export type JobVersionsListByJobResponse = JobVersionListResult;
 
 // @public
-export const enum KnownAdministratorName {
+export enum KnownAdministratorName {
     // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
-export const enum KnownAdministratorType {
+export enum KnownAdministratorType {
     // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
-export const enum KnownCapabilityGroup {
+export enum KnownCapabilityGroup {
     // (undocumented)
     SupportedEditions = "supportedEditions",
     // (undocumented)
@@ -2569,7 +2569,7 @@ export const enum KnownCapabilityGroup {
 }
 
 // @public
-export const enum KnownCatalogCollationType {
+export enum KnownCatalogCollationType {
     // (undocumented)
     DatabaseDefault = "DATABASE_DEFAULT",
     // (undocumented)
@@ -2577,13 +2577,13 @@ export const enum KnownCatalogCollationType {
 }
 
 // @public
-export const enum KnownConnectionPolicyName {
+export enum KnownConnectionPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownCreateMode {
+export enum KnownCreateMode {
     // (undocumented)
     Copy = "Copy",
     // (undocumented)
@@ -2607,7 +2607,7 @@ export const enum KnownCreateMode {
 }
 
 // @public
-export const enum KnownDatabaseEdition {
+export enum KnownDatabaseEdition {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -2639,7 +2639,7 @@ export const enum KnownDatabaseEdition {
 }
 
 // @public
-export const enum KnownDatabaseLicenseType {
+export enum KnownDatabaseLicenseType {
     // (undocumented)
     BasePrice = "BasePrice",
     // (undocumented)
@@ -2647,7 +2647,7 @@ export const enum KnownDatabaseLicenseType {
 }
 
 // @public
-export const enum KnownDatabaseReadScale {
+export enum KnownDatabaseReadScale {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -2655,7 +2655,7 @@ export const enum KnownDatabaseReadScale {
 }
 
 // @public
-export const enum KnownDatabaseState {
+export enum KnownDatabaseState {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -2665,7 +2665,7 @@ export const enum KnownDatabaseState {
 }
 
 // @public
-export const enum KnownDatabaseStatus {
+export enum KnownDatabaseStatus {
     // (undocumented)
     AutoClosed = "AutoClosed",
     // (undocumented)
@@ -2711,7 +2711,7 @@ export const enum KnownDatabaseStatus {
 }
 
 // @public
-export const enum KnownElasticPoolEdition {
+export enum KnownElasticPoolEdition {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -2725,7 +2725,7 @@ export const enum KnownElasticPoolEdition {
 }
 
 // @public
-export const enum KnownElasticPoolLicenseType {
+export enum KnownElasticPoolLicenseType {
     // (undocumented)
     BasePrice = "BasePrice",
     // (undocumented)
@@ -2733,7 +2733,7 @@ export const enum KnownElasticPoolLicenseType {
 }
 
 // @public
-export const enum KnownElasticPoolState {
+export enum KnownElasticPoolState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -2743,13 +2743,13 @@ export const enum KnownElasticPoolState {
 }
 
 // @public
-export const enum KnownEncryptionProtectorName {
+export enum KnownEncryptionProtectorName {
     // (undocumented)
     Current = "current"
 }
 
 // @public
-export const enum KnownEnum21 {
+export enum KnownEnum21 {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -2761,13 +2761,13 @@ export const enum KnownEnum21 {
 }
 
 // @public
-export const enum KnownExtensionName {
+export enum KnownExtensionName {
     // (undocumented)
     Import = "import"
 }
 
 // @public
-export const enum KnownFailoverGroupReplicationRole {
+export enum KnownFailoverGroupReplicationRole {
     // (undocumented)
     Primary = "Primary",
     // (undocumented)
@@ -2775,19 +2775,19 @@ export const enum KnownFailoverGroupReplicationRole {
 }
 
 // @public
-export const enum KnownGeoBackupPolicyName {
+export enum KnownGeoBackupPolicyName {
     // (undocumented)
     Default = "Default"
 }
 
 // @public
-export const enum KnownIdentityType {
+export enum KnownIdentityType {
     // (undocumented)
     SystemAssigned = "SystemAssigned"
 }
 
 // @public
-export const enum KnownInstanceFailoverGroupReplicationRole {
+export enum KnownInstanceFailoverGroupReplicationRole {
     // (undocumented)
     Primary = "Primary",
     // (undocumented)
@@ -2795,7 +2795,7 @@ export const enum KnownInstanceFailoverGroupReplicationRole {
 }
 
 // @public
-export const enum KnownInstancePoolLicenseType {
+export enum KnownInstancePoolLicenseType {
     // (undocumented)
     BasePrice = "BasePrice",
     // (undocumented)
@@ -2803,7 +2803,7 @@ export const enum KnownInstancePoolLicenseType {
 }
 
 // @public
-export const enum KnownJobAgentState {
+export enum KnownJobAgentState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -2817,7 +2817,7 @@ export const enum KnownJobAgentState {
 }
 
 // @public
-export const enum KnownJobExecutionLifecycle {
+export enum KnownJobExecutionLifecycle {
     // (undocumented)
     Canceled = "Canceled",
     // (undocumented)
@@ -2841,25 +2841,25 @@ export const enum KnownJobExecutionLifecycle {
 }
 
 // @public
-export const enum KnownJobStepActionSource {
+export enum KnownJobStepActionSource {
     // (undocumented)
     Inline = "Inline"
 }
 
 // @public
-export const enum KnownJobStepActionType {
+export enum KnownJobStepActionType {
     // (undocumented)
     TSql = "TSql"
 }
 
 // @public
-export const enum KnownJobStepOutputType {
+export enum KnownJobStepOutputType {
     // (undocumented)
     SqlDatabase = "SqlDatabase"
 }
 
 // @public
-export const enum KnownJobTargetType {
+export enum KnownJobTargetType {
     // (undocumented)
     SqlDatabase = "SqlDatabase",
     // (undocumented)
@@ -2873,7 +2873,7 @@ export const enum KnownJobTargetType {
 }
 
 // @public
-export const enum KnownLogSizeUnit {
+export enum KnownLogSizeUnit {
     // (undocumented)
     Gigabytes = "Gigabytes",
     // (undocumented)
@@ -2887,7 +2887,7 @@ export const enum KnownLogSizeUnit {
 }
 
 // @public
-export const enum KnownLongTermRetentionDatabaseState {
+export enum KnownLongTermRetentionDatabaseState {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -2897,13 +2897,13 @@ export const enum KnownLongTermRetentionDatabaseState {
 }
 
 // @public
-export const enum KnownLongTermRetentionPolicyName {
+export enum KnownLongTermRetentionPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownManagedDatabaseCreateMode {
+export enum KnownManagedDatabaseCreateMode {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -2917,7 +2917,7 @@ export const enum KnownManagedDatabaseCreateMode {
 }
 
 // @public
-export const enum KnownManagedDatabaseStatus {
+export enum KnownManagedDatabaseStatus {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -2935,13 +2935,13 @@ export const enum KnownManagedDatabaseStatus {
 }
 
 // @public
-export const enum KnownManagedInstanceAdministratorType {
+export enum KnownManagedInstanceAdministratorType {
     // (undocumented)
     ActiveDirectory = "ActiveDirectory"
 }
 
 // @public
-export const enum KnownManagedInstanceLicenseType {
+export enum KnownManagedInstanceLicenseType {
     // (undocumented)
     BasePrice = "BasePrice",
     // (undocumented)
@@ -2949,13 +2949,13 @@ export const enum KnownManagedInstanceLicenseType {
 }
 
 // @public
-export const enum KnownManagedInstanceLongTermRetentionPolicyName {
+export enum KnownManagedInstanceLongTermRetentionPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownManagedInstanceProxyOverride {
+export enum KnownManagedInstanceProxyOverride {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -2965,7 +2965,7 @@ export const enum KnownManagedInstanceProxyOverride {
 }
 
 // @public
-export const enum KnownManagedServerCreateMode {
+export enum KnownManagedServerCreateMode {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -2973,13 +2973,13 @@ export const enum KnownManagedServerCreateMode {
 }
 
 // @public
-export const enum KnownManagedShortTermRetentionPolicyName {
+export enum KnownManagedShortTermRetentionPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownManagementOperationState {
+export enum KnownManagementOperationState {
     // (undocumented)
     CancelInProgress = "CancelInProgress",
     // (undocumented)
@@ -2995,7 +2995,7 @@ export const enum KnownManagementOperationState {
 }
 
 // @public
-export const enum KnownMaxSizeUnit {
+export enum KnownMaxSizeUnit {
     // (undocumented)
     Gigabytes = "Gigabytes",
     // (undocumented)
@@ -3007,7 +3007,7 @@ export const enum KnownMaxSizeUnit {
 }
 
 // @public
-export const enum KnownOperationOrigin {
+export enum KnownOperationOrigin {
     // (undocumented)
     System = "system",
     // (undocumented)
@@ -3015,13 +3015,13 @@ export const enum KnownOperationOrigin {
 }
 
 // @public
-export const enum KnownPauseDelayTimeUnit {
+export enum KnownPauseDelayTimeUnit {
     // (undocumented)
     Minutes = "Minutes"
 }
 
 // @public
-export const enum KnownPerformanceLevelUnit {
+export enum KnownPerformanceLevelUnit {
     // (undocumented)
     DTU = "DTU",
     // (undocumented)
@@ -3029,7 +3029,7 @@ export const enum KnownPerformanceLevelUnit {
 }
 
 // @public
-export const enum KnownPrimaryAggregationType {
+export enum KnownPrimaryAggregationType {
     // (undocumented)
     Average = "Average",
     // (undocumented)
@@ -3045,7 +3045,7 @@ export const enum KnownPrimaryAggregationType {
 }
 
 // @public
-export const enum KnownPrivateEndpointProvisioningState {
+export enum KnownPrivateEndpointProvisioningState {
     // (undocumented)
     Approving = "Approving",
     // (undocumented)
@@ -3059,13 +3059,13 @@ export const enum KnownPrivateEndpointProvisioningState {
 }
 
 // @public
-export const enum KnownPrivateLinkServiceConnectionStateActionsRequire {
+export enum KnownPrivateLinkServiceConnectionStateActionsRequire {
     // (undocumented)
     None = "None"
 }
 
 // @public
-export const enum KnownPrivateLinkServiceConnectionStateStatus {
+export enum KnownPrivateLinkServiceConnectionStateStatus {
     // (undocumented)
     Approved = "Approved",
     // (undocumented)
@@ -3077,7 +3077,7 @@ export const enum KnownPrivateLinkServiceConnectionStateStatus {
 }
 
 // @public
-export const enum KnownProvisioningState {
+export enum KnownProvisioningState {
     // (undocumented)
     Canceled = "Canceled",
     // (undocumented)
@@ -3091,7 +3091,7 @@ export const enum KnownProvisioningState {
 }
 
 // @public
-export const enum KnownReadOnlyEndpointFailoverPolicy {
+export enum KnownReadOnlyEndpointFailoverPolicy {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -3099,7 +3099,7 @@ export const enum KnownReadOnlyEndpointFailoverPolicy {
 }
 
 // @public
-export const enum KnownReadWriteEndpointFailoverPolicy {
+export enum KnownReadWriteEndpointFailoverPolicy {
     // (undocumented)
     Automatic = "Automatic",
     // (undocumented)
@@ -3107,7 +3107,7 @@ export const enum KnownReadWriteEndpointFailoverPolicy {
 }
 
 // @public
-export const enum KnownReplicationState {
+export enum KnownReplicationState {
     // (undocumented)
     CatchUP = "CATCH_UP",
     // (undocumented)
@@ -3119,7 +3119,7 @@ export const enum KnownReplicationState {
 }
 
 // @public
-export const enum KnownReplicaType {
+export enum KnownReplicaType {
     // (undocumented)
     Primary = "Primary",
     // (undocumented)
@@ -3127,13 +3127,13 @@ export const enum KnownReplicaType {
 }
 
 // @public
-export const enum KnownRestoreDetailsName {
+export enum KnownRestoreDetailsName {
     // (undocumented)
     Default = "Default"
 }
 
 // @public
-export const enum KnownSampleName {
+export enum KnownSampleName {
     // (undocumented)
     AdventureWorksLT = "AdventureWorksLT",
     // (undocumented)
@@ -3143,19 +3143,19 @@ export const enum KnownSampleName {
 }
 
 // @public
-export const enum KnownSecurityAlertPolicyName {
+export enum KnownSecurityAlertPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownSecurityAlertPolicyNameAutoGenerated {
+export enum KnownSecurityAlertPolicyNameAutoGenerated {
     // (undocumented)
     Default = "Default"
 }
 
 // @public
-export const enum KnownServerKeyType {
+export enum KnownServerKeyType {
     // (undocumented)
     AzureKeyVault = "AzureKeyVault",
     // (undocumented)
@@ -3163,7 +3163,7 @@ export const enum KnownServerKeyType {
 }
 
 // @public
-export const enum KnownServerPublicNetworkAccess {
+export enum KnownServerPublicNetworkAccess {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -3171,7 +3171,7 @@ export const enum KnownServerPublicNetworkAccess {
 }
 
 // @public
-export const enum KnownServiceObjectiveName {
+export enum KnownServiceObjectiveName {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -3305,13 +3305,13 @@ export const enum KnownServiceObjectiveName {
 }
 
 // @public
-export const enum KnownShortTermRetentionPolicyName {
+export enum KnownShortTermRetentionPolicyName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownStorageCapabilityStorageAccountType {
+export enum KnownStorageCapabilityStorageAccountType {
     // (undocumented)
     GRS = "GRS",
     // (undocumented)
@@ -3321,7 +3321,7 @@ export const enum KnownStorageCapabilityStorageAccountType {
 }
 
 // @public
-export const enum KnownSyncAgentState {
+export enum KnownSyncAgentState {
     // (undocumented)
     NeverConnected = "NeverConnected",
     // (undocumented)
@@ -3331,7 +3331,7 @@ export const enum KnownSyncAgentState {
 }
 
 // @public
-export const enum KnownSyncConflictResolutionPolicy {
+export enum KnownSyncConflictResolutionPolicy {
     // (undocumented)
     HubWin = "HubWin",
     // (undocumented)
@@ -3339,7 +3339,7 @@ export const enum KnownSyncConflictResolutionPolicy {
 }
 
 // @public
-export const enum KnownSyncDirection {
+export enum KnownSyncDirection {
     // (undocumented)
     Bidirectional = "Bidirectional",
     // (undocumented)
@@ -3349,7 +3349,7 @@ export const enum KnownSyncDirection {
 }
 
 // @public
-export const enum KnownSyncGroupLogType {
+export enum KnownSyncGroupLogType {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -3361,7 +3361,7 @@ export const enum KnownSyncGroupLogType {
 }
 
 // @public
-export const enum KnownSyncGroupState {
+export enum KnownSyncGroupState {
     // (undocumented)
     Error = "Error",
     // (undocumented)
@@ -3375,7 +3375,7 @@ export const enum KnownSyncGroupState {
 }
 
 // @public
-export const enum KnownSyncMemberDbType {
+export enum KnownSyncMemberDbType {
     // (undocumented)
     AzureSqlDatabase = "AzureSqlDatabase",
     // (undocumented)
@@ -3383,7 +3383,7 @@ export const enum KnownSyncMemberDbType {
 }
 
 // @public
-export const enum KnownSyncMemberState {
+export enum KnownSyncMemberState {
     // (undocumented)
     DeProvisioned = "DeProvisioned",
     // (undocumented)
@@ -3423,7 +3423,7 @@ export const enum KnownSyncMemberState {
 }
 
 // @public
-export const enum KnownTransparentDataEncryptionActivityStatus {
+export enum KnownTransparentDataEncryptionActivityStatus {
     // (undocumented)
     Decrypting = "Decrypting",
     // (undocumented)
@@ -3431,13 +3431,13 @@ export const enum KnownTransparentDataEncryptionActivityStatus {
 }
 
 // @public
-export const enum KnownTransparentDataEncryptionName {
+export enum KnownTransparentDataEncryptionName {
     // (undocumented)
     Current = "current"
 }
 
 // @public
-export const enum KnownUnitDefinitionType {
+export enum KnownUnitDefinitionType {
     // (undocumented)
     Bytes = "Bytes",
     // (undocumented)
@@ -3453,7 +3453,7 @@ export const enum KnownUnitDefinitionType {
 }
 
 // @public
-export const enum KnownUnitType {
+export enum KnownUnitType {
     // (undocumented)
     Bytes = "bytes",
     // (undocumented)
@@ -3469,7 +3469,7 @@ export const enum KnownUnitType {
 }
 
 // @public
-export const enum KnownVirtualNetworkRuleState {
+export enum KnownVirtualNetworkRuleState {
     // (undocumented)
     Deleting = "Deleting",
     // (undocumented)
@@ -3483,13 +3483,13 @@ export const enum KnownVirtualNetworkRuleState {
 }
 
 // @public
-export const enum KnownVulnerabilityAssessmentName {
+export enum KnownVulnerabilityAssessmentName {
     // (undocumented)
     Default = "default"
 }
 
 // @public
-export const enum KnownVulnerabilityAssessmentScanState {
+export enum KnownVulnerabilityAssessmentScanState {
     // (undocumented)
     Failed = "Failed",
     // (undocumented)
@@ -3501,7 +3501,7 @@ export const enum KnownVulnerabilityAssessmentScanState {
 }
 
 // @public
-export const enum KnownVulnerabilityAssessmentScanTriggerType {
+export enum KnownVulnerabilityAssessmentScanTriggerType {
     // (undocumented)
     OnDemand = "OnDemand",
     // (undocumented)

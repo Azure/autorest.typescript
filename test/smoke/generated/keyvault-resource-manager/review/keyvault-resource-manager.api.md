@@ -110,7 +110,7 @@ export interface KeyVaultManagementClientOptionalParams extends coreClient.Servi
 }
 
 // @public
-export const enum KnownCertificatePermissions {
+export enum KnownCertificatePermissions {
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -146,7 +146,7 @@ export const enum KnownCertificatePermissions {
 }
 
 // @public
-export const enum KnownKeyPermissions {
+export enum KnownKeyPermissions {
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -182,7 +182,7 @@ export const enum KnownKeyPermissions {
 }
 
 // @public
-export const enum KnownNetworkRuleAction {
+export enum KnownNetworkRuleAction {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -190,7 +190,7 @@ export const enum KnownNetworkRuleAction {
 }
 
 // @public
-export const enum KnownNetworkRuleBypassOptions {
+export enum KnownNetworkRuleBypassOptions {
     // (undocumented)
     AzureServices = "AzureServices",
     // (undocumented)
@@ -198,7 +198,7 @@ export const enum KnownNetworkRuleBypassOptions {
 }
 
 // @public
-export const enum KnownPrivateEndpointConnectionProvisioningState {
+export enum KnownPrivateEndpointConnectionProvisioningState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -214,7 +214,7 @@ export const enum KnownPrivateEndpointConnectionProvisioningState {
 }
 
 // @public
-export const enum KnownPrivateEndpointServiceConnectionStatus {
+export enum KnownPrivateEndpointServiceConnectionStatus {
     // (undocumented)
     Approved = "Approved",
     // (undocumented)
@@ -226,7 +226,7 @@ export const enum KnownPrivateEndpointServiceConnectionStatus {
 }
 
 // @public
-export const enum KnownSecretPermissions {
+export enum KnownSecretPermissions {
     // (undocumented)
     Backup = "backup",
     // (undocumented)
@@ -246,13 +246,13 @@ export const enum KnownSecretPermissions {
 }
 
 // @public
-export const enum KnownSkuFamily {
+export enum KnownSkuFamily {
     // (undocumented)
     A = "A"
 }
 
 // @public
-export const enum KnownStoragePermissions {
+export enum KnownStoragePermissions {
     // (undocumented)
     Backup = "backup",
     // (undocumented)

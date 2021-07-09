@@ -4154,7 +4154,7 @@ export type IPVersion = string;
 export type IssueType = string;
 
 // @public
-export const enum KnownAccess {
+export enum KnownAccess {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -4162,7 +4162,7 @@ export const enum KnownAccess {
 }
 
 // @public
-export const enum KnownApplicationGatewayBackendHealthServerHealth {
+export enum KnownApplicationGatewayBackendHealthServerHealth {
     // (undocumented)
     Down = "Down",
     // (undocumented)
@@ -4176,7 +4176,7 @@ export const enum KnownApplicationGatewayBackendHealthServerHealth {
 }
 
 // @public
-export const enum KnownApplicationGatewayCookieBasedAffinity {
+export enum KnownApplicationGatewayCookieBasedAffinity {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -4184,7 +4184,7 @@ export const enum KnownApplicationGatewayCookieBasedAffinity {
 }
 
 // @public
-export const enum KnownApplicationGatewayCustomErrorStatusCode {
+export enum KnownApplicationGatewayCustomErrorStatusCode {
     // (undocumented)
     HttpStatus403 = "HttpStatus403",
     // (undocumented)
@@ -4192,7 +4192,7 @@ export const enum KnownApplicationGatewayCustomErrorStatusCode {
 }
 
 // @public
-export const enum KnownApplicationGatewayFirewallMode {
+export enum KnownApplicationGatewayFirewallMode {
     // (undocumented)
     Detection = "Detection",
     // (undocumented)
@@ -4200,7 +4200,7 @@ export const enum KnownApplicationGatewayFirewallMode {
 }
 
 // @public
-export const enum KnownApplicationGatewayOperationalState {
+export enum KnownApplicationGatewayOperationalState {
     // (undocumented)
     Running = "Running",
     // (undocumented)
@@ -4212,7 +4212,7 @@ export const enum KnownApplicationGatewayOperationalState {
 }
 
 // @public
-export const enum KnownApplicationGatewayProtocol {
+export enum KnownApplicationGatewayProtocol {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -4220,7 +4220,7 @@ export const enum KnownApplicationGatewayProtocol {
 }
 
 // @public
-export const enum KnownApplicationGatewayRedirectType {
+export enum KnownApplicationGatewayRedirectType {
     // (undocumented)
     Found = "Found",
     // (undocumented)
@@ -4232,7 +4232,7 @@ export const enum KnownApplicationGatewayRedirectType {
 }
 
 // @public
-export const enum KnownApplicationGatewayRequestRoutingRuleType {
+export enum KnownApplicationGatewayRequestRoutingRuleType {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -4240,7 +4240,7 @@ export const enum KnownApplicationGatewayRequestRoutingRuleType {
 }
 
 // @public
-export const enum KnownApplicationGatewaySkuName {
+export enum KnownApplicationGatewaySkuName {
     // (undocumented)
     StandardLarge = "Standard_Large",
     // (undocumented)
@@ -4258,7 +4258,7 @@ export const enum KnownApplicationGatewaySkuName {
 }
 
 // @public
-export const enum KnownApplicationGatewaySslCipherSuite {
+export enum KnownApplicationGatewaySslCipherSuite {
     // (undocumented)
     TLSDHEDSSWith3DESEDECBCSHA = "TLS_DHE_DSS_WITH_3DES_EDE_CBC_SHA",
     // (undocumented)
@@ -4318,7 +4318,7 @@ export const enum KnownApplicationGatewaySslCipherSuite {
 }
 
 // @public
-export const enum KnownApplicationGatewaySslPolicyName {
+export enum KnownApplicationGatewaySslPolicyName {
     // (undocumented)
     AppGwSslPolicy20150501 = "AppGwSslPolicy20150501",
     // (undocumented)
@@ -4328,7 +4328,7 @@ export const enum KnownApplicationGatewaySslPolicyName {
 }
 
 // @public
-export const enum KnownApplicationGatewaySslPolicyType {
+export enum KnownApplicationGatewaySslPolicyType {
     // (undocumented)
     Custom = "Custom",
     // (undocumented)
@@ -4336,7 +4336,7 @@ export const enum KnownApplicationGatewaySslPolicyType {
 }
 
 // @public
-export const enum KnownApplicationGatewaySslProtocol {
+export enum KnownApplicationGatewaySslProtocol {
     // (undocumented)
     TLSv10 = "TLSv1_0",
     // (undocumented)
@@ -4346,7 +4346,7 @@ export const enum KnownApplicationGatewaySslProtocol {
 }
 
 // @public
-export const enum KnownApplicationGatewayTier {
+export enum KnownApplicationGatewayTier {
     // (undocumented)
     Standard = "Standard",
     // (undocumented)
@@ -4358,7 +4358,7 @@ export const enum KnownApplicationGatewayTier {
 }
 
 // @public
-export const enum KnownAssociationType {
+export enum KnownAssociationType {
     // (undocumented)
     Associated = "Associated",
     // (undocumented)
@@ -4366,7 +4366,7 @@ export const enum KnownAssociationType {
 }
 
 // @public
-export const enum KnownAuthenticationMethod {
+export enum KnownAuthenticationMethod {
     // (undocumented)
     EapmschaPv2 = "EAPMSCHAPv2",
     // (undocumented)
@@ -4374,7 +4374,7 @@ export const enum KnownAuthenticationMethod {
 }
 
 // @public
-export const enum KnownAuthorizationUseStatus {
+export enum KnownAuthorizationUseStatus {
     // (undocumented)
     Available = "Available",
     // (undocumented)
@@ -4382,7 +4382,7 @@ export const enum KnownAuthorizationUseStatus {
 }
 
 // @public
-export const enum KnownAzureFirewallApplicationRuleProtocolType {
+export enum KnownAzureFirewallApplicationRuleProtocolType {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -4392,7 +4392,7 @@ export const enum KnownAzureFirewallApplicationRuleProtocolType {
 }
 
 // @public
-export const enum KnownAzureFirewallNatRCActionType {
+export enum KnownAzureFirewallNatRCActionType {
     // (undocumented)
     Dnat = "Dnat",
     // (undocumented)
@@ -4400,7 +4400,7 @@ export const enum KnownAzureFirewallNatRCActionType {
 }
 
 // @public
-export const enum KnownAzureFirewallNetworkRuleProtocol {
+export enum KnownAzureFirewallNetworkRuleProtocol {
     // (undocumented)
     Any = "Any",
     // (undocumented)
@@ -4412,7 +4412,7 @@ export const enum KnownAzureFirewallNetworkRuleProtocol {
 }
 
 // @public
-export const enum KnownAzureFirewallRCActionType {
+export enum KnownAzureFirewallRCActionType {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -4420,7 +4420,7 @@ export const enum KnownAzureFirewallRCActionType {
 }
 
 // @public
-export const enum KnownAzureFirewallSkuName {
+export enum KnownAzureFirewallSkuName {
     // (undocumented)
     AzfwHub = "AZFW_Hub",
     // (undocumented)
@@ -4428,7 +4428,7 @@ export const enum KnownAzureFirewallSkuName {
 }
 
 // @public
-export const enum KnownAzureFirewallSkuTier {
+export enum KnownAzureFirewallSkuTier {
     // (undocumented)
     Premium = "Premium",
     // (undocumented)
@@ -4436,7 +4436,7 @@ export const enum KnownAzureFirewallSkuTier {
 }
 
 // @public
-export const enum KnownAzureFirewallThreatIntelMode {
+export enum KnownAzureFirewallThreatIntelMode {
     // (undocumented)
     Alert = "Alert",
     // (undocumented)
@@ -4446,7 +4446,7 @@ export const enum KnownAzureFirewallThreatIntelMode {
 }
 
 // @public
-export const enum KnownBastionConnectProtocol {
+export enum KnownBastionConnectProtocol {
     // (undocumented)
     RDP = "RDP",
     // (undocumented)
@@ -4454,7 +4454,7 @@ export const enum KnownBastionConnectProtocol {
 }
 
 // @public
-export const enum KnownBgpPeerState {
+export enum KnownBgpPeerState {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -4468,7 +4468,7 @@ export const enum KnownBgpPeerState {
 }
 
 // @public
-export const enum KnownCircuitConnectionStatus {
+export enum KnownCircuitConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -4478,19 +4478,19 @@ export const enum KnownCircuitConnectionStatus {
 }
 
 // @public
-export const enum KnownConnectionMonitorEndpointFilterItemType {
+export enum KnownConnectionMonitorEndpointFilterItemType {
     // (undocumented)
     AgentAddress = "AgentAddress"
 }
 
 // @public
-export const enum KnownConnectionMonitorEndpointFilterType {
+export enum KnownConnectionMonitorEndpointFilterType {
     // (undocumented)
     Include = "Include"
 }
 
 // @public
-export const enum KnownConnectionMonitorSourceStatus {
+export enum KnownConnectionMonitorSourceStatus {
     // (undocumented)
     Active = "Active",
     // (undocumented)
@@ -4500,7 +4500,7 @@ export const enum KnownConnectionMonitorSourceStatus {
 }
 
 // @public
-export const enum KnownConnectionMonitorTestConfigurationProtocol {
+export enum KnownConnectionMonitorTestConfigurationProtocol {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -4510,7 +4510,7 @@ export const enum KnownConnectionMonitorTestConfigurationProtocol {
 }
 
 // @public
-export const enum KnownConnectionMonitorType {
+export enum KnownConnectionMonitorType {
     // (undocumented)
     MultiEndpoint = "MultiEndpoint",
     // (undocumented)
@@ -4518,7 +4518,7 @@ export const enum KnownConnectionMonitorType {
 }
 
 // @public
-export const enum KnownConnectionState {
+export enum KnownConnectionState {
     // (undocumented)
     Reachable = "Reachable",
     // (undocumented)
@@ -4528,7 +4528,7 @@ export const enum KnownConnectionState {
 }
 
 // @public
-export const enum KnownConnectionStatus {
+export enum KnownConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -4540,7 +4540,7 @@ export const enum KnownConnectionStatus {
 }
 
 // @public
-export const enum KnownDdosCustomPolicyProtocol {
+export enum KnownDdosCustomPolicyProtocol {
     // (undocumented)
     Syn = "Syn",
     // (undocumented)
@@ -4550,7 +4550,7 @@ export const enum KnownDdosCustomPolicyProtocol {
 }
 
 // @public
-export const enum KnownDdosCustomPolicyTriggerSensitivityOverride {
+export enum KnownDdosCustomPolicyTriggerSensitivityOverride {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -4562,7 +4562,7 @@ export const enum KnownDdosCustomPolicyTriggerSensitivityOverride {
 }
 
 // @public
-export const enum KnownDdosSettingsProtectionCoverage {
+export enum KnownDdosSettingsProtectionCoverage {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -4570,7 +4570,7 @@ export const enum KnownDdosSettingsProtectionCoverage {
 }
 
 // @public
-export const enum KnownDhGroup {
+export enum KnownDhGroup {
     // (undocumented)
     DHGroup1 = "DHGroup1",
     // (undocumented)
@@ -4590,7 +4590,7 @@ export const enum KnownDhGroup {
 }
 
 // @public
-export const enum KnownDirection {
+export enum KnownDirection {
     // (undocumented)
     Inbound = "Inbound",
     // (undocumented)
@@ -4598,7 +4598,7 @@ export const enum KnownDirection {
 }
 
 // @public
-export const enum KnownEffectiveRouteSource {
+export enum KnownEffectiveRouteSource {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -4610,7 +4610,7 @@ export const enum KnownEffectiveRouteSource {
 }
 
 // @public
-export const enum KnownEffectiveRouteState {
+export enum KnownEffectiveRouteState {
     // (undocumented)
     Active = "Active",
     // (undocumented)
@@ -4618,7 +4618,7 @@ export const enum KnownEffectiveRouteState {
 }
 
 // @public
-export const enum KnownEffectiveSecurityRuleProtocol {
+export enum KnownEffectiveSecurityRuleProtocol {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -4628,7 +4628,7 @@ export const enum KnownEffectiveSecurityRuleProtocol {
 }
 
 // @public
-export const enum KnownEvaluationState {
+export enum KnownEvaluationState {
     // (undocumented)
     Completed = "Completed",
     // (undocumented)
@@ -4638,7 +4638,7 @@ export const enum KnownEvaluationState {
 }
 
 // @public
-export const enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
+export enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
     // (undocumented)
     Configured = "Configured",
     // (undocumented)
@@ -4650,7 +4650,7 @@ export const enum KnownExpressRouteCircuitPeeringAdvertisedPublicPrefixState {
 }
 
 // @public
-export const enum KnownExpressRouteCircuitPeeringState {
+export enum KnownExpressRouteCircuitPeeringState {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -4658,7 +4658,7 @@ export const enum KnownExpressRouteCircuitPeeringState {
 }
 
 // @public
-export const enum KnownExpressRouteCircuitSkuFamily {
+export enum KnownExpressRouteCircuitSkuFamily {
     // (undocumented)
     MeteredData = "MeteredData",
     // (undocumented)
@@ -4666,7 +4666,7 @@ export const enum KnownExpressRouteCircuitSkuFamily {
 }
 
 // @public
-export const enum KnownExpressRouteCircuitSkuTier {
+export enum KnownExpressRouteCircuitSkuTier {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -4678,7 +4678,7 @@ export const enum KnownExpressRouteCircuitSkuTier {
 }
 
 // @public
-export const enum KnownExpressRouteLinkAdminState {
+export enum KnownExpressRouteLinkAdminState {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -4686,7 +4686,7 @@ export const enum KnownExpressRouteLinkAdminState {
 }
 
 // @public
-export const enum KnownExpressRouteLinkConnectorType {
+export enum KnownExpressRouteLinkConnectorType {
     // (undocumented)
     LC = "LC",
     // (undocumented)
@@ -4694,7 +4694,7 @@ export const enum KnownExpressRouteLinkConnectorType {
 }
 
 // @public
-export const enum KnownExpressRouteLinkMacSecCipher {
+export enum KnownExpressRouteLinkMacSecCipher {
     // (undocumented)
     GcmAes128 = "gcm-aes-128",
     // (undocumented)
@@ -4702,7 +4702,7 @@ export const enum KnownExpressRouteLinkMacSecCipher {
 }
 
 // @public
-export const enum KnownExpressRoutePeeringState {
+export enum KnownExpressRoutePeeringState {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -4710,7 +4710,7 @@ export const enum KnownExpressRoutePeeringState {
 }
 
 // @public
-export const enum KnownExpressRoutePeeringType {
+export enum KnownExpressRoutePeeringType {
     // (undocumented)
     AzurePrivatePeering = "AzurePrivatePeering",
     // (undocumented)
@@ -4720,7 +4720,7 @@ export const enum KnownExpressRoutePeeringType {
 }
 
 // @public
-export const enum KnownExpressRoutePortsEncapsulation {
+export enum KnownExpressRoutePortsEncapsulation {
     // (undocumented)
     Dot1Q = "Dot1Q",
     // (undocumented)
@@ -4728,7 +4728,7 @@ export const enum KnownExpressRoutePortsEncapsulation {
 }
 
 // @public
-export const enum KnownFirewallPolicyFilterRuleActionType {
+export enum KnownFirewallPolicyFilterRuleActionType {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -4736,7 +4736,7 @@ export const enum KnownFirewallPolicyFilterRuleActionType {
 }
 
 // @public
-export const enum KnownFirewallPolicyIntrusionSystemMode {
+export enum KnownFirewallPolicyIntrusionSystemMode {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -4744,13 +4744,13 @@ export const enum KnownFirewallPolicyIntrusionSystemMode {
 }
 
 // @public
-export const enum KnownFirewallPolicyNatRuleActionType {
+export enum KnownFirewallPolicyNatRuleActionType {
     // (undocumented)
     Dnat = "DNAT"
 }
 
 // @public
-export const enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
+export enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -4758,7 +4758,7 @@ export const enum KnownFirewallPolicyRuleConditionApplicationProtocolType {
 }
 
 // @public
-export const enum KnownFirewallPolicyRuleConditionNetworkProtocol {
+export enum KnownFirewallPolicyRuleConditionNetworkProtocol {
     // (undocumented)
     Any = "Any",
     // (undocumented)
@@ -4770,7 +4770,7 @@ export const enum KnownFirewallPolicyRuleConditionNetworkProtocol {
 }
 
 // @public
-export const enum KnownFirewallPolicyRuleConditionType {
+export enum KnownFirewallPolicyRuleConditionType {
     // (undocumented)
     ApplicationRuleCondition = "ApplicationRuleCondition",
     // (undocumented)
@@ -4780,7 +4780,7 @@ export const enum KnownFirewallPolicyRuleConditionType {
 }
 
 // @public
-export const enum KnownFirewallPolicyRuleType {
+export enum KnownFirewallPolicyRuleType {
     // (undocumented)
     FirewallPolicyFilterRule = "FirewallPolicyFilterRule",
     // (undocumented)
@@ -4788,13 +4788,13 @@ export const enum KnownFirewallPolicyRuleType {
 }
 
 // @public
-export const enum KnownFlowLogFormatType {
+export enum KnownFlowLogFormatType {
     // (undocumented)
     Json = "JSON"
 }
 
 // @public
-export const enum KnownHttpConfigurationMethod {
+export enum KnownHttpConfigurationMethod {
     // (undocumented)
     Get = "Get",
     // (undocumented)
@@ -4802,13 +4802,13 @@ export const enum KnownHttpConfigurationMethod {
 }
 
 // @public
-export const enum KnownHttpMethod {
+export enum KnownHttpMethod {
     // (undocumented)
     Get = "Get"
 }
 
 // @public
-export const enum KnownHubVirtualNetworkConnectionStatus {
+export enum KnownHubVirtualNetworkConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -4820,7 +4820,7 @@ export const enum KnownHubVirtualNetworkConnectionStatus {
 }
 
 // @public
-export const enum KnownIkeEncryption {
+export enum KnownIkeEncryption {
     // (undocumented)
     AES128 = "AES128",
     // (undocumented)
@@ -4838,7 +4838,7 @@ export const enum KnownIkeEncryption {
 }
 
 // @public
-export const enum KnownIkeIntegrity {
+export enum KnownIkeIntegrity {
     // (undocumented)
     Gcmaes128 = "GCMAES128",
     // (undocumented)
@@ -4854,7 +4854,7 @@ export const enum KnownIkeIntegrity {
 }
 
 // @public
-export const enum KnownIPAllocationMethod {
+export enum KnownIPAllocationMethod {
     // (undocumented)
     Dynamic = "Dynamic",
     // (undocumented)
@@ -4862,7 +4862,7 @@ export const enum KnownIPAllocationMethod {
 }
 
 // @public
-export const enum KnownIpAllocationType {
+export enum KnownIpAllocationType {
     // (undocumented)
     Hypernet = "Hypernet",
     // (undocumented)
@@ -4870,7 +4870,7 @@ export const enum KnownIpAllocationType {
 }
 
 // @public
-export const enum KnownIpFlowProtocol {
+export enum KnownIpFlowProtocol {
     // (undocumented)
     TCP = "TCP",
     // (undocumented)
@@ -4878,7 +4878,7 @@ export const enum KnownIpFlowProtocol {
 }
 
 // @public
-export const enum KnownIpsecEncryption {
+export enum KnownIpsecEncryption {
     // (undocumented)
     AES128 = "AES128",
     // (undocumented)
@@ -4900,7 +4900,7 @@ export const enum KnownIpsecEncryption {
 }
 
 // @public
-export const enum KnownIpsecIntegrity {
+export enum KnownIpsecIntegrity {
     // (undocumented)
     Gcmaes128 = "GCMAES128",
     // (undocumented)
@@ -4916,7 +4916,7 @@ export const enum KnownIpsecIntegrity {
 }
 
 // @public
-export const enum KnownIPVersion {
+export enum KnownIPVersion {
     // (undocumented)
     IPv4 = "IPv4",
     // (undocumented)
@@ -4924,7 +4924,7 @@ export const enum KnownIPVersion {
 }
 
 // @public
-export const enum KnownIssueType {
+export enum KnownIssueType {
     // (undocumented)
     AgentStopped = "AgentStopped",
     // (undocumented)
@@ -4946,7 +4946,7 @@ export const enum KnownIssueType {
 }
 
 // @public
-export const enum KnownLoadBalancerOutboundRuleProtocol {
+export enum KnownLoadBalancerOutboundRuleProtocol {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -4956,7 +4956,7 @@ export const enum KnownLoadBalancerOutboundRuleProtocol {
 }
 
 // @public
-export const enum KnownLoadBalancerSkuName {
+export enum KnownLoadBalancerSkuName {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -4964,7 +4964,7 @@ export const enum KnownLoadBalancerSkuName {
 }
 
 // @public
-export const enum KnownLoadDistribution {
+export enum KnownLoadDistribution {
     // (undocumented)
     Default = "Default",
     // (undocumented)
@@ -4974,19 +4974,19 @@ export const enum KnownLoadDistribution {
 }
 
 // @public
-export const enum KnownManagedRuleEnabledState {
+export enum KnownManagedRuleEnabledState {
     // (undocumented)
     Disabled = "Disabled"
 }
 
 // @public
-export const enum KnownNatGatewaySkuName {
+export enum KnownNatGatewaySkuName {
     // (undocumented)
     Standard = "Standard"
 }
 
 // @public
-export const enum KnownNetworkOperationStatus {
+export enum KnownNetworkOperationStatus {
     // (undocumented)
     Failed = "Failed",
     // (undocumented)
@@ -4996,7 +4996,7 @@ export const enum KnownNetworkOperationStatus {
 }
 
 // @public
-export const enum KnownNextHopType {
+export enum KnownNextHopType {
     // (undocumented)
     HyperNetGateway = "HyperNetGateway",
     // (undocumented)
@@ -5012,7 +5012,7 @@ export const enum KnownNextHopType {
 }
 
 // @public
-export const enum KnownOfficeTrafficCategory {
+export enum KnownOfficeTrafficCategory {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -5024,7 +5024,7 @@ export const enum KnownOfficeTrafficCategory {
 }
 
 // @public
-export const enum KnownOrigin {
+export enum KnownOrigin {
     // (undocumented)
     Inbound = "Inbound",
     // (undocumented)
@@ -5034,13 +5034,13 @@ export const enum KnownOrigin {
 }
 
 // @public
-export const enum KnownOutputType {
+export enum KnownOutputType {
     // (undocumented)
     Workspace = "Workspace"
 }
 
 // @public
-export const enum KnownOwaspCrsExclusionEntryMatchVariable {
+export enum KnownOwaspCrsExclusionEntryMatchVariable {
     // (undocumented)
     RequestArgNames = "RequestArgNames",
     // (undocumented)
@@ -5050,7 +5050,7 @@ export const enum KnownOwaspCrsExclusionEntryMatchVariable {
 }
 
 // @public
-export const enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
+export enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
     // (undocumented)
     Contains = "Contains",
     // (undocumented)
@@ -5064,7 +5064,7 @@ export const enum KnownOwaspCrsExclusionEntrySelectorMatchOperator {
 }
 
 // @public
-export const enum KnownPcError {
+export enum KnownPcError {
     // (undocumented)
     AgentStopped = "AgentStopped",
     // (undocumented)
@@ -5078,7 +5078,7 @@ export const enum KnownPcError {
 }
 
 // @public
-export const enum KnownPcProtocol {
+export enum KnownPcProtocol {
     // (undocumented)
     Any = "Any",
     // (undocumented)
@@ -5088,7 +5088,7 @@ export const enum KnownPcProtocol {
 }
 
 // @public
-export const enum KnownPcStatus {
+export enum KnownPcStatus {
     // (undocumented)
     Error = "Error",
     // (undocumented)
@@ -5102,7 +5102,7 @@ export const enum KnownPcStatus {
 }
 
 // @public
-export const enum KnownPfsGroup {
+export enum KnownPfsGroup {
     // (undocumented)
     ECP256 = "ECP256",
     // (undocumented)
@@ -5124,7 +5124,7 @@ export const enum KnownPfsGroup {
 }
 
 // @public
-export const enum KnownPreferredIPVersion {
+export enum KnownPreferredIPVersion {
     // (undocumented)
     IPv4 = "IPv4",
     // (undocumented)
@@ -5132,7 +5132,7 @@ export const enum KnownPreferredIPVersion {
 }
 
 // @public
-export const enum KnownProbeProtocol {
+export enum KnownProbeProtocol {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -5142,7 +5142,7 @@ export const enum KnownProbeProtocol {
 }
 
 // @public
-export const enum KnownProcessorArchitecture {
+export enum KnownProcessorArchitecture {
     // (undocumented)
     Amd64 = "Amd64",
     // (undocumented)
@@ -5150,7 +5150,7 @@ export const enum KnownProcessorArchitecture {
 }
 
 // @public
-export const enum KnownProtocol {
+export enum KnownProtocol {
     // (undocumented)
     Http = "Http",
     // (undocumented)
@@ -5162,7 +5162,7 @@ export const enum KnownProtocol {
 }
 
 // @public
-export const enum KnownProvisioningState {
+export enum KnownProvisioningState {
     // (undocumented)
     Deleting = "Deleting",
     // (undocumented)
@@ -5174,7 +5174,7 @@ export const enum KnownProvisioningState {
 }
 
 // @public
-export const enum KnownPublicIPAddressSkuName {
+export enum KnownPublicIPAddressSkuName {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -5182,19 +5182,19 @@ export const enum KnownPublicIPAddressSkuName {
 }
 
 // @public
-export const enum KnownPublicIPPrefixSkuName {
+export enum KnownPublicIPPrefixSkuName {
     // (undocumented)
     Standard = "Standard"
 }
 
 // @public
-export const enum KnownRouteFilterRuleType {
+export enum KnownRouteFilterRuleType {
     // (undocumented)
     Community = "Community"
 }
 
 // @public
-export const enum KnownRouteNextHopType {
+export enum KnownRouteNextHopType {
     // (undocumented)
     Internet = "Internet",
     // (undocumented)
@@ -5208,7 +5208,7 @@ export const enum KnownRouteNextHopType {
 }
 
 // @public
-export const enum KnownSecurityPartnerProviderConnectionStatus {
+export enum KnownSecurityPartnerProviderConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -5220,7 +5220,7 @@ export const enum KnownSecurityPartnerProviderConnectionStatus {
 }
 
 // @public
-export const enum KnownSecurityProviderName {
+export enum KnownSecurityProviderName {
     // (undocumented)
     Checkpoint = "Checkpoint",
     // (undocumented)
@@ -5230,7 +5230,7 @@ export const enum KnownSecurityProviderName {
 }
 
 // @public
-export const enum KnownSecurityRuleAccess {
+export enum KnownSecurityRuleAccess {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -5238,7 +5238,7 @@ export const enum KnownSecurityRuleAccess {
 }
 
 // @public
-export const enum KnownSecurityRuleDirection {
+export enum KnownSecurityRuleDirection {
     // (undocumented)
     Inbound = "Inbound",
     // (undocumented)
@@ -5246,7 +5246,7 @@ export const enum KnownSecurityRuleDirection {
 }
 
 // @public
-export const enum KnownSecurityRuleProtocol {
+export enum KnownSecurityRuleProtocol {
     // (undocumented)
     Ah = "Ah",
     // (undocumented)
@@ -5262,7 +5262,7 @@ export const enum KnownSecurityRuleProtocol {
 }
 
 // @public
-export const enum KnownServiceProviderProvisioningState {
+export enum KnownServiceProviderProvisioningState {
     // (undocumented)
     Deprovisioning = "Deprovisioning",
     // (undocumented)
@@ -5274,7 +5274,7 @@ export const enum KnownServiceProviderProvisioningState {
 }
 
 // @public
-export const enum KnownSeverity {
+export enum KnownSeverity {
     // (undocumented)
     Error = "Error",
     // (undocumented)
@@ -5282,7 +5282,7 @@ export const enum KnownSeverity {
 }
 
 // @public
-export const enum KnownTransportProtocol {
+export enum KnownTransportProtocol {
     // (undocumented)
     All = "All",
     // (undocumented)
@@ -5292,7 +5292,7 @@ export const enum KnownTransportProtocol {
 }
 
 // @public
-export const enum KnownTunnelConnectionStatus {
+export enum KnownTunnelConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -5304,13 +5304,13 @@ export const enum KnownTunnelConnectionStatus {
 }
 
 // @public
-export const enum KnownUsageUnit {
+export enum KnownUsageUnit {
     // (undocumented)
     Count = "Count"
 }
 
 // @public
-export const enum KnownVerbosityLevel {
+export enum KnownVerbosityLevel {
     // (undocumented)
     Full = "Full",
     // (undocumented)
@@ -5320,7 +5320,7 @@ export const enum KnownVerbosityLevel {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewayConnectionProtocol {
+export enum KnownVirtualNetworkGatewayConnectionProtocol {
     // (undocumented)
     IKEv1 = "IKEv1",
     // (undocumented)
@@ -5328,7 +5328,7 @@ export const enum KnownVirtualNetworkGatewayConnectionProtocol {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewayConnectionStatus {
+export enum KnownVirtualNetworkGatewayConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -5340,7 +5340,7 @@ export const enum KnownVirtualNetworkGatewayConnectionStatus {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewayConnectionType {
+export enum KnownVirtualNetworkGatewayConnectionType {
     // (undocumented)
     ExpressRoute = "ExpressRoute",
     // (undocumented)
@@ -5352,7 +5352,7 @@ export const enum KnownVirtualNetworkGatewayConnectionType {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewaySkuName {
+export enum KnownVirtualNetworkGatewaySkuName {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -5390,7 +5390,7 @@ export const enum KnownVirtualNetworkGatewaySkuName {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewaySkuTier {
+export enum KnownVirtualNetworkGatewaySkuTier {
     // (undocumented)
     Basic = "Basic",
     // (undocumented)
@@ -5428,7 +5428,7 @@ export const enum KnownVirtualNetworkGatewaySkuTier {
 }
 
 // @public
-export const enum KnownVirtualNetworkGatewayType {
+export enum KnownVirtualNetworkGatewayType {
     // (undocumented)
     ExpressRoute = "ExpressRoute",
     // (undocumented)
@@ -5436,7 +5436,7 @@ export const enum KnownVirtualNetworkGatewayType {
 }
 
 // @public
-export const enum KnownVirtualNetworkPeeringState {
+export enum KnownVirtualNetworkPeeringState {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -5446,7 +5446,7 @@ export const enum KnownVirtualNetworkPeeringState {
 }
 
 // @public
-export const enum KnownVirtualWanSecurityProviderType {
+export enum KnownVirtualWanSecurityProviderType {
     // (undocumented)
     External = "External",
     // (undocumented)
@@ -5454,7 +5454,7 @@ export const enum KnownVirtualWanSecurityProviderType {
 }
 
 // @public
-export const enum KnownVpnAuthenticationType {
+export enum KnownVpnAuthenticationType {
     // (undocumented)
     AAD = "AAD",
     // (undocumented)
@@ -5464,7 +5464,7 @@ export const enum KnownVpnAuthenticationType {
 }
 
 // @public
-export const enum KnownVpnClientProtocol {
+export enum KnownVpnClientProtocol {
     // (undocumented)
     IkeV2 = "IkeV2",
     // (undocumented)
@@ -5474,7 +5474,7 @@ export const enum KnownVpnClientProtocol {
 }
 
 // @public
-export const enum KnownVpnConnectionStatus {
+export enum KnownVpnConnectionStatus {
     // (undocumented)
     Connected = "Connected",
     // (undocumented)
@@ -5486,7 +5486,7 @@ export const enum KnownVpnConnectionStatus {
 }
 
 // @public
-export const enum KnownVpnGatewayGeneration {
+export enum KnownVpnGatewayGeneration {
     // (undocumented)
     Generation1 = "Generation1",
     // (undocumented)
@@ -5496,7 +5496,7 @@ export const enum KnownVpnGatewayGeneration {
 }
 
 // @public
-export const enum KnownVpnGatewayTunnelingProtocol {
+export enum KnownVpnGatewayTunnelingProtocol {
     // (undocumented)
     IkeV2 = "IkeV2",
     // (undocumented)
@@ -5504,7 +5504,7 @@ export const enum KnownVpnGatewayTunnelingProtocol {
 }
 
 // @public
-export const enum KnownVpnType {
+export enum KnownVpnType {
     // (undocumented)
     PolicyBased = "PolicyBased",
     // (undocumented)
@@ -5512,7 +5512,7 @@ export const enum KnownVpnType {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallAction {
+export enum KnownWebApplicationFirewallAction {
     // (undocumented)
     Allow = "Allow",
     // (undocumented)
@@ -5522,7 +5522,7 @@ export const enum KnownWebApplicationFirewallAction {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallEnabledState {
+export enum KnownWebApplicationFirewallEnabledState {
     // (undocumented)
     Disabled = "Disabled",
     // (undocumented)
@@ -5530,7 +5530,7 @@ export const enum KnownWebApplicationFirewallEnabledState {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallMatchVariable {
+export enum KnownWebApplicationFirewallMatchVariable {
     // (undocumented)
     PostArgs = "PostArgs",
     // (undocumented)
@@ -5550,7 +5550,7 @@ export const enum KnownWebApplicationFirewallMatchVariable {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallMode {
+export enum KnownWebApplicationFirewallMode {
     // (undocumented)
     Detection = "Detection",
     // (undocumented)
@@ -5558,7 +5558,7 @@ export const enum KnownWebApplicationFirewallMode {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallOperator {
+export enum KnownWebApplicationFirewallOperator {
     // (undocumented)
     BeginsWith = "BeginsWith",
     // (undocumented)
@@ -5584,7 +5584,7 @@ export const enum KnownWebApplicationFirewallOperator {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallPolicyResourceState {
+export enum KnownWebApplicationFirewallPolicyResourceState {
     // (undocumented)
     Creating = "Creating",
     // (undocumented)
@@ -5600,7 +5600,7 @@ export const enum KnownWebApplicationFirewallPolicyResourceState {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallRuleType {
+export enum KnownWebApplicationFirewallRuleType {
     // (undocumented)
     Invalid = "Invalid",
     // (undocumented)
@@ -5608,7 +5608,7 @@ export const enum KnownWebApplicationFirewallRuleType {
 }
 
 // @public
-export const enum KnownWebApplicationFirewallTransform {
+export enum KnownWebApplicationFirewallTransform {
     // (undocumented)
     HtmlEntityDecode = "HtmlEntityDecode",
     // (undocumented)

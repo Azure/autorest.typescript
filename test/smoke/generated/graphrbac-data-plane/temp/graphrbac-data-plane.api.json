@@ -8176,7 +8176,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownConsentType "
+              "text": "export declare enum KnownConsentType "
             }
           ],
           "releaseTag": "Public",
@@ -8233,7 +8233,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownGroupMembershipClaimTypes "
+              "text": "export declare enum KnownGroupMembershipClaimTypes "
             }
           ],
           "releaseTag": "Public",
@@ -8311,7 +8311,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownUserType "
+              "text": "export declare enum KnownUserType "
             }
           ],
           "releaseTag": "Public",

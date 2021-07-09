@@ -3094,7 +3094,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownCleanupOptions "
+              "text": "export declare enum KnownCleanupOptions "
             }
           ],
           "releaseTag": "Public",
@@ -3172,7 +3172,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownCreatedByType "
+              "text": "export declare enum KnownCreatedByType "
             }
           ],
           "releaseTag": "Public",
@@ -3271,7 +3271,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownManagedServiceIdentityType "
+              "text": "export declare enum KnownManagedServiceIdentityType "
             }
           ],
           "releaseTag": "Public",
@@ -3307,7 +3307,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownScriptProvisioningState "
+              "text": "export declare enum KnownScriptProvisioningState "
             }
           ],
           "releaseTag": "Public",
@@ -3448,7 +3448,7 @@
           "excerptTokens": [
             {
               "kind": "Content",
-              "text": "export declare const enum KnownScriptType "
+              "text": "export declare enum KnownScriptType "
             }
           ],
           "releaseTag": "Public",

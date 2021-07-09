@@ -39,13 +39,13 @@ export interface Identity {
 }
 
 // @public
-export const enum KnownEnforcementMode {
+export enum KnownEnforcementMode {
     Default = "Default",
     DoNotEnforce = "DoNotEnforce"
 }
 
 // @public
-export const enum KnownParameterType {
+export enum KnownParameterType {
     // (undocumented)
     Array = "Array",
     // (undocumented)
@@ -63,7 +63,7 @@ export const enum KnownParameterType {
 }
 
 // @public
-export const enum KnownPolicyType {
+export enum KnownPolicyType {
     // (undocumented)
     BuiltIn = "BuiltIn",
     // (undocumented)

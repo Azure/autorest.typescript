@@ -745,7 +745,7 @@ export type UserUpdateParameters = UserBase & {
 };
 
 /** Known values of {@link UserType} that the service accepts. */
-export const enum KnownUserType {
+export enum KnownUserType {
   Member = "Member",
   Guest = "Guest"
 }
@@ -761,7 +761,7 @@ export const enum KnownUserType {
 export type UserType = string;
 
 /** Known values of {@link GroupMembershipClaimTypes} that the service accepts. */
-export const enum KnownGroupMembershipClaimTypes {
+export enum KnownGroupMembershipClaimTypes {
   None = "None",
   SecurityGroup = "SecurityGroup",
   All = "All"
@@ -779,7 +779,7 @@ export const enum KnownGroupMembershipClaimTypes {
 export type GroupMembershipClaimTypes = string;
 
 /** Known values of {@link ConsentType} that the service accepts. */
-export const enum KnownConsentType {
+export enum KnownConsentType {
   AllPrincipals = "AllPrincipals",
   Principal = "Principal"
 }

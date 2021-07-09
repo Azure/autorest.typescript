@@ -216,7 +216,7 @@ export type ApplicationPatchable = GenericResource & {
 };
 
 /** Known values of {@link ProvisioningState} that the service accepts. */
-export const enum KnownProvisioningState {
+export enum KnownProvisioningState {
   Accepted = "Accepted",
   Running = "Running",
   Ready = "Ready",
