@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 Service client for testing basic type: object swaggers
 
 [Package (NPM)](https://www.npmjs.com/package/object-type) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

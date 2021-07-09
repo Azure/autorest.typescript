@@ -59,7 +59,8 @@ function createMetadata(
   packageDetails: PackageDetails,
   clientDetails: ClientDetails,
   azureOutputDirectory?: string,
-  addCredentials?: boolean
+  addCredentials?: boolean,
+  azureArm?: boolean
 ): Metadata {
   const azureHuh = packageDetails.scopeName === "azure";
   const repoURL = azureHuh
@@ -102,7 +103,9 @@ function createMetadata(
     relativePackageSourcePath: relativePackageSourcePath,
     repoURL: repoURL,
     packageSourceURL: packageSourceURL,
-    samplesURL: packageSourceURL && `${packageSourceURL}/samples`,
+    samplesURL: azureArm
+      ? `https://github.com/Azure-Samples/azure-samples-js-management`
+      : packageSourceURL && `${packageSourceURL}/samples`,
     impressionURL: azureHuh
       ? packageParentDirectoryName &&
         packageDirectoryName &&
@@ -129,7 +132,8 @@ export function generateReadmeFile(
     packageDetails,
     azureOutputDirectory,
     generateMetadata,
-    addCredentials
+    addCredentials,
+    azureArm
   } = getAutorestOptions();
 
   if (!generateMetadata) {
@@ -140,7 +144,8 @@ export function generateReadmeFile(
     packageDetails,
     clientDetails,
     azureOutputDirectory,
-    addCredentials
+    addCredentials,
+    azureArm
   );
   const file = fs.readFileSync(path.join(__dirname, "README.md.hbs"), {
     encoding: "utf-8"

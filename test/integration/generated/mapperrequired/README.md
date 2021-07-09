@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 The key vault client performs cryptographic key operations and vault operations against the Key Vault service.
 
 [Package (NPM)](https://www.npmjs.com/package/mapperrequired) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

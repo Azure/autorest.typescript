@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 Use this API to manage the IoTSpaces service instances in your Azure subscription.
 
 [Package (NPM)](https://www.npmjs.com/package/iotspaces) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

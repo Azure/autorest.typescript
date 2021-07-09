@@ -6,6 +6,7 @@ Client that can be used to query an index and upload, merge, or delete documents
 
 [Package (NPM)](https://www.npmjs.com/package/@azure/search-documents) |
 [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/search-documents) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -46,6 +47,9 @@ setLogLevel("info");
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/core/logger).
 
+## Next steps
+
+Please take a look at the [samples](https://github.com/Azure-Samples/azure-samples-js-management) directory for detailed examples on how to use this library.
 
 ## Contributing
 
