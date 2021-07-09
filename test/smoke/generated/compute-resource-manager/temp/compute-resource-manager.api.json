@@ -4350,8 +4350,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Enum31",
-                  "canonicalReference": "compute-resource-manager!Enum31:type"
+                  "text": "ContainerServiceMasterProfileCount",
+                  "canonicalReference": "compute-resource-manager!ContainerServiceMasterProfileCount:type"
                 },
                 {
                   "kind": "Content",
@@ -4417,6 +4417,31 @@
             }
           ],
           "extendsTokenRanges": []
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "compute-resource-manager!ContainerServiceMasterProfileCount:type",
+          "docComment": "/**\n * Defines values for ContainerServiceMasterProfileCount. \\ {@link KnownContainerServiceMasterProfileCount} can be used interchangeably with ContainerServiceMasterProfileCount, this enum contains the known values that the service supports. ### Known values supported by the service **1** \\ **3** \\ **5**\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type ContainerServiceMasterProfileCount = "
+            },
+            {
+              "kind": "Content",
+              "text": "number"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ContainerServiceMasterProfileCount",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Interface",
@@ -14838,31 +14863,6 @@
           ],
           "releaseTag": "Public",
           "name": "EncryptionType",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "compute-resource-manager!Enum31:type",
-          "docComment": "/**\n * Defines values for Enum31. \\ {@link KnownEnum31} can be used interchangeably with Enum31, this enum contains the known values that the service supports. ### Known values supported by the service **1** \\ **3** \\ **5**\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare type Enum31 = "
-            },
-            {
-              "kind": "Content",
-              "text": "number"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "Enum31",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -27383,6 +27383,84 @@
         },
         {
           "kind": "Enum",
+          "canonicalReference": "compute-resource-manager!KnownContainerServiceMasterProfileCount:enum",
+          "docComment": "/**\n * Known values of {@link ContainerServiceMasterProfileCount} that the service accepts.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare enum KnownContainerServiceMasterProfileCount "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "KnownContainerServiceMasterProfileCount",
+          "members": [
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "compute-resource-manager!KnownContainerServiceMasterProfileCount.Five:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Five = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "5"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Five",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "compute-resource-manager!KnownContainerServiceMasterProfileCount.One:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "One = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "1"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "One",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            },
+            {
+              "kind": "EnumMember",
+              "canonicalReference": "compute-resource-manager!KnownContainerServiceMasterProfileCount.Three:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "Three = "
+                },
+                {
+                  "kind": "Content",
+                  "text": "3"
+                }
+              ],
+              "releaseTag": "Public",
+              "name": "Three",
+              "initializerTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ]
+        },
+        {
+          "kind": "Enum",
           "canonicalReference": "compute-resource-manager!KnownContainerServiceVMSizeTypes:enum",
           "docComment": "/**\n * Known values of {@link ContainerServiceVMSizeTypes} that the service accepts.\n */\n",
           "excerptTokens": [
@@ -29042,84 +29120,6 @@
               ],
               "releaseTag": "Public",
               "name": "EncryptionAtRestWithPlatformKey",
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            }
-          ]
-        },
-        {
-          "kind": "Enum",
-          "canonicalReference": "compute-resource-manager!KnownEnum31:enum",
-          "docComment": "/**\n * Known values of {@link Enum31} that the service accepts.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare enum KnownEnum31 "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "KnownEnum31",
-          "members": [
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "compute-resource-manager!KnownEnum31.Five:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "Five = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "5"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "Five",
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "compute-resource-manager!KnownEnum31.One:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "One = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "1"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "One",
-              "initializerTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              }
-            },
-            {
-              "kind": "EnumMember",
-              "canonicalReference": "compute-resource-manager!KnownEnum31.Three:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "Three = "
-                },
-                {
-                  "kind": "Content",
-                  "text": "3"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "Three",
               "initializerTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
