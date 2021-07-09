@@ -99,7 +99,7 @@ npm run smoke-test
 
 ### How to add an integration test case
 
-In this section, we would learn the steps to add a integration test case. Why is this important? Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
+Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
 
 1. Create your test input. In our case, it could be
    1. A simple Swagger/OpenAPI file (Eg: Available [here](./test/integration/swaggers/license-header.json))
