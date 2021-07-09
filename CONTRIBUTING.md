@@ -17,7 +17,7 @@ There are many ways that you can contribute to the Azure TypeScript SDK generato
 
 All code submissions will be reviewed and tested by the team, and those that meet a high bar for both quality and design/roadmap appropriateness will be merged into the source. Be sure to follow the existing file/folder structure when adding new boards or sensors.
 
-If you encounter any bugs with the library please file an issue in the [Issues](https://github.com/Azure/azure-sdk-for-js/issues) section of the project.
+If you encounter any bugs please file an issue in the [Issues](https://github.com/Azure/autorest.typescript/issues) section of the project.
 
 ## Things to keep in mind when contributing
 
