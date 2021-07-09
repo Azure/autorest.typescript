@@ -101,10 +101,10 @@ npm run smoke-test
 
 Whenever you work on adding a feature/fixing a bug, this would probably be your first step. You create a test case and then run it through the generator, see the result, modify the generator, run it again and so on, until you get the desired output.
 
-1. Create your test input. In our case, it could be
-   1. A simple Swagger/OpenAPI file (Eg: Available [here](./test/integration/swaggers/license-header.json))
-   2. A standalone configuration markup file (pointing to Swagger file somewhere else)(Eg: Available [here](./test/integration/swaggers/bodyComplex.md))
-   3. A combination of configuration markup file and Swagger/OpenAPI file.(Eg: Available [here](./test/integration/swaggers/textAnalytics.md) and [here](./test/integration/swaggers/textAnalytics.json))
+1. Create your test input. Below are some examples
+   1. A simple [Swagger/OpenAPI file](./test/integration/swaggers/license-header.json))
+   2. A standalone [configuration markup file](./test/integration/swaggers/bodyComplex.md) (pointing to Swagger file somewhere else)
+   3. A combination of configuration markup file and Swagger/OpenAPI file.
 
 Let us say your test input will be called `testUserCase.json`.
 
