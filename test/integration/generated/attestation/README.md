@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 Describes the interface for the per-tenant enclave service.
 
 [Package (NPM)](https://www.npmjs.com/package/attestation) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 

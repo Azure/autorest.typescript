@@ -6,6 +6,7 @@ The key vault client performs cryptographic key operations and vault operations 
 
 [Package (NPM)](https://www.npmjs.com/package/@azure/keyvault-secrets) |
 [API reference documentation](https://docs.microsoft.com/javascript/api/@azure/keyvault-secrets) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
@@ -46,6 +47,9 @@ setLogLevel("info");
 
 For more detailed instructions on how to enable logs, you can look at the [@azure/logger package docs](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/core/logger).
 
+## Next steps
+
+Please take a look at the [samples](https://github.com/Azure-Samples/azure-samples-js-management) directory for detailed examples on how to use this library.
 
 ## Contributing
 

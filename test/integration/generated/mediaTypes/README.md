@@ -5,6 +5,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 Play with produces/consumes and media-types in general.
 
 [Package (NPM)](https://www.npmjs.com/package/media-types-service) |
+[Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
 
