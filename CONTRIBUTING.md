@@ -8,7 +8,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 # How to contribute to the Azure TypeScript SDK generator project
 
-There are many ways that you can contribute to the Azure SDK for JavaScript project:
+There are many ways that you can contribute to the Azure TypeScript SDK generator project:
 
 - Submit a bug
 - Submit a code fix for a bug
