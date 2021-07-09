@@ -86,7 +86,7 @@ npm run build
 npm run test
 ```
 
-**_Note_**: If your development environment is Windows, then run the command `npm run start-test-server:v2`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after.
+**_Note_**: If your development environment is Windows, then run the command `npm run start-test-server:v2`(in a seperate window) before running `npm run test` and run the command `npm run stop-test-server` after. (In non windows machines, we could run the test-server in the background automatically. But, in Windows machines, it has to be done manually.)
 
 5. You can run the Smoke tests using the following command:
 
@@ -95,7 +95,13 @@ npm run clone:specs
 npm run smoke-test
 ```
 
-**_Note_**: If the command `npm run clone:specs` errors out, delete the `.tmp` folder and then try again.
+**_Note_**: If the command `npm run clone:specs` errors out with the following error:
+
+```
+fatal: destination path './.tmp/specs' already exists and is not an empty directory.
+```
+
+delete the `.tmp` folder and then try again.
 
 ### How to add an integration test case
 
@@ -146,6 +152,6 @@ Now, the code will wait for the debugger to be attached. Open the repository in 
 
 If you would like to debug the `testUserCase.spec.ts` file (after the SDK is generated), Open the repository in VS Code -> Open the `testUserCase.spec.ts` file -> Select `Run and Debug` section -> Click `IntegrationTests - Current File`.
 
-### Before creating the PR
+### Things to keep in mind when contributing
 
 If your test case is working fine as expected, now you are ready to create the PR. But, before that, make sure you run all the tests (Unit/Integration/Smoke) and ensure there are no unintentional changes. And if there are any changes (intentional) in any of the test cases, include those files also in your PR.
