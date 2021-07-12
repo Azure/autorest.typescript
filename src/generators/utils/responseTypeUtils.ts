@@ -6,6 +6,7 @@ import {
 } from "../../models/operationDetails";
 import { normalizeName, NameType } from "../../utils/nameUtils";
 import { getAutorestOptions } from "../../autorestSession";
+import { HttpMethod } from "@autorest/codemodel";
 
 /**
  * Helper function that gets a set of object model names,
@@ -48,14 +49,18 @@ export function getOperationResponseType(
   importedModels: Set<string>,
   modelNames: Set<string>
 ) {
-  const { useCoreV2 } = getAutorestOptions();
+  const { useCoreV2, headAsBoolean } = getAutorestOptions();
 
   const hasSuccessResponse = operation.responses.some(
     ({ isError, mappers }) =>
       !isError && (!!mappers.bodyMapper || !!mappers.headersMapper)
   );
 
-  const responseName = hasSuccessResponse ? operation.typeDetails.typeName : "";
+  const responseName =
+    hasSuccessResponse ||
+    (operation.requests[0].method === HttpMethod.Head && headAsBoolean)
+      ? operation.typeDetails.typeName
+      : "";
 
   if (responseName) {
     const typeName = getResponseTypeName(responseName, modelNames);

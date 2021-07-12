@@ -31,6 +31,7 @@ import {
 } from "../models/operationDetails";
 import { ParameterDetails } from "../models/parameterDetails";
 import {
+  HttpMethod,
   ImplementationLocation,
   Parameter,
   SchemaType
@@ -153,10 +154,18 @@ function writeOptionsParameter(
  * the response body and headers
  */
 function writeResponseTypes(
-  { responses, name, typeDetails: operationType, isLro }: OperationDetails,
+  {
+    requests,
+    responses,
+    name,
+    typeDetails: operationType,
+    isLro
+  }: OperationDetails,
   modelsIndexFile: SourceFile,
   allModelsNames: Set<string>
 ) {
+  const { headAsBoolean } = getAutorestOptions();
+
   const responseName = getResponseTypeName(
     operationType.typeName,
     allModelsNames
@@ -198,6 +207,21 @@ function writeResponseTypes(
         );
       }
     });
+
+  if (
+    requests[0].method === HttpMethod.Head &&
+    addedResponses.length === 0 &&
+    headAsBoolean
+  ) {
+    modelsIndexFile.addTypeAlias({
+      name: responseName,
+      docs: [`Contains response data for the ${name} operation.`],
+      isExported: true,
+      type: `{ body: boolean; }`,
+      leadingTrivia: writer => writer.blankLine(),
+      kind: StructureKind.TypeAlias
+    });
+  }
 }
 
 /**

@@ -17,6 +17,7 @@ interface SwaggerConfig {
   useCoreV2?: boolean;
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
+  headAsBoolean?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -711,6 +712,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     allowInsecureConnection: true,
     addCredentials: true
   },
+  resources: {
+    swaggerOrConfig: "test/integration/swaggers/resources.json",
+    clientName: "ResourcesClient",
+    packageName: "resources",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: true,
+    headAsBoolean: true
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -747,7 +758,8 @@ const generateSwaggers = async (
       ignoreNullableOnOptional,
       useCoreV2,
       allowInsecureConnection,
-      restLevelClient
+      restLevelClient,
+      headAsBoolean
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -780,7 +792,8 @@ const generateSwaggers = async (
         ignoreNullableOnOptional,
         useCoreV2,
         allowInsecureConnection,
-        restLevelClient
+        restLevelClient,
+        headAsBoolean
       },
       isDebugging
     );
