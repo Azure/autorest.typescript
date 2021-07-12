@@ -1,3 +1,12 @@
+## 6.0.0-beta.6 (2021-07-12)
+
+- [BugFix] Changed `sdk-type` property in `package.json` file from `management` to `mgmt`. Please refer [#1090](https://github.com/Azure/autorest.typescript/pull/1090) for further details.
+- [Feature] Refactored LRO operations. Please refer [#1043](https://github.com/Azure/autorest.typescript/pull/1043) for further details.
+- [BugFix] Changed the file name `LICENSE.txt` to `LICENSE`. Please refer [#1095](https://github.com/Azure/autorest.typescript/pull/1095) for further details.
+- [Feature] Created the `CONTRIBUTING.md` file. Please refer [#1096](https://github.com/Azure/autorest.typescript/pull/1096) for further details.
+- [BugFix] Changed the `const enum` declarations to `enum` declaration. Please refer [#1097](https://github.com/Azure/autorest.typescript/pull/1097) for further details.
+- [BugFix] Fixed the samples URL in the readme file for the management SDKs. Please refer [#1098](https://github.com/Azure/autorest.typescript/pull/1098) for further details.
+
 ## 6.0.0-beta.5 (2021-06-29)
 
 - [Feature] `CHANGELOG.md` file is added to the published package. Please refer [#1052](https://github.com/Azure/autorest.typescript/pull/1052) and [#1028](https://github.com/Azure/autorest.typescript/issues/1028) for further details.
