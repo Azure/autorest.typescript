@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   Metric,
   DatabasesListMetricsOptionalParams,
@@ -430,7 +430,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, parameters, options },
       importOperationSpec
@@ -524,7 +524,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -629,7 +629,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, parameters, options },
       exportOperationSpec
@@ -803,7 +803,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, parameters, options },
       createOrUpdateOperationSpec
@@ -890,7 +890,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, options },
       deleteOperationSpec
@@ -981,7 +981,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, parameters, options },
       updateOperationSpec
@@ -1093,7 +1093,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, options },
       pauseOperationSpec
@@ -1182,7 +1182,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, options },
       resumeOperationSpec
@@ -1266,7 +1266,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, options },
       upgradeDataWarehouseOperationSpec
@@ -1372,7 +1372,7 @@ export class DatabasesImpl implements Databases {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, options },
       failoverOperationSpec

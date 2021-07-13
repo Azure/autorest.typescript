@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   TableGetResults,
   TableResourcesListTablesOptionalParams,
@@ -201,7 +201,7 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -292,7 +292,7 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, tableName, options },
       deleteTableOperationSpec
@@ -402,7 +402,7 @@ export class TableResourcesImpl implements TableResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

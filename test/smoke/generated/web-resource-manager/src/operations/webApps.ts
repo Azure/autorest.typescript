@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   Site,
   WebAppsListNextOptionalParams,
@@ -5138,7 +5138,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, siteEnvelope, options },
       createOrUpdateOperationSpec
@@ -5396,7 +5396,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, backupId, request, options },
       restoreOperationSpec
@@ -5807,7 +5807,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       listPublishingCredentialsOperationSpec
@@ -6449,7 +6449,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, mSDeploy, options },
       createMSDeployOperationOperationSpec
@@ -6608,7 +6608,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, functionName, functionEnvelope, options },
       createFunctionOperationSpec
@@ -7245,7 +7245,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationOperationSpec
@@ -7566,7 +7566,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { subscriptionName, resourceGroupName, name, migrationOptions, options },
       migrateStorageOperationSpec
@@ -7656,7 +7656,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, migrationRequestEnvelope, options },
       migrateMySqlOperationSpec
@@ -7893,7 +7893,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       startWebSiteNetworkTraceOperationOperationSpec
@@ -8511,7 +8511,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, request, options },
       restoreFromBackupBlobOperationSpec
@@ -8593,7 +8593,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, restoreRequest, options },
       restoreFromDeletedAppOperationSpec
@@ -8676,7 +8676,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, restoreRequest, options },
       restoreSnapshotOperationSpec
@@ -8800,7 +8800,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, siteExtensionId, options },
       installSiteExtensionOperationSpec
@@ -8902,7 +8902,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, copySlotEntity, options },
       copyProductionSlotOperationSpec
@@ -9031,7 +9031,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, siteEnvelope, options },
       createOrUpdateSlotOperationSpec
@@ -9320,7 +9320,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, backupId, slot, request, options },
       restoreSlotOperationSpec
@@ -9749,7 +9749,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, options },
       listPublishingCredentialsSlotOperationSpec
@@ -10437,7 +10437,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, mSDeploy, options },
       createMSDeployOperationSlotOperationSpec
@@ -10609,7 +10609,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -11339,7 +11339,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, instanceId, mSDeploy, options },
       createInstanceMSDeployOperationSlotOperationSpec
@@ -11874,7 +11874,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, options },
       startWebSiteNetworkTraceOperationSlotOperationSpec
@@ -12298,7 +12298,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -12394,7 +12394,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, privateEndpointConnectionName, options },
       deletePrivateEndpointConnectionOperationSpec
@@ -12815,7 +12815,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, request, options },
       restoreFromBackupBlobSlotOperationSpec
@@ -12903,7 +12903,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, restoreRequest, options },
       restoreFromDeletedAppSlotOperationSpec
@@ -12991,7 +12991,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, restoreRequest, options },
       restoreSnapshotSlotOperationSpec
@@ -13127,7 +13127,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, siteExtensionId, slot, options },
       installSiteExtensionSlotOperationSpec
@@ -13239,7 +13239,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, copySlotEntity, options },
       copySlotOperationSpec
@@ -13351,7 +13351,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, slotSwapEntity, options },
       swapSlotOperationSpec
@@ -13503,7 +13503,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, siteSourceControl, options },
       createOrUpdateSourceControlSlotOperationSpec
@@ -13656,7 +13656,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slot, options },
       startNetworkTraceSlotOperationSpec
@@ -14234,7 +14234,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, slotSwapEntity, options },
       swapSlotWithProductionOperationSpec
@@ -14372,7 +14372,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, siteSourceControl, options },
       createOrUpdateSourceControlOperationSpec
@@ -14510,7 +14510,7 @@ export class WebAppsImpl implements WebApps {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       startNetworkTraceOperationSpec

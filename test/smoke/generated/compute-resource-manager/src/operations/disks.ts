@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   Disk,
   DisksListByResourceGroupNextOptionalParams,
@@ -207,7 +207,7 @@ export class DisksImpl implements Disks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskName, disk, options },
       createOrUpdateOperationSpec
@@ -295,7 +295,7 @@ export class DisksImpl implements Disks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskName, disk, options },
       updateOperationSpec
@@ -398,7 +398,7 @@ export class DisksImpl implements Disks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskName, options },
       deleteOperationSpec
@@ -505,13 +505,15 @@ export class DisksImpl implements Disks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskName, grantAccessData, options },
-      grantAccessOperationSpec,
-      "location"
+      grantAccessOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**
@@ -590,13 +592,15 @@ export class DisksImpl implements Disks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskName, options },
-      revokeAccessOperationSpec,
-      "location"
+      revokeAccessOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**

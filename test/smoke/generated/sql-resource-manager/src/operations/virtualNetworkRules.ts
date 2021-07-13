@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualNetworkRule,
   VirtualNetworkRulesListByServerNextOptionalParams,
@@ -194,7 +194,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -287,7 +287,7 @@ export class VirtualNetworkRulesImpl implements VirtualNetworkRules {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, virtualNetworkRuleName, options },
       deleteOperationSpec

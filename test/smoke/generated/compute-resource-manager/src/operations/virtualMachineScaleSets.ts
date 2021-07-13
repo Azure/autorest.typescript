@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualMachineScaleSet,
   VirtualMachineScaleSetsListNextOptionalParams,
@@ -372,7 +372,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, parameters, options },
       createOrUpdateOperationSpec
@@ -459,7 +459,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, parameters, options },
       updateOperationSpec
@@ -539,7 +539,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       deleteOperationSpec
@@ -635,7 +635,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       deallocateOperationSpec
@@ -716,7 +716,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, vmInstanceIDs, options },
       deleteInstancesOperationSpec
@@ -877,7 +877,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       powerOffOperationSpec
@@ -956,7 +956,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       restartOperationSpec
@@ -1033,7 +1033,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       startOperationSpec
@@ -1111,7 +1111,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       redeployOperationSpec
@@ -1192,7 +1192,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       performMaintenanceOperationSpec
@@ -1274,7 +1274,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, vmInstanceIDs, options },
       updateInstancesOperationSpec
@@ -1356,7 +1356,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       reimageOperationSpec
@@ -1436,7 +1436,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       reimageAllOperationSpec
@@ -1557,7 +1557,7 @@ export class VirtualMachineScaleSetsImpl implements VirtualMachineScaleSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, parameters, options },
       setOrchestrationServiceStateOperationSpec

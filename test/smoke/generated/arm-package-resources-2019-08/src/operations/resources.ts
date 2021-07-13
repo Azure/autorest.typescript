@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   GenericResourceExpanded,
   ResourcesListByResourceGroupNextOptionalParams,
@@ -224,7 +224,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { sourceResourceGroupName, parameters, options },
       moveResourcesOperationSpec
@@ -309,7 +309,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { sourceResourceGroupName, parameters, options },
       validateMoveResourcesOperationSpec
@@ -444,7 +444,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -558,7 +558,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -676,7 +676,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -833,7 +833,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceId, apiVersion, options },
       deleteByIdOperationSpec
@@ -917,7 +917,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceId, apiVersion, parameters, options },
       createOrUpdateByIdOperationSpec
@@ -1008,7 +1008,7 @@ export class ResourcesImpl implements Resources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceId, apiVersion, parameters, options },
       updateByIdOperationSpec

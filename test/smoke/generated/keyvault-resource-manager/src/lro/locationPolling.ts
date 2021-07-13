@@ -9,7 +9,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { LroStatus, RawResponse } from "./models";
+import { LroResponse, LroStatus, RawResponse } from "./models";
 import { isUnexpectedPollingResponse } from "./requestUtils";
 
 function isLocationPollingDone(rawResponse: RawResponse): boolean {
@@ -19,12 +19,10 @@ function isLocationPollingDone(rawResponse: RawResponse): boolean {
 }
 
 export function processLocationPollingOperationResult<TResult>(
-  rawResponse: RawResponse,
-  flatResponse: TResult
+  response: LroResponse<TResult>
 ): LroStatus<TResult> {
   return {
-    rawResponse,
-    flatResponse,
-    done: isLocationPollingDone(rawResponse)
+    ...response,
+    done: isLocationPollingDone(response.rawResponse)
   };
 }

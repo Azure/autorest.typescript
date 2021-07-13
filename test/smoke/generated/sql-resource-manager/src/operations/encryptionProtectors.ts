@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   EncryptionProtector,
   EncryptionProtectorsListByServerNextOptionalParams,
@@ -168,7 +168,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, encryptionProtectorName, options },
       revalidateOperationSpec
@@ -297,7 +297,7 @@ export class EncryptionProtectorsImpl implements EncryptionProtectors {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

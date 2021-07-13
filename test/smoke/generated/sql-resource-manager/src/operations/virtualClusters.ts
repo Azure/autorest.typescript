@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualCluster,
   VirtualClustersListNextOptionalParams,
@@ -238,7 +238,7 @@ export class VirtualClustersImpl implements VirtualClusters {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, virtualClusterName, options },
       deleteOperationSpec
@@ -324,7 +324,7 @@ export class VirtualClustersImpl implements VirtualClusters {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, virtualClusterName, parameters, options },
       updateOperationSpec

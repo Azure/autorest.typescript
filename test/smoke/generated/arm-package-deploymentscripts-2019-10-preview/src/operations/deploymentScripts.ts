@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { DeploymentScriptsClientContext } from "../deploymentScriptsClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   DeploymentScriptUnion,
   DeploymentScriptsListBySubscriptionNextOptionalParams,
@@ -204,7 +204,7 @@ export class DeploymentScriptsImpl implements DeploymentScripts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, scriptName, deploymentScript, options },
       createOperationSpec

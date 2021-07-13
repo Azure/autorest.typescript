@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   ReplicationLink,
   ReplicationLinksListByDatabaseOptionalParams,
@@ -210,7 +210,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, linkId, options },
       failoverOperationSpec
@@ -300,7 +300,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, linkId, options },
       failoverAllowDataLossOperationSpec
@@ -392,7 +392,7 @@ export class ReplicationLinksImpl implements ReplicationLinks {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

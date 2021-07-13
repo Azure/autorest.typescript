@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
   LROsCustomHeaderPutAsyncRetrySucceededResponse,
@@ -91,7 +91,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRetrySucceededOperationSpec
@@ -167,7 +167,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put201CreatingSucceeded200OperationSpec
@@ -242,7 +242,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202Retry200OperationSpec
@@ -317,7 +317,7 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRetrySucceededOperationSpec

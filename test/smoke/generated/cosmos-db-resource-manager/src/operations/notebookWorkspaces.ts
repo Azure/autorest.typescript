@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   NotebookWorkspace,
   NotebookWorkspacesListByDatabaseAccountOptionalParams,
@@ -202,7 +202,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -294,7 +294,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       deleteOperationSpec
@@ -395,7 +395,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       regenerateAuthTokenOperationSpec
@@ -477,7 +477,7 @@ export class NotebookWorkspacesImpl implements NotebookWorkspaces {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, notebookWorkspaceName, options },
       startOperationSpec

@@ -12,6 +12,7 @@
 import {
   failureStates,
   LroBody,
+  LroResponse,
   LroStatus,
   RawResponse,
   successStates
@@ -43,12 +44,10 @@ export function isBodyPollingDone(rawResponse: RawResponse): boolean {
  * from the result to determine the current operation state
  */
 export function processBodyPollingOperationResult<TResult>(
-  rawResponse: RawResponse,
-  flatResponse: TResult
+  response: LroResponse<TResult>
 ): LroStatus<TResult> {
   return {
-    rawResponse,
-    flatResponse,
-    done: isBodyPollingDone(rawResponse)
+    ...response,
+    done: isBodyPollingDone(response.rawResponse)
   };
 }

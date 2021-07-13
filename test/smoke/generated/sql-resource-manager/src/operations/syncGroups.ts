@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   SyncDatabaseIdProperties,
   SyncGroupsListSyncDatabaseIdsNextOptionalParams,
@@ -474,7 +474,7 @@ export class SyncGroupsImpl implements SyncGroups {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, syncGroupName, options },
       refreshHubSchemaOperationSpec
@@ -695,7 +695,7 @@ export class SyncGroupsImpl implements SyncGroups {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -794,7 +794,7 @@ export class SyncGroupsImpl implements SyncGroups {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, serverName, databaseName, syncGroupName, options },
       deleteOperationSpec
@@ -890,7 +890,7 @@ export class SyncGroupsImpl implements SyncGroups {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

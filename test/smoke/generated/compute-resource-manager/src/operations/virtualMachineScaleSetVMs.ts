@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualMachineScaleSetVM,
   VirtualMachineScaleSetVMsListNextOptionalParams,
@@ -180,7 +180,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageOperationSpec
@@ -263,7 +263,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       reimageAllOperationSpec
@@ -348,7 +348,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       deallocateOperationSpec
@@ -439,7 +439,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
       updateOperationSpec
@@ -524,7 +524,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       deleteOperationSpec
@@ -663,7 +663,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       powerOffOperationSpec
@@ -747,7 +747,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       restartOperationSpec
@@ -829,7 +829,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       startOperationSpec
@@ -912,7 +912,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       redeployOperationSpec
@@ -995,7 +995,7 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, options },
       performMaintenanceOperationSpec
@@ -1104,13 +1104,15 @@ export class VirtualMachineScaleSetVMsImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, instanceId, parameters, options },
-      runCommandOperationSpec,
-      "location"
+      runCommandOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**

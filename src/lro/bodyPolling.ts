@@ -1,7 +1,14 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { failureStates, LroBody, LroStatus, RawResponse, successStates } from "./models";
+import {
+  failureStates,
+  LroBody,
+  LroResponse,
+  LroStatus,
+  RawResponse,
+  successStates
+} from "./models";
 import { isUnexpectedPollingResponse } from "./requestUtils";
 
 function getProvisioningState(rawResponse: RawResponse): string {
@@ -23,12 +30,10 @@ export function isBodyPollingDone(rawResponse: RawResponse): boolean {
  * from the result to determine the current operation state
  */
 export function processBodyPollingOperationResult<TResult>(
-  rawResponse: RawResponse,
-  flatResponse: TResult
+  response: LroResponse<TResult>
 ): LroStatus<TResult> {
   return {
-    rawResponse,
-    flatResponse,
-    done: isBodyPollingDone(rawResponse)
+    ...response,
+    done: isBodyPollingDone(response.rawResponse)
   };
 }

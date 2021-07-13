@@ -9,11 +9,11 @@ export async function generateLroFiles(
   clientDetails: ClientDetails,
   project: Project
 ) {
-  const { srcPath, useCoreV2 } = getAutorestOptions();
+  const { srcPath } = getAutorestOptions();
   if (!hasAnyLro(clientDetails.operationGroups)) {
     return;
   }
-  const LroClassFile = useCoreV2 ? "coreClientLro.ts" : "coreHttpLro.ts";
+  const LroClassFile = "lroImpl.ts";
   const baseTargetPath = srcPath || "";
   const srcDir = joinPath(__dirname, "..", "..", "..", "src");
   const lroDir = joinPath(srcDir, "lro");

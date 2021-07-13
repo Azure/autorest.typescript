@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   CassandraKeyspaceGetResults,
   CassandraResourcesListCassandraKeyspacesOptionalParams,
@@ -286,7 +286,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -378,7 +378,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, keyspaceName, options },
       deleteCassandraKeyspaceOperationSpec
@@ -490,7 +490,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -632,7 +632,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -730,7 +730,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, keyspaceName, tableName, options },
       deleteCassandraTableOperationSpec
@@ -849,7 +849,7 @@ export class CassandraResourcesImpl implements CassandraResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

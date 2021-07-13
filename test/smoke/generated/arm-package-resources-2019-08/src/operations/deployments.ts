@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ResourceManagementClientContext } from "../resourceManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   DeploymentExtended,
   DeploymentsListAtScopeNextOptionalParams,
@@ -413,7 +413,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { scope, deploymentName, options },
       deleteAtScopeOperationSpec
@@ -520,7 +520,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { scope, deploymentName, parameters, options },
       createOrUpdateAtScopeOperationSpec
@@ -692,7 +692,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { deploymentName, options },
       deleteAtTenantScopeOperationSpec
@@ -789,7 +789,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { deploymentName, parameters, options },
       createOrUpdateAtTenantScopeOperationSpec
@@ -950,7 +950,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { groupId, deploymentName, options },
       deleteAtManagementGroupScopeOperationSpec
@@ -1059,7 +1059,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { groupId, deploymentName, parameters, options },
       createOrUpdateAtManagementGroupScopeOperationSpec
@@ -1231,7 +1231,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { deploymentName, options },
       deleteAtSubscriptionScopeOperationSpec
@@ -1331,7 +1331,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { deploymentName, parameters, options },
       createOrUpdateAtSubscriptionScopeOperationSpec
@@ -1463,13 +1463,15 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { deploymentName, parameters, options },
-      whatIfAtSubscriptionScopeOperationSpec,
-      "location"
+      whatIfAtSubscriptionScopeOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**
@@ -1577,7 +1579,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, deploymentName, options },
       deleteOperationSpec
@@ -1688,7 +1690,7 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, deploymentName, parameters, options },
       createOrUpdateOperationSpec
@@ -1834,13 +1836,15 @@ export class DeploymentsImpl implements Deployments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, deploymentName, parameters, options },
-      whatIfOperationSpec,
-      "location"
+      whatIfOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**

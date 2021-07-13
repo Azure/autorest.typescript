@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   Snapshot,
   SnapshotsListByResourceGroupNextOptionalParams,
@@ -207,7 +207,7 @@ export class SnapshotsImpl implements Snapshots {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, snapshotName, snapshot, options },
       createOrUpdateOperationSpec
@@ -298,7 +298,7 @@ export class SnapshotsImpl implements Snapshots {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, snapshotName, snapshot, options },
       updateOperationSpec
@@ -401,7 +401,7 @@ export class SnapshotsImpl implements Snapshots {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, snapshotName, options },
       deleteOperationSpec
@@ -514,13 +514,15 @@ export class SnapshotsImpl implements Snapshots {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, snapshotName, grantAccessData, options },
-      grantAccessOperationSpec,
-      "location"
+      grantAccessOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**
@@ -599,13 +601,15 @@ export class SnapshotsImpl implements Snapshots {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, snapshotName, options },
-      revokeAccessOperationSpec,
-      "location"
+      revokeAccessOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**

@@ -1,27 +1,44 @@
 import { assert } from "chai";
 
+export function check(code: number) {
+  return (response: any) =>
+    assert.equal(
+      response.status,
+      code,
+      `Unexpected status code '${response}'.`
+    );
+}
+
+export function check200(response: any) {
+  return check(200);
+}
+
+export function check201(response: any) {
+  return check(201);
+}
+
+export function check202(response: any) {
+  return check(202);
+}
+
+export function check204(response: any) {
+  return check(204);
+}
+
 export const responseStatusChecker = {
-  onResponse: (response: any) => {
-    assert.equal(response.status, 200, `Unexpected status code '${response}'.`);
-  }
+  onResponse: check200
 };
 
 export const responseStatusChecker201 = {
-  onResponse: (response: any) => {
-    assert.equal(response.status, 201, `Unexpected status code '${response}'.`);
-  }
+  onResponse: check201
 };
 
 export const responseStatusChecker202 = {
-  onResponse: (response: any) => {
-    assert.equal(response.status, 202, `Unexpected status code '${response}'.`);
-  }
+  onResponse: check202
 };
 
 export const responseStatusChecker204 = {
-  onResponse: (response: any) => {
-    assert.equal(response.status, 204, `Unexpected status code '${response}'.`);
-  }
+  onResponse: check204
 };
 
 export const responseStatusChecker301 = {

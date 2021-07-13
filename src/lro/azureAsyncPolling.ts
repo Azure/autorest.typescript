@@ -21,24 +21,27 @@ function getResponseStatus(rawResponse: RawResponse): string {
 function isAzureAsyncPollingDone(rawResponse: RawResponse): boolean {
   const state = getResponseStatus(rawResponse);
   if (isUnexpectedPollingResponse(rawResponse) || failureStates.includes(state)) {
-    throw new Error(`Operation status: ${state}`);
+    throw new Error(`The long running operation has failed. The provisioning state: ${state}.`);
   }
   return successStates.includes(state);
 }
 
+/**
+ * Sends a request to the URI of the provisioned resource if needed.
+ */
 async function sendFinalRequest<TResult>(
   lro: LongRunningOperation<TResult>,
-  lroResourceLocationConfig?: LroResourceLocationConfig,
-  resourceLocation?: string
+  resourceLocation: string,
+  lroResourceLocationConfig?: LroResourceLocationConfig
 ): Promise<LroResponse<TResult> | undefined> {
   switch (lroResourceLocationConfig) {
     case "original-uri":
-      return lro.retrieveAzureAsyncResource();
+      return lro.sendPollRequest(lro.requestPath);
     case "azure-async-operation":
-      return Promise.resolve(undefined);
+      return undefined;
     case "location":
     default:
-      return lro.retrieveAzureAsyncResource(resourceLocation);
+      return lro.sendPollRequest(resourceLocation ?? lro.requestPath);
   }
 }
 
@@ -46,27 +49,23 @@ export function processAzureAsyncOperationResult<TResult>(
   lro: LongRunningOperation<TResult>,
   resourceLocation?: string,
   lroResourceLocationConfig?: LroResourceLocationConfig
-): (rawResponse: RawResponse, flatResponse: TResult) => LroStatus<TResult> {
-  return (rawResponse: RawResponse, flatResponse: TResult): LroStatus<TResult> => {
-    if (isAzureAsyncPollingDone(rawResponse)) {
+): (response: LroResponse<TResult>) => LroStatus<TResult> {
+  return (response: LroResponse<TResult>): LroStatus<TResult> => {
+    if (isAzureAsyncPollingDone(response.rawResponse)) {
       if (resourceLocation === undefined) {
-        return { rawResponse, flatResponse, done: true };
+        return { ...response, done: true };
       } else {
         return {
-          rawResponse,
-          flatResponse,
+          ...response,
           done: false,
           next: async () => {
             const finalResponse = await sendFinalRequest(
               lro,
-              lroResourceLocationConfig,
-              resourceLocation
+              resourceLocation,
+              lroResourceLocationConfig
             );
             return {
-              ...(finalResponse ?? {
-                rawResponse,
-                flatResponse
-              }),
+              ...(finalResponse ?? response),
               done: true
             };
           }
@@ -74,8 +73,7 @@ export function processAzureAsyncOperationResult<TResult>(
       }
     }
     return {
-      rawResponse,
-      flatResponse,
+      ...response,
       done: false
     };
   };

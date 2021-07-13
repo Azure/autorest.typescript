@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
@@ -162,7 +162,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put200SucceededOperationSpec
@@ -234,7 +234,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put201SucceededOperationSpec
@@ -306,7 +306,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202ListOperationSpec
@@ -378,7 +378,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put200SucceededNoStateOperationSpec
@@ -450,7 +450,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put202Retry200OperationSpec
@@ -523,7 +523,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put201CreatingSucceeded200OperationSpec
@@ -597,7 +597,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put200UpdatingSucceeded204OperationSpec
@@ -671,7 +671,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put201CreatingFailed200OperationSpec
@@ -745,7 +745,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put200Acceptedcanceled200OperationSpec
@@ -818,7 +818,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putNoHeaderInRetryOperationSpec
@@ -891,7 +891,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRetrySucceededOperationSpec
@@ -965,7 +965,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncNoRetrySucceededOperationSpec
@@ -1039,7 +1039,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRetryFailedOperationSpec
@@ -1113,7 +1113,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncNoRetrycanceledOperationSpec
@@ -1186,7 +1186,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncNoHeaderInRetryOperationSpec
@@ -1257,7 +1257,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putNonResourceOperationSpec
@@ -1327,7 +1327,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncNonResourceOperationSpec
@@ -1397,7 +1397,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putSubResourceOperationSpec
@@ -1467,7 +1467,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncSubResourceOperationSpec
@@ -1539,7 +1539,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteProvisioning202Accepted200SucceededOperationSpec
@@ -1615,7 +1615,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteProvisioning202DeletingFailed200OperationSpec
@@ -1691,7 +1691,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteProvisioning202Deletingcanceled200OperationSpec
@@ -1760,7 +1760,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete204SucceededOperationSpec
@@ -1831,7 +1831,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete202Retry200OperationSpec
@@ -1903,7 +1903,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete202NoRetry204OperationSpec
@@ -1975,7 +1975,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteNoHeaderInRetryOperationSpec
@@ -2047,7 +2047,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncNoHeaderInRetryOperationSpec
@@ -2119,7 +2119,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRetrySucceededOperationSpec
@@ -2191,7 +2191,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncNoRetrySucceededOperationSpec
@@ -2263,7 +2263,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRetryFailedOperationSpec
@@ -2335,7 +2335,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRetrycanceledOperationSpec
@@ -2407,7 +2407,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post200WithPayloadOperationSpec
@@ -2479,7 +2479,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202Retry200OperationSpec
@@ -2551,7 +2551,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202NoRetry204OperationSpec
@@ -2623,13 +2623,15 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
-      postDoubleHeadersFinalLocationGetOperationSpec,
-      "location"
+      postDoubleHeadersFinalLocationGetOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "location"
+    });
   }
 
   /**
@@ -2697,13 +2699,15 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
-      postDoubleHeadersFinalAzureHeaderGetOperationSpec,
-      "azure-async-operation"
+      postDoubleHeadersFinalAzureHeaderGetOperationSpec
     );
-    return new LroEngine(lro, { intervalInMs: options?.updateIntervalInMs });
+    return new LroEngine(lro, {
+      intervalInMs: options?.updateIntervalInMs,
+      lroResourceLocationConfig: "azure-async-operation"
+    });
   }
 
   /**
@@ -2776,7 +2780,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec
@@ -2852,7 +2856,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRetrySucceededOperationSpec
@@ -2926,7 +2930,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncNoRetrySucceededOperationSpec
@@ -3000,7 +3004,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRetryFailedOperationSpec
@@ -3074,7 +3078,7 @@ export class LROsImpl implements LROs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRetrycanceledOperationSpec

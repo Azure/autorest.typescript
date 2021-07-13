@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   DatabaseAccountGetResults,
   DatabaseAccountsListOptionalParams,
@@ -414,7 +414,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, updateParameters, options },
       updateOperationSpec
@@ -502,7 +502,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, createUpdateParameters, options },
       createOrUpdateOperationSpec
@@ -583,7 +583,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, options },
       deleteOperationSpec
@@ -665,7 +665,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, failoverParameters, options },
       failoverPriorityChangeOperationSpec
@@ -809,7 +809,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, regionParameterForOffline, options },
       offlineRegionOperationSpec
@@ -891,7 +891,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, regionParameterForOnline, options },
       onlineRegionOperationSpec
@@ -1007,7 +1007,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, keyToRegenerate, options },
       regenerateKeyOperationSpec

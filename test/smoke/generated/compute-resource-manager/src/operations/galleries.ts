@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   Gallery,
   GalleriesListByResourceGroupNextOptionalParams,
@@ -202,7 +202,7 @@ export class GalleriesImpl implements Galleries {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, galleryName, gallery, options },
       createOrUpdateOperationSpec
@@ -291,7 +291,7 @@ export class GalleriesImpl implements Galleries {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, galleryName, gallery, options },
       updateOperationSpec
@@ -389,7 +389,7 @@ export class GalleriesImpl implements Galleries {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, galleryName, options },
       deleteOperationSpec

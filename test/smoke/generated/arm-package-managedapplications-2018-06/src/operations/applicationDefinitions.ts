@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ApplicationClientContext } from "../applicationClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   ApplicationDefinition,
   ApplicationDefinitionsListByResourceGroupNextOptionalParams,
@@ -167,7 +167,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, applicationDefinitionName, options },
       deleteOperationSpec
@@ -251,7 +251,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, applicationDefinitionName, parameters, options },
       createOrUpdateOperationSpec
@@ -365,7 +365,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { applicationDefinitionId, options },
       deleteByIdOperationSpec
@@ -447,7 +447,7 @@ export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { applicationDefinitionId, parameters, options },
       createOrUpdateByIdOperationSpec

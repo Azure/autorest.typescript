@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualMachineExtension,
   VirtualMachineExtensionsCreateOrUpdateOptionalParams,
@@ -99,7 +99,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -197,7 +197,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -288,7 +288,7 @@ export class VirtualMachineExtensionsImpl implements VirtualMachineExtensions {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmName, vmExtensionName, options },
       deleteOperationSpec

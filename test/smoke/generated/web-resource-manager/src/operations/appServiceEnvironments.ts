@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   AppServiceEnvironmentResource,
   AppServiceEnvironmentsListNextOptionalParams,
@@ -1701,7 +1701,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, hostingEnvironmentEnvelope, options },
       createOrUpdateOperationSpec
@@ -1781,7 +1781,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       deleteOperationSpec
@@ -1914,7 +1914,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, vnetInfo, options },
       changeVnetOperationSpec
@@ -2070,7 +2070,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, multiRolePoolEnvelope, options },
       createOrUpdateMultiRolePoolOperationSpec
@@ -2301,7 +2301,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       resumeOperationSpec
@@ -2398,7 +2398,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, options },
       suspendOperationSpec
@@ -2520,7 +2520,7 @@ export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, name, workerPoolName, workerPoolEnvelope, options },
       createOrUpdateWorkerPoolOperationSpec

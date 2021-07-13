@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   LRORetrysPut201CreatingSucceeded200OptionalParams,
   LRORetrysPut201CreatingSucceeded200Response,
@@ -96,7 +96,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put201CreatingSucceeded200OperationSpec
@@ -170,7 +170,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetrySucceededOperationSpec
@@ -246,7 +246,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteProvisioning202Accepted200SucceededOperationSpec
@@ -321,7 +321,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete202Retry200OperationSpec
@@ -393,7 +393,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRelativeRetrySucceededOperationSpec
@@ -465,7 +465,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202Retry200OperationSpec
@@ -538,7 +538,7 @@ export class LRORetrysImpl implements LRORetrys {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRelativeRetrySucceededOperationSpec

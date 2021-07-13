@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { LROClientContext } from "../lROClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   LrosaDsPutNonRetry400OptionalParams,
   LrosaDsPutNonRetry400Response,
@@ -131,7 +131,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putNonRetry400OperationSpec
@@ -202,7 +202,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putNonRetry201Creating400OperationSpec
@@ -274,7 +274,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putNonRetry201Creating400InvalidJsonOperationSpec
@@ -348,7 +348,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetry400OperationSpec
@@ -419,7 +419,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteNonRetry400OperationSpec
@@ -489,7 +489,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete202NonRetry400OperationSpec
@@ -560,7 +560,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRelativeRetry400OperationSpec
@@ -631,7 +631,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postNonRetry400OperationSpec
@@ -701,7 +701,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202NonRetry400OperationSpec
@@ -772,7 +772,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRelativeRetry400OperationSpec
@@ -843,7 +843,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putError201NoProvisioningStatePayloadOperationSpec
@@ -917,7 +917,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetryNoStatusOperationSpec
@@ -991,7 +991,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetryNoStatusPayloadOperationSpec
@@ -1060,7 +1060,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete204SucceededOperationSpec
@@ -1131,7 +1131,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryNoStatusOperationSpec
@@ -1202,7 +1202,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202NoLocationOperationSpec
@@ -1274,7 +1274,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRelativeRetryNoPayloadOperationSpec
@@ -1347,7 +1347,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       put200InvalidJsonOperationSpec
@@ -1419,7 +1419,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -1494,7 +1494,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       putAsyncRelativeRetryInvalidJsonPollingOperationSpec
@@ -1569,7 +1569,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       delete202RetryInvalidHeaderOperationSpec
@@ -1641,7 +1641,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -1717,7 +1717,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec
@@ -1791,7 +1791,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       post202RetryInvalidHeaderOperationSpec
@@ -1864,7 +1864,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRelativeRetryInvalidHeaderOperationSpec
@@ -1940,7 +1940,7 @@ export class LrosaDsImpl implements LrosaDs {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { options },
       postAsyncRelativeRetryInvalidJsonPollingOperationSpec

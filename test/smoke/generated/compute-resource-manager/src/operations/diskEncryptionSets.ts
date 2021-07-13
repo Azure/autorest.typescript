@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   DiskEncryptionSet,
   DiskEncryptionSetsListByResourceGroupNextOptionalParams,
@@ -204,7 +204,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskEncryptionSetName, diskEncryptionSet, options },
       createOrUpdateOperationSpec
@@ -297,7 +297,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskEncryptionSetName, diskEncryptionSet, options },
       updateOperationSpec
@@ -401,7 +401,7 @@ export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, diskEncryptionSetName, options },
       deleteOperationSpec

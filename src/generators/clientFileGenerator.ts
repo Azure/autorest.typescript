@@ -119,17 +119,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       namedImports: ["LroEngine"],
       moduleSpecifier: `./lro`
     });
-    if (useCoreV2) {
-      clientFile.addImportDeclaration({
-        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
-        moduleSpecifier: `./coreClientLro`
-      });
-    } else {
-      clientFile.addImportDeclaration({
-        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
-        moduleSpecifier: `./coreHttpLro`
-      });
-    }
+    clientFile.addImportDeclaration({
+      namedImports: ["LroImpl", "shouldDeserializeLro"],
+      moduleSpecifier: `./lroImpl`
+    });
   }
 
   if (hasImportedOperations) {

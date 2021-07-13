@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   VirtualMachineScaleSetRollingUpgradesCancelOptionalParams,
   VirtualMachineScaleSetRollingUpgradesStartOSUpgradeOptionalParams,
@@ -85,7 +85,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       cancelOperationSpec
@@ -164,7 +164,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       startOSUpgradeOperationSpec
@@ -245,7 +245,7 @@ export class VirtualMachineScaleSetRollingUpgradesImpl
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, vmScaleSetName, options },
       startExtensionUpgradeOperationSpec

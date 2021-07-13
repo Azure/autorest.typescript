@@ -937,10 +937,6 @@ function writeLroOperationBody(
   const { useCoreV2 } = getAutorestOptions();
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
-
-  const finalStateStr = lroResourceLocationConfig
-    ? `"${lroResourceLocationConfig.toLowerCase()}"`
-    : "";
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
       ${getTracingTryCatchStatement(
@@ -987,12 +983,16 @@ function writeLroOperationBody(
         headers: currentRawResponse!.headers.toJSON()
       }};
   }`;
-  const LroClassName = useCoreV2 ? "CoreClientLro" : "CoreHttpLro";
+  const LroClassName = "LroImpl";
   methodDeclaration.addStatements([
     sendOperationStatement,
     `const lro = new ${LroClassName}(sendOperation,${operationParamsName},
-      ${operationSpecName},${finalStateStr})`,
-    `return new LroEngine(lro,{intervalInMs: options?.updateIntervalInMs});`
+      ${operationSpecName})`,
+    `return new LroEngine(lro,{ intervalInMs: options?.updateIntervalInMs${
+      lroResourceLocationConfig
+        ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
+        : ""
+    } });`
   ]);
 
   methodDeclaration.setReturnType(
@@ -1349,17 +1349,10 @@ function addImports(
       namedImports: ["LroEngine"],
       moduleSpecifier: `../lro`
     });
-    if (useCoreV2) {
-      operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
-        moduleSpecifier: `../coreClientLro`
-      });
-    } else {
-      operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
-        moduleSpecifier: `../coreHttpLro`
-      });
-    }
+    operationGroupFile.addImportDeclaration({
+      namedImports: ["LroImpl", "shouldDeserializeLro"],
+      moduleSpecifier: `../lroImpl`
+    });
   }
 }
 

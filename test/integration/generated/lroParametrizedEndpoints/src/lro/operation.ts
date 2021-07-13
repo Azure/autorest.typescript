@@ -10,28 +10,39 @@
 // Licensed under the MIT license.
 
 import { AbortSignalLike } from "@azure/abort-controller";
-import { PollOperationState, PollOperation } from "@azure/core-lro";
+import { PollOperation, PollOperationState } from "@azure/core-lro";
+import { logger } from "./logger";
 import {
   PollerConfig,
   ResumablePollOperationState,
   LongRunningOperation,
+  GetLroStatusFromResponse,
+  LroResourceLocationConfig,
   LroStatus
 } from "./models";
 import { getPollingUrl } from "./requestUtils";
-import { createInitializeState, createPollForLROStatus } from "./stateMachine";
+import {
+  createGetLroStatusFromResponse,
+  createInitializeState,
+  createPoll
+} from "./stateMachine";
 
 export class GenericPollOperation<
   TResult,
   TState extends PollOperationState<TResult>
 > implements PollOperation<TState, TResult> {
-  private getLROStatusFromResponse?: (
+  private poll?: (
     pollingURL: string,
-    pollerConfig: PollerConfig
+    pollerConfig: PollerConfig,
+    getLroStatusFromResponse: GetLroStatusFromResponse<TResult>
   ) => Promise<LroStatus<TResult>>;
   private pollerConfig?: PollerConfig;
+  private getLroStatusFromResponse?: GetLroStatusFromResponse<TResult>;
+
   constructor(
     public state: TState & ResumablePollOperationState<TResult>,
-    private lro: LongRunningOperation<TResult>
+    private lro: LongRunningOperation<TResult>,
+    private lroResourceLocationConfig?: LroResourceLocationConfig
   ) {}
 
   public setPollerConfig(pollerConfig: PollerConfig): void {
@@ -64,42 +75,49 @@ export class GenericPollOperation<
         this.lro.requestPath,
         this.lro.requestMethod
       );
-      await this.lro.sendInitialRequest(initializeState);
+      const response = await this.lro.sendInitialRequest();
+      initializeState(response);
     }
 
     if (!state.isCompleted) {
-      if (this.getLROStatusFromResponse === undefined) {
-        if (state.config === undefined) {
+      if (!this.poll || !this.getLroStatusFromResponse) {
+        if (!state.config) {
           throw new Error(
             "Bad state: LRO mode is undefined. Please check if the serialized state is well-formed."
           );
         }
-        this.getLROStatusFromResponse = createPollForLROStatus(
+        this.getLroStatusFromResponse = createGetLroStatusFromResponse(
           this.lro,
-          state.config
+          state.config,
+          this.lroResourceLocationConfig
         );
+        this.poll = createPoll(this.lro);
       }
-      if (state.pollingURL === undefined) {
+      if (!state.pollingURL) {
         throw new Error(
           "Bad state: polling URL is undefined. Please check if the serialized state is well-formed."
         );
       }
-      const currentState = await this.getLROStatusFromResponse(
+      const currentState = await this.poll(
         state.pollingURL,
-        this.pollerConfig!
+        this.pollerConfig!,
+        this.getLroStatusFromResponse
+      );
+      logger.verbose(
+        `LRO: polling response: ${JSON.stringify(currentState.rawResponse)}`
       );
       if (currentState.done) {
         state.result = currentState.flatResponse;
         state.isCompleted = true;
       } else {
-        this.getLROStatusFromResponse =
-          currentState.next ?? this.getLROStatusFromResponse;
+        this.poll = currentState.next ?? this.poll;
         state.pollingURL = getPollingUrl(
           currentState.rawResponse,
           state.pollingURL
         );
       }
     }
+    logger.verbose(`LRO: current state: ${JSON.stringify(state)}`);
     options?.fireProgress?.(state);
     return this;
   }

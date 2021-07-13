@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   MongoDBDatabaseGetResults,
   MongoDBResourcesListMongoDBDatabasesOptionalParams,
@@ -284,7 +284,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -376,7 +376,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, databaseName, options },
       deleteMongoDBDatabaseOperationSpec
@@ -488,7 +488,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -630,7 +630,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -728,7 +728,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, databaseName, collectionName, options },
       deleteMongoDBCollectionOperationSpec
@@ -847,7 +847,7 @@ export class MongoDBResourcesImpl implements MongoDBResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,

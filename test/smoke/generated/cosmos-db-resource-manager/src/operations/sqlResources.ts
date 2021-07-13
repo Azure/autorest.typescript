@@ -15,7 +15,7 @@ import * as Parameters from "../models/parameters";
 import { CosmosDBManagementClientContext } from "../cosmosDBManagementClientContext";
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import { LroEngine } from "../lro";
-import { CoreClientLro, shouldDeserializeLro } from "../coreClientLro";
+import { LroImpl, shouldDeserializeLro } from "../lroImpl";
 import {
   SqlDatabaseGetResults,
   SqlResourcesListSqlDatabasesOptionalParams,
@@ -537,7 +537,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -628,7 +628,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, databaseName, options },
       deleteSqlDatabaseOperationSpec
@@ -738,7 +738,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -879,7 +879,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -976,7 +976,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       { resourceGroupName, accountName, databaseName, containerName, options },
       deleteSqlContainerOperationSpec
@@ -1092,7 +1092,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1251,7 +1251,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1355,7 +1355,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1515,7 +1515,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1619,7 +1619,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1776,7 +1776,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
@@ -1879,7 +1879,7 @@ export class SqlResourcesImpl implements SqlResources {
       };
     };
 
-    const lro = new CoreClientLro(
+    const lro = new LroImpl(
       sendOperation,
       {
         resourceGroupName,
