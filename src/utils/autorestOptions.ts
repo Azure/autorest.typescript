@@ -58,7 +58,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
 async function getHeadAsBoolean(host: Host): Promise<boolean> {
   const headAsBoolean = await host.GetValue("head-as-boolean");
 
-  return headAsBoolean === true;
+  return Boolean(headAsBoolean);
 }
 
 async function getSkipEnumValidation(host: Host): Promise<boolean> {
