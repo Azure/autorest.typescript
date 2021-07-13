@@ -62,7 +62,9 @@ export interface ResourceGroupsCheckExistenceOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkExistence operation. */
-export type ResourceGroupsCheckExistenceResponse = { body: boolean };
+export type ResourceGroupsCheckExistenceResponse = {
+  body: boolean;
+};
 
 /** Optional parameters. */
 export interface ResourcesClientOptionalParams

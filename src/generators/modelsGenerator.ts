@@ -164,7 +164,7 @@ function writeResponseTypes(
   modelsIndexFile: SourceFile,
   allModelsNames: Set<string>
 ) {
-  const { headAsBoolean } = getAutorestOptions();
+  const { headAsBoolean, useCoreV2 } = getAutorestOptions();
 
   const responseName = getResponseTypeName(
     operationType.typeName,
@@ -217,7 +217,21 @@ function writeResponseTypes(
       name: responseName,
       docs: [`Contains response data for the ${name} operation.`],
       isExported: true,
-      type: `{ body: boolean; }`,
+      type: useCoreV2
+        ? `{ 
+        body: boolean; 
+      }`
+        : `{ 
+        body: boolean;
+
+        _response: coreHttp.HttpResponse & {
+          /** The response body as text (string format) */
+          bodyAsText: string;
+      
+          /** The response body as parsed JSON or XML */
+          parsedBody: ResourceGroup;
+        };
+      }`,
       leadingTrivia: writer => writer.blankLine(),
       kind: StructureKind.TypeAlias
     });
