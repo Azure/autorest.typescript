@@ -9,8 +9,8 @@
     "@azure/core-lro": "^1.0.5",
     "@azure/abort-controller": "^1.0.0",
     "@azure/core-paging": "^1.1.1",
-    "@azure/core-client": "^1.1.2",
-    "@azure/core-rest-pipeline": "^1.0.4",
+    "@azure/core-client": "^1.2.2",
+    "@azure/core-rest-pipeline": "^1.1.1",
     "@azure/core-tracing": "1.0.0-preview.11",
     "@opentelemetry/api": "^0.10.2",
     "tslib": "^1.9.3"

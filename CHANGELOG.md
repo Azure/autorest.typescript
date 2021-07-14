@@ -1,3 +1,7 @@
+## 6.0.0-beta.7 (2021-07-13)
+
+- [BugFix] Fixed the issue with the `HEAD` HTTP Requests and provided support for the `head-as-boolean` option. Please refer [#1037](https://github.com/Azure/autorest.typescript/issues/1037) for more details.
+
 ## 6.0.0-beta.6 (2021-07-12)
 
 - [BugFix] Changed `sdk-type` property in `package.json` file from `management` to `mgmt`. Please refer [#1090](https://github.com/Azure/autorest.typescript/pull/1090) for further details.
