@@ -24,7 +24,8 @@ export async function runAutorest(
     hideClients,
     ignoreNullableOnOptional,
     title,
-    restLevelClient
+    restLevelClient,
+    headAsBoolean
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -57,6 +58,9 @@ export async function runAutorest(
     commandArguments.push(
       `--ignore-nullable-on-optional=${ignoreNullableOnOptional}`
     );
+  }
+  if (headAsBoolean !== undefined) {
+    commandArguments.push(`--head-as-boolean=${headAsBoolean}`);
   }
   if (allowInsecureConnection !== undefined) {
     commandArguments.push(

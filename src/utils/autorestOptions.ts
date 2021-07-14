@@ -29,6 +29,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const allowInsecureConnection = await getAllowInsecureConnection(host);
   const skipEnumValidation = await getSkipEnumValidation(host);
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
+  const headAsBoolean = await getHeadAsBoolean(host);
 
   return {
     azureArm,
@@ -49,8 +50,15 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     disablePagingAsyncIterators,
     skipEnumValidation,
     title,
-    azureOutputDirectory
+    azureOutputDirectory,
+    headAsBoolean
   };
+}
+
+async function getHeadAsBoolean(host: Host): Promise<boolean> {
+  const headAsBoolean = await host.GetValue("head-as-boolean");
+
+  return Boolean(headAsBoolean);
 }
 
 async function getSkipEnumValidation(host: Host): Promise<boolean> {
