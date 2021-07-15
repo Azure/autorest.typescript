@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Container Registry",
+    "description": "Metadata API definition for the Azure Container Registry runtime",
+    "version": "2021-07-01"
+  },
+  "security": [
+    {
+      "registry_auth": [],
+      "registry_oauth2": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "ContainerRegistry",
+      "description": "Registry Operations"
+    },
+    {
+      "name": "ContainerRegistryBlob",
+      "description": "Blob Operations"
+    }
+  ],
+  "schemes": ["https"],
+  "produces": ["application/json"],
+  "paths": {
+    "/oauth2/token": {
+      "post": {
+        "tags": ["AcrToken", "AccessToken"],
+        "description": "Exchange ACR Refresh token for an ACR Access Token",
+        "operationId": "Authentication_ExchangeAcrRefreshTokenForAcrAccessToken",
+        "parameters": [
+          {
+            "name": "grant_type",
+            "in": "formData",
+            "description": "Grant type is expected to be refresh_token",
+            "required": true,
+            "type": "string",
+            "enum": ["refresh_token", "password"],
+            "x-ms-enum": {
+              "name": "TokenGrantType"
+            },
+            "x-accessibility": "internal",
+            "x-ms-client-default": "refresh_token"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No Content"
+          },
+          "default": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  },
+  "parameters": {}
+}

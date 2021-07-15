@@ -60,6 +60,7 @@ export function getStringForValue(
     case MapperTypes.String:
     case MapperTypes.TimeSpan:
     case SchemaType.Choice:
+    case SchemaType.SealedChoice:
     case MapperTypes.Enum:
       const valueString = !!value ? value.toString() : "";
       return quotedStrings ? `"${valueString}"` : `${valueString}`;
