@@ -722,6 +722,15 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: true,
     headAsBoolean: true
   },
+  sealedchoice: {
+    swaggerOrConfig: "test/integration/swaggers/sealedchoice.json",
+    clientName: "SealedChoiceClient",
+    packageName: "sealedchoice",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
