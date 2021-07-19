@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl, shouldDeserializeLro } from "./lroImpl";
+import { LroImpl } from "./lroImpl";
 import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
@@ -32,14 +32,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   }
 
   private getOperationOptions<TOptions extends coreClient.OperationOptions>(
-    options: TOptions | undefined,
-    lroResourceLocationConfig?: string
+    options: TOptions | undefined
   ): coreClient.OperationOptions {
     const operationOptions: coreClient.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig)
-    };
     return operationOptions;
   }
 

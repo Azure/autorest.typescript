@@ -11,7 +11,7 @@ import * as coreAuth from "@azure/core-auth";
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl, shouldDeserializeLro } from "./lroImpl";
+import { LroImpl } from "./lroImpl";
 import {
   ApplicationGatewaysImpl,
   ApplicationSecurityGroupsImpl,
