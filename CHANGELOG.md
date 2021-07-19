@@ -1,3 +1,8 @@
+## 6.0.0-beta.8 (2021-07-19)
+
+- [BugFix] Added `SchemaType.SealedChoice` handling of the `valueType`. Please refer [#1103](https://github.com/Azure/autorest.typescript/pull/1103) for more details.
+- [Feature] LRO files are moved to `core-lro` package. Please refer [#1099](https://github.com/Azure/autorest.typescript/pull/1099) for more details.
+
 ## 6.0.0-beta.7 (2021-07-13)
 
 - [BugFix] Fixed the issue with the `HEAD` HTTP Requests and provided support for the `head-as-boolean` option. Please refer [#1037](https://github.com/Azure/autorest.typescript/issues/1037) for more details.
