@@ -112,24 +112,13 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
 
   if (hasInlineOperations && hasLro) {
     clientFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState"],
+      namedImports: ["PollerLike", "PollOperationState", "LroEngine"],
       moduleSpecifier: "@azure/core-lro"
     });
     clientFile.addImportDeclaration({
-      namedImports: ["LroEngine"],
-      moduleSpecifier: `./lro`
+      namedImports: ["LroImpl", "shouldDeserializeLro"],
+      moduleSpecifier: `./lroImpl`
     });
-    if (useCoreV2) {
-      clientFile.addImportDeclaration({
-        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
-        moduleSpecifier: `./coreClientLro`
-      });
-    } else {
-      clientFile.addImportDeclaration({
-        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
-        moduleSpecifier: `./coreHttpLro`
-      });
-    }
   }
 
   if (hasImportedOperations) {

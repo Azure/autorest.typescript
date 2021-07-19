@@ -937,10 +937,6 @@ function writeLroOperationBody(
   const { useCoreV2 } = getAutorestOptions();
   const client = isInline ? "" : ".client";
   const sendRequestStatement = `this${client}.sendOperationRequest(args, spec)`;
-
-  const finalStateStr = lroResourceLocationConfig
-    ? `"${lroResourceLocationConfig.toLowerCase()}"`
-    : "";
   const sendOperationStatement = !useCoreV2
     ? `const directSendOperation = async (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec): Promise<${responseName}> => {
       ${getTracingTryCatchStatement(
@@ -987,12 +983,15 @@ function writeLroOperationBody(
         headers: currentRawResponse!.headers.toJSON()
       }};
   }`;
-  const LroClassName = useCoreV2 ? "CoreClientLro" : "CoreHttpLro";
   methodDeclaration.addStatements([
     sendOperationStatement,
-    `const lro = new ${LroClassName}(sendOperation,${operationParamsName},
-      ${operationSpecName},${finalStateStr})`,
-    `return new LroEngine(lro,{intervalInMs: options?.updateIntervalInMs});`
+    `const lro = new LroImpl(sendOperation,${operationParamsName},
+      ${operationSpecName})`,
+    `return new LroEngine(lro,{ resumeFrom: options?.resumeFrom, intervalInMs: options?.updateIntervalInMs${
+      lroResourceLocationConfig
+        ? `, lroResourceLocationConfig: "${lroResourceLocationConfig.toLowerCase()}"`
+        : ""
+    } });`
   ]);
 
   methodDeclaration.setReturnType(
@@ -1342,24 +1341,13 @@ function addImports(
 
   if (hasLroOperation(operationGroupDetails)) {
     operationGroupFile.addImportDeclaration({
-      namedImports: ["PollerLike", "PollOperationState"],
+      namedImports: ["PollerLike", "PollOperationState", "LroEngine"],
       moduleSpecifier: "@azure/core-lro"
     });
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LroEngine"],
-      moduleSpecifier: `../lro`
+      namedImports: ["LroImpl", "shouldDeserializeLro"],
+      moduleSpecifier: `../lroImpl`
     });
-    if (useCoreV2) {
-      operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreClientLro", "shouldDeserializeLro"],
-        moduleSpecifier: `../coreClientLro`
-      });
-    } else {
-      operationGroupFile.addImportDeclaration({
-        namedImports: ["CoreHttpLro", "shouldDeserializeLro"],
-        moduleSpecifier: `../coreHttpLro`
-      });
-    }
   }
 }
 
