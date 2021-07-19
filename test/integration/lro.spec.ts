@@ -1,13 +1,17 @@
 import { LROClient, Product } from "./generated/lro/src";
 import { assert } from "chai";
 import { PipelinePolicy } from "@azure/core-rest-pipeline";
-import { OperationOptions, ServiceClientOptions } from "@azure/core-client";
+import {
+  FullOperationResponse,
+  OperationOptions,
+  ServiceClientOptions
+} from "@azure/core-client";
 
 import {
-  responseStatusChecker,
-  responseStatusChecker201,
-  responseStatusChecker202,
-  responseStatusChecker204
+  check200,
+  check201,
+  check202,
+  check204
 } from "../utils/responseStatusChecker";
 import { HttpClientWithCookieSupport } from "./testUtils/HttpClientWithCookieSupport";
 
@@ -16,8 +20,14 @@ const clientOptions: ServiceClientOptions = {
   allowInsecureConnection: true
 };
 
+let lastResponse: FullOperationResponse | undefined;
+function onResponse(response: FullOperationResponse) {
+  lastResponse = response;
+}
+
 const LROOptions = {
-  updateIntervalInMs: 0
+  updateIntervalInMs: 0,
+  onResponse: onResponse
 };
 
 describe("LROs", () => {
@@ -176,10 +186,8 @@ describe("LROs", () => {
 
   describe("Location Strategy", () => {
     it("should handle post202Retry200", async () => {
-      await client.lROs.beginPost202Retry200AndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginPost202Retry200AndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle post202NoRetry204", async () => {
@@ -207,10 +215,8 @@ describe("LROs", () => {
     });
 
     it("should handle put202Retry200", async () => {
-      await client.lROs.beginPut202Retry200AndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginPut202Retry200AndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle putNoHeaderInRetry", async () => {
@@ -235,10 +241,8 @@ describe("LROs", () => {
     });
 
     it("should handle delete202Retry200", async () => {
-      await client.lROs.beginDelete202Retry200AndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginDelete202Retry200AndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle delete202NoRetry204", async () => {
@@ -254,10 +258,10 @@ describe("LROs", () => {
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
-      await client.lROs.beginDeleteProvisioning202Accepted200Succeeded({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginDeleteProvisioning202Accepted200Succeeded(
+        LROOptions
+      );
+      check200(lastResponse);
     });
 
     it("should handle deleteProvisioning202DeletingFailed200", async () => {
@@ -277,10 +281,8 @@ describe("LROs", () => {
 
   describe("Passthrough strategy", () => {
     it("should handle delete204Succeeded", async () => {
-      await client.lROs.beginDelete204SucceededAndWait({
-        ...LROOptions,
-        ...responseStatusChecker204
-      });
+      await client.lROs.beginDelete204SucceededAndWait(LROOptions);
+      check204(lastResponse);
     });
   });
 
@@ -294,16 +296,18 @@ describe("LROs", () => {
 
     it("should handle postDoubleHeadersFinalLocationGet", async () => {
       const result = await client.lROs.beginPostDoubleHeadersFinalLocationGetAndWait(
-        { ...LROOptions, ...responseStatusChecker }
+        LROOptions
       );
+      check200(lastResponse);
       assert.equal(result.id, "100");
       assert.equal(result.name, "foo");
     });
 
     it("should handle postDoubleHeadersFinalAzureHeaderGet", async () => {
       const result = await client.lROs.beginPostDoubleHeadersFinalAzureHeaderGetAndWait(
-        { ...LROOptions, ...responseStatusChecker }
+        LROOptions
       );
+      check200(lastResponse);
       assert.equal(result.id, "100");
     });
 
@@ -317,23 +321,20 @@ describe("LROs", () => {
 
     it("should handle postDoubleHeadersFinalAzureHeaderGetDefault", async () => {
       const result = await client.lROs.beginPostDoubleHeadersFinalAzureHeaderGetDefaultAndWait(
-        { ...LROOptions, ...responseStatusChecker }
+        LROOptions
       );
+      check200(lastResponse);
       assert.equal(result.id, "100");
     });
 
     it("should handle deleteAsyncRetrySucceeded", async () => {
-      await client.lROs.beginDeleteAsyncRetrySucceededAndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginDeleteAsyncRetrySucceededAndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle deleteAsyncNoRetrySucceeded", async () => {
-      await client.lROs.beginDeleteAsyncNoRetrySucceededAndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginDeleteAsyncNoRetrySucceededAndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle deleteAsyncRetrycanceled", async () => {
@@ -341,7 +342,10 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: canceled");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: canceled."
+        );
       }
     });
 
@@ -350,7 +354,10 @@ describe("LROs", () => {
         await client.lROs.beginDeleteAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: failed");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: failed."
+        );
       }
     });
 
@@ -384,7 +391,10 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: failed");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: failed."
+        );
       }
     });
 
@@ -402,6 +412,7 @@ describe("LROs", () => {
       );
       assert.equal(result.name, "foo");
       assert.equal(result.id, "100");
+      console.log(JSON.stringify(result));
       assert.deepEqual(result.provisioningState, "Succeeded");
     });
 
@@ -418,7 +429,10 @@ describe("LROs", () => {
         await client.lROs.beginPutAsyncNoRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: canceled");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: canceled."
+        );
       }
     });
 
@@ -431,10 +445,8 @@ describe("LROs", () => {
     });
 
     it("should handle deleteAsyncNoHeaderInRetry", async () => {
-      await client.lROs.beginDeleteAsyncNoHeaderInRetryAndWait({
-        ...LROOptions,
-        ...responseStatusChecker
-      });
+      await client.lROs.beginDeleteAsyncNoHeaderInRetryAndWait(LROOptions);
+      check200(lastResponse);
     });
 
     it("should handle postAsyncNoRetrySucceeded", async () => {
@@ -453,7 +465,10 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: failed");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: failed."
+        );
       }
     });
 
@@ -473,7 +488,10 @@ describe("LROs", () => {
         });
         throw new Error("should have thrown instead");
       } catch (e) {
-        assert.equal(e.message, "Operation status: canceled");
+        assert.equal(
+          e.message,
+          "The long running operation has failed. The provisioning state: canceled."
+        );
       }
     });
   });
@@ -505,10 +523,8 @@ describe("Custom Headers", () => {
   });
 
   it("should handle postAsyncRetrySucceeded with customheaders ", async () => {
-    await client.lROsCustomHeader.beginPostAsyncRetrySucceededAndWait({
-      ...options,
-      ...responseStatusChecker
-    });
+    await client.lROsCustomHeader.beginPostAsyncRetrySucceededAndWait(options);
+    check200(lastResponse);
   });
 
   it("should handle put201CreatingSucceeded200 with customheaders ", async () => {
@@ -521,10 +537,8 @@ describe("Custom Headers", () => {
   });
 
   it("should handle post202Retry200 with customheaders ", async () => {
-    await client.lROsCustomHeader.beginPost202Retry200AndWait({
-      ...options,
-      ...responseStatusChecker
-    });
+    await client.lROsCustomHeader.beginPost202Retry200AndWait(options);
+    check200(lastResponse);
   });
 });
 
@@ -635,63 +649,48 @@ describe("LRO Sad scenarios", () => {
   });
 
   it("should handle PutError201NoProvisioningStatePayload ", async () => {
-    await client.lrosaDs.beginPutError201NoProvisioningStatePayloadAndWait({
-      ...LROOptions,
-      // Test server doesn't return a provisioningState so success is assumed as
-      // expected in this scenario
-      ...responseStatusChecker201
-    });
+    await client.lrosaDs.beginPutError201NoProvisioningStatePayloadAndWait(
+      LROOptions
+    );
+    check201(lastResponse);
   });
 
   it("should handle putAsyncRelativeRetryNoStatusPayload ", async () => {
     await client.lrosaDs.beginPutAsyncRelativeRetryNoStatusPayloadAndWait(
       // Test server doesn't return a provisioningState so success is assumed as
       // expected in this scenario
-      { ...LROOptions, ...responseStatusChecker }
+      LROOptions
     );
+    check200(lastResponse);
   });
 
   it("should handle putAsyncRelativeRetryNoStatus ", async () => {
-    await client.lrosaDs.beginPutAsyncRelativeRetryNoStatusAndWait({
-      ...LROOptions,
-      // Test server doesn't return a provisioningState so success is assumed as
-      // expected in this scenario
-      ...responseStatusChecker
-    });
+    await client.lrosaDs.beginPutAsyncRelativeRetryNoStatusAndWait(LROOptions);
+    check200(lastResponse);
   });
 
   it("should handle delete204Succeeded ", async () => {
-    await client.lrosaDs.beginDelete204SucceededAndWait({
-      ...LROOptions,
-      // since no location or asyncoperation headers were returned
-      // just pass through
-      ...responseStatusChecker204
-    });
+    await client.lrosaDs.beginDelete204SucceededAndWait(LROOptions);
+    check204(lastResponse);
   });
 
   it("should handle deleteAsyncRelativeRetryNoStatus ", async () => {
-    await client.lrosaDs.beginDeleteAsyncRelativeRetryNoStatusAndWait({
-      ...LROOptions,
-      // Test server doesn't return a status so success is assumed as
-      // expected in this scenario
-      ...responseStatusChecker
-    });
+    await client.lrosaDs.beginDeleteAsyncRelativeRetryNoStatusAndWait(
+      LROOptions
+    );
+    check200(lastResponse);
   });
 
   it("should handle post202NoLocation ", async () => {
-    await client.lrosaDs.beginPost202NoLocationAndWait({
-      ...LROOptions,
-      // since no location or asyncoperation headers were returned
-      // just pass through
-      ...responseStatusChecker202
-    });
+    await client.lrosaDs.beginPost202NoLocationAndWait(LROOptions);
+    check202(lastResponse);
   });
 
   it("should handle postAsyncRelativeRetryNoPayload ", async () => {
-    await client.lrosaDs.beginPostAsyncRelativeRetryNoPayloadAndWait({
-      ...LROOptions,
-      ...responseStatusChecker
-    });
+    await client.lrosaDs.beginPostAsyncRelativeRetryNoPayloadAndWait(
+      LROOptions
+    );
+    check200(lastResponse);
   });
 
   it("should handle put200InvalidJson ", async () => {
@@ -829,29 +828,26 @@ describe("LRORetries", () => {
   });
 
   it("should retry delete202Retry200", async () => {
-    await client.lRORetrys.beginDelete202Retry200AndWait({
-      ...LROOptions,
-      ...responseStatusChecker
-    });
+    await client.lRORetrys.beginDelete202Retry200AndWait(LROOptions);
+    check200(lastResponse);
   });
 
   it("should retry deleteAsyncRelativeRetrySucceeded", async () => {
-    await client.lRORetrys.beginDeleteAsyncRelativeRetrySucceededAndWait({
-      ...LROOptions,
-      ...responseStatusChecker
-    });
+    await client.lRORetrys.beginDeleteAsyncRelativeRetrySucceededAndWait(
+      LROOptions
+    );
+    check200(lastResponse);
   });
 
   it("should retry post202Retry200", async () => {
-    await client.lRORetrys.beginPost202Retry200AndWait({
-      ...LROOptions,
-      ...responseStatusChecker
-    });
+    await client.lRORetrys.beginPost202Retry200AndWait(LROOptions);
+    check200(lastResponse);
   });
 
   it("should retry postAsyncRelativeRetrySucceeded", async () => {
-    const poller = await client.lRORetrys.beginPostAsyncRelativeRetrySucceededAndWait(
-      { ...LROOptions, ...responseStatusChecker }
+    await client.lRORetrys.beginPostAsyncRelativeRetrySucceededAndWait(
+      LROOptions
     );
+    check200(lastResponse);
   });
 });
