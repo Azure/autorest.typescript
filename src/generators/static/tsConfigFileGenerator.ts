@@ -15,7 +15,6 @@ const highLevelTsConfig = {
     esModuleInterop: true,
     allowSyntheticDefaultImports: true,
     forceConsistentCasingInFileNames: true,
-    preserveConstEnums: true,
     lib: ["es6", "dom"],
     declaration: true,
     outDir: "./esm",
