@@ -96,7 +96,7 @@ stages:
       - deployment: PublishToNpm
         variables:
           TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
-        environment: npm
+        environment: npmtsjssdk
         displayName: Publish dev version to NPM
         pool:
           name: ${{ parameters.LinuxPool }}
