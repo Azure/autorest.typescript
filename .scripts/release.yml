@@ -72,7 +72,6 @@ stages:
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
           TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
-        variables:
           DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.DEV_VERSION'] ]
         environment: githubtsjssdk
         displayName: Publish dev version to GitHub
