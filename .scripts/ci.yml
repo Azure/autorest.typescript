@@ -27,7 +27,7 @@ stages:
             name: SetMainVersion
           - script: |
               export DEV_VERSION=$(node -p -e "require('./package.json').version.replace('beta', 'alpha')").$(Build.BuildNumber)
-              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]$DEV_VERSION"
+              echo "##vso[task.setvariable variable=DEV_VERSION;isOutput=true;]DEV_VERSION"
               npm version --no-git-tag-version $DEV_VERSION
             condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
             name: SetDevVersion
