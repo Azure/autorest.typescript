@@ -68,6 +68,31 @@ stages:
   - stage: Integration
     dependsOn: ${{parameters.DependsOn}}
     jobs:
+      - deployment: PublishToGithub
+        condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
+        variables:
+          TAR_NAME: $[ stageDependencies.BuildStage.Build.outputs['PackArtifacts.TAR_NAME'] ]
+          DEV_VERSION: $[ stageDependencies.BuildStage.Build.outputs['SetDevVersion.DEV_VERSION'] ]
+        environment: githubtsjssdk
+        displayName: Publish dev version to GitHub
+        pool:
+          name: ${{ parameters.LinuxPool }}
+          vmImage: ${{ parameters.OSVmImage }}
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: NodeTool@0
+                  inputs:
+                    versionSpec: "14.x"
+                  displayName: "Install Node.js"
+                - script: |
+                    tar zxvf $(Pipeline.Workspace)/packages/$(TAR_NAME)
+                - script: |
+                    cd package
+                    tree .
+                    npx publish-release --token $(azuresdk-github-pat) --repo autorest.typescript --owner azure --name v$(DEV_VERSION) --tag v$(DEV_VERSION) --notes='prerelease build' --prerelease --editRelease false --assets $(Pipeline.Workspace)/packages/$(TAR_NAME) --target_commitish $(Build.SourceBranchName)
+                  displayName: "Publish to GitHub"
       - deployment: PublishToNpm
         condition: or(eq(variables['SetDevVersion'], 'true'), and(eq(variables['SetDevVersion'], ''), eq(variables['Build.Reason'],'Schedule'), eq(variables['System.TeamProject'], 'internal')))
         variables:
