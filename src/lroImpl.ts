@@ -114,10 +114,7 @@ function getLroData(result: any): LroResponseInfo {
 
 export class LroImpl<T> implements LongRunningOperation<T> {
   constructor(
-    private sendOperationFn: (
-      args: Record<string, unknown>,
-      spec: Record<string, unknown>
-    ) => Promise<LroResponse<T>>,
+    private sendOperationFn: (args: any, spec: any) => Promise<LroResponse<T>>,
     private args: Record<string, unknown>,
     private spec: {
       requestBody?: unknown;
