@@ -117,10 +117,10 @@ export class LroImpl<T> implements LongRunningOperation<T> {
     private sendOperationFn: (args: any, spec: any) => Promise<LroResponse<T>>,
     private args: Record<string, unknown>,
     private spec: {
-      requestBody?: unknown;
-      path?: string;
-      httpMethod: string;
-    } & Record<string, unknown>,
+      readonly requestBody?: unknown;
+      readonly path?: string;
+      readonly httpMethod: string;
+    } & Record<string, any>,
     public requestPath: string = spec.path!,
     public requestMethod: string = spec.httpMethod
   ) {}
