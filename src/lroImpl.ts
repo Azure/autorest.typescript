@@ -4,8 +4,6 @@ const successStates = ["succeeded"];
 const failureStates = ["failed", "canceled", "cancelled"];
 const terminalStates = successStates.concat(failureStates);
 
-type SendOperationFn<T> = (args: any, spec: any) => Promise<LroResponse<T>>;
-
 /**
  * We need to selectively deserialize our responses, only deserializing if we
  * are in a final Lro response, not deserializing any polling non-terminal responses
@@ -116,9 +114,16 @@ function getLroData(result: any): LroResponseInfo {
 
 export class LroImpl<T> implements LongRunningOperation<T> {
   constructor(
-    private sendOperationFn: SendOperationFn<T>,
-    private args: any,
-    private spec: any,
+    private sendOperationFn: (
+      args: Record<string, unknown>,
+      spec: Record<string, unknown>
+    ) => Promise<LroResponse<T>>,
+    private args: Record<string, unknown>,
+    private spec: {
+      requestBody?: unknown;
+      path?: string;
+      httpMethod: string;
+    } & Record<string, unknown>,
     public requestPath: string = spec.path!,
     public requestMethod: string = spec.httpMethod
   ) {}
@@ -126,12 +131,13 @@ export class LroImpl<T> implements LongRunningOperation<T> {
     return this.sendOperationFn(this.args, this.spec);
   }
   public async sendPollRequest(path: string): Promise<LroResponse<T>> {
+    const { requestBody, ...restSpec } = this.spec;
     const updatedArgs = { ...this.args };
     if (updatedArgs.options) {
       (updatedArgs.options as any).shouldDeserialize = true;
     }
     return this.sendOperationFn(updatedArgs, {
-      ...this.spec,
+      ...restSpec,
       path,
       httpMethod: "GET"
     });
