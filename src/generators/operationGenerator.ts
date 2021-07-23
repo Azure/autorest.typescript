@@ -146,18 +146,10 @@ export function writeGetOperationOptions(
     statements: !useCoreV2
       ? `
     const operationOptions: coreHttp.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig),
-    };
     return coreHttp.operationOptionsToRequestOptionsBase(operationOptions);
     `
       : `
     const operationOptions: coreClient.OperationOptions = options || {};
-    operationOptions.requestOptions = {
-      ...operationOptions.requestOptions,
-      shouldDeserialize: shouldDeserializeLro(lroResourceLocationConfig),
-    };
     return operationOptions;`
   });
 }
@@ -1345,7 +1337,7 @@ function addImports(
       moduleSpecifier: "@azure/core-lro"
     });
     operationGroupFile.addImportDeclaration({
-      namedImports: ["LroImpl", "shouldDeserializeLro"],
+      namedImports: ["LroImpl"],
       moduleSpecifier: `../lroImpl`
     });
   }

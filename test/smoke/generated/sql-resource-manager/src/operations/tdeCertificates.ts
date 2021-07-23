@@ -12,7 +12,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl, shouldDeserializeLro } from "../lroImpl";
+import { LroImpl } from "../lroImpl";
 import { TdeCertificate, TdeCertificatesCreateOptionalParams } from "../models";
 
 /** Class representing a TdeCertificates. */

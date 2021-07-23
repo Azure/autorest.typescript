@@ -14,7 +14,7 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
-import { LroImpl, shouldDeserializeLro } from "../lroImpl";
+import { LroImpl } from "../lroImpl";
 import {
   VirtualMachineScaleSet,
   VirtualMachineScaleSetsListNextOptionalParams,
