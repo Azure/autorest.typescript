@@ -1,21 +1,67 @@
-import { Project } from "ts-morph";
+import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
-import { getAutorestOptions } from "../autorestSession";
+import { getAutorestOptions, getSession } from "../autorestSession";
+import { NameType, normalizeName } from "../utils/nameUtils";
 
 export function generateIndexFile(
-  clientDetails: ClientDetails,
-  project: Project
+  project: Project,
+  clientDetails?: ClientDetails
 ) {
-  const { srcPath, disablePagingAsyncIterators } = getAutorestOptions();
+  const { restLevelClient, srcPath } = getAutorestOptions();
   const indexFile = project.createSourceFile(`${srcPath}/index.ts`, undefined, {
     overwrite: true
   });
 
+  if (!restLevelClient) {
+    if (!clientDetails) {
+      throw new Error(
+        "ClientDetails are required when generating High Level Clients"
+      );
+    }
+    generateHLCIndex(clientDetails, indexFile);
+  } else {
+    generateRLCIndex(indexFile);
+  }
+}
+
+function generateRLCIndex(file: SourceFile) {
+  const { model } = getSession();
+  const clientName = model.language.default.name;
+  const moduleName = normalizeName(clientName, NameType.File);
+
+  file.addImportDeclaration({
+    moduleSpecifier: `./${moduleName}`,
+    defaultImport: clientName
+  });
+
+  file.addExportDeclarations([
+    {
+      moduleSpecifier: `./${moduleName}`
+    },
+    {
+      moduleSpecifier: "./models"
+    },
+    {
+      moduleSpecifier: "./parameters"
+    },
+    {
+      moduleSpecifier: "./responses"
+    }
+  ]);
+
+  file.addExportAssignment({
+    expression: clientName,
+    isExportEquals: false
+  });
+}
+
+function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
+  const { disablePagingAsyncIterators } = getAutorestOptions();
   if (clientDetails.options.hasPaging && !disablePagingAsyncIterators) {
-    indexFile.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
+    file.addStatements([`/// <reference lib="esnext.asynciterable" />`]);
   }
 
-  indexFile.addExportDeclarations([
+  file.addExportDeclarations([
     {
       moduleSpecifier: "./models"
     },
@@ -34,12 +80,12 @@ export function generateIndexFile(
   );
 
   if (operationGroups.length) {
-    indexFile.addExportDeclarations([
+    file.addExportDeclarations([
       {
         moduleSpecifier: "./operationsInterfaces"
       }
     ]);
   }
 
-  indexFile.fixUnusedIdentifiers();
+  file.fixUnusedIdentifiers();
 }

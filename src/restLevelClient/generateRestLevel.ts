@@ -11,6 +11,7 @@ import { format } from "prettier";
 import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
 import { generatePathFirstClient } from "./generateClient";
+import { generateIndexFile } from "../generators/indexGenerator";
 /**
  * Generates a Rest Level Client library
  */
@@ -34,6 +35,7 @@ export async function generateRestLevelClient() {
   generateSchemaTypes(model, project);
   generateParameterInterfaces(model, project);
   generatePathFirstClient(model, project);
+  generateIndexFile(project);
 
   // Save the source files to the virtual filesystem
   project.saveSync();
