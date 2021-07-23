@@ -107,6 +107,7 @@ function buildBodyParametersDefinition(
     name: bodyParameterInterfaceName,
     properties: [
       {
+        docs: bodySignature.docs,
         name: "body",
         type: bodySignature.type,
         hasQuestionToken: bodySignature.hasQuestionToken

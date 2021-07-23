@@ -7,6 +7,7 @@ import { RefColorConstant } from "./models";
 export type StringGetNullParameters = RequestParameters;
 
 export interface StringPutNullBodyParam {
+  /** string body */
   body?: string;
 }
 
@@ -23,7 +24,12 @@ export type StringGetBase64EncodedParameters = RequestParameters;
 export type StringGetBase64UrlEncodedParameters = RequestParameters;
 
 export interface StringPutBase64UrlEncodedBodyParam {
-  body: Uint8Array;
+  /**
+   * string body
+   *
+   * Value may contain base64 encoded characters
+   */
+  body: string;
 }
 
 export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedBodyParam &
@@ -32,6 +38,7 @@ export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
 export type EnumGetNotExpandableParameters = RequestParameters;
 
 export interface EnumPutNotExpandableBodyParam {
+  /** string body */
   body: "red color" | "green-color" | "blue_color";
 }
 
@@ -40,6 +47,7 @@ export type EnumPutNotExpandableParameters = EnumPutNotExpandableBodyParam &
 export type EnumGetReferencedParameters = RequestParameters;
 
 export interface EnumPutReferencedBodyParam {
+  /** enum string body */
   body: "red color" | "green-color" | "blue_color";
 }
 
@@ -48,6 +56,7 @@ export type EnumPutReferencedParameters = EnumPutReferencedBodyParam &
 export type EnumGetReferencedConstantParameters = RequestParameters;
 
 export interface EnumPutReferencedConstantBodyParam {
+  /** enum string body */
   body: RefColorConstant;
 }
 

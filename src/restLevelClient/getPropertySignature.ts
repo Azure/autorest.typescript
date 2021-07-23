@@ -1,7 +1,7 @@
 import { Parameter, Property } from "@autorest/codemodel";
 import { PropertySignatureStructure, StructureKind } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
-import { getElementType } from "./schemaHelpers";
+import { getElementType, getFormatDocs } from "./schemaHelpers";
 
 /**
  * Builds a Typescript property or parameter signature
@@ -16,7 +16,7 @@ export function getPropertySignature(
   const propertyLangMetadata = getLanguageMetadata(property.language);
   const propertyName = `"${propertyLangMetadata.serializedName ||
     propertyLangMetadata.name}"`;
-  const description = propertyLangMetadata.description;
+  const description = getDocs(property);
   const type = getElementType(property.schema, importedModels);
   return {
     name: propertyName,
@@ -25,4 +25,21 @@ export function getPropertySignature(
     type,
     kind: StructureKind.PropertySignature
   };
+}
+
+export function getDocs(property: Property | Parameter) {
+  const { description } = getLanguageMetadata(property.language);
+  const docs: string[] = [];
+
+  if (description) {
+    docs.push(description);
+  }
+
+  const formatDocs = getFormatDocs(property.schema);
+
+  if (formatDocs) {
+    docs.push(formatDocs);
+  }
+
+  return docs.join("\n\n");
 }

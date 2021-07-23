@@ -14,10 +14,11 @@ import {
   InterfaceDeclarationStructure,
   OptionalKind,
   Project,
+  PropertySignatureStructure,
   StructureKind
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getElementType } from "./schemaHelpers";
+import { getElementType, getFormatDocs } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
@@ -66,6 +67,7 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
       }
 
       const bodyType = getBodyTypeName(schemaResponse, importedModels);
+      const bodyDescription = getFormatDocs(schemaResponse.schema);
 
       // Get the information to build the Response Interface
       const responseTypeName = getResponseTypeName(operation, schemaResponse);
@@ -73,7 +75,8 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
       const responseProperties = getResponseInterfaceProperties(
         schemaResponse,
         bodyType,
-        headersInterface?.name
+        headersInterface?.name,
+        bodyDescription
       );
 
       const responseInterfaceDefinition: OptionalKind<InterfaceDeclarationStructure> = {
@@ -124,24 +127,32 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
 function getResponseInterfaceProperties(
   response: Response,
   bodyTypeName?: string,
-  headersInterfaceName?: string
+  headersInterfaceName?: string,
+  bodyDescription?: string
 ) {
   const statusCode = getStatusCode(response);
-  const responseProperties = [
-    { name: "status", type: statusCode === `"default"` ? `"500"` : statusCode }
+  const responseProperties: PropertySignatureStructure[] = [
+    {
+      name: "status",
+      type: statusCode === `"default"` ? `"500"` : statusCode,
+      kind: StructureKind.PropertySignature
+    }
   ];
 
   if (bodyTypeName) {
     responseProperties.push({
       name: "body",
-      type: bodyTypeName
+      type: bodyTypeName,
+      kind: StructureKind.PropertySignature,
+      ...(bodyDescription && { docs: [{ description: bodyDescription }] })
     });
   }
 
   if (headersInterfaceName) {
     responseProperties.push({
       name: "headers",
-      type: `RawHttpHeaders & ${headersInterfaceName}`
+      type: `RawHttpHeaders & ${headersInterfaceName}`,
+      kind: StructureKind.PropertySignature
     });
   }
 

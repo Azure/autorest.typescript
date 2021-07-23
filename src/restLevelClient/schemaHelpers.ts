@@ -1,6 +1,7 @@
 import {
   AnyObjectSchema,
   ArraySchema,
+  ByteArraySchema,
   ChoiceSchema,
   ConstantSchema,
   DictionarySchema,
@@ -97,6 +98,7 @@ function primitiveSchemaToType(schema: PrimitiveSchema): string {
       return "Date";
     case SchemaType.Char:
       return "string";
+    case SchemaType.ByteArray:
     case SchemaType.Binary:
     case SchemaType.Duration:
     case SchemaType.Credential:
@@ -107,8 +109,6 @@ function primitiveSchemaToType(schema: PrimitiveSchema): string {
       return "string";
     case SchemaType.Boolean:
       return "boolean";
-    case SchemaType.ByteArray:
-      return "Uint8Array";
     case SchemaType.Choice:
     case SchemaType.SealedChoice:
       return (schema as ChoiceSchema).choices
@@ -151,4 +151,24 @@ export function isDictionarySchema(schema: Schema): schema is DictionarySchema {
 
 export function isConstantSchema(schema: Schema): schema is ConstantSchema {
   return schema.type === SchemaType.Constant;
+}
+
+/**
+ * Gets additional documentation for a given schema
+ */
+export function getFormatDocs(schema: Schema) {
+  switch (schema.type) {
+    case SchemaType.ByteArray:
+      return "Value may contain base64 encoded characters";
+    case SchemaType.Binary:
+      return "Value may contain any sequence of octets";
+    case SchemaType.Credential:
+      return "Value may contain a password";
+    case SchemaType.Uuid:
+      return "Value may contain a UUID";
+    case SchemaType.Uri:
+      return "Value may contain a URL";
+    default:
+      return undefined;
+  }
 }

@@ -95,7 +95,7 @@ export async function generateTypeScriptLibrary(
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
   generateParameters(clientDetails, project);
-  generateIndexFile(clientDetails, project);
+  generateIndexFile(project, clientDetails);
   await generateLroFiles(clientDetails, project);
   generateTracingFile(project);
 
