@@ -65,7 +65,8 @@ export interface DurationWrapper {
 }
 
 export interface ByteWrapper {
-  field?: Uint8Array;
+  /** Value may contain base64 encoded characters */
+  field?: string;
 }
 
 export interface ArrayWrapper {
@@ -160,7 +161,8 @@ export interface SharkBase extends FishBase {
 }
 
 export interface Sawshark extends SharkBase {
-  picture?: Uint8Array;
+  /** Value may contain base64 encoded characters */
+  picture?: string;
   fishtype: "sawshark";
 }
 
