@@ -14,13 +14,6 @@ Monitor Management Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `monitor-data-plane` package
-
-Install the Monitor client library for JavaScript with `npm`:
-
-```bash
-npm install monitor-data-plane
-```
 
 
 ## Key concepts

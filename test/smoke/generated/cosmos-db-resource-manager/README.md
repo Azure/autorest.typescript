@@ -15,13 +15,6 @@ Azure Cosmos DB Database Service Resource Provider REST API
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `cosmos-db-resource-manager` package
-
-Install the CosmosDBManagement client library for JavaScript with `npm`:
-
-```bash
-npm install cosmos-db-resource-manager
-```
 
 
 ## Key concepts

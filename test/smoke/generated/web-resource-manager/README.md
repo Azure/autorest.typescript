@@ -15,13 +15,6 @@ WebSite Management Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `web-resource-manager` package
-
-Install the WebSiteManagement client library for JavaScript with `npm`:
-
-```bash
-npm install web-resource-manager
-```
 
 
 ## Key concepts

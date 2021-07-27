@@ -15,13 +15,6 @@ Azure resources can be locked to prevent other users in your organization from d
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-locks-2016-09` package
-
-Install the ManagementLock client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-locks-2016-09
-```
 
 
 ## Key concepts

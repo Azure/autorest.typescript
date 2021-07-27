@@ -15,13 +15,6 @@ Provides operations for working with resources and resource groups.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-resources-2019-08` package
-
-Install the ResourceManagement client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-resources-2019-08
-```
 
 
 ## Key concepts

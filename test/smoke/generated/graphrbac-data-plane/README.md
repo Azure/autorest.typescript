@@ -14,13 +14,6 @@ The Graph RBAC Management Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `graphrbac-data-plane` package
-
-Install the GraphRbacManagement client library for JavaScript with `npm`:
-
-```bash
-npm install graphrbac-data-plane
-```
 
 
 ## Key concepts

@@ -15,13 +15,6 @@ The Azure SQL Database management API provides a RESTful set of web services tha
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `sql-resource-manager` package
-
-Install the SqlManagement client library for JavaScript with `npm`:
-
-```bash
-npm install sql-resource-manager
-```
 
 
 ## Key concepts

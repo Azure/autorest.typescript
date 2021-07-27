@@ -15,13 +15,6 @@ Network Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `network-resource-manager` package
-
-Install the NetworkManagement client library for JavaScript with `npm`:
-
-```bash
-npm install network-resource-manager
-```
 
 
 ## Key concepts

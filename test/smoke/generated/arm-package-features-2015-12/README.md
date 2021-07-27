@@ -15,13 +15,6 @@ Azure Feature Exposure Control (AFEC) provides a mechanism for the resource prov
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-features-2015-12` package
-
-Install the Feature client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-features-2015-12
-```
 
 
 ## Key concepts

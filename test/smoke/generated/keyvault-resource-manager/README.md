@@ -15,13 +15,6 @@ The Azure management API provides a RESTful set of web services that interact wi
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `keyvault-resource-manager` package
-
-Install the KeyVaultManagement client library for JavaScript with `npm`:
-
-```bash
-npm install keyvault-resource-manager
-```
 
 
 ## Key concepts
