@@ -47,8 +47,8 @@ interface Metadata {
   addCredentials?: boolean;
   /** The link to the identity package in the repository */
   identityPackageURL?: string;
-  /** Indicates if the package is a test/Package package. */
-  isRealPackage?: boolean;
+  /** Indicates if the package is a test/releasable package. */
+  isReleasablePackage?: boolean;
 }
 
 /**
@@ -124,7 +124,7 @@ function createMetadata(
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     addCredentials,
     identityPackageURL,
-    isRealPackage: !isTestPackage
+    isReleasablePackage: !isTestPackage
   };
 }
 
