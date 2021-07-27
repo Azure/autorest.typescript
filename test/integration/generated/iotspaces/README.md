@@ -15,13 +15,6 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `iotspaces` package
-
-Install the IoTSpaces client library for JavaScript with `npm`:
-
-```bash
-npm install iotspaces
-```
 
 
 ## Key concepts

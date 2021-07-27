@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `custom-url-MoreOptions` package
-
-Install the CustomUrlMoreOptions client library for JavaScript with `npm`:
-
-```bash
-npm install custom-url-MoreOptions
-```
 
 
 ## Key concepts

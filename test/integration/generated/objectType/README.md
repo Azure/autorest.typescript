@@ -15,13 +15,6 @@ Service client for testing basic type: object swaggers
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `object-type` package
-
-Install the ObjectType client library for JavaScript with `npm`:
-
-```bash
-npm install object-type
-```
 
 
 ## Key concepts

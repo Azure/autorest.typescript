@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-duration` package
-
-Install the BodyDuration client library for JavaScript with `npm`:
-
-```bash
-npm install body-duration
-```
 
 
 ## Key concepts

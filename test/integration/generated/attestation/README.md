@@ -15,13 +15,6 @@ Describes the interface for the per-tenant enclave service.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `attestation` package
-
-Install the Generated client library for JavaScript with `npm`:
-
-```bash
-npm install attestation
-```
 
 
 ## Key concepts

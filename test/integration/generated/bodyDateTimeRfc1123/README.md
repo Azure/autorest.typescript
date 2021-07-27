@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-datetime-rfc1123` package
-
-Install the BodyDateTimeRfc1123 client library for JavaScript with `npm`:
-
-```bash
-npm install body-datetime-rfc1123
-```
 
 
 ## Key concepts

@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest Swagger BAT
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-file` package
-
-Install the BodyFile client library for JavaScript with `npm`:
-
-```bash
-npm install body-file
-```
 
 
 ## Key concepts

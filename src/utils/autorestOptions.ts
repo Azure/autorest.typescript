@@ -30,6 +30,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const skipEnumValidation = await getSkipEnumValidation(host);
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
   const headAsBoolean = await getHeadAsBoolean(host);
+  const isTestPackage = await getIsTestPackage(host);
 
   return {
     azureArm,
@@ -51,7 +52,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     skipEnumValidation,
     title,
     azureOutputDirectory,
-    headAsBoolean
+    headAsBoolean,
+    isTestPackage
   };
 }
 
@@ -59,6 +61,11 @@ async function getHeadAsBoolean(host: Host): Promise<boolean> {
   const headAsBoolean = await host.GetValue("head-as-boolean");
 
   return Boolean(headAsBoolean);
+}
+
+async function getIsTestPackage(host: Host): Promise<boolean> {
+  const isTestPackage: boolean = await host.GetValue("is-test-package");
+  return isTestPackage === null ? false : Boolean(isTestPackage);
 }
 
 async function getSkipEnumValidation(host: Host): Promise<boolean> {

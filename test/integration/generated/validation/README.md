@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest. No server backend exists for these tests.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `validation` package
-
-Install the Validation client library for JavaScript with `npm`:
-
-```bash
-npm install validation
-```
 
 
 ## Key concepts

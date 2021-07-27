@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `azure-parameter-grouping` package
-
-Install the AzureParameterGrouping client library for JavaScript with `npm`:
-
-```bash
-npm install azure-parameter-grouping
-```
 
 
 ## Key concepts

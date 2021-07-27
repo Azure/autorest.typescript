@@ -15,13 +15,6 @@ Metadata API definition for the Azure Container Registry runtime
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `sealedchoice` package
-
-Install the SealedChoice client library for JavaScript with `npm`:
-
-```bash
-npm install sealedchoice
-```
 
 
 ## Key concepts

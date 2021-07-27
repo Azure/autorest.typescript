@@ -15,13 +15,6 @@ Testing non-string enums.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `non-string-num` package
-
-Install the NonStringEnum client library for JavaScript with `npm`:
-
-```bash
-npm install non-string-num
-```
 
 
 ## Key concepts

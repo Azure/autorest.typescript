@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-complex-tracing` package
-
-Install the Service client library for JavaScript with `npm`:
-
-```bash
-npm install body-complex-tracing
-```
 
 
 ## Key concepts

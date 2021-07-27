@@ -19,13 +19,6 @@ Client that can be used to query an index and upload, merge, or delete documents
 
 - An [Azure subscription][azure_sub].
 
-### Install the `@azure/search-documents` package
-
-Install the Azure Search client library for JavaScript with `npm`:
-
-```bash
-npm install @azure/search-documents
-```
 
 
 ## Key concepts

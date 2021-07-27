@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `additional-properties` package
-
-Install the AdditionalProperties client library for JavaScript with `npm`:
-
-```bash
-npm install additional-properties
-```
 
 
 ## Key concepts

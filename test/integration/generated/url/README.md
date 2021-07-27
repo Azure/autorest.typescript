@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `url` package
-
-Install the Url client library for JavaScript with `npm`:
-
-```bash
-npm install url
-```
 
 
 ## Key concepts

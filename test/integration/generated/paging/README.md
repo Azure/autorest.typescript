@@ -15,13 +15,6 @@ Long-running Operation for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `paging-service` package
-
-Install the Paging client library for JavaScript with `npm`:
-
-```bash
-npm install paging-service
-```
 
 
 ## Key concepts

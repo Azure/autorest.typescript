@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `azure-special-properties` package
-
-Install the AzureSpecialProperties client library for JavaScript with `npm`:
-
-```bash
-npm install azure-special-properties
-```
 
 
 ## Key concepts

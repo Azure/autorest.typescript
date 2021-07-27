@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `required-optional` package
-
-Install the RequiredOptional client library for JavaScript with `npm`:
-
-```bash
-npm install required-optional
-```
 
 
 ## Key concepts

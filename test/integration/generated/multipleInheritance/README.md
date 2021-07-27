@@ -15,13 +15,6 @@ Service client for multiinheritance client testing
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `multiple-inheritance` package
-
-Install the MultipleInheritance client library for JavaScript with `npm`:
-
-```bash
-npm install multiple-inheritance
-```
 
 
 ## Key concepts

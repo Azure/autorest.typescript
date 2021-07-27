@@ -25,6 +25,7 @@ export interface AutorestOptions {
   skipEnumValidation?: boolean;
   azureOutputDirectory?: string;
   headAsBoolean?: boolean;
+  isTestPackage?: boolean;
 }
 
 let host: Host;

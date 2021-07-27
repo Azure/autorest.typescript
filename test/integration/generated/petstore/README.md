@@ -15,13 +15,6 @@ This is a sample server Petstore server.  You can find out more about Swagger at
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `petstore` package
-
-Install the Service client library for JavaScript with `npm`:
-
-```bash
-npm install petstore
-```
 
 
 ## Key concepts

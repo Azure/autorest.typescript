@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `header` package
-
-Install the Header client library for JavaScript with `npm`:
-
-```bash
-npm install header
-```
 
 
 ## Key concepts

@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `custom-url-paging` package
-
-Install the CustomUrlPaging client library for JavaScript with `npm`:
-
-```bash
-npm install custom-url-paging
-```
 
 
 ## Key concepts

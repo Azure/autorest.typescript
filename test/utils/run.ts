@@ -25,7 +25,8 @@ export async function runAutorest(
     ignoreNullableOnOptional,
     title,
     restLevelClient,
-    headAsBoolean
+    headAsBoolean,
+    isTestPackage
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
@@ -74,6 +75,9 @@ export async function runAutorest(
   }
   if (hideClients) {
     commandArguments.push(`--hide-clients=${hideClients}`);
+  }
+  if (isTestPackage) {
+    commandArguments.push(`--is-test-package=${isTestPackage}`);
   }
   if (licenseHeader !== undefined) {
     commandArguments.push(`--license-header=${licenseHeader}`);
