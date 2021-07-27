@@ -15,13 +15,6 @@ Resource Flattening for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `model-flattening` package
-
-Install the ModelFlattening client library for JavaScript with `npm`:
-
-```bash
-npm install model-flattening
-```
 
 
 ## Key concepts

@@ -47,6 +47,8 @@ interface Metadata {
   addCredentials?: boolean;
   /** The link to the identity package in the repository */
   identityPackageURL?: string;
+  /** Indicates if the package is a test/releasable package. */
+  isReleasablePackage?: boolean;
 }
 
 /**
@@ -60,7 +62,8 @@ function createMetadata(
   clientDetails: ClientDetails,
   azureOutputDirectory?: string,
   addCredentials?: boolean,
-  azureArm?: boolean
+  azureArm?: boolean,
+  isTestPackage?: boolean
 ): Metadata {
   const azureHuh = packageDetails.scopeName === "azure";
   const repoURL = azureHuh
@@ -120,7 +123,8 @@ function createMetadata(
     contributingGuideURL: repoURL && `${repoURL}/blob/master/CONTRIBUTING.md`,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     addCredentials,
-    identityPackageURL
+    identityPackageURL,
+    isReleasablePackage: !isTestPackage
   };
 }
 
@@ -133,7 +137,8 @@ export function generateReadmeFile(
     azureOutputDirectory,
     generateMetadata,
     addCredentials,
-    azureArm
+    azureArm,
+    isTestPackage
   } = getAutorestOptions();
 
   if (!generateMetadata) {
@@ -145,7 +150,8 @@ export function generateReadmeFile(
     clientDetails,
     azureOutputDirectory,
     addCredentials,
-    azureArm
+    azureArm,
+    isTestPackage
   );
   const file = fs.readFileSync(path.join(__dirname, "README.md.hbs"), {
     encoding: "utf-8"

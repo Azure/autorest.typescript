@@ -15,13 +15,6 @@ TextAnalytics Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `textanalytics` package
-
-Install the Generated client library for JavaScript with `npm`:
-
-```bash
-npm install textanalytics
-```
 
 
 ## Key concepts

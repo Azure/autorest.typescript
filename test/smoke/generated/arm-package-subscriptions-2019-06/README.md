@@ -15,13 +15,6 @@ All resource groups and resources exist within subscriptions. These operation en
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-subscriptions-2019-06` package
-
-Install the Subscription client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-subscriptions-2019-06
-```
 
 
 ## Key concepts

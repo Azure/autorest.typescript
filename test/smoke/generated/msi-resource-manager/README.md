@@ -15,13 +15,6 @@ The Managed Service Identity Client.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `msi-resource-manager` package
-
-Install the ManagedServiceIdentity client library for JavaScript with `npm`:
-
-```bash
-npm install msi-resource-manager
-```
 
 
 ## Key concepts

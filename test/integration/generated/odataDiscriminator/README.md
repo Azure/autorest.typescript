@@ -15,13 +15,6 @@ Client that can be used to manage and query indexes and documents, as well as ma
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `odata-discriminator` package
-
-Install the ODataDiscriminator client library for JavaScript with `npm`:
-
-```bash
-npm install odata-discriminator
-```
 
 
 ## Key concepts

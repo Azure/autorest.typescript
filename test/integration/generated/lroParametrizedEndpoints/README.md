@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `lro-parameterized-endpoints` package
-
-Install the LroParametrizedEndpoints client library for JavaScript with `npm`:
-
-```bash
-npm install lro-parameterized-endpoints
-```
 
 
 ## Key concepts

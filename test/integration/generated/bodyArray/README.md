@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest Swagger BAT
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-array` package
-
-Install the BodyArray client library for JavaScript with `npm`:
-
-```bash
-npm install body-array
-```
 
 
 ## Key concepts

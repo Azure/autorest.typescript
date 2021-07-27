@@ -15,13 +15,6 @@ To manage and control access to your resources, you can define customized polici
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-policy-2019-09` package
-
-Install the Policy client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-policy-2019-09
-```
 
 
 ## Key concepts

@@ -15,13 +15,6 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `storagefileshare` package
-
-Install the StorageFileShare client library for JavaScript with `npm`:
-
-```bash
-npm install storagefileshare
-```
 
 
 ## Key concepts

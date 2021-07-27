@@ -15,13 +15,6 @@ PetStore
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `extensible-enums` package
-
-Install the ExtensibleEnums client library for JavaScript with `npm`:
-
-```bash
-npm install extensible-enums
-```
 
 
 ## Key concepts

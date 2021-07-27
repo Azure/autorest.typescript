@@ -15,13 +15,6 @@ Long-running Operation for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `paging-no-iterators` package
-
-Install the PagingNoIterators client library for JavaScript with `npm`:
-
-```bash
-npm install paging-no-iterators
-```
 
 
 ## Key concepts

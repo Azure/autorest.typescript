@@ -19,13 +19,6 @@ The key vault client performs cryptographic key operations and vault operations 
 
 - An [Azure subscription][azure_sub].
 
-### Install the `@azure/keyvault-secrets` package
-
-Install the Azure KeyVault client library for JavaScript with `npm`:
-
-```bash
-npm install @azure/keyvault-secrets
-```
 
 
 ## Key concepts

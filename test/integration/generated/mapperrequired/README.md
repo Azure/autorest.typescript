@@ -15,13 +15,6 @@ The key vault client performs cryptographic key operations and vault operations 
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `mapperrequired` package
-
-Install the MapperRequired client library for JavaScript with `npm`:
-
-```bash
-npm install mapperrequired
-```
 
 
 ## Key concepts

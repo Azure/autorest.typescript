@@ -15,13 +15,6 @@ ARM applications
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-managedapplications-2018-06` package
-
-Install the Application client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-managedapplications-2018-06
-```
 
 
 ## Key concepts

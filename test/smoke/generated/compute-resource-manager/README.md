@@ -15,13 +15,6 @@ Compute Client
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `compute-resource-manager` package
-
-Install the ComputeManagement client library for JavaScript with `npm`:
-
-```bash
-npm install compute-resource-manager
-```
 
 
 ## Key concepts

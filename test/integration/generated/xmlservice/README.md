@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest Swagger BAT
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `xml-service` package
-
-Install the XmlService client library for JavaScript with `npm`:
-
-```bash
-npm install xml-service
-```
 
 
 ## Key concepts

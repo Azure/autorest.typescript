@@ -18,6 +18,7 @@ interface SwaggerConfig {
   allowInsecureConnection?: boolean;
   restLevelClient?: boolean;
   headAsBoolean?: boolean;
+  isTestPackage?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -31,7 +32,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.json",
@@ -40,7 +42,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   attestation: {
     swaggerOrConfig: "test/integration/swaggers/attestation.json",
@@ -50,7 +53,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   azureParameterGrouping: {
     swaggerOrConfig: "azure-parameter-grouping.json",
@@ -59,7 +63,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   azureReport: {
     swaggerOrConfig: "azure-report.json",
@@ -68,7 +73,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   azureSpecialProperties: {
     swaggerOrConfig: "azure-special-properties.json",
@@ -79,7 +85,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     credentialScopes:
       "https://microsoft.com/.default,http://microsoft.com/.default",
     useCoreV2: true,
-    allowInsecureConnection: true
+    allowInsecureConnection: true,
+    isTestPackage: true
   },
   bodyArray: {
     swaggerOrConfig: "body-array.json",
@@ -88,7 +95,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyBoolean: {
     swaggerOrConfig: "body-boolean.json",
@@ -97,7 +105,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyBooleanQuirks: {
     swaggerOrConfig: "body-boolean.quirks.json",
@@ -106,7 +115,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyByte: {
     swaggerOrConfig: "body-byte.json",
@@ -115,7 +125,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyComplex: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
@@ -124,7 +135,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
@@ -133,7 +145,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     restLevelClient: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyComplexWithTracing: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
@@ -146,7 +159,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     },
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyDate: {
     swaggerOrConfig: "body-date.json",
@@ -155,7 +169,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyDateTime: {
     swaggerOrConfig: "body-datetime.json",
@@ -164,7 +179,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyDateTimeRfc1123: {
     swaggerOrConfig: "body-datetime-rfc1123.json",
@@ -173,7 +189,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyDictionary: {
     swaggerOrConfig: "body-dictionary.json",
@@ -182,7 +199,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyDuration: {
     swaggerOrConfig: "body-duration.json",
@@ -191,7 +209,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyFile: {
     swaggerOrConfig: "body-file.json",
@@ -200,7 +219,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyInteger: {
     swaggerOrConfig: "body-integer.json",
@@ -209,7 +229,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyNumber: {
     swaggerOrConfig: "body-number.json",
@@ -218,7 +239,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyString: {
     swaggerOrConfig: "body-string.json",
@@ -227,7 +249,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyTime: {
     swaggerOrConfig: "body-time.json",
@@ -236,7 +259,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   customUrl: {
     swaggerOrConfig: "custom-baseUrl.json",
@@ -245,7 +269,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   customUrlMoreOptions: {
     swaggerOrConfig: "custom-baseUrl-more-options.json",
@@ -254,7 +279,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   customUrlPaging: {
     swaggerOrConfig: "custom-baseUrl-paging.json",
@@ -263,7 +289,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   header: {
     swaggerOrConfig: "header.json",
@@ -272,7 +299,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   httpInfrastructure: {
     swaggerOrConfig: "httpInfrastructure.json",
@@ -281,7 +309,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   lro: {
     swaggerOrConfig: "lro.json",
@@ -290,7 +319,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   lroParametrizedEndpoints: {
     swaggerOrConfig: "lro-parameterized-endpoints.json",
@@ -299,7 +329,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   mediaTypes: {
     swaggerOrConfig: "media_types.json",
@@ -308,7 +339,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   mediaTypesWithTracing: {
     swaggerOrConfig: "media_types.json",
@@ -321,7 +353,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     },
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   mediaTypesV3: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3.json",
@@ -330,7 +363,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   mediaTypesV3Lro: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3-lro.json",
@@ -338,7 +372,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "media-types-v3-lro-client",
     licenseHeader: true,
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   modelFlattening: {
     swaggerOrConfig: "model-flattening.json",
@@ -347,7 +382,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   multipleInheritance: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -356,7 +392,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
@@ -366,7 +403,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    restLevelClient: true
+    restLevelClient: true,
+    isTestPackage: true
   },
   noMappers: {
     swaggerOrConfig: "test/integration/swaggers/no-mappers.json",
@@ -375,7 +413,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   noOperation: {
     swaggerOrConfig: "test/integration/swaggers/noOperation.json",
@@ -384,7 +423,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   nonStringEnum: {
     swaggerOrConfig: "non-string-enum.json",
@@ -393,7 +433,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   objectType: {
     swaggerOrConfig: "object-type.json",
@@ -402,7 +443,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   paging: {
     swaggerOrConfig: "paging.json",
@@ -414,7 +456,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
       packagePrefix: "Azure.Media.Types"
     },
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   pagingNoIterators: {
     swaggerOrConfig: "paging.json",
@@ -423,7 +466,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     disableAsyncIterators: true,
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   requiredOptional: {
     swaggerOrConfig: "required-optional.json",
@@ -432,7 +476,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   regexConstraint: {
     swaggerOrConfig: "test/integration/swaggers/regex-constraint.json",
@@ -441,7 +486,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   report: {
     swaggerOrConfig: "report.json",
@@ -450,7 +496,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   uuid: {
     swaggerOrConfig: "test/integration/swaggers/uuid.json",
@@ -459,7 +506,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   url: {
     swaggerOrConfig: "url.json",
@@ -468,7 +516,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   urlMulti: {
     swaggerOrConfig: "url-multi-collectionFormat.json",
@@ -477,7 +526,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   url2: {
     swaggerOrConfig: "test/integration/swaggers/url.json",
@@ -486,7 +536,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   xmlservice: {
     swaggerOrConfig: "xml-service.json",
@@ -495,7 +546,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   noLicenseHeader: {
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
@@ -503,7 +555,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "nolicense-header",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   licenseHeader: {
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
@@ -512,7 +565,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   subscriptionIdApiVersion: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
@@ -521,7 +575,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   bodyFormData: {
     swaggerOrConfig: "body-formdata.json",
@@ -530,7 +585,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   validation: {
     swaggerOrConfig: "validation.json",
@@ -539,7 +595,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   extensibleEnums: {
     swaggerOrConfig: "test/integration/swaggers/extensibleEnums.md",
@@ -548,7 +605,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   xmsErrorResponses: {
     swaggerOrConfig: "test/integration/swaggers/xmsErrorResponses.md",
@@ -556,7 +614,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "xms-error-responses",
     licenseHeader: true,
     addCredentials: false,
-    useCoreV2: true
+    useCoreV2: true,
+    isTestPackage: true
   },
   odataDiscriminator: {
     swaggerOrConfig: "test/integration/swaggers/odata-discriminator.json",
@@ -565,7 +624,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   appconfiguration: {
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
@@ -574,7 +634,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   appconfigurationexport: {
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
@@ -584,7 +645,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     hideClients: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   mapperrequired: {
     swaggerOrConfig: "test/integration/swaggers/mapperrequired.json",
@@ -593,7 +655,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   readmeFileChecker: {
     swaggerOrConfig: "test/integration/swaggers/keyvaults-secrets.md",
@@ -601,7 +664,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "@azure/keyvault-secrets",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   nameChecker: {
     swaggerOrConfig: "test/integration/swaggers/Data.md",
@@ -609,7 +673,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "@azure/search-documents",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   polymorphicSkipNormalize: {
     swaggerOrConfig:
@@ -618,7 +683,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "@azure/media-services",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   petstore: {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
@@ -626,7 +692,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   textanalytics: {
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.md",
@@ -636,7 +703,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   constantParam: {
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.json",
@@ -646,14 +714,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   storagefileshare: {
     swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
     clientName: "StorageFileShareClient",
     packageName: "storagefileshare",
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   optionalnull: {
     swaggerOrConfig: "test/integration/swaggers/optionalnull.json",
@@ -661,21 +731,24 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "optionalnull",
     ignoreNullableOnOptional: true,
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   storageblob: {
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
     clientName: "StorageBlobClient",
     packageName: "storageblob",
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   headerprefix: {
     swaggerOrConfig: "test/integration/swaggers/headerprefix.json",
     clientName: "HeaderPrefixClient",
     packageName: "headerprefix",
     useCoreV2: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   operationgroupclash: {
     swaggerOrConfig: "test/integration/swaggers/operationGroupClash.json",
@@ -683,7 +756,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "operationgroupclash",
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   useragentcorev1: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
@@ -692,7 +766,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: false,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   useragentcorev2: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
@@ -701,7 +776,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   iotspaces: {
     swaggerOrConfig: "test/integration/swaggers/iotspaces.json",
@@ -710,7 +786,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: true
+    addCredentials: true,
+    isTestPackage: true
   },
   resources: {
     swaggerOrConfig: "test/integration/swaggers/resources.json",
@@ -720,7 +797,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: true,
-    headAsBoolean: true
+    headAsBoolean: true,
+    isTestPackage: true
   },
   sealedchoice: {
     swaggerOrConfig: "test/integration/swaggers/sealedchoice.json",
@@ -729,7 +807,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
-    addCredentials: false
+    addCredentials: false,
+    isTestPackage: true
   },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
@@ -738,7 +817,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     packageName: "body-string-rest",
     addCredentials: false,
     restLevelClient: true,
-    licenseHeader: true
+    licenseHeader: true,
+    isTestPackage: true
   }
 };
 
@@ -768,7 +848,8 @@ const generateSwaggers = async (
       useCoreV2,
       allowInsecureConnection,
       restLevelClient,
-      headAsBoolean
+      headAsBoolean,
+      isTestPackage
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -802,7 +883,8 @@ const generateSwaggers = async (
         useCoreV2,
         allowInsecureConnection,
         restLevelClient,
-        headAsBoolean
+        headAsBoolean,
+        isTestPackage
       },
       isDebugging
     );

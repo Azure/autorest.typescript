@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `zzzReport` package
-
-Install the Report client library for JavaScript with `npm`:
-
-```bash
-npm install zzzReport
-```
 
 
 ## Key concepts

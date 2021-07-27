@@ -15,13 +15,6 @@ The Text Analytics API is a suite of natural language processing (NLP) services 
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `constantParam` package
-
-Install the Generated client library for JavaScript with `npm`:
-
-```bash
-npm install constantParam
-```
 
 
 ## Key concepts

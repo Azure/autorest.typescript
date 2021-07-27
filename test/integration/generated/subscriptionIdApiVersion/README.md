@@ -15,13 +15,6 @@ Some cool documentation.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `subscriptionid-apiversion` package
-
-Install the SubscriptionIdApiVersion client library for JavaScript with `npm`:
-
-```bash
-npm install subscriptionid-apiversion
-```
 
 
 ## Key concepts

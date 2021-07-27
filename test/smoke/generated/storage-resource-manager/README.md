@@ -15,13 +15,6 @@ The Azure Storage Management API.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `storage-resource-manager` package
-
-Install the StorageManagement client library for JavaScript with `npm`:
-
-```bash
-npm install storage-resource-manager
-```
 
 
 ## Key concepts

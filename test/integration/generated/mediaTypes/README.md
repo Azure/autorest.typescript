@@ -15,13 +15,6 @@ Play with produces/consumes and media-types in general.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `media-types-service` package
-
-Install the MediaTypes client library for JavaScript with `npm`:
-
-```bash
-npm install media-types-service
-```
 
 
 ## Key concepts

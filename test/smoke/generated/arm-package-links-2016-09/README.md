@@ -15,13 +15,6 @@ Azure resources can be linked together to form logical relationships. You can es
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-links-2016-09` package
-
-Install the ManagementLink client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-links-2016-09
-```
 
 
 ## Key concepts

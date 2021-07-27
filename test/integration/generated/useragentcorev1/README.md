@@ -15,13 +15,6 @@ Some cool documentation.
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `useragent-corev1` package
-
-Install the UserAgentCoreV1 client library for JavaScript with `npm`:
-
-```bash
-npm install useragent-corev1
-```
 
 
 ## Key concepts

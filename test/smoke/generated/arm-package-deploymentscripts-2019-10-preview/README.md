@@ -15,13 +15,6 @@ The APIs listed in this specification can be used to manage Deployment Scripts r
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `arm-package-deploymentscripts-2019-10-preview` package
-
-Install the DeploymentScripts client library for JavaScript with `npm`:
-
-```bash
-npm install arm-package-deploymentscripts-2019-10-preview
-```
 
 
 ## Key concepts

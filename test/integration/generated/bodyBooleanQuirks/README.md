@@ -15,13 +15,6 @@ Test Infrastructure for AutoRest
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `body-boolean-quirks` package
-
-Install the BodyBooleanQuirks client library for JavaScript with `npm`:
-
-```bash
-npm install body-boolean-quirks
-```
 
 
 ## Key concepts

@@ -15,13 +15,6 @@ XMS Error Response Extensions
 - Latest versions of Safari, Chrome, Edge and Firefox.
 
 
-### Install the `xms-error-responses` package
-
-Install the XmsErrorResponses client library for JavaScript with `npm`:
-
-```bash
-npm install xms-error-responses
-```
 
 
 ## Key concepts
