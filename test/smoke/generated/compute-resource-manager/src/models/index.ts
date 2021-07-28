@@ -2277,7 +2277,7 @@ export interface ContainerServicePrincipalProfile {
 /** Profile for the container service master. */
 export interface ContainerServiceMasterProfile {
   /** Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1. */
-  count?: Enum31;
+  count?: ContainerServiceMasterProfileCount;
   /** DNS prefix to be used to create the FQDN for master. */
   dnsPrefix: string;
   /**
@@ -4473,23 +4473,23 @@ export enum KnownGalleryApplicationVersionPropertiesProvisioningState {
  */
 export type GalleryApplicationVersionPropertiesProvisioningState = string;
 
-/** Known values of {@link Enum31} that the service accepts. */
-export enum KnownEnum31 {
+/** Known values of {@link ContainerServiceMasterProfileCount} that the service accepts. */
+export enum KnownContainerServiceMasterProfileCount {
   One = 1,
   Three = 3,
   Five = 5
 }
 
 /**
- * Defines values for Enum31. \
- * {@link KnownEnum31} can be used interchangeably with Enum31,
+ * Defines values for ContainerServiceMasterProfileCount. \
+ * {@link KnownContainerServiceMasterProfileCount} can be used interchangeably with ContainerServiceMasterProfileCount,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **1** \
  * **3** \
  * **5**
  */
-export type Enum31 = number;
+export type ContainerServiceMasterProfileCount = number;
 
 /** Known values of {@link ContainerServiceVMSizeTypes} that the service accepts. */
 export enum KnownContainerServiceVMSizeTypes {
