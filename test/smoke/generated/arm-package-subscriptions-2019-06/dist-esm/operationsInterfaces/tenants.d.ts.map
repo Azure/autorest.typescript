@@ -1,1 +1,0 @@
-{"version":3,"file":"tenants.d.ts","sourceRoot":"","sources":["../../src/operationsInterfaces/tenants.ts"],"names":[],"mappings":"AAQA,OAAO,oBAAoB,CAAC;AAC5B,OAAO,EAAE,0BAA0B,EAAE,MAAM,oBAAoB,CAAC;AAChE,OAAO,EAAE,mBAAmB,EAAE,yBAAyB,EAAE,MAAM,WAAW,CAAC;AAG3E,wCAAwC;AACxC,MAAM,WAAW,OAAO;IACtB;;;OAGG;IACH,IAAI,CACF,OAAO,CAAC,EAAE,yBAAyB,GAClC,0BAA0B,CAAC,mBAAmB,CAAC,CAAC;CACpD"}
