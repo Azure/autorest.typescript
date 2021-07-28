@@ -1,0 +1,84 @@
+import "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { InboundNatRules } from "../operationsInterfaces";
+import { NetworkManagementClientContext } from "../networkManagementClientContext";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { InboundNatRule, InboundNatRulesListOptionalParams, InboundNatRulesDeleteOptionalParams, InboundNatRulesGetOptionalParams, InboundNatRulesGetResponse, InboundNatRulesCreateOrUpdateOptionalParams, InboundNatRulesCreateOrUpdateResponse } from "../models";
+/** Class representing a InboundNatRules. */
+export declare class InboundNatRulesImpl implements InboundNatRules {
+    private readonly client;
+    /**
+     * Initialize a new instance of the class InboundNatRules class.
+     * @param client Reference to the service client
+     */
+    constructor(client: NetworkManagementClientContext);
+    /**
+     * Gets all the inbound nat rules in a load balancer.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param options The options parameters.
+     */
+    list(resourceGroupName: string, loadBalancerName: string, options?: InboundNatRulesListOptionalParams): PagedAsyncIterableIterator<InboundNatRule>;
+    private listPagingPage;
+    private listPagingAll;
+    /**
+     * Gets all the inbound nat rules in a load balancer.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param options The options parameters.
+     */
+    private _list;
+    /**
+     * Deletes the specified load balancer inbound nat rule.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param inboundNatRuleName The name of the inbound nat rule.
+     * @param options The options parameters.
+     */
+    beginDelete(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Deletes the specified load balancer inbound nat rule.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param inboundNatRuleName The name of the inbound nat rule.
+     * @param options The options parameters.
+     */
+    beginDeleteAndWait(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesDeleteOptionalParams): Promise<void>;
+    /**
+     * Gets the specified load balancer inbound nat rule.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param inboundNatRuleName The name of the inbound nat rule.
+     * @param options The options parameters.
+     */
+    get(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, options?: InboundNatRulesGetOptionalParams): Promise<InboundNatRulesGetResponse>;
+    /**
+     * Creates or updates a load balancer inbound nat rule.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param inboundNatRuleName The name of the inbound nat rule.
+     * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+     *                                 operation.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdate(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: InboundNatRulesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<InboundNatRulesCreateOrUpdateResponse>, InboundNatRulesCreateOrUpdateResponse>>;
+    /**
+     * Creates or updates a load balancer inbound nat rule.
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param inboundNatRuleName The name of the inbound nat rule.
+     * @param inboundNatRuleParameters Parameters supplied to the create or update inbound nat rule
+     *                                 operation.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateAndWait(resourceGroupName: string, loadBalancerName: string, inboundNatRuleName: string, inboundNatRuleParameters: InboundNatRule, options?: InboundNatRulesCreateOrUpdateOptionalParams): Promise<InboundNatRulesCreateOrUpdateResponse>;
+    /**
+     * ListNext
+     * @param resourceGroupName The name of the resource group.
+     * @param loadBalancerName The name of the load balancer.
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    private _listNext;
+}
+//# sourceMappingURL=inboundNatRules.d.ts.map

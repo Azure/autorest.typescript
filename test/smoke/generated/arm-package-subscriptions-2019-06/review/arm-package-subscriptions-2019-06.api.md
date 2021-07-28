@@ -9,7 +9,7 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
-interface Location_2 {
+export interface Location {
     readonly displayName?: string;
     readonly id?: string;
     readonly latitude?: string;
@@ -18,11 +18,9 @@ interface Location_2 {
     readonly subscriptionId?: string;
 }
 
-export { Location_2 as Location }
-
 // @public
 export interface LocationListResult {
-    value?: Location_2[];
+    value?: Location[];
 }
 
 // @public
@@ -128,7 +126,7 @@ export interface SubscriptionPolicies {
 export interface Subscriptions {
     get(subscriptionId: string, options?: SubscriptionsGetOptionalParams): Promise<SubscriptionsGetResponse>;
     list(options?: SubscriptionsListOptionalParams): PagedAsyncIterableIterator<Subscription>;
-    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location_2>;
+    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location>;
 }
 
 // @public

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.7.11",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -17,7 +17,7 @@
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Location_2:interface",
+          "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface",
           "docComment": "/**\n * Location information.\n */\n",
           "excerptTokens": [
             {
@@ -26,11 +26,11 @@
             }
           ],
           "releaseTag": "Public",
-          "name": "Location_2",
+          "name": "Location",
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#displayName:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#displayName:member",
               "docComment": "/**\n * The display name of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -55,7 +55,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#id:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#id:member",
               "docComment": "/**\n * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -80,7 +80,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#latitude:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#latitude:member",
               "docComment": "/**\n * The latitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -105,7 +105,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#longitude:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#longitude:member",
               "docComment": "/**\n * The longitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -130,7 +130,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#name:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#name:member",
               "docComment": "/**\n * The location name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -155,7 +155,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#subscriptionId:member",
+              "canonicalReference": "arm-package-subscriptions-2019-06!Location#subscriptionId:member",
               "docComment": "/**\n * The subscription ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {

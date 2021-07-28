@@ -1,0 +1,82 @@
+import "@azure/core-paging";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
+import { FlowLogs } from "../operationsInterfaces";
+import { NetworkManagementClientContext } from "../networkManagementClientContext";
+import { PollerLike, PollOperationState } from "@azure/core-lro";
+import { FlowLog, FlowLogsListOptionalParams, FlowLogsCreateOrUpdateOptionalParams, FlowLogsCreateOrUpdateResponse, FlowLogsGetOptionalParams, FlowLogsGetResponse, FlowLogsDeleteOptionalParams } from "../models";
+/** Class representing a FlowLogs. */
+export declare class FlowLogsImpl implements FlowLogs {
+    private readonly client;
+    /**
+     * Initialize a new instance of the class FlowLogs class.
+     * @param client Reference to the service client
+     */
+    constructor(client: NetworkManagementClientContext);
+    /**
+     * Lists all flow log resources for the specified Network Watcher.
+     * @param resourceGroupName The name of the resource group containing Network Watcher.
+     * @param networkWatcherName The name of the Network Watcher resource.
+     * @param options The options parameters.
+     */
+    list(resourceGroupName: string, networkWatcherName: string, options?: FlowLogsListOptionalParams): PagedAsyncIterableIterator<FlowLog>;
+    private listPagingPage;
+    private listPagingAll;
+    /**
+     * Create or update a flow log for the specified network security group.
+     * @param resourceGroupName The name of the resource group.
+     * @param networkWatcherName The name of the network watcher.
+     * @param flowLogName The name of the flow log.
+     * @param parameters Parameters that define the create or update flow log resource.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdate(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: FlowLogsCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<FlowLogsCreateOrUpdateResponse>, FlowLogsCreateOrUpdateResponse>>;
+    /**
+     * Create or update a flow log for the specified network security group.
+     * @param resourceGroupName The name of the resource group.
+     * @param networkWatcherName The name of the network watcher.
+     * @param flowLogName The name of the flow log.
+     * @param parameters Parameters that define the create or update flow log resource.
+     * @param options The options parameters.
+     */
+    beginCreateOrUpdateAndWait(resourceGroupName: string, networkWatcherName: string, flowLogName: string, parameters: FlowLog, options?: FlowLogsCreateOrUpdateOptionalParams): Promise<FlowLogsCreateOrUpdateResponse>;
+    /**
+     * Gets a flow log resource by name.
+     * @param resourceGroupName The name of the resource group.
+     * @param networkWatcherName The name of the network watcher.
+     * @param flowLogName The name of the flow log resource.
+     * @param options The options parameters.
+     */
+    get(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: FlowLogsGetOptionalParams): Promise<FlowLogsGetResponse>;
+    /**
+     * Deletes the specified flow log resource.
+     * @param resourceGroupName The name of the resource group.
+     * @param networkWatcherName The name of the network watcher.
+     * @param flowLogName The name of the flow log resource.
+     * @param options The options parameters.
+     */
+    beginDelete(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: FlowLogsDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    /**
+     * Deletes the specified flow log resource.
+     * @param resourceGroupName The name of the resource group.
+     * @param networkWatcherName The name of the network watcher.
+     * @param flowLogName The name of the flow log resource.
+     * @param options The options parameters.
+     */
+    beginDeleteAndWait(resourceGroupName: string, networkWatcherName: string, flowLogName: string, options?: FlowLogsDeleteOptionalParams): Promise<void>;
+    /**
+     * Lists all flow log resources for the specified Network Watcher.
+     * @param resourceGroupName The name of the resource group containing Network Watcher.
+     * @param networkWatcherName The name of the Network Watcher resource.
+     * @param options The options parameters.
+     */
+    private _list;
+    /**
+     * ListNext
+     * @param resourceGroupName The name of the resource group containing Network Watcher.
+     * @param networkWatcherName The name of the Network Watcher resource.
+     * @param nextLink The nextLink from the previous successful call to the List method.
+     * @param options The options parameters.
+     */
+    private _listNext;
+}
+//# sourceMappingURL=flowLogs.d.ts.map

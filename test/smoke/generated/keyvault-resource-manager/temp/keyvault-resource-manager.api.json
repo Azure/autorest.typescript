@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.7.11",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -3645,7 +3645,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "keyvault-resource-manager!Permissions_2:interface",
+          "canonicalReference": "keyvault-resource-manager!Permissions:interface",
           "docComment": "/**\n * Permissions the identity has for keys, secrets, certificates and storage.\n */\n",
           "excerptTokens": [
             {
@@ -3654,11 +3654,11 @@
             }
           ],
           "releaseTag": "Public",
-          "name": "Permissions_2",
+          "name": "Permissions",
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#certificates:member",
+              "canonicalReference": "keyvault-resource-manager!Permissions#certificates:member",
               "docComment": "/**\n * Permissions to certificates\n */\n",
               "excerptTokens": [
                 {
@@ -3688,7 +3688,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#keys:member",
+              "canonicalReference": "keyvault-resource-manager!Permissions#keys:member",
               "docComment": "/**\n * Permissions to keys\n */\n",
               "excerptTokens": [
                 {
@@ -3718,7 +3718,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#secrets:member",
+              "canonicalReference": "keyvault-resource-manager!Permissions#secrets:member",
               "docComment": "/**\n * Permissions to secrets\n */\n",
               "excerptTokens": [
                 {
@@ -3748,7 +3748,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#storage:member",
+              "canonicalReference": "keyvault-resource-manager!Permissions#storage:member",
               "docComment": "/**\n * Permissions to storage accounts\n */\n",
               "excerptTokens": [
                 {

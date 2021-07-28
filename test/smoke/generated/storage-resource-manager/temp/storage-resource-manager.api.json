@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.7.11",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -9294,7 +9294,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "storage-resource-manager!KeyType_2:type",
+          "canonicalReference": "storage-resource-manager!KeyType:type",
           "docComment": "/**\n * Defines values for KeyType. \\ {@link KnownKeyType} can be used interchangeably with KeyType, this enum contains the known values that the service supports. ### Known values supported by the service **Service** \\ **Account**\n */\n",
           "excerptTokens": [
             {
@@ -9311,7 +9311,7 @@
             }
           ],
           "releaseTag": "Public",
-          "name": "KeyType_2",
+          "name": "KeyType",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2
@@ -15615,7 +15615,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "storage-resource-manager!Permissions_2:type",
+          "canonicalReference": "storage-resource-manager!Permissions:type",
           "docComment": "/**\n * Defines values for Permissions. \\ {@link KnownPermissions} can be used interchangeably with Permissions, this enum contains the known values that the service supports. ### Known values supported by the service **r** \\ **d** \\ **w** \\ **l** \\ **a** \\ **c** \\ **u** \\ **p**\n */\n",
           "excerptTokens": [
             {
@@ -15632,7 +15632,7 @@
             }
           ],
           "releaseTag": "Public",
-          "name": "Permissions_2",
+          "name": "Permissions",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2

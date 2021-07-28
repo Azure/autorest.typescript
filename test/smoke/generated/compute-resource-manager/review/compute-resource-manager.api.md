@@ -353,13 +353,10 @@ export interface ContainerServiceListResult {
 
 // @public
 export interface ContainerServiceMasterProfile {
-    count?: ContainerServiceMasterProfileCount;
+    count?: Enum31;
     dnsPrefix: string;
     readonly fqdn?: string;
 }
-
-// @public
-export type ContainerServiceMasterProfileCount = number;
 
 // @public
 export interface ContainerServiceOrchestratorProfile {
@@ -1025,6 +1022,9 @@ export interface EncryptionSettingsElement {
 export type EncryptionType = string;
 
 // @public
+export type Enum31 = number;
+
+// @public
 export interface Galleries {
     beginCreateOrUpdate(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<GalleriesCreateOrUpdateResponse>, GalleriesCreateOrUpdateResponse>>;
     beginCreateOrUpdateAndWait(resourceGroupName: string, galleryName: string, gallery: Gallery, options?: GalleriesCreateOrUpdateOptionalParams): Promise<GalleriesCreateOrUpdateResponse>;
@@ -1555,14 +1555,12 @@ export type HyperVGenerationType = string;
 export type HyperVGenerationTypes = string;
 
 // @public
-type Image_2 = Resource & {
+export type Image = Resource & {
     sourceVirtualMachine?: SubResource;
     storageProfile?: ImageStorageProfile;
     readonly provisioningState?: string;
     hyperVGeneration?: HyperVGenerationTypes;
 };
-
-export { Image_2 as Image }
 
 // @public
 export type ImageDataDisk = ImageDisk & {
@@ -1589,7 +1587,7 @@ export interface ImageDiskReference {
 // @public
 export interface ImageListResult {
     nextLink?: string;
-    value: Image_2[];
+    value: Image[];
 }
 
 // @public
@@ -1616,15 +1614,15 @@ export type ImageReference = SubResource & {
 
 // @public
 export interface Images {
-    beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
-    beginCreateOrUpdateAndWait(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<ImagesCreateOrUpdateResponse>;
+    beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, imageName: string, parameters: Image, options?: ImagesCreateOrUpdateOptionalParams): Promise<ImagesCreateOrUpdateResponse>;
     beginDelete(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     beginDeleteAndWait(resourceGroupName: string, imageName: string, options?: ImagesDeleteOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesUpdateResponse>, ImagesUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, imageName: string, parameters: ImageUpdate, options?: ImagesUpdateOptionalParams): Promise<ImagesUpdateResponse>;
     get(resourceGroupName: string, imageName: string, options?: ImagesGetOptionalParams): Promise<ImagesGetResponse>;
-    list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image_2>;
-    listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image_2>;
+    list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image>;
+    listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image>;
 }
 
 // @public
@@ -1634,7 +1632,7 @@ export interface ImagesCreateOrUpdateOptionalParams extends coreClient.Operation
 }
 
 // @public
-export type ImagesCreateOrUpdateResponse = Image_2;
+export type ImagesCreateOrUpdateResponse = Image;
 
 // @public
 export interface ImagesDeleteOptionalParams extends coreClient.OperationOptions {
@@ -1648,7 +1646,7 @@ export interface ImagesGetOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ImagesGetResponse = Image_2;
+export type ImagesGetResponse = Image;
 
 // @public
 export interface ImagesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -1692,7 +1690,7 @@ export interface ImagesUpdateOptionalParams extends coreClient.OperationOptions 
 }
 
 // @public
-export type ImagesUpdateResponse = Image_2;
+export type ImagesUpdateResponse = Image;
 
 // @public
 export type ImageUpdate = UpdateResource & {
@@ -1775,16 +1773,6 @@ export enum KnownAvailabilitySetSkuTypes {
     Aligned = "Aligned",
     // (undocumented)
     Classic = "Classic"
-}
-
-// @public
-export enum KnownContainerServiceMasterProfileCount {
-    // (undocumented)
-    Five = 5,
-    // (undocumented)
-    One = 1,
-    // (undocumented)
-    Three = 3
 }
 
 // @public
@@ -1948,6 +1936,16 @@ export enum KnownDiskStorageAccountTypes {
 export enum KnownEncryptionType {
     EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey",
     EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey"
+}
+
+// @public
+export enum KnownEnum31 {
+    // (undocumented)
+    Five = 5,
+    // (undocumented)
+    One = 1,
+    // (undocumented)
+    Three = 3
 }
 
 // @public
