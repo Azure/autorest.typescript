@@ -5,7 +5,7 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 export function generateApiExtractorConfig(project: Project) {
-  const { generateMetadata } = getAutorestOptions();
+  const { generateMetadata, packageDetails } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
@@ -14,7 +14,7 @@ export function generateApiExtractorConfig(project: Project) {
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-    mainEntryPointFilePath: `./esm/index.d.ts`,
+    mainEntryPointFilePath: `./dist-esm/index.d.ts`,
     docModel: {
       enabled: true
     },
@@ -25,7 +25,7 @@ export function generateApiExtractorConfig(project: Project) {
     dtsRollup: {
       enabled: true,
       untrimmedFilePath: "",
-      publicTrimmedFilePath: `./esm/index.d.ts`
+      publicTrimmedFilePath: `./types/${packageDetails.nameWithoutScope}.d.ts`
     },
     messages: {
       tsdocMessageReporting: {
