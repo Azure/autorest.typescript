@@ -17,7 +17,7 @@ const highLevelTsConfig = {
     forceConsistentCasingInFileNames: true,
     lib: ["es6", "dom"],
     declaration: true,
-    outDir: "./esm",
+    outDir: "./dist-esm",
     importHelpers: true
   },
   include: ["./src/**/*.ts"],

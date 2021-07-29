@@ -427,7 +427,7 @@ export interface DatabaseAccountConnectionString {
 export type DatabaseAccountCreateUpdateParameters = ARMResourceProperties & {
     kind?: DatabaseAccountKind;
     consistencyPolicy?: ConsistencyPolicy;
-    locations: Location_2[];
+    locations: Location[];
     databaseAccountOfferType: "Standard";
     ipRangeFilter?: string;
     isVirtualNetworkFilterEnabled?: boolean;
@@ -453,9 +453,9 @@ export type DatabaseAccountGetResults = ARMResourceProperties & {
     enableAutomaticFailover?: boolean;
     consistencyPolicy?: ConsistencyPolicy;
     capabilities?: Capability[];
-    readonly writeLocations?: Location_2[];
-    readonly readLocations?: Location_2[];
-    readonly locations?: Location_2[];
+    readonly writeLocations?: Location[];
+    readonly readLocations?: Location[];
+    readonly locations?: Location[];
     readonly failoverPolicies?: FailoverPolicy[];
     virtualNetworkRules?: VirtualNetworkRule[];
     readonly privateEndpointConnections?: PrivateEndpointConnection[];
@@ -674,7 +674,7 @@ export interface DatabaseAccountUpdateParameters {
     isVirtualNetworkFilterEnabled?: boolean;
     keyVaultKeyUri?: string;
     location?: string;
-    locations?: Location_2[];
+    locations?: Location[];
     readonly publicNetworkAccess?: PublicNetworkAccess;
     tags?: {
         [propertyName: string]: string;
@@ -1116,7 +1116,7 @@ export enum KnownUnitType {
 }
 
 // @public
-interface Location_2 {
+export interface Location {
     readonly documentEndpoint?: string;
     failoverPriority?: number;
     readonly id?: string;
@@ -1124,8 +1124,6 @@ interface Location_2 {
     locationName?: string;
     readonly provisioningState?: string;
 }
-
-export { Location_2 as Location }
 
 // @public
 export interface Metric {

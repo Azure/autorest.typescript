@@ -3,8 +3,8 @@
   "sdk-type": "mgmt",
   "version": "1.0.0-preview1",
   "description": "",
-  "main": "esm/index.js",
-  "types": "esm/index.d.ts",
+  "main": "dist-esm/index.js",
+  "types": "./types/body-string-rest.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build && npm run extract-api",

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.9.10",
+    "toolVersion": "7.7.11",
     "schemaVersion": 1003,
     "oldestForwardsCompatibleVersion": 1001
   },
@@ -24373,7 +24373,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "compute-resource-manager!Image_2:type",
+          "canonicalReference": "compute-resource-manager!Image:type",
           "docComment": "/**\n * The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist.\n */\n",
           "excerptTokens": [
             {
@@ -24422,7 +24422,7 @@
             }
           ],
           "releaseTag": "Public",
-          "name": "Image_2",
+          "name": "Image",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 9

@@ -47,13 +47,14 @@ export function generatePackageJson(
  */
 function restLevelPackage(packageDetails: PackageDetails) {
   const { azureArm } = getAutorestOptions();
+
   return {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
-    main: "esm/index.js",
-    types: "esm/index.d.ts",
+    main: "dist-esm/index.js",
+    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
       build: "tsc --build && npm run extract-api",
@@ -120,7 +121,8 @@ function regularAutorestPackage(
     tracingInfo,
     disablePagingAsyncIterators,
     azureArm,
-    addCredentials
+    addCredentials,
+    azureOutputDirectory
   } = getAutorestOptions();
   const hasLro = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLro)
@@ -140,29 +142,29 @@ function regularAutorestPackage(
       node: ">=12.0.0"
     },
     dependencies: {
-      ...(hasLro && { "@azure/core-lro": "^2.1.0" }),
+      ...(hasLro && { "@azure/core-lro": "^2.0.0" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
       ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
       ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
-      ...(useCoreV2 && { "@azure/core-client": "^1.2.2" }),
+      ...(useCoreV2 && { "@azure/core-client": "^1.0.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 && {
-        "@azure/core-rest-pipeline": "^1.1.1"
+        "@azure/core-rest-pipeline": "^1.1.0"
       }),
       ...(tracingInfo && {
         "@azure/core-tracing": "1.0.0-preview.11",
         "@opentelemetry/api": "^0.10.2"
       }),
 
-      tslib: "^1.9.3"
+      tslib: "^2.2.0"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: `./dist/index.js`,
-    module: `./esm/index.js`,
-    types: `./esm/index.d.ts`,
+    module: `./dist-esm/index.js`,
+    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "7.9.10",
+      "@microsoft/api-extractor": "7.7.11",
       "@rollup/plugin-commonjs": "11.0.2",
       "@rollup/plugin-json": "^4.0.0",
       "@rollup/plugin-multi-entry": "^3.0.0",
@@ -171,11 +173,11 @@ function regularAutorestPackage(
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
       "rollup-plugin-node-resolve": "^3.4.0",
-      typescript: "^3.1.1",
+      typescript: "~4.2.0",
       "uglify-js": "^3.4.9"
     },
     // TODO: Calculate the SDK path for the package
-    homepage: `https://github.com/Azure/azure-sdk-for-js`,
+    homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
     repository: {
       type: "git",
       url: "https://github.com/Azure/azure-sdk-for-js.git"
@@ -188,10 +190,10 @@ function regularAutorestPackage(
       "dist/**/*.js.map",
       "dist/**/*.d.ts",
       "dist/**/*.d.ts.map",
-      "esm/**/*.js",
-      "esm/**/*.js.map",
-      "esm/**/*.d.ts",
-      "esm/**/*.d.ts.map",
+      "dist-esm/**/*.js",
+      "dist-esm/**/*.js.map",
+      "dist-esm/**/*.d.ts",
+      "dist-esm/**/*.d.ts.map",
       `${srcPath}/**/*.ts`,
       "README.md",
       "LICENSE",
@@ -202,7 +204,7 @@ function regularAutorestPackage(
     ],
     scripts: {
       build:
-        "tsc && rollup -c rollup.config.js && npm run minify && mkdirp ./review &&  npm run extract-api",
+        "tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
       pack: "npm pack 2>&1",
