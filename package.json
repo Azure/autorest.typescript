@@ -23,7 +23,7 @@
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "copyFiles": "cp src/generators/static/README.md.hbs dist/src/generators/static/README.md.hbs"
+        "copyFiles": "copyfiles src/generators/static/README.md.hbs dist/src/generators/static/README.md.hbs"
     },
     "files": [
         "src",
@@ -45,6 +45,7 @@
         "@azure/logger": "^1.0.0",
         "@opentelemetry/api": "^0.10.2",
         "@types/lodash": "^4.14.149",
+        "copyfiles": "^2.4.1",
         "handlebars": "^4.7.7",
         "lodash": "^4.17.21",
         "prettier": "^1.19.1",
@@ -95,6 +96,7 @@
         "wait-port": "^0.2.6",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
-        "yargs": "^15.3.1"
+        "yargs": "^15.3.1",
+        "copyfiles": "^2.4.1"
     }
 }
