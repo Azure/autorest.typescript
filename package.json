@@ -23,7 +23,7 @@
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "copyFiles": "copyfiles src/generators/static/README.md.hbs dist/src/generators/static/README.md.hbs"
+        "copyFiles": "copyfiles src/generators/static/README.md.hbs dist/"
     },
     "files": [
         "src",
