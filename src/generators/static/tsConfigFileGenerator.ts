@@ -31,7 +31,7 @@ const restLevelTsConfig = {
     moduleResolution: "node",
     declaration: true,
     declarationMap: true,
-    outDir: "./esm"
+    outDir: "./dist-esm"
   },
   exclude: [
     "node_modules",
