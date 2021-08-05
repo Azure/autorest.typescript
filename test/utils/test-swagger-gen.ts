@@ -302,6 +302,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  headerRest: {
+    swaggerOrConfig: "header.json",
+    clientName: "HeaderRestClient",
+    packageName: "header-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   httpInfrastructure: {
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureClient",
