@@ -64,6 +64,7 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
 
       if (headersInterface) {
         hasHeaders = true;
+        responsesFile.addInterface(headersInterface);
       }
 
       const bodyType = getBodyTypeName(schemaResponse, importedModels);
