@@ -18,28 +18,61 @@ describe.only("header Rest", function() {
           this.skip();
         }
 
-        const response = await testClient.path("/header/param/existingkey").post({headers: {
-            "User-Agent": "overwrite"
-        }})
-        response.headers.should.be.deep.equal({"User-Agent": "overwrite"})
+        await testClient.path("/header/param/existingkey").post({
+          headers: {
+            "userAgent": "overwrite"
+          },
+          allowInsecureConnection: true
+        });
+        const response = await testClient.path("/header/response/existingkey").post({
+          allowInsecureConnection: true
+        });
+        response.headers["user-agent"]!.should.be.deep.equal("overwrite");
       });
 
-    //   it("should throw on changing protected headers", async function() {
-    //     await testClient.header.paramProtectedKey("text/html");
-    //     const response = await testClient.header.responseProtectedKey();
-    //     response.contentType!.should.be.deep.equal("text/html; charset=utf-8");
-    //   });
+      it("should throw on changing protected headers", async function() {
+        await testClient.path("/header/param/protectedkey").post({
+          headers: {
+            contentType: "text/html"
+          },
+          allowInsecureConnection: true
+        })
+        const response = await testClient.path("/header/response/protectedkey").post({
+          allowInsecureConnection: true
+        })
+        response.headers['content-type']!.should.be.deep.equal("text/html; charset=utf-8");
+      });
 
-    //   it("should send and receive integer type headers", async function() {
-    //     await testClient.header.paramInteger("positive", 1);
-    //     await testClient.header.paramInteger("negative", -2);
+      it("should send and receive integer type headers", async function() {
+        await testClient.path("/header/param/prim/integer").post({
+          headers:{
+            scenario: "positive", "value": 1
+          },
+          allowInsecureConnection: true
+        });
+        await testClient.path("/header/param/prim/integer").post({
+          headers:{
+            scenario: "negative", "value": -2
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseInteger("positive");
-    //     response1.value!.should.be.deep.equal(1);
+        const response1 = await testClient.path("/header/response/prim/integer").post({
+          headers: {
+            scenario: "positive"
+          },
+          allowInsecureConnection: true
+        })
+        response1.headers.value!.should.be.deep.equal(1);
 
-    //     const response2 = await testClient.header.responseInteger("negative");
-    //     response2.value!.should.be.deep.equal(-2);
-    //   });
+        const response2 = await testClient.path("/header/response/prim/integer").post({
+          headers: {
+            scenario: "negative"
+          },
+          allowInsecureConnection: true
+        })
+        response2.headers.value!.should.be.deep.equal(-2);
+      });
 
     //   it("should send and receive long type headers", async function() {
     //     await testClient.header.paramLong("positive", 105);
