@@ -17,6 +17,11 @@ export interface ParamExistingKeydefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseExistingKey200Headers {
+  /** response with header value "User-Agent": "overwrite" */
+  "user-agent"?: string;
+}
+
 /** Get a response with header value "User-Agent": "overwrite" */
 export interface ResponseExistingKey200Response extends HttpResponse {
   status: "200";
@@ -40,6 +45,11 @@ export interface ParamProtectedKey200Response extends HttpResponse {
 export interface ParamProtectedKeydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseProtectedKey200Headers {
+  /** response with header value "Content-Type": "text/html" */
+  "content-type"?: string;
 }
 
 /** Get a response with header value "Content-Type": "text/html" */
@@ -67,6 +77,11 @@ export interface ParamIntegerdefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseInteger200Headers {
+  /** response with header value "value": 1 or -2 */
+  value?: string;
+}
+
 /** Get a response with header value "value": 1 or -2 */
 export interface ResponseInteger200Response extends HttpResponse {
   status: "200";
@@ -90,6 +105,11 @@ export interface ParamLong200Response extends HttpResponse {
 export interface ParamLongdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseLong200Headers {
+  /** response with header value "value": 105 or -2 */
+  value?: string;
 }
 
 /** Get a response with header value "value": 105 or -2 */
@@ -117,6 +137,11 @@ export interface ParamFloatdefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseFloat200Headers {
+  /** response with header value "value": 0.07 or -3.0 */
+  value?: string;
+}
+
 /** Get a response with header value "value": 0.07 or -3.0 */
 export interface ResponseFloat200Response extends HttpResponse {
   status: "200";
@@ -140,6 +165,11 @@ export interface ParamDouble200Response extends HttpResponse {
 export interface ParamDoubledefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseDouble200Headers {
+  /** response with header value "value": 7e120 or -3.0 */
+  value?: string;
 }
 
 /** Get a response with header value "value": 7e120 or -3.0 */
@@ -167,6 +197,11 @@ export interface ParamBooldefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseBool200Headers {
+  /** response with header value "value": true or false */
+  value?: string;
+}
+
 /** Get a response with header value "value": true or false */
 export interface ResponseBool200Response extends HttpResponse {
   status: "200";
@@ -190,6 +225,11 @@ export interface ParamString200Response extends HttpResponse {
 export interface ParamStringdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseString200Headers {
+  /** response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
+  value?: string;
 }
 
 /** Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
@@ -217,6 +257,11 @@ export interface ParamDatedefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseDate200Headers {
+  /** response with header values "2010-01-01" or "0001-01-01" */
+  value?: string;
+}
+
 /** Get a response with header values "2010-01-01" or "0001-01-01" */
 export interface ResponseDate200Response extends HttpResponse {
   status: "200";
@@ -240,6 +285,11 @@ export interface ParamDatetime200Response extends HttpResponse {
 export interface ParamDatetimedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseDatetime200Headers {
+  /** response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
+  value?: string;
 }
 
 /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
@@ -267,6 +317,11 @@ export interface ParamDatetimeRfc1123defaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseDatetimeRfc1123200Headers {
+  /** response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
+  value?: string;
+}
+
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
 export interface ResponseDatetimeRfc1123200Response extends HttpResponse {
   status: "200";
@@ -290,6 +345,11 @@ export interface ParamDuration200Response extends HttpResponse {
 export interface ParamDurationdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseDuration200Headers {
+  /** response with header values "P123DT22H14M12.011S" */
+  value?: string;
 }
 
 /** Get a response with header values "P123DT22H14M12.011S" */
@@ -317,6 +377,11 @@ export interface ParamBytedefaultResponse extends HttpResponse {
   body: ErrorModel;
 }
 
+export interface ResponseByte200Headers {
+  /** response with header values "啊齄丂狛狜隣郎隣兀﨩" */
+  value?: string;
+}
+
 /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
 export interface ResponseByte200Response extends HttpResponse {
   status: "200";
@@ -340,6 +405,11 @@ export interface ParamEnum200Response extends HttpResponse {
 export interface ParamEnumdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModel;
+}
+
+export interface ResponseEnum200Headers {
+  /** response with header values "GREY" or null */
+  value?: string;
 }
 
 /** Get a response with header values "GREY" or null */
