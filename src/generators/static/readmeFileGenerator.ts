@@ -73,7 +73,7 @@ function createMetadata(
   const packageSourceURL =
     relativePackageSourcePath &&
     repoURL &&
-    `${repoURL}/tree/master/${relativePackageSourcePath}`;
+    `${repoURL}/tree/main/${relativePackageSourcePath}`;
   const names = relativePackageSourcePath?.split("/").slice(1);
   const packageParentDirectoryName = names?.[0];
   const packageDirectoryName = names?.[1];
@@ -97,7 +97,7 @@ function createMetadata(
       : `Azure ${simpleServiceName}`
     : simpleServiceName;
   const identityPackageURL =
-    repoURL && `${repoURL}/tree/master/sdk/identity/identity`;
+    repoURL && `${repoURL}/tree/main/sdk/identity/identity`;
   return {
     serviceName: serviceName,
     clientPackageName: clientPackageName,
@@ -120,7 +120,7 @@ function createMetadata(
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}`
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
-    contributingGuideURL: repoURL && `${repoURL}/blob/master/CONTRIBUTING.md`,
+    contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     addCredentials,
     identityPackageURL,
