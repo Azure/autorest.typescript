@@ -792,7 +792,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   iotspaces: {
     swaggerOrConfig: "test/integration/swaggers/iotspaces.json",
     clientName: "IoTSpacesClient",
-    packageName: "iotspaces",
+    packageName: "@azure/iotspaces",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,

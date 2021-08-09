@@ -1,5 +1,5 @@
 {
-  "name": "iotspaces",
+  "name": "@azure/iotspaces",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for IoTSpacesClient.",
