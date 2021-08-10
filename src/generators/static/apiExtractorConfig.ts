@@ -14,7 +14,7 @@ export function generateApiExtractorConfig(project: Project) {
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-    mainEntryPointFilePath: `./dist-esm/index.d.ts`,
+    mainEntryPointFilePath: `./dist-esm/src/index.d.ts`,
     docModel: {
       enabled: true
     },

@@ -20,7 +20,7 @@ const highLevelTsConfig = {
     outDir: "./dist-esm",
     importHelpers: true
   },
-  include: ["./src/**/*.ts"],
+  include: ["./src/**/*.ts", "./test/**/*.ts"],
   exclude: ["node_modules"]
 };
 

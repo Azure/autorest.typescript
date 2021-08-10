@@ -16,6 +16,7 @@ import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { generateApiExtractorConfig } from "./generators/static/apiExtractorConfig";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
+import { generateSampleTestFile } from './generators/test/sampleTestGenerator';
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
@@ -83,6 +84,7 @@ export async function generateTypeScriptLibrary(
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
   generateReadmeFile(clientDetails, project);
+  generateSampleTestFile(project);
   generateTsConfig(project);
   generateRollupConfig(project);
   generateApiExtractorConfig(project);
