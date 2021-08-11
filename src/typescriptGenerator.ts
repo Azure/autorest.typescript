@@ -25,6 +25,11 @@ import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
 
+/**
+ * ServiceClient members should be reserved
+ */
+const RESERVED_MEMBER_NAMES = ["pipeline"];
+
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
   arrowParens: "always",
@@ -145,11 +150,15 @@ function checkForConflictWithDefinitions(
   operationGroupName: string,
   clientDetails: ClientDetails
 ): boolean {
-  let conflict: boolean = false;
-  clientDetails.objects.forEach(model => {
+  if (RESERVED_MEMBER_NAMES.includes(operationGroupName.toLowerCase())) {
+    return true;
+  }
+
+  for (const model of clientDetails.objects) {
     if (model.name === operationGroupName) {
-      conflict = true;
+      return true;
     }
-  });
-  return conflict;
+  }
+
+  return false;
 }
