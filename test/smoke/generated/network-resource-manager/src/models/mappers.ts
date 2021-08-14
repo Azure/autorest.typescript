@@ -333,12 +333,14 @@ export const RetentionPolicyParameters: coreClient.CompositeMapper = {
     className: "RetentionPolicyParameters",
     modelProperties: {
       days: {
+        defaultValue: 0,
         serializedName: "days",
         type: {
           name: "Number"
         }
       },
       enabled: {
+        defaultValue: false,
         serializedName: "enabled",
         type: {
           name: "Boolean"
@@ -360,6 +362,7 @@ export const FlowLogFormatParameters: coreClient.CompositeMapper = {
         }
       },
       version: {
+        defaultValue: 0,
         serializedName: "version",
         type: {
           name: "Number"
@@ -5177,6 +5180,7 @@ export const PacketCapture: coreClient.CompositeMapper = {
         }
       },
       bytesToCapturePerPacket: {
+        defaultValue: 0,
         serializedName: "properties.bytesToCapturePerPacket",
         type: {
           name: "Number"
@@ -5232,6 +5236,7 @@ export const PacketCaptureParameters: coreClient.CompositeMapper = {
         }
       },
       bytesToCapturePerPacket: {
+        defaultValue: 0,
         serializedName: "bytesToCapturePerPacket",
         type: {
           name: "Number"
@@ -5374,6 +5379,7 @@ export const PacketCaptureResult: coreClient.CompositeMapper = {
         }
       },
       bytesToCapturePerPacket: {
+        defaultValue: 0,
         serializedName: "properties.bytesToCapturePerPacket",
         type: {
           name: "Number"
@@ -12548,12 +12554,14 @@ export const VirtualNetwork: coreClient.CompositeMapper = {
         }
       },
       enableDdosProtection: {
+        defaultValue: false,
         serializedName: "properties.enableDdosProtection",
         type: {
           name: "Boolean"
         }
       },
       enableVmProtection: {
+        defaultValue: false,
         serializedName: "properties.enableVmProtection",
         type: {
           name: "Boolean"
@@ -13799,6 +13807,7 @@ export const IpAllocation: coreClient.CompositeMapper = {
         }
       },
       prefixLength: {
+        defaultValue: 0,
         serializedName: "properties.prefixLength",
         nullable: true,
         type: {

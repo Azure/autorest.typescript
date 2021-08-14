@@ -4332,6 +4332,7 @@ export const SiteConfig: coreClient.CompositeMapper = {
         }
       },
       localMySqlEnabled: {
+        defaultValue: false,
         serializedName: "localMySqlEnabled",
         xmlName: "localMySqlEnabled",
         type: {
@@ -9264,6 +9265,7 @@ export const Site: coreClient.CompositeMapper = {
         }
       },
       reserved: {
+        defaultValue: false,
         serializedName: "properties.reserved",
         xmlName: "properties.reserved",
         type: {
@@ -9271,6 +9273,7 @@ export const Site: coreClient.CompositeMapper = {
         }
       },
       isXenon: {
+        defaultValue: false,
         serializedName: "properties.isXenon",
         xmlName: "properties.isXenon",
         type: {
@@ -9278,6 +9281,7 @@ export const Site: coreClient.CompositeMapper = {
         }
       },
       hyperV: {
+        defaultValue: false,
         serializedName: "properties.hyperV",
         xmlName: "properties.hyperV",
         type: {
@@ -9315,6 +9319,7 @@ export const Site: coreClient.CompositeMapper = {
         }
       },
       scmSiteAlsoStopped: {
+        defaultValue: false,
         serializedName: "properties.scmSiteAlsoStopped",
         xmlName: "properties.scmSiteAlsoStopped",
         type: {
@@ -10016,6 +10021,7 @@ export const AppServicePlan: coreClient.CompositeMapper = {
         }
       },
       perSiteScaling: {
+        defaultValue: false,
         serializedName: "properties.perSiteScaling",
         xmlName: "properties.perSiteScaling",
         type: {
@@ -10067,6 +10073,7 @@ export const AppServicePlan: coreClient.CompositeMapper = {
         }
       },
       reserved: {
+        defaultValue: false,
         serializedName: "properties.reserved",
         xmlName: "properties.reserved",
         type: {
@@ -10074,6 +10081,7 @@ export const AppServicePlan: coreClient.CompositeMapper = {
         }
       },
       isXenon: {
+        defaultValue: false,
         serializedName: "properties.isXenon",
         xmlName: "properties.isXenon",
         type: {
@@ -10081,6 +10089,7 @@ export const AppServicePlan: coreClient.CompositeMapper = {
         }
       },
       hyperV: {
+        defaultValue: false,
         serializedName: "properties.hyperV",
         xmlName: "properties.hyperV",
         type: {
@@ -12171,6 +12180,7 @@ export const SitePatchResource: coreClient.CompositeMapper = {
         }
       },
       reserved: {
+        defaultValue: false,
         serializedName: "properties.reserved",
         xmlName: "properties.reserved",
         type: {
@@ -12178,6 +12188,7 @@ export const SitePatchResource: coreClient.CompositeMapper = {
         }
       },
       isXenon: {
+        defaultValue: false,
         serializedName: "properties.isXenon",
         xmlName: "properties.isXenon",
         type: {
@@ -12185,6 +12196,7 @@ export const SitePatchResource: coreClient.CompositeMapper = {
         }
       },
       hyperV: {
+        defaultValue: false,
         serializedName: "properties.hyperV",
         xmlName: "properties.hyperV",
         type: {
@@ -12223,6 +12235,7 @@ export const SitePatchResource: coreClient.CompositeMapper = {
         }
       },
       scmSiteAlsoStopped: {
+        defaultValue: false,
         serializedName: "properties.scmSiteAlsoStopped",
         xmlName: "properties.scmSiteAlsoStopped",
         type: {
@@ -12766,6 +12779,7 @@ export const RestoreRequest: coreClient.CompositeMapper = {
         }
       },
       ignoreConflictingHostNames: {
+        defaultValue: false,
         serializedName: "properties.ignoreConflictingHostNames",
         xmlName: "properties.ignoreConflictingHostNames",
         type: {
@@ -12773,6 +12787,7 @@ export const RestoreRequest: coreClient.CompositeMapper = {
         }
       },
       ignoreDatabases: {
+        defaultValue: false,
         serializedName: "properties.ignoreDatabases",
         xmlName: "properties.ignoreDatabases",
         type: {
@@ -13186,6 +13201,7 @@ export const SiteConfigResource: coreClient.CompositeMapper = {
         }
       },
       localMySqlEnabled: {
+        defaultValue: false,
         serializedName: "properties.localMySqlEnabled",
         xmlName: "properties.localMySqlEnabled",
         type: {
@@ -15015,6 +15031,7 @@ export const StorageMigrationOptions: coreClient.CompositeMapper = {
         }
       },
       switchSiteAfterMigration: {
+        defaultValue: false,
         serializedName: "properties.switchSiteAfterMigration",
         xmlName: "properties.switchSiteAfterMigration",
         type: {
@@ -15022,6 +15039,7 @@ export const StorageMigrationOptions: coreClient.CompositeMapper = {
         }
       },
       blockWriteAccessToSite: {
+        defaultValue: false,
         serializedName: "properties.blockWriteAccessToSite",
         xmlName: "properties.blockWriteAccessToSite",
         type: {
@@ -17160,6 +17178,7 @@ export const AppServicePlanPatchResource: coreClient.CompositeMapper = {
         }
       },
       perSiteScaling: {
+        defaultValue: false,
         serializedName: "properties.perSiteScaling",
         xmlName: "properties.perSiteScaling",
         type: {
@@ -17211,6 +17230,7 @@ export const AppServicePlanPatchResource: coreClient.CompositeMapper = {
         }
       },
       reserved: {
+        defaultValue: false,
         serializedName: "properties.reserved",
         xmlName: "properties.reserved",
         type: {
@@ -17218,6 +17238,7 @@ export const AppServicePlanPatchResource: coreClient.CompositeMapper = {
         }
       },
       isXenon: {
+        defaultValue: false,
         serializedName: "properties.isXenon",
         xmlName: "properties.isXenon",
         type: {
@@ -17225,6 +17246,7 @@ export const AppServicePlanPatchResource: coreClient.CompositeMapper = {
         }
       },
       hyperV: {
+        defaultValue: false,
         serializedName: "properties.hyperV",
         xmlName: "properties.hyperV",
         type: {
