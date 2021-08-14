@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Subnets. */
+/** Class containing Subnets operations. */
 export class SubnetsImpl implements Subnets {
   private readonly client: NetworkManagementClientContext;
 

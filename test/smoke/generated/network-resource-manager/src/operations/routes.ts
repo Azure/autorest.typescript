@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Routes. */
+/** Class containing Routes operations. */
 export class RoutesImpl implements Routes {
   private readonly client: NetworkManagementClientContext;
 

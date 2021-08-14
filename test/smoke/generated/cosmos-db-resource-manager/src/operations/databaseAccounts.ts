@@ -58,7 +58,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DatabaseAccounts. */
+/** Class containing DatabaseAccounts operations. */
 export class DatabaseAccountsImpl implements DatabaseAccounts {
   private readonly client: CosmosDBManagementClientContext;
 

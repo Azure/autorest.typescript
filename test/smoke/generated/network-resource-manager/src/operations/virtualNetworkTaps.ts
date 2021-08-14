@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualNetworkTaps. */
+/** Class containing VirtualNetworkTaps operations. */
 export class VirtualNetworkTapsImpl implements VirtualNetworkTaps {
   private readonly client: NetworkManagementClientContext;
 

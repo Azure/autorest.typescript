@@ -57,7 +57,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PrivateLinkServices. */
+/** Class containing PrivateLinkServices operations. */
 export class PrivateLinkServicesImpl implements PrivateLinkServices {
   private readonly client: NetworkManagementClientContext;
 

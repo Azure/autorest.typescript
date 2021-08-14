@@ -28,7 +28,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Tags. */
+/** Class containing Tags operations. */
 export class TagsImpl implements Tags {
   private readonly client: ResourceManagementClientContext;
 

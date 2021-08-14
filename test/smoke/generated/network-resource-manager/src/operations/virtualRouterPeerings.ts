@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualRouterPeerings. */
+/** Class containing VirtualRouterPeerings operations. */
 export class VirtualRouterPeeringsImpl implements VirtualRouterPeerings {
   private readonly client: NetworkManagementClientContext;
 

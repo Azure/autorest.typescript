@@ -72,7 +72,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualNetworkGateways. */
+/** Class containing VirtualNetworkGateways operations. */
 export class VirtualNetworkGatewaysImpl implements VirtualNetworkGateways {
   private readonly client: NetworkManagementClientContext;
 

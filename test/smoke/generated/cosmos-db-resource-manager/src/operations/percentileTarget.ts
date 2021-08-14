@@ -20,7 +20,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PercentileTarget. */
+/** Class containing PercentileTarget operations. */
 export class PercentileTargetImpl implements PercentileTarget {
   private readonly client: CosmosDBManagementClientContext;
 

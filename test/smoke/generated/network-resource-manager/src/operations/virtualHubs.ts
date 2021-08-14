@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualHubs. */
+/** Class containing VirtualHubs operations. */
 export class VirtualHubsImpl implements VirtualHubs {
   private readonly client: NetworkManagementClientContext;
 

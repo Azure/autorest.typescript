@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Usage. */
+/** Class containing Usage operations. */
 export class UsageImpl implements Usage {
   private readonly client: ComputeManagementClientContext;
 

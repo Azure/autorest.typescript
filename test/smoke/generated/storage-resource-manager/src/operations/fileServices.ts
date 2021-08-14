@@ -21,7 +21,7 @@ import {
   FileServicesGetServicePropertiesResponse
 } from "../models";
 
-/** Class representing a FileServices. */
+/** Class containing FileServices operations. */
 export class FileServicesImpl implements FileServices {
   private readonly client: StorageManagementClientContext;
 

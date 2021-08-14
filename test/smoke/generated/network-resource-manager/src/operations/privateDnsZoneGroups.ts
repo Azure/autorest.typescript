@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PrivateDnsZoneGroups. */
+/** Class containing PrivateDnsZoneGroups operations. */
 export class PrivateDnsZoneGroupsImpl implements PrivateDnsZoneGroups {
   private readonly client: NetworkManagementClientContext;
 

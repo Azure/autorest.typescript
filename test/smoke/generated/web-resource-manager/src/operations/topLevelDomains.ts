@@ -30,7 +30,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a TopLevelDomains. */
+/** Class containing TopLevelDomains operations. */
 export class TopLevelDomainsImpl implements TopLevelDomains {
   private readonly client: WebSiteManagementClientContext;
 

@@ -24,7 +24,7 @@ import {
   BackupLongTermRetentionPoliciesListByDatabaseResponse
 } from "../models";
 
-/** Class representing a BackupLongTermRetentionPolicies. */
+/** Class containing BackupLongTermRetentionPolicies operations. */
 export class BackupLongTermRetentionPoliciesImpl
   implements BackupLongTermRetentionPolicies {
   private readonly client: SqlManagementClientContext;

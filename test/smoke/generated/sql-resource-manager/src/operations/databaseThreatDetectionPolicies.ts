@@ -20,7 +20,7 @@ import {
   DatabaseThreatDetectionPoliciesCreateOrUpdateResponse
 } from "../models";
 
-/** Class representing a DatabaseThreatDetectionPolicies. */
+/** Class containing DatabaseThreatDetectionPolicies operations. */
 export class DatabaseThreatDetectionPoliciesImpl
   implements DatabaseThreatDetectionPolicies {
   private readonly client: SqlManagementClientContext;

@@ -54,7 +54,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ManagementLocks. */
+/** Class containing ManagementLocks operations. */
 export class ManagementLocksImpl implements ManagementLocks {
   private readonly client: ManagementLockClientContext;
 

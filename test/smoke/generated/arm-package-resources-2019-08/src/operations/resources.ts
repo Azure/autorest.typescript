@@ -48,7 +48,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Resources. */
+/** Class containing Resources operations. */
 export class ResourcesImpl implements Resources {
   private readonly client: ResourceManagementClientContext;
 

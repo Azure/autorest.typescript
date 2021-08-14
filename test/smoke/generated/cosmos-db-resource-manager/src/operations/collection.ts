@@ -26,7 +26,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Collection. */
+/** Class containing Collection operations. */
 export class CollectionImpl implements Collection {
   private readonly client: CosmosDBManagementClientContext;
 

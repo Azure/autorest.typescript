@@ -49,7 +49,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Groups. */
+/** Class containing Groups operations. */
 export class GroupsImpl implements Groups {
   private readonly client: GraphRbacManagementClientContext;
 

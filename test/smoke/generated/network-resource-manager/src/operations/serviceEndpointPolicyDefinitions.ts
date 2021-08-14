@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ServiceEndpointPolicyDefinitions. */
+/** Class containing ServiceEndpointPolicyDefinitions operations. */
 export class ServiceEndpointPolicyDefinitionsImpl
   implements ServiceEndpointPolicyDefinitions {
   private readonly client: NetworkManagementClientContext;

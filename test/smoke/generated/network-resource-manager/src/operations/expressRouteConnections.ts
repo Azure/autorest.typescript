@@ -24,7 +24,7 @@ import {
   ExpressRouteConnectionsListResponse
 } from "../models";
 
-/** Class representing a ExpressRouteConnections. */
+/** Class containing ExpressRouteConnections operations. */
 export class ExpressRouteConnectionsImpl implements ExpressRouteConnections {
   private readonly client: NetworkManagementClientContext;
 

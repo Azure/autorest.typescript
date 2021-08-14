@@ -23,7 +23,7 @@ import {
   PrivateEndpointConnectionsDeleteResponse
 } from "../models";
 
-/** Class representing a PrivateEndpointConnections. */
+/** Class containing PrivateEndpointConnections operations. */
 export class PrivateEndpointConnectionsImpl
   implements PrivateEndpointConnections {
   private readonly client: KeyVaultManagementClientContext;

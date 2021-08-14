@@ -39,7 +39,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DeploymentScripts. */
+/** Class containing DeploymentScripts operations. */
 export class DeploymentScriptsImpl implements DeploymentScripts {
   private readonly client: DeploymentScriptsClientContext;
 

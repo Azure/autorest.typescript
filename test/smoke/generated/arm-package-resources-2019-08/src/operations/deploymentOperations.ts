@@ -48,7 +48,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DeploymentOperations. */
+/** Class containing DeploymentOperations operations. */
 export class DeploymentOperationsImpl implements DeploymentOperations {
   private readonly client: ResourceManagementClientContext;
 

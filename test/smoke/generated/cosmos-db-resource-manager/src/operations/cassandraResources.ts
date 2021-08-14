@@ -46,7 +46,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a CassandraResources. */
+/** Class containing CassandraResources operations. */
 export class CassandraResourcesImpl implements CassandraResources {
   private readonly client: CosmosDBManagementClientContext;
 

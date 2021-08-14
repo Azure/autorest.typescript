@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a AuthorizationOperations. */
+/** Class containing AuthorizationOperations operations. */
 export class AuthorizationOperationsImpl implements AuthorizationOperations {
   private readonly client: ManagementLockClientContext;
 

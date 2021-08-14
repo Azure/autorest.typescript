@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PublicIPPrefixes. */
+/** Class containing PublicIPPrefixes operations. */
 export class PublicIPPrefixesImpl implements PublicIPPrefixes {
   private readonly client: NetworkManagementClientContext;
 

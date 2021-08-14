@@ -16,7 +16,7 @@ import {
   SystemAssignedIdentitiesGetByScopeResponse
 } from "../models";
 
-/** Class representing a SystemAssignedIdentities. */
+/** Class containing SystemAssignedIdentities operations. */
 export class SystemAssignedIdentitiesImpl implements SystemAssignedIdentities {
   private readonly client: ManagedServiceIdentityClientContext;
 
