@@ -21,7 +21,7 @@ import {
   DurationGetInvalidResponse
 } from "../models";
 
-/** Class representing a Duration. */
+/** Class containing Duration operations. */
 export class DurationImpl implements Duration {
   private readonly client: BodyDurationClientContext;
 

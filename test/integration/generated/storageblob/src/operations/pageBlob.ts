@@ -9,7 +9,7 @@ import {
   PageBlobUploadPagesResponse
 } from "../models";
 
-/** Class representing a PageBlob. */
+/** Class containing PageBlob operations. */
 export class PageBlobImpl implements PageBlob {
   private readonly client: StorageBlobClientContext;
 

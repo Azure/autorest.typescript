@@ -16,7 +16,7 @@ import {
   GroupGetSampleResourceGroupResponse
 } from "../models";
 
-/** Class representing a Group. */
+/** Class containing Group operations. */
 export class GroupImpl implements Group {
   private readonly client: SubscriptionIdApiVersionClientContext;
 

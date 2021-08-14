@@ -35,7 +35,7 @@ import {
   HttpSuccessHead404OptionalParams
 } from "../models";
 
-/** Class representing a HttpSuccess. */
+/** Class containing HttpSuccess operations. */
 export class HttpSuccessImpl implements HttpSuccess {
   private readonly client: HttpInfrastructureClientContext;
 

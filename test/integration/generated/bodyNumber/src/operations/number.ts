@@ -52,7 +52,7 @@ import {
   NumberGetSmallDecimalResponse
 } from "../models";
 
-/** Class representing a NumberOperations. */
+/** Class containing NumberOperations operations. */
 export class NumberOperationsImpl implements NumberOperations {
   private readonly client: BodyNumberClientContext;
 

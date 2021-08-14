@@ -42,7 +42,7 @@ import {
   PathsUnixTimeUrlOptionalParams
 } from "../models";
 
-/** Class representing a Paths. */
+/** Class containing Paths operations. */
 export class PathsImpl implements Paths {
   private readonly client: UrlClientContext;
 

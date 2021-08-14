@@ -8,7 +8,7 @@ import {
   QueueGetPropertiesResponse
 } from "../models";
 
-/** Class representing a Queue. */
+/** Class containing Queue operations. */
 export class QueueImpl implements Queue {
   private readonly client: HeaderPrefixClientContext;
 

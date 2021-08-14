@@ -5,7 +5,7 @@ import * as Parameters from "../models/parameters";
 import { OptionalNullClientContext } from "../optionalNullClientContext";
 import { DocumentsSearchGetOptionalParams } from "../models";
 
-/** Class representing a Documents. */
+/** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {
   private readonly client: OptionalNullClientContext;
 

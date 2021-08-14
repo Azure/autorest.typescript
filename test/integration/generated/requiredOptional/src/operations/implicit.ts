@@ -22,7 +22,7 @@ import {
   ImplicitGetOptionalGlobalQueryOptionalParams
 } from "../models";
 
-/** Class representing a Implicit. */
+/** Class containing Implicit operations. */
 export class ImplicitImpl implements Implicit {
   private readonly client: RequiredOptionalClientContext;
 

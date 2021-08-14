@@ -77,7 +77,7 @@ import {
   XmlPutUriOptionalParams
 } from "../models";
 
-/** Class representing a Xml. */
+/** Class containing Xml operations. */
 export class XmlImpl implements Xml {
   private readonly client: XmlServiceClientContext;
 

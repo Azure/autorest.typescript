@@ -67,7 +67,7 @@ import {
   LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse
 } from "../models";
 
-/** Class representing a LrosaDs. */
+/** Class containing LrosaDs operations. */
 export class LrosaDsImpl implements LrosaDs {
   private readonly client: LROClientContext;
 

@@ -40,7 +40,7 @@ import {
   HttpClientFailureHead429OptionalParams
 } from "../models";
 
-/** Class representing a HttpClientFailure. */
+/** Class containing HttpClientFailure operations. */
 export class HttpClientFailureImpl implements HttpClientFailure {
   private readonly client: HttpInfrastructureClientContext;
 

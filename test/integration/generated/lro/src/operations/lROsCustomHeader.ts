@@ -24,7 +24,7 @@ import {
   LROsCustomHeaderPostAsyncRetrySucceededResponse
 } from "../models";
 
-/** Class representing a LROsCustomHeader. */
+/** Class containing LROsCustomHeader operations. */
 export class LROsCustomHeaderImpl implements LROsCustomHeader {
   private readonly client: LROClientContext;
 

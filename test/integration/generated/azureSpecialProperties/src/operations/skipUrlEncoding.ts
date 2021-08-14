@@ -21,7 +21,7 @@ import {
   SkipUrlEncodingGetSwaggerQueryValidOptionalParams
 } from "../models";
 
-/** Class representing a SkipUrlEncoding. */
+/** Class containing SkipUrlEncoding operations. */
 export class SkipUrlEncodingImpl implements SkipUrlEncoding {
   private readonly client: AzureSpecialPropertiesClientContext;
 

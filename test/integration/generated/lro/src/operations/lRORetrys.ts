@@ -30,7 +30,7 @@ import {
   LRORetrysPostAsyncRelativeRetrySucceededResponse
 } from "../models";
 
-/** Class representing a LRORetrys. */
+/** Class containing LRORetrys operations. */
 export class LRORetrysImpl implements LRORetrys {
   private readonly client: LROClientContext;
 

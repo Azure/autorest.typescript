@@ -31,7 +31,7 @@ import {
   PolymorphismPutValidMissingRequiredOptionalParams
 } from "../models";
 
-/** Class representing a Polymorphism. */
+/** Class containing Polymorphism operations. */
 export class PolymorphismImpl implements Polymorphism {
   private readonly client: BodyComplexClientContext;
 

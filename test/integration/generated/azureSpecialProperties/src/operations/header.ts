@@ -21,7 +21,7 @@ import {
   HeaderCustomNamedRequestIdHeadResponse
 } from "../models";
 
-/** Class representing a Header. */
+/** Class containing Header operations. */
 export class HeaderImpl implements Header {
   private readonly client: AzureSpecialPropertiesClientContext;
 

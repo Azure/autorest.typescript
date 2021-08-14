@@ -60,7 +60,7 @@ import {
   PrimitivePutByteOptionalParams
 } from "../models";
 
-/** Class representing a Primitive. */
+/** Class containing Primitive operations. */
 export class PrimitiveImpl implements Primitive {
   private readonly client: BodyComplexWithTracingContext;
 

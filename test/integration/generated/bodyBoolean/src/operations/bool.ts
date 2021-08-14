@@ -24,7 +24,7 @@ import {
   BoolGetInvalidResponse
 } from "../models";
 
-/** Class representing a Bool. */
+/** Class containing Bool operations. */
 export class BoolImpl implements Bool {
   private readonly client: BodyBooleanClientContext;
 

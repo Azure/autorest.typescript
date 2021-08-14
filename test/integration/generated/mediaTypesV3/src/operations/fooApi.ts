@@ -20,7 +20,7 @@ import {
   FooApiPostSendResponse
 } from "../models";
 
-/** Class representing a FooApi. */
+/** Class containing FooApi operations. */
 export class FooApiImpl implements FooApi {
   private readonly client: MediaTypesV3ClientContext;
 

@@ -32,7 +32,7 @@ import {
   PetsCreateAPInPropertiesWithAPStringResponse
 } from "../models";
 
-/** Class representing a Pets. */
+/** Class containing Pets operations. */
 export class PetsImpl implements Pets {
   private readonly client: AdditionalPropertiesClientContext;
 

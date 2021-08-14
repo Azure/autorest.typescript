@@ -15,7 +15,7 @@ import {
   BarApiPostSendOnDefaultResponse
 } from "../models";
 
-/** Class representing a BarApi. */
+/** Class containing BarApi operations. */
 export class BarApiImpl implements BarApi {
   private readonly client: MediaTypesV3ClientContext;
 

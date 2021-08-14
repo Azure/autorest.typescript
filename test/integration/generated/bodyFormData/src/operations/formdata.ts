@@ -21,7 +21,7 @@ import {
   FormdataUploadFilesResponse
 } from "../models";
 
-/** Class representing a Formdata. */
+/** Class containing Formdata operations. */
 export class FormdataImpl implements Formdata {
   private readonly client: BodyFormDataClientContext;
 
