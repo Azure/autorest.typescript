@@ -108,6 +108,7 @@ export const VaultProperties: coreClient.CompositeMapper = {
         }
       },
       enableRbacAuthorization: {
+        defaultValue: false,
         serializedName: "enableRbacAuthorization",
         type: {
           name: "Boolean"
