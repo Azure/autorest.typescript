@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualWans. */
+/** Class containing VirtualWans operations. */
 export class VirtualWansImpl implements VirtualWans {
   private readonly client: NetworkManagementClientContext;
 

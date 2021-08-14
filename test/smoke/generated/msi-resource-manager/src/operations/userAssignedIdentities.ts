@@ -34,7 +34,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a UserAssignedIdentities. */
+/** Class containing UserAssignedIdentities operations. */
 export class UserAssignedIdentitiesImpl implements UserAssignedIdentities {
   private readonly client: ManagedServiceIdentityClientContext;
 

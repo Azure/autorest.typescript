@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ServerSecurityAlertPolicies. */
+/** Class containing ServerSecurityAlertPolicies operations. */
 export class ServerSecurityAlertPoliciesImpl
   implements ServerSecurityAlertPolicies {
   private readonly client: SqlManagementClientContext;

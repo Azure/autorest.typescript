@@ -24,7 +24,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SignedInUser. */
+/** Class containing SignedInUser operations. */
 export class SignedInUserImpl implements SignedInUser {
   private readonly client: GraphRbacManagementClientContext;
 

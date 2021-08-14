@@ -20,7 +20,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a CollectionPartitionRegion. */
+/** Class containing CollectionPartitionRegion operations. */
 export class CollectionPartitionRegionImpl
   implements CollectionPartitionRegion {
   private readonly client: CosmosDBManagementClientContext;

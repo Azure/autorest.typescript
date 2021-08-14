@@ -8,7 +8,7 @@ import {
   PipelineOperationsApiV1ValueGetResponse
 } from "../models";
 
-/** Class representing a PipelineOperations. */
+/** Class containing PipelineOperations operations. */
 export class PipelineOperationsImpl implements PipelineOperations {
   private readonly client: OperationGroupClashClientContext;
 

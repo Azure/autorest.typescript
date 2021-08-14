@@ -85,7 +85,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a StaticSites. */
+/** Class containing StaticSites operations. */
 export class StaticSitesImpl implements StaticSites {
   private readonly client: WebSiteManagementClientContext;
 

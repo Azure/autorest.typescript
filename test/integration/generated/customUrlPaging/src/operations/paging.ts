@@ -26,7 +26,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Paging. */
+/** Class containing Paging operations. */
 export class PagingImpl implements Paging {
   private readonly client: CustomUrlPagingClientContext;
 

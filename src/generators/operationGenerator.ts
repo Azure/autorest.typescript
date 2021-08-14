@@ -467,7 +467,7 @@ function addClass(
   );
   const operationGroupClass = operationGroupFile.addClass({
     name: `${className}Impl`,
-    docs: [`Class representing a ${className}.`],
+    docs: [`Class containing ${className} operations.`],
     isExported: true,
     implements: [`${className}`]
   });

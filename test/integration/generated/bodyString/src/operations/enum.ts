@@ -25,7 +25,7 @@ import {
   EnumPutReferencedConstantOptionalParams
 } from "../models";
 
-/** Class representing a Enum. */
+/** Class containing Enum operations. */
 export class EnumImpl implements Enum {
   private readonly client: BodyStringClientContext;
 

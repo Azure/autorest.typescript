@@ -57,7 +57,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NetworkInterfaces. */
+/** Class containing NetworkInterfaces operations. */
 export class NetworkInterfacesImpl implements NetworkInterfaces {
   private readonly client: NetworkManagementClientContext;
 

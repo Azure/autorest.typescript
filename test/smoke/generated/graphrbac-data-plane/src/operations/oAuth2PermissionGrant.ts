@@ -25,7 +25,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a OAuth2PermissionGrant. */
+/** Class containing OAuth2PermissionGrant operations. */
 export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
   private readonly client: GraphRbacManagementClientContext;
 

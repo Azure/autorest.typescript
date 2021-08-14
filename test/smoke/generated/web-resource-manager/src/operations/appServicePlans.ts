@@ -87,7 +87,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a AppServicePlans. */
+/** Class containing AppServicePlans operations. */
 export class AppServicePlansImpl implements AppServicePlans {
   private readonly client: WebSiteManagementClientContext;
 

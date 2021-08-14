@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ServiceTierAdvisors. */
+/** Class containing ServiceTierAdvisors operations. */
 export class ServiceTierAdvisorsImpl implements ServiceTierAdvisors {
   private readonly client: SqlManagementClientContext;
 

@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a RouteFilterRules. */
+/** Class containing RouteFilterRules operations. */
 export class RouteFilterRulesImpl implements RouteFilterRules {
   private readonly client: NetworkManagementClientContext;
 

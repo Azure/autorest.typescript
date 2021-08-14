@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a InboundNatRules. */
+/** Class containing InboundNatRules operations. */
 export class InboundNatRulesImpl implements InboundNatRules {
   private readonly client: NetworkManagementClientContext;
 

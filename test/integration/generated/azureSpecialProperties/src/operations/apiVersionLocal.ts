@@ -18,7 +18,7 @@ import {
   ApiVersionLocalGetSwaggerLocalValidOptionalParams
 } from "../models";
 
-/** Class representing a ApiVersionLocal. */
+/** Class containing ApiVersionLocal operations. */
 export class ApiVersionLocalImpl implements ApiVersionLocal {
   private readonly client: AzureSpecialPropertiesClientContext;
 

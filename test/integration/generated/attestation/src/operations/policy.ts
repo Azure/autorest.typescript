@@ -21,7 +21,7 @@ import {
   PolicyResetResponse
 } from "../models";
 
-/** Class representing a Policy. */
+/** Class containing Policy operations. */
 export class PolicyImpl implements Policy {
   private readonly client: GeneratedClientContext;
 

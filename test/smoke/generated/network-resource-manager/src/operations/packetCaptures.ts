@@ -31,7 +31,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PacketCaptures. */
+/** Class containing PacketCaptures operations. */
 export class PacketCapturesImpl implements PacketCaptures {
   private readonly client: NetworkManagementClientContext;
 

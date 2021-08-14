@@ -83,7 +83,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Diagnostics. */
+/** Class containing Diagnostics operations. */
 export class DiagnosticsImpl implements Diagnostics {
   private readonly client: WebSiteManagementClientContext;
 

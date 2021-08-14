@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ServiceEndpointPolicies. */
+/** Class containing ServiceEndpointPolicies operations. */
 export class ServiceEndpointPoliciesImpl implements ServiceEndpointPolicies {
   private readonly client: NetworkManagementClientContext;
 

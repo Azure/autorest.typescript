@@ -41,7 +41,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ExpressRouteCrossConnections. */
+/** Class containing ExpressRouteCrossConnections operations. */
 export class ExpressRouteCrossConnectionsImpl
   implements ExpressRouteCrossConnections {
   private readonly client: NetworkManagementClientContext;

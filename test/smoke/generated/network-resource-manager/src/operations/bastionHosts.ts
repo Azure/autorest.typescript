@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a BastionHosts. */
+/** Class containing BastionHosts operations. */
 export class BastionHostsImpl implements BastionHosts {
   private readonly client: NetworkManagementClientContext;
 

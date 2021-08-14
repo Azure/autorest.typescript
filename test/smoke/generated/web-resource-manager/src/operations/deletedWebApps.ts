@@ -28,7 +28,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DeletedWebApps. */
+/** Class containing DeletedWebApps operations. */
 export class DeletedWebAppsImpl implements DeletedWebApps {
   private readonly client: WebSiteManagementClientContext;
 

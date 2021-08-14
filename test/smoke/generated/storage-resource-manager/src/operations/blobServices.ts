@@ -24,7 +24,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a BlobServices. */
+/** Class containing BlobServices operations. */
 export class BlobServicesImpl implements BlobServices {
   private readonly client: StorageManagementClientContext;
 

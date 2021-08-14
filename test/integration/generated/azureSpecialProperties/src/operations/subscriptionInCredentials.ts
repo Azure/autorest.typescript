@@ -19,7 +19,7 @@ import {
   SubscriptionInCredentialsPostSwaggerGlobalValidOptionalParams
 } from "../models";
 
-/** Class representing a SubscriptionInCredentials. */
+/** Class containing SubscriptionInCredentials operations. */
 export class SubscriptionInCredentialsImpl
   implements SubscriptionInCredentials {
   private readonly client: AzureSpecialPropertiesClientContext;

@@ -20,7 +20,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PartitionKeyRangeId. */
+/** Class containing PartitionKeyRangeId operations. */
 export class PartitionKeyRangeIdImpl implements PartitionKeyRangeId {
   private readonly client: CosmosDBManagementClientContext;
 

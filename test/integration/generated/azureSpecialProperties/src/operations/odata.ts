@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
 import { OdataGetWithFilterOptionalParams } from "../models";
 
-/** Class representing a Odata. */
+/** Class containing Odata operations. */
 export class OdataImpl implements Odata {
   private readonly client: AzureSpecialPropertiesClientContext;
 

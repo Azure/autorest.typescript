@@ -18,7 +18,7 @@ import {
   ApiVersionDefaultGetSwaggerGlobalValidOptionalParams
 } from "../models";
 
-/** Class representing a ApiVersionDefault. */
+/** Class containing ApiVersionDefault operations. */
 export class ApiVersionDefaultImpl implements ApiVersionDefault {
   private readonly client: AzureSpecialPropertiesClientContext;
 

@@ -8,7 +8,7 @@ import {
   ProductOperationsApiV1ValueGetResponse
 } from "../models";
 
-/** Class representing a ProductOperations. */
+/** Class containing ProductOperations operations. */
 export class ProductOperationsImpl implements ProductOperations {
   private readonly client: OperationGroupClashClientContext;
 

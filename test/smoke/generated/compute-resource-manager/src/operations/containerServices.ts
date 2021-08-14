@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ContainerServices. */
+/** Class containing ContainerServices operations. */
 export class ContainerServicesImpl implements ContainerServices {
   private readonly client: ComputeManagementClientContext;
 

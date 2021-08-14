@@ -62,7 +62,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualMachines. */
+/** Class containing VirtualMachines operations. */
 export class VirtualMachinesImpl implements VirtualMachines {
   private readonly client: ComputeManagementClientContext;
 

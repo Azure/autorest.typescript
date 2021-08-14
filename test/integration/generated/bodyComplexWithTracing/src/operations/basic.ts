@@ -28,7 +28,7 @@ import {
   BasicGetNotProvidedResponse
 } from "../models";
 
-/** Class representing a Basic. */
+/** Class containing Basic operations. */
 export class BasicImpl implements Basic {
   private readonly client: BodyComplexWithTracingContext;
 

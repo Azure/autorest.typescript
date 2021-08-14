@@ -144,7 +144,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a AppServiceEnvironments. */
+/** Class containing AppServiceEnvironments operations. */
 export class AppServiceEnvironmentsImpl implements AppServiceEnvironments {
   private readonly client: WebSiteManagementClientContext;
 

@@ -46,7 +46,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a MongoDBResources. */
+/** Class containing MongoDBResources operations. */
 export class MongoDBResourcesImpl implements MongoDBResources {
   private readonly client: CosmosDBManagementClientContext;
 

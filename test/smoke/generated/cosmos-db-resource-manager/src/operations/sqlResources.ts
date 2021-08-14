@@ -73,7 +73,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SqlResources. */
+/** Class containing SqlResources operations. */
 export class SqlResourcesImpl implements SqlResources {
   private readonly client: CosmosDBManagementClientContext;
 

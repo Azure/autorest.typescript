@@ -26,7 +26,7 @@ import {
   ExpressRouteGatewaysDeleteOptionalParams
 } from "../models";
 
-/** Class representing a ExpressRouteGateways. */
+/** Class containing ExpressRouteGateways operations. */
 export class ExpressRouteGatewaysImpl implements ExpressRouteGateways {
   private readonly client: NetworkManagementClientContext;
 

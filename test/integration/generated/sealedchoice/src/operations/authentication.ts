@@ -16,7 +16,7 @@ import {
   AuthenticationExchangeAcrRefreshTokenForAcrAccessTokenOptionalParams
 } from "../models";
 
-/** Class representing a Authentication. */
+/** Class containing Authentication operations. */
 export class AuthenticationImpl implements Authentication {
   private readonly client: SealedChoiceClientContext;
 

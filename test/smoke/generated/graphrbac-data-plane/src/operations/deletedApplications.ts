@@ -25,7 +25,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DeletedApplications. */
+/** Class containing DeletedApplications operations. */
 export class DeletedApplicationsImpl implements DeletedApplications {
   private readonly client: GraphRbacManagementClientContext;
 

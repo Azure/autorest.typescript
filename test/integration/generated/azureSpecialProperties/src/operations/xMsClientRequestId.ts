@@ -16,7 +16,7 @@ import {
   XMsClientRequestIdParamGetOptionalParams
 } from "../models";
 
-/** Class representing a XMsClientRequestId. */
+/** Class containing XMsClientRequestId operations. */
 export class XMsClientRequestIdImpl implements XMsClientRequestId {
   private readonly client: AzureSpecialPropertiesClientContext;
 

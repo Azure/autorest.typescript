@@ -20,7 +20,7 @@ import {
   FilesGetEmptyFileResponse
 } from "../models";
 
-/** Class representing a Files. */
+/** Class containing Files operations. */
 export class FilesImpl implements Files {
   private readonly client: BodyFileClientContext;
 

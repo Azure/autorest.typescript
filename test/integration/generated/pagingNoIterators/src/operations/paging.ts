@@ -84,7 +84,7 @@ import {
   PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
-/** Class representing a Paging. */
+/** Class containing Paging operations. */
 export class PagingImpl implements Paging {
   private readonly client: PagingNoIteratorsClientContext;
 

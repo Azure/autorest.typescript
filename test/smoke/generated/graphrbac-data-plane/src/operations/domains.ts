@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Domains. */
+/** Class containing Domains operations. */
 export class DomainsImpl implements Domains {
   private readonly client: GraphRbacManagementClientContext;
 

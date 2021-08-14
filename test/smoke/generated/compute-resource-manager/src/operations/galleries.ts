@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Galleries. */
+/** Class containing Galleries operations. */
 export class GalleriesImpl implements Galleries {
   private readonly client: ComputeManagementClientContext;
 

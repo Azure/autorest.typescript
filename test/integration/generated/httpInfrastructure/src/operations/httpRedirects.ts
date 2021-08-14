@@ -46,7 +46,7 @@ import {
   HttpRedirectsDelete307Response
 } from "../models";
 
-/** Class representing a HttpRedirects. */
+/** Class containing HttpRedirects operations. */
 export class HttpRedirectsImpl implements HttpRedirects {
   private readonly client: HttpInfrastructureClientContext;
 

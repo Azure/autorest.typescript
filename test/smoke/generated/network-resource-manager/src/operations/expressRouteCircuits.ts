@@ -46,7 +46,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ExpressRouteCircuits. */
+/** Class containing ExpressRouteCircuits operations. */
 export class ExpressRouteCircuitsImpl implements ExpressRouteCircuits {
   private readonly client: NetworkManagementClientContext;
 

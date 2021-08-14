@@ -68,7 +68,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NetworkWatchers. */
+/** Class containing NetworkWatchers operations. */
 export class NetworkWatchersImpl implements NetworkWatchers {
   private readonly client: NetworkManagementClientContext;
 

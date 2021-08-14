@@ -8,7 +8,7 @@ import {
   FileUploadRangeFromURLResponse
 } from "../models";
 
-/** Class representing a File. */
+/** Class containing File operations. */
 export class FileImpl implements File {
   private readonly client: StorageFileShareClientContext;
 

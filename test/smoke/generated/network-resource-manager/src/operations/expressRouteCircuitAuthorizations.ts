@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ExpressRouteCircuitAuthorizations. */
+/** Class containing ExpressRouteCircuitAuthorizations operations. */
 export class ExpressRouteCircuitAuthorizationsImpl
   implements ExpressRouteCircuitAuthorizations {
   private readonly client: NetworkManagementClientContext;

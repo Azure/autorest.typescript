@@ -18,7 +18,7 @@ import {
   PolymorphicrecursivePutValidOptionalParams
 } from "../models";
 
-/** Class representing a Polymorphicrecursive. */
+/** Class containing Polymorphicrecursive operations. */
 export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
   private readonly client: BodyComplexClientContext;
 

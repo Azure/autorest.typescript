@@ -104,7 +104,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Deployments. */
+/** Class containing Deployments operations. */
 export class DeploymentsImpl implements Deployments {
   private readonly client: ResourceManagementClientContext;
 
