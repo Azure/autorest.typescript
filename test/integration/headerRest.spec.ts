@@ -46,13 +46,15 @@ describe.only("header Rest", function() {
       it("should send and receive integer type headers", async function() {
         await testClient.path("/header/param/prim/integer").post({
           headers:{
-            scenario: "positive", "value": 1
+            scenario: "positive", 
+            value: 1
           },
           allowInsecureConnection: true
         });
         await testClient.path("/header/param/prim/integer").post({
           headers:{
-            scenario: "negative", "value": -2
+            scenario: "negative", 
+            value: -2
           },
           allowInsecureConnection: true
         });
@@ -63,15 +65,16 @@ describe.only("header Rest", function() {
           },
           allowInsecureConnection: true
         })
-        response1.headers.value!.should.be.deep.equal(1);
+        response1.headers.value!.should.be.deep.equal('1');
 
         const response2 = await testClient.path("/header/response/prim/integer").post({
           headers: {
-            scenario: "negative"
+            scenario: "negative",
+            value: -2
           },
           allowInsecureConnection: true
         })
-        response2.headers.value!.should.be.deep.equal(-2);
+        response2.headers.value!.should.be.deep.equal('-2');
       });
 
     //   it("should send and receive long type headers", async function() {

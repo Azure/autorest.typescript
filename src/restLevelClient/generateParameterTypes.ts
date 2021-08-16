@@ -2,11 +2,13 @@ import { CodeModel, Operation, Parameter } from "@autorest/codemodel";
 import {
   InterfaceDeclarationStructure,
   Project,
+  PropertySignatureStructure,
   StructureKind
 } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getPropertySignature } from "./getPropertySignature";
+import { primitiveSchemaToType } from "./schemaHelpers";
 
 /**
  * Generates the interfaces describing each operation parameters
@@ -37,6 +39,23 @@ export function generateParameterInterfaces(
     );
     const parameterInterfaceName = `${operationName}Parameters`;
     const parameters = getOperationParameters(operation);
+    const requestProperties: PropertySignatureStructure[] = [];
+
+    const headerParameterDefinition =  buildHeaderParameterDefinition(
+      operationName,
+      parameters,
+      importedModels,
+      internalReferences,
+    );
+
+    if (!headerParameterDefinition) {
+      requestProperties.push({
+        name: "headers",
+        type: `RawHttpHeaders & ${headerParameterInterfaceName}`,
+        kind: StructureKind.PropertySignature
+      });
+    }
+
     const queryParameterDefinitions = buildQueryParameterDefinition(
       operationName,
       parameters,
@@ -54,8 +73,10 @@ export function generateParameterInterfaces(
     // Add interfaces for body and query parameters
     parametersFile.addInterfaces([
       ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
-      ...(queryParameterDefinitions ?? [])
+      ...(queryParameterDefinitions ?? []),
     ]);
+
+
 
     // Add Operation parameters type alias which is composed of the types we generated above
     // plus the common type RequestParameters
@@ -79,6 +100,36 @@ export function generateParameterInterfaces(
       moduleSpecifier: "./models"
     }
   ]);
+}
+
+function buildHeaderParameterDefinition(
+  operationName: string,
+  parameters: Parameter[],
+  importedModels: Set<string>,
+  internalReferences: Set<string>
+): InterfaceDeclarationStructure | undefined {
+  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  if (!headerParameters.length) {
+    return undefined;
+  }
+
+  const headerParameterInterfaceName = `${operationName}HeaderParam`;
+
+  internalReferences.add(headerParameterInterfaceName);
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: headerParameterInterfaceName,
+    properties: headerParameters.map((h: Parameter) => {
+      const description = getLanguageMetadata(h.language).description;
+      return {
+        name: `"${getLanguageMetadata(h.language).name.toLowerCase()}"`,
+        ...(description && { docs: [{ description }] }),
+        type: primitiveSchemaToType(h.schema),
+        hasQuestionToken: true
+      };
+    })
+  };
 }
 
 /**

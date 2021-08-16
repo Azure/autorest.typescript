@@ -85,7 +85,7 @@ function isPrimitiveSchema(schema: Schema): boolean {
  * @param schema - Schema to generate a type for
  * @returns a string with the Typescript type to generate for the given schema
  */
-function primitiveSchemaToType(schema: PrimitiveSchema): string {
+export function primitiveSchemaToType(schema: PrimitiveSchema): string {
   switch (schema.type) {
     case SchemaType.Any:
       return "any";

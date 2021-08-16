@@ -79,7 +79,7 @@ export interface ParamIntegerdefaultResponse extends HttpResponse {
 
 export interface ResponseInteger200Headers {
   /** response with header value "value": 1 or -2 */
-  value?: string;
+  value?: number;
 }
 
 /** Get a response with header value "value": 1 or -2 */
@@ -109,7 +109,7 @@ export interface ParamLongdefaultResponse extends HttpResponse {
 
 export interface ResponseLong200Headers {
   /** response with header value "value": 105 or -2 */
-  value?: string;
+  value?: number;
 }
 
 /** Get a response with header value "value": 105 or -2 */
@@ -139,7 +139,7 @@ export interface ParamFloatdefaultResponse extends HttpResponse {
 
 export interface ResponseFloat200Headers {
   /** response with header value "value": 0.07 or -3.0 */
-  value?: string;
+  value?: number;
 }
 
 /** Get a response with header value "value": 0.07 or -3.0 */
@@ -169,7 +169,7 @@ export interface ParamDoubledefaultResponse extends HttpResponse {
 
 export interface ResponseDouble200Headers {
   /** response with header value "value": 7e120 or -3.0 */
-  value?: string;
+  value?: number;
 }
 
 /** Get a response with header value "value": 7e120 or -3.0 */
@@ -199,7 +199,7 @@ export interface ParamBooldefaultResponse extends HttpResponse {
 
 export interface ResponseBool200Headers {
   /** response with header value "value": true or false */
-  value?: string;
+  value?: boolean;
 }
 
 /** Get a response with header value "value": true or false */
@@ -259,7 +259,7 @@ export interface ParamDatedefaultResponse extends HttpResponse {
 
 export interface ResponseDate200Headers {
   /** response with header values "2010-01-01" or "0001-01-01" */
-  value?: string;
+  value?: Date;
 }
 
 /** Get a response with header values "2010-01-01" or "0001-01-01" */
@@ -289,7 +289,7 @@ export interface ParamDatetimedefaultResponse extends HttpResponse {
 
 export interface ResponseDatetime200Headers {
   /** response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
-  value?: string;
+  value?: Date;
 }
 
 /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
@@ -319,7 +319,7 @@ export interface ParamDatetimeRfc1123defaultResponse extends HttpResponse {
 
 export interface ResponseDatetimeRfc1123200Headers {
   /** response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
-  value?: string;
+  value?: Date;
 }
 
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
@@ -409,7 +409,7 @@ export interface ParamEnumdefaultResponse extends HttpResponse {
 
 export interface ResponseEnum200Headers {
   /** response with header values "GREY" or null */
-  value?: string;
+  value?: "White" | "black" | "GREY";
 }
 
 /** Get a response with header values "GREY" or null */

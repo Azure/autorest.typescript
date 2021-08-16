@@ -18,7 +18,7 @@ import {
   StructureKind
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getElementType, getFormatDocs } from "./schemaHelpers";
+import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
@@ -194,7 +194,7 @@ function getResponseHeaderInterfaceDefinition(
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
-          type: "string",
+          type: primitiveSchemaToType(h.schema),
           hasQuestionToken: true
         };
       })
