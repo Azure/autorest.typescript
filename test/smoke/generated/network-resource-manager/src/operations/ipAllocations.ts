@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a IpAllocations. */
+/** Class containing IpAllocations operations. */
 export class IpAllocationsImpl implements IpAllocations {
   private readonly client: NetworkManagementClientContext;
 

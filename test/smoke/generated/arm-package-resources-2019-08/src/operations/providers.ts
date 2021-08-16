@@ -34,7 +34,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Providers. */
+/** Class containing Providers operations. */
 export class ProvidersImpl implements Providers {
   private readonly client: ResourceManagementClientContext;
 

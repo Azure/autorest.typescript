@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SecurityPartnerProviders. */
+/** Class containing SecurityPartnerProviders operations. */
 export class SecurityPartnerProvidersImpl implements SecurityPartnerProviders {
   private readonly client: NetworkManagementClientContext;
 

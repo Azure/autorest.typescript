@@ -42,7 +42,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a PolicySetDefinitions. */
+/** Class containing PolicySetDefinitions operations. */
 export class PolicySetDefinitionsImpl implements PolicySetDefinitions {
   private readonly client: PolicyClientContext;
 

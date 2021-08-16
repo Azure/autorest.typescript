@@ -18,7 +18,7 @@ import {
   SubscriptionInMethodPostSwaggerLocalValidOptionalParams
 } from "../models";
 
-/** Class representing a SubscriptionInMethod. */
+/** Class containing SubscriptionInMethod operations. */
 export class SubscriptionInMethodImpl implements SubscriptionInMethod {
   private readonly client: AzureSpecialPropertiesClientContext;
 

@@ -28,7 +28,7 @@ import {
   DocumentsAutocompletePostResponse
 } from "../models";
 
-/** Class representing a Documents. */
+/** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {
   private readonly client: SearchClientContext;
 

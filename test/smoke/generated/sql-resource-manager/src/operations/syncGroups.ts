@@ -50,7 +50,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SyncGroups. */
+/** Class containing SyncGroups operations. */
 export class SyncGroupsImpl implements SyncGroups {
   private readonly client: SqlManagementClientContext;
 

@@ -32,7 +32,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a FileShares. */
+/** Class containing FileShares operations. */
 export class FileSharesImpl implements FileShares {
   private readonly client: StorageManagementClientContext;
 

@@ -12,7 +12,7 @@ import * as Parameters from "../models/parameters";
 import { UrlClientContext } from "../urlClientContext";
 import { GetUrlOptionalParams, GetUrlResponse } from "../models";
 
-/** Class representing a Get. */
+/** Class containing Get operations. */
 export class GetImpl implements Get {
   private readonly client: UrlClientContext;
 

@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SecurityRules. */
+/** Class containing SecurityRules operations. */
 export class SecurityRulesImpl implements SecurityRules {
   private readonly client: NetworkManagementClientContext;
 

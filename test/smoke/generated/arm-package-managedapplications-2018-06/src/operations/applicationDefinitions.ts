@@ -34,7 +34,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ApplicationDefinitions. */
+/** Class containing ApplicationDefinitions operations. */
 export class ApplicationDefinitionsImpl implements ApplicationDefinitions {
   private readonly client: ApplicationClientContext;
 

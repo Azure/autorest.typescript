@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a IpGroups. */
+/** Class containing IpGroups operations. */
 export class IpGroupsImpl implements IpGroups {
   private readonly client: NetworkManagementClientContext;
 

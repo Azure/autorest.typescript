@@ -20,7 +20,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Skus. */
+/** Class containing Skus operations. */
 export class SkusImpl implements Skus {
   private readonly client: StorageManagementClientContext;
 

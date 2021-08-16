@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VirtualHubRouteTableV2S. */
+/** Class containing VirtualHubRouteTableV2S operations. */
 export class VirtualHubRouteTableV2SImpl implements VirtualHubRouteTableV2S {
   private readonly client: NetworkManagementClientContext;
 

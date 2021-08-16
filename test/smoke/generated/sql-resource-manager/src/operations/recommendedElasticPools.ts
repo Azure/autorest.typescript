@@ -25,7 +25,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a RecommendedElasticPools. */
+/** Class containing RecommendedElasticPools operations. */
 export class RecommendedElasticPoolsImpl implements RecommendedElasticPools {
   private readonly client: SqlManagementClientContext;
 

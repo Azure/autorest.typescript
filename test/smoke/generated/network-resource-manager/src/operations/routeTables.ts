@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a RouteTables. */
+/** Class containing RouteTables operations. */
 export class RouteTablesImpl implements RouteTables {
   private readonly client: NetworkManagementClientContext;
 

@@ -60,7 +60,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ApplicationGateways. */
+/** Class containing ApplicationGateways operations. */
 export class ApplicationGatewaysImpl implements ApplicationGateways {
   private readonly client: NetworkManagementClientContext;
 

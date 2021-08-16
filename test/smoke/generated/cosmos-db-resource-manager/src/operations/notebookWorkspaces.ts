@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NotebookWorkspaces. */
+/** Class containing NotebookWorkspaces operations. */
 export class NotebookWorkspacesImpl implements NotebookWorkspaces {
   private readonly client: CosmosDBManagementClientContext;
 

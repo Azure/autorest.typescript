@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a FlowLogs. */
+/** Class containing FlowLogs operations. */
 export class FlowLogsImpl implements FlowLogs {
   private readonly client: NetworkManagementClientContext;
 

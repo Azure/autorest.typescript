@@ -97,7 +97,7 @@ import {
   LROsPostAsyncRetrycanceledResponse
 } from "../models";
 
-/** Class representing a LROs. */
+/** Class containing LROs operations. */
 export class LROsImpl implements LROs {
   private readonly client: LROClientContext;
 

@@ -46,7 +46,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a GremlinResources. */
+/** Class containing GremlinResources operations. */
 export class GremlinResourcesImpl implements GremlinResources {
   private readonly client: CosmosDBManagementClientContext;
 

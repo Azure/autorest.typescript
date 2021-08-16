@@ -21,7 +21,7 @@ import {
   ManagementPoliciesDeleteOptionalParams
 } from "../models";
 
-/** Class representing a ManagementPolicies. */
+/** Class containing ManagementPolicies operations. */
 export class ManagementPoliciesImpl implements ManagementPolicies {
   private readonly client: StorageManagementClientContext;
 

@@ -1,19 +1,19 @@
-import { ProductOperations } from "../operationsInterfaces";
+import { PipelineOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { OperationGroupClashClientContext } from "../operationGroupClashClientContext";
 import {
-  ProductOperationsApiV1ValueGetOptionalParams,
-  ProductOperationsApiV1ValueGetResponse
+  PipelineOperationsApiV1ValueGetOptionalParams,
+  PipelineOperationsApiV1ValueGetResponse
 } from "../models";
 
-/** Class containing ProductOperations operations. */
-export class ProductOperationsImpl implements ProductOperations {
+/** Class containing PipelineOperations operations. */
+export class PipelineOperationsImpl implements PipelineOperations {
   private readonly client: OperationGroupClashClientContext;
 
   /**
-   * Initialize a new instance of the class ProductOperations class.
+   * Initialize a new instance of the class PipelineOperations class.
    * @param client Reference to the service client
    */
   constructor(client: OperationGroupClashClientContext) {
@@ -22,8 +22,8 @@ export class ProductOperationsImpl implements ProductOperations {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ProductOperationsApiV1ValueGetOptionalParams
-  ): Promise<ProductOperationsApiV1ValueGetResponse> {
+    options?: PipelineOperationsApiV1ValueGetOptionalParams
+  ): Promise<PipelineOperationsApiV1ValueGetResponse> {
     return this.client.sendOperationRequest(
       { options },
       apiV1ValueGetOperationSpec
@@ -34,7 +34,7 @@ export class ProductOperationsImpl implements ProductOperations {
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
 const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
-  path: "/api/v1/value",
+  path: "/api/v1/pipeline",
   httpMethod: "GET",
   responses: {
     200: {
@@ -43,7 +43,6 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  queryParameters: [Parameters.pageRange],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
   serializer

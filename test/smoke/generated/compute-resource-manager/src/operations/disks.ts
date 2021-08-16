@@ -40,7 +40,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Disks. */
+/** Class containing Disks operations. */
 export class DisksImpl implements Disks {
   private readonly client: ComputeManagementClientContext;
 

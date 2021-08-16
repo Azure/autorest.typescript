@@ -57,7 +57,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Vaults. */
+/** Class containing Vaults operations. */
 export class VaultsImpl implements Vaults {
   private readonly client: KeyVaultManagementClientContext;
 

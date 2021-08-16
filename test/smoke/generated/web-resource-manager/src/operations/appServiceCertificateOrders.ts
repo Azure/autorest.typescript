@@ -65,7 +65,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a AppServiceCertificateOrders. */
+/** Class containing AppServiceCertificateOrders operations. */
 export class AppServiceCertificateOrdersImpl
   implements AppServiceCertificateOrders {
   private readonly client: WebSiteManagementClientContext;

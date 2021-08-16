@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DdosProtectionPlans. */
+/** Class containing DdosProtectionPlans operations. */
 export class DdosProtectionPlansImpl implements DdosProtectionPlans {
   private readonly client: NetworkManagementClientContext;
 

@@ -50,7 +50,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Recommendations. */
+/** Class containing Recommendations operations. */
 export class RecommendationsImpl implements Recommendations {
   private readonly client: WebSiteManagementClientContext;
 

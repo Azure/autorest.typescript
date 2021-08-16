@@ -27,7 +27,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Subscriptions. */
+/** Class containing Subscriptions operations. */
 export class SubscriptionsImpl implements Subscriptions {
   private readonly client: SubscriptionClientContext;
 

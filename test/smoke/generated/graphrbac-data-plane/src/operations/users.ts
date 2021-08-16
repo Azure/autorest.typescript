@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Users. */
+/** Class containing Users operations. */
 export class UsersImpl implements Users {
   private readonly client: GraphRbacManagementClientContext;
 

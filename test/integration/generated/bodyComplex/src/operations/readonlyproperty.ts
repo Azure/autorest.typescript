@@ -18,7 +18,7 @@ import {
   ReadonlypropertyPutValidOptionalParams
 } from "../models";
 
-/** Class representing a Readonlyproperty. */
+/** Class containing Readonlyproperty operations. */
 export class ReadonlypropertyImpl implements Readonlyproperty {
   private readonly client: BodyComplexClientContext;
 

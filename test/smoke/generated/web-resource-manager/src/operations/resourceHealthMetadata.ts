@@ -38,7 +38,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ResourceHealthMetadata. */
+/** Class containing ResourceHealthMetadata operations. */
 export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private readonly client: WebSiteManagementClientContext;
 

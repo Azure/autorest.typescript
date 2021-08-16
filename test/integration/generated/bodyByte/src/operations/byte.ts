@@ -23,7 +23,7 @@ import {
   ByteGetInvalidResponse
 } from "../models";
 
-/** Class representing a Byte. */
+/** Class containing Byte operations. */
 export class ByteImpl implements Byte {
   private readonly client: BodyByteClientContext;
 

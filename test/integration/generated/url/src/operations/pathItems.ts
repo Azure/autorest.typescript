@@ -18,7 +18,7 @@ import {
   PathItemsGetLocalPathItemQueryNullOptionalParams
 } from "../models";
 
-/** Class representing a PathItems. */
+/** Class containing PathItems operations. */
 export class PathItemsImpl implements PathItems {
   private readonly client: UrlClientContext;
 

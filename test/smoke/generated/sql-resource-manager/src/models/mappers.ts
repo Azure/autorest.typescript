@@ -8449,6 +8449,7 @@ export const Job: coreClient.CompositeMapper = {
     modelProperties: {
       ...ProxyResource.type.modelProperties,
       description: {
+        defaultValue: "",
         serializedName: "properties.description",
         type: {
           name: "String"

@@ -97,6 +97,7 @@ export const top: OperationQueryParameter = {
 export const skip: OperationQueryParameter = {
   parameterPath: ["options", "skip"],
   mapper: {
+    defaultValue: 0,
     constraints: {
       InclusiveMinimum: 0
     },

@@ -28,7 +28,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a EncryptionScopes. */
+/** Class containing EncryptionScopes operations. */
 export class EncryptionScopesImpl implements EncryptionScopes {
   private readonly client: StorageManagementClientContext;
 

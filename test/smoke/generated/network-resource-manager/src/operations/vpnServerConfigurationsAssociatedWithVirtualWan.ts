@@ -18,7 +18,7 @@ import {
   VpnServerConfigurationsAssociatedWithVirtualWanListResponse
 } from "../models";
 
-/** Class representing a VpnServerConfigurationsAssociatedWithVirtualWan. */
+/** Class containing VpnServerConfigurationsAssociatedWithVirtualWan operations. */
 export class VpnServerConfigurationsAssociatedWithVirtualWanImpl
   implements VpnServerConfigurationsAssociatedWithVirtualWan {
   private readonly client: NetworkManagementClientContext;

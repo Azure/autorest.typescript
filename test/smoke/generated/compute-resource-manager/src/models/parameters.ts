@@ -453,6 +453,7 @@ export const statusOnly: OperationQueryParameter = {
 export const skipShutdown: OperationQueryParameter = {
   parameterPath: ["options", "skipShutdown"],
   mapper: {
+    defaultValue: false,
     serializedName: "skipShutdown",
     type: {
       name: "Boolean"

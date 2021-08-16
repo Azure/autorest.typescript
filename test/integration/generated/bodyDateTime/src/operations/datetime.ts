@@ -51,7 +51,7 @@ import {
   DatetimeGetLocalNoOffsetMinDateTimeResponse
 } from "../models";
 
-/** Class representing a Datetime. */
+/** Class containing Datetime operations. */
 export class DatetimeImpl implements Datetime {
   private readonly client: BodyDateTimeClientContext;
 

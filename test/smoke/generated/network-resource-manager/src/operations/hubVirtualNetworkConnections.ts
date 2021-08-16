@@ -24,7 +24,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a HubVirtualNetworkConnections. */
+/** Class containing HubVirtualNetworkConnections operations. */
 export class HubVirtualNetworkConnectionsImpl
   implements HubVirtualNetworkConnections {
   private readonly client: NetworkManagementClientContext;

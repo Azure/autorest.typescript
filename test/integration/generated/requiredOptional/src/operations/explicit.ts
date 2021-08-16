@@ -44,7 +44,7 @@ import {
   ExplicitPostOptionalArrayHeaderOptionalParams
 } from "../models";
 
-/** Class representing a Explicit. */
+/** Class containing Explicit operations. */
 export class ExplicitImpl implements Explicit {
   private readonly client: RequiredOptionalClientContext;
 

@@ -18,7 +18,7 @@ import {
   VpnSitesConfigurationDownloadOptionalParams
 } from "../models";
 
-/** Class representing a VpnSitesConfiguration. */
+/** Class containing VpnSitesConfiguration operations. */
 export class VpnSitesConfigurationImpl implements VpnSitesConfiguration {
   private readonly client: NetworkManagementClientContext;
 

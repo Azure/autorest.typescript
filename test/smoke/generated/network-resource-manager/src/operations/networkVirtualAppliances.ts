@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NetworkVirtualAppliances. */
+/** Class containing NetworkVirtualAppliances operations. */
 export class NetworkVirtualAppliancesImpl implements NetworkVirtualAppliances {
   private readonly client: NetworkManagementClientContext;
 

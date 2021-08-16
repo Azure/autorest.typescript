@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ResourceSkus. */
+/** Class containing ResourceSkus operations. */
 export class ResourceSkusImpl implements ResourceSkus {
   private readonly client: ComputeManagementClientContext;
 

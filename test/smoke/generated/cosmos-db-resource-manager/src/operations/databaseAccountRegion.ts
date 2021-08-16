@@ -20,7 +20,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DatabaseAccountRegion. */
+/** Class containing DatabaseAccountRegion operations. */
 export class DatabaseAccountRegionImpl implements DatabaseAccountRegion {
   private readonly client: CosmosDBManagementClientContext;
 

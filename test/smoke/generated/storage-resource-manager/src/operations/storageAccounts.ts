@@ -54,7 +54,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a StorageAccounts. */
+/** Class containing StorageAccounts operations. */
 export class StorageAccountsImpl implements StorageAccounts {
   private readonly client: StorageManagementClientContext;
 

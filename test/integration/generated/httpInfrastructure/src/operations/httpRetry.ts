@@ -24,7 +24,7 @@ import {
   HttpRetryPatch504OptionalParams
 } from "../models";
 
-/** Class representing a HttpRetry. */
+/** Class containing HttpRetry operations. */
 export class HttpRetryImpl implements HttpRetry {
   private readonly client: HttpInfrastructureClientContext;
 

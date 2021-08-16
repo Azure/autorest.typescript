@@ -33,7 +33,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a TableResources. */
+/** Class containing TableResources operations. */
 export class TableResourcesImpl implements TableResources {
   private readonly client: CosmosDBManagementClientContext;
 
