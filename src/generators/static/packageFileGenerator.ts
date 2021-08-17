@@ -122,7 +122,8 @@ function regularAutorestPackage(
     disablePagingAsyncIterators,
     azureArm,
     addCredentials,
-    azureOutputDirectory
+    azureOutputDirectory,
+    generateTest,
   } = getAutorestOptions();
   const hasLro = clientDetails.operationGroups.some(og =>
     og.operations.some(o => o.isLro)
@@ -130,7 +131,7 @@ function regularAutorestPackage(
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;
 
-  return {
+  const packageInfo: Record<string, any> = {
     name: packageDetails.name,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
     author: "Microsoft Corporation",
@@ -161,11 +162,9 @@ function regularAutorestPackage(
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
     license: "MIT",
     main: `./dist/index.js`,
-    module: `./dist-esm/src/index.js`,
+    module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@azure/identity": "2.0.0-beta.4",
-      "@azure/test-utils-recorder": "^1.0.0",
       "@microsoft/api-extractor": "7.7.11",
       "@rollup/plugin-commonjs": "11.0.2",
       "@rollup/plugin-json": "^4.0.0",
@@ -223,20 +222,30 @@ function regularAutorestPackage(
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
       format: "echo skipped",
-      test: "npm run integration-test",
-      "prebuild": "echo skipped",
+      test: "echo skipped",
+      prebuild: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
-      "unit-test": "npm run unit-test:node && npm run unit-test:browser",
-      "unit-test:node": "cross-env TEST_MODE=playback npm run integration-test:node",
+      "unit-test": "echo skipped",
+      "unit-test:node": "echo skipped",
       "unit-test:browser": "echo skipped",
-      "integration-test": "npm run integration-test:node && npm run integration-test:browser",
-      "integration-test:node": "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts",
+      "integration-test": "echo skipped",
+      "integration-test:node": "echo skipped",
       "integration-test:browser": "echo skipped",
-      "clear-recordings": "rm -fr recordings",
       docs: "echo skipped"
     },
     sideEffects: false,
     autoPublish: true
   };
+  if(generateTest) {
+    packageInfo.module = `./dist-esm/src/index.js`;
+    packageInfo.devDependencies['@azure/identity'] = "2.0.0-beta.4";
+    packageInfo.devDependencies['@azure/test-utils-recorder'] = "^1.0.0";
+    packageInfo.scripts['test'] = "npm run integration-test";
+    packageInfo.scripts['unit-test'] = "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts['unit-test:node'] = "cross-env TEST_MODE=playback npm run integration-test:node";
+    packageInfo.scripts['integration-test'] = "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts['integration-test:node'] = "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts";
+  }
+  return packageInfo;
 }

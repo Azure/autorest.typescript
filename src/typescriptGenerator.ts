@@ -62,7 +62,8 @@ export async function generateTypeScriptLibrary(
 
   const {
     packageDetails,
-    licenseHeader: shouldGenerateLicense
+    licenseHeader: shouldGenerateLicense,
+    generateTest
   } = getAutorestOptions();
 
   const clientDetails = await transformCodeModel(codeModel, host);
@@ -89,7 +90,9 @@ export async function generateTypeScriptLibrary(
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
   generateReadmeFile(clientDetails, project);
-  generateSampleTestFile(project);
+  if (generateTest) {
+    generateSampleTestFile(project);
+  }
   generateTsConfig(project);
   generateRollupConfig(project);
   generateApiExtractorConfig(project);

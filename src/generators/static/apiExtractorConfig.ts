@@ -5,7 +5,7 @@ import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
 export function generateApiExtractorConfig(project: Project) {
-  const { generateMetadata, packageDetails } = getAutorestOptions();
+  const { generateMetadata, packageDetails, generateTest } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
@@ -14,7 +14,7 @@ export function generateApiExtractorConfig(project: Project) {
   const config = {
     $schema:
       "https://developer.microsoft.com/json-schemas/api-extractor/v7/api-extractor.schema.json",
-    mainEntryPointFilePath: `./dist-esm/src/index.d.ts`,
+    mainEntryPointFilePath: generateTest ?`./dist-esm/src/index.d.ts` :`./dist-esm/index.d.ts` ,
     docModel: {
       enabled: true
     },

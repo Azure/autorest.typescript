@@ -20,9 +20,10 @@ const highLevelTsConfig = {
     outDir: "./dist-esm",
     importHelpers: true
   },
-  include: ["./src/**/*.ts", "./test/**/*.ts"],
+  include: ["./src/**/*.ts"],
   exclude: ["node_modules"]
 };
+
 
 const restLevelTsConfig = {
   compilerOptions: {
@@ -45,12 +46,16 @@ const restLevelTsConfig = {
 };
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
+  if (generateTest) {
+    highLevelTsConfig.include.push("./test/**/*.ts");
+  }
+  
   const tsConfigContents = restLevelClient
     ? restLevelTsConfig
     : highLevelTsConfig;

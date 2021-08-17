@@ -26,6 +26,7 @@ export interface AutorestOptions {
   azureOutputDirectory?: string;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
+  generateTest?: boolean;
 }
 
 let host: Host;
