@@ -15,7 +15,8 @@ export function getPropertySignature(
 ): PropertySignatureStructure {
   const propertyLangMetadata = getLanguageMetadata(property.language);
   const propertyName = `"${propertyLangMetadata.serializedName ||
-    propertyLangMetadata.name}"`;
+    (property as Property).serializedName ||
+    "foooooooooo"}"`;
   const description = getDocs(property);
   const type = getElementType(property.schema, importedModels);
   return {
