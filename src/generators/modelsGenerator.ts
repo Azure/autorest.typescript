@@ -537,7 +537,9 @@ const writeSealedChoice = (
   modelsIndexFile: SourceFile
 ) => {
   const values = choice.properties
-    .map(p => (choice.itemType === SchemaType.String ? `"${p.value}"` : p.name))
+    .map(p =>
+      choice.itemType === SchemaType.String ? `"${p.value}"` : p.value
+    )
     .join(" | ");
 
   modelsIndexFile.addTypeAlias({
