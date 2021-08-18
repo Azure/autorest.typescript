@@ -171,8 +171,6 @@ function regularAutorestPackage(
       "@rollup/plugin-multi-entry": "^3.0.0",
       "@rollup/plugin-node-resolve": "^8.0.0",
       mkdirp: "^1.0.4",
-      "mocha": "^7.1.1",
-      "cross-env": "^7.0.2",
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
       "rollup-plugin-node-resolve": "^3.4.0",
@@ -241,6 +239,8 @@ function regularAutorestPackage(
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies['@azure/identity'] = "2.0.0-beta.4";
     packageInfo.devDependencies['@azure/test-utils-recorder'] = "^1.0.0";
+    packageInfo.devDependencies['mocha'] = "^7.1.1";
+    packageInfo.devDependencies['cross-env'] = "^7.0.2";
     packageInfo.scripts['test'] = "npm run integration-test";
     packageInfo.scripts['unit-test'] = "npm run unit-test:node && npm run unit-test:browser";
     packageInfo.scripts['unit-test:node'] = "cross-env TEST_MODE=playback npm run integration-test:node";
