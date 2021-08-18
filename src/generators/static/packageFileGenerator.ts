@@ -54,7 +54,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     version: `${packageDetails.version}`,
     description: `${packageDetails.description}`,
     main: "dist-esm/index.js",
-    types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
+    types: "./dist-esm/index.d.ts",
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
       build: "tsc --build && npm run extract-api",
