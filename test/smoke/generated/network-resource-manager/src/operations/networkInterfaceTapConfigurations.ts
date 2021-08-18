@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NetworkInterfaceTapConfigurations. */
+/** Class containing NetworkInterfaceTapConfigurations operations. */
 export class NetworkInterfaceTapConfigurationsImpl
   implements NetworkInterfaceTapConfigurations {
   private readonly client: NetworkManagementClientContext;

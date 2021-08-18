@@ -13,7 +13,7 @@ import * as Parameters from "../models/parameters";
 import { CustomUrlClientContext } from "../customUrlClientContext";
 import { PathsGetEmptyOptionalParams } from "../models";
 
-/** Class representing a Paths. */
+/** Class containing Paths operations. */
 export class PathsImpl implements Paths {
   private readonly client: CustomUrlClientContext;
 

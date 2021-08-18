@@ -38,7 +38,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a VpnGateways. */
+/** Class containing VpnGateways operations. */
 export class VpnGatewaysImpl implements VpnGateways {
   private readonly client: NetworkManagementClientContext;
 

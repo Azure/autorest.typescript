@@ -17,7 +17,7 @@ import {
   QueriesArrayStringMultiValidOptionalParams
 } from "../models";
 
-/** Class representing a Queries. */
+/** Class containing Queries operations. */
 export class QueriesImpl implements Queries {
   private readonly client: UrlMultiClientContext;
 

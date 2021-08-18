@@ -13,7 +13,7 @@ import {
   BlockBlobPutBlobFromUrlResponse
 } from "../models";
 
-/** Class representing a BlockBlob. */
+/** Class containing BlockBlob operations. */
 export class BlockBlobImpl implements BlockBlob {
   private readonly client: StorageBlobClientContext;
 

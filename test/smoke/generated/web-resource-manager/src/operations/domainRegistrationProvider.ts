@@ -22,7 +22,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DomainRegistrationProvider. */
+/** Class containing DomainRegistrationProvider operations. */
 export class DomainRegistrationProviderImpl
   implements DomainRegistrationProvider {
   private readonly client: WebSiteManagementClientContext;

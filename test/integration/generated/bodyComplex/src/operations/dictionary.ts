@@ -25,7 +25,7 @@ import {
   DictionaryGetNotProvidedResponse
 } from "../models";
 
-/** Class representing a Dictionary. */
+/** Class containing Dictionary operations. */
 export class DictionaryImpl implements Dictionary {
   private readonly client: BodyComplexClientContext;
 

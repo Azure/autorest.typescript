@@ -25,7 +25,7 @@ import {
   DdosCustomPoliciesUpdateTagsResponse
 } from "../models";
 
-/** Class representing a DdosCustomPolicies. */
+/** Class containing DdosCustomPolicies operations. */
 export class DdosCustomPoliciesImpl implements DdosCustomPolicies {
   private readonly client: NetworkManagementClientContext;
 

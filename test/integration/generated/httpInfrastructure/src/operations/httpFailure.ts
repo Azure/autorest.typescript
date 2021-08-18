@@ -20,7 +20,7 @@ import {
   HttpFailureGetNoModelEmptyResponse
 } from "../models";
 
-/** Class representing a HttpFailure. */
+/** Class containing HttpFailure operations. */
 export class HttpFailureImpl implements HttpFailure {
   private readonly client: HttpInfrastructureClientContext;
 

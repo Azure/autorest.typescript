@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ExpressRouteCircuitConnections. */
+/** Class containing ExpressRouteCircuitConnections operations. */
 export class ExpressRouteCircuitConnectionsImpl
   implements ExpressRouteCircuitConnections {
   private readonly client: NetworkManagementClientContext;

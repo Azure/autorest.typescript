@@ -35,7 +35,7 @@ import {
   StringGetNullBase64UrlEncodedResponse
 } from "../models";
 
-/** Class representing a StringOperations. */
+/** Class containing StringOperations operations. */
 export class StringOperationsImpl implements StringOperations {
   private readonly client: BodyStringClientContext;
 

@@ -29,7 +29,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a HubRouteTables. */
+/** Class containing HubRouteTables operations. */
 export class HubRouteTablesImpl implements HubRouteTables {
   private readonly client: NetworkManagementClientContext;
 

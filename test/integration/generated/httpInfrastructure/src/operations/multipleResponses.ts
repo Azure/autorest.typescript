@@ -69,7 +69,7 @@ import {
   MultipleResponsesGet200ModelA202ValidResponse
 } from "../models";
 
-/** Class representing a MultipleResponses. */
+/** Class containing MultipleResponses operations. */
 export class MultipleResponsesImpl implements MultipleResponses {
   private readonly client: HttpInfrastructureClientContext;
 

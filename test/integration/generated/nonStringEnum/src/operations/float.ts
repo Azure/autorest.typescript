@@ -17,7 +17,7 @@ import {
   FloatGetResponse
 } from "../models";
 
-/** Class representing a Float. */
+/** Class containing Float operations. */
 export class FloatImpl implements Float {
   private readonly client: NonStringEnumClientContext;
 

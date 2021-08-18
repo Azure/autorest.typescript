@@ -34,7 +34,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a SensitivityLabels. */
+/** Class containing SensitivityLabels operations. */
 export class SensitivityLabelsImpl implements SensitivityLabels {
   private readonly client: SqlManagementClientContext;
 

@@ -45,7 +45,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ServicePrincipals. */
+/** Class containing ServicePrincipals operations. */
 export class ServicePrincipalsImpl implements ServicePrincipals {
   private readonly client: GraphRbacManagementClientContext;
 

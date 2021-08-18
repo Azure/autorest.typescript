@@ -18,7 +18,7 @@ import {
   HttpServerFailureDelete505OptionalParams
 } from "../models";
 
-/** Class representing a HttpServerFailure. */
+/** Class containing HttpServerFailure operations. */
 export class HttpServerFailureImpl implements HttpServerFailure {
   private readonly client: HttpInfrastructureClientContext;
 

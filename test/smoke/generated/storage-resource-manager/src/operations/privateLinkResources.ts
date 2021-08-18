@@ -16,7 +16,7 @@ import {
   PrivateLinkResourcesListByStorageAccountResponse
 } from "../models";
 
-/** Class representing a PrivateLinkResources. */
+/** Class containing PrivateLinkResources operations. */
 export class PrivateLinkResourcesImpl implements PrivateLinkResources {
   private readonly client: StorageManagementClientContext;
 

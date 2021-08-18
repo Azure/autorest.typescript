@@ -40,6 +40,16 @@ export type ProductOperationsApiV1ValueGetResponse = {
 };
 
 /** Optional parameters. */
+export interface PipelineOperationsApiV1ValueGetOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the apiV1ValueGet operation. */
+export type PipelineOperationsApiV1ValueGetResponse = {
+  /** The parsed response body. */
+  body: string[];
+};
+
+/** Optional parameters. */
 export interface OperationGroupClashClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */

@@ -31,7 +31,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ResourceLinks. */
+/** Class containing ResourceLinks operations. */
 export class ResourceLinksImpl implements ResourceLinks {
   private readonly client: ManagementLinkClientContext;
 

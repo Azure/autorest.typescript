@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NatGateways. */
+/** Class containing NatGateways operations. */
 export class NatGatewaysImpl implements NatGateways {
   private readonly client: NetworkManagementClientContext;
 

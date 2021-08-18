@@ -46,7 +46,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a P2SVpnGateways. */
+/** Class containing P2SVpnGateways operations. */
 export class P2SVpnGatewaysImpl implements P2SVpnGateways {
   private readonly client: NetworkManagementClientContext;
 

@@ -28,7 +28,7 @@ import {
   DateGetMinDateResponse
 } from "../models";
 
-/** Class representing a DateOperations. */
+/** Class containing DateOperations operations. */
 export class DateOperationsImpl implements DateOperations {
   private readonly client: BodyDateClientContext;
 

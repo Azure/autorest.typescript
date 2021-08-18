@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a NetworkSecurityGroups. */
+/** Class containing NetworkSecurityGroups operations. */
 export class NetworkSecurityGroupsImpl implements NetworkSecurityGroups {
   private readonly client: NetworkManagementClientContext;
 

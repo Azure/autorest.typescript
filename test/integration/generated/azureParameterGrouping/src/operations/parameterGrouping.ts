@@ -19,7 +19,7 @@ import {
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 } from "../models";
 
-/** Class representing a ParameterGrouping. */
+/** Class containing ParameterGrouping operations. */
 export class ParameterGroupingImpl implements ParameterGrouping {
   private readonly client: AzureParameterGroupingClientContext;
 

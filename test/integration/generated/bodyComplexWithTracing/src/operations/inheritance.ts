@@ -20,7 +20,7 @@ import {
   InheritancePutValidOptionalParams
 } from "../models";
 
-/** Class representing a Inheritance. */
+/** Class containing Inheritance operations. */
 export class InheritanceImpl implements Inheritance {
   private readonly client: BodyComplexWithTracingContext;
 

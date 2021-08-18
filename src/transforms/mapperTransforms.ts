@@ -220,7 +220,7 @@ function buildMapper(
   return {
     ...{ type: mappeType },
     ...(serializedName && { serializedName }),
-    ...(!!schema.defaultValue && {
+    ...(schema.defaultValue !== undefined && {
       defaultValue: schema.defaultValue
     }),
     ...(required && { required }),

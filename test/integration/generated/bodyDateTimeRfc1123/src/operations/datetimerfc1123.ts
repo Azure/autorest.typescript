@@ -30,7 +30,7 @@ import {
   Datetimerfc1123GetUtcMinDateTimeResponse
 } from "../models";
 
-/** Class representing a Datetimerfc1123. */
+/** Class containing Datetimerfc1123 operations. */
 export class Datetimerfc1123Impl implements Datetimerfc1123 {
   private readonly client: BodyDateTimeRfc1123ClientContext;
 

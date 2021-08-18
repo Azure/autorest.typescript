@@ -4287,6 +4287,7 @@ export const RunCommandParameterDefinition: coreClient.CompositeMapper = {
         }
       },
       required: {
+        defaultValue: false,
         serializedName: "required",
         type: {
           name: "Boolean"

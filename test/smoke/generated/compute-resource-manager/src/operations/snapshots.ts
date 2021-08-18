@@ -40,7 +40,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Snapshots. */
+/** Class containing Snapshots operations. */
 export class SnapshotsImpl implements Snapshots {
   private readonly client: ComputeManagementClientContext;
 

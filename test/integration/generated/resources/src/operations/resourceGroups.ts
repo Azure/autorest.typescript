@@ -16,7 +16,7 @@ import {
   ResourceGroupsCheckExistenceResponse
 } from "../models";
 
-/** Class representing a ResourceGroups. */
+/** Class containing ResourceGroups operations. */
 export class ResourceGroupsImpl implements ResourceGroups {
   private readonly client: ResourcesClientContext;
 

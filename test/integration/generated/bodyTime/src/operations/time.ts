@@ -18,7 +18,7 @@ import {
   TimePutResponse
 } from "../models";
 
-/** Class representing a Time. */
+/** Class containing Time operations. */
 export class TimeImpl implements Time {
   private readonly client: BodyTimeClientContext;
 

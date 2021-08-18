@@ -18,7 +18,7 @@ import {
   FlattencomplexGetValidResponse
 } from "../models";
 
-/** Class representing a Flattencomplex. */
+/** Class containing Flattencomplex operations. */
 export class FlattencomplexImpl implements Flattencomplex {
   private readonly client: BodyComplexWithTracingContext;
 

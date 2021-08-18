@@ -23,7 +23,7 @@ import {
   ArrayGetNotProvidedResponse
 } from "../models";
 
-/** Class representing a Array. */
+/** Class containing Array operations. */
 export class ArrayImpl implements Array {
   private readonly client: BodyComplexClientContext;
 

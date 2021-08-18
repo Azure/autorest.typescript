@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a DiskEncryptionSets. */
+/** Class containing DiskEncryptionSets operations. */
 export class DiskEncryptionSetsImpl implements DiskEncryptionSets {
   private readonly client: ComputeManagementClientContext;
 

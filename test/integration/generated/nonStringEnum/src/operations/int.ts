@@ -17,7 +17,7 @@ import {
   IntGetResponse
 } from "../models";
 
-/** Class representing a Int. */
+/** Class containing Int operations. */
 export class IntImpl implements Int {
   private readonly client: NonStringEnumClientContext;
 

@@ -19,7 +19,7 @@ import {
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
-/** Class representing a DatabaseAutomaticTuning. */
+/** Class containing DatabaseAutomaticTuning operations. */
 export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
   private readonly client: SqlManagementClientContext;
 

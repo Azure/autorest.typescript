@@ -42,6 +42,31 @@
           }
         }
       }
+    },
+    "/api/v1/pipeline": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/globalApiVersion"
+        }
+      ],
+      "get": {
+        "tags": ["ValueApi"],
+        "operationId": "Pipeline_ApiV1ValueGet",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {

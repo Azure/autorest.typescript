@@ -828,7 +828,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a WebApps. */
+/** Class containing WebApps operations. */
 export class WebAppsImpl implements WebApps {
   private readonly client: WebSiteManagementClientContext;
 

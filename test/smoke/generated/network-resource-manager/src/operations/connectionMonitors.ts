@@ -35,7 +35,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a ConnectionMonitors. */
+/** Class containing ConnectionMonitors operations. */
 export class ConnectionMonitorsImpl implements ConnectionMonitors {
   private readonly client: NetworkManagementClientContext;
 

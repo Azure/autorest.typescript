@@ -9,7 +9,7 @@ import {
   AppendBlobAppendBlockResponse
 } from "../models";
 
-/** Class representing a AppendBlob. */
+/** Class containing AppendBlob operations. */
 export class AppendBlobImpl implements AppendBlob {
   private readonly client: StorageBlobClientContext;
 

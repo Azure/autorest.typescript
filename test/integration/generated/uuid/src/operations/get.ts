@@ -12,7 +12,7 @@ import * as Parameters from "../models/parameters";
 import { UuidClientContext } from "../uuidClientContext";
 import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
-/** Class representing a Get. */
+/** Class containing Get operations. */
 export class GetImpl implements Get {
   private readonly client: UuidClientContext;
 

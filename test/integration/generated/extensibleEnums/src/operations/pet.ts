@@ -18,7 +18,7 @@ import {
   PetAddPetResponse
 } from "../models";
 
-/** Class representing a Pet. */
+/** Class containing Pet operations. */
 export class PetImpl implements Pet {
   private readonly client: ExtensibleEnumsClientContext;
 

@@ -8,6 +8,44 @@
 
 import * as coreClient from "@azure/core-client";
 
+export const ContainerServiceMasterProfile: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "ContainerServiceMasterProfile",
+    modelProperties: {
+      count: {
+        defaultValue: "1",
+        serializedName: "count",
+        type: {
+          name: "Enum",
+          allowedValues: [1, 3, 5]
+        }
+      },
+      dnsPrefix: {
+        serializedName: "dnsPrefix",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      firstConsecutiveStaticIP: {
+        defaultValue: "10.240.255.5",
+        serializedName: "firstConsecutiveStaticIP",
+        type: {
+          name: "String"
+        }
+      },
+      fqdn: {
+        serializedName: "fqdn",
+        readOnly: true,
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const PathsV3R3RxOauth2TokenPostRequestbodyContentApplicationXWwwFormUrlencodedSchema: coreClient.CompositeMapper = {
   type: {
     name: "Composite",

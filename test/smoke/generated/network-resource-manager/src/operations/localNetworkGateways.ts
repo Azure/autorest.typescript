@@ -32,7 +32,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a LocalNetworkGateways. */
+/** Class containing LocalNetworkGateways operations. */
 export class LocalNetworkGatewaysImpl implements LocalNetworkGateways {
   private readonly client: NetworkManagementClientContext;
 

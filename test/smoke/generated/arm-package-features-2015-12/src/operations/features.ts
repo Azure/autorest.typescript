@@ -32,7 +32,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a Features. */
+/** Class containing Features operations. */
 export class FeaturesImpl implements Features {
   private readonly client: FeatureClientContext;
 

@@ -36,7 +36,7 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class representing a AzureFirewalls. */
+/** Class containing AzureFirewalls operations. */
 export class AzureFirewallsImpl implements AzureFirewalls {
   private readonly client: NetworkManagementClientContext;
 
