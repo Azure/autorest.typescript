@@ -1,3 +1,10 @@
+## 6.0.0-beta.9 (2021-07-19)
+
+- [BugFix] Fixed the handling of non-string based sealed choices. Please refer [#1159](https://github.com/Azure/autorest.typescript/issues/1159) for more details.
+- [Feature] Comments for the operation groups have been updated. Please refer [#291](https://github.com/Azure/autorest.typescript/issues/291) for more details.
+- [BugFix] The `defaultValue` of the parameters has been fixed. Please refer [#1120](https://github.com/Azure/autorest.typescript/issues/1120) for more details.
+- [BugFix] Generated header interfaces. Please refer [#1145](https://github.com/Azure/autorest.typescript/pull/1145) for more details.
+
 ## 6.0.0-beta.8 (2021-07-19)
 
 - [BugFix] Added `SchemaType.SealedChoice` handling of the `valueType`. Please refer [#1103](https://github.com/Azure/autorest.typescript/pull/1103) for more details.
