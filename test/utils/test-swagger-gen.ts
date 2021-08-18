@@ -851,7 +851,8 @@ const generateSwaggers = async (
       allowInsecureConnection,
       restLevelClient,
       headAsBoolean,
-      isTestPackage
+      isTestPackage,
+      generateTest
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -886,7 +887,8 @@ const generateSwaggers = async (
         allowInsecureConnection,
         restLevelClient,
         headAsBoolean,
-        isTestPackage
+        isTestPackage,
+        generateTest
       },
       isDebugging
     );
