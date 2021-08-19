@@ -524,7 +524,7 @@ export declare interface ContainerServiceListResult {
 /** Profile for the container service master. */
 export declare interface ContainerServiceMasterProfile {
     /** Number of masters (VMs) in the container service cluster. Allowed values are 1, 3, and 5. The default value is 1. */
-    count?: ContainerServiceMasterProfileCount;
+    count?: Enum31;
     /** DNS prefix to be used to create the FQDN for master. */
     dnsPrefix: string;
     /**
@@ -533,17 +533,6 @@ export declare interface ContainerServiceMasterProfile {
      */
     readonly fqdn?: string;
 }
-
-/**
- * Defines values for ContainerServiceMasterProfileCount. \
- * {@link KnownContainerServiceMasterProfileCount} can be used interchangeably with ContainerServiceMasterProfileCount,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **1** \
- * **3** \
- * **5**
- */
-export declare type ContainerServiceMasterProfileCount = number;
 
 /** Profile for the container service orchestrator. */
 export declare interface ContainerServiceOrchestratorProfile {
@@ -1909,6 +1898,17 @@ export declare interface EncryptionSettingsElement {
  * **EncryptionAtRestWithCustomerKey**: Disk is encrypted with Customer managed key at rest.
  */
 export declare type EncryptionType = string;
+
+/**
+ * Defines values for Enum31. \
+ * {@link KnownEnum31} can be used interchangeably with Enum31,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **1** \
+ * **3** \
+ * **5**
+ */
+export declare type Enum31 = number;
 
 /** Interface representing a Galleries. */
 export declare interface Galleries {
@@ -3398,13 +3398,6 @@ export declare enum KnownAvailabilitySetSkuTypes {
     Aligned = "Aligned"
 }
 
-/** Known values of {@link ContainerServiceMasterProfileCount} that the service accepts. */
-export declare enum KnownContainerServiceMasterProfileCount {
-    One = 1,
-    Three = 3,
-    Five = 5
-}
-
 /** Known values of {@link ContainerServiceVMSizeTypes} that the service accepts. */
 export declare enum KnownContainerServiceVMSizeTypes {
     StandardA0 = "Standard_A0",
@@ -3531,6 +3524,13 @@ export declare enum KnownEncryptionType {
     EncryptionAtRestWithPlatformKey = "EncryptionAtRestWithPlatformKey",
     /** Disk is encrypted with Customer managed key at rest. */
     EncryptionAtRestWithCustomerKey = "EncryptionAtRestWithCustomerKey"
+}
+
+/** Known values of {@link Enum31} that the service accepts. */
+export declare enum KnownEnum31 {
+    One = 1,
+    Three = 3,
+    Five = 5
 }
 
 /** Known values of {@link GalleryApplicationVersionPropertiesProvisioningState} that the service accepts. */

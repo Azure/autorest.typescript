@@ -43,7 +43,8 @@ import {
   DatabaseAccountsListReadOnlyKeysResponse,
   DatabaseAccountRegenerateKeyParameters,
   DatabaseAccountsRegenerateKeyOptionalParams,
-  DatabaseAccountsCheckNameExistsOptionalParams
+  DatabaseAccountsCheckNameExistsOptionalParams,
+  DatabaseAccountsCheckNameExistsResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -362,5 +363,5 @@ export interface DatabaseAccounts {
   checkNameExists(
     accountName: string,
     options?: DatabaseAccountsCheckNameExistsOptionalParams
-  ): Promise<void>;
+  ): Promise<DatabaseAccountsCheckNameExistsResponse>;
 }

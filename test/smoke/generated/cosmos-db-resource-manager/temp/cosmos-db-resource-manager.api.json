@@ -9734,7 +9734,16 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "<void>"
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DatabaseAccountsCheckNameExistsResponse",
+                  "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountsCheckNameExistsResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
                 },
                 {
                   "kind": "Content",
@@ -9743,7 +9752,7 @@
               ],
               "returnTypeTokenRange": {
                 "startIndex": 5,
-                "endIndex": 7
+                "endIndex": 9
               },
               "releaseTag": "Public",
               "overloadIndex": 1,
@@ -10650,6 +10659,31 @@
               "endIndex": 4
             }
           ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "cosmos-db-resource-manager!DatabaseAccountsCheckNameExistsResponse:type",
+          "docComment": "/**\n * Contains response data for the checkNameExists operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type DatabaseAccountsCheckNameExistsResponse = "
+            },
+            {
+              "kind": "Content",
+              "text": "{\n    body: boolean;\n}"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "DatabaseAccountsCheckNameExistsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Interface",

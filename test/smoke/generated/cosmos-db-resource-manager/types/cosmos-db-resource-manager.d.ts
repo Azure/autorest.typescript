@@ -1135,12 +1135,17 @@ export declare interface DatabaseAccounts {
      * @param accountName Cosmos DB database account name.
      * @param options The options parameters.
      */
-    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<void>;
+    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<DatabaseAccountsCheckNameExistsResponse>;
 }
 
 /** Optional parameters. */
 export declare interface DatabaseAccountsCheckNameExistsOptionalParams extends coreClient.OperationOptions {
 }
+
+/** Contains response data for the checkNameExists operation. */
+export declare type DatabaseAccountsCheckNameExistsResponse = {
+    body: boolean;
+};
 
 /** Optional parameters. */
 export declare interface DatabaseAccountsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {

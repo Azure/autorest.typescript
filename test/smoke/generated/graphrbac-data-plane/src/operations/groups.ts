@@ -20,7 +20,6 @@ import {
   DirectoryObjectUnion,
   GroupsGetGroupMembersNextOptionalParams,
   GroupsGetGroupMembersOptionalParams,
-  GroupGetMemberGroupsParameters,
   GroupsGetMemberGroupsOptionalParams,
   GroupsListOwnersNextOptionalParams,
   GroupsListOwnersOptionalParams,
@@ -28,7 +27,6 @@ import {
   GroupsIsMemberOfOptionalParams,
   GroupsIsMemberOfResponse,
   GroupsRemoveMemberOptionalParams,
-  GroupAddMemberParameters,
   GroupsAddMemberOptionalParams,
   GroupCreateParameters,
   GroupsCreateOptionalParams,
@@ -40,7 +38,6 @@ import {
   GroupsDeleteOptionalParams,
   GroupsGetMemberGroupsResponse,
   GroupsListOwnersResponse,
-  AddOwnerParameters,
   GroupsAddOwnerOptionalParams,
   GroupsRemoveOwnerOptionalParams,
   GroupsListNextResponse,
@@ -155,15 +152,20 @@ export class GroupsImpl implements Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
-   * @param parameters Group filtering parameters.
+   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+   *                            Otherwise, membership in all groups should be checked.
    * @param options The options parameters.
    */
   public listMemberGroups(
     objectId: string,
-    parameters: GroupGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
-    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    const iter = this.getMemberGroupsPagingAll(
+      objectId,
+      securityEnabledOnly,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -172,28 +174,36 @@ export class GroupsImpl implements Groups {
         return this;
       },
       byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          securityEnabledOnly,
+          options
+        );
       }
     };
   }
 
   private async *getMemberGroupsPagingPage(
     objectId: string,
-    parameters: GroupGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result = await this._getMemberGroups(
+      objectId,
+      securityEnabledOnly,
+      options
+    );
     yield result.value || [];
   }
 
   private async *getMemberGroupsPagingAll(
     objectId: string,
-    parameters: GroupGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: GroupsGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
-      parameters,
+      securityEnabledOnly,
       options
     )) {
       yield* page;
@@ -377,17 +387,20 @@ export class GroupsImpl implements Groups {
   /**
    * Add a member to a group.
    * @param groupObjectId The object ID of the group to which to add the member.
-   * @param parameters The URL of the member object, such as
-   *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+   * @param url A member object URL, such as
+   *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+   *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+   *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the member (user, application,
+   *            servicePrincipal, group) to be added.
    * @param options The options parameters.
    */
   addMember(
     groupObjectId: string,
-    parameters: GroupAddMemberParameters,
+    url: string,
     options?: GroupsAddMemberOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { groupObjectId, parameters, options },
+      { groupObjectId, url, options },
       addMemberOperationSpec
     );
   }
@@ -465,16 +478,17 @@ export class GroupsImpl implements Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
-   * @param parameters Group filtering parameters.
+   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+   *                            Otherwise, membership in all groups should be checked.
    * @param options The options parameters.
    */
   private _getMemberGroups(
     objectId: string,
-    parameters: GroupGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: GroupsGetMemberGroupsOptionalParams
   ): Promise<GroupsGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, securityEnabledOnly, options },
       getMemberGroupsOperationSpec
     );
   }
@@ -497,17 +511,20 @@ export class GroupsImpl implements Groups {
   /**
    * Add an owner to a group.
    * @param objectId The object ID of the application to which to add the owner.
-   * @param parameters The URL of the owner object, such as
-   *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+   * @param url A owner object URL, such as
+   *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+   *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+   *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application,
+   *            servicePrincipal, group) to be added.
    * @param options The options parameters.
    */
   addOwner(
     objectId: string,
-    parameters: AddOwnerParameters,
+    url: string,
     options?: GroupsAddOwnerOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, url, options },
       addOwnerOperationSpec
     );
   }
@@ -625,7 +642,10 @@ const addMemberOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters6,
+  requestBody: {
+    parameterPath: { url: ["url"] },
+    mapper: { ...Mappers.GroupAddMemberParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -727,7 +747,10 @@ const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters8,
+  requestBody: {
+    parameterPath: { securityEnabledOnly: ["securityEnabledOnly"] },
+    mapper: { ...Mappers.GroupGetMemberGroupsParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
@@ -759,7 +782,10 @@ const addOwnerOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters2,
+  requestBody: {
+    parameterPath: { url: ["url"] },
+    mapper: { ...Mappers.AddOwnerParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],

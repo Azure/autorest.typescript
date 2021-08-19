@@ -233,11 +233,14 @@ export declare interface Applications {
     /**
      * Add an owner to an application.
      * @param applicationObjectId The object ID of the application to which to add the owner.
-     * @param parameters The URL of the owner object, such as
-     *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+     * @param url A owner object URL, such as
+     *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+     *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+     *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application,
+     *            servicePrincipal, group) to be added.
      * @param options The options parameters.
      */
-    addOwner(applicationObjectId: string, parameters: AddOwnerParameters, options?: ApplicationsAddOwnerOptionalParams): Promise<void>;
+    addOwner(applicationObjectId: string, url: string, options?: ApplicationsAddOwnerOptionalParams): Promise<void>;
     /**
      * Remove a member from owners.
      * @param applicationObjectId The object ID of the application from which to remove the owner.
@@ -248,17 +251,17 @@ export declare interface Applications {
     /**
      * Update the keyCredentials associated with an application.
      * @param applicationObjectId Application object ID.
-     * @param parameters Parameters to update the keyCredentials of an existing application.
+     * @param value A collection of KeyCredentials.
      * @param options The options parameters.
      */
-    updateKeyCredentials(applicationObjectId: string, parameters: KeyCredentialsUpdateParameters, options?: ApplicationsUpdateKeyCredentialsOptionalParams): Promise<void>;
+    updateKeyCredentials(applicationObjectId: string, value: KeyCredential[], options?: ApplicationsUpdateKeyCredentialsOptionalParams): Promise<void>;
     /**
      * Update passwordCredentials associated with an application.
      * @param applicationObjectId Application object ID.
-     * @param parameters Parameters to update passwordCredentials of an existing application.
+     * @param value A collection of PasswordCredentials.
      * @param options The options parameters.
      */
-    updatePasswordCredentials(applicationObjectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ApplicationsUpdatePasswordCredentialsOptionalParams): Promise<void>;
+    updatePasswordCredentials(applicationObjectId: string, value: PasswordCredential[], options?: ApplicationsUpdatePasswordCredentialsOptionalParams): Promise<void>;
     /**
      * Gets an object id for a given application id from the current tenant.
      * @param applicationID The application ID.
@@ -682,10 +685,11 @@ export declare interface Groups {
     /**
      * Gets a collection of object IDs of groups of which the specified group is a member.
      * @param objectId The object ID of the group for which to get group membership.
-     * @param parameters Group filtering parameters.
+     * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+     *                            Otherwise, membership in all groups should be checked.
      * @param options The options parameters.
      */
-    listMemberGroups(objectId: string, parameters: GroupGetMemberGroupsParameters, options?: GroupsGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listMemberGroups(objectId: string, securityEnabledOnly: boolean, options?: GroupsGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
     /**
      * The owners are a set of non-admin users who are allowed to modify this object.
      * @param objectId The object ID of the group for which to get owners.
@@ -721,11 +725,14 @@ export declare interface Groups {
     /**
      * Add a member to a group.
      * @param groupObjectId The object ID of the group to which to add the member.
-     * @param parameters The URL of the member object, such as
-     *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+     * @param url A member object URL, such as
+     *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+     *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+     *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the member (user, application,
+     *            servicePrincipal, group) to be added.
      * @param options The options parameters.
      */
-    addMember(groupObjectId: string, parameters: GroupAddMemberParameters, options?: GroupsAddMemberOptionalParams): Promise<void>;
+    addMember(groupObjectId: string, url: string, options?: GroupsAddMemberOptionalParams): Promise<void>;
     /**
      * Create a group in the directory.
      * @param parameters The parameters for the group to create.
@@ -747,11 +754,14 @@ export declare interface Groups {
     /**
      * Add an owner to a group.
      * @param objectId The object ID of the application to which to add the owner.
-     * @param parameters The URL of the owner object, such as
-     *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+     * @param url A owner object URL, such as
+     *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+     *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+     *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application,
+     *            servicePrincipal, group) to be added.
      * @param options The options parameters.
      */
-    addOwner(objectId: string, parameters: AddOwnerParameters, options?: GroupsAddOwnerOptionalParams): Promise<void>;
+    addOwner(objectId: string, url: string, options?: GroupsAddOwnerOptionalParams): Promise<void>;
     /**
      * Remove a member from owners.
      * @param objectId The object ID of the group from which to remove the owner.
@@ -1307,17 +1317,17 @@ export declare interface ServicePrincipals {
     /**
      * Update the keyCredentials associated with a service principal.
      * @param objectId The object ID for which to get service principal information.
-     * @param parameters Parameters to update the keyCredentials of an existing service principal.
+     * @param value A collection of KeyCredentials.
      * @param options The options parameters.
      */
-    updateKeyCredentials(objectId: string, parameters: KeyCredentialsUpdateParameters, options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams): Promise<void>;
+    updateKeyCredentials(objectId: string, value: KeyCredential[], options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams): Promise<void>;
     /**
      * Updates the passwordCredentials associated with a service principal.
      * @param objectId The object ID of the service principal.
-     * @param parameters Parameters to update the passwordCredentials of an existing service principal.
+     * @param value A collection of PasswordCredentials.
      * @param options The options parameters.
      */
-    updatePasswordCredentials(objectId: string, parameters: PasswordCredentialsUpdateParameters, options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams): Promise<void>;
+    updatePasswordCredentials(objectId: string, value: PasswordCredential[], options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams): Promise<void>;
 }
 
 /** Optional parameters. */
@@ -1539,10 +1549,11 @@ export declare interface Users {
     /**
      * Gets a collection that contains the object IDs of the groups of which the user is a member.
      * @param objectId The object ID of the user for which to get group membership.
-     * @param parameters User filtering parameters.
+     * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+     *                            Otherwise, membership in all groups should be checked.
      * @param options The options parameters.
      */
-    listMemberGroups(objectId: string, parameters: UserGetMemberGroupsParameters, options?: UsersGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
+    listMemberGroups(objectId: string, securityEnabledOnly: boolean, options?: UsersGetMemberGroupsOptionalParams): PagedAsyncIterableIterator<string>;
     /**
      * Gets a list of users for the current tenant.
      * @param nextLink Next link for the list operation.

@@ -15,14 +15,12 @@ import {
   DirectoryObjectUnion,
   GroupsGetGroupMembersNextOptionalParams,
   GroupsGetGroupMembersOptionalParams,
-  GroupGetMemberGroupsParameters,
   GroupsGetMemberGroupsOptionalParams,
   GroupsListOwnersOptionalParams,
   CheckGroupMembershipParameters,
   GroupsIsMemberOfOptionalParams,
   GroupsIsMemberOfResponse,
   GroupsRemoveMemberOptionalParams,
-  GroupAddMemberParameters,
   GroupsAddMemberOptionalParams,
   GroupCreateParameters,
   GroupsCreateOptionalParams,
@@ -30,7 +28,6 @@ import {
   GroupsGetOptionalParams,
   GroupsGetResponse,
   GroupsDeleteOptionalParams,
-  AddOwnerParameters,
   GroupsAddOwnerOptionalParams,
   GroupsRemoveOwnerOptionalParams
 } from "../models";
@@ -55,12 +52,13 @@ export interface Groups {
   /**
    * Gets a collection of object IDs of groups of which the specified group is a member.
    * @param objectId The object ID of the group for which to get group membership.
-   * @param parameters Group filtering parameters.
+   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+   *                            Otherwise, membership in all groups should be checked.
    * @param options The options parameters.
    */
   listMemberGroups(
     objectId: string,
-    parameters: GroupGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: GroupsGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
   /**
@@ -114,13 +112,16 @@ export interface Groups {
   /**
    * Add a member to a group.
    * @param groupObjectId The object ID of the group to which to add the member.
-   * @param parameters The URL of the member object, such as
-   *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+   * @param url A member object URL, such as
+   *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+   *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+   *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the member (user, application,
+   *            servicePrincipal, group) to be added.
    * @param options The options parameters.
    */
   addMember(
     groupObjectId: string,
-    parameters: GroupAddMemberParameters,
+    url: string,
     options?: GroupsAddMemberOptionalParams
   ): Promise<void>;
   /**
@@ -150,13 +151,16 @@ export interface Groups {
   /**
    * Add an owner to a group.
    * @param objectId The object ID of the application to which to add the owner.
-   * @param parameters The URL of the owner object, such as
-   *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+   * @param url A owner object URL, such as
+   *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+   *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+   *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application,
+   *            servicePrincipal, group) to be added.
    * @param options The options parameters.
    */
   addOwner(
     objectId: string,
-    parameters: AddOwnerParameters,
+    url: string,
     options?: GroupsAddOwnerOptionalParams
   ): Promise<void>;
   /**

@@ -17,7 +17,6 @@ import {
   User,
   UsersListNextOptionalParams,
   UsersListOptionalParams,
-  UserGetMemberGroupsParameters,
   UsersGetMemberGroupsOptionalParams,
   UserCreateParameters,
   UsersCreateOptionalParams,
@@ -90,15 +89,20 @@ export class UsersImpl implements Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
-   * @param parameters User filtering parameters.
+   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+   *                            Otherwise, membership in all groups should be checked.
    * @param options The options parameters.
    */
   public listMemberGroups(
     objectId: string,
-    parameters: UserGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string> {
-    const iter = this.getMemberGroupsPagingAll(objectId, parameters, options);
+    const iter = this.getMemberGroupsPagingAll(
+      objectId,
+      securityEnabledOnly,
+      options
+    );
     return {
       next() {
         return iter.next();
@@ -107,28 +111,36 @@ export class UsersImpl implements Users {
         return this;
       },
       byPage: () => {
-        return this.getMemberGroupsPagingPage(objectId, parameters, options);
+        return this.getMemberGroupsPagingPage(
+          objectId,
+          securityEnabledOnly,
+          options
+        );
       }
     };
   }
 
   private async *getMemberGroupsPagingPage(
     objectId: string,
-    parameters: UserGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string[]> {
-    let result = await this._getMemberGroups(objectId, parameters, options);
+    let result = await this._getMemberGroups(
+      objectId,
+      securityEnabledOnly,
+      options
+    );
     yield result.value || [];
   }
 
   private async *getMemberGroupsPagingAll(
     objectId: string,
-    parameters: UserGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: UsersGetMemberGroupsOptionalParams
   ): AsyncIterableIterator<string> {
     for await (const page of this.getMemberGroupsPagingPage(
       objectId,
-      parameters,
+      securityEnabledOnly,
       options
     )) {
       yield* page;
@@ -254,16 +266,17 @@ export class UsersImpl implements Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
-   * @param parameters User filtering parameters.
+   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
+   *                            Otherwise, membership in all groups should be checked.
    * @param options The options parameters.
    */
   private _getMemberGroups(
     objectId: string,
-    parameters: UserGetMemberGroupsParameters,
+    securityEnabledOnly: boolean,
     options?: UsersGetMemberGroupsOptionalParams
   ): Promise<UsersGetMemberGroupsResponse> {
     return this.client.sendOperationRequest(
-      { objectId, parameters, options },
+      { objectId, securityEnabledOnly, options },
       getMemberGroupsOperationSpec
     );
   }
@@ -393,7 +406,10 @@ const getMemberGroupsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters13,
+  requestBody: {
+    parameterPath: { securityEnabledOnly: ["securityEnabledOnly"] },
+    mapper: { ...Mappers.UserGetMemberGroupsParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],

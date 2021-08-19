@@ -34,14 +34,11 @@ import {
   ApplicationUpdateParameters,
   ApplicationsPatchOptionalParams,
   ApplicationsListOwnersResponse,
-  AddOwnerParameters,
   ApplicationsAddOwnerOptionalParams,
   ApplicationsRemoveOwnerOptionalParams,
   ApplicationsListKeyCredentialsResponse,
-  KeyCredentialsUpdateParameters,
   ApplicationsUpdateKeyCredentialsOptionalParams,
   ApplicationsListPasswordCredentialsResponse,
-  PasswordCredentialsUpdateParameters,
   ApplicationsUpdatePasswordCredentialsOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdOptionalParams,
   ApplicationsGetServicePrincipalsIdByAppIdResponse,
@@ -388,17 +385,20 @@ export class ApplicationsImpl implements Applications {
   /**
    * Add an owner to an application.
    * @param applicationObjectId The object ID of the application to which to add the owner.
-   * @param parameters The URL of the owner object, such as
-   *                   https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd.
+   * @param url A owner object URL, such as
+   *            "https://graph.windows.net/0b1f9851-1bf0-433f-aec3-cb9272f093dc/directoryObjects/f260bbc4-c254-447b-94cf-293b5ec434dd",
+   *            where "0b1f9851-1bf0-433f-aec3-cb9272f093dc" is the tenantId and
+   *            "f260bbc4-c254-447b-94cf-293b5ec434dd" is the objectId of the owner (user, application,
+   *            servicePrincipal, group) to be added.
    * @param options The options parameters.
    */
   addOwner(
     applicationObjectId: string,
-    parameters: AddOwnerParameters,
+    url: string,
     options?: ApplicationsAddOwnerOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, url, options },
       addOwnerOperationSpec
     );
   }
@@ -438,16 +438,16 @@ export class ApplicationsImpl implements Applications {
   /**
    * Update the keyCredentials associated with an application.
    * @param applicationObjectId Application object ID.
-   * @param parameters Parameters to update the keyCredentials of an existing application.
+   * @param value A collection of KeyCredentials.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     applicationObjectId: string,
-    parameters: KeyCredentialsUpdateParameters,
+    value: KeyCredential[],
     options?: ApplicationsUpdateKeyCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, value, options },
       updateKeyCredentialsOperationSpec
     );
   }
@@ -470,16 +470,16 @@ export class ApplicationsImpl implements Applications {
   /**
    * Update passwordCredentials associated with an application.
    * @param applicationObjectId Application object ID.
-   * @param parameters Parameters to update passwordCredentials of an existing application.
+   * @param value A collection of PasswordCredentials.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     applicationObjectId: string,
-    parameters: PasswordCredentialsUpdateParameters,
+    value: PasswordCredential[],
     options?: ApplicationsUpdatePasswordCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { applicationObjectId, parameters, options },
+      { applicationObjectId, value, options },
       updatePasswordCredentialsOperationSpec
     );
   }
@@ -655,7 +655,10 @@ const addOwnerOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters2,
+  requestBody: {
+    parameterPath: { url: ["url"] },
+    mapper: { ...Mappers.AddOwnerParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -715,7 +718,10 @@ const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters3,
+  requestBody: {
+    parameterPath: { value: ["value"] },
+    mapper: { ...Mappers.KeyCredentialsUpdateParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -755,7 +761,10 @@ const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: Parameters.parameters4,
+  requestBody: {
+    parameterPath: { value: ["value"] },
+    mapper: { ...Mappers.PasswordCredentialsUpdateParameters, required: true }
+  },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

@@ -132,8 +132,8 @@ export const parameters1: OperationParameter = {
   mapper: ApplicationUpdateParametersMapper
 };
 
-export const parameters2: OperationParameter = {
-  parameterPath: "parameters",
+export const url: OperationParameter = {
+  parameterPath: "url",
   mapper: AddOwnerParametersMapper
 };
 
@@ -148,13 +148,13 @@ export const ownerObjectId: OperationURLParameter = {
   }
 };
 
-export const parameters3: OperationParameter = {
-  parameterPath: "parameters",
+export const value: OperationParameter = {
+  parameterPath: "value",
   mapper: KeyCredentialsUpdateParametersMapper
 };
 
-export const parameters4: OperationParameter = {
-  parameterPath: "parameters",
+export const value1: OperationParameter = {
+  parameterPath: "value",
   mapper: PasswordCredentialsUpdateParametersMapper
 };
 
@@ -207,8 +207,8 @@ export const memberObjectId: OperationURLParameter = {
   }
 };
 
-export const parameters6: OperationParameter = {
-  parameterPath: "parameters",
+export const url1: OperationParameter = {
+  parameterPath: "url",
   mapper: GroupAddMemberParametersMapper
 };
 
@@ -217,8 +217,8 @@ export const parameters7: OperationParameter = {
   mapper: GroupCreateParametersMapper
 };
 
-export const parameters8: OperationParameter = {
-  parameterPath: "parameters",
+export const securityEnabledOnly: OperationParameter = {
+  parameterPath: "securityEnabledOnly",
   mapper: GroupGetMemberGroupsParametersMapper
 };
 
@@ -263,8 +263,8 @@ export const parameters12: OperationParameter = {
   mapper: UserUpdateParametersMapper
 };
 
-export const parameters13: OperationParameter = {
-  parameterPath: "parameters",
+export const securityEnabledOnly1: OperationParameter = {
+  parameterPath: "securityEnabledOnly",
   mapper: UserGetMemberGroupsParametersMapper
 };
 

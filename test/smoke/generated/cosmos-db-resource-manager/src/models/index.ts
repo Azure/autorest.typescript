@@ -1918,6 +1918,11 @@ export interface DatabaseAccountsRegenerateKeyOptionalParams
 export interface DatabaseAccountsCheckNameExistsOptionalParams
   extends coreClient.OperationOptions {}
 
+/** Contains response data for the checkNameExists operation. */
+export type DatabaseAccountsCheckNameExistsResponse = {
+  body: boolean;
+};
+
 /** Optional parameters. */
 export interface DatabaseAccountsListMetricsOptionalParams
   extends coreClient.OperationOptions {}
