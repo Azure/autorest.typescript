@@ -62,7 +62,7 @@ import {
   GalleryApplicationVersion as GalleryApplicationVersionMapper,
   GalleryApplicationVersionUpdate as GalleryApplicationVersionUpdateMapper,
   ContainerService as ContainerServiceMapper
-} from "./mappers";
+} from "./models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
