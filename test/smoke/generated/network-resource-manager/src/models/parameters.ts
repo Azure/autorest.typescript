@@ -108,7 +108,7 @@ import {
   ExpressRouteConnection as ExpressRouteConnectionMapper,
   HubRouteTable as HubRouteTableMapper,
   WebApplicationFirewallPolicy as WebApplicationFirewallPolicyMapper
-} from "./mappers";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
