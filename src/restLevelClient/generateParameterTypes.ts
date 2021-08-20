@@ -170,15 +170,6 @@ function buildHeaderParameterDefinition(
 }
 
 /**
- * 
- * @param operationName 
- * @param parameters 
- * @param importedModels 
- * @param internalReferences 
- * @returns 
- * 
- */
-/**
  * Gets the interface definition for an operation bodyParameters
  */
 function buildBodyParametersDefinition(
