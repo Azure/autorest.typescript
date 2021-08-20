@@ -31,7 +31,7 @@ import {
   FileServiceProperties as FileServicePropertiesMapper,
   FileShare as FileShareMapper,
   DeletedShare as DeletedShareMapper
-} from "./mappers";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
