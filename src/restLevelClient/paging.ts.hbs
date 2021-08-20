@@ -4,7 +4,7 @@
 import { 
   paginateResponse, 
   PagedAsyncIterableIterator
-  {{#if isGeneralPaging}} ,PaginateOptions {{/if}} } from "@azure-rest/core-client-paging";
+  } from "@azure-rest/core-client-paging";
 import { Client, PathUncheckedResponse } from "@azure-rest/core-client";
 
 /**
@@ -19,9 +19,13 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
  * where the page items are found. The default value is `value`.
  * This type will allow us to provide strongly typed Iterator based on the response we get as second parameter
  */
-export type PaginateReturn<TResult> = TResult extends {
-  body: { value?: infer TPage };
-}
+export type PaginateReturn<TResult> = TResult extends  {{#each itemNames}}
+  {
+ 
+  body: { {{this}}?: infer TPage } 
+  
+} {{#if @last }}{{else}} | {{/if}}
+{{/each}}
   ? GetArrayType<TPage>
   : Array<unknown>;
 
@@ -32,23 +36,12 @@ export type PaginateReturn<TResult> = TResult extends {
  * @param initialResponse - Initial response containing the nextLink and current page of elements
  * @returns - PagedAsyncIterableIterator to iterate the elements
  */
-{{#if isGeneralPaging}}
-export function paginate<TReturn extends PathUncheckedResponse>(
-  client: Client,
-  initialResponse: TReturn,
-  options?: PaginateOptions
-): PagedAsyncIterableIterator<PaginateReturn<TReturn>, PaginateReturn<TReturn>[]> {
-  return paginateResponse<PaginateReturn<TReturn>>(client, initialResponse, options);
-{{else}}
 export function paginate<TReturn extends PathUncheckedResponse>(
   client: Client,
   initialResponse: TReturn
 ): PagedAsyncIterableIterator<PaginateReturn<TReturn>, PaginateReturn<TReturn>[]> {
   return paginateResponse<PaginateReturn<TReturn>>(client, initialResponse, {
-      itemName: [{{ itemName }}]
-      {{#if (isDefined nextLinkName)}}
-        , nextLinkName: [{{ nextLinkName }}]
-      {{/if}}
+      itemNames: [{{ itemNames }}],
+      nextLinkNames: [{{ nextLinkNames }}]
   });
-{{/if}}
 }

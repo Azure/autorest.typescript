@@ -2,7 +2,8 @@ import {
   Operation,
   SchemaResponse,
   SchemaType,
-  ObjectSchema
+  ObjectSchema,
+  CodeModel
 } from "@autorest/codemodel";
 import { isEqual } from "lodash";
 import { PaginationDetails } from "../models/operationDetails";
@@ -150,6 +151,23 @@ function getResponseItemType(
   }
 
   return getTypeForSchema(itemProperty.schema);
+}
+
+/**
+ * Function to determine if any of the operations in the code model has at least one pageable operatio
+ */
+export function hasPagingOperations(model: CodeModel) {
+  for (const group of model.operationGroups) {
+    const hasAnyPageable = group.operations.some(
+      o => o.extensions && o.extensions["x-ms-pageable"]
+    );
+
+    if (hasAnyPageable) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function isObjectSchema(schema: any): schema is ObjectSchema {

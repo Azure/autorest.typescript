@@ -22,9 +22,16 @@ export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
  * where the page items are found. The default value is `value`.
  * This type will allow us to provide strongly typed Iterator based on the response we get as second parameter
  */
-export type PaginateReturn<TResult> = TResult extends {
-  body: { value?: infer TPage };
-}
+export type PaginateReturn<TResult> = TResult extends
+  | {
+      body: { value?: infer TPage };
+    }
+  | {
+      body: { values?: infer TPage };
+    }
+  | {
+      body: { indexes?: infer TPage };
+    }
   ? GetArrayType<TPage>
   : Array<unknown>;
 
@@ -43,7 +50,7 @@ export function paginate<TReturn extends PathUncheckedResponse>(
   PaginateReturn<TReturn>[]
 > {
   return paginateResponse<PaginateReturn<TReturn>>(client, initialResponse, {
-    itemName: ["value", "values", "indexes"],
-    nextLinkName: ["nextLink", "odata.nextLink"]
+    itemNames: ["value", "values", "indexes"],
+    nextLinkNames: ["nextLink", "odata.nextLink"]
   });
 }

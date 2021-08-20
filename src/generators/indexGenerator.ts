@@ -2,7 +2,7 @@ import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { CodeModel } from "@autorest/codemodel";
+import { hasPagingOperations } from "../utils/extractPaginationDetails";
 
 export function generateIndexFile(
   project: Project,
@@ -63,20 +63,6 @@ function generateRLCIndex(file: SourceFile) {
       }
     ]);
   }
-}
-
-function hasPagingOperations(model: CodeModel) {
-  for (const group of model.operationGroups) {
-    const hasAnyPageable = group.operations.some(
-      o => o.extensions && o.extensions["x-ms-pageable"]
-    );
-
-    if (hasAnyPageable) {
-      return true;
-    }
-  }
-
-  return false;
 }
 
 function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {

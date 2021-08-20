@@ -138,13 +138,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  farmbeats: {
-    swaggerOrConfig: "test/integration/swaggers/farmbeats.md",
-    clientName: "farmbeats",
-    packageName: "@azure-rest/farmbeats",
-    licenseHeader: true,
-    isTestPackage: true
-  },
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "BodyComplexRestClient",
