@@ -28,7 +28,7 @@ import {
   UserGetMemberGroupsParameters as UserGetMemberGroupsParametersMapper,
   GetObjectsParameters as GetObjectsParametersMapper,
   OAuth2PermissionGrantDef as OAuth2PermissionGrantDefMapper
-} from "./mappers";
+} from "../models/mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
