@@ -28,7 +28,7 @@ import {
   UserGetMemberGroupsParameters as UserGetMemberGroupsParametersMapper,
   GetObjectsParameters as GetObjectsParametersMapper,
   OAuth2PermissionGrantDef as OAuth2PermissionGrantDefMapper
-} from "../models/mappers";
+} from "./mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
@@ -132,8 +132,8 @@ export const parameters1: OperationParameter = {
   mapper: ApplicationUpdateParametersMapper
 };
 
-export const url: OperationParameter = {
-  parameterPath: "url",
+export const parameters2: OperationParameter = {
+  parameterPath: "parameters",
   mapper: AddOwnerParametersMapper
 };
 
@@ -148,13 +148,13 @@ export const ownerObjectId: OperationURLParameter = {
   }
 };
 
-export const value: OperationParameter = {
-  parameterPath: "value",
+export const parameters3: OperationParameter = {
+  parameterPath: "parameters",
   mapper: KeyCredentialsUpdateParametersMapper
 };
 
-export const value1: OperationParameter = {
-  parameterPath: "value",
+export const parameters4: OperationParameter = {
+  parameterPath: "parameters",
   mapper: PasswordCredentialsUpdateParametersMapper
 };
 
@@ -207,8 +207,8 @@ export const memberObjectId: OperationURLParameter = {
   }
 };
 
-export const url1: OperationParameter = {
-  parameterPath: "url",
+export const parameters6: OperationParameter = {
+  parameterPath: "parameters",
   mapper: GroupAddMemberParametersMapper
 };
 
@@ -217,8 +217,8 @@ export const parameters7: OperationParameter = {
   mapper: GroupCreateParametersMapper
 };
 
-export const securityEnabledOnly: OperationParameter = {
-  parameterPath: "securityEnabledOnly",
+export const parameters8: OperationParameter = {
+  parameterPath: "parameters",
   mapper: GroupGetMemberGroupsParametersMapper
 };
 
@@ -263,8 +263,8 @@ export const parameters12: OperationParameter = {
   mapper: UserUpdateParametersMapper
 };
 
-export const securityEnabledOnly1: OperationParameter = {
-  parameterPath: "securityEnabledOnly",
+export const parameters13: OperationParameter = {
+  parameterPath: "parameters",
   mapper: UserGetMemberGroupsParametersMapper
 };
 

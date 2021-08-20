@@ -12,6 +12,7 @@ import {
   User,
   UsersListNextOptionalParams,
   UsersListOptionalParams,
+  UserGetMemberGroupsParameters,
   UsersGetMemberGroupsOptionalParams,
   UserCreateParameters,
   UsersCreateOptionalParams,
@@ -34,13 +35,12 @@ export interface Users {
   /**
    * Gets a collection that contains the object IDs of the groups of which the user is a member.
    * @param objectId The object ID of the user for which to get group membership.
-   * @param securityEnabledOnly If true, only membership in security-enabled groups should be checked.
-   *                            Otherwise, membership in all groups should be checked.
+   * @param parameters User filtering parameters.
    * @param options The options parameters.
    */
   listMemberGroups(
     objectId: string,
-    securityEnabledOnly: boolean,
+    parameters: UserGetMemberGroupsParameters,
     options?: UsersGetMemberGroupsOptionalParams
   ): PagedAsyncIterableIterator<string>;
   /**

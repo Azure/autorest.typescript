@@ -26,7 +26,9 @@ import {
   ServicePrincipalsDeleteOptionalParams,
   ServicePrincipalsGetOptionalParams,
   ServicePrincipalsGetResponse,
+  KeyCredentialsUpdateParameters,
   ServicePrincipalsUpdateKeyCredentialsOptionalParams,
+  PasswordCredentialsUpdateParameters,
   ServicePrincipalsUpdatePasswordCredentialsOptionalParams
 } from "../models";
 
@@ -118,23 +120,23 @@ export interface ServicePrincipals {
   /**
    * Update the keyCredentials associated with a service principal.
    * @param objectId The object ID for which to get service principal information.
-   * @param value A collection of KeyCredentials.
+   * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     objectId: string,
-    value: KeyCredential[],
+    parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<void>;
   /**
    * Updates the passwordCredentials associated with a service principal.
    * @param objectId The object ID of the service principal.
-   * @param value A collection of PasswordCredentials.
+   * @param parameters Parameters to update the passwordCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     objectId: string,
-    value: PasswordCredential[],
+    parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<void>;
 }

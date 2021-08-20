@@ -14,7 +14,7 @@ import {
 import {
   Identity as IdentityMapper,
   IdentityUpdate as IdentityUpdateMapper
-} from "../models/mappers";
+} from "./mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",

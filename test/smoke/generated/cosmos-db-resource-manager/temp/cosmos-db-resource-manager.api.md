@@ -520,7 +520,7 @@ export interface DatabaseAccounts {
     beginRegenerateKeyAndWait(resourceGroupName: string, accountName: string, keyToRegenerate: DatabaseAccountRegenerateKeyParameters, options?: DatabaseAccountsRegenerateKeyOptionalParams): Promise<void>;
     beginUpdate(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: DatabaseAccountsUpdateOptionalParams): Promise<PollerLike<PollOperationState<DatabaseAccountsUpdateResponse>, DatabaseAccountsUpdateResponse>>;
     beginUpdateAndWait(resourceGroupName: string, accountName: string, updateParameters: DatabaseAccountUpdateParameters, options?: DatabaseAccountsUpdateOptionalParams): Promise<DatabaseAccountsUpdateResponse>;
-    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<DatabaseAccountsCheckNameExistsResponse>;
+    checkNameExists(accountName: string, options?: DatabaseAccountsCheckNameExistsOptionalParams): Promise<void>;
     get(resourceGroupName: string, accountName: string, options?: DatabaseAccountsGetOptionalParams): Promise<DatabaseAccountsGetResponse>;
     getReadOnlyKeys(resourceGroupName: string, accountName: string, options?: DatabaseAccountsGetReadOnlyKeysOptionalParams): Promise<DatabaseAccountsGetReadOnlyKeysResponse>;
     list(options?: DatabaseAccountsListOptionalParams): PagedAsyncIterableIterator<DatabaseAccountGetResults>;
@@ -536,11 +536,6 @@ export interface DatabaseAccounts {
 // @public
 export interface DatabaseAccountsCheckNameExistsOptionalParams extends coreClient.OperationOptions {
 }
-
-// @public
-export type DatabaseAccountsCheckNameExistsResponse = {
-    body: boolean;
-};
 
 // @public
 export interface DatabaseAccountsCreateOrUpdateOptionalParams extends coreClient.OperationOptions {

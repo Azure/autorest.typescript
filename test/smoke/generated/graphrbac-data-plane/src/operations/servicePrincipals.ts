@@ -35,8 +35,10 @@ import {
   ServicePrincipalsGetResponse,
   ServicePrincipalsListOwnersResponse,
   ServicePrincipalsListKeyCredentialsResponse,
+  KeyCredentialsUpdateParameters,
   ServicePrincipalsUpdateKeyCredentialsOptionalParams,
   ServicePrincipalsListPasswordCredentialsResponse,
+  PasswordCredentialsUpdateParameters,
   ServicePrincipalsUpdatePasswordCredentialsOptionalParams,
   ServicePrincipalsListNextResponse,
   ServicePrincipalsListOwnersNextResponse
@@ -381,16 +383,16 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   /**
    * Update the keyCredentials associated with a service principal.
    * @param objectId The object ID for which to get service principal information.
-   * @param value A collection of KeyCredentials.
+   * @param parameters Parameters to update the keyCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updateKeyCredentials(
     objectId: string,
-    value: KeyCredential[],
+    parameters: KeyCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdateKeyCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, value, options },
+      { objectId, parameters, options },
       updateKeyCredentialsOperationSpec
     );
   }
@@ -413,16 +415,16 @@ export class ServicePrincipalsImpl implements ServicePrincipals {
   /**
    * Updates the passwordCredentials associated with a service principal.
    * @param objectId The object ID of the service principal.
-   * @param value A collection of PasswordCredentials.
+   * @param parameters Parameters to update the passwordCredentials of an existing service principal.
    * @param options The options parameters.
    */
   updatePasswordCredentials(
     objectId: string,
-    value: PasswordCredential[],
+    parameters: PasswordCredentialsUpdateParameters,
     options?: ServicePrincipalsUpdatePasswordCredentialsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { objectId, value, options },
+      { objectId, parameters, options },
       updatePasswordCredentialsOperationSpec
     );
   }
@@ -583,10 +585,7 @@ const updateKeyCredentialsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: {
-    parameterPath: { value: ["value"] },
-    mapper: { ...Mappers.KeyCredentialsUpdateParameters, required: true }
-  },
+  requestBody: Parameters.parameters3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],
@@ -618,10 +617,7 @@ const updatePasswordCredentialsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.GraphError
     }
   },
-  requestBody: {
-    parameterPath: { value: ["value"] },
-    mapper: { ...Mappers.PasswordCredentialsUpdateParameters, required: true }
-  },
+  requestBody: Parameters.parameters4,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.tenantID, Parameters.objectId],
   headerParameters: [Parameters.accept, Parameters.contentType],

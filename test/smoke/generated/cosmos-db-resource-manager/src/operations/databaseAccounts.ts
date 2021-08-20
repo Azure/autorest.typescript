@@ -52,7 +52,6 @@ import {
   DatabaseAccountRegenerateKeyParameters,
   DatabaseAccountsRegenerateKeyOptionalParams,
   DatabaseAccountsCheckNameExistsOptionalParams,
-  DatabaseAccountsCheckNameExistsResponse,
   DatabaseAccountsListMetricsResponse,
   DatabaseAccountsListUsagesResponse,
   DatabaseAccountsListMetricDefinitionsResponse
@@ -1067,7 +1066,7 @@ export class DatabaseAccountsImpl implements DatabaseAccounts {
   checkNameExists(
     accountName: string,
     options?: DatabaseAccountsCheckNameExistsOptionalParams
-  ): Promise<DatabaseAccountsCheckNameExistsResponse> {
+  ): Promise<void> {
     return this.client.sendOperationRequest(
       { accountName, options },
       checkNameExistsOperationSpec

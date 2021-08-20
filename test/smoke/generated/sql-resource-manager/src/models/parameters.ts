@@ -83,7 +83,7 @@ import {
   ManagedDatabaseUpdate as ManagedDatabaseUpdateMapper,
   CompleteDatabaseRestoreDefinition as CompleteDatabaseRestoreDefinitionMapper,
   ServerAzureADAdministrator as ServerAzureADAdministratorMapper
-} from "../models/mappers";
+} from "./mappers";
 
 export const accept: OperationParameter = {
   parameterPath: "accept",
