@@ -200,7 +200,8 @@ function regularAutorestPackage(
       "rollup.config.js",
       "tsconfig.json",
       "review/*",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "types/*"
     ],
     scripts: {
       build:
