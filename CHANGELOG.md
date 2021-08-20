@@ -1,4 +1,8 @@
-## 6.0.0-beta.9 (2021-07-19)
+## 6.0.0-beta.10 (2021-08-19)
+
+- [BugFix] Added `types` folder to the `files` property in `package.json` file. Please refer [#1165](https://github.com/Azure/autorest.typescript/pull/1165) for further details.
+
+## 6.0.0-beta.9 (2021-08-17)
 
 - [BugFix] Fixed the handling of non-string based sealed choices. Please refer [#1159](https://github.com/Azure/autorest.typescript/issues/1159) for more details.
 - [Feature] Comments for the operation groups have been updated. Please refer [#291](https://github.com/Azure/autorest.typescript/issues/291) for more details.
