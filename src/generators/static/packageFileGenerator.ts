@@ -172,7 +172,6 @@ function regularAutorestPackage(
       mkdirp: "^1.0.4",
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
-      "rollup-plugin-node-resolve": "^3.4.0",
       typescript: "~4.2.0",
       "uglify-js": "^3.4.9"
     },
