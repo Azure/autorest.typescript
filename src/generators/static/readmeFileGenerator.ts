@@ -49,6 +49,8 @@ interface Metadata {
   identityPackageURL?: string;
   /** Indicates if the package is a test/releasable package. */
   isReleasablePackage?: boolean;
+  /** indicate if the package is management plane SDK */
+  azureArm?: boolean
 }
 
 /**
@@ -124,7 +126,8 @@ function createMetadata(
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     addCredentials,
     identityPackageURL,
-    isReleasablePackage: !isTestPackage
+    isReleasablePackage: !isTestPackage,
+    azureArm: azureArm
   };
 }
 
