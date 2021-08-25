@@ -38,9 +38,6 @@ Set the values of the client ID, tenant ID, and client secret of the AAD applica
 
 For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
-#### Authenticating with a pre-fetched access token
-If you already have an existing access token, refer to [this guide](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token) to learn how to use it instead.
-
 ```typescript
 import { IoTSpacesClient } from ("@azure/iotspaces");
 import { DefaultAzureCredential } from ("@azure/identity");
