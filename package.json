@@ -58,6 +58,7 @@
         "@azure/core-xml": "^1.0.0-beta.1",
         "@microsoft.azure/autorest.testserver": "^3.0.21",
         "@types/chai": "^4.2.8",
+        "@types/fs-extra": "^9.0.12",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.7.12",
@@ -71,8 +72,10 @@
         "autorest": "^3.1.1",
         "chai": "^4.2.0",
         "chalk": "^4.0.0",
+        "copyfiles": "^2.4.1",
         "directory-tree": "^2.2.7",
         "eslint": "~6.2.2",
+        "fs-extra": "^10.0.0",
         "karma": "^5.0.9",
         "karma-chrome-launcher": "^3.1.0",
         "karma-mocha": "^2.0.1",
@@ -95,7 +98,6 @@
         "wait-port": "^0.2.6",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
-        "yargs": "^15.3.1",
-        "copyfiles": "^2.4.1"
+        "yargs": "^15.3.1"
     }
 }
