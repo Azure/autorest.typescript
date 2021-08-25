@@ -37,13 +37,14 @@ You will also need to **register a new AAD application and grant access to Azure
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_CLIENT_SECRET`.
 
 For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
-
 ```typescript
 import { IoTSpacesClient } from ("@azure/iotspaces");
 import { DefaultAzureCredential } from ("@azure/identity");
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new IoTSpacesClient(new DefaultAzureCredential(), subscriptionId);
 ```
+#### Authenticating with a pre-fetched access token
+If you already have an existing access token, refer to [this guide](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token) to learn how to use it instead.
 
 ## Key concepts
 
