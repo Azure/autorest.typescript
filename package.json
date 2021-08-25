@@ -58,7 +58,7 @@
         "@azure/core-xml": "^1.0.0-beta.1",
         "@microsoft.azure/autorest.testserver": "^3.0.21",
         "@types/chai": "^4.2.8",
-        "@types/fs-extra": "^9.0.12",
+        "@types/fs-extra": "^8.1.0",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.7.12",
