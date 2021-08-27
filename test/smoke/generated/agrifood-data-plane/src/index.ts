@@ -7,7 +7,6 @@ export * from "./azureAgriFoodPlatformDataPlaneService";
 export * from "./models";
 export * from "./parameters";
 export * from "./responses";
+export * from "./paginateHelper";
 
 export default AzureAgriFoodPlatformDataPlaneService;
-
-export { paginate, PaginateReturn, GetArrayType } from "./paginateHelper";

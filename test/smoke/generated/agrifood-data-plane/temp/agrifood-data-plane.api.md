@@ -1903,6 +1903,12 @@ export interface GeoJsonObjectBase {
 // @public
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
+// @public
+export type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
+
 // @public (undocumented)
 export interface HarvestData {
     area?: Measure;
@@ -2554,10 +2560,7 @@ export interface OAuthTokensListQueryParamProperties {
 }
 
 // @public
-export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: (pageLink: string, maxPageSize?: number) => Promise<{
-    page: PaginateReturn<TResponse>[];
-    nextPageLink?: string;
-}>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: GetPage<PaginateReturn<TResponse>[]>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 // @public
 export type PaginateReturn<TResult> = TResult extends {

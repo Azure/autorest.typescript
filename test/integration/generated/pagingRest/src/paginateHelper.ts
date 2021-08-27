@@ -58,13 +58,7 @@ export type PaginateReturn<TResult> = TResult extends
 export function paginate<TResponse extends PathUncheckedResponse>(
   client: Client,
   initialResponse: TResponse,
-  customGetPage?: (
-    pageLink: string,
-    maxPageSize?: number
-  ) => Promise<{
-    page: PaginateReturn<TResponse>[];
-    nextPageLink?: string;
-  }>
+  customGetPage?: GetPage<PaginateReturn<TResponse>[]>
 ): PagedAsyncIterableIterator<PaginateReturn<TResponse>> {
   // Extract element type from initial response
   type TElement = PaginateReturn<TResponse>;

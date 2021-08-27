@@ -50,19 +50,18 @@ function generateRLCIndex(file: SourceFile) {
     }
   ]);
 
-  file.addExportAssignment({
-    expression: clientName,
-    isExportEquals: false
-  });
-
   if (hasPagingOperations(model)) {
     file.addExportDeclarations([
       {
-        namedExports: ["paginate", "PaginateReturn", "GetArrayType"],
         moduleSpecifier: "./paginateHelper"
       }
     ]);
   }
+
+  file.addExportAssignment({
+    expression: clientName,
+    isExportEquals: false
+  });
 }
 
 function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {

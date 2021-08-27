@@ -2063,6 +2063,14 @@ export declare interface GeoJsonObjectBase {
  */
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
+/**
+ * Defines the type for a custom function to extract pagination details for crating the PagedAsyncIterableIterator
+ */
+export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
+    page: TPage;
+    nextPageLink?: string;
+}>;
+
 export declare interface HarvestData {
     /** Schema for storing measurement reading and unit. */
     totalYield?: Measure;
@@ -2853,10 +2861,7 @@ export declare interface OAuthTokensListQueryParamProperties {
  * @param customGetPage - Optional - Function to define how to extract the page and next link to be used to paginate the results
  * @returns - PagedAsyncIterableIterator to iterate the elements
  */
-export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: (pageLink: string, maxPageSize?: number) => Promise<{
-    page: PaginateReturn<TResponse>[];
-    nextPageLink?: string;
-}>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: GetPage<PaginateReturn<TResponse>[]>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 /**
  * Helper type to infer the Type of the paged elements from the response type
