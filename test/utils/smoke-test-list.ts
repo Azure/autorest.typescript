@@ -81,7 +81,7 @@ export const readmes: SpecDefinition[] = [
     path: "./.tmp/specs/specification/agrifood/data-plane/readme.md",
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
     params: [AutorestParams.RestClient],
-    buildTag: "debug"
+    buildTag: "ci_3"
   }
   // {
   //   path:
