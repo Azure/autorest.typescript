@@ -94,7 +94,11 @@ export function paginate<TResponse extends PathUncheckedResponse>(
 /**
  * Gets for the value of nextLink in the body
  */
-function getNextLink(body: unknown, nextLinkName: string): string | undefined {
+function getNextLink(body: unknown, nextLinkName?: string): string | undefined {
+  if (!nextLinkName) {
+    return undefined;
+  }
+
   const nextLink = (body as Record<string, unknown>)[nextLinkName];
 
   if (typeof nextLink !== "string" && typeof nextLink !== "undefined") {

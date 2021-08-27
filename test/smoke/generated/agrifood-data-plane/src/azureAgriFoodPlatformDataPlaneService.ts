@@ -425,7 +425,7 @@ export interface BoundariesGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for specified boundary. */
   put(
-    options?: BoundariesCreateCascadeDeleteJobParameters
+    options: BoundariesCreateCascadeDeleteJobParameters
   ): Promise<
     | BoundariesCreateCascadeDeleteJob202Response
     | BoundariesCreateCascadeDeleteJobdefaultResponse
@@ -454,7 +454,7 @@ export interface BoundariesGet {
 export interface BoundariesGetOverlap {
   /** Returns overlapping acreage between two boundary Ids. */
   get(
-    options?: BoundariesGetOverlapParameters
+    options: BoundariesGetOverlapParameters
   ): Promise<
     BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse
   >;
@@ -560,7 +560,7 @@ export interface FarmersGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for specified farmer. */
   put(
-    options?: FarmersCreateCascadeDeleteJobParameters
+    options: FarmersCreateCascadeDeleteJobParameters
   ): Promise<
     | FarmersCreateCascadeDeleteJob202Response
     | FarmersCreateCascadeDeleteJobdefaultResponse
@@ -629,7 +629,7 @@ export interface FarmsGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for specified farm. */
   put(
-    options?: FarmsCreateCascadeDeleteJobParameters
+    options: FarmsCreateCascadeDeleteJobParameters
   ): Promise<
     | FarmsCreateCascadeDeleteJob202Response
     | FarmsCreateCascadeDeleteJobdefaultResponse
@@ -681,7 +681,7 @@ export interface FieldsGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for specified field. */
   put(
-    options?: FieldsCreateCascadeDeleteJobParameters
+    options: FieldsCreateCascadeDeleteJobParameters
   ): Promise<
     | FieldsCreateCascadeDeleteJob202Response
     | FieldsCreateCascadeDeleteJobdefaultResponse
@@ -793,7 +793,7 @@ export interface OAuthTokensGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for OAuth tokens. */
   put(
-    options?: OAuthTokensCreateCascadeDeleteJobParameters
+    options: OAuthTokensCreateCascadeDeleteJobParameters
   ): Promise<
     | OAuthTokensCreateCascadeDeleteJob202Response
     | OAuthTokensCreateCascadeDeleteJobdefaultResponse
@@ -839,7 +839,7 @@ export interface PlantingDataGet {
 export interface ScenesList {
   /** Returns a paginated list of scene resources. */
   get(
-    options?: ScenesListParameters
+    options: ScenesListParameters
   ): Promise<ScenesList200Response | ScenesListdefaultResponse>;
 }
 
@@ -863,7 +863,7 @@ export interface ScenesCreateSatelliteDataIngestionJob {
 export interface ScenesDownload {
   /** Downloads and returns file stream as response for the given input filePath. */
   get(
-    options?: ScenesDownloadParameters
+    options: ScenesDownloadParameters
   ): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
 }
 
@@ -915,7 +915,7 @@ export interface SeasonalFieldsGetCascadeDeleteJobDetails {
   >;
   /** Create a cascade delete job for specified seasonal field. */
   put(
-    options?: SeasonalFieldsCreateCascadeDeleteJobParameters
+    options: SeasonalFieldsCreateCascadeDeleteJobParameters
   ): Promise<
     | SeasonalFieldsCreateCascadeDeleteJob202Response
     | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse
@@ -987,7 +987,7 @@ export interface TillageDataGet {
 export interface WeatherList {
   /** Returns a paginated list of weather data. */
   get(
-    options?: WeatherListParameters
+    options: WeatherListParameters
   ): Promise<WeatherList200Response | WeatherListdefaultResponse>;
 }
 

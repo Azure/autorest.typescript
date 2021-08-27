@@ -571,7 +571,7 @@ export declare interface BoundariesGetCascadeDeleteJobDetails {
     /** Get cascade delete job for specified boundary. */
     get(options?: BoundariesGetCascadeDeleteJobDetailsParameters): Promise<BoundariesGetCascadeDeleteJobDetails200Response | BoundariesGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for specified boundary. */
-    put(options?: BoundariesCreateCascadeDeleteJobParameters): Promise<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
+    put(options: BoundariesCreateCascadeDeleteJobParameters): Promise<BoundariesCreateCascadeDeleteJob202Response | BoundariesCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get cascade delete job for specified boundary. */
@@ -596,7 +596,7 @@ export declare interface BoundariesGetdefaultResponse extends HttpResponse {
 
 export declare interface BoundariesGetOverlap {
     /** Returns overlapping acreage between two boundary Ids. */
-    get(options?: BoundariesGetOverlapParameters): Promise<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
+    get(options: BoundariesGetOverlapParameters): Promise<BoundariesGetOverlap200Response | BoundariesGetOverlapdefaultResponse>;
 }
 
 /** Returns overlapping acreage between two boundary Ids. */
@@ -1416,7 +1416,7 @@ export declare interface FarmersGetCascadeDeleteJobDetails {
     /** Get a cascade delete job for specified farmer. */
     get(options?: FarmersGetCascadeDeleteJobDetailsParameters): Promise<FarmersGetCascadeDeleteJobDetails200Response | FarmersGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for specified farmer. */
-    put(options?: FarmersCreateCascadeDeleteJobParameters): Promise<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
+    put(options: FarmersCreateCascadeDeleteJobParameters): Promise<FarmersCreateCascadeDeleteJob202Response | FarmersCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get a cascade delete job for specified farmer. */
@@ -1666,7 +1666,7 @@ export declare interface FarmsGetCascadeDeleteJobDetails {
     /** Get a cascade delete job for specified farm. */
     get(options?: FarmsGetCascadeDeleteJobDetailsParameters): Promise<FarmsGetCascadeDeleteJobDetails200Response | FarmsGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for specified farm. */
-    put(options?: FarmsCreateCascadeDeleteJobParameters): Promise<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
+    put(options: FarmsCreateCascadeDeleteJobParameters): Promise<FarmsCreateCascadeDeleteJob202Response | FarmsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get a cascade delete job for specified farm. */
@@ -1919,7 +1919,7 @@ export declare interface FieldsGetCascadeDeleteJobDetails {
     /** Get a cascade delete job for specified field. */
     get(options?: FieldsGetCascadeDeleteJobDetailsParameters): Promise<FieldsGetCascadeDeleteJobDetails200Response | FieldsGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for specified field. */
-    put(options?: FieldsCreateCascadeDeleteJobParameters): Promise<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
+    put(options: FieldsCreateCascadeDeleteJobParameters): Promise<FieldsCreateCascadeDeleteJob202Response | FieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get a cascade delete job for specified field. */
@@ -2766,7 +2766,7 @@ export declare interface OAuthTokensGetCascadeDeleteJobDetails {
     /** Get cascade delete job details for OAuth tokens for specified job ID. */
     get(options?: OAuthTokensGetCascadeDeleteJobDetailsParameters): Promise<OAuthTokensGetCascadeDeleteJobDetails200Response | OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for OAuth tokens. */
-    put(options?: OAuthTokensCreateCascadeDeleteJobParameters): Promise<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
+    put(options: OAuthTokensCreateCascadeDeleteJobParameters): Promise<OAuthTokensCreateCascadeDeleteJob202Response | OAuthTokensCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
@@ -3476,7 +3476,7 @@ export declare type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCrea
 
 export declare interface ScenesDownload {
     /** Downloads and returns file stream as response for the given input filePath. */
-    get(options?: ScenesDownloadParameters): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
+    get(options: ScenesDownloadParameters): Promise<ScenesDownload200Response | ScenesDownloaddefaultResponse>;
 }
 
 /** Downloads and returns file stream as response for the given input filePath. */
@@ -3518,7 +3518,7 @@ export declare type ScenesGetSatelliteDataIngestionJobDetailsParameters = Reques
 
 export declare interface ScenesList {
     /** Returns a paginated list of scene resources. */
-    get(options?: ScenesListParameters): Promise<ScenesList200Response | ScenesListdefaultResponse>;
+    get(options: ScenesListParameters): Promise<ScenesList200Response | ScenesListdefaultResponse>;
 }
 
 /** Returns a paginated list of scene resources. */
@@ -3784,7 +3784,7 @@ export declare interface SeasonalFieldsGetCascadeDeleteJobDetails {
     /** Get cascade delete job for specified seasonal field. */
     get(options?: SeasonalFieldsGetCascadeDeleteJobDetailsParameters): Promise<SeasonalFieldsGetCascadeDeleteJobDetails200Response | SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse>;
     /** Create a cascade delete job for specified seasonal field. */
-    put(options?: SeasonalFieldsCreateCascadeDeleteJobParameters): Promise<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
+    put(options: SeasonalFieldsCreateCascadeDeleteJobParameters): Promise<SeasonalFieldsCreateCascadeDeleteJob202Response | SeasonalFieldsCreateCascadeDeleteJobdefaultResponse>;
 }
 
 /** Get cascade delete job for specified seasonal field. */
@@ -4633,7 +4633,7 @@ export declare type WeatherGetDataIngestionJobDetailsParameters = RequestParamet
 
 export declare interface WeatherList {
     /** Returns a paginated list of weather data. */
-    get(options?: WeatherListParameters): Promise<WeatherList200Response | WeatherListdefaultResponse>;
+    get(options: WeatherListParameters): Promise<WeatherList200Response | WeatherListdefaultResponse>;
 }
 
 /** Returns a paginated list of weather data. */

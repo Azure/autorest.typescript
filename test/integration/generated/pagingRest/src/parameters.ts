@@ -13,6 +13,8 @@ export type GetMultiplePagesParameters = RequestParameters;
 export interface GetWithQueryParamsQueryParamProperties {
   /** A required integer query parameter. Put in value '100' to pass test. */
   requiredQueryParameter: number;
+  /** A constant. Must be True and will be passed as a query parameter to nextOperationWithQueryParams */
+  queryConstant: true;
 }
 
 export interface GetWithQueryParamsQueryParam {
@@ -21,7 +23,18 @@ export interface GetWithQueryParamsQueryParam {
 
 export type GetWithQueryParamsParameters = GetWithQueryParamsQueryParam &
   RequestParameters;
-export type NextOperationWithQueryParamsParameters = RequestParameters;
+
+export interface NextOperationWithQueryParamsQueryParamProperties {
+  /** A constant. Must be True */
+  queryConstant: true;
+}
+
+export interface NextOperationWithQueryParamsQueryParam {
+  queryParameters: NextOperationWithQueryParamsQueryParamProperties;
+}
+
+export type NextOperationWithQueryParamsParameters = NextOperationWithQueryParamsQueryParam &
+  RequestParameters;
 export type GetOdataMultiplePagesParameters = RequestParameters;
 export type GetMultiplePagesWithOffsetParameters = RequestParameters;
 export type GetMultiplePagesRetryFirstParameters = RequestParameters;

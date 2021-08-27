@@ -109,14 +109,14 @@ export interface GetMultiplePages {
 export interface GetWithQueryParams {
   /** A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult */
   get(
-    options?: GetWithQueryParamsParameters
+    options: GetWithQueryParamsParameters
   ): Promise<GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse>;
 }
 
 export interface NextOperationWithQueryParams {
   /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
   get(
-    options?: NextOperationWithQueryParamsParameters
+    options: NextOperationWithQueryParamsParameters
   ): Promise<
     | NextOperationWithQueryParams200Response
     | NextOperationWithQueryParamsdefaultResponse
@@ -193,7 +193,7 @@ export interface GetMultiplePagesFailureUri {
 export interface GetMultiplePagesFragmentNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options?: GetMultiplePagesFragmentNextLinkParameters
+    options: GetMultiplePagesFragmentNextLinkParameters
   ): Promise<
     | GetMultiplePagesFragmentNextLink200Response
     | GetMultiplePagesFragmentNextLinkdefaultResponse
@@ -203,7 +203,7 @@ export interface GetMultiplePagesFragmentNextLink {
 export interface GetMultiplePagesFragmentWithGroupingNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
   get(
-    options?: GetMultiplePagesFragmentWithGroupingNextLinkParameters
+    options: GetMultiplePagesFragmentWithGroupingNextLinkParameters
   ): Promise<
     | GetMultiplePagesFragmentWithGroupingNextLink200Response
     | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
@@ -222,14 +222,14 @@ export interface GetMultiplePagesLRO {
 export interface NextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options?: NextFragmentParameters
+    options: NextFragmentParameters
   ): Promise<NextFragment200Response | NextFragmentdefaultResponse>;
 }
 
 export interface NextFragmentWithGrouping {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options?: NextFragmentWithGroupingParameters
+    options: NextFragmentWithGroupingParameters
   ): Promise<
     | NextFragmentWithGrouping200Response
     | NextFragmentWithGroupingdefaultResponse
