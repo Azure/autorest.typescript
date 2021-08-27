@@ -1,6 +1,3 @@
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-
 import {
   getPagedAsyncIterator,
   PagedAsyncIterableIterator,
@@ -35,16 +32,13 @@ export type GetPage<TPage> = (
  * where the page items are found. The default value is `value`.
  * This type will allow us to provide strongly typed Iterator based on the response we get as second parameter
  */
-export type PaginateReturn<TResult> = TResult extends
-  | {
-      body: { value?: infer TPage };
-    }
-  | {
-      body: { values?: infer TPage };
-    }
-  | {
-      body: { indexes?: infer TPage };
-    }
+export type PaginateReturn<TResult> = TResult extends  {{#each itemNames}}
+  {
+ 
+  body: { {{this}}?: infer TPage } 
+  
+} {{#if @last }}{{else}} | {{/if}}
+{{/each}}
   ? GetArrayType<TPage>
   : Array<unknown>;
 
@@ -69,10 +63,15 @@ export function paginate<TResponse extends PathUncheckedResponse>(
   // Extract element type from initial response
   type TElement = PaginateReturn<TResponse>;
   let firstRun = true;
-  // We need to check the response for success before trying to inspect it looking for
+  {{#if isComplexPaging}}
+   // We need to check the response for success before trying to inspect it looking for
   // the properties to use for nextLink and itemName
   checkPagingRequest(initialResponse);
   const { itemName, nextLinkName } = getPaginationProperties(initialResponse);
+  {{else}}
+  const itemName = {{ quoteWrap itemNames }};
+  const nextLinkName = {{quoteWrap nextLinkNames}};
+  {{/if}}
 
   const pagedResult: PagedResult<TElement[]> = {
     firstPageLink: "",
@@ -154,15 +153,16 @@ function checkPagingRequest(response: PathUncheckedResponse): void {
   }
 }
 
+{{#if isComplexPaging}}
 /**
  * Extracts the itemName and nextLinkName from the initial response to use them for pagination
  */
 function getPaginationProperties(initialResponse: PathUncheckedResponse) {
   // Build a set with the passed custom nextLinkNames
-  const nextLinkNames = new Set(["nextLink", "odata.nextLink"]);
+  const nextLinkNames = new Set([{{ quoteWrap nextLinkNames }}]);
 
   // Build a set with the passed custom set of itemNames
-  const itemNames = new Set(["value", "values", "indexes"]);
+  const itemNames = new Set([{{ quoteWrap itemNames }}]);
 
   let nextLinkName: string | undefined;
   let itemName: string | undefined;
@@ -197,3 +197,4 @@ function getPaginationProperties(initialResponse: PathUncheckedResponse) {
 
   return { itemName, nextLinkName };
 }
+{{/if}}

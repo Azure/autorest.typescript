@@ -94,7 +94,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "@azure/core-auth": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.0.4",
       ...(hasPaging && {
-        "@azure-rest/core-client-paging": "1.0.0-alpha.20210820.2"
+        "@azure/core-paging": "^1.2.0-alpha.20210816.6"
       })
     },
     devDependencies: {

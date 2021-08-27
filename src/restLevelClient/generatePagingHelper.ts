@@ -8,24 +8,31 @@ import { Project } from "ts-morph";
 interface PagingDetails {
   itemNames: string[];
   nextLinkNames: string[];
+  isComplexPaging: boolean;
 }
 
 export function generatePagingHelper(project: Project) {
-  const { nextLinkNames, itemNames } = getPagingInfo();
+  const pagingInfo = getPagingInfo();
+  let file: string = "";
 
-  const file = readFileSync(path.join(__dirname, "paging.ts.hbs"), {
+  file = readFileSync(path.join(__dirname, "paginateHelper.ts.hbs"), {
     encoding: "utf-8"
   });
 
-  const templateModel: PagingDetails = {
-    itemNames,
-    nextLinkNames
-  };
+  hbs.registerHelper("quoteWrap", function(
+    value: string | number | boolean | string[]
+  ) {
+    if (Array.isArray(value)) {
+      return value.map(element => `"${element}"`).join();
+    }
+
+    return `"${value}"`;
+  });
 
   const readmeFileContents = hbs.compile(file, { noEscape: true });
   project.createSourceFile(
     "src/paginateHelper.ts",
-    readmeFileContents(templateModel),
+    readmeFileContents(pagingInfo),
     {
       overwrite: true
     }
@@ -34,18 +41,28 @@ export function generatePagingHelper(project: Project) {
 
 function getPagingInfo(): PagingDetails {
   const { model } = getSession();
-  let nextLinks = new Set<string>();
-  let itemNames = new Set<string>();
+  const nextLinks = new Set<string>();
+  const itemNames = new Set<string>();
+  // Add default values
+  nextLinks.add("nextLink");
+  itemNames.add("value");
   for (let operationGroup of model.operationGroups) {
     for (let operation of operationGroup.operations) {
       const paginationDetails = extractPaginationDetails(operation);
       if (paginationDetails) {
         const { nextLinkName, itemName } = paginationDetails;
-        nextLinkName && nextLinks.add(`"${nextLinkName}"`);
-        itemName && itemNames.add(`"${itemName}"`);
+        nextLinkName && nextLinks.add(`${nextLinkName}`);
+        itemName && itemNames.add(`${itemName}`);
       }
     }
   }
 
-  return { itemNames: [...itemNames], nextLinkNames: [...nextLinks] };
+  // If there are more than one options for nextLink and item names we need to generate a
+  // more complex pagination helper.
+  const isComplexPaging = nextLinks.size > 1 || itemNames.size > 1;
+  return {
+    itemNames: [...itemNames],
+    nextLinkNames: [...nextLinks],
+    isComplexPaging
+  };
 }
