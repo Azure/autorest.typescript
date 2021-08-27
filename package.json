@@ -35,7 +35,6 @@
         "@autorest/codemodel": "^4.15.0",
         "@autorest/extension-base": "^3.2.1",
         "@azure-rest/core-client": "^1.0.0-beta.6",
-        "@azure-rest/core-client-paging": "^1.0.0-alpha.20210820.2",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.1.2",
         "@azure/core-http": "^1.2.4",
