@@ -89,8 +89,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     },
     dependencies: {
       "@azure-rest/core-client": "1.0.0-beta.4",
-      "@azure/core-auth": "^1.3.0",
-      "@azure/core-rest-pipeline": "^1.0.4"
+      "@azure/core-auth": "^1.3.0"
     },
     devDependencies: {
       autorest: "latest",

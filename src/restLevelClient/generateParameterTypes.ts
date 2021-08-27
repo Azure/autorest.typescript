@@ -71,7 +71,7 @@ export function generateParameterInterfaces(
       ...(headerParameterDefinition ? [headerParameterDefinition] : [])
     ]);
 
-    if (!headerParameterDefinition) {
+    if (headerParameterDefinition !== undefined) {
       hasHeaders = true;
     }
 
@@ -84,16 +84,14 @@ export function generateParameterInterfaces(
     });
   }
 
+  const coreClientImports: string[] = ["RequestParameters"];
   if (hasHeaders) {
-    parametersFile.addImportDeclaration({
-      namedImports: ["RawHttpHeaders"],
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    });
+    coreClientImports.push("RawHttpHeaders");
   }
 
   parametersFile.addImportDeclarations([
     {
-      namedImports: ["RequestParameters"],
+      namedImports: [...coreClientImports],
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);

@@ -100,19 +100,19 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   }
 
+  const coreClientImports: string[] = ["HttpResponse"];
+  if (hasHeaders) {
+    coreClientImports.push("RawHttpHeaders");
+  }
+
   responsesFile.addImportDeclarations([
     {
-      namedImports: ["HttpResponse"],
+      namedImports: [...coreClientImports],
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);
 
-  if (hasHeaders) {
-    responsesFile.addImportDeclaration({
-      namedImports: ["RawHttpHeaders"],
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    });
-  }
+
 
   responsesFile.addImportDeclarations([
     {
