@@ -793,10 +793,12 @@ function getPropertyTypeName(
 }
 
 /**
- * Extracts all properties from ObjectDetails and returns a list of PropertySignatureStructure
+ * Get a list of properties from an object which aren't marked as discriminators
  * @param objectDetails Object description
  */
-function getProperties(objectDetails: ObjectDetails): PropertyDetails[] {
+function getNonDiscriminatorProperties(
+  objectDetails: ObjectDetails
+): PropertyDetails[] {
   const { properties } = objectDetails;
 
   return properties.filter(property => !property.isDiscriminator);
@@ -882,7 +884,7 @@ function withAdditionalProperties(
  */
 const getPropertiesSignatures = (objectDetails: ObjectDetails) => {
   const { ignoreNullableOnOptional = false } = getAutorestOptions();
-  const properties = getProperties(objectDetails).map<
+  const properties = getNonDiscriminatorProperties(objectDetails).map<
     PropertySignatureStructure
   >(property => ({
     name: `"${property.name}"`,
