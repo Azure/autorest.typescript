@@ -1,3 +1,6 @@
+## 6.0.0-beta.12 (2021-08-27)
+- [BugFix] The `fs-extra` package has been moved from `devDependencies` to `dependencies`. Please refer [1179](https://github.com/Azure/autorest.typescript/issues/1179) for further details.
+
 ## 6.0.0-beta.11 (2021-08-27)
 
 - [Feature] `src` folder is always cleared before generating an SDK. Please refer [#1166](https://github.com/Azure/autorest.typescript/issues/1166) for further details.
