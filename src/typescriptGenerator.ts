@@ -77,12 +77,6 @@ export async function generateTypeScriptLibrary(
     );
 
     if (isConflict) {
-      operationGroup.operations.forEach(operation => {
-        operation.typeDetails.typeName = operation.typeDetails.typeName.replace(
-          operationGroup.name,
-          `${operationGroup.name}Operations`
-        );
-      });
       operationGroup.name = `${operationGroup.name}Operations`;
       operationGroup.key = `${operationGroup.key}Operations`;
     }
