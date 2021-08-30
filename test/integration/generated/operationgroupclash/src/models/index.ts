@@ -27,24 +27,24 @@ export enum KnownEnum0 {
 export type Enum0 = string;
 
 /** Optional parameters. */
-export interface ProductOperationsApiV1ValueGetOptionalParams
+export interface ProductApiV1ValueGetOptionalParams
   extends coreClient.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
 
 /** Contains response data for the apiV1ValueGet operation. */
-export type ProductOperationsApiV1ValueGetResponse = {
+export type ProductApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string[];
 };
 
 /** Optional parameters. */
-export interface PipelineOperationsApiV1ValueGetOptionalParams
+export interface PipelineApiV1ValueGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the apiV1ValueGet operation. */
-export type PipelineOperationsApiV1ValueGetResponse = {
+export type PipelineApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string[];
 };

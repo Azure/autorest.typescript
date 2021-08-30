@@ -810,6 +810,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  datalakestorage: {
+    swaggerOrConfig: "test/integration/swaggers/datalakestorage.json",
+    clientName: "DataLakeStorageClient",
+    packageName: "datalakestorage",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
