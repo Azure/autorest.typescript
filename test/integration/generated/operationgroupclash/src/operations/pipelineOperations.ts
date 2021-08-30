@@ -4,8 +4,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { OperationGroupClashClientContext } from "../operationGroupClashClientContext";
 import {
-  PipelineOperationsApiV1ValueGetOptionalParams,
-  PipelineOperationsApiV1ValueGetResponse
+  PipelineApiV1ValueGetOptionalParams,
+  PipelineApiV1ValueGetResponse
 } from "../models";
 
 /** Class containing PipelineOperations operations. */
@@ -22,8 +22,8 @@ export class PipelineOperationsImpl implements PipelineOperations {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: PipelineOperationsApiV1ValueGetOptionalParams
-  ): Promise<PipelineOperationsApiV1ValueGetResponse> {
+    options?: PipelineApiV1ValueGetOptionalParams
+  ): Promise<PipelineApiV1ValueGetResponse> {
     return this.client.sendOperationRequest(
       { options },
       apiV1ValueGetOperationSpec
