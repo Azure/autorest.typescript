@@ -4,7 +4,8 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
-import { getAutorestOptions } from "../../autorestSession";
+import { getAutorestOptions, getSession } from "../../autorestSession";
+import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 
 export function generatePackageJson(
   project: Project,
@@ -47,7 +48,8 @@ export function generatePackageJson(
  */
 function restLevelPackage(packageDetails: PackageDetails) {
   const { azureArm } = getAutorestOptions();
-
+  const { model } = getSession();
+  const hasPaging = hasPagingOperations(model);
   return {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
@@ -88,9 +90,12 @@ function restLevelPackage(packageDetails: PackageDetails) {
       node: ">=12.0.0"
     },
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.4",
+      "@azure-rest/core-client": "1.0.0-beta.6",
       "@azure/core-auth": "^1.3.0",
-      "@azure/core-rest-pipeline": "^1.0.4"
+      "@azure/core-rest-pipeline": "^1.0.4",
+      ...(hasPaging && {
+        "@azure/core-paging": "^1.2.0"
+      })
     },
     devDependencies: {
       autorest: "latest",

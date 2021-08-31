@@ -23,7 +23,7 @@
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "copyFiles": "copyfiles src/generators/static/README.md.hbs dist/"
+        "copyFiles": "copyfiles src/**/*.hbs dist/ && copyfiles src/**/**/*.hbs dist/"
     },
     "files": [
         "src",
@@ -34,12 +34,12 @@
     "dependencies": {
         "@autorest/codemodel": "^4.15.0",
         "@autorest/extension-base": "^3.2.1",
-        "@azure-rest/core-client": "^1.0.0-beta.4",
+        "@azure-rest/core-client": "^1.0.0-beta.6",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.1.2",
         "@azure/core-http": "^1.2.4",
         "@azure/core-lro": "^2.1.0",
-        "@azure/core-paging": "^1.1.3",
+        "@azure/core-paging": "^1.2.0",
         "@azure/core-rest-pipeline": "^1.0.4",
         "@azure/core-tracing": "^1.0.0-preview.11",
         "@azure/logger": "^1.0.0",
