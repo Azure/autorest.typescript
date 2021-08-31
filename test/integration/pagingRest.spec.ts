@@ -230,26 +230,28 @@ describe("Integration tests for Paging Rest Client", () => {
         .get({ queryParameters: { api_version: "1.6" } });
 
       let firstRun = true;
-      const iter = paginate(client, initialResponse, async pageLink => {
-        const result = firstRun
-          ? initialResponse
-          : await client
-              .path(
-                "/paging/multiple/fragment/{tenant}/{nextLink}",
-                tenant,
-                pageLink
-              )
-              .get({ queryParameters: { api_version: "1.6" } });
-        firstRun = false;
-        if (result.status !== "200") {
-          throw new Error("Unexpected status code");
+      const iter = paginate(client, initialResponse, {
+        customGetPage: async pageLink => {
+          const result = firstRun
+            ? initialResponse
+            : await client
+                .path(
+                  "/paging/multiple/fragment/{tenant}/{nextLink}",
+                  tenant,
+                  pageLink
+                )
+                .get({ queryParameters: { api_version: "1.6" } });
+          firstRun = false;
+          if (result.status !== "200") {
+            throw new Error("Unexpected status code");
+          }
+          const nextLink = result.body["odata.nextLink"];
+          const values = result.body["values"] ?? [];
+          return {
+            page: values,
+            nextPageLink: nextLink
+          };
         }
-        const nextLink = result.body["odata.nextLink"];
-        const values = result.body["values"] ?? [];
-        return {
-          page: values,
-          nextPageLink: nextLink
-        };
       });
 
       let index = 0;
@@ -288,22 +290,24 @@ describe("Integration tests for Paging Rest Client", () => {
         });
 
       let firstRun = true;
-      const iter = paginate(client, initialResponse, async pageLink => {
-        const result = firstRun
-          ? initialResponse
-          : await client
-              .path("/paging/multiple/nextOperationWithQueryParams")
-              .get({ queryParameters: { queryConstant: true } });
-        firstRun = false;
-        if (result.status !== "200") {
-          throw new Error("Unexpected status code");
+      const iter = paginate(client, initialResponse, {
+        customGetPage: async pageLink => {
+          const result = firstRun
+            ? initialResponse
+            : await client
+                .path("/paging/multiple/nextOperationWithQueryParams")
+                .get({ queryParameters: { queryConstant: true } });
+          firstRun = false;
+          if (result.status !== "200") {
+            throw new Error("Unexpected status code");
+          }
+          const nextLink = result.body["nextLink"];
+          const values = result.body["values"] ?? [];
+          return {
+            page: values,
+            nextPageLink: nextLink
+          };
         }
-        const nextLink = result.body["nextLink"];
-        const values = result.body["values"] ?? [];
-        return {
-          page: values,
-          nextPageLink: nextLink
-        };
       });
 
       for await (const item of iter) {

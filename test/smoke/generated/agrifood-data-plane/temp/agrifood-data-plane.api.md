@@ -2560,7 +2560,7 @@ export interface OAuthTokensListQueryParamProperties {
 }
 
 // @public
-export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: GetPage<PaginateReturn<TResponse>[]>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+export function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 // @public
 export type PaginateReturn<TResult> = TResult extends {
@@ -2568,6 +2568,11 @@ export type PaginateReturn<TResult> = TResult extends {
         value?: infer TPage;
     };
 } ? GetArrayType<TPage> : Array<unknown>;
+
+// @public
+export interface PagingOptions<TResponse> {
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
 
 // @public (undocumented)
 export interface Paths1LxjoxzFarmersFarmeridAttachmentsAttachmentidPatchRequestbodyContentMultipartFormDataSchema {

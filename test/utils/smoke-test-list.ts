@@ -1,4 +1,4 @@
-type BuildTag = "ci_1" | "ci_2" | "ci_3" | "debug";
+type BuildTag = "ci_1" | "ci_2" | "ci_3" | "ci_rlc" | "debug";
 
 export interface SpecDefinition {
   path: string;
@@ -81,7 +81,7 @@ export const readmes: SpecDefinition[] = [
     path: "./.tmp/specs/specification/agrifood/data-plane/readme.md",
     branch: "3ac6ce225efe665e6c74abe48016dcb2a236d609",
     params: [AutorestParams.RestClient],
-    buildTag: "ci_3"
+    buildTag: "ci_rlc"
   }
   // {
   //   path:

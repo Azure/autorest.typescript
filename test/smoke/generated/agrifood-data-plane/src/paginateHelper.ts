@@ -18,7 +18,7 @@ import {
 export type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 /**
- * Defines the type for a custom function to extract pagination details for crating the PagedAsyncIterableIterator
+ * The type of a custom function that defines how to get a page and a link to the next one if any.
  */
 export type GetPage<TPage> = (
   pageLink: string,
@@ -27,6 +27,16 @@ export type GetPage<TPage> = (
   page: TPage;
   nextPageLink?: string;
 }>;
+
+/**
+ * Options for the paging helper
+ */
+export interface PagingOptions<TResponse> {
+  /**
+   * Custom function to extract pagination details for crating the PagedAsyncIterableIterator
+   */
+  customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
 
 /**
  * Helper type to infer the Type of the paged elements from the response type
@@ -51,14 +61,14 @@ export type PaginateReturn<TResult> = TResult extends {
 export function paginate<TResponse extends PathUncheckedResponse>(
   client: Client,
   initialResponse: TResponse,
-  customGetPage?: GetPage<PaginateReturn<TResponse>[]>
+  options: PagingOptions<TResponse> = {}
 ): PagedAsyncIterableIterator<PaginateReturn<TResponse>> {
   // Extract element type from initial response
   type TElement = PaginateReturn<TResponse>;
   let firstRun = true;
   const itemName = "value";
   const nextLinkName = "nextLink";
-
+  const { customGetPage } = options;
   const pagedResult: PagedResult<TElement[]> = {
     firstPageLink: "",
     getPage:

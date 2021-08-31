@@ -2064,7 +2064,7 @@ export declare interface GeoJsonObjectBase {
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
 
 /**
- * Defines the type for a custom function to extract pagination details for crating the PagedAsyncIterableIterator
+ * The type of a custom function that defines how to get a page and a link to the next one if any.
  */
 export declare type GetPage<TPage> = (pageLink: string, maxPageSize?: number) => Promise<{
     page: TPage;
@@ -2861,7 +2861,7 @@ export declare interface OAuthTokensListQueryParamProperties {
  * @param customGetPage - Optional - Function to define how to extract the page and next link to be used to paginate the results
  * @returns - PagedAsyncIterableIterator to iterate the elements
  */
-export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, customGetPage?: GetPage<PaginateReturn<TResponse>[]>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
+export declare function paginate<TResponse extends PathUncheckedResponse>(client: Client, initialResponse: TResponse, options?: PagingOptions<TResponse>): PagedAsyncIterableIterator<PaginateReturn<TResponse>>;
 
 /**
  * Helper type to infer the Type of the paged elements from the response type
@@ -2875,6 +2875,16 @@ export declare type PaginateReturn<TResult> = TResult extends {
         value?: infer TPage;
     };
 } ? GetArrayType<TPage> : Array<unknown>;
+
+/**
+ * Options for the paging helper
+ */
+export declare interface PagingOptions<TResponse> {
+    /**
+     * Custom function to extract pagination details for crating the PagedAsyncIterableIterator
+     */
+    customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
+}
 
 export declare interface Paths1LxjoxzFarmersFarmeridAttachmentsAttachmentidPatchRequestbodyContentMultipartFormDataSchema {
     /**
