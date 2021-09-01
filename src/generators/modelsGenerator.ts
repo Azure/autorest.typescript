@@ -537,7 +537,9 @@ const writeSealedChoice = (
   modelsIndexFile: SourceFile
 ) => {
   const values = choice.properties
-    .map(p => (choice.itemType === SchemaType.String ? `"${p.value}"` : p.name))
+    .map(p =>
+      choice.itemType === SchemaType.String ? `"${p.value}"` : p.value
+    )
     .join(" | ");
 
   modelsIndexFile.addTypeAlias({
@@ -762,48 +764,44 @@ function writeOptionalParameters(
     });
 }
 
+// Get the type name to generate given a property
+function getPropertyTypeName(
+  property: PropertyDetails,
+  objectDetails: ObjectDetails,
+  ignoreNullableOnOptional: boolean
+) {
+  if (property.isConstant) {
+    return `"${getStringForValue(
+      property.defaultValue,
+      property.type,
+      false //quoted
+    )}"`;
+  }
+
+  const typeName =
+    property.name === "siblings"
+      ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
+      : property.type;
+
+  if (ignoreNullableOnOptional) {
+    return property.nullable && property.required
+      ? `${typeName} | null`
+      : typeName;
+  } else {
+    return property.nullable ? `${typeName} | null` : typeName;
+  }
+}
+
 /**
- * Extracts all properties from ObjectDetails and returns a list of PropertySignatureStructure
+ * Get a list of properties from an object which aren't marked as discriminators
  * @param objectDetails Object description
  */
-function getProperties(
+function getNonDiscriminatorProperties(
   objectDetails: ObjectDetails
-): PropertySignatureStructure[] {
-  const { ignoreNullableOnOptional } = getAutorestOptions();
+): PropertyDetails[] {
   const { properties } = objectDetails;
-  const getTypename = (property: PropertyDetails) => {
-    if (property.isConstant) {
-      return `"${getStringForValue(
-        property.defaultValue,
-        property.type,
-        false //quoted
-      )}"`;
-    }
 
-    const typeName =
-      property.name === "siblings"
-        ? `${(objectDetails as PolymorphicObjectDetails).unionName}[]`
-        : property.type;
-
-    if (ignoreNullableOnOptional) {
-      return property.nullable && property.required
-        ? `${typeName} | null`
-        : typeName;
-    } else {
-      return property.nullable ? `${typeName} | null` : typeName;
-    }
-  };
-
-  return properties
-    .filter(property => !property.isDiscriminator)
-    .map<PropertySignatureStructure>(property => ({
-      name: `"${property.name}"`,
-      hasQuestionToken: !property.required,
-      isReadonly: property.readOnly,
-      type: getTypename(property),
-      docs: getPropertyDescription(property),
-      kind: StructureKind.PropertySignature
-    }));
+  return properties.filter(property => !property.isDiscriminator);
 }
 
 function getPropertyDescription({ description, readOnly }: PropertyDetails) {
@@ -884,8 +882,24 @@ function withAdditionalProperties(
  * Gets an enhanced list of Properties to construct an Object signature
  * @param objectDetails Object description
  */
-const getPropertiesSignatures = (objectDetails: ObjectDetails) =>
-  withDiscriminator(
+const getPropertiesSignatures = (objectDetails: ObjectDetails) => {
+  const { ignoreNullableOnOptional = false } = getAutorestOptions();
+  const properties = getNonDiscriminatorProperties(objectDetails).map<
+    PropertySignatureStructure
+  >(property => ({
+    name: `"${property.name}"`,
+    hasQuestionToken: !property.required,
+    isReadonly: property.readOnly,
+    type: getPropertyTypeName(
+      property,
+      objectDetails,
+      ignoreNullableOnOptional
+    ),
+    docs: getPropertyDescription(property),
+    kind: StructureKind.PropertySignature
+  }));
+  return withDiscriminator(
     objectDetails,
-    withAdditionalProperties(objectDetails, getProperties(objectDetails))
+    withAdditionalProperties(objectDetails, properties)
   );
+};

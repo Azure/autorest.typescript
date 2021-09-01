@@ -140,16 +140,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  bodyComplexRest: {
-    swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
-    clientName: "BodyComplexRestClient",
-    packageName: "body-complex-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   bodyComplexWithTracing: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "bodyComplexWithTracing",
@@ -395,17 +385,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
-  },
-  multipleInheritanceRest: {
-    swaggerOrConfig: "multiple-inheritance.json",
-    clientName: "MultipleInheritanceRestClient",
-    packageName: "multiple-inheritance-rest",
-    licenseHeader: true,
-    useCoreV2: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    restLevelClient: true,
     isTestPackage: true
   },
   noMappers: {
@@ -812,6 +791,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  datalakestorage: {
+    swaggerOrConfig: "test/integration/swaggers/datalakestorage.json",
+    clientName: "DataLakeStorageClient",
+    packageName: "datalakestorage",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
@@ -820,6 +809,36 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     licenseHeader: true,
+    isTestPackage: true
+  },
+  bodyComplexRest: {
+    swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
+    clientName: "BodyComplexRestClient",
+    packageName: "body-complex-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  pagingRest: {
+    swaggerOrConfig: "paging.json",
+    clientName: "Paging",
+    packageName: "paging-service",
+    licenseHeader: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
+  multipleInheritanceRest: {
+    swaggerOrConfig: "multiple-inheritance.json",
+    clientName: "MultipleInheritanceRestClient",
+    packageName: "multiple-inheritance-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    restLevelClient: true,
     isTestPackage: true
   }
 };

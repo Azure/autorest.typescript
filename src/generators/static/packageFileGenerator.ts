@@ -4,7 +4,8 @@
 import { Project } from "ts-morph";
 import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
-import { getAutorestOptions } from "../../autorestSession";
+import { getAutorestOptions, getSession } from "../../autorestSession";
+import { hasPagingOperations } from "../../utils/extractPaginationDetails";
 
 export function generatePackageJson(
   project: Project,
@@ -47,7 +48,8 @@ export function generatePackageJson(
  */
 function restLevelPackage(packageDetails: PackageDetails) {
   const { azureArm } = getAutorestOptions();
-
+  const { model } = getSession();
+  const hasPaging = hasPagingOperations(model);
   return {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
@@ -88,9 +90,12 @@ function restLevelPackage(packageDetails: PackageDetails) {
       node: ">=12.0.0"
     },
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.4",
+      "@azure-rest/core-client": "1.0.0-beta.6",
       "@azure/core-auth": "^1.3.0",
-      "@azure/core-rest-pipeline": "^1.0.4"
+      "@azure/core-rest-pipeline": "^1.0.4",
+      ...(hasPaging && {
+        "@azure/core-paging": "^1.2.0"
+      })
     },
     devDependencies: {
       autorest: "latest",
@@ -173,7 +178,6 @@ function regularAutorestPackage(
       mkdirp: "^1.0.4",
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
-      "rollup-plugin-node-resolve": "^3.4.0",
       typescript: "~4.2.0",
       "uglify-js": "^3.4.9"
     },
@@ -201,7 +205,8 @@ function regularAutorestPackage(
       "rollup.config.js",
       "tsconfig.json",
       "review/*",
-      "CHANGELOG.md"
+      "CHANGELOG.md",
+      "types/*"
     ],
     scripts: {
       build:
@@ -238,7 +243,7 @@ function regularAutorestPackage(
   if(generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
     packageInfo.devDependencies['@azure/identity'] = "2.0.0-beta.4";
-    packageInfo.devDependencies['@azure/test-utils-recorder'] = "^1.0.0";
+    packageInfo.devDependencies['@azure-tools/test-recorder'] = "^1.0.0";
     packageInfo.devDependencies['mocha'] = "^7.1.1";
     packageInfo.devDependencies['cross-env'] = "^7.0.2";
     packageInfo.scripts['test'] = "npm run integration-test";

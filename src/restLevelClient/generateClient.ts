@@ -26,6 +26,8 @@ import { transformBaseUrl } from "../transforms/urlTransforms";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { getOperationParameters } from "./helpers/getOperationParameters";
+
 type PathParameter = { name: string; description?: string };
 
 type Methods = {
@@ -87,9 +89,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
               name: operationName
             };
           }
-          const hasOptionalOptions = !request.signatureParameters?.some(
-            p => p.required
-          );
+          const hasOptionalOptions = !hasRequiredOptions(operation);
 
           const newMethod = {
             description: operationDescription,
@@ -186,6 +186,13 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
       moduleSpecifier: "@azure/core-auth"
     }
   ]);
+}
+
+function hasRequiredOptions(operation: Operation) {
+  return getOperationParameters(operation)
+    .filter(p => p.implementation === ImplementationLocation.Method)
+    .filter(p => ["query", "body", "headers"].includes(p.protocol.http?.in))
+    .some(p => p.required);
 }
 
 function getOperationOptionsType(

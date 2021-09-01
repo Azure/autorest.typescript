@@ -1,6 +1,6 @@
 {
     "name": "@autorest/typescript",
-    "version": "6.0.0-beta.8",
+    "version": "6.0.0-beta.12",
     "scripts": {
         "build": "tsc -p . && npm run copyFiles",
         "build:test:browser": "tsc -p tsconfig.browser-test.json && webpack --config webpack.config.test.js",
@@ -23,7 +23,7 @@
         "generate-swaggers": "ts-node ./test/utils/test-swagger-gen.ts",
         "clone:specs": "git clone https://github.com/Azure/azure-rest-api-specs.git ./.tmp/specs",
         "smoke-test": "ts-node ./test/utils/smoke-test.ts",
-        "copyFiles": "copyfiles src/generators/static/*.hbs dist/"
+        "copyFiles": "copyfiles src/**/*.hbs dist/ && copyfiles src/**/**/*.hbs dist/"
     },
     "files": [
         "src",
@@ -34,12 +34,12 @@
     "dependencies": {
         "@autorest/codemodel": "^4.15.0",
         "@autorest/extension-base": "^3.2.1",
-        "@azure-rest/core-client": "^1.0.0-beta.4",
+        "@azure-rest/core-client": "^1.0.0-beta.6",
         "@azure-tools/codegen": "^2.5.294",
         "@azure/core-client": "^1.1.2",
         "@azure/core-http": "^1.2.4",
         "@azure/core-lro": "^2.1.0",
-        "@azure/core-paging": "^1.1.3",
+        "@azure/core-paging": "^1.2.0",
         "@azure/core-rest-pipeline": "^1.0.4",
         "@azure/core-tracing": "^1.0.0-preview.11",
         "@azure/logger": "^1.0.0",
@@ -49,7 +49,8 @@
         "lodash": "^4.17.21",
         "prettier": "^1.19.1",
         "source-map-support": "^0.5.16",
-        "ts-morph": "^9.0.0"
+        "ts-morph": "^9.0.0",
+        "fs-extra": "^10.0.0"
     },
     "devDependencies": {
         "@autorest/test-server": "^3.0.27",
@@ -58,6 +59,7 @@
         "@azure/core-xml": "^1.0.0-beta.1",
         "@microsoft.azure/autorest.testserver": "^3.0.21",
         "@types/chai": "^4.2.8",
+        "@types/fs-extra": "^8.1.0",
         "@types/js-yaml": "3.12.1",
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.7.12",
@@ -71,6 +73,7 @@
         "autorest": "^3.1.1",
         "chai": "^4.2.0",
         "chalk": "^4.0.0",
+        "copyfiles": "^2.4.1",
         "directory-tree": "^2.2.7",
         "eslint": "~6.2.2",
         "karma": "^5.0.9",
@@ -95,7 +98,6 @@
         "wait-port": "^0.2.6",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
-        "yargs": "^15.3.1",
-        "copyfiles": "^2.4.1"
+        "yargs": "^15.3.1"
     }
 }

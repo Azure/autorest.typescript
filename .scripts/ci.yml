@@ -110,6 +110,10 @@ stages:
         parameters:
           name: SmokeTest_3
           tag: ci_3
+      - template: smoke-test.yml
+        parameters:
+          name: SmokeTest_RLC
+          tag: ci_rlc
 
   # The Prerelease and Release stages are conditioned on whether we are building a pull request and the branch.
   - ? ${{if and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'), eq(parameters.IncludeRelease,true))}}

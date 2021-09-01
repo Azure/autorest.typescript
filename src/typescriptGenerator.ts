@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 import * as prettier from "prettier";
+import * as fsextra from "fs-extra";
+import * as path from "path";
 import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
@@ -63,7 +65,9 @@ export async function generateTypeScriptLibrary(
   const {
     packageDetails,
     licenseHeader: shouldGenerateLicense,
-    generateTest
+    generateTest,
+    outputPath,
+    srcPath
   } = getAutorestOptions();
 
   const clientDetails = await transformCodeModel(codeModel, host);
@@ -75,12 +79,6 @@ export async function generateTypeScriptLibrary(
     );
 
     if (isConflict) {
-      operationGroup.operations.forEach(operation => {
-        operation.typeDetails.typeName = operation.typeDetails.typeName.replace(
-          operationGroup.name,
-          `${operationGroup.name}Operations`
-        );
-      });
       operationGroup.name = `${operationGroup.name}Operations`;
       operationGroup.key = `${operationGroup.key}Operations`;
     }
@@ -122,6 +120,8 @@ export async function generateTypeScriptLibrary(
   // Save the source files to the virtual filesystem
   project.saveSync();
   const fs = project.getFileSystem();
+  const pathToClear = outputPath ? path.join(outputPath, srcPath) : srcPath;
+  fsextra.emptyDirSync(`${pathToClear}`);
 
   // Loop over the files
   for (const file of project.getSourceFiles()) {

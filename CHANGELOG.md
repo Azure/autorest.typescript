@@ -1,3 +1,22 @@
+## 6.0.0-beta.12 (2021-08-27)
+- [BugFix] The `fs-extra` package has been moved from `devDependencies` to `dependencies`. Please refer [1179](https://github.com/Azure/autorest.typescript/issues/1179) for further details.
+
+## 6.0.0-beta.11 (2021-08-27)
+
+- [Feature] `src` folder is always cleared before generating an SDK. Please refer [#1166](https://github.com/Azure/autorest.typescript/issues/1166) for further details.
+- [BugFix] The code snippet, related to identity, in the `readme.md` has been fixed. Please refer [#1137](https://github.com/Azure/autorest.typescript/issues/1137) for further details.
+
+## 6.0.0-beta.10 (2021-08-19)
+
+- [BugFix] Added `types` folder to the `files` property in `package.json` file. Please refer [#1165](https://github.com/Azure/autorest.typescript/pull/1165) for further details.
+
+## 6.0.0-beta.9 (2021-08-17)
+
+- [BugFix] Fixed the handling of non-string based sealed choices. Please refer [#1159](https://github.com/Azure/autorest.typescript/issues/1159) for more details.
+- [Feature] Comments for the operation groups have been updated. Please refer [#291](https://github.com/Azure/autorest.typescript/issues/291) for more details.
+- [BugFix] The `defaultValue` of the parameters has been fixed. Please refer [#1120](https://github.com/Azure/autorest.typescript/issues/1120) for more details.
+- [BugFix] Generated header interfaces. Please refer [#1145](https://github.com/Azure/autorest.typescript/pull/1145) for more details.
+
 ## 6.0.0-beta.8 (2021-07-19)
 
 - [BugFix] Added `SchemaType.SealedChoice` handling of the `valueType`. Please refer [#1103](https://github.com/Azure/autorest.typescript/pull/1103) for more details.

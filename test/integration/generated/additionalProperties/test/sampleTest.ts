@@ -11,7 +11,7 @@ import {
   record,
   RecorderEnvironmentSetup,
   Recorder
-} from "@azure/test-utils-recorder";
+} from "@azure-tools/test-recorder";
 import * as assert from "assert";
 
 const recorderEnvSetup: RecorderEnvironmentSetup = {
