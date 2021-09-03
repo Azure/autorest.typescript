@@ -8,7 +8,7 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { ObjectReplicationPolicies } from "../operationsInterfaces";
+import { ObjectReplicationPoliciesOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -25,13 +25,13 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class containing ObjectReplicationPolicies operations. */
-export class ObjectReplicationPoliciesImpl
-  implements ObjectReplicationPolicies {
+/** Class containing ObjectReplicationPoliciesOperations operations. */
+export class ObjectReplicationPoliciesOperationsImpl
+  implements ObjectReplicationPoliciesOperations {
   private readonly client: StorageManagementClientContext;
 
   /**
-   * Initialize a new instance of the class ObjectReplicationPolicies class.
+   * Initialize a new instance of the class ObjectReplicationPoliciesOperations class.
    * @param client Reference to the service client
    */
   constructor(client: StorageManagementClientContext) {
@@ -196,7 +196,7 @@ const listOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ObjectReplicationPoliciesDef
+      bodyMapper: Mappers.ObjectReplicationPolicies
     },
     default: {
       bodyMapper: Mappers.ErrorResponse

@@ -2118,10 +2118,10 @@ export const PrivateLinkResourceListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const ObjectReplicationPoliciesDef: coreClient.CompositeMapper = {
+export const ObjectReplicationPolicies: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ObjectReplicationPoliciesDef",
+    className: "ObjectReplicationPolicies",
     modelProperties: {
       value: {
         serializedName: "value",

@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { DatabaseAutomaticTuning } from "../operationsInterfaces";
+import { DatabaseAutomaticTuningOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
@@ -14,17 +14,18 @@ import { SqlManagementClientContext } from "../sqlManagementClientContext";
 import {
   DatabaseAutomaticTuningGetOptionalParams,
   DatabaseAutomaticTuningGetResponse,
-  DatabaseAutomaticTuningDef,
+  DatabaseAutomaticTuning,
   DatabaseAutomaticTuningUpdateOptionalParams,
   DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
-/** Class containing DatabaseAutomaticTuning operations. */
-export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
+/** Class containing DatabaseAutomaticTuningOperations operations. */
+export class DatabaseAutomaticTuningOperationsImpl
+  implements DatabaseAutomaticTuningOperations {
   private readonly client: SqlManagementClientContext;
 
   /**
-   * Initialize a new instance of the class DatabaseAutomaticTuning class.
+   * Initialize a new instance of the class DatabaseAutomaticTuningOperations class.
    * @param client Reference to the service client
    */
   constructor(client: SqlManagementClientContext) {
@@ -64,7 +65,7 @@ export class DatabaseAutomaticTuningImpl implements DatabaseAutomaticTuning {
     resourceGroupName: string,
     serverName: string,
     databaseName: string,
-    parameters: DatabaseAutomaticTuningDef,
+    parameters: DatabaseAutomaticTuning,
     options?: DatabaseAutomaticTuningUpdateOptionalParams
   ): Promise<DatabaseAutomaticTuningUpdateResponse> {
     return this.client.sendOperationRequest(
@@ -82,7 +83,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseAutomaticTuningDef
+      bodyMapper: Mappers.DatabaseAutomaticTuning
     },
     default: {}
   },
@@ -103,7 +104,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PATCH",
   responses: {
     200: {
-      bodyMapper: Mappers.DatabaseAutomaticTuningDef
+      bodyMapper: Mappers.DatabaseAutomaticTuning
     },
     default: {}
   },

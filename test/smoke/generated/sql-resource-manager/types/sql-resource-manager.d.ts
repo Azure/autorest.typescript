@@ -610,31 +610,8 @@ export declare type Database = TrackedResource & {
     readonly resumedDate?: Date;
 };
 
-/** Interface representing a DatabaseAutomaticTuning. */
-export declare interface DatabaseAutomaticTuning {
-    /**
-     * Gets a database's automatic tuning.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-     *                          this value from the Azure Resource Manager API or the portal.
-     * @param serverName The name of the server.
-     * @param databaseName The name of the database.
-     * @param options The options parameters.
-     */
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAutomaticTuningGetOptionalParams): Promise<DatabaseAutomaticTuningGetResponse>;
-    /**
-     * Update automatic tuning properties for target database.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-     *                          this value from the Azure Resource Manager API or the portal.
-     * @param serverName The name of the server.
-     * @param databaseName The name of the database.
-     * @param parameters The requested automatic tuning resource state.
-     * @param options The options parameters.
-     */
-    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuningDef, options?: DatabaseAutomaticTuningUpdateOptionalParams): Promise<DatabaseAutomaticTuningUpdateResponse>;
-}
-
 /** Database-level Automatic Tuning. */
-export declare type DatabaseAutomaticTuningDef = ProxyResource & {
+export declare type DatabaseAutomaticTuning = ProxyResource & {
     /** Automatic tuning desired state. */
     desiredState?: AutomaticTuningMode;
     /**
@@ -653,14 +630,37 @@ export declare interface DatabaseAutomaticTuningGetOptionalParams extends coreCl
 }
 
 /** Contains response data for the get operation. */
-export declare type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef;
+export declare type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning;
+
+/** Interface representing a DatabaseAutomaticTuningOperations. */
+export declare interface DatabaseAutomaticTuningOperations {
+    /**
+     * Gets a database's automatic tuning.
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @param options The options parameters.
+     */
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAutomaticTuningGetOptionalParams): Promise<DatabaseAutomaticTuningGetResponse>;
+    /**
+     * Update automatic tuning properties for target database.
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param databaseName The name of the database.
+     * @param parameters The requested automatic tuning resource state.
+     * @param options The options parameters.
+     */
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuning, options?: DatabaseAutomaticTuningUpdateOptionalParams): Promise<DatabaseAutomaticTuningUpdateResponse>;
+}
 
 /** Optional parameters. */
 export declare interface DatabaseAutomaticTuningUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the update operation. */
-export declare type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef;
+export declare type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning;
 
 /** Interface representing a DatabaseBlobAuditingPolicies. */
 export declare interface DatabaseBlobAuditingPolicies {
@@ -11773,29 +11773,8 @@ export declare type Server = TrackedResource & {
     publicNetworkAccess?: ServerPublicNetworkAccess;
 };
 
-/** Interface representing a ServerAutomaticTuning. */
-export declare interface ServerAutomaticTuning {
-    /**
-     * Retrieves server automatic tuning options.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-     *                          this value from the Azure Resource Manager API or the portal.
-     * @param serverName The name of the server.
-     * @param options The options parameters.
-     */
-    get(resourceGroupName: string, serverName: string, options?: ServerAutomaticTuningGetOptionalParams): Promise<ServerAutomaticTuningGetResponse>;
-    /**
-     * Update automatic tuning options on server.
-     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
-     *                          this value from the Azure Resource Manager API or the portal.
-     * @param serverName The name of the server.
-     * @param parameters The requested automatic tuning resource state.
-     * @param options The options parameters.
-     */
-    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuningDef, options?: ServerAutomaticTuningUpdateOptionalParams): Promise<ServerAutomaticTuningUpdateResponse>;
-}
-
 /** Server-level Automatic Tuning. */
-export declare type ServerAutomaticTuningDef = ProxyResource & {
+export declare type ServerAutomaticTuning = ProxyResource & {
     /** Automatic tuning desired state. */
     desiredState?: AutomaticTuningServerMode;
     /**
@@ -11814,14 +11793,35 @@ export declare interface ServerAutomaticTuningGetOptionalParams extends coreClie
 }
 
 /** Contains response data for the get operation. */
-export declare type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef;
+export declare type ServerAutomaticTuningGetResponse = ServerAutomaticTuning;
+
+/** Interface representing a ServerAutomaticTuningOperations. */
+export declare interface ServerAutomaticTuningOperations {
+    /**
+     * Retrieves server automatic tuning options.
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param options The options parameters.
+     */
+    get(resourceGroupName: string, serverName: string, options?: ServerAutomaticTuningGetOptionalParams): Promise<ServerAutomaticTuningGetResponse>;
+    /**
+     * Update automatic tuning options on server.
+     * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
+     *                          this value from the Azure Resource Manager API or the portal.
+     * @param serverName The name of the server.
+     * @param parameters The requested automatic tuning resource state.
+     * @param options The options parameters.
+     */
+    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuning, options?: ServerAutomaticTuningUpdateOptionalParams): Promise<ServerAutomaticTuningUpdateResponse>;
+}
 
 /** Optional parameters. */
 export declare interface ServerAutomaticTuningUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the update operation. */
-export declare type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef;
+export declare type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning;
 
 /** Azure Active Directory administrator. */
 export declare type ServerAzureADAdministrator = ProxyResource & {
@@ -13552,7 +13552,7 @@ export declare class SqlManagementClient extends SqlManagementClientContext {
     transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
     serverUsages: ServerUsages;
     databaseUsages: DatabaseUsages;
-    databaseAutomaticTuning: DatabaseAutomaticTuning;
+    databaseAutomaticTuningOperations: DatabaseAutomaticTuningOperations;
     encryptionProtectors: EncryptionProtectors;
     failoverGroups: FailoverGroups;
     operations: Operations;
@@ -13582,7 +13582,7 @@ export declare class SqlManagementClient extends SqlManagementClientContext {
     backupLongTermRetentionPolicies: BackupLongTermRetentionPolicies;
     managedBackupShortTermRetentionPolicies: ManagedBackupShortTermRetentionPolicies;
     managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies;
-    serverAutomaticTuning: ServerAutomaticTuning;
+    serverAutomaticTuningOperations: ServerAutomaticTuningOperations;
     serverDnsAliases: ServerDnsAliases;
     serverSecurityAlertPolicies: ServerSecurityAlertPolicies;
     restorableDroppedManagedDatabases: RestorableDroppedManagedDatabases;

@@ -9,7 +9,7 @@
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
-  ResourceHealthMetadataDef,
+  ResourceHealthMetadata,
   ResourceHealthMetadataListOptionalParams,
   ResourceHealthMetadataListByResourceGroupOptionalParams,
   ResourceHealthMetadataListBySiteOptionalParams,
@@ -21,15 +21,15 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Interface representing a ResourceHealthMetadata. */
-export interface ResourceHealthMetadata {
+/** Interface representing a ResourceHealthMetadataOperations. */
+export interface ResourceHealthMetadataOperations {
   /**
    * Description for List all ResourceHealthMetadata for all sites in the subscription.
    * @param options The options parameters.
    */
   list(
     options?: ResourceHealthMetadataListOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata>;
   /**
    * Description for List all ResourceHealthMetadata for all sites in the resource group in the
    * subscription.
@@ -39,7 +39,7 @@ export interface ResourceHealthMetadata {
   listByResourceGroup(
     resourceGroupName: string,
     options?: ResourceHealthMetadataListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
    * collection
@@ -51,7 +51,7 @@ export interface ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     options?: ResourceHealthMetadataListBySiteOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
    * collection
@@ -65,7 +65,7 @@ export interface ResourceHealthMetadata {
     name: string,
     slot: string,
     options?: ResourceHealthMetadataListBySiteSlotOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata>;
   /**
    * Description for Gets the category of ResourceHealthMetadata to use for the given site
    * @param resourceGroupName Name of the resource group to which the resource belongs.

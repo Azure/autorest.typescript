@@ -27,7 +27,7 @@ import {
   UserUpdateParameters as UserUpdateParametersMapper,
   UserGetMemberGroupsParameters as UserGetMemberGroupsParametersMapper,
   GetObjectsParameters as GetObjectsParametersMapper,
-  OAuth2PermissionGrantDef as OAuth2PermissionGrantDefMapper
+  OAuth2PermissionGrant as OAuth2PermissionGrantMapper
 } from "../models/mappers";
 
 export const accept: OperationParameter = {
@@ -298,5 +298,5 @@ export const accept1: OperationParameter = {
 
 export const body: OperationParameter = {
   parameterPath: ["options", "body"],
-  mapper: OAuth2PermissionGrantDefMapper
+  mapper: OAuth2PermissionGrantMapper
 };

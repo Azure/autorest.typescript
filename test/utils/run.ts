@@ -32,7 +32,7 @@ export async function runAutorest(
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
   }`;
-  const commandArguments: string[] = [`--typescript`];
+  let commandArguments: string[] = [`--typescript`];
 
   if (tracingInfo) {
     commandArguments.push(
@@ -108,7 +108,7 @@ export async function runAutorest(
   }
 
   if (extraParams !== undefined && extraParams.length > 0) {
-    commandArguments.push(extraParams.join(" "));
+    commandArguments = commandArguments.concat(extraParams);
   }
   const generationTask = async () => {
     console.log(`=== Start ${title} ===`);
