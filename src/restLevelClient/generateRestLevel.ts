@@ -12,6 +12,8 @@ import { prettierJSONOptions, prettierTypeScriptOptions } from "./config";
 import { generateParameterInterfaces } from "./generateParameterTypes";
 import { generatePathFirstClient } from "./generateClient";
 import { generateIndexFile } from "../generators/indexGenerator";
+import { generatePagingHelper } from "./generatePagingHelper";
+import { hasPagingOperations } from "../utils/extractPaginationDetails";
 /**
  * Generates a Rest Level Client library
  */
@@ -26,6 +28,9 @@ export async function generateRestLevelClient() {
     }
   });
 
+  if (hasPagingOperations(model)) {
+    generatePagingHelper(project);
+  }
   performCodeModelMutations(model);
   generatePackageJson(project);
   generateLicenseFile(project);

@@ -9,6 +9,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getDocs, getPropertySignature } from "./getPropertySignature";
 import { primitiveSchemaToType } from "./schemaHelpers";
+import { getOperationParameters } from "./helpers/getOperationParameters";
 
 /**
  * Generates the interfaces describing each operation parameters
@@ -268,13 +269,4 @@ function getAllOperations(model: CodeModel): Operation[] {
   }
 
   return operations;
-}
-
-function getOperationParameters(operation: Operation): Parameter[] {
-  const signatureParameters = operation.signatureParameters ?? [];
-  // Extract parameters from the operation request
-  const request = operation.requests ? operation.requests[0] : undefined;
-  const requestParameters = request?.signatureParameters ?? [];
-
-  return [...signatureParameters, ...requestParameters];
 }

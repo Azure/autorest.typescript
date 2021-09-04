@@ -2,6 +2,7 @@ import { Project, SourceFile } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
+import { hasPagingOperations } from "../utils/extractPaginationDetails";
 
 export function generateIndexFile(
   project: Project,
@@ -48,6 +49,14 @@ function generateRLCIndex(file: SourceFile) {
       moduleSpecifier: "./responses"
     }
   ]);
+
+  if (hasPagingOperations(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./paginateHelper"
+      }
+    ]);
+  }
 
   file.addExportAssignment({
     expression: clientName,

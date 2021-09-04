@@ -164,8 +164,10 @@ describe(" BodyStringRest", () => {
     it("should putEnumReferencedConstant", async function() {
       const result = await client.path("/string/enum/ReferencedConstant").put({
         allowInsecureConnection: true,
-        body: { colorConstant: "green-color" }
+        body: { ColorConstant: "green-color" }
       });
+
+      assert.equal(result.status, "200");
     });
   });
 

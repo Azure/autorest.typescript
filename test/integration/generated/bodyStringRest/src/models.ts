@@ -8,7 +8,7 @@ export interface ErrorModel {
 
 export interface RefColorConstant {
   /** Referenced Color Constant Description. */
-  colorConstant: "green-color";
+  ColorConstant: "green-color";
   /** Sample string. */
   field1?: string;
 }
