@@ -85,14 +85,18 @@ export function generateParameterInterfaces(
     });
   }
 
-  const coreClientImports: string[] = ["RequestParameters"];
   if (hasHeaders) {
-    coreClientImports.push("RawHttpHeaders");
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeaders"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
   }
 
   parametersFile.addImportDeclarations([
     {
-      namedImports: [...coreClientImports],
+      namedImports: ["RequestParameters"],
       moduleSpecifier: "@azure-rest/core-client"
     }
   ]);

@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestParameters, RawHttpHeaders } from "@azure-rest/core-client";
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import { RequestParameters } from "@azure-rest/core-client";
 import "./models";
 
 export interface ParamExistingKeyHeaders {

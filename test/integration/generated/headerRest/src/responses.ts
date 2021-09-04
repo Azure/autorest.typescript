@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse, RawHttpHeaders } from "@azure-rest/core-client";
+import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import { HttpResponse } from "@azure-rest/core-client";
 import { ErrorModel } from "./models";
 
 /** Send a post request with header value "User-Agent": "overwrite" */
