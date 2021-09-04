@@ -1,14 +1,28 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RequestParameters } from "@azure-rest/core-client";
+import { RequestParameters, RawHttpHeaders } from "@azure-rest/core-client";
 import "./models";
 
 export type GetNoItemNamePagesParameters = RequestParameters;
 export type GetNullNextLinkNamePagesParameters = RequestParameters;
 export type GetSinglePagesParameters = RequestParameters;
 export type FirstResponseEmptyParameters = RequestParameters;
-export type GetMultiplePagesParameters = RequestParameters;
+
+export interface GetMultiplePagesHeaders {
+  clientRequestId?: string;
+  /** Sets the maximum number of items to return in the response. */
+  maxresults?: number;
+  /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
+  timeout?: number;
+}
+
+export interface GetMultiplePagesHeaderParam {
+  headers: RawHttpHeaders & GetMultiplePagesHeaders;
+}
+
+export type GetMultiplePagesParameters = GetMultiplePagesHeaderParam &
+  RequestParameters;
 
 export interface GetWithQueryParamsQueryParamProperties {
   /** A required integer query parameter. Put in value '100' to pass test. */
@@ -35,8 +49,36 @@ export interface NextOperationWithQueryParamsQueryParam {
 
 export type NextOperationWithQueryParamsParameters = NextOperationWithQueryParamsQueryParam &
   RequestParameters;
-export type GetOdataMultiplePagesParameters = RequestParameters;
-export type GetMultiplePagesWithOffsetParameters = RequestParameters;
+
+export interface GetOdataMultiplePagesHeaders {
+  clientRequestId?: string;
+  /** Sets the maximum number of items to return in the response. */
+  maxresults?: number;
+  /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
+  timeout?: number;
+}
+
+export interface GetOdataMultiplePagesHeaderParam {
+  headers: RawHttpHeaders & GetOdataMultiplePagesHeaders;
+}
+
+export type GetOdataMultiplePagesParameters = GetOdataMultiplePagesHeaderParam &
+  RequestParameters;
+
+export interface GetMultiplePagesWithOffsetHeaders {
+  clientRequestId?: string;
+  /** Sets the maximum number of items to return in the response. */
+  maxresults?: number;
+  /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
+  timeout?: number;
+}
+
+export interface GetMultiplePagesWithOffsetHeaderParam {
+  headers: RawHttpHeaders & GetMultiplePagesWithOffsetHeaders;
+}
+
+export type GetMultiplePagesWithOffsetParameters = GetMultiplePagesWithOffsetHeaderParam &
+  RequestParameters;
 export type GetMultiplePagesRetryFirstParameters = RequestParameters;
 export type GetMultiplePagesRetrySecondParameters = RequestParameters;
 export type GetSinglePagesFailureParameters = RequestParameters;
@@ -66,7 +108,21 @@ export interface GetMultiplePagesFragmentWithGroupingNextLinkQueryParam {
 
 export type GetMultiplePagesFragmentWithGroupingNextLinkParameters = GetMultiplePagesFragmentWithGroupingNextLinkQueryParam &
   RequestParameters;
-export type GetMultiplePagesLROParameters = RequestParameters;
+
+export interface GetMultiplePagesLROHeaders {
+  clientRequestId?: string;
+  /** Sets the maximum number of items to return in the response. */
+  maxresults?: number;
+  /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
+  timeout?: number;
+}
+
+export interface GetMultiplePagesLROHeaderParam {
+  headers: RawHttpHeaders & GetMultiplePagesLROHeaders;
+}
+
+export type GetMultiplePagesLROParameters = GetMultiplePagesLROHeaderParam &
+  RequestParameters;
 
 export interface NextFragmentQueryParamProperties {
   /** Sets the api version to use. */
