@@ -88,7 +88,7 @@ export function generateParameterInterfaces(
   if (hasHeaders) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: ["RawHttpHeaders"],
+        namedImports: ["RawHttpHeadersInput"],
         moduleSpecifier: "@azure/core-rest-pipeline"
       }
     ]);
@@ -165,7 +165,7 @@ function buildHeaderParameterDefinition(
     properties: [
       {
         name: "headers",
-        type: `RawHttpHeaders & ${operationName}Headers`,
+        type: `RawHttpHeadersInput & ${operationName}Headers`,
         kind: StructureKind.PropertySignature
       }
     ]

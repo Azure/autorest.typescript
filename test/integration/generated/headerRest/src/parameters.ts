@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import "./models";
 
@@ -11,7 +11,7 @@ export interface ParamExistingKeyHeaders {
 }
 
 export interface ParamExistingKeyHeaderParam {
-  headers: RawHttpHeaders & ParamExistingKeyHeaders;
+  headers: RawHttpHeadersInput & ParamExistingKeyHeaders;
 }
 
 export type ParamExistingKeyParameters = ParamExistingKeyHeaderParam &
@@ -24,7 +24,7 @@ export interface ParamProtectedKeyHeaders {
 }
 
 export interface ParamProtectedKeyHeaderParam {
-  headers: RawHttpHeaders & ParamProtectedKeyHeaders;
+  headers: RawHttpHeadersInput & ParamProtectedKeyHeaders;
 }
 
 export type ParamProtectedKeyParameters = ParamProtectedKeyHeaderParam &
@@ -39,7 +39,7 @@ export interface ParamIntegerHeaders {
 }
 
 export interface ParamIntegerHeaderParam {
-  headers: RawHttpHeaders & ParamIntegerHeaders;
+  headers: RawHttpHeadersInput & ParamIntegerHeaders;
 }
 
 export type ParamIntegerParameters = ParamIntegerHeaderParam &
@@ -51,7 +51,7 @@ export interface ResponseIntegerHeaders {
 }
 
 export interface ResponseIntegerHeaderParam {
-  headers: RawHttpHeaders & ResponseIntegerHeaders;
+  headers: RawHttpHeadersInput & ResponseIntegerHeaders;
 }
 
 export type ResponseIntegerParameters = ResponseIntegerHeaderParam &
@@ -65,7 +65,7 @@ export interface ParamLongHeaders {
 }
 
 export interface ParamLongHeaderParam {
-  headers: RawHttpHeaders & ParamLongHeaders;
+  headers: RawHttpHeadersInput & ParamLongHeaders;
 }
 
 export type ParamLongParameters = ParamLongHeaderParam & RequestParameters;
@@ -76,7 +76,7 @@ export interface ResponseLongHeaders {
 }
 
 export interface ResponseLongHeaderParam {
-  headers: RawHttpHeaders & ResponseLongHeaders;
+  headers: RawHttpHeadersInput & ResponseLongHeaders;
 }
 
 export type ResponseLongParameters = ResponseLongHeaderParam &
@@ -90,7 +90,7 @@ export interface ParamFloatHeaders {
 }
 
 export interface ParamFloatHeaderParam {
-  headers: RawHttpHeaders & ParamFloatHeaders;
+  headers: RawHttpHeadersInput & ParamFloatHeaders;
 }
 
 export type ParamFloatParameters = ParamFloatHeaderParam & RequestParameters;
@@ -101,7 +101,7 @@ export interface ResponseFloatHeaders {
 }
 
 export interface ResponseFloatHeaderParam {
-  headers: RawHttpHeaders & ResponseFloatHeaders;
+  headers: RawHttpHeadersInput & ResponseFloatHeaders;
 }
 
 export type ResponseFloatParameters = ResponseFloatHeaderParam &
@@ -115,7 +115,7 @@ export interface ParamDoubleHeaders {
 }
 
 export interface ParamDoubleHeaderParam {
-  headers: RawHttpHeaders & ParamDoubleHeaders;
+  headers: RawHttpHeadersInput & ParamDoubleHeaders;
 }
 
 export type ParamDoubleParameters = ParamDoubleHeaderParam & RequestParameters;
@@ -126,7 +126,7 @@ export interface ResponseDoubleHeaders {
 }
 
 export interface ResponseDoubleHeaderParam {
-  headers: RawHttpHeaders & ResponseDoubleHeaders;
+  headers: RawHttpHeadersInput & ResponseDoubleHeaders;
 }
 
 export type ResponseDoubleParameters = ResponseDoubleHeaderParam &
@@ -140,7 +140,7 @@ export interface ParamBoolHeaders {
 }
 
 export interface ParamBoolHeaderParam {
-  headers: RawHttpHeaders & ParamBoolHeaders;
+  headers: RawHttpHeadersInput & ParamBoolHeaders;
 }
 
 export type ParamBoolParameters = ParamBoolHeaderParam & RequestParameters;
@@ -151,7 +151,7 @@ export interface ResponseBoolHeaders {
 }
 
 export interface ResponseBoolHeaderParam {
-  headers: RawHttpHeaders & ResponseBoolHeaders;
+  headers: RawHttpHeadersInput & ResponseBoolHeaders;
 }
 
 export type ResponseBoolParameters = ResponseBoolHeaderParam &
@@ -165,7 +165,7 @@ export interface ParamStringHeaders {
 }
 
 export interface ParamStringHeaderParam {
-  headers: RawHttpHeaders & ParamStringHeaders;
+  headers: RawHttpHeadersInput & ParamStringHeaders;
 }
 
 export type ParamStringParameters = ParamStringHeaderParam & RequestParameters;
@@ -176,7 +176,7 @@ export interface ResponseStringHeaders {
 }
 
 export interface ResponseStringHeaderParam {
-  headers: RawHttpHeaders & ResponseStringHeaders;
+  headers: RawHttpHeadersInput & ResponseStringHeaders;
 }
 
 export type ResponseStringParameters = ResponseStringHeaderParam &
@@ -190,7 +190,7 @@ export interface ParamDateHeaders {
 }
 
 export interface ParamDateHeaderParam {
-  headers: RawHttpHeaders & ParamDateHeaders;
+  headers: RawHttpHeadersInput & ParamDateHeaders;
 }
 
 export type ParamDateParameters = ParamDateHeaderParam & RequestParameters;
@@ -201,7 +201,7 @@ export interface ResponseDateHeaders {
 }
 
 export interface ResponseDateHeaderParam {
-  headers: RawHttpHeaders & ResponseDateHeaders;
+  headers: RawHttpHeadersInput & ResponseDateHeaders;
 }
 
 export type ResponseDateParameters = ResponseDateHeaderParam &
@@ -215,7 +215,7 @@ export interface ParamDatetimeHeaders {
 }
 
 export interface ParamDatetimeHeaderParam {
-  headers: RawHttpHeaders & ParamDatetimeHeaders;
+  headers: RawHttpHeadersInput & ParamDatetimeHeaders;
 }
 
 export type ParamDatetimeParameters = ParamDatetimeHeaderParam &
@@ -227,7 +227,7 @@ export interface ResponseDatetimeHeaders {
 }
 
 export interface ResponseDatetimeHeaderParam {
-  headers: RawHttpHeaders & ResponseDatetimeHeaders;
+  headers: RawHttpHeadersInput & ResponseDatetimeHeaders;
 }
 
 export type ResponseDatetimeParameters = ResponseDatetimeHeaderParam &
@@ -241,7 +241,7 @@ export interface ParamDatetimeRfc1123Headers {
 }
 
 export interface ParamDatetimeRfc1123HeaderParam {
-  headers: RawHttpHeaders & ParamDatetimeRfc1123Headers;
+  headers: RawHttpHeadersInput & ParamDatetimeRfc1123Headers;
 }
 
 export type ParamDatetimeRfc1123Parameters = ParamDatetimeRfc1123HeaderParam &
@@ -253,7 +253,7 @@ export interface ResponseDatetimeRfc1123Headers {
 }
 
 export interface ResponseDatetimeRfc1123HeaderParam {
-  headers: RawHttpHeaders & ResponseDatetimeRfc1123Headers;
+  headers: RawHttpHeadersInput & ResponseDatetimeRfc1123Headers;
 }
 
 export type ResponseDatetimeRfc1123Parameters = ResponseDatetimeRfc1123HeaderParam &
@@ -267,7 +267,7 @@ export interface ParamDurationHeaders {
 }
 
 export interface ParamDurationHeaderParam {
-  headers: RawHttpHeaders & ParamDurationHeaders;
+  headers: RawHttpHeadersInput & ParamDurationHeaders;
 }
 
 export type ParamDurationParameters = ParamDurationHeaderParam &
@@ -279,7 +279,7 @@ export interface ResponseDurationHeaders {
 }
 
 export interface ResponseDurationHeaderParam {
-  headers: RawHttpHeaders & ResponseDurationHeaders;
+  headers: RawHttpHeadersInput & ResponseDurationHeaders;
 }
 
 export type ResponseDurationParameters = ResponseDurationHeaderParam &
@@ -293,7 +293,7 @@ export interface ParamByteHeaders {
 }
 
 export interface ParamByteHeaderParam {
-  headers: RawHttpHeaders & ParamByteHeaders;
+  headers: RawHttpHeadersInput & ParamByteHeaders;
 }
 
 export type ParamByteParameters = ParamByteHeaderParam & RequestParameters;
@@ -304,7 +304,7 @@ export interface ResponseByteHeaders {
 }
 
 export interface ResponseByteHeaderParam {
-  headers: RawHttpHeaders & ResponseByteHeaders;
+  headers: RawHttpHeadersInput & ResponseByteHeaders;
 }
 
 export type ResponseByteParameters = ResponseByteHeaderParam &
@@ -318,7 +318,7 @@ export interface ParamEnumHeaders {
 }
 
 export interface ParamEnumHeaderParam {
-  headers: RawHttpHeaders & ParamEnumHeaders;
+  headers: RawHttpHeadersInput & ParamEnumHeaders;
 }
 
 export type ParamEnumParameters = ParamEnumHeaderParam & RequestParameters;
@@ -329,7 +329,7 @@ export interface ResponseEnumHeaders {
 }
 
 export interface ResponseEnumHeaderParam {
-  headers: RawHttpHeaders & ResponseEnumHeaders;
+  headers: RawHttpHeadersInput & ResponseEnumHeaders;
 }
 
 export type ResponseEnumParameters = ResponseEnumHeaderParam &

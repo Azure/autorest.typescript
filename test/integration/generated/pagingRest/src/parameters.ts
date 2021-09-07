@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
 import "./models";
 
@@ -19,7 +19,7 @@ export interface GetMultiplePagesHeaders {
 }
 
 export interface GetMultiplePagesHeaderParam {
-  headers: RawHttpHeaders & GetMultiplePagesHeaders;
+  headers: RawHttpHeadersInput & GetMultiplePagesHeaders;
 }
 
 export type GetMultiplePagesParameters = GetMultiplePagesHeaderParam &
@@ -60,7 +60,7 @@ export interface GetOdataMultiplePagesHeaders {
 }
 
 export interface GetOdataMultiplePagesHeaderParam {
-  headers: RawHttpHeaders & GetOdataMultiplePagesHeaders;
+  headers: RawHttpHeadersInput & GetOdataMultiplePagesHeaders;
 }
 
 export type GetOdataMultiplePagesParameters = GetOdataMultiplePagesHeaderParam &
@@ -75,7 +75,7 @@ export interface GetMultiplePagesWithOffsetHeaders {
 }
 
 export interface GetMultiplePagesWithOffsetHeaderParam {
-  headers: RawHttpHeaders & GetMultiplePagesWithOffsetHeaders;
+  headers: RawHttpHeadersInput & GetMultiplePagesWithOffsetHeaders;
 }
 
 export type GetMultiplePagesWithOffsetParameters = GetMultiplePagesWithOffsetHeaderParam &
@@ -119,7 +119,7 @@ export interface GetMultiplePagesLROHeaders {
 }
 
 export interface GetMultiplePagesLROHeaderParam {
-  headers: RawHttpHeaders & GetMultiplePagesLROHeaders;
+  headers: RawHttpHeadersInput & GetMultiplePagesLROHeaders;
 }
 
 export type GetMultiplePagesLROParameters = GetMultiplePagesLROHeaderParam &

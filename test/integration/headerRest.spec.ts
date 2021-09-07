@@ -20,7 +20,7 @@ describe.only("header Rest", function() {
 
         await testClient.path("/header/param/existingkey").post({
           headers: {
-            "userAgent": "overwrite"
+            "user-agent": "overwrite"
           },
           allowInsecureConnection: true
         });
@@ -33,7 +33,7 @@ describe.only("header Rest", function() {
       it("should throw on changing protected headers", async function() {
         await testClient.path("/header/param/protectedkey").post({
           headers: {
-            contentType: "text/html"
+            "content-type": "text/html"
           },
           allowInsecureConnection: true
         })
@@ -77,169 +77,406 @@ describe.only("header Rest", function() {
         response2.headers.value!.should.be.deep.equal('-2');
       });
 
-    //   it("should send and receive long type headers", async function() {
-    //     await testClient.header.paramLong("positive", 105);
-    //     await testClient.header.paramLong("negative", -2);
 
-    //     const response1 = await testClient.header.responseLong("positive");
-    //     response1.value!.should.be.deep.equal(105);
+      it("should send and receive long type headers", async function() {
+        await testClient.path("/header/param/prim/long").post({
+          headers:{
+            scenario: "positive",
+            value: 105
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response2 = await testClient.header.responseLong("negative");
-    //     response2.value!.should.be.deep.equal(-2);
-    //   });
+        const response1 = await testClient.path("/header/response/prim/long").post({
+          headers:{
+            scenario: "positive"
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive float type headers", async function() {
-    //     await testClient.header.paramFloat("positive", 0.07);
-    //     await testClient.header.paramFloat("negative", -3.0);
+        response1.headers.value!.should.be.deep.equal("105");
 
-    //     const response1 = await testClient.header.responseFloat("positive");
-    //     response1.value!.should.be.deep.equal(0.07);
 
-    //     const response2 = await testClient.header.responseFloat("negative");
-    //     response2.value!.should.be.deep.equal(-3.0);
-    //   });
+        await testClient.path("/header/param/prim/long").post({
+          headers:{
+            scenario: "negative",
+            value: -2
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive double type headers", async function() {
-    //     await testClient.header.paramDouble("positive", 7e120);
-    //     await testClient.header.paramDouble("negative", -3.0);
+        const response2 = await testClient.path("/header/response/prim/long").post({
+          headers:{
+            scenario: "negative"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseDouble("positive");
-    //     response1.value!.should.be.deep.equal(7e120);
+        response2.headers.value!.should.be.deep.equal("-2");
+      });
 
-    //     const response2 = await testClient.header.responseDouble("negative");
-    //     response2.value!.should.be.deep.equal(-3.0);
-    //   });
+      it("should send and receive float type headers", async function() {
+        await testClient.path("/header/param/prim/float").post({
+          headers:{
+            scenario: "positive",
+            value: 0.07
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive boolean type headers", async function() {
-    //     await testClient.header.paramBool("true", true);
-    //     await testClient.header.paramBool("false", false);
+        const response1 = await testClient.path("/header/response/prim/float").post({
+          headers:{
+            scenario: "positive"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseBool("true");
-    //     response1.value!.should.be.deep.equal(true);
+        response1.headers.value!.should.be.deep.equal("0.07");
 
-    //     const response2 = await testClient.header.responseBool("false");
-    //     response2.value!.should.be.deep.equal(false);
-    //   });
 
-    //   it.skip("should send and receive string type headers", async function() {
-    //     await testClient.header.paramString("valid", {
-    //       value: "The quick brown fox jumps over the lazy dog"
-    //     });
-    //     await testClient.header.paramString("null", { value: null as any });
-    //     await testClient.header.paramString("empty", { value: "" });
+        await testClient.path("/header/param/prim/float").post({
+          headers:{
+            scenario: "negative",
+            value: -3.0
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseString("valid");
-    //     response1.value!.should.be.deep.equal(
-    //       "The quick brown fox jumps over the lazy dog"
-    //     );
+        const response2 = await testClient.path("/header/response/prim/float").post({
+          headers:{
+            scenario: "negative"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     // Note: Currently core-http wouldn't deserialize "null" as null when coming from headers
-    //     // all other languages are doing the same for now. Filed https://github.com/Azure/autorest.typescript/issues/739
-    //     // to track this.
-    //     const response2 = await testClient.header.responseString("null");
-    //     response2.value!.should.be.deep.equal("null");
+        response2.headers.value!.should.be.deep.equal("-3");
+      });
 
-    //     const response3 = await testClient.header.responseString("empty");
-    //     assert.equal(response3.value, undefined);
-    //   });
+      it("should send and receive double type headers", async function() {
+        // await testClient.header.paramDouble("positive", 7e120);
+        // await testClient.header.paramDouble("negative", -3.0);
 
-    //   it.skip("should send and receive enum type headers", async function() {
-    //     await testClient.header.paramEnum("valid", { value: "GREY" });
-    //     await testClient.header.paramEnum("null", { value: null as any });
+        // const response1 = await testClient.header.responseDouble("positive");
+        // response1.value!.should.be.deep.equal(7e120);
 
-    //     const response1 = await testClient.header.responseEnum("valid");
-    //     response1.value!.should.be.deep.equal("GREY");
+        // const response2 = await testClient.header.responseDouble("negative");
+        // response2.value!.should.be.deep.equal(-3.0);
 
-    //     const response2 = await testClient.header.responseEnum("null");
-    //     assert.equal(response2.value, undefined);
-    //   });
+        await testClient.path("/header/param/prim/double").post({
+          headers:{
+            scenario: "positive",
+            value: 7e120
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive date type headers", async function() {
-    //     await testClient.header.paramDate("valid", new Date("2010-01-01"));
-    //     await testClient.header.paramDate("min", new Date("0001-01-01"));
+        const response1 = await testClient.path("/header/response/prim/double").post({
+          headers:{
+            scenario: "positive"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseDate("valid");
-    //     isEqual(
-    //       new Date(response1.value!),
-    //       new Date("2010-01-01")
-    //     ).should.be.deep.equal(true);
+        response1.headers.value!.should.be.deep.equal("7e+120");
 
-    //     const response2 = await testClient.header.responseDate("min");
-    //     isEqual(response2.value!, new Date("0001-01-01")).should.be.deep.equal(
-    //       true
-    //     );
-    //   });
+        await testClient.path("/header/param/prim/double").post({
+          headers:{
+            scenario: "negative",
+            value: -3.0
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive datetime type headers", async function() {
-    //     await testClient.header.paramDatetime(
-    //       "valid",
-    //       new Date("2010-01-01T12:34:56Z")
-    //     );
-    //     await testClient.header.paramDatetime(
-    //       "min",
-    //       new Date("0001-01-01T00:00:00Z")
-    //     );
+        const response2 = await testClient.path("/header/response/prim/double").post({
+          headers:{
+            scenario: "negative"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseDatetime("valid");
-    //     isEqual(
-    //       response1.value!,
-    //       new Date("2010-01-01T12:34:56Z")
-    //     ).should.be.deep.equal(true);
+        response2.headers.value!.should.be.deep.equal("-3");
+      });
 
-    //     const response2 = await testClient.header.responseDatetime("min");
-    //     isEqual(
-    //       response2.value!,
-    //       new Date("0001-01-01T00:00:00Z")
-    //     ).should.be.deep.equal(true);
-    //   });
+      it("should send and receive boolean type headers", async function() {
+        await testClient.path("/header/param/prim/bool").post({
+          headers:{
+            scenario: "true",
+            value: true
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive datetimerfc1123 type headers", async function() {
-    //     await testClient.header.paramDatetimeRfc1123("valid", {
-    //       value: new Date("2010-01-01T12:34:56Z")
-    //     });
-    //     await testClient.header.paramDatetimeRfc1123("min", {
-    //       value: new Date("0001-01-01T00:00:00Z")
-    //     });
+        const response1 = await testClient.path("/header/response/prim/bool").post({
+          headers:{
+            scenario: "true"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response1 = await testClient.header.responseDatetimeRfc1123(
-    //       "valid"
-    //     );
-    //     isEqual(
-    //       response1.value,
-    //       new Date("Fri, 01 Jan 2010 12:34:56 GMT")
-    //     ).should.be.deep.equal(true);
+        response1.headers.value!.should.be.deep.equal("true");
 
-    //     const response2 = await testClient.header.responseDatetimeRfc1123(
-    //       "min"
-    //     );
-    //     isEqual(
-    //       response2.value,
-    //       new Date("Mon, 01 Jan 0001 00:00:00 GMT")
-    //     ).should.be.deep.equal(true);
-    //   });
 
-    //   it("should send and receive duration type headers", async function() {
-    //     const duration = "P123DT22H14M12.011S";
-    //     await testClient.header.paramDuration("valid", duration);
+        await testClient.path("/header/param/prim/bool").post({
+          headers:{
+            scenario: "false",
+            value: false
+          },
+          allowInsecureConnection: true
+        });
 
-    //     const response = await testClient.header.responseDuration("valid");
-    //     isEqual(response.value!, "P123DT22H14M12.011S").should.be.deep.equal(
-    //       true
-    //     );
-    //   });
+        const response2 = await testClient.path("/header/response/prim/bool").post({
+          headers:{
+            scenario: "false"
+          },
+          allowInsecureConnection: true
+        });
 
-    //   it("should send and receive byte array type headers", async function() {
-    //     const value = "啊齄丂狛狜隣郎隣兀﨩";
-    //     const bytes = Buffer.from(value, "utf8");
-    //     await testClient.header.paramByte("valid", bytes);
+        response2.headers.value!.should.be.deep.equal("false");
+      });
 
-    //     const response = await testClient.header.responseByte("valid");
+      it("should send and receive string type headers", async function() {
+        await testClient.path("/header/param/prim/string").post({
+          headers:{
+            scenario: "valid",
+            value: "The quick brown fox jumps over the lazy dog"
+          },
+          allowInsecureConnection: true
+        });
 
-    //     response.value!.length.should.equal(bytes.length);
-    //     for (let i = 0; i < bytes.length; i++) {
-    //       response.value![i].should.equal(bytes[i]);
-    //     }
-    //   });
+        const response1 = await testClient.path("/header/response/prim/string").post({
+          headers:{
+            scenario: "valid"
+          },
+          allowInsecureConnection: true
+        });
+
+        response1.headers.value!.should.be.deep.equal("The quick brown fox jumps over the lazy dog");
+
+        await testClient.path("/header/param/prim/string").post({
+          headers:{
+            scenario: "null",
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response2 = await testClient.path("/header/response/prim/string").post({
+          headers:{
+            scenario: "null"
+          },
+          allowInsecureConnection: true
+        });
+  
+        response2.headers.value!.should.be.deep.equal("null");
+
+        await testClient.path("/header/param/prim/string").post({
+          headers:{
+            scenario: "empty",
+            value: ""
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response3 = await testClient.path("/header/response/prim/string").post({
+          headers:{
+            scenario: "empty"
+          },
+          allowInsecureConnection: true
+        });
+  
+        assert.deepEqual(response3.headers.value, undefined);
+      });
+
+      it("should send and receive enum type headers", async function() {
+
+        await testClient.path("/header/param/prim/enum").post({
+          headers:{
+            scenario: "valid",
+            value: "GREY"
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response1 = await testClient.path("/header/response/prim/enum").post({
+          headers:{
+            scenario: "valid"
+          },
+          allowInsecureConnection: true
+        });
+  
+        assert.deepEqual(response1.headers.value, "GREY");
+
+
+        await testClient.path("/header/param/prim/enum").post({
+          headers:{
+            scenario: "null",
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response2 = await testClient.path("/header/response/prim/enum").post({
+          headers:{
+            scenario: "null"
+          },
+          allowInsecureConnection: true
+        });
+  
+        assert.deepEqual(response2.headers.value, undefined);
+      });
+
+      // it.skip("should send and receive date type headers", async function() {
+
+      //   await testClient.path("/header/param/prim/date").post({
+      //     headers:{
+      //       scenario: "valid",
+      //       value: new Date("2010-01-01")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response1 = await testClient.path("/header/response/prim/date").post({
+      //     headers:{
+      //       scenario: "valid"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response1.headers.value, "2010-01-01");
+
+
+      //   await testClient.path("/header/param/prim/date").post({
+      //     headers:{
+      //       scenario: "min",
+      //       value: new Date("0001-01-01")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response2 = await testClient.path("/header/response/prim/date").post({
+      //     headers:{
+      //       scenario: "min"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response2.headers.value, "0001-01-01");
+      // });
+
+      // it.skip("should send and receive datetime type headers", async function() {
+
+      //   await testClient.path("/header/param/prim/datetime").post({
+      //     headers:{
+      //       scenario: "valid",
+      //       value: new Date("2010-01-01T12:34:56Z")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response1 = await testClient.path("/header/response/prim/datetime").post({
+      //     headers:{
+      //       scenario: "valid"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response1.headers.value, "2010-01-01T12:34:56Z");
+
+
+      //   await testClient.path("/header/param/prim/datetime").post({
+      //     headers:{
+      //       scenario: "min",
+      //       value: new Date("0001-01-01T00:00:00Z")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response2 = await testClient.path("/header/response/prim/datetime").post({
+      //     headers:{
+      //       scenario: "min"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response2.headers.value, "0001-01-01T00:00:00Z");
+      // });
+
+      // it.skip("should send and receive datetimerfc1123 type headers", async function() {
+
+      //   await testClient.path("/header/param/prim/datetimerfc1123").post({
+      //     headers:{
+      //       scenario: "valid",
+      //       value: new Date("2010-01-01T12:34:56Z")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response1 = await testClient.path("/header/response/prim/datetimerfc1123").post({
+      //     headers:{
+      //       scenario: "valid"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response1.headers.value, "Mon, 01 Jan 0001 00:00:00 GMT");
+
+
+      //   await testClient.path("/header/param/prim/datetimerfc1123").post({
+      //     headers:{
+      //       scenario: "min",
+      //       value: new Date("0001-01-01T00:00:00Z")
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   const response2 = await testClient.path("/header/response/prim/datetimerfc1123").post({
+      //     headers:{
+      //       scenario: "min"
+      //     },
+      //     allowInsecureConnection: true
+      //   });
+  
+      //   assert.deepEqual(response2.headers.value, "Mon, 01 Jan 0001 00:00:00 GMT");
+      // });
+
+      it("should send and receive duration type headers", async function() {
+
+        await testClient.path("/header/param/prim/duration").post({
+          headers:{
+            scenario: "valid",
+            value: "P123DT22H14M12.011S"
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response1 = await testClient.path("/header/response/prim/duration").post({
+          headers:{
+            scenario: "valid"
+          },
+          allowInsecureConnection: true
+        });
+  
+        assert.deepEqual(response1.headers.value, "P123DT22H14M12.011S");
+      });
+
+      it.skip("should send and receive byte array type headers", async function() {
+        const value = "啊齄丂狛狜隣郎隣兀﨩";
+
+        await testClient.path("/header/param/prim/byte").post({
+          headers:{
+            scenario: "valid",
+            value: value
+          },
+          allowInsecureConnection: true
+        });
+  
+        const response = await testClient.path("/header/response/prim/byte").post({
+          headers:{
+            scenario: "valid"
+          },
+          allowInsecureConnection: true
+        });
+
+        assert.deepEqual(response.headers.value, value)
+      });
     });
   });
 });
