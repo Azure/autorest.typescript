@@ -1,0 +1,126 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Azure Blob Storage",
+    "version": "2020-12-06",
+    "x-ms-code-generation-settings": {
+      "header": "MIT",
+      "strictSpecAdherence": false
+    }
+  },
+  "x-ms-parameterized-host": {
+    "hostTemplate": "{url}",
+    "useSchemePrefix": false,
+    "positionInOperation": "first",
+    "parameters": [
+      {
+        "$ref": "#/parameters/Url"
+      }
+    ]
+  },
+  "schemes": ["https"],
+  "consumes": ["application/xml"],
+  "produces": ["application/xml"],
+  "paths": {},
+  "x-ms-paths": {
+    "/{containerName}/{blob}": {
+      "get": {
+        "tags": ["blob"],
+        "operationId": "Blob_Download",
+        "description": "The Download operation reads or downloads a blob from the system, including its metadata and properties. You can also call Download to read a snapshot.",
+        "parameters": [
+          {
+            "$ref": "#/parameters/EncryptionAlgorithm"
+          },
+          {
+            "$ref": "#/parameters/EncryptionAlgorithmWithTwoValues"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the content of the entire blob.",
+            "headers": {
+              "Last-Modified": {
+                "type": "string",
+                "format": "date-time-rfc1123",
+                "description": "Returns the date and time the container was last modified. Any operation that modifies the blob, including an update of the blob's metadata or properties, changes the last-modified time of the blob."
+              }
+            },
+            "schema": {
+              "type": "object",
+              "format": "file"
+            }
+          },
+          "default": {
+            "description": "Failure",
+            "headers": {
+              "x-ms-error-code": {
+                "x-ms-client-name": "ErrorCode",
+                "type": "string"
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/StorageError"
+            }
+          }
+        }
+      },
+      "parameters": []
+    }
+  },
+  "definitions": {
+    "StorageError": {
+      "type": "object",
+      "properties": {
+        "Message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "parameters": {
+    "EncryptionAlgorithmWithTwoValues": {
+      "name": "x-ms-encryption-algorithm",
+      "x-ms-client-name": "EncryptionAlgorithmWithTwoValues",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "enum": ["AES256", "AES257"],
+      "x-ms-enum": {
+        "name": "EncryptionAlgorithmWithTwoValuesType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The algorithm used to produce the encryption key hash. Currently, the only accepted value is \"AES256\". Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "EncryptionAlgorithm": {
+      "name": "x-ms-encryption-algorithm",
+      "x-ms-client-name": "encryptionAlgorith2",
+      "type": "string",
+      "in": "header",
+      "required": false,
+      "enum": ["AES256"],
+      "x-ms-enum": {
+        "name": "EncryptionAlgorithmType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The algorithm used to produce the encryption key hash. Currently, the only accepted value is \"AES256\". Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "Url": {
+      "name": "url",
+      "description": "The URL of the service account, container, or blob that is the target of the desired operation.",
+      "x-ms-parameter-location": "client",
+      "required": true,
+      "type": "string",
+      "in": "path",
+      "x-ms-skip-url-encoding": true
+    }
+  }
+}

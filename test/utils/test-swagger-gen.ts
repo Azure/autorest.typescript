@@ -799,6 +799,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  enumvalues: {
+    swaggerOrConfig: "test/integration/swaggers/enumvalues.json",
+    clientName: "EnumValuesClient",
+    packageName: "enumvalues",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   // TEST REST LEVEL CLIENTS
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
