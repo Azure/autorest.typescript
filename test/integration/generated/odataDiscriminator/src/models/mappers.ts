@@ -15,7 +15,7 @@ export const LexicalAnalyzer: coreClient.CompositeMapper = {
     uberParent: "LexicalAnalyzer",
     polymorphicDiscriminator: {
       serializedName: "@odata\\.type",
-      clientName: "@odata\\.type"
+      clientName: "odataType"
     },
     modelProperties: {
       odataType: {

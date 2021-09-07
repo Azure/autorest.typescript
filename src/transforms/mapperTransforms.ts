@@ -362,7 +362,10 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
         uberParent,
         polymorphicDiscriminator: {
           serializedName: discriminator!.property.serializedName,
-          clientName: discriminator!.property.serializedName
+          clientName: normalizeName(
+            discriminator!.property.language.default.name,
+            NameType.Property
+          )
         }
       }),
       ...(additionalProperties && { additionalProperties })
@@ -385,7 +388,9 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
   }
   let dictionarySchema = schema as DictionarySchema | AnyObjectSchema;
 
-  const elementSchema = isDictionarySchema(dictionarySchema) ? dictionarySchema.elementType : new AnySchema("Schema for AnyObject type");
+  const elementSchema = isDictionarySchema(dictionarySchema)
+    ? dictionarySchema.elementType
+    : new AnySchema("Schema for AnyObject type");
   const mapper = buildMapper(
     schema,
     { name: MapperType.Dictionary, value: getMapperOrRef(elementSchema) },
@@ -400,11 +405,11 @@ function transformDictionaryMapper(pipelineValue: PipelineValue) {
 }
 
 function isDictionarySchema(schema: Schema): schema is DictionarySchema {
-  return schema.type === SchemaType.Dictionary
+  return schema.type === SchemaType.Dictionary;
 }
 
 function isAnyObjectSchema(schema: Schema): schema is AnyObjectSchema {
-  return schema.type === SchemaType.AnyObject
+  return schema.type === SchemaType.AnyObject;
 }
 
 function transformArrayMapper(pipelineValue: PipelineValue) {
