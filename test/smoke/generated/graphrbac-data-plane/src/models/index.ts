@@ -495,12 +495,12 @@ export interface Domain {
 /** Server response for get oauth2 permissions grants */
 export interface OAuth2PermissionGrantListResult {
   /** the list of oauth2 permissions grants */
-  value?: OAuth2PermissionGrantDef[];
+  value?: OAuth2PermissionGrant[];
   /** the URL to get the next set of results. */
   odataNextLink?: string;
 }
 
-export interface OAuth2PermissionGrantDef {
+export interface OAuth2PermissionGrant {
   /** Microsoft.DirectoryServices.OAuth2PermissionGrant */
   odataType?: string;
   /** The id of the resource's service principal granted consent to impersonate the user when accessing the resource (represented by the resourceId property). */
@@ -1188,11 +1188,11 @@ export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult;
 export interface OAuth2PermissionGrantCreateOptionalParams
   extends coreClient.OperationOptions {
   /** The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant. */
-  body?: OAuth2PermissionGrantDef;
+  body?: OAuth2PermissionGrant;
 }
 
 /** Contains response data for the create operation. */
-export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef;
+export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrant;
 
 /** Optional parameters. */
 export interface OAuth2PermissionGrantDeleteOptionalParams

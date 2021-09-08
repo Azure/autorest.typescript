@@ -8,13 +8,13 @@
 
 import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { Usage } from "../operationsInterfaces";
+import { UsageOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ComputeManagementClientContext } from "../computeManagementClientContext";
 import {
-  UsageDef,
+  Usage,
   UsageListNextOptionalParams,
   UsageListOptionalParams,
   UsageListResponse,
@@ -22,12 +22,12 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class containing Usage operations. */
-export class UsageImpl implements Usage {
+/** Class containing UsageOperations operations. */
+export class UsageOperationsImpl implements UsageOperations {
   private readonly client: ComputeManagementClientContext;
 
   /**
-   * Initialize a new instance of the class Usage class.
+   * Initialize a new instance of the class UsageOperations class.
    * @param client Reference to the service client
    */
   constructor(client: ComputeManagementClientContext) {
@@ -43,7 +43,7 @@ export class UsageImpl implements Usage {
   public list(
     location: string,
     options?: UsageListOptionalParams
-  ): PagedAsyncIterableIterator<UsageDef> {
+  ): PagedAsyncIterableIterator<Usage> {
     const iter = this.listPagingAll(location, options);
     return {
       next() {
@@ -61,7 +61,7 @@ export class UsageImpl implements Usage {
   private async *listPagingPage(
     location: string,
     options?: UsageListOptionalParams
-  ): AsyncIterableIterator<UsageDef[]> {
+  ): AsyncIterableIterator<Usage[]> {
     let result = await this._list(location, options);
     yield result.value || [];
     let continuationToken = result.nextLink;
@@ -75,7 +75,7 @@ export class UsageImpl implements Usage {
   private async *listPagingAll(
     location: string,
     options?: UsageListOptionalParams
-  ): AsyncIterableIterator<UsageDef> {
+  ): AsyncIterableIterator<Usage> {
     for await (const page of this.listPagingPage(location, options)) {
       yield* page;
     }

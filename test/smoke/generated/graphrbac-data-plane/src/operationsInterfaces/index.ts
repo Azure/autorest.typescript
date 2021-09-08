@@ -14,4 +14,4 @@ export * from "./servicePrincipals";
 export * from "./users";
 export * from "./objects";
 export * from "./domains";
-export * from "./oAuth2PermissionGrant";
+export * from "./oAuth2PermissionGrantOperations";

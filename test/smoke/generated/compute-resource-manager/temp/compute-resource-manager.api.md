@@ -252,7 +252,7 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
     // (undocumented)
     sshPublicKeys: SshPublicKeys;
     // (undocumented)
-    usage: Usage;
+    usageOperations: UsageOperations;
     // (undocumented)
     virtualMachineExtensionImages: VirtualMachineExtensionImages;
     // (undocumented)
@@ -2499,7 +2499,7 @@ export interface LinuxConfiguration {
 // @public
 export interface ListUsagesResult {
     nextLink?: string;
-    value: UsageDef[];
+    value: Usage[];
 }
 
 // @public
@@ -3388,11 +3388,6 @@ export type UpgradeState = "RollingForward" | "Cancelled" | "Completed" | "Fault
 
 // @public
 export interface Usage {
-    list(location: string, options?: UsageListOptionalParams): PagedAsyncIterableIterator<UsageDef>;
-}
-
-// @public
-export interface UsageDef {
     currentValue: number;
     limit: number;
     name: UsageName;
@@ -3417,6 +3412,11 @@ export type UsageListResponse = ListUsagesResult;
 export interface UsageName {
     localizedValue?: string;
     value?: string;
+}
+
+// @public
+export interface UsageOperations {
+    list(location: string, options?: UsageListOptionalParams): PagedAsyncIterableIterator<Usage>;
 }
 
 // @public
