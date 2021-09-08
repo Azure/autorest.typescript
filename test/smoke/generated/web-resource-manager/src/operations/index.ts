@@ -20,4 +20,4 @@ export * from "./webApps";
 export * from "./staticSites";
 export * from "./appServiceEnvironments";
 export * from "./appServicePlans";
-export * from "./resourceHealthMetadata";
+export * from "./resourceHealthMetadataOperations";

@@ -16,7 +16,7 @@ import {
   UsersImpl,
   ObjectsImpl,
   DomainsImpl,
-  OAuth2PermissionGrantImpl
+  OAuth2PermissionGrantOperationsImpl
 } from "./operations";
 import {
   SignedInUser,
@@ -27,7 +27,7 @@ import {
   Users,
   Objects,
   Domains,
-  OAuth2PermissionGrant
+  OAuth2PermissionGrantOperations
 } from "./operationsInterfaces";
 import { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
 import { GraphRbacManagementClientOptionalParams } from "./models";
@@ -53,7 +53,9 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     this.users = new UsersImpl(this);
     this.objects = new ObjectsImpl(this);
     this.domains = new DomainsImpl(this);
-    this.oAuth2PermissionGrant = new OAuth2PermissionGrantImpl(this);
+    this.oAuth2PermissionGrantOperations = new OAuth2PermissionGrantOperationsImpl(
+      this
+    );
   }
 
   signedInUser: SignedInUser;
@@ -64,5 +66,5 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
   users: Users;
   objects: Objects;
   domains: Domains;
-  oAuth2PermissionGrant: OAuth2PermissionGrant;
+  oAuth2PermissionGrantOperations: OAuth2PermissionGrantOperations;
 }

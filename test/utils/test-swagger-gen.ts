@@ -19,6 +19,7 @@ interface SwaggerConfig {
   restLevelClient?: boolean;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
+  generateTest?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -33,7 +34,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateTest: true
   },
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.json",
@@ -878,7 +880,8 @@ const generateSwaggers = async (
       allowInsecureConnection,
       restLevelClient,
       headAsBoolean,
-      isTestPackage
+      isTestPackage,
+      generateTest
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -913,7 +916,8 @@ const generateSwaggers = async (
         allowInsecureConnection,
         restLevelClient,
         headAsBoolean,
-        isTestPackage
+        isTestPackage,
+        generateTest
       },
       isDebugging
     );

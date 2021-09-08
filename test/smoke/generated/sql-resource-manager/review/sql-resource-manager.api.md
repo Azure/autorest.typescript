@@ -267,13 +267,7 @@ export type Database = TrackedResource & {
 };
 
 // @public
-export interface DatabaseAutomaticTuning {
-    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAutomaticTuningGetOptionalParams): Promise<DatabaseAutomaticTuningGetResponse>;
-    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuningDef, options?: DatabaseAutomaticTuningUpdateOptionalParams): Promise<DatabaseAutomaticTuningUpdateResponse>;
-}
-
-// @public
-export type DatabaseAutomaticTuningDef = ProxyResource & {
+export type DatabaseAutomaticTuning = ProxyResource & {
     desiredState?: AutomaticTuningMode;
     readonly actualState?: AutomaticTuningMode;
     options?: {
@@ -286,14 +280,20 @@ export interface DatabaseAutomaticTuningGetOptionalParams extends coreClient.Ope
 }
 
 // @public
-export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef;
+export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning;
+
+// @public
+export interface DatabaseAutomaticTuningOperations {
+    get(resourceGroupName: string, serverName: string, databaseName: string, options?: DatabaseAutomaticTuningGetOptionalParams): Promise<DatabaseAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, databaseName: string, parameters: DatabaseAutomaticTuning, options?: DatabaseAutomaticTuningUpdateOptionalParams): Promise<DatabaseAutomaticTuningUpdateResponse>;
+}
 
 // @public
 export interface DatabaseAutomaticTuningUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef;
+export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning;
 
 // @public
 export interface DatabaseBlobAuditingPolicies {
@@ -5846,13 +5846,7 @@ export type Server = TrackedResource & {
 };
 
 // @public
-export interface ServerAutomaticTuning {
-    get(resourceGroupName: string, serverName: string, options?: ServerAutomaticTuningGetOptionalParams): Promise<ServerAutomaticTuningGetResponse>;
-    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuningDef, options?: ServerAutomaticTuningUpdateOptionalParams): Promise<ServerAutomaticTuningUpdateResponse>;
-}
-
-// @public
-export type ServerAutomaticTuningDef = ProxyResource & {
+export type ServerAutomaticTuning = ProxyResource & {
     desiredState?: AutomaticTuningServerMode;
     readonly actualState?: AutomaticTuningServerMode;
     options?: {
@@ -5865,14 +5859,20 @@ export interface ServerAutomaticTuningGetOptionalParams extends coreClient.Opera
 }
 
 // @public
-export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef;
+export type ServerAutomaticTuningGetResponse = ServerAutomaticTuning;
+
+// @public
+export interface ServerAutomaticTuningOperations {
+    get(resourceGroupName: string, serverName: string, options?: ServerAutomaticTuningGetOptionalParams): Promise<ServerAutomaticTuningGetResponse>;
+    update(resourceGroupName: string, serverName: string, parameters: ServerAutomaticTuning, options?: ServerAutomaticTuningUpdateOptionalParams): Promise<ServerAutomaticTuningUpdateResponse>;
+}
 
 // @public
 export interface ServerAutomaticTuningUpdateOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef;
+export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning;
 
 // @public
 export type ServerAzureADAdministrator = ProxyResource & {
@@ -6594,7 +6594,7 @@ export class SqlManagementClient extends SqlManagementClientContext {
     // (undocumented)
     capabilities: Capabilities;
     // (undocumented)
-    databaseAutomaticTuning: DatabaseAutomaticTuning;
+    databaseAutomaticTuningOperations: DatabaseAutomaticTuningOperations;
     // (undocumented)
     databaseBlobAuditingPolicies: DatabaseBlobAuditingPolicies;
     // (undocumented)
@@ -6720,7 +6720,7 @@ export class SqlManagementClient extends SqlManagementClientContext {
     // (undocumented)
     sensitivityLabels: SensitivityLabels;
     // (undocumented)
-    serverAutomaticTuning: ServerAutomaticTuning;
+    serverAutomaticTuningOperations: ServerAutomaticTuningOperations;
     // (undocumented)
     serverAzureADAdministrators: ServerAzureADAdministrators;
     // (undocumented)

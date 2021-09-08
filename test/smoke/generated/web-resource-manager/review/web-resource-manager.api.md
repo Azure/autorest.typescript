@@ -4061,40 +4061,30 @@ export interface ResourceCollection {
 }
 
 // @public
-export interface ResourceHealthMetadata {
-    getBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataGetBySiteOptionalParams): Promise<ResourceHealthMetadataGetBySiteResponse>;
-    getBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataGetBySiteSlotOptionalParams): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
-    list(options?: ResourceHealthMetadataListOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    listByResourceGroup(resourceGroupName: string, options?: ResourceHealthMetadataListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    listBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataListBySiteOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    listBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataListBySiteSlotOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-}
+export type ResourceHealthMetadata = ProxyOnlyResource & {
+    category?: string;
+    signalAvailability?: boolean;
+};
 
 // @public
 export interface ResourceHealthMetadataCollection {
     readonly nextLink?: string;
-    value: ResourceHealthMetadataDef[];
+    value: ResourceHealthMetadata[];
 }
-
-// @public
-export type ResourceHealthMetadataDef = ProxyOnlyResource & {
-    category?: string;
-    signalAvailability?: boolean;
-};
 
 // @public
 export interface ResourceHealthMetadataGetBySiteOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef;
+export type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadata;
 
 // @public
 export interface ResourceHealthMetadataGetBySiteSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 // @public
-export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef;
+export type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadata;
 
 // @public
 export interface ResourceHealthMetadataListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -4151,6 +4141,16 @@ export interface ResourceHealthMetadataListOptionalParams extends coreClient.Ope
 
 // @public
 export type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollection;
+
+// @public
+export interface ResourceHealthMetadataOperations {
+    getBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataGetBySiteOptionalParams): Promise<ResourceHealthMetadataGetBySiteResponse>;
+    getBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataGetBySiteSlotOptionalParams): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
+    list(options?: ResourceHealthMetadataListOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    listByResourceGroup(resourceGroupName: string, options?: ResourceHealthMetadataListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    listBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataListBySiteOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    listBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataListBySiteSlotOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+}
 
 // @public
 export interface ResourceMetricAvailability {
@@ -8751,7 +8751,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     // (undocumented)
     recommendations: Recommendations;
     // (undocumented)
-    resourceHealthMetadata: ResourceHealthMetadata;
+    resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
     // (undocumented)
     staticSites: StaticSites;
     // (undocumented)

@@ -7047,58 +7047,18 @@ export declare interface ResourceCollection {
     readonly nextLink?: string;
 }
 
-/** Interface representing a ResourceHealthMetadata. */
-export declare interface ResourceHealthMetadata {
-    /**
-     * Description for List all ResourceHealthMetadata for all sites in the subscription.
-     * @param options The options parameters.
-     */
-    list(options?: ResourceHealthMetadataListOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    /**
-     * Description for List all ResourceHealthMetadata for all sites in the resource group in the
-     * subscription.
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param options The options parameters.
-     */
-    listByResourceGroup(resourceGroupName: string, options?: ResourceHealthMetadataListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    /**
-     * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
-     * collection
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @param options The options parameters.
-     */
-    listBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataListBySiteOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    /**
-     * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
-     * collection
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app.
-     * @param slot Name of web app slot. If not specified then will default to production slot.
-     * @param options The options parameters.
-     */
-    listBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataListBySiteSlotOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadataDef>;
-    /**
-     * Description for Gets the category of ResourceHealthMetadata to use for the given site
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app
-     * @param options The options parameters.
-     */
-    getBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataGetBySiteOptionalParams): Promise<ResourceHealthMetadataGetBySiteResponse>;
-    /**
-     * Description for Gets the category of ResourceHealthMetadata to use for the given site
-     * @param resourceGroupName Name of the resource group to which the resource belongs.
-     * @param name Name of web app
-     * @param slot Name of web app slot. If not specified then will default to production slot.
-     * @param options The options parameters.
-     */
-    getBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataGetBySiteSlotOptionalParams): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
-}
+/** Used for getting ResourceHealthCheck settings. */
+export declare type ResourceHealthMetadata = ProxyOnlyResource & {
+    /** The category that the resource matches in the RHC Policy File */
+    category?: string;
+    /** Is there a health signal for the resource */
+    signalAvailability?: boolean;
+};
 
 /** Collection of resource health metadata. */
 export declare interface ResourceHealthMetadataCollection {
     /** Collection of resources. */
-    value: ResourceHealthMetadataDef[];
+    value: ResourceHealthMetadata[];
     /**
      * Link to next page of resources.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -7106,27 +7066,19 @@ export declare interface ResourceHealthMetadataCollection {
     readonly nextLink?: string;
 }
 
-/** Used for getting ResourceHealthCheck settings. */
-export declare type ResourceHealthMetadataDef = ProxyOnlyResource & {
-    /** The category that the resource matches in the RHC Policy File */
-    category?: string;
-    /** Is there a health signal for the resource */
-    signalAvailability?: boolean;
-};
-
 /** Optional parameters. */
 export declare interface ResourceHealthMetadataGetBySiteOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the getBySite operation. */
-export declare type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadataDef;
+export declare type ResourceHealthMetadataGetBySiteResponse = ResourceHealthMetadata;
 
 /** Optional parameters. */
 export declare interface ResourceHealthMetadataGetBySiteSlotOptionalParams extends coreClient.OperationOptions {
 }
 
 /** Contains response data for the getBySiteSlot operation. */
-export declare type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadataDef;
+export declare type ResourceHealthMetadataGetBySiteSlotResponse = ResourceHealthMetadata;
 
 /** Optional parameters. */
 export declare interface ResourceHealthMetadataListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -7183,6 +7135,54 @@ export declare interface ResourceHealthMetadataListOptionalParams extends coreCl
 
 /** Contains response data for the list operation. */
 export declare type ResourceHealthMetadataListResponse = ResourceHealthMetadataCollection;
+
+/** Interface representing a ResourceHealthMetadataOperations. */
+export declare interface ResourceHealthMetadataOperations {
+    /**
+     * Description for List all ResourceHealthMetadata for all sites in the subscription.
+     * @param options The options parameters.
+     */
+    list(options?: ResourceHealthMetadataListOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    /**
+     * Description for List all ResourceHealthMetadata for all sites in the resource group in the
+     * subscription.
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param options The options parameters.
+     */
+    listByResourceGroup(resourceGroupName: string, options?: ResourceHealthMetadataListByResourceGroupOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    /**
+     * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
+     * collection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app.
+     * @param options The options parameters.
+     */
+    listBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataListBySiteOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    /**
+     * Description for Gets the category of ResourceHealthMetadata to use for the given site as a
+     * collection
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app.
+     * @param slot Name of web app slot. If not specified then will default to production slot.
+     * @param options The options parameters.
+     */
+    listBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataListBySiteSlotOptionalParams): PagedAsyncIterableIterator<ResourceHealthMetadata>;
+    /**
+     * Description for Gets the category of ResourceHealthMetadata to use for the given site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app
+     * @param options The options parameters.
+     */
+    getBySite(resourceGroupName: string, name: string, options?: ResourceHealthMetadataGetBySiteOptionalParams): Promise<ResourceHealthMetadataGetBySiteResponse>;
+    /**
+     * Description for Gets the category of ResourceHealthMetadata to use for the given site
+     * @param resourceGroupName Name of the resource group to which the resource belongs.
+     * @param name Name of web app
+     * @param slot Name of web app slot. If not specified then will default to production slot.
+     * @param options The options parameters.
+     */
+    getBySiteSlot(resourceGroupName: string, name: string, slot: string, options?: ResourceHealthMetadataGetBySiteSlotOptionalParams): Promise<ResourceHealthMetadataGetBySiteSlotResponse>;
+}
 
 /** Metrics availability and retention. */
 export declare interface ResourceMetricAvailability {
@@ -16678,7 +16678,7 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
     staticSites: StaticSites;
     appServiceEnvironments: AppServiceEnvironments;
     appServicePlans: AppServicePlans;
-    resourceHealthMetadata: ResourceHealthMetadata;
+    resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
 }
 
 /** Optional parameters. */
