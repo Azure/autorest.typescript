@@ -41,9 +41,8 @@ export function generateParameterInterfaces(
     );
     const parameterInterfaceName = `${operationName}Parameters`;
     const parameters = getOperationParameters(operation);
-    // const requestProperties: PropertySignatureStructure[] = [];
 
-    const headerParameterDefinition =  buildHeaderParameterDefinition(
+    const headerParameterDefinitions =  buildHeaderParameterDefinitions(
       operationName,
       parameters,
       parametersFile,
@@ -69,10 +68,10 @@ export function generateParameterInterfaces(
     parametersFile.addInterfaces([
       ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
       ...(queryParameterDefinitions ?? []),
-      ...(headerParameterDefinition ? [headerParameterDefinition] : [])
+      ...(headerParameterDefinitions ? [headerParameterDefinitions] : [])
     ]);
 
-    if (headerParameterDefinition !== undefined) {
+    if (headerParameterDefinitions !== undefined) {
       hasHeaders = true;
     }
 
@@ -135,7 +134,7 @@ function getRequestHeaderInterfaceDefinition(
   }
 }
 
-function buildHeaderParameterDefinition(
+function buildHeaderParameterDefinitions(
   operationName: string,
   parameters: Parameter[],
   parametersFile: SourceFile,
@@ -149,12 +148,10 @@ function buildHeaderParameterDefinition(
   const headerParameterInterfaceName = `${operationName}HeaderParam`;
 
   const headersInterface = getRequestHeaderInterfaceDefinition(headerParameters, operationName);
-  // const headerModels = new Parameter(`${operationName}Headers`, getDocs(), )
 
   if (headersInterface) {
     parametersFile.addInterface(headersInterface);
   }
-  // const headerSignature = getPropertySignature(headerModels, importedModels);
 
   internalReferences.add(headerParameterInterfaceName);
 
