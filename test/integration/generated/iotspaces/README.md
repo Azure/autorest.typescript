@@ -25,9 +25,9 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 To create a client object to access the Azure IoTSpaces API, you will need the `endpoint` of your Azure IoTSpaces resource and a `credential`. The Azure IoTSpaces client can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your Azure IoTSpaces resource in the [Azure Portal][azure_portal].
 
-#### Using an Azure Active Directory Credential
+You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token][existing_add_token].
 
-You can authenticate with Azure Active Directory using the [Azure Identity library][azure_identity]. To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
+To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
 
 ```bash
 npm install @azure/identity
@@ -37,14 +37,13 @@ You will also need to **register a new AAD application and grant access to Azure
 Set the values of the client ID, tenant ID, and client secret of the AAD application as environment variables: `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_CLIENT_SECRET`.
 
 For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
+
 ```typescript
 import { IoTSpacesClient } from ("@azure/iotspaces");
 import { DefaultAzureCredential } from ("@azure/identity");
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
 const client = new IoTSpacesClient(new DefaultAzureCredential(), subscriptionId);
 ```
-#### Authenticating with a pre-fetched access token
-If you already have an existing access token, refer to [this guide](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token) to learn how to use it instead.
 
 ## Key concepts
 
@@ -83,4 +82,5 @@ If you'd like to contribute to this library, please read the [contributing guide
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity
+[existing_add_token]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token
 [defaultazurecredential]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential
