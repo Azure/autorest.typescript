@@ -19,12 +19,13 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 
 - An [Azure subscription][azure_sub].
 
+
 ### Create and authenticate a `IoTSpacesClient`
 
 To create a client object to access the Azure IoTSpaces API, you will need the `endpoint` of your Azure IoTSpaces resource and a `credential`. The Azure IoTSpaces client can use Azure Active Directory credentials to authenticate.
 You can find the endpoint for your Azure IoTSpaces resource in the [Azure Portal][azure_portal].
 
-You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token][existing_add_token].
+You can authenticate with Azure Active Directory using a credential from the [@azure/identity][azure_identity] library or [an existing AAD Token](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token).
 
 To use the [DefaultAzureCredential][defaultazurecredential] provider shown below, or other credential providers provided with the Azure SDK, please install the `@azure/identity` package:
 
@@ -41,10 +42,7 @@ For more information about how to create an Azure AD Application check out [this
 const { IoTSpacesClient } = require("@azure/iotspaces");
 const { DefaultAzureCredential } = require("@azure/identity");
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
-const client = new IoTSpacesClient(
-  new DefaultAzureCredential(),
-  subscriptionId
-);
+const client = new IoTSpacesClient(new DefaultAzureCredential(), subscriptionId);
 ```
 
 ## Key concepts
@@ -78,10 +76,10 @@ If you'd like to contribute to this library, please read the [contributing guide
 
 - [Microsoft Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js)
 
+
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_sub]: https://azure.microsoft.com/free/
 [azure_portal]: https://portal.azure.com
 [azure_identity]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity
-[existing_add_token]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/identity/identity/samples/AzureIdentityExamples.md#authenticating-with-a-pre-fetched-access-token
 [defaultazurecredential]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#defaultazurecredential
