@@ -7,13 +7,13 @@
  */
 
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { OAuth2PermissionGrant } from "../operationsInterfaces";
+import { OAuth2PermissionGrantOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
 import {
-  OAuth2PermissionGrantDef,
+  OAuth2PermissionGrant,
   OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantListResponse,
@@ -24,12 +24,13 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class containing OAuth2PermissionGrant operations. */
-export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
+/** Class containing OAuth2PermissionGrantOperations operations. */
+export class OAuth2PermissionGrantOperationsImpl
+  implements OAuth2PermissionGrantOperations {
   private readonly client: GraphRbacManagementClientContext;
 
   /**
-   * Initialize a new instance of the class OAuth2PermissionGrant class.
+   * Initialize a new instance of the class OAuth2PermissionGrantOperations class.
    * @param client Reference to the service client
    */
   constructor(client: GraphRbacManagementClientContext) {
@@ -42,7 +43,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
    */
   public list(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef> {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrant> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -59,7 +60,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
 
   private async *listPagingPage(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantDef[]> {
+  ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
     let result = await this._list(options);
     yield result.value || [];
     let continuationToken = result.odataNextLink;
@@ -72,7 +73,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
 
   private async *listPagingAll(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantDef> {
+  ): AsyncIterableIterator<OAuth2PermissionGrant> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
     }
@@ -86,7 +87,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
   public listNext(
     nextLink: string,
     options?: OAuth2PermissionGrantListNextOptionalParams
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef> {
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrant> {
     const iter = this.listNextPagingAll(nextLink, options);
     return {
       next() {
@@ -104,7 +105,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
   private async *listNextPagingPage(
     nextLink: string,
     options?: OAuth2PermissionGrantListNextOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantDef[]> {
+  ): AsyncIterableIterator<OAuth2PermissionGrant[]> {
     let result = await this._listNext(nextLink, options);
     yield result.value || [];
     let continuationToken = result.odataNextLink;
@@ -118,7 +119,7 @@ export class OAuth2PermissionGrantImpl implements OAuth2PermissionGrant {
   private async *listNextPagingAll(
     nextLink: string,
     options?: OAuth2PermissionGrantListNextOptionalParams
-  ): AsyncIterableIterator<OAuth2PermissionGrantDef> {
+  ): AsyncIterableIterator<OAuth2PermissionGrant> {
     for await (const page of this.listNextPagingPage(nextLink, options)) {
       yield* page;
     }
@@ -195,7 +196,7 @@ const createOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     201: {
-      bodyMapper: Mappers.OAuth2PermissionGrantDef
+      bodyMapper: Mappers.OAuth2PermissionGrant
     }
   },
   requestBody: Parameters.body,

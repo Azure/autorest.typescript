@@ -1441,7 +1441,7 @@ export const OAuth2PermissionGrantListResult: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "OAuth2PermissionGrantDef"
+              className: "OAuth2PermissionGrant"
             }
           }
         }
@@ -1456,10 +1456,10 @@ export const OAuth2PermissionGrantListResult: coreClient.CompositeMapper = {
   }
 };
 
-export const OAuth2PermissionGrantDef: coreClient.CompositeMapper = {
+export const OAuth2PermissionGrant: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "OAuth2PermissionGrantDef",
+    className: "OAuth2PermissionGrant",
     modelProperties: {
       odataType: {
         serializedName: "odata\\.type",

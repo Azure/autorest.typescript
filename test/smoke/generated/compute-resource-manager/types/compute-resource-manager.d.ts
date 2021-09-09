@@ -365,7 +365,7 @@ export declare class ComputeManagementClient extends ComputeManagementClientCont
     virtualMachineExtensionImages: VirtualMachineExtensionImages;
     virtualMachineExtensions: VirtualMachineExtensions;
     virtualMachineImages: VirtualMachineImages;
-    usage: Usage;
+    usageOperations: UsageOperations;
     virtualMachines: VirtualMachines;
     virtualMachineSizes: VirtualMachineSizes;
     images: Images;
@@ -3863,7 +3863,7 @@ export declare interface LinuxConfiguration {
 /** The List Usages operation response. */
 export declare interface ListUsagesResult {
     /** The list of compute resource usages. */
-    value: UsageDef[];
+    value: Usage[];
     /** The URI to fetch the next page of compute resource usage information. Call ListNext() with this to fetch the next page of compute resource usage information. */
     nextLink?: string;
 }
@@ -5535,19 +5535,8 @@ export declare interface UpgradePolicy {
 /** Defines values for UpgradeState. */
 export declare type UpgradeState = "RollingForward" | "Cancelled" | "Completed" | "Faulted";
 
-/** Interface representing a Usage. */
-export declare interface Usage {
-    /**
-     * Gets, for the specified location, the current compute resource usage information as well as the
-     * limits for compute resources under the subscription.
-     * @param location The location for which resource usage is queried.
-     * @param options The options parameters.
-     */
-    list(location: string, options?: UsageListOptionalParams): PagedAsyncIterableIterator<UsageDef>;
-}
-
 /** Describes Compute Resource Usage. */
-export declare interface UsageDef {
+export declare interface Usage {
     /** An enum describing the unit of usage measurement. */
     unit: "Count";
     /** The current usage of the resource. */
@@ -5578,6 +5567,17 @@ export declare interface UsageName {
     value?: string;
     /** The localized name of the resource. */
     localizedValue?: string;
+}
+
+/** Interface representing a UsageOperations. */
+export declare interface UsageOperations {
+    /**
+     * Gets, for the specified location, the current compute resource usage information as well as the
+     * limits for compute resources under the subscription.
+     * @param location The location for which resource usage is queried.
+     * @param options The options parameters.
+     */
+    list(location: string, options?: UsageListOptionalParams): PagedAsyncIterableIterator<Usage>;
 }
 
 /** The source image from which the Image Version is going to be created. */

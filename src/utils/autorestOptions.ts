@@ -31,6 +31,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
+  const generateTest = await getGenerateTest(host)
 
   return {
     azureArm,
@@ -53,7 +54,8 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     title,
     azureOutputDirectory,
     headAsBoolean,
-    isTestPackage
+    isTestPackage,
+    generateTest,
   };
 }
 
@@ -66,6 +68,11 @@ async function getHeadAsBoolean(host: Host): Promise<boolean> {
 async function getIsTestPackage(host: Host): Promise<boolean> {
   const isTestPackage: boolean = await host.GetValue("is-test-package");
   return isTestPackage === null ? false : Boolean(isTestPackage);
+}
+
+async function getGenerateTest(host: Host): Promise<boolean> {
+  const generateTest: boolean = await host.GetValue("generate-test");
+  return generateTest === null ? false : Boolean(generateTest);
 }
 
 async function getSkipEnumValidation(host: Host): Promise<boolean> {

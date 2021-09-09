@@ -852,7 +852,7 @@ export interface PrivateLinkResourceListResult {
 }
 
 /** List storage account object replication policies. */
-export interface ObjectReplicationPoliciesDef {
+export interface ObjectReplicationPolicies {
   /** The replication policy between two storage accounts. */
   value?: ObjectReplicationPolicy[];
 }
@@ -2447,7 +2447,7 @@ export interface ObjectReplicationPoliciesListOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the list operation. */
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef;
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies;
 
 /** Optional parameters. */
 export interface ObjectReplicationPoliciesGetOptionalParams

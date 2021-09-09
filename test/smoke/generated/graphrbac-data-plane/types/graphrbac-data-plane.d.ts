@@ -585,7 +585,7 @@ export declare class GraphRbacManagementClient extends GraphRbacManagementClient
     users: Users;
     objects: Objects;
     domains: Domains;
-    oAuth2PermissionGrant: OAuth2PermissionGrant;
+    oAuth2PermissionGrantOperations: OAuth2PermissionGrantOperations;
 }
 
 export declare class GraphRbacManagementClientContext extends coreClient.ServiceClient {
@@ -936,42 +936,7 @@ export declare interface OAuth2Permission {
     value?: string;
 }
 
-/** Interface representing a OAuth2PermissionGrant. */
 export declare interface OAuth2PermissionGrant {
-    /**
-     * Queries OAuth2 permissions grants for the relevant SP ObjectId of an app.
-     * @param options The options parameters.
-     */
-    list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
-    /**
-     * Gets the next page of OAuth2 permission grants
-     * @param nextLink Next link for the list operation.
-     * @param options The options parameters.
-     */
-    listNext(nextLink: string, options?: OAuth2PermissionGrantListNextOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
-    /**
-     * Grants OAuth2 permissions for the relevant resource Ids of an app.
-     * @param options The options parameters.
-     */
-    create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
-    /**
-     * Delete a OAuth2 permission grant for the relevant resource Ids of an app.
-     * @param objectId The object ID of a permission grant.
-     * @param options The options parameters.
-     */
-    delete(objectId: string, options?: OAuth2PermissionGrantDeleteOptionalParams): Promise<void>;
-}
-
-/** Optional parameters. */
-export declare interface OAuth2PermissionGrantCreateOptionalParams extends coreClient.OperationOptions {
-    /** The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant. */
-    body?: OAuth2PermissionGrantDef;
-}
-
-/** Contains response data for the create operation. */
-export declare type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef;
-
-export declare interface OAuth2PermissionGrantDef {
     /** Microsoft.DirectoryServices.OAuth2PermissionGrant */
     odataType?: string;
     /** The id of the resource's service principal granted consent to impersonate the user when accessing the resource (represented by the resourceId property). */
@@ -991,6 +956,15 @@ export declare interface OAuth2PermissionGrantDef {
     /** Expiry time for TTL */
     expiryTime?: string;
 }
+
+/** Optional parameters. */
+export declare interface OAuth2PermissionGrantCreateOptionalParams extends coreClient.OperationOptions {
+    /** The relevant app Service Principal Object Id and the Service Principal Object Id you want to grant. */
+    body?: OAuth2PermissionGrant;
+}
+
+/** Contains response data for the create operation. */
+export declare type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrant;
 
 /** Optional parameters. */
 export declare interface OAuth2PermissionGrantDeleteOptionalParams extends coreClient.OperationOptions {
@@ -1015,9 +989,35 @@ export declare type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantLis
 /** Server response for get oauth2 permissions grants */
 export declare interface OAuth2PermissionGrantListResult {
     /** the list of oauth2 permissions grants */
-    value?: OAuth2PermissionGrantDef[];
+    value?: OAuth2PermissionGrant[];
     /** the URL to get the next set of results. */
     odataNextLink?: string;
+}
+
+/** Interface representing a OAuth2PermissionGrantOperations. */
+export declare interface OAuth2PermissionGrantOperations {
+    /**
+     * Queries OAuth2 permissions grants for the relevant SP ObjectId of an app.
+     * @param options The options parameters.
+     */
+    list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
+    /**
+     * Gets the next page of OAuth2 permission grants
+     * @param nextLink Next link for the list operation.
+     * @param options The options parameters.
+     */
+    listNext(nextLink: string, options?: OAuth2PermissionGrantListNextOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
+    /**
+     * Grants OAuth2 permissions for the relevant resource Ids of an app.
+     * @param options The options parameters.
+     */
+    create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
+    /**
+     * Delete a OAuth2 permission grant for the relevant resource Ids of an app.
+     * @param objectId The object ID of a permission grant.
+     * @param options The options parameters.
+     */
+    delete(objectId: string, options?: OAuth2PermissionGrantDeleteOptionalParams): Promise<void>;
 }
 
 /** Interface representing a Objects. */

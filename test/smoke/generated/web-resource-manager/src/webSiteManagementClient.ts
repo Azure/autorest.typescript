@@ -24,7 +24,7 @@ import {
   StaticSitesImpl,
   AppServiceEnvironmentsImpl,
   AppServicePlansImpl,
-  ResourceHealthMetadataImpl
+  ResourceHealthMetadataOperationsImpl
 } from "./operations";
 import {
   AppServiceCertificateOrders,
@@ -41,7 +41,7 @@ import {
   StaticSites,
   AppServiceEnvironments,
   AppServicePlans,
-  ResourceHealthMetadata
+  ResourceHealthMetadataOperations
 } from "./operationsInterfaces";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
@@ -134,7 +134,9 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     this.staticSites = new StaticSitesImpl(this);
     this.appServiceEnvironments = new AppServiceEnvironmentsImpl(this);
     this.appServicePlans = new AppServicePlansImpl(this);
-    this.resourceHealthMetadata = new ResourceHealthMetadataImpl(this);
+    this.resourceHealthMetadataOperations = new ResourceHealthMetadataOperationsImpl(
+      this
+    );
   }
 
   /**
@@ -699,7 +701,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   staticSites: StaticSites;
   appServiceEnvironments: AppServiceEnvironments;
   appServicePlans: AppServicePlans;
-  resourceHealthMetadata: ResourceHealthMetadata;
+  resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);

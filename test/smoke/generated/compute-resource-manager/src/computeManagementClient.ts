@@ -17,7 +17,7 @@ import {
   VirtualMachineExtensionImagesImpl,
   VirtualMachineExtensionsImpl,
   VirtualMachineImagesImpl,
-  UsageImpl,
+  UsageOperationsImpl,
   VirtualMachinesImpl,
   VirtualMachineSizesImpl,
   ImagesImpl,
@@ -49,7 +49,7 @@ import {
   VirtualMachineExtensionImages,
   VirtualMachineExtensions,
   VirtualMachineImages,
-  Usage,
+  UsageOperations,
   VirtualMachines,
   VirtualMachineSizes,
   Images,
@@ -99,7 +99,7 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
     );
     this.virtualMachineExtensions = new VirtualMachineExtensionsImpl(this);
     this.virtualMachineImages = new VirtualMachineImagesImpl(this);
-    this.usage = new UsageImpl(this);
+    this.usageOperations = new UsageOperationsImpl(this);
     this.virtualMachines = new VirtualMachinesImpl(this);
     this.virtualMachineSizes = new VirtualMachineSizesImpl(this);
     this.images = new ImagesImpl(this);
@@ -137,7 +137,7 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
   virtualMachineExtensionImages: VirtualMachineExtensionImages;
   virtualMachineExtensions: VirtualMachineExtensions;
   virtualMachineImages: VirtualMachineImages;
-  usage: Usage;
+  usageOperations: UsageOperations;
   virtualMachines: VirtualMachines;
   virtualMachineSizes: VirtualMachineSizes;
   images: Images;
