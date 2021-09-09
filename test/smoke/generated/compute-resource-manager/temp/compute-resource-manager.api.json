@@ -3085,17 +3085,17 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "compute-resource-manager!ComputeManagementClient#usage:member",
+              "canonicalReference": "compute-resource-manager!ComputeManagementClient#usageOperations:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "usage: "
+                  "text": "usageOperations: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "Usage",
-                  "canonicalReference": "compute-resource-manager!Usage:interface"
+                  "text": "UsageOperations",
+                  "canonicalReference": "compute-resource-manager!UsageOperations:interface"
                 },
                 {
                   "kind": "Content",
@@ -3103,7 +3103,7 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "usage",
+              "name": "usageOperations",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2
@@ -34413,8 +34413,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "UsageDef",
-                  "canonicalReference": "compute-resource-manager!UsageDef:interface"
+                  "text": "Usage",
+                  "canonicalReference": "compute-resource-manager!Usage:interface"
                 },
                 {
                   "kind": "Content",
@@ -46757,7 +46757,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "compute-resource-manager!Usage:interface",
-          "docComment": "/**\n * Interface representing a Usage.\n */\n",
+          "docComment": "/**\n * Describes Compute Resource Usage.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -46768,97 +46768,8 @@
           "name": "Usage",
           "members": [
             {
-              "kind": "MethodSignature",
-              "canonicalReference": "compute-resource-manager!Usage#list:member(1)",
-              "docComment": "/**\n * Gets, for the specified location, the current compute resource usage information as well as the limits for compute resources under the subscription.\n *\n * @param location - The location for which resource usage is queried.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "list(location: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UsageListOptionalParams",
-                  "canonicalReference": "compute-resource-manager!UsageListOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PagedAsyncIterableIterator",
-                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "UsageDef",
-                  "canonicalReference": "compute-resource-manager!UsageDef:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 5,
-                "endIndex": 9
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "location",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                }
-              ],
-              "name": "list"
-            }
-          ],
-          "extendsTokenRanges": []
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "compute-resource-manager!UsageDef:interface",
-          "docComment": "/**\n * Describes Compute Resource Usage.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface UsageDef "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "UsageDef",
-          "members": [
-            {
               "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!UsageDef#currentValue:member",
+              "canonicalReference": "compute-resource-manager!Usage#currentValue:member",
               "docComment": "/**\n * The current usage of the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -46883,7 +46794,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!UsageDef#limit:member",
+              "canonicalReference": "compute-resource-manager!Usage#limit:member",
               "docComment": "/**\n * The maximum permitted usage of the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -46908,7 +46819,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!UsageDef#name:member",
+              "canonicalReference": "compute-resource-manager!Usage#name:member",
               "docComment": "/**\n * The name of the type of usage.\n */\n",
               "excerptTokens": [
                 {
@@ -46934,7 +46845,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "compute-resource-manager!UsageDef#unit:member",
+              "canonicalReference": "compute-resource-manager!Usage#unit:member",
               "docComment": "/**\n * An enum describing the unit of usage measurement.\n */\n",
               "excerptTokens": [
                 {
@@ -47140,6 +47051,95 @@
                 "startIndex": 1,
                 "endIndex": 2
               }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "compute-resource-manager!UsageOperations:interface",
+          "docComment": "/**\n * Interface representing a UsageOperations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface UsageOperations "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "UsageOperations",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "compute-resource-manager!UsageOperations#list:member(1)",
+              "docComment": "/**\n * Gets, for the specified location, the current compute resource usage information as well as the limits for compute resources under the subscription.\n *\n * @param location - The location for which resource usage is queried.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(location: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "UsageListOptionalParams",
+                  "canonicalReference": "compute-resource-manager!UsageListOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Usage",
+                  "canonicalReference": "compute-resource-manager!Usage:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 9
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "location",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                }
+              ],
+              "name": "list"
             }
           ],
           "extendsTokenRanges": []

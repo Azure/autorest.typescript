@@ -29,7 +29,7 @@ import {
   TransparentDataEncryptionActivitiesImpl,
   ServerUsagesImpl,
   DatabaseUsagesImpl,
-  DatabaseAutomaticTuningImpl,
+  DatabaseAutomaticTuningOperationsImpl,
   EncryptionProtectorsImpl,
   FailoverGroupsImpl,
   OperationsImpl,
@@ -59,7 +59,7 @@ import {
   BackupLongTermRetentionPoliciesImpl,
   ManagedBackupShortTermRetentionPoliciesImpl,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImpl,
-  ServerAutomaticTuningImpl,
+  ServerAutomaticTuningOperationsImpl,
   ServerDnsAliasesImpl,
   ServerSecurityAlertPoliciesImpl,
   RestorableDroppedManagedDatabasesImpl,
@@ -122,7 +122,7 @@ import {
   TransparentDataEncryptionActivities,
   ServerUsages,
   DatabaseUsages,
-  DatabaseAutomaticTuning,
+  DatabaseAutomaticTuningOperations,
   EncryptionProtectors,
   FailoverGroups,
   Operations,
@@ -152,7 +152,7 @@ import {
   BackupLongTermRetentionPolicies,
   ManagedBackupShortTermRetentionPolicies,
   ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies,
-  ServerAutomaticTuning,
+  ServerAutomaticTuningOperations,
   ServerDnsAliases,
   ServerSecurityAlertPolicies,
   RestorableDroppedManagedDatabases,
@@ -236,7 +236,9 @@ export class SqlManagementClient extends SqlManagementClientContext {
     );
     this.serverUsages = new ServerUsagesImpl(this);
     this.databaseUsages = new DatabaseUsagesImpl(this);
-    this.databaseAutomaticTuning = new DatabaseAutomaticTuningImpl(this);
+    this.databaseAutomaticTuningOperations = new DatabaseAutomaticTuningOperationsImpl(
+      this
+    );
     this.encryptionProtectors = new EncryptionProtectorsImpl(this);
     this.failoverGroups = new FailoverGroupsImpl(this);
     this.operations = new OperationsImpl(this);
@@ -282,7 +284,9 @@ export class SqlManagementClient extends SqlManagementClientContext {
     this.managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies = new ManagedRestorableDroppedDatabaseBackupShortTermRetentionPoliciesImpl(
       this
     );
-    this.serverAutomaticTuning = new ServerAutomaticTuningImpl(this);
+    this.serverAutomaticTuningOperations = new ServerAutomaticTuningOperationsImpl(
+      this
+    );
     this.serverDnsAliases = new ServerDnsAliasesImpl(this);
     this.serverSecurityAlertPolicies = new ServerSecurityAlertPoliciesImpl(
       this
@@ -385,7 +389,7 @@ export class SqlManagementClient extends SqlManagementClientContext {
   transparentDataEncryptionActivities: TransparentDataEncryptionActivities;
   serverUsages: ServerUsages;
   databaseUsages: DatabaseUsages;
-  databaseAutomaticTuning: DatabaseAutomaticTuning;
+  databaseAutomaticTuningOperations: DatabaseAutomaticTuningOperations;
   encryptionProtectors: EncryptionProtectors;
   failoverGroups: FailoverGroups;
   operations: Operations;
@@ -415,7 +419,7 @@ export class SqlManagementClient extends SqlManagementClientContext {
   backupLongTermRetentionPolicies: BackupLongTermRetentionPolicies;
   managedBackupShortTermRetentionPolicies: ManagedBackupShortTermRetentionPolicies;
   managedRestorableDroppedDatabaseBackupShortTermRetentionPolicies: ManagedRestorableDroppedDatabaseBackupShortTermRetentionPolicies;
-  serverAutomaticTuning: ServerAutomaticTuning;
+  serverAutomaticTuningOperations: ServerAutomaticTuningOperations;
   serverDnsAliases: ServerDnsAliases;
   serverSecurityAlertPolicies: ServerSecurityAlertPolicies;
   restorableDroppedManagedDatabases: RestorableDroppedManagedDatabases;

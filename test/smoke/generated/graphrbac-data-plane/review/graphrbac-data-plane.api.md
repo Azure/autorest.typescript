@@ -356,7 +356,7 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     // (undocumented)
     groups: Groups;
     // (undocumented)
-    oAuth2PermissionGrant: OAuth2PermissionGrant;
+    oAuth2PermissionGrantOperations: OAuth2PermissionGrantOperations;
     // (undocumented)
     objects: Objects;
     // (undocumented)
@@ -597,24 +597,8 @@ export interface OAuth2Permission {
     value?: string;
 }
 
-// @public
-export interface OAuth2PermissionGrant {
-    create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
-    delete(objectId: string, options?: OAuth2PermissionGrantDeleteOptionalParams): Promise<void>;
-    list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
-    listNext(nextLink: string, options?: OAuth2PermissionGrantListNextOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
-}
-
-// @public
-export interface OAuth2PermissionGrantCreateOptionalParams extends coreClient.OperationOptions {
-    body?: OAuth2PermissionGrantDef;
-}
-
-// @public
-export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrantDef;
-
 // @public (undocumented)
-export interface OAuth2PermissionGrantDef {
+export interface OAuth2PermissionGrant {
     clientId?: string;
     consentType?: ConsentType;
     expiryTime?: string;
@@ -625,6 +609,14 @@ export interface OAuth2PermissionGrantDef {
     scope?: string;
     startTime?: string;
 }
+
+// @public
+export interface OAuth2PermissionGrantCreateOptionalParams extends coreClient.OperationOptions {
+    body?: OAuth2PermissionGrant;
+}
+
+// @public
+export type OAuth2PermissionGrantCreateResponse = OAuth2PermissionGrant;
 
 // @public
 export interface OAuth2PermissionGrantDeleteOptionalParams extends coreClient.OperationOptions {
@@ -648,7 +640,15 @@ export type OAuth2PermissionGrantListResponse = OAuth2PermissionGrantListResult;
 // @public
 export interface OAuth2PermissionGrantListResult {
     odataNextLink?: string;
-    value?: OAuth2PermissionGrantDef[];
+    value?: OAuth2PermissionGrant[];
+}
+
+// @public
+export interface OAuth2PermissionGrantOperations {
+    create(options?: OAuth2PermissionGrantCreateOptionalParams): Promise<OAuth2PermissionGrantCreateResponse>;
+    delete(objectId: string, options?: OAuth2PermissionGrantDeleteOptionalParams): Promise<void>;
+    list(options?: OAuth2PermissionGrantListOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
+    listNext(nextLink: string, options?: OAuth2PermissionGrantListNextOptionalParams): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
 }
 
 // @public

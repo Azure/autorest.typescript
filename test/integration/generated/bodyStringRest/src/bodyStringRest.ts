@@ -83,7 +83,7 @@ export interface StringGetEmpty {
   ): Promise<StringGetEmpty200Response | StringGetEmptydefaultResponse>;
   /** Set string value empty '' */
   put(
-    options?: StringPutEmptyParameters
+    options: StringPutEmptyParameters
   ): Promise<StringPutEmpty200Response | StringPutEmptydefaultResponse>;
 }
 
@@ -94,7 +94,7 @@ export interface StringGetMbcs {
   ): Promise<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
   /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   put(
-    options?: StringPutMbcsParameters
+    options: StringPutMbcsParameters
   ): Promise<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
 }
 
@@ -107,7 +107,7 @@ export interface StringGetWhitespace {
   >;
   /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   put(
-    options?: StringPutWhitespaceParameters
+    options: StringPutWhitespaceParameters
   ): Promise<
     StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
   >;

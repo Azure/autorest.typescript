@@ -3702,7 +3702,7 @@ export type TransparentDataEncryptionActivity = ProxyResource & {
 };
 
 /** Database-level Automatic Tuning. */
-export type DatabaseAutomaticTuningDef = ProxyResource & {
+export type DatabaseAutomaticTuning = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningMode;
   /**
@@ -4562,7 +4562,7 @@ export type ManagedBackupShortTermRetentionPolicy = ProxyResource & {
 };
 
 /** Server-level Automatic Tuning. */
-export type ServerAutomaticTuningDef = ProxyResource & {
+export type ServerAutomaticTuning = ProxyResource & {
   /** Automatic tuning desired state. */
   desiredState?: AutomaticTuningServerMode;
   /**
@@ -7969,14 +7969,14 @@ export interface DatabaseAutomaticTuningGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuningDef;
+export type DatabaseAutomaticTuningGetResponse = DatabaseAutomaticTuning;
 
 /** Optional parameters. */
 export interface DatabaseAutomaticTuningUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuningDef;
+export type DatabaseAutomaticTuningUpdateResponse = DatabaseAutomaticTuning;
 
 /** Optional parameters. */
 export interface EncryptionProtectorsRevalidateOptionalParams
@@ -9492,14 +9492,14 @@ export interface ServerAutomaticTuningGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ServerAutomaticTuningGetResponse = ServerAutomaticTuningDef;
+export type ServerAutomaticTuningGetResponse = ServerAutomaticTuning;
 
 /** Optional parameters. */
 export interface ServerAutomaticTuningUpdateOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the update operation. */
-export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuningDef;
+export type ServerAutomaticTuningUpdateResponse = ServerAutomaticTuning;
 
 /** Optional parameters. */
 export interface ServerDnsAliasesGetOptionalParams

@@ -1196,10 +1196,7 @@ export interface NetworkRuleSet {
 
 // @public
 export interface ObjectReplicationPolicies {
-    createOrUpdate(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, properties: ObjectReplicationPolicy, options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
-    delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesDeleteOptionalParams): Promise<void>;
-    get(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesGetOptionalParams): Promise<ObjectReplicationPoliciesGetResponse>;
-    list(resourceGroupName: string, accountName: string, options?: ObjectReplicationPoliciesListOptionalParams): PagedAsyncIterableIterator<ObjectReplicationPolicy>;
+    value?: ObjectReplicationPolicy[];
 }
 
 // @public
@@ -1208,11 +1205,6 @@ export interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams extends c
 
 // @public
 export type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
-
-// @public
-export interface ObjectReplicationPoliciesDef {
-    value?: ObjectReplicationPolicy[];
-}
 
 // @public
 export interface ObjectReplicationPoliciesDeleteOptionalParams extends coreClient.OperationOptions {
@@ -1230,7 +1222,15 @@ export interface ObjectReplicationPoliciesListOptionalParams extends coreClient.
 }
 
 // @public
-export type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef;
+export type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies;
+
+// @public
+export interface ObjectReplicationPoliciesOperations {
+    createOrUpdate(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, properties: ObjectReplicationPolicy, options?: ObjectReplicationPoliciesCreateOrUpdateOptionalParams): Promise<ObjectReplicationPoliciesCreateOrUpdateResponse>;
+    delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesDeleteOptionalParams): Promise<void>;
+    get(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesGetOptionalParams): Promise<ObjectReplicationPoliciesGetResponse>;
+    list(resourceGroupName: string, accountName: string, options?: ObjectReplicationPoliciesListOptionalParams): PagedAsyncIterableIterator<ObjectReplicationPolicy>;
+}
 
 // @public
 export type ObjectReplicationPolicy = Resource & {
@@ -1767,7 +1767,7 @@ export class StorageManagementClient extends StorageManagementClientContext {
     // (undocumented)
     managementPolicies: ManagementPolicies;
     // (undocumented)
-    objectReplicationPolicies: ObjectReplicationPolicies;
+    objectReplicationPoliciesOperations: ObjectReplicationPoliciesOperations;
     // (undocumented)
     operations: Operations;
     // (undocumented)

@@ -19,7 +19,6 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 
 - An [Azure subscription][azure_sub].
 
-
 ### Create and authenticate a `IoTSpacesClient`
 
 To create a client object to access the Azure IoTSpaces API, you will need the `endpoint` of your Azure IoTSpaces resource and a `credential`. The Azure IoTSpaces client can use Azure Active Directory credentials to authenticate.
@@ -38,11 +37,14 @@ Set the values of the client ID, tenant ID, and client secret of the AAD applica
 
 For more information about how to create an Azure AD Application check out [this guide](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal).
 
-```typescript
-import { IoTSpacesClient } from ("@azure/iotspaces");
-import { DefaultAzureCredential } from ("@azure/identity");
+```javascript
+const { IoTSpacesClient } = require("@azure/iotspaces");
+const { DefaultAzureCredential } = require("@azure/identity");
 const subscriptionId = "00000000-0000-0000-0000-000000000000";
-const client = new IoTSpacesClient(new DefaultAzureCredential(), subscriptionId);
+const client = new IoTSpacesClient(
+  new DefaultAzureCredential(),
+  subscriptionId
+);
 ```
 
 ## Key concepts
@@ -58,7 +60,7 @@ const client = new IoTSpacesClient(new DefaultAzureCredential(), subscriptionId)
 Enabling logging may help uncover useful information about failures. In order to see a log of HTTP requests and responses, set the `AZURE_LOG_LEVEL` environment variable to `info`. Alternatively, logging can be enabled at runtime by calling `setLogLevel` in the `@azure/logger`:
 
 ```javascript
-import { setLogLevel } from "@azure/logger";
+const { setLogLevel } = require("@azure/logger");
 setLogLevel("info");
 ```
 
@@ -75,7 +77,6 @@ If you'd like to contribute to this library, please read the [contributing guide
 ## Related projects
 
 - [Microsoft Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js)
-
 
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/

@@ -18,6 +18,7 @@ import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { generateApiExtractorConfig } from "./generators/static/apiExtractorConfig";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
+import { generateSampleTestFile } from './generators/test/sampleTestGenerator';
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
@@ -64,6 +65,7 @@ export async function generateTypeScriptLibrary(
   const {
     packageDetails,
     licenseHeader: shouldGenerateLicense,
+    generateTest,
     outputPath,
     srcPath
   } = getAutorestOptions();
@@ -77,12 +79,6 @@ export async function generateTypeScriptLibrary(
     );
 
     if (isConflict) {
-      operationGroup.operations.forEach(operation => {
-        operation.typeDetails.typeName = operation.typeDetails.typeName.replace(
-          operationGroup.name,
-          `${operationGroup.name}Operations`
-        );
-      });
       operationGroup.name = `${operationGroup.name}Operations`;
       operationGroup.key = `${operationGroup.key}Operations`;
     }
@@ -92,6 +88,9 @@ export async function generateTypeScriptLibrary(
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
   generateReadmeFile(clientDetails, project);
+  if (generateTest) {
+    generateSampleTestFile(project);
+  }
   generateTsConfig(project);
   generateRollupConfig(project);
   generateApiExtractorConfig(project);

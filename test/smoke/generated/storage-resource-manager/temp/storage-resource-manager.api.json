@@ -14296,7 +14296,7 @@
         {
           "kind": "Interface",
           "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies:interface",
-          "docComment": "/**\n * Interface representing a ObjectReplicationPolicies.\n */\n",
+          "docComment": "/**\n * List storage account object replication policies.\n */\n",
           "excerptTokens": [
             {
               "kind": "Content",
@@ -14307,37 +14307,13 @@
           "name": "ObjectReplicationPolicies",
           "members": [
             {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies#createOrUpdate:member(1)",
-              "docComment": "/**\n * Create or update the object replication policy of the storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param properties - The object replication policy set to a storage account. A unique policy ID will be created if absent.\n *\n * @param options - The options parameters.\n */\n",
+              "kind": "PropertySignature",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies#value:member",
+              "docComment": "/**\n * The replication policy between two storage accounts.\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "createOrUpdate(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", objectReplicationPolicyId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", properties: "
+                  "text": "value?: "
                 },
                 {
                   "kind": "Reference",
@@ -14346,369 +14322,19 @@
                 },
                 {
                   "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesCreateOrUpdateOptionalParams",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesCreateOrUpdateOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesCreateOrUpdateResponse",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesCreateOrUpdateResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
+                  "text": "[]"
                 },
                 {
                   "kind": "Content",
                   "text": ";"
                 }
               ],
-              "returnTypeTokenRange": {
-                "startIndex": 11,
-                "endIndex": 15
-              },
               "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "objectReplicationPolicyId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "properties",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 9,
-                    "endIndex": 10
-                  }
-                }
-              ],
-              "name": "createOrUpdate"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies#delete:member(1)",
-              "docComment": "/**\n * Deletes the object replication policy associated with the specified storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "delete(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", objectReplicationPolicyId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesDeleteOptionalParams",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesDeleteOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<void>"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 9,
-                "endIndex": 11
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "objectReplicationPolicyId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                }
-              ],
-              "name": "delete"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies#get:member(1)",
-              "docComment": "/**\n * Get the object replication policy of the storage account by policy ID.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "get(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", objectReplicationPolicyId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesGetOptionalParams",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesGetOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "Promise",
-                  "canonicalReference": "!Promise:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesGetResponse",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesGetResponse:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 9,
-                "endIndex": 13
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "objectReplicationPolicyId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 7,
-                    "endIndex": 8
-                  }
-                }
-              ],
-              "name": "get"
-            },
-            {
-              "kind": "MethodSignature",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies#list:member(1)",
-              "docComment": "/**\n * List the object replication policies associated with the storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "list(resourceGroupName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", accountName: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPoliciesListOptionalParams",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesListOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "): "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "PagedAsyncIterableIterator",
-                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<"
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPolicy",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPolicy:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": ">"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "returnTypeTokenRange": {
-                "startIndex": 7,
-                "endIndex": 11
-              },
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "resourceGroupName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 2
-                  }
-                },
-                {
-                  "parameterName": "accountName",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 3,
-                    "endIndex": 4
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 5,
-                    "endIndex": 6
-                  }
-                }
-              ],
-              "name": "list"
+              "name": "value",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 3
+              }
             }
           ],
           "extendsTokenRanges": []
@@ -14771,52 +14397,6 @@
             "startIndex": 1,
             "endIndex": 2
           }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesDef:interface",
-          "docComment": "/**\n * List storage account object replication policies.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface ObjectReplicationPoliciesDef "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ObjectReplicationPoliciesDef",
-          "members": [
-            {
-              "kind": "PropertySignature",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesDef#value:member",
-              "docComment": "/**\n * The replication policy between two storage accounts.\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "value?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ObjectReplicationPolicy",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPolicy:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "[]"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "releaseTag": "Public",
-              "name": "value",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 3
-              }
-            }
-          ],
-          "extendsTokenRanges": []
         },
         {
           "kind": "Interface",
@@ -14954,8 +14534,8 @@
             },
             {
               "kind": "Reference",
-              "text": "ObjectReplicationPoliciesDef",
-              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesDef:interface"
+              "text": "ObjectReplicationPolicies",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies:interface"
             },
             {
               "kind": "Content",
@@ -14968,6 +14548,426 @@
             "startIndex": 1,
             "endIndex": 2
           }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations:interface",
+          "docComment": "/**\n * Interface representing a ObjectReplicationPoliciesOperations.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ObjectReplicationPoliciesOperations "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ObjectReplicationPoliciesOperations",
+          "members": [
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations#createOrUpdate:member(1)",
+              "docComment": "/**\n * Create or update the object replication policy of the storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param properties - The object replication policy set to a storage account. A unique policy ID will be created if absent.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "createOrUpdate(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", objectReplicationPolicyId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", properties: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPolicy",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPolicy:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesCreateOrUpdateOptionalParams",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesCreateOrUpdateOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesCreateOrUpdateResponse",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesCreateOrUpdateResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 11,
+                "endIndex": 15
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "objectReplicationPolicyId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "properties",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 9,
+                    "endIndex": 10
+                  }
+                }
+              ],
+              "name": "createOrUpdate"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations#delete:member(1)",
+              "docComment": "/**\n * Deletes the object replication policy associated with the specified storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "delete(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", objectReplicationPolicyId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesDeleteOptionalParams",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesDeleteOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<void>"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "objectReplicationPolicyId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "delete"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations#get:member(1)",
+              "docComment": "/**\n * Get the object replication policy of the storage account by policy ID.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param objectReplicationPolicyId - The ID of object replication policy or 'default' if the policy ID is unknown.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "get(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", objectReplicationPolicyId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesGetOptionalParams",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesGetOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Promise",
+                  "canonicalReference": "!Promise:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesGetResponse",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesGetResponse:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 9,
+                "endIndex": 13
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "objectReplicationPolicyId",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 7,
+                    "endIndex": 8
+                  }
+                }
+              ],
+              "name": "get"
+            },
+            {
+              "kind": "MethodSignature",
+              "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations#list:member(1)",
+              "docComment": "/**\n * List the object replication policies associated with the storage account.\n *\n * @param resourceGroupName - The name of the resource group within the user's subscription. The name is case insensitive.\n *\n * @param accountName - The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only.\n *\n * @param options - The options parameters.\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "list(resourceGroupName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", accountName: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ", options?: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPoliciesListOptionalParams",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesListOptionalParams:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "): "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "PagedAsyncIterableIterator",
+                  "canonicalReference": "@azure/core-paging!PagedAsyncIterableIterator:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": "<"
+                },
+                {
+                  "kind": "Reference",
+                  "text": "ObjectReplicationPolicy",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPolicy:type"
+                },
+                {
+                  "kind": "Content",
+                  "text": ">"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "returnTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              },
+              "releaseTag": "Public",
+              "overloadIndex": 1,
+              "parameters": [
+                {
+                  "parameterName": "resourceGroupName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 1,
+                    "endIndex": 2
+                  }
+                },
+                {
+                  "parameterName": "accountName",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 3,
+                    "endIndex": 4
+                  }
+                },
+                {
+                  "parameterName": "options",
+                  "parameterTypeTokenRange": {
+                    "startIndex": 5,
+                    "endIndex": 6
+                  }
+                }
+              ],
+              "name": "list"
+            }
+          ],
+          "extendsTokenRanges": []
         },
         {
           "kind": "TypeAlias",
@@ -22889,17 +22889,17 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "storage-resource-manager!StorageManagementClient#objectReplicationPolicies:member",
+              "canonicalReference": "storage-resource-manager!StorageManagementClient#objectReplicationPoliciesOperations:member",
               "docComment": "",
               "excerptTokens": [
                 {
                   "kind": "Content",
-                  "text": "objectReplicationPolicies: "
+                  "text": "objectReplicationPoliciesOperations: "
                 },
                 {
                   "kind": "Reference",
-                  "text": "ObjectReplicationPolicies",
-                  "canonicalReference": "storage-resource-manager!ObjectReplicationPolicies:interface"
+                  "text": "ObjectReplicationPoliciesOperations",
+                  "canonicalReference": "storage-resource-manager!ObjectReplicationPoliciesOperations:interface"
                 },
                 {
                   "kind": "Content",
@@ -22907,7 +22907,7 @@
                 }
               ],
               "releaseTag": "Public",
-              "name": "objectReplicationPolicies",
+              "name": "objectReplicationPoliciesOperations",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

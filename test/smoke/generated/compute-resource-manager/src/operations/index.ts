@@ -15,7 +15,7 @@ export * from "./sshPublicKeys";
 export * from "./virtualMachineExtensionImages";
 export * from "./virtualMachineExtensions";
 export * from "./virtualMachineImages";
-export * from "./usage";
+export * from "./usageOperations";
 export * from "./virtualMachines";
 export * from "./virtualMachineSizes";
 export * from "./images";

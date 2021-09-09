@@ -31,12 +31,12 @@ export interface FloatWrapper {
 
 export interface DoubleWrapper {
   field1?: number;
-  field56ZerosAfterTheDotAndNegativeZeroBeforeDotAndThisIsALongFieldNameOnPurpose?: number;
+  field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose?: number;
 }
 
 export interface BooleanWrapper {
-  fieldTrue?: boolean;
-  fieldFalse?: boolean;
+  field_true?: boolean;
+  field_false?: boolean;
 }
 
 export interface StringWrapper {
@@ -110,7 +110,6 @@ export interface FishBase {
 }
 
 export interface DotFishBase {
-  fishType: string;
   species?: string;
   "fish.type": "DotSalmon";
 }
@@ -150,7 +149,7 @@ export interface MyBaseHelperType {
 }
 
 export interface SmartSalmon extends SalmonBase, Record<string, unknown> {
-  collegeDegree?: string;
+  college_degree?: string;
   fishtype: "smart_salmon";
 }
 
