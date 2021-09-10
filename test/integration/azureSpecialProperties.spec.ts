@@ -13,7 +13,7 @@ import {
   setClientRequestIdPolicyName
 } from "@azure/core-rest-pipeline";
 
-describe("auth validation", () => {
+describe.skip("auth validation", () => {
   it("should add authorization header", async () => {
     const expectedScopes = [
       "https://microsoft.com/.default",
@@ -54,7 +54,7 @@ describe("auth validation", () => {
   });
 });
 
-describe("AzureSpecialProperties", () => {
+describe.skip("AzureSpecialProperties", () => {
   let client: AzureSpecialPropertiesClient;
   let dummySubscriptionId: string;
   let clientOptions: AzureSpecialPropertiesClientOptionalParams;
@@ -84,7 +84,7 @@ describe("AzureSpecialProperties", () => {
     );
   });
 
-  describe("apiVersionDefault", () => {
+  describe.skip("apiVersionDefault", () => {
     it("should use the default api-version when no api-version parameter is present with getMethodGlobalValid", async () => {
       await client.apiVersionDefault.getMethodGlobalValid(
         responseStatusChecker
@@ -108,7 +108,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("apiVersionLocal", () => {
+  describe.skip("apiVersionLocal", () => {
     it("should use the api-version parameter instead of the default api-version when it is present, getMethodLocalNull", async () => {
       await client.apiVersionLocal.getMethodLocalNull(responseStatusChecker);
     });
@@ -126,7 +126,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("subscriptionInCredentials", () => {
+  describe.skip("subscriptionInCredentials", () => {
     it("should use the subscriptionId from credentials by default, postMethodGlobalNotProvidedValid", async () => {
       await client.subscriptionInCredentials.postMethodGlobalNotProvidedValid(
         responseStatusChecker
@@ -149,7 +149,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("subscriptionInMethod", () => {
+  describe.skip("subscriptionInMethod", () => {
     it("should use the subscriptionId parameter when it is present, postMethodLocalNull", async () => {
       try {
         await client.subscriptionInMethod.postMethodLocalNull(undefined as any);
@@ -184,7 +184,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("skipUrlEncoding", () => {
+  describe.skip("skipUrlEncoding", () => {
     const unencodedPath = "path1/path2/path3";
     it("should skip url encoding when specified for path parameters, getMethodPathValid", async () => {
       await client.skipUrlEncoding.getMethodPathValid(
@@ -205,7 +205,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("skipUrlEncoding", () => {
+  describe.skip("skipUrlEncoding", () => {
     const unencodedQuery = "value1&q2=value2&q3=value3";
     it("should skip url encoding when specified for query parameters, getMethodQueryValid", async () => {
       await client.skipUrlEncoding.getMethodQueryValid(
@@ -233,7 +233,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("xMsClientRequestId", () => {
+  describe.skip("xMsClientRequestId", () => {
     const validClientId = "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0";
 
     it("should overwrite x-ms-client-request-id, paramGet", async function() {
@@ -306,7 +306,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("headers", () => {
+  describe.skip("headers", () => {
     it("should allow custom-named request-id headers to be used", async () => {
       client = new AzureSpecialPropertiesClient(
         mockCredential,
@@ -371,7 +371,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("odata", () => {
+  describe.skip("odata", () => {
     it("should support OData filter", async () => {
       var options = {
         ...responseStatusChecker,
@@ -383,7 +383,7 @@ describe("AzureSpecialProperties", () => {
     });
   });
 
-  describe("credentials.environment property", function() {
+  describe.skip("credentials.environment property", function() {
     it("should be overridden by a user-specified base URL", async () => {
       let _response: FullOperationResponse;
       const client = new AzureSpecialPropertiesClient(
