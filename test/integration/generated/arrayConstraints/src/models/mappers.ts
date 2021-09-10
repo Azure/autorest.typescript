@@ -24,6 +24,12 @@ export const Product: coreClient.CompositeMapper = {
         type: {
           name: "String"
         }
+      },
+      custom: {
+        serializedName: "custom",
+        type: {
+          name: "String"
+        }
       }
     }
   }

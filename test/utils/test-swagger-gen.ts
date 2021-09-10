@@ -36,7 +36,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   arrayConstraints: {
-    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.json",
+    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
     clientName: "ArrayConstraintsClient",
     packageName: "array-constraints-client",
     licenseHeader: true,
