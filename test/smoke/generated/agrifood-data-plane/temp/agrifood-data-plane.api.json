@@ -26901,6 +26901,130 @@
           }
         },
         {
+          "kind": "Function",
+          "canonicalReference": "agrifood-data-plane!getLongRunningPoller:function(1)",
+          "docComment": "/**\n * Helper function that builds a Poller object to help polling a long running operation.\n *\n * @param client - Client to use for sending the request to get additional pages.\n *\n * @param initialResponse - The initial response.\n *\n * @param options - Options to set a resume state or custom polling interval.\n *\n * @returns - A poller object to poll for operation state updates and eventually get the final response.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare function getLongRunningPoller<TResult extends "
+            },
+            {
+              "kind": "Reference",
+              "text": "HttpResponse",
+              "canonicalReference": "@azure-rest/core-client!HttpResponse:type"
+            },
+            {
+              "kind": "Content",
+              "text": ">(client: "
+            },
+            {
+              "kind": "Reference",
+              "text": "Client",
+              "canonicalReference": "@azure-rest/core-client!Client:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ", initialResponse: "
+            },
+            {
+              "kind": "Content",
+              "text": "TResult"
+            },
+            {
+              "kind": "Content",
+              "text": ", options?: "
+            },
+            {
+              "kind": "Reference",
+              "text": "LroEngineOptions",
+              "canonicalReference": "@azure/core-lro!LroEngineOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TResult, "
+            },
+            {
+              "kind": "Reference",
+              "text": "PollOperationState",
+              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TResult>>"
+            },
+            {
+              "kind": "Content",
+              "text": "): "
+            },
+            {
+              "kind": "Reference",
+              "text": "PollerLike",
+              "canonicalReference": "@azure/core-lro!PollerLike:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<"
+            },
+            {
+              "kind": "Reference",
+              "text": "PollOperationState",
+              "canonicalReference": "@azure/core-lro!PollOperationState:interface"
+            },
+            {
+              "kind": "Content",
+              "text": "<TResult>, TResult>"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "returnTypeTokenRange": {
+            "startIndex": 12,
+            "endIndex": 16
+          },
+          "releaseTag": "Public",
+          "overloadIndex": 1,
+          "parameters": [
+            {
+              "parameterName": "client",
+              "parameterTypeTokenRange": {
+                "startIndex": 3,
+                "endIndex": 4
+              }
+            },
+            {
+              "parameterName": "initialResponse",
+              "parameterTypeTokenRange": {
+                "startIndex": 5,
+                "endIndex": 6
+              }
+            },
+            {
+              "parameterName": "options",
+              "parameterTypeTokenRange": {
+                "startIndex": 7,
+                "endIndex": 11
+              }
+            }
+          ],
+          "typeParameters": [
+            {
+              "typeParameterName": "TResult",
+              "constraintTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "defaultTypeTokenRange": {
+                "startIndex": 0,
+                "endIndex": 0
+              }
+            }
+          ],
+          "name": "getLongRunningPoller"
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "agrifood-data-plane!GetPage:type",
           "docComment": "/**\n * The type of a custom function that defines how to get a page and a link to the next one if any.\n */\n",

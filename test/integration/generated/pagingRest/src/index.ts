@@ -8,5 +8,6 @@ export * from "./models";
 export * from "./parameters";
 export * from "./responses";
 export * from "./paginateHelper";
+export * from "./pollingHelper";
 
 export default Paging;
