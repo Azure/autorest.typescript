@@ -52,7 +52,6 @@ export function addPagingImports(
   const { disablePagingAsyncIterators } = getAutorestOptions();
   if (!disablePagingAsyncIterators && hasAsyncIteratorOperations(operations)) {
     sourceFile.addImportDeclarations([
-      { moduleSpecifier: "@azure/core-paging" },
       {
         namedImports: ["PagedAsyncIterableIterator"],
         moduleSpecifier: "@azure/core-paging"
