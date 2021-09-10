@@ -802,6 +802,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   // TEST REST LEVEL CLIENTS
+  lroRest: {
+    swaggerOrConfig: "lro.json",
+    clientName: "LRORestClient",
+    packageName: "lro-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
