@@ -97,7 +97,9 @@ export function transformProperty({
     ),
     description,
     serializedName: serializedName,
-    type: typeName,
+    type: typeName.startsWith("$DO_NOT_NORMALIZE$")
+      ? typeName.replace("$DO_NOT_NORMALIZE$", "")
+      : typeName,
     required: !!required,
     readOnly: !!readOnly,
     nullable: !!nullable,
