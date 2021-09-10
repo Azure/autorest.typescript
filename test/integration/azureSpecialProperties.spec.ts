@@ -9,12 +9,13 @@ import { RestError } from "@azure/core-http";
 import { TokenCredential } from "@azure/core-auth";
 import { FullOperationResponse, OperationOptions } from "@azure/core-client";
 import {
+  bearerTokenAuthenticationPolicyName,
   createHttpHeaders,
   setClientRequestIdPolicyName
 } from "@azure/core-rest-pipeline";
 
 describe("auth validation", () => {
-  it("should add authorization header", async () => {
+  it.skip("should add authorization header", async () => {
     const expectedScopes = [
       "https://microsoft.com/.default",
       "http://microsoft.com/.default"
@@ -82,6 +83,7 @@ describe("AzureSpecialProperties", () => {
       dummySubscriptionId,
       clientOptions
     );
+    client.pipeline.removePolicy({ name: bearerTokenAuthenticationPolicyName });
   });
 
   describe("apiVersionDefault", () => {
@@ -272,6 +274,10 @@ describe("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
 
       let _response: FullOperationResponse;
@@ -315,6 +321,10 @@ describe("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       let _response: FullOperationResponse;
 
@@ -343,6 +353,10 @@ describe("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
+      testClient.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       testClient.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       let _response: FullOperationResponse;
       const result = await testClient.header.customNamedRequestIdParamGrouping(
@@ -398,9 +412,14 @@ describe("AzureSpecialProperties", () => {
                 request: req
               })
           },
+          allowInsecureConnection: true,
           endpoint: "http://usethisone.com"
         }
       );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       await client.apiVersionDefault.getMethodGlobalValid({
         onResponse: r => {
           _response = r;
