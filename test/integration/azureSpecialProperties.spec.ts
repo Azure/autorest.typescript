@@ -10,7 +10,9 @@ import { TokenCredential } from "@azure/core-auth";
 import { FullOperationResponse, OperationOptions } from "@azure/core-client";
 import {
   createHttpHeaders,
-  setClientRequestIdPolicyName
+  setClientRequestIdPolicyName,
+  bearerTokenAuthenticationPolicy,
+  bearerTokenAuthenticationPolicyName
 } from "@azure/core-rest-pipeline";
 
 describe.skip("auth validation", () => {
@@ -54,7 +56,7 @@ describe.skip("auth validation", () => {
   });
 });
 
-describe.skip("AzureSpecialProperties", () => {
+describe("AzureSpecialProperties", () => {
   let client: AzureSpecialPropertiesClient;
   let dummySubscriptionId: string;
   let clientOptions: AzureSpecialPropertiesClientOptionalParams;
@@ -82,9 +84,10 @@ describe.skip("AzureSpecialProperties", () => {
       dummySubscriptionId,
       clientOptions
     );
+    client.pipeline.removePolicy({ name: bearerTokenAuthenticationPolicyName });
   });
 
-  describe.skip("apiVersionDefault", () => {
+  describe("apiVersionDefault", () => {
     it("should use the default api-version when no api-version parameter is present with getMethodGlobalValid", async () => {
       await client.apiVersionDefault.getMethodGlobalValid(
         responseStatusChecker
@@ -108,7 +111,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("apiVersionLocal", () => {
+  describe("apiVersionLocal", () => {
     it("should use the api-version parameter instead of the default api-version when it is present, getMethodLocalNull", async () => {
       await client.apiVersionLocal.getMethodLocalNull(responseStatusChecker);
     });
@@ -126,7 +129,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("subscriptionInCredentials", () => {
+  describe("subscriptionInCredentials", () => {
     it("should use the subscriptionId from credentials by default, postMethodGlobalNotProvidedValid", async () => {
       await client.subscriptionInCredentials.postMethodGlobalNotProvidedValid(
         responseStatusChecker
@@ -149,7 +152,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("subscriptionInMethod", () => {
+  describe("subscriptionInMethod", () => {
     it("should use the subscriptionId parameter when it is present, postMethodLocalNull", async () => {
       try {
         await client.subscriptionInMethod.postMethodLocalNull(undefined as any);
@@ -184,7 +187,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("skipUrlEncoding", () => {
+  describe("skipUrlEncoding", () => {
     const unencodedPath = "path1/path2/path3";
     it("should skip url encoding when specified for path parameters, getMethodPathValid", async () => {
       await client.skipUrlEncoding.getMethodPathValid(
@@ -205,7 +208,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("skipUrlEncoding", () => {
+  describe("skipUrlEncoding", () => {
     const unencodedQuery = "value1&q2=value2&q3=value3";
     it("should skip url encoding when specified for query parameters, getMethodQueryValid", async () => {
       await client.skipUrlEncoding.getMethodQueryValid(
@@ -233,7 +236,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("xMsClientRequestId", () => {
+  describe("xMsClientRequestId", () => {
     const validClientId = "9C4D50EE-2D56-4CD3-8152-34347DC9F2B0";
 
     it("should overwrite x-ms-client-request-id, paramGet", async function() {
@@ -273,6 +276,9 @@ describe.skip("AzureSpecialProperties", () => {
         }
       );
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
 
       let _response: FullOperationResponse;
       await client.xMsClientRequestId.get({
@@ -306,7 +312,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("headers", () => {
+  describe("headers", () => {
     it("should allow custom-named request-id headers to be used", async () => {
       client = new AzureSpecialPropertiesClient(
         mockCredential,
@@ -315,6 +321,10 @@ describe.skip("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       let _response: FullOperationResponse;
 
@@ -343,6 +353,10 @@ describe.skip("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
+      testClient.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
+
       testClient.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       let _response: FullOperationResponse;
       const result = await testClient.header.customNamedRequestIdParamGrouping(
@@ -371,7 +385,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("odata", () => {
+  describe("odata", () => {
     it("should support OData filter", async () => {
       var options = {
         ...responseStatusChecker,
@@ -383,7 +397,7 @@ describe.skip("AzureSpecialProperties", () => {
     });
   });
 
-  describe.skip("credentials.environment property", function() {
+  describe("credentials.environment property", function() {
     it("should be overridden by a user-specified base URL", async () => {
       let _response: FullOperationResponse;
       const client = new AzureSpecialPropertiesClient(
@@ -401,6 +415,9 @@ describe.skip("AzureSpecialProperties", () => {
           endpoint: "http://usethisone.com"
         }
       );
+      client.pipeline.removePolicy({
+        name: bearerTokenAuthenticationPolicyName
+      });
       await client.apiVersionDefault.getMethodGlobalValid({
         onResponse: r => {
           _response = r;
