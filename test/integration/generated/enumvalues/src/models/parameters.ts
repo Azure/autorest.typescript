@@ -33,10 +33,9 @@ export const url: OperationURLParameter = {
   skipEncoding: true
 };
 
-export const encryptionAlgorith2: OperationParameter = {
-  parameterPath: ["options", "cpkInfo", "encryptionAlgorith2"],
+export const encryptionAlgorithm: OperationParameter = {
+  parameterPath: ["cpkInfo", "encryptionAlgorithm"],
   mapper: {
-    defaultValue: "AES256",
     isConstant: true,
     serializedName: "x-ms-encryption-algorithm",
     type: {
@@ -46,10 +45,35 @@ export const encryptionAlgorith2: OperationParameter = {
 };
 
 export const encryptionAlgorithmWithTwoValues: OperationParameter = {
-  parameterPath: ["options", "cpkInfo", "encryptionAlgorithmWithTwoValues"],
+  parameterPath: ["cpkInfo", "encryptionAlgorithmWithTwoValues"],
   mapper: {
-    serializedName: "x-ms-encryption-algorithm",
-    xmlName: "x-ms-encryption-algorithm",
+    serializedName: "x-ms-encryption-algorithm-with-two-values",
+    xmlName: "x-ms-encryption-algorithm-with-two-values",
+    type: {
+      name: "Enum",
+      allowedValues: ["AES256", "AES257"]
+    }
+  }
+};
+
+export const encryptionAlgorithmRequired: OperationParameter = {
+  parameterPath: "encryptionAlgorithmRequired",
+  mapper: {
+    defaultValue: "AES256",
+    isConstant: true,
+    serializedName: "x-ms-encryption-algorithm-required",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const encryptionAlgorithmRequiredWithTwoValues: OperationParameter = {
+  parameterPath: ["cpkInfo", "encryptionAlgorithmRequiredWithTwoValues"],
+  mapper: {
+    serializedName: "x-ms-encryption-algorithm-required-with-two-values",
+    required: true,
+    xmlName: "x-ms-encryption-algorithm-required-with-two-values",
     type: {
       name: "Enum",
       allowedValues: ["AES256", "AES257"]

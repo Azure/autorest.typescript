@@ -11,7 +11,11 @@ import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { EnumValuesClientContext } from "../enumValuesClientContext";
-import { BlobDownloadOptionalParams, BlobDownloadResponse } from "../models";
+import {
+  CpkInfo,
+  BlobDownloadOptionalParams,
+  BlobDownloadResponse
+} from "../models";
 
 /** Class containing Blob operations. */
 export class BlobImpl implements Blob {
@@ -28,12 +32,17 @@ export class BlobImpl implements Blob {
   /**
    * The Download operation reads or downloads a blob from the system, including its metadata and
    * properties. You can also call Download to read a snapshot.
+   * @param cpkInfo Parameter group
    * @param options The options parameters.
    */
   download(
+    cpkInfo: CpkInfo,
     options?: BlobDownloadOptionalParams
   ): Promise<BlobDownloadResponse> {
-    return this.client.sendOperationRequest({ options }, downloadOperationSpec);
+    return this.client.sendOperationRequest(
+      { cpkInfo, options },
+      downloadOperationSpec
+    );
   }
 }
 // Operation Specifications
@@ -58,8 +67,10 @@ const downloadOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.url],
   headerParameters: [
     Parameters.accept,
-    Parameters.encryptionAlgorith2,
-    Parameters.encryptionAlgorithmWithTwoValues
+    Parameters.encryptionAlgorithm,
+    Parameters.encryptionAlgorithmWithTwoValues,
+    Parameters.encryptionAlgorithmRequired,
+    Parameters.encryptionAlgorithmRequiredWithTwoValues
   ],
   isXML: true,
   serializer: xmlSerializer

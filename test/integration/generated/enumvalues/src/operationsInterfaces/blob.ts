@@ -6,14 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { BlobDownloadOptionalParams, BlobDownloadResponse } from "../models";
+import {
+  CpkInfo,
+  BlobDownloadOptionalParams,
+  BlobDownloadResponse
+} from "../models";
 
 /** Interface representing a Blob. */
 export interface Blob {
   /**
    * The Download operation reads or downloads a blob from the system, including its metadata and
    * properties. You can also call Download to read a snapshot.
+   * @param cpkInfo Parameter group
    * @param options The options parameters.
    */
-  download(options?: BlobDownloadOptionalParams): Promise<BlobDownloadResponse>;
+  download(
+    cpkInfo: CpkInfo,
+    options?: BlobDownloadOptionalParams
+  ): Promise<BlobDownloadResponse>;
 }

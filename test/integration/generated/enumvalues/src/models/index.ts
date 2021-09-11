@@ -26,19 +26,23 @@ export interface BlobDownloadExceptionHeaders {
 /** Parameter group */
 export interface CpkInfo {
   /** The algorithm used to produce the encryption key hash. Currently, the only accepted value is "AES256". Must be provided if the x-ms-encryption-key header is provided. */
-  encryptionAlgorith2?: "AES256";
+  encryptionAlgorithm?: "AES256";
   /** The algorithm used to produce the encryption key hash. Currently, the only accepted value is "AES256". Must be provided if the x-ms-encryption-key header is provided. */
   encryptionAlgorithmWithTwoValues?: EncryptionAlgorithmWithTwoValuesType;
+  /** The algorithm used to produce the encryption key hash. Currently, the only accepted value is "AES256". Must be provided if the x-ms-encryption-key header is provided. */
+  encryptionAlgorithmRequiredWithTwoValues: EncryptionAlgorithmRequiredWithTwoValuesType;
 }
 
 /** Defines values for EncryptionAlgorithmWithTwoValuesType. */
 export type EncryptionAlgorithmWithTwoValuesType = "AES256" | "AES257";
+/** Defines values for EncryptionAlgorithmRequiredWithTwoValuesType. */
+export type EncryptionAlgorithmRequiredWithTwoValuesType = "AES256" | "AES257";
 
 /** Optional parameters. */
 export interface BlobDownloadOptionalParams
   extends coreClient.OperationOptions {
-  /** Parameter group */
-  cpkInfo?: CpkInfo;
+  /** The algorithm used to produce the encryption key hash. Currently, the only accepted value is "AES256". Must be provided if the x-ms-encryption-key header is provided. */
+  encryptionAlgorithmWithTwoValues?: EncryptionAlgorithmWithTwoValuesType;
 }
 
 /** Contains response data for the download operation. */
