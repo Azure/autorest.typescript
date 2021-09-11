@@ -34,6 +34,12 @@
           },
           {
             "$ref": "#/parameters/EncryptionAlgorithmWithTwoValues"
+          },
+          {
+            "$ref": "#/parameters/EncryptionAlgorithmRequired"
+          },
+          {
+            "$ref": "#/parameters/EncryptionAlgorithmRequiredWithTwoValues"
           }
         ],
         "responses": {
@@ -80,7 +86,7 @@
   },
   "parameters": {
     "EncryptionAlgorithmWithTwoValues": {
-      "name": "x-ms-encryption-algorithm",
+      "name": "x-ms-encryption-algorithm-with-two-values",
       "x-ms-client-name": "EncryptionAlgorithmWithTwoValues",
       "type": "string",
       "in": "header",
@@ -98,13 +104,47 @@
     },
     "EncryptionAlgorithm": {
       "name": "x-ms-encryption-algorithm",
-      "x-ms-client-name": "encryptionAlgorith2",
+      "x-ms-client-name": "encryptionAlgorithm",
       "type": "string",
       "in": "header",
       "required": false,
       "enum": ["AES256"],
       "x-ms-enum": {
         "name": "EncryptionAlgorithmType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The algorithm used to produce the encryption key hash. Currently, the only accepted value is \"AES256\". Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "EncryptionAlgorithmRequired": {
+      "name": "x-ms-encryption-algorithm-required",
+      "x-ms-client-name": "encryptionAlgorithmRequired",
+      "type": "string",
+      "in": "header",
+      "required": true,
+      "enum": ["AES256"],
+      "x-ms-enum": {
+        "name": "EncryptionAlgorithmRequiredType",
+        "modelAsString": false
+      },
+      "x-ms-parameter-location": "method",
+      "x-ms-parameter-grouping": {
+        "name": "cpk-info"
+      },
+      "description": "The algorithm used to produce the encryption key hash. Currently, the only accepted value is \"AES256\". Must be provided if the x-ms-encryption-key header is provided."
+    },
+    "EncryptionAlgorithmRequiredWithTwoValues": {
+      "name": "x-ms-encryption-algorithm-required-with-two-values",
+      "x-ms-client-name": "EncryptionAlgorithmRequiredWithTwoValues",
+      "type": "string",
+      "in": "header",
+      "required": true,
+      "enum": ["AES256", "AES257"],
+      "x-ms-enum": {
+        "name": "EncryptionAlgorithmRequiredWithTwoValuesType",
         "modelAsString": false
       },
       "x-ms-parameter-location": "method",
