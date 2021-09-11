@@ -30,12 +30,6 @@ export async function generateRestLevelClient() {
     }
   });
 
-  model.operationGroups.some(og =>
-    og.operations.some(
-      o => o.extensions && o.extensions["x-ms-long-running-operation"]
-    )
-  );
-
   if (hasPagingOperations(model)) {
     generatePagingHelper(project);
   }
