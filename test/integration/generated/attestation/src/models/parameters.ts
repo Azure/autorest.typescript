@@ -62,7 +62,6 @@ export const attestationType: OperationURLParameter = {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "text/plain",
     isConstant: true,
     serializedName: "Content-Type",
     type: {

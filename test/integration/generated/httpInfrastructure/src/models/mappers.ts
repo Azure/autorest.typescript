@@ -96,7 +96,6 @@ export const HttpRedirectsHead300Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsHead300Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/head/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -113,7 +112,6 @@ export const HttpRedirectsGet300Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsGet300Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/get/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -130,7 +128,6 @@ export const HttpRedirectsHead301Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsHead301Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/head/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -147,7 +144,6 @@ export const HttpRedirectsGet301Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsGet301Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/get/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -164,7 +160,6 @@ export const HttpRedirectsPut301Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPut301Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/failure/500",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -181,7 +176,6 @@ export const HttpRedirectsHead302Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsHead302Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/head/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -198,7 +192,6 @@ export const HttpRedirectsGet302Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsGet302Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/get/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -215,7 +208,6 @@ export const HttpRedirectsPatch302Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPatch302Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/failure/500",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -232,7 +224,6 @@ export const HttpRedirectsPost303Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPost303Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/get/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -249,7 +240,6 @@ export const HttpRedirectsHead307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsHead307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/head/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -266,7 +256,6 @@ export const HttpRedirectsGet307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsGet307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/get/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -283,7 +272,6 @@ export const HttpRedirectsOptions307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsOptions307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/options/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -300,7 +288,6 @@ export const HttpRedirectsPut307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPut307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/put/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -317,7 +304,6 @@ export const HttpRedirectsPatch307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPatch307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/patch/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -334,7 +320,6 @@ export const HttpRedirectsPost307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsPost307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/post/200",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -351,7 +336,6 @@ export const HttpRedirectsDelete307Headers: coreClient.CompositeMapper = {
     className: "HttpRedirectsDelete307Headers",
     modelProperties: {
       location: {
-        defaultValue: "/http/success/delete/200",
         isConstant: true,
         serializedName: "location",
         type: {

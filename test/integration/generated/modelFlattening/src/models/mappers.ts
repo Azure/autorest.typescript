@@ -229,7 +229,6 @@ export const SimpleProduct: coreClient.CompositeMapper = {
         }
       },
       capacity: {
-        defaultValue: "Large",
         isConstant: true,
         serializedName: "details.max_product_capacity",
         type: {

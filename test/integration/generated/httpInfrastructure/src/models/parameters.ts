@@ -35,7 +35,6 @@ export const $host: OperationURLParameter = {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -47,7 +46,6 @@ export const contentType: OperationParameter = {
 export const booleanValue: OperationParameter = {
   parameterPath: ["options", "booleanValue"],
   mapper: {
-    defaultValue: true,
     isConstant: true,
     serializedName: "booleanValue",
     type: {

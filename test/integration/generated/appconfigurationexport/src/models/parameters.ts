@@ -218,7 +218,6 @@ export const select2: OperationQueryParameter = {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/vnd.microsoft.appconfig.kv+json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -268,7 +267,6 @@ export const select4: OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
-        defaultValue: "name",
         isConstant: true,
         type: {
           name: "String"

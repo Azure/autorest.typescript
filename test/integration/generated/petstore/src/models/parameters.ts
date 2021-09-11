@@ -71,7 +71,6 @@ export const $host: OperationURLParameter = {
 export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -149,7 +148,6 @@ export const petId: OperationURLParameter = {
 export const contentType3: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/x-www-form-urlencoded",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -206,7 +204,6 @@ export const apiKey: OperationParameter = {
 export const contentType4: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "multipart/form-data",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
