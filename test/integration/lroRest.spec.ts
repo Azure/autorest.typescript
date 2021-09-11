@@ -25,7 +25,7 @@ function createClient() {
     allowInsecureConnection: true,
     retryOptions: { retryDelayInMs: 0 }
   });
-  client.pipeline.addPolicy(cookiePolicy);
+  client.pipeline.addPolicy(cookiePolicy, { phase: "Retry" });
 
   return client;
 }
@@ -1336,7 +1336,7 @@ describe("LRO Rest Client", () => {
     });
   });
 
-  describe.skip("LRORetries", () => {
+  describe("LRORetries", () => {
     it("should retry put201CreatingSucceeded200", async () => {
       const initialResponse = await client
         .path("/lro/retryerror/put/201/creating/succeeded/200")
