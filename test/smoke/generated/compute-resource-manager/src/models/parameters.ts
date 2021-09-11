@@ -103,7 +103,6 @@ export const apiVersion: OperationQueryParameter = {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
-    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -253,7 +252,6 @@ export const parameters7: OperationParameter = {
 export const expand1: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
-    defaultValue: "instanceView",
     isConstant: true,
     serializedName: "$expand",
     type: {

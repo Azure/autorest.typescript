@@ -255,7 +255,6 @@ export const ImportExtensionRequest: coreClient.CompositeMapper = {
         }
       },
       operationMode: {
-        defaultValue: "Import",
         isConstant: true,
         serializedName: "properties.operationMode",
         type: {

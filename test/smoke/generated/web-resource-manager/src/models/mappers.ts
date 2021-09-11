@@ -5690,7 +5690,6 @@ export const ApiKVReference: coreClient.CompositeMapper = {
         }
       },
       source: {
-        defaultValue: "KeyVault",
         isConstant: true,
         serializedName: "source",
         type: {
@@ -5698,7 +5697,6 @@ export const ApiKVReference: coreClient.CompositeMapper = {
         }
       },
       location: {
-        defaultValue: "ApplicationSetting",
         isConstant: true,
         serializedName: "location",
         type: {
@@ -13661,7 +13659,6 @@ export const KeyVaultReferenceResource: coreClient.CompositeMapper = {
         }
       },
       source: {
-        defaultValue: "KeyVault",
         isConstant: true,
         serializedName: "properties.source",
         type: {
@@ -13669,7 +13666,6 @@ export const KeyVaultReferenceResource: coreClient.CompositeMapper = {
         }
       },
       location: {
-        defaultValue: "ApplicationSetting",
         isConstant: true,
         serializedName: "properties.location",
         type: {
