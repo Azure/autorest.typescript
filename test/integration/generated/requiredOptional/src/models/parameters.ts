@@ -81,6 +81,7 @@ export const queryParameter1: OperationParameter = {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "application/json",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -102,6 +103,7 @@ export const bodyParameter: OperationParameter = {
 export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "application/octet-stream",
     isConstant: true,
     serializedName: "Content-Type",
     type: {

@@ -7,6 +7,7 @@ import {
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "application/octet-stream",
     isConstant: true,
     serializedName: "Content-Type",
     type: {

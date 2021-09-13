@@ -335,6 +335,7 @@ export const sourceIfUnmodifiedSince: OperationParameter = {
 export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "application/octet-stream",
     isConstant: true,
     serializedName: "Content-Type",
     type: {

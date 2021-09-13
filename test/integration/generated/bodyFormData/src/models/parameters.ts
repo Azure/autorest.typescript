@@ -11,6 +11,7 @@ import { OperationParameter, OperationURLParameter } from "@azure/core-client";
 export const contentType: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "multipart/form-data",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
@@ -68,6 +69,7 @@ export const $host: OperationURLParameter = {
 export const contentType1: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "application/octet-stream",
     isConstant: true,
     serializedName: "Content-Type",
     type: {

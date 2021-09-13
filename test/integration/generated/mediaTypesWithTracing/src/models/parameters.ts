@@ -92,6 +92,7 @@ export const $host: OperationURLParameter = {
 export const contentType2: OperationParameter = {
   parameterPath: ["options", "contentType"],
   mapper: {
+    defaultValue: "text/plain",
     isConstant: true,
     serializedName: "Content-Type",
     type: {
