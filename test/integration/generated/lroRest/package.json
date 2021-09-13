@@ -1,10 +1,10 @@
 {
-  "name": "agrifood-data-plane",
-  "sdk-type": "client",
-  "version": "1.0.0-beta.1",
+  "name": "lro-rest",
+  "sdk-type": "mgmt",
+  "version": "1.0.0-preview1",
   "description": "",
   "main": "dist-esm/index.js",
-  "types": "./types/agrifood-data-plane.d.ts",
+  "types": "./types/lro-rest.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc --build && npm run extract-api",
@@ -34,14 +34,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": ">=12.0.0"
-  },
+  "engines": { "node": ">=12.0.0" },
   "dependencies": {
     "@azure-rest/core-client": "1.0.0-beta.6",
     "@azure/core-auth": "^1.3.0",
     "@azure/core-rest-pipeline": "^1.0.4",
-    "@azure/core-paging": "^1.2.0",
     "@azure/core-lro": "^2.2.0"
   },
   "devDependencies": {
