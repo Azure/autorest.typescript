@@ -614,7 +614,7 @@ function transformConstantMapper(pipelineValue: PipelineValue): PipelineValue {
 
   const constantSchema = schema as ConstantSchema;
 
-  if (options?.required === true) {
+  if (options?.required === true || serializedName == "Content-Type") {
     var defaultValue = constantSchema.value.value;
   }
 
