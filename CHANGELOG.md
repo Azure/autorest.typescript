@@ -1,4 +1,14 @@
+## 6.0.0-beta.13 (2021-09-14)
+
+- [BugFix] The word `Operations` has been removed from parameters and interface names. Please refer [#1181](https://github.com/Azure/autorest.typescript/pull/1181) for further details.
+- [Feature] A pagination helper is generated and exported if the rest client operation has `x-ms-pageable`. Please refer [#1169](https://github.com/Azure/autorest.typescript/pull/1169) for further details.
+- [Feature] Test generation framework has been added to the management SDK. Please refer [#1162](https://github.com/Azure/autorest.typescript/pull/1162) for further details.
+- [BugFix] The value of property `clientName` has been fixed relating to the discriminators. Please refer [#1184](https://github.com/Azure/autorest.typescript/pull/1184) for further details.
+- [Feature] LROHelpers have been added to the REST client generation. Please refer [#1190](https://github.com/Azure/autorest.typescript/pull/1190) for further details.
+- [BugFix] Code has been added to normalize only the required properties. Please refer [#1193](https://github.com/Azure/autorest.typescript/pull/1193) for further details.
+
 ## 6.0.0-beta.12 (2021-08-27)
+
 - [BugFix] The `fs-extra` package has been moved from `devDependencies` to `dependencies`. Please refer [1179](https://github.com/Azure/autorest.typescript/issues/1179) for further details.
 
 ## 6.0.0-beta.11 (2021-08-27)
