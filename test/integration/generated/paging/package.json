@@ -73,7 +73,6 @@
     "execute:samples": "echo skipped",
     "format": "echo skipped",
     "test": "echo skipped",
-    "prebuild": "echo skipped",
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
     "unit-test": "echo skipped",
