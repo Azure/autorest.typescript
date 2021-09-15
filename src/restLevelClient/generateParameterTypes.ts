@@ -1,4 +1,9 @@
-import { CodeModel, Operation, Parameter } from "@autorest/codemodel";
+import {
+  CodeModel,
+  Operation,
+  Parameter,
+  SchemaContext
+} from "@autorest/codemodel";
 import {
   InterfaceDeclarationStructure,
   Project,
@@ -8,6 +13,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getPropertySignature } from "./getPropertySignature";
 import { getOperationParameters } from "./helpers/getOperationParameters";
+import { hasInputModels } from "./helpers/modelHelpers";
 
 /**
  * Generates the interfaces describing each operation parameters
@@ -41,6 +47,7 @@ export function generateParameterInterfaces(
     const queryParameterDefinitions = buildQueryParameterDefinition(
       operationName,
       parameters,
+      [SchemaContext.Input],
       importedModels,
       internalReferences
     );
@@ -48,6 +55,7 @@ export function generateParameterInterfaces(
     const bodyParameterDefinition = buildBodyParametersDefinition(
       operationName,
       parameters,
+      [SchemaContext.Input],
       importedModels,
       internalReferences
     );
@@ -74,12 +82,14 @@ export function generateParameterInterfaces(
     }
   ]);
 
-  parametersFile.addImportDeclarations([
-    {
-      namedImports: [...importedModels],
-      moduleSpecifier: "./models"
-    }
-  ]);
+  if (hasInputModels(model)) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: [...importedModels],
+        moduleSpecifier: "./models"
+      }
+    ]);
+  }
 }
 
 /**
@@ -88,6 +98,7 @@ export function generateParameterInterfaces(
 function buildBodyParametersDefinition(
   operationName: string,
   parameters: Parameter[],
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   internalReferences: Set<string>
 ): InterfaceDeclarationStructure | undefined {
@@ -98,7 +109,11 @@ function buildBodyParametersDefinition(
 
   const bodyParameterInterfaceName = `${operationName}BodyParam`;
   // There is only one body parameter can't be more than one so we can safely take the first
-  const bodySignature = getPropertySignature(bodyParameters[0], importedModels);
+  const bodySignature = getPropertySignature(
+    bodyParameters[0],
+    schemaUsage,
+    importedModels
+  );
 
   internalReferences.add(bodyParameterInterfaceName);
 
@@ -123,6 +138,7 @@ function buildBodyParametersDefinition(
 function buildQueryParameterDefinition(
   operationName: string,
   parameters: Parameter[],
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   internalReferences: Set<string>
 ): InterfaceDeclarationStructure[] | undefined {
@@ -139,7 +155,7 @@ function buildQueryParameterDefinition(
 
   // Get the property signature for each query parameter
   const propertiesDefinition = queryParameters.map(qp =>
-    getPropertySignature(qp, importedModels)
+    getPropertySignature(qp, schemaUsage, importedModels)
   );
 
   const hasRequiredParameters = propertiesDefinition.some(
