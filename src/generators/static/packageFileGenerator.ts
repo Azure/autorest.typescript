@@ -61,7 +61,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
-      build: "tsc --build && npm run extract-api",
+      build: "npm run clean && tsc --build && npm run extract-api",
       "extract-api": "mkdirp ./review && api-extractor run --local",
       pack: "npm pack 2>&1",
       lint: "echo skipped",
