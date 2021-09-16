@@ -2105,8 +2105,39 @@ export declare interface NetworkRuleSet {
     defaultAction: DefaultAction;
 }
 
-/** Interface representing a ObjectReplicationPolicies. */
+/** List storage account object replication policies. */
 export declare interface ObjectReplicationPolicies {
+    /** The replication policy between two storage accounts. */
+    value?: ObjectReplicationPolicy[];
+}
+
+/** Optional parameters. */
+export declare interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the createOrUpdate operation. */
+export declare type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
+
+/** Optional parameters. */
+export declare interface ObjectReplicationPoliciesDeleteOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Optional parameters. */
+export declare interface ObjectReplicationPoliciesGetOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the get operation. */
+export declare type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy;
+
+/** Optional parameters. */
+export declare interface ObjectReplicationPoliciesListOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the list operation. */
+export declare type ObjectReplicationPoliciesListResponse = ObjectReplicationPolicies;
+
+/** Interface representing a ObjectReplicationPoliciesOperations. */
+export declare interface ObjectReplicationPoliciesOperations {
     /**
      * List the object replication policies associated with the storage account.
      * @param resourceGroupName The name of the resource group within the user's subscription. The name is
@@ -2156,37 +2187,6 @@ export declare interface ObjectReplicationPolicies {
      */
     delete(resourceGroupName: string, accountName: string, objectReplicationPolicyId: string, options?: ObjectReplicationPoliciesDeleteOptionalParams): Promise<void>;
 }
-
-/** Optional parameters. */
-export declare interface ObjectReplicationPoliciesCreateOrUpdateOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the createOrUpdate operation. */
-export declare type ObjectReplicationPoliciesCreateOrUpdateResponse = ObjectReplicationPolicy;
-
-/** List storage account object replication policies. */
-export declare interface ObjectReplicationPoliciesDef {
-    /** The replication policy between two storage accounts. */
-    value?: ObjectReplicationPolicy[];
-}
-
-/** Optional parameters. */
-export declare interface ObjectReplicationPoliciesDeleteOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Optional parameters. */
-export declare interface ObjectReplicationPoliciesGetOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the get operation. */
-export declare type ObjectReplicationPoliciesGetResponse = ObjectReplicationPolicy;
-
-/** Optional parameters. */
-export declare interface ObjectReplicationPoliciesListOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the list operation. */
-export declare type ObjectReplicationPoliciesListResponse = ObjectReplicationPoliciesDef;
 
 /** The replication policy between two storage accounts. Multiple rules can be defined in one policy. */
 export declare type ObjectReplicationPolicy = Resource & {
@@ -3375,7 +3375,7 @@ export declare class StorageManagementClient extends StorageManagementClientCont
     managementPolicies: ManagementPolicies;
     privateEndpointConnections: PrivateEndpointConnections;
     privateLinkResources: PrivateLinkResources;
-    objectReplicationPolicies: ObjectReplicationPolicies;
+    objectReplicationPoliciesOperations: ObjectReplicationPoliciesOperations;
     encryptionScopes: EncryptionScopes;
     blobServices: BlobServices;
     blobContainers: BlobContainers;

@@ -6,10 +6,9 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
-  OAuth2PermissionGrantDef,
+  OAuth2PermissionGrant,
   OAuth2PermissionGrantListNextOptionalParams,
   OAuth2PermissionGrantListOptionalParams,
   OAuth2PermissionGrantCreateOptionalParams,
@@ -18,15 +17,15 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Interface representing a OAuth2PermissionGrant. */
-export interface OAuth2PermissionGrant {
+/** Interface representing a OAuth2PermissionGrantOperations. */
+export interface OAuth2PermissionGrantOperations {
   /**
    * Queries OAuth2 permissions grants for the relevant SP ObjectId of an app.
    * @param options The options parameters.
    */
   list(
     options?: OAuth2PermissionGrantListOptionalParams
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
   /**
    * Gets the next page of OAuth2 permission grants
    * @param nextLink Next link for the list operation.
@@ -35,7 +34,7 @@ export interface OAuth2PermissionGrant {
   listNext(
     nextLink: string,
     options?: OAuth2PermissionGrantListNextOptionalParams
-  ): PagedAsyncIterableIterator<OAuth2PermissionGrantDef>;
+  ): PagedAsyncIterableIterator<OAuth2PermissionGrant>;
   /**
    * Grants OAuth2 permissions for the relevant resource Ids of an app.
    * @param options The options parameters.

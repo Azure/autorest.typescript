@@ -70,7 +70,10 @@ export function transformChoice(
     name,
     schemaType,
     itemType,
-    description: `Defines values for ${metadata.name}.`,
+    description: `Defines values for ${normalizeName(
+      metadata.name,
+      NameType.Interface
+    )}.`,
     serializedName: metadata.name,
     properties: extractProperties(choice)
   };

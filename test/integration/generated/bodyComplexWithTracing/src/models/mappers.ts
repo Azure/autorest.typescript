@@ -394,7 +394,7 @@ export const DotFish: coreClient.CompositeMapper = {
     uberParent: "DotFish",
     polymorphicDiscriminator: {
       serializedName: "fish\\.type",
-      clientName: "fish\\.type"
+      clientName: "fishType"
     },
     modelProperties: {
       fishType: {

@@ -26,12 +26,13 @@ export async function runAutorest(
     title,
     restLevelClient,
     headAsBoolean,
-    isTestPackage
+    isTestPackage,
+    generateTest
   } = options;
   let autorestCommand = `autorest${
     /^win/.test(process.platform) ? ".cmd" : ""
   }`;
-  const commandArguments: string[] = [`--typescript`];
+  let commandArguments: string[] = [`--typescript`];
 
   if (tracingInfo) {
     commandArguments.push(
@@ -76,9 +77,15 @@ export async function runAutorest(
   if (hideClients) {
     commandArguments.push(`--hide-clients=${hideClients}`);
   }
+  
   if (isTestPackage) {
     commandArguments.push(`--is-test-package=${isTestPackage}`);
   }
+
+  if (generateTest) {
+    commandArguments.push(`--generate-test=${generateTest}`);
+  }
+
   if (licenseHeader !== undefined) {
     commandArguments.push(`--license-header=${licenseHeader}`);
   }
@@ -91,6 +98,7 @@ export async function runAutorest(
 
   commandArguments.push(
     inputFileCommand,
+    "--version=3.5.1",
     "--clear-output-folder=true",
     `--output-folder=${outputPath}`,
     `--use=.`,
@@ -101,7 +109,7 @@ export async function runAutorest(
   }
 
   if (extraParams !== undefined && extraParams.length > 0) {
-    commandArguments.push(extraParams.join(" "));
+    commandArguments = commandArguments.concat(extraParams);
   }
   const generationTask = async () => {
     console.log(`=== Start ${title} ===`);

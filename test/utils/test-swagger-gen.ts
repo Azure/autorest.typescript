@@ -19,6 +19,7 @@ interface SwaggerConfig {
   restLevelClient?: boolean;
   headAsBoolean?: boolean;
   isTestPackage?: boolean;
+  generateTest?: boolean;
 }
 
 const package_version = "1.0.0-preview1";
@@ -33,10 +34,11 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
-    isTestPackage: true
+    isTestPackage: true,
+    generateTest: true
   },
   arrayConstraints: {
-    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.json",
+    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
     clientName: "ArrayConstraintsClient",
     packageName: "array-constraints-client",
     licenseHeader: true,
@@ -810,6 +812,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   // TEST REST LEVEL CLIENTS
+  lroRest: {
+    swaggerOrConfig: "lro.json",
+    clientName: "LRORestClient",
+    packageName: "lro-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
@@ -878,7 +891,8 @@ const generateSwaggers = async (
       allowInsecureConnection,
       restLevelClient,
       headAsBoolean,
-      isTestPackage
+      isTestPackage,
+      generateTest
     } = testSwaggers[name];
 
     let swaggerPath = swaggerOrConfig;
@@ -913,7 +927,8 @@ const generateSwaggers = async (
         allowInsecureConnection,
         restLevelClient,
         headAsBoolean,
-        isTestPackage
+        isTestPackage,
+        generateTest
       },
       isDebugging
     );

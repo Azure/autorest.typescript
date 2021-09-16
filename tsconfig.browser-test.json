@@ -28,6 +28,7 @@
     "test/utils/stream-helpers.ts"
   ],
   "exclude": [
+    "test/integration/generated/additionalProperties/test/*.ts",
     "test/integration/generated/noLicenseHeader/*.ts",
     "test/integration/generated/licenseHeader/*.ts",
     "test/integration/generated/bodyFormData/*.ts",

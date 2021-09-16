@@ -6,13 +6,12 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { UsageDef, UsageListOptionalParams } from "../models";
+import { Usage, UsageListOptionalParams } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Interface representing a Usage. */
-export interface Usage {
+/** Interface representing a UsageOperations. */
+export interface UsageOperations {
   /**
    * Gets, for the specified location, the current compute resource usage information as well as the
    * limits for compute resources under the subscription.
@@ -22,5 +21,5 @@ export interface Usage {
   list(
     location: string,
     options?: UsageListOptionalParams
-  ): PagedAsyncIterableIterator<UsageDef>;
+  ): PagedAsyncIterableIterator<Usage>;
 }

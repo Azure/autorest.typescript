@@ -3,7 +3,7 @@
 > see https://aka.ms/autorest
 
 ```yaml
-input-file: https://raw.githubusercontent.com/Azure/autorest.testserver/09b758559197bd81787f81a6a6b03e1493492ced/swagger/body-complex.json
+input-file: https://raw.githubusercontent.com/Azure/autorest.testserver/main/swagger/body-complex.json
 ```
 
 ## Customizations for Track 2

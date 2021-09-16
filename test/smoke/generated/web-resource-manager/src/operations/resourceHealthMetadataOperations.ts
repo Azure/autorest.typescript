@@ -6,15 +6,14 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
-import { ResourceHealthMetadata } from "../operationsInterfaces";
+import { ResourceHealthMetadataOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
 import {
-  ResourceHealthMetadataDef,
+  ResourceHealthMetadata,
   ResourceHealthMetadataListNextOptionalParams,
   ResourceHealthMetadataListOptionalParams,
   ResourceHealthMetadataListByResourceGroupNextOptionalParams,
@@ -38,12 +37,13 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Class containing ResourceHealthMetadata operations. */
-export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
+/** Class containing ResourceHealthMetadataOperations operations. */
+export class ResourceHealthMetadataOperationsImpl
+  implements ResourceHealthMetadataOperations {
   private readonly client: WebSiteManagementClientContext;
 
   /**
-   * Initialize a new instance of the class ResourceHealthMetadata class.
+   * Initialize a new instance of the class ResourceHealthMetadataOperations class.
    * @param client Reference to the service client
    */
   constructor(client: WebSiteManagementClientContext) {
@@ -56,7 +56,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
    */
   public list(
     options?: ResourceHealthMetadataListOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata> {
     const iter = this.listPagingAll(options);
     return {
       next() {
@@ -73,7 +73,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
 
   private async *listPagingPage(
     options?: ResourceHealthMetadataListOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
+  ): AsyncIterableIterator<ResourceHealthMetadata[]> {
     let result = await this._list(options);
     yield result.value || [];
     let continuationToken = result.nextLink;
@@ -86,7 +86,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
 
   private async *listPagingAll(
     options?: ResourceHealthMetadataListOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): AsyncIterableIterator<ResourceHealthMetadata> {
     for await (const page of this.listPagingPage(options)) {
       yield* page;
     }
@@ -101,7 +101,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   public listByResourceGroup(
     resourceGroupName: string,
     options?: ResourceHealthMetadataListByResourceGroupOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata> {
     const iter = this.listByResourceGroupPagingAll(resourceGroupName, options);
     return {
       next() {
@@ -119,7 +119,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private async *listByResourceGroupPagingPage(
     resourceGroupName: string,
     options?: ResourceHealthMetadataListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
+  ): AsyncIterableIterator<ResourceHealthMetadata[]> {
     let result = await this._listByResourceGroup(resourceGroupName, options);
     yield result.value || [];
     let continuationToken = result.nextLink;
@@ -137,7 +137,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
   private async *listByResourceGroupPagingAll(
     resourceGroupName: string,
     options?: ResourceHealthMetadataListByResourceGroupOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): AsyncIterableIterator<ResourceHealthMetadata> {
     for await (const page of this.listByResourceGroupPagingPage(
       resourceGroupName,
       options
@@ -157,7 +157,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     options?: ResourceHealthMetadataListBySiteOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata> {
     const iter = this.listBySitePagingAll(resourceGroupName, name, options);
     return {
       next() {
@@ -176,7 +176,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     options?: ResourceHealthMetadataListBySiteOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
+  ): AsyncIterableIterator<ResourceHealthMetadata[]> {
     let result = await this._listBySite(resourceGroupName, name, options);
     yield result.value || [];
     let continuationToken = result.nextLink;
@@ -196,7 +196,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     resourceGroupName: string,
     name: string,
     options?: ResourceHealthMetadataListBySiteOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): AsyncIterableIterator<ResourceHealthMetadata> {
     for await (const page of this.listBySitePagingPage(
       resourceGroupName,
       name,
@@ -219,7 +219,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     slot: string,
     options?: ResourceHealthMetadataListBySiteSlotOptionalParams
-  ): PagedAsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): PagedAsyncIterableIterator<ResourceHealthMetadata> {
     const iter = this.listBySiteSlotPagingAll(
       resourceGroupName,
       name,
@@ -249,7 +249,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     slot: string,
     options?: ResourceHealthMetadataListBySiteSlotOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef[]> {
+  ): AsyncIterableIterator<ResourceHealthMetadata[]> {
     let result = await this._listBySiteSlot(
       resourceGroupName,
       name,
@@ -276,7 +276,7 @@ export class ResourceHealthMetadataImpl implements ResourceHealthMetadata {
     name: string,
     slot: string,
     options?: ResourceHealthMetadataListBySiteSlotOptionalParams
-  ): AsyncIterableIterator<ResourceHealthMetadataDef> {
+  ): AsyncIterableIterator<ResourceHealthMetadata> {
     for await (const page of this.listBySiteSlotPagingPage(
       resourceGroupName,
       name,
@@ -528,7 +528,7 @@ const getBySiteOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceHealthMetadataDef
+      bodyMapper: Mappers.ResourceHealthMetadata
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse
@@ -573,7 +573,7 @@ const getBySiteSlotOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ResourceHealthMetadataDef
+      bodyMapper: Mappers.ResourceHealthMetadata
     },
     default: {
       bodyMapper: Mappers.DefaultErrorResponse

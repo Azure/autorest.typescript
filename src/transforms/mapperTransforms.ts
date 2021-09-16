@@ -362,7 +362,10 @@ function transformObjectMapper(pipelineValue: PipelineValue) {
         uberParent,
         polymorphicDiscriminator: {
           serializedName: discriminator!.property.serializedName,
-          clientName: discriminator!.property.serializedName
+          clientName: normalizeName(
+            discriminator!.property.language.default.name,
+            NameType.Property
+          )
         }
       }),
       ...(additionalProperties && { additionalProperties })

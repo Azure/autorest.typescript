@@ -7,39 +7,43 @@
  */
 
 import {
-  ServerAutomaticTuningGetOptionalParams,
-  ServerAutomaticTuningGetResponse,
-  ServerAutomaticTuningDef,
-  ServerAutomaticTuningUpdateOptionalParams,
-  ServerAutomaticTuningUpdateResponse
+  DatabaseAutomaticTuningGetOptionalParams,
+  DatabaseAutomaticTuningGetResponse,
+  DatabaseAutomaticTuning,
+  DatabaseAutomaticTuningUpdateOptionalParams,
+  DatabaseAutomaticTuningUpdateResponse
 } from "../models";
 
-/** Interface representing a ServerAutomaticTuning. */
-export interface ServerAutomaticTuning {
+/** Interface representing a DatabaseAutomaticTuningOperations. */
+export interface DatabaseAutomaticTuningOperations {
   /**
-   * Retrieves server automatic tuning options.
+   * Gets a database's automatic tuning.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param databaseName The name of the database.
    * @param options The options parameters.
    */
   get(
     resourceGroupName: string,
     serverName: string,
-    options?: ServerAutomaticTuningGetOptionalParams
-  ): Promise<ServerAutomaticTuningGetResponse>;
+    databaseName: string,
+    options?: DatabaseAutomaticTuningGetOptionalParams
+  ): Promise<DatabaseAutomaticTuningGetResponse>;
   /**
-   * Update automatic tuning options on server.
+   * Update automatic tuning properties for target database.
    * @param resourceGroupName The name of the resource group that contains the resource. You can obtain
    *                          this value from the Azure Resource Manager API or the portal.
    * @param serverName The name of the server.
+   * @param databaseName The name of the database.
    * @param parameters The requested automatic tuning resource state.
    * @param options The options parameters.
    */
   update(
     resourceGroupName: string,
     serverName: string,
-    parameters: ServerAutomaticTuningDef,
-    options?: ServerAutomaticTuningUpdateOptionalParams
-  ): Promise<ServerAutomaticTuningUpdateResponse>;
+    databaseName: string,
+    parameters: DatabaseAutomaticTuning,
+    options?: DatabaseAutomaticTuningUpdateOptionalParams
+  ): Promise<DatabaseAutomaticTuningUpdateResponse>;
 }

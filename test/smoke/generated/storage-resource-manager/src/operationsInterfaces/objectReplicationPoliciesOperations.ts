@@ -6,7 +6,6 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import "@azure/core-paging";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import {
   ObjectReplicationPolicy,
@@ -19,8 +18,8 @@ import {
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
-/** Interface representing a ObjectReplicationPolicies. */
-export interface ObjectReplicationPolicies {
+/** Interface representing a ObjectReplicationPoliciesOperations. */
+export interface ObjectReplicationPoliciesOperations {
   /**
    * List the object replication policies associated with the storage account.
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is

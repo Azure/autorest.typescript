@@ -13,7 +13,9 @@ import { generateParameterInterfaces } from "./generateParameterTypes";
 import { generatePathFirstClient } from "./generateClient";
 import { generateIndexFile } from "../generators/indexGenerator";
 import { generatePagingHelper } from "./generatePagingHelper";
+import { generatePollingHelper } from "./generatePollingHelper";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
+import { hasPollingOperations } from "./helpers/hasPollingOperations";
 /**
  * Generates a Rest Level Client library
  */
@@ -31,6 +33,11 @@ export async function generateRestLevelClient() {
   if (hasPagingOperations(model)) {
     generatePagingHelper(project);
   }
+
+  if (hasPollingOperations(model)) {
+    generatePollingHelper(project);
+  }
+
   performCodeModelMutations(model);
   generatePackageJson(project);
   generateLicenseFile(project);

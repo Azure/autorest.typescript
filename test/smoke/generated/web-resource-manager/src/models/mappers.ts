@@ -8492,13 +8492,13 @@ export const ResourceHealthMetadataCollection: coreClient.CompositeMapper = {
         serializedName: "value",
         required: true,
         xmlName: "value",
-        xmlElementName: "ResourceHealthMetadataDef",
+        xmlElementName: "ResourceHealthMetadata",
         type: {
           name: "Sequence",
           element: {
             type: {
               name: "Composite",
-              className: "ResourceHealthMetadataDef"
+              className: "ResourceHealthMetadata"
             }
           }
         }
@@ -17336,11 +17336,11 @@ export const HybridConnectionLimits: coreClient.CompositeMapper = {
   }
 };
 
-export const ResourceHealthMetadataDef: coreClient.CompositeMapper = {
-  serializedName: "ResourceHealthMetadataDef",
+export const ResourceHealthMetadata: coreClient.CompositeMapper = {
+  serializedName: "ResourceHealthMetadata",
   type: {
     name: "Composite",
-    className: "ResourceHealthMetadataDef",
+    className: "ResourceHealthMetadata",
     modelProperties: {
       ...ProxyOnlyResource.type.modelProperties,
       category: {

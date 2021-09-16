@@ -15,7 +15,7 @@ import {
   ManagementPoliciesImpl,
   PrivateEndpointConnectionsImpl,
   PrivateLinkResourcesImpl,
-  ObjectReplicationPoliciesImpl,
+  ObjectReplicationPoliciesOperationsImpl,
   EncryptionScopesImpl,
   BlobServicesImpl,
   BlobContainersImpl,
@@ -30,7 +30,7 @@ import {
   ManagementPolicies,
   PrivateEndpointConnections,
   PrivateLinkResources,
-  ObjectReplicationPolicies,
+  ObjectReplicationPoliciesOperations,
   EncryptionScopes,
   BlobServices,
   BlobContainers,
@@ -60,7 +60,9 @@ export class StorageManagementClient extends StorageManagementClientContext {
     this.managementPolicies = new ManagementPoliciesImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);
     this.privateLinkResources = new PrivateLinkResourcesImpl(this);
-    this.objectReplicationPolicies = new ObjectReplicationPoliciesImpl(this);
+    this.objectReplicationPoliciesOperations = new ObjectReplicationPoliciesOperationsImpl(
+      this
+    );
     this.encryptionScopes = new EncryptionScopesImpl(this);
     this.blobServices = new BlobServicesImpl(this);
     this.blobContainers = new BlobContainersImpl(this);
@@ -75,7 +77,7 @@ export class StorageManagementClient extends StorageManagementClientContext {
   managementPolicies: ManagementPolicies;
   privateEndpointConnections: PrivateEndpointConnections;
   privateLinkResources: PrivateLinkResources;
-  objectReplicationPolicies: ObjectReplicationPolicies;
+  objectReplicationPoliciesOperations: ObjectReplicationPoliciesOperations;
   encryptionScopes: EncryptionScopes;
   blobServices: BlobServices;
   blobContainers: BlobContainers;

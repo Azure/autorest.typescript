@@ -24,6 +24,7 @@ const highLevelTsConfig = {
   exclude: ["node_modules"]
 };
 
+
 const restLevelTsConfig = {
   compilerOptions: {
     module: "es6",
@@ -45,12 +46,16 @@ const restLevelTsConfig = {
 };
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
+  if (generateTest) {
+    highLevelTsConfig.include.push("./test/**/*.ts");
+  }
+  
   const tsConfigContents = restLevelClient
     ? restLevelTsConfig
     : highLevelTsConfig;

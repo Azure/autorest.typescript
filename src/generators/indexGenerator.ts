@@ -3,6 +3,7 @@ import { ClientDetails } from "../models/clientDetails";
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
+import { hasPollingOperations } from "../restLevelClient/helpers/hasPollingOperations";
 
 export function generateIndexFile(
   project: Project,
@@ -54,6 +55,14 @@ function generateRLCIndex(file: SourceFile) {
     file.addExportDeclarations([
       {
         moduleSpecifier: "./paginateHelper"
+      }
+    ]);
+  }
+
+  if (hasPollingOperations(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./pollingHelper"
       }
     ]);
   }

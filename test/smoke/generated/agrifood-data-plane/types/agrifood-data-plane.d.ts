@@ -1,8 +1,11 @@
 import { Client } from '@azure-rest/core-client';
 import { ClientOptions } from '@azure-rest/core-client';
 import { HttpResponse } from '@azure-rest/core-client';
+import { LroEngineOptions } from '@azure/core-lro';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PathUncheckedResponse } from '@azure-rest/core-client';
+import { PollerLike } from '@azure/core-lro';
+import { PollOperationState } from '@azure/core-lro';
 import { RequestParameters } from '@azure-rest/core-client';
 import { TokenCredential } from '@azure/core-auth';
 
@@ -2062,6 +2065,15 @@ export declare interface GeoJsonObjectBase {
  * Helper type to extract the type of an array
  */
 export declare type GetArrayType<T> = T extends Array<infer TData> ? TData : never;
+
+/**
+ * Helper function that builds a Poller object to help polling a long running operation.
+ * @param client - Client to use for sending the request to get additional pages.
+ * @param initialResponse - The initial response.
+ * @param options - Options to set a resume state or custom polling interval.
+ * @returns - A poller object to poll for operation state updates and eventually get the final response.
+ */
+export declare function getLongRunningPoller<TResult extends HttpResponse>(client: Client, initialResponse: TResult, options?: LroEngineOptions<TResult, PollOperationState<TResult>>): PollerLike<PollOperationState<TResult>, TResult>;
 
 /**
  * The type of a custom function that defines how to get a page and a link to the next one if any.

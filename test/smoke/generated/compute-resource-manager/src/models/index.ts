@@ -270,13 +270,13 @@ export interface AutomaticOSUpgradeProperties {
 /** The List Usages operation response. */
 export interface ListUsagesResult {
   /** The list of compute resource usages. */
-  value: UsageDef[];
+  value: Usage[];
   /** The URI to fetch the next page of compute resource usage information. Call ListNext() with this to fetch the next page of compute resource usage information. */
   nextLink?: string;
 }
 
 /** Describes Compute Resource Usage. */
-export interface UsageDef {
+export interface Usage {
   /** An enum describing the unit of usage measurement. */
   unit: "Count";
   /** The current usage of the resource. */

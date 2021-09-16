@@ -7440,10 +7440,10 @@ export const TransparentDataEncryptionActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const DatabaseAutomaticTuningDef: coreClient.CompositeMapper = {
+export const DatabaseAutomaticTuning: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "DatabaseAutomaticTuningDef",
+    className: "DatabaseAutomaticTuning",
     modelProperties: {
       ...ProxyResource.type.modelProperties,
       desiredState: {
@@ -8655,10 +8655,10 @@ export const ManagedBackupShortTermRetentionPolicy: coreClient.CompositeMapper =
   }
 };
 
-export const ServerAutomaticTuningDef: coreClient.CompositeMapper = {
+export const ServerAutomaticTuning: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ServerAutomaticTuningDef",
+    className: "ServerAutomaticTuning",
     modelProperties: {
       ...ProxyResource.type.modelProperties,
       desiredState: {
