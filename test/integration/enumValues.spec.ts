@@ -16,23 +16,21 @@ describe("EnumValuesClient", () => {
 
   describe("#InspectCall", () => {
     it("Verify that non required parameters are not present in the call", async () => {
-      client = new EnumValuesClient("https://microsoft.com/", {
+      client = new EnumValuesClient("http://usethisone.com", {
         httpClient: {
           sendRequest: req => {
-            console.log(req.headers.toJSON());
             assert.doesNotHaveAnyKeys(req.headers, [
               "encryptionAlgorithm",
               "encryptionAlgorithmWithTwoValues"
             ]);
-            // is there a way to stop the call?
-            Promise.resolve({
+            return Promise.resolve({
               status: 200,
               headers: createHttpHeaders(),
               request: req
             });
-            return {} as any;
           }
-        }
+        },
+        endpoint: "http://usethisone.com"
       });
 
       await client.blob.download({
