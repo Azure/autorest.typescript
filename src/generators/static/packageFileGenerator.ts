@@ -213,7 +213,7 @@ function regularAutorestPackage(
     ],
     scripts: {
       build:
-        "tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+        "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
       pack: "npm pack 2>&1",
