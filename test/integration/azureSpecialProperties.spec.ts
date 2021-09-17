@@ -12,8 +12,7 @@ import {
   bearerTokenAuthenticationPolicyName,
   createHttpHeaders,
   setClientRequestIdPolicyName,
-  bearerTokenAuthenticationPolicy,
-  bearerTokenAuthenticationPolicyName
+  bearerTokenAuthenticationPolicy
 } from "@azure/core-rest-pipeline";
 
 describe.skip("auth validation", () => {

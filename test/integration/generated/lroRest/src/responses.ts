@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import { HttpResponse } from "@azure-rest/core-client";
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
+import { HttpResponse } from "@azure-rest/core-client";
 import { Product, CloudError, Sku, SubProduct } from "./models";
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
@@ -177,7 +177,7 @@ export interface LROsPutAsyncRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -221,7 +221,7 @@ export interface LROsPutAsyncRetryFailed200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -335,7 +335,7 @@ export interface LROsDeleteProvisioning202Accepted200Succeeded202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
@@ -365,7 +365,7 @@ export interface LROsDeleteProvisioning202DeletingFailed200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/failed */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
@@ -395,7 +395,7 @@ export interface LROsDeleteProvisioning202Deletingcanceled200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/canceled */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
@@ -436,7 +436,7 @@ export interface LROsDelete202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
@@ -462,7 +462,7 @@ export interface LROsDelete202NoRetry204202Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
@@ -535,7 +535,7 @@ export interface LROsDeleteAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -558,7 +558,7 @@ export interface LROsDeleteAsyncNoRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -582,7 +582,7 @@ export interface LROsDeleteAsyncRetryFailed202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -605,7 +605,7 @@ export interface LROsDeleteAsyncRetrycanceled202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -644,7 +644,7 @@ export interface LROsPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
@@ -664,7 +664,7 @@ export interface LROsPost202NoRetry204202Headers {
   /** Location to poll for result status: will be set to /lro/post/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success */
@@ -734,7 +734,7 @@ export interface LROsPostAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -763,7 +763,7 @@ export interface LROsPostAsyncNoRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -786,7 +786,7 @@ export interface LROsPostAsyncRetryFailed202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -808,7 +808,7 @@ export interface LROsPostAsyncRetrycanceled202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -852,7 +852,7 @@ export interface LRORetrysPutAsyncRelativeRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -881,7 +881,7 @@ export interface LRORetrysDeleteProvisioning202Accepted200Succeeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
@@ -904,7 +904,7 @@ export interface LRORetrysDelete202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
@@ -927,7 +927,7 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -950,7 +950,7 @@ export interface LRORetrysPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
@@ -972,7 +972,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1056,7 +1056,7 @@ export interface LrosaDsPutAsyncRelativeRetry400200Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1078,7 +1078,7 @@ export interface LrosaDsDeleteNonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 400 with an error body */
@@ -1098,7 +1098,7 @@ export interface LrosaDsDelete202NonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 with a location header */
@@ -1121,7 +1121,7 @@ export interface LrosaDsDeleteAsyncRelativeRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1143,7 +1143,7 @@ export interface LrosaDsPostNonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 400 with no error body */
@@ -1163,7 +1163,7 @@ export interface LrosaDsPost202NonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 with a location header */
@@ -1185,7 +1185,7 @@ export interface LrosaDsPostAsyncRelativeRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1230,7 +1230,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatus200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1254,7 +1254,7 @@ export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1291,7 +1291,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryNoStatus202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1313,7 +1313,7 @@ export interface LrosaDsPost202NoLocation202Headers {
   /** Location to poll for result status: will not be set */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, without a location header. */
@@ -1335,7 +1335,7 @@ export interface LrosaDsPostAsyncRelativeRetryNoPayload202Headers {
   /** Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1377,7 +1377,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidHeader200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
@@ -1401,7 +1401,7 @@ export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1424,7 +1424,7 @@ export interface LrosaDsDelete202RetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers */
@@ -1448,7 +1448,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid */
@@ -1473,7 +1473,7 @@ export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Headers {
   /** Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1496,7 +1496,7 @@ export interface LrosaDsPost202RetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers. */
@@ -1520,7 +1520,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
@@ -1545,7 +1545,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Headers {
   /** Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1570,7 +1570,7 @@ export interface LROsCustomHeaderPutAsyncRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
@@ -1613,7 +1613,7 @@ export interface LROsCustomHeaderPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/customheader/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
@@ -1637,7 +1637,7 @@ export interface LROsCustomHeaderPostAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
-  "retry-after"?: string;
+  "retry-after"?: number;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
