@@ -41,17 +41,17 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -68,13 +68,13 @@ export interface ApplicationDataListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -107,17 +107,17 @@ export interface ApplicationDataListQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -134,13 +134,13 @@ export interface ApplicationDataListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -184,13 +184,13 @@ export interface AttachmentsListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -245,13 +245,13 @@ export interface BoundariesListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -299,13 +299,13 @@ export interface BoundariesListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -384,13 +384,13 @@ export interface CropsListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -435,13 +435,13 @@ export interface CropVarietiesListByCropIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -477,13 +477,13 @@ export interface CropVarietiesListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -523,13 +523,13 @@ export interface FarmersListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -590,13 +590,13 @@ export interface FarmsListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -626,13 +626,13 @@ export interface FarmsListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -688,13 +688,13 @@ export interface FieldsListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -726,13 +726,13 @@ export interface FieldsListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -805,17 +805,17 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -832,13 +832,13 @@ export interface HarvestDataListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -887,17 +887,17 @@ export interface HarvestDataListQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -914,13 +914,13 @@ export interface HarvestDataListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -969,13 +969,13 @@ export interface OAuthProvidersListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1010,13 +1010,13 @@ export interface OAuthTokensListQueryParamProperties {
   /** If the token object is valid. */
   isValid?: boolean;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1076,17 +1076,17 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -1103,13 +1103,13 @@ export interface PlantingDataListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1146,17 +1146,17 @@ export interface PlantingDataListQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -1173,13 +1173,13 @@ export interface PlantingDataListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1216,9 +1216,9 @@ export interface ScenesListQueryParamProperties {
   /** Source name of scene data, default value Sentinel_2_L2A (Sentinel 2 L2A). */
   source?: string;
   /** Scene start UTC datetime (inclusive), sample format: yyyy-MM-ddThh:mm:ssZ. */
-  startDateTime?: Date;
+  startDateTime?: Date | string;
   /** Scene end UTC datetime (inclusive), sample format: yyyy-MM-dThh:mm:ssZ. */
-  endDateTime?: Date;
+  endDateTime?: Date | string;
   /** Filter scenes with cloud coverage percentage less than max value. Range [0 to 100.0]. */
   maxCloudCoveragePercentage?: number;
   /** Filter scenes with dark pixel coverage percentage less than max value. Range [0 to 100.0]. */
@@ -1289,9 +1289,9 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
   /** Unit of average seed population value attribute. */
   avgSeedPopulationUnit?: string;
   /** Minimum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  minPlantingDateTime?: Date;
+  minPlantingDateTime?: Date | string;
   /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  maxPlantingDateTime?: Date;
+  maxPlantingDateTime?: Date | string;
   /** Ids of the resource. */
   ids?: Array<string>;
   /** Names of the resource. */
@@ -1304,13 +1304,13 @@ export interface SeasonalFieldsListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1351,9 +1351,9 @@ export interface SeasonalFieldsListQueryParamProperties {
   /** Unit of average seed population value attribute. */
   avgSeedPopulationUnit?: string;
   /** Minimum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  minPlantingDateTime?: Date;
+  minPlantingDateTime?: Date | string;
   /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  maxPlantingDateTime?: Date;
+  maxPlantingDateTime?: Date | string;
   /** Ids of the resource. */
   ids?: Array<string>;
   /** Names of the resource. */
@@ -1366,13 +1366,13 @@ export interface SeasonalFieldsListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1416,13 +1416,13 @@ export type SeasonalFieldsCreateCascadeDeleteJobParameters = SeasonalFieldsCreat
 
 export interface SeasonsListQueryParamProperties {
   /** Minimum season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  minStartDateTime?: Date;
+  minStartDateTime?: Date | string;
   /** Maximum season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  maxStartDateTime?: Date;
+  maxStartDateTime?: Date | string;
   /** Minimum season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  minEndDateTime?: Date;
+  minEndDateTime?: Date | string;
   /** Maximum season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  maxEndDateTime?: Date;
+  maxEndDateTime?: Date | string;
   /** Years of the resource. */
   years?: Array<number>;
   /** Ids of the resource. */
@@ -1437,13 +1437,13 @@ export interface SeasonsListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1485,17 +1485,17 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -1512,13 +1512,13 @@ export interface TillageDataListByFarmerIdQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1551,17 +1551,17 @@ export interface TillageDataListQueryParamProperties {
   /** Operation boundary IDs associated with operation data. */
   operationBoundaryIds?: Array<string>;
   /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationStartDateTime?: Date;
+  minOperationStartDateTime?: Date | string;
   /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationStartDateTime?: Date;
+  maxOperationStartDateTime?: Date | string;
   /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationEndDateTime?: Date;
+  minOperationEndDateTime?: Date | string;
   /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationEndDateTime?: Date;
+  maxOperationEndDateTime?: Date | string;
   /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  minOperationModifiedDateTime?: Date;
+  minOperationModifiedDateTime?: Date | string;
   /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-  maxOperationModifiedDateTime?: Date;
+  maxOperationModifiedDateTime?: Date | string;
   /** Minimum area for which operation was applied (inclusive). */
   minArea?: number;
   /** Maximum area for which operation was applied (inclusive). */
@@ -1578,13 +1578,13 @@ export interface TillageDataListQueryParamProperties {
   /** Statuses of the resource. */
   statuses?: Array<string>;
   /** Minimum creation date of resource (inclusive). */
-  minCreatedDateTime?: Date;
+  minCreatedDateTime?: Date | string;
   /** Maximum creation date of resource (inclusive). */
-  maxCreatedDateTime?: Date;
+  maxCreatedDateTime?: Date | string;
   /** Minimum last modified date of resource (inclusive). */
-  minLastModifiedDateTime?: Date;
+  minLastModifiedDateTime?: Date | string;
   /** Maximum last modified date of resource (inclusive). */
-  maxLastModifiedDateTime?: Date;
+  maxLastModifiedDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1623,9 +1623,9 @@ export interface WeatherListQueryParamProperties {
   /** Granularity of weather data (daily/hourly). */
   granularity: string;
   /** Weather data start UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  startDateTime?: Date;
+  startDateTime?: Date | string;
   /** Weather data end UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-  endDateTime?: Date;
+  endDateTime?: Date | string;
   /**
    * Maximum number of items needed (inclusive).
    * Minimum = 10, Maximum = 1000, Default value = 50.
