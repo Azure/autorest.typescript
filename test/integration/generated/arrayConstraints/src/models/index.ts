@@ -11,6 +11,8 @@ import * as coreClient from "@azure/core-client";
 export interface Product {
   integer?: number;
   string?: string;
+  /** The OS of agent machine */
+  custom?: OS;
 }
 
 /** Known values of {@link Enum0} that the service accepts. */
@@ -28,6 +30,22 @@ export enum KnownEnum0 {
  * **two**
  */
 export type Enum0 = string;
+
+/** Known values of {@link OS} that the service accepts. */
+export enum KnownOS {
+  Windows = "Windows",
+  Linux = "Linux"
+}
+
+/**
+ * Defines values for OS. \
+ * {@link KnownOS} can be used interchangeably with OS,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **Windows** \
+ * **Linux**
+ */
+export type OS = string;
 
 /** Optional parameters. */
 export interface ArrayConstraintsClientPostValueOptionalParams

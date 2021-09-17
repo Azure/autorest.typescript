@@ -2,7 +2,8 @@ import { assert } from "chai";
 import PagingClient, {
   Product,
   PagingRestClient,
-  paginate
+  paginate,
+  getLongRunningPoller
 } from "./generated/pagingRest/src";
 
 describe("Integration tests for Paging Rest Client", () => {
@@ -335,6 +336,28 @@ describe("Integration tests for Paging Rest Client", () => {
       const lastItemId = items[items.length - 1].properties?.id;
       assert.equal(items.length, 10);
       assert.equal(lastItemId, 110);
+    });
+  });
+
+  describe("#getMultiplePagesLRO", () => {
+    it("succeeds and gets 10 pages", async () => {
+      const initialResponse = await client.path("/paging/multiple/lro").post();
+
+      const poller = getLongRunningPoller(client, initialResponse, {
+        intervalInMs: 0
+      });
+
+      const pagingResult = await poller.pollUntilDone();
+      const iter = paginate(client, pagingResult);
+
+      let index = 0;
+      let items: Product[] = [];
+      for await (const item of iter) {
+        index++;
+        assert.equal(item.properties?.id, index);
+        items.push(item);
+      }
+      assert.equal(items.length, 10);
     });
   });
 });

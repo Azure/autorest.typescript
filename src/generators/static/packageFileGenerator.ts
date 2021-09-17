@@ -6,6 +6,7 @@ import { ClientDetails } from "../../models/clientDetails";
 import { PackageDetails } from "../../models/packageDetails";
 import { getAutorestOptions, getSession } from "../../autorestSession";
 import { hasPagingOperations } from "../../utils/extractPaginationDetails";
+import { hasPollingOperations } from "../../restLevelClient/helpers/hasPollingOperations";
 
 export function generatePackageJson(
   project: Project,
@@ -50,6 +51,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
   const { azureArm } = getAutorestOptions();
   const { model } = getSession();
   const hasPaging = hasPagingOperations(model);
+  const hasLRO = hasPollingOperations(model);
   return {
     name: `${packageDetails.name}`,
     "sdk-type": `${azureArm ? "mgmt" : "client"}`,
@@ -95,6 +97,9 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "@azure/core-rest-pipeline": "^1.3.0",
       ...(hasPaging && {
         "@azure/core-paging": "^1.2.0"
+      }),
+      ...(hasLRO && {
+        "@azure/core-lro": "^2.2.0"
       })
     },
     devDependencies: {
@@ -128,11 +133,10 @@ function regularAutorestPackage(
     azureArm,
     addCredentials,
     azureOutputDirectory,
-    generateTest,
+    generateTest
   } = getAutorestOptions();
-  const hasLro = clientDetails.operationGroups.some(og =>
-    og.operations.some(o => o.isLro)
-  );
+  const { model } = getSession();
+  const hasLro = hasPollingOperations(model);
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;
 
@@ -240,17 +244,21 @@ function regularAutorestPackage(
     sideEffects: false,
     autoPublish: true
   };
-  if(generateTest) {
+  if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies['@azure/identity'] = "2.0.0-beta.6";
-    packageInfo.devDependencies['@azure-tools/test-recorder'] = "^1.0.0";
-    packageInfo.devDependencies['mocha'] = "^7.1.1";
-    packageInfo.devDependencies['cross-env'] = "^7.0.2";
-    packageInfo.scripts['test'] = "npm run integration-test";
-    packageInfo.scripts['unit-test'] = "npm run unit-test:node && npm run unit-test:browser";
-    packageInfo.scripts['unit-test:node'] = "cross-env TEST_MODE=playback npm run integration-test:node";
-    packageInfo.scripts['integration-test'] = "npm run integration-test:node && npm run integration-test:browser";
-    packageInfo.scripts['integration-test:node'] = "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts";
+    packageInfo.devDependencies["@azure/identity"] = "2.0.0-beta.6";
+    packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
+    packageInfo.devDependencies["mocha"] = "^7.1.1";
+    packageInfo.devDependencies["cross-env"] = "^7.0.2";
+    packageInfo.scripts["test"] = "npm run integration-test";
+    packageInfo.scripts["unit-test"] =
+      "npm run unit-test:node && npm run unit-test:browser";
+    packageInfo.scripts["unit-test:node"] =
+      "cross-env TEST_MODE=playback npm run integration-test:node";
+    packageInfo.scripts["integration-test"] =
+      "npm run integration-test:node && npm run integration-test:browser";
+    packageInfo.scripts["integration-test:node"] =
+      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts";
   }
   return packageInfo;
 }

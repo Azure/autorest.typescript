@@ -38,7 +38,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     generateTest: true
   },
   arrayConstraints: {
-    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.json",
+    swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
     clientName: "ArrayConstraintsClient",
     packageName: "array-constraints-client",
     licenseHeader: true,
@@ -812,6 +812,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     isTestPackage: true
   },
   // TEST REST LEVEL CLIENTS
+  lroRest: {
+    swaggerOrConfig: "lro.json",
+    clientName: "LRORestClient",
+    packageName: "lro-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
