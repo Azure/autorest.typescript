@@ -19,7 +19,7 @@ import {
   StructureKind
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getElementType, getFormatDocs } from "./schemaHelpers";
+import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
@@ -101,6 +101,14 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   }
 
+  if (hasHeaders) {
+    responsesFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeaders"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
+  }
   responsesFile.addImportDeclarations([
     {
       namedImports: ["HttpResponse"],
@@ -108,12 +116,7 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   ]);
 
-  if (hasHeaders) {
-    responsesFile.addImportDeclaration({
-      namedImports: ["RawHttpHeaders"],
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    });
-  }
+
 
   responsesFile.addImportDeclarations([
     {
@@ -199,7 +202,7 @@ function getResponseHeaderInterfaceDefinition(
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
-          type: "string",
+          type: primitiveSchemaToType(h.schema, [SchemaContext.Output, SchemaContext.Exception]),
           hasQuestionToken: true
         };
       })
