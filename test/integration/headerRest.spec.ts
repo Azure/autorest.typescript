@@ -5,7 +5,7 @@ import HeaderRestClient, { HeaderRestClientRestClient } from "./generated/header
 
 should();
 
-describe.only("header Rest", function() {
+describe("header Rest", function() {
   describe("Swagger Header BAT", function() {
     describe("Basic Header Operations", function() {
       let testClient: HeaderRestClientRestClient;
