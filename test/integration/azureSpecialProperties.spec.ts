@@ -275,7 +275,6 @@ describe("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
-
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       client.pipeline.removePolicy({
         name: bearerTokenAuthenticationPolicyName
