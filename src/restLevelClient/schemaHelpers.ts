@@ -9,6 +9,7 @@ import {
   ObjectSchema,
   PrimitiveSchema,
   Schema,
+  SchemaContext,
   SchemaType
 } from "@autorest/codemodel";
 import { getLanguageMetadata } from "../utils/languageHelpers";
@@ -21,15 +22,20 @@ import { NameType, normalizeName } from "../utils/nameUtils";
  */
 export function getElementType(
   schema: Schema,
+  schemaUsage: SchemaContext[],
   importedModels = new Set<string>()
 ): string {
   if (isArraySchema(schema)) {
     // Recursively find out the type for the elements in the array.
-    return `Array<${getElementType(schema.elementType, importedModels)}>`;
+    return `Array<${getElementType(
+      schema.elementType,
+      schemaUsage,
+      importedModels
+    )}>`;
   }
 
   if (isPrimitiveSchema(schema)) {
-    return `${primitiveSchemaToType(schema)}`;
+    return `${primitiveSchemaToType(schema, schemaUsage)}`;
   }
 
   if (isAnyObjectSchema(schema)) {
@@ -37,7 +43,11 @@ export function getElementType(
   }
 
   if (isObjectSchema(schema)) {
-    const { name } = getObjectInfo(schema);
+    const nameSuffix = schemaUsage.includes(SchemaContext.Output)
+      ? "Output"
+      : "";
+    const schemaInfo = getObjectInfo(schema);
+    const name = `${schemaInfo.name}${nameSuffix}`;
     importedModels.add(name);
     return `${name}`;
   }
@@ -45,6 +55,7 @@ export function getElementType(
   if (isDictionarySchema(schema)) {
     return `Record<string, ${getElementType(
       schema.elementType,
+      schemaUsage,
       importedModels
     )}>`;
   }
@@ -85,7 +96,10 @@ function isPrimitiveSchema(schema: Schema): boolean {
  * @param schema - Schema to generate a type for
  * @returns a string with the Typescript type to generate for the given schema
  */
-export function primitiveSchemaToType(schema: PrimitiveSchema): string {
+export function primitiveSchemaToType(
+  schema: PrimitiveSchema,
+  schemaUse: SchemaContext[]
+): string {
   switch (schema.type) {
     case SchemaType.Any:
       return "any";
@@ -95,7 +109,9 @@ export function primitiveSchemaToType(schema: PrimitiveSchema): string {
     case SchemaType.Date:
     case SchemaType.Time:
     case SchemaType.DateTime:
-      return "Date";
+      return schemaUse.includes(SchemaContext.Output)
+        ? "string"
+        : "Date | string";
     case SchemaType.Char:
       return "string";
     case SchemaType.ByteArray:

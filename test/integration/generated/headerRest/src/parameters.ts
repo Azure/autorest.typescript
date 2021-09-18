@@ -3,11 +3,10 @@
 
 import { RawHttpHeadersInput } from "@azure/core-rest-pipeline";
 import { RequestParameters } from "@azure-rest/core-client";
-import "./models";
 
 export interface ParamExistingKeyHeaders {
   /** Send a post request with header value "User-Agent": "overwrite" */
-  userAgent?: string;
+  userAgent: string;
 }
 
 export interface ParamExistingKeyHeaderParam {
@@ -20,7 +19,7 @@ export type ResponseExistingKeyParameters = RequestParameters;
 
 export interface ParamProtectedKeyHeaders {
   /** Send a post request with header value "Content-Type": "text/html" */
-  contentType?: string;
+  contentType: string;
 }
 
 export interface ParamProtectedKeyHeaderParam {
@@ -33,9 +32,9 @@ export type ResponseProtectedKeyParameters = RequestParameters;
 
 export interface ParamIntegerHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values 1 or -2 */
-  value?: number;
+  value: number;
 }
 
 export interface ParamIntegerHeaderParam {
@@ -47,7 +46,7 @@ export type ParamIntegerParameters = ParamIntegerHeaderParam &
 
 export interface ResponseIntegerHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseIntegerHeaderParam {
@@ -59,9 +58,9 @@ export type ResponseIntegerParameters = ResponseIntegerHeaderParam &
 
 export interface ParamLongHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values 105 or -2 */
-  value?: number;
+  value: number;
 }
 
 export interface ParamLongHeaderParam {
@@ -72,7 +71,7 @@ export type ParamLongParameters = ParamLongHeaderParam & RequestParameters;
 
 export interface ResponseLongHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseLongHeaderParam {
@@ -84,9 +83,9 @@ export type ResponseLongParameters = ResponseLongHeaderParam &
 
 export interface ParamFloatHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values 0.07 or -3.0 */
-  value?: number;
+  value: number;
 }
 
 export interface ParamFloatHeaderParam {
@@ -97,7 +96,7 @@ export type ParamFloatParameters = ParamFloatHeaderParam & RequestParameters;
 
 export interface ResponseFloatHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseFloatHeaderParam {
@@ -109,9 +108,9 @@ export type ResponseFloatParameters = ResponseFloatHeaderParam &
 
 export interface ParamDoubleHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values 7e120 or -3.0 */
-  value?: number;
+  value: number;
 }
 
 export interface ParamDoubleHeaderParam {
@@ -122,7 +121,7 @@ export type ParamDoubleParameters = ParamDoubleHeaderParam & RequestParameters;
 
 export interface ResponseDoubleHeaders {
   /** Send a post request with header values "scenario": "positive" or "negative" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseDoubleHeaderParam {
@@ -134,9 +133,9 @@ export type ResponseDoubleParameters = ResponseDoubleHeaderParam &
 
 export interface ParamBoolHeaders {
   /** Send a post request with header values "scenario": "true" or "false" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values true or false */
-  value?: boolean;
+  value: boolean;
 }
 
 export interface ParamBoolHeaderParam {
@@ -147,7 +146,7 @@ export type ParamBoolParameters = ParamBoolHeaderParam & RequestParameters;
 
 export interface ResponseBoolHeaders {
   /** Send a post request with header values "scenario": "true" or "false" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseBoolHeaderParam {
@@ -159,7 +158,7 @@ export type ResponseBoolParameters = ResponseBoolHeaderParam &
 
 export interface ParamStringHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   value?: string;
 }
@@ -172,7 +171,7 @@ export type ParamStringParameters = ParamStringHeaderParam & RequestParameters;
 
 export interface ResponseStringHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseStringHeaderParam {
@@ -184,9 +183,9 @@ export type ResponseStringParameters = ResponseStringHeaderParam &
 
 export interface ParamDateHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "2010-01-01" or "0001-01-01" */
-  value?: Date;
+  value: Date | string;
 }
 
 export interface ParamDateHeaderParam {
@@ -197,7 +196,7 @@ export type ParamDateParameters = ParamDateHeaderParam & RequestParameters;
 
 export interface ResponseDateHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseDateHeaderParam {
@@ -209,9 +208,9 @@ export type ResponseDateParameters = ResponseDateHeaderParam &
 
 export interface ParamDatetimeHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
-  value?: Date;
+  value: Date | string;
 }
 
 export interface ParamDatetimeHeaderParam {
@@ -223,7 +222,7 @@ export type ParamDatetimeParameters = ParamDatetimeHeaderParam &
 
 export interface ResponseDatetimeHeaders {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseDatetimeHeaderParam {
@@ -235,9 +234,9 @@ export type ResponseDatetimeParameters = ResponseDatetimeHeaderParam &
 
 export interface ParamDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
-  value?: Date;
+  value?: Date | string;
 }
 
 export interface ParamDatetimeRfc1123HeaderParam {
@@ -249,7 +248,7 @@ export type ParamDatetimeRfc1123Parameters = ParamDatetimeRfc1123HeaderParam &
 
 export interface ResponseDatetimeRfc1123Headers {
   /** Send a post request with header values "scenario": "valid" or "min" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseDatetimeRfc1123HeaderParam {
@@ -261,9 +260,9 @@ export type ResponseDatetimeRfc1123Parameters = ResponseDatetimeRfc1123HeaderPar
 
 export interface ParamDurationHeaders {
   /** Send a post request with header values "scenario": "valid" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "P123DT22H14M12.011S" */
-  value?: string;
+  value: string;
 }
 
 export interface ParamDurationHeaderParam {
@@ -275,7 +274,7 @@ export type ParamDurationParameters = ParamDurationHeaderParam &
 
 export interface ResponseDurationHeaders {
   /** Send a post request with header values "scenario": "valid" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseDurationHeaderParam {
@@ -287,9 +286,9 @@ export type ResponseDurationParameters = ResponseDurationHeaderParam &
 
 export interface ParamByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩" */
-  value?: string;
+  value: string;
 }
 
 export interface ParamByteHeaderParam {
@@ -300,7 +299,7 @@ export type ParamByteParameters = ParamByteHeaderParam & RequestParameters;
 
 export interface ResponseByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseByteHeaderParam {
@@ -312,7 +311,7 @@ export type ResponseByteParameters = ResponseByteHeaderParam &
 
 export interface ParamEnumHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
-  scenario?: string;
+  scenario: string;
   /** Send a post request with header values 'GREY' */
   value?: "White" | "black" | "GREY";
 }
@@ -325,7 +324,7 @@ export type ParamEnumParameters = ParamEnumHeaderParam & RequestParameters;
 
 export interface ResponseEnumHeaders {
   /** Send a post request with header values "scenario": "valid" or "null" or "empty" */
-  scenario?: string;
+  scenario: string;
 }
 
 export interface ResponseEnumHeaderParam {

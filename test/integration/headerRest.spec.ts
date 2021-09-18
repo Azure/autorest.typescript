@@ -20,7 +20,7 @@ describe("header Rest", function() {
 
         await testClient.path("/header/param/existingkey").post({
           headers: {
-            "user-agent": "overwrite"
+            "userAgent": "overwrite"
           },
           allowInsecureConnection: true
         });
@@ -33,7 +33,7 @@ describe("header Rest", function() {
       it("should throw on changing protected headers", async function() {
         await testClient.path("/header/param/protectedkey").post({
           headers: {
-            "content-type": "text/html"
+            "contentType": "text/html"
           },
           allowInsecureConnection: true
         })

@@ -3,7 +3,7 @@
 
 import { RawHttpHeaders } from "@azure/core-rest-pipeline";
 import { HttpResponse } from "@azure-rest/core-client";
-import { ErrorModel } from "./models";
+import { ErrorModelOutput } from "./outputModels";
 
 /** Send a post request with header value "User-Agent": "overwrite" */
 export interface ParamExistingKey200Response extends HttpResponse {
@@ -14,7 +14,7 @@ export interface ParamExistingKey200Response extends HttpResponse {
 /** Send a post request with header value "User-Agent": "overwrite" */
 export interface ParamExistingKeydefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseExistingKey200Headers {
@@ -32,7 +32,7 @@ export interface ResponseExistingKey200Response extends HttpResponse {
 /** Get a response with header value "User-Agent": "overwrite" */
 export interface ResponseExistingKeydefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header value "Content-Type": "text/html" */
@@ -44,7 +44,7 @@ export interface ParamProtectedKey200Response extends HttpResponse {
 /** Send a post request with header value "Content-Type": "text/html" */
 export interface ParamProtectedKeydefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseProtectedKey200Headers {
@@ -62,7 +62,7 @@ export interface ResponseProtectedKey200Response extends HttpResponse {
 /** Get a response with header value "Content-Type": "text/html" */
 export interface ResponseProtectedKeydefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
@@ -74,7 +74,7 @@ export interface ParamInteger200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
 export interface ParamIntegerdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseInteger200Headers {
@@ -92,7 +92,7 @@ export interface ResponseInteger200Response extends HttpResponse {
 /** Get a response with header value "value": 1 or -2 */
 export interface ResponseIntegerdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
@@ -104,7 +104,7 @@ export interface ParamLong200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
 export interface ParamLongdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseLong200Headers {
@@ -122,7 +122,7 @@ export interface ResponseLong200Response extends HttpResponse {
 /** Get a response with header value "value": 105 or -2 */
 export interface ResponseLongdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
@@ -134,7 +134,7 @@ export interface ParamFloat200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
 export interface ParamFloatdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseFloat200Headers {
@@ -152,7 +152,7 @@ export interface ResponseFloat200Response extends HttpResponse {
 /** Get a response with header value "value": 0.07 or -3.0 */
 export interface ResponseFloatdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
@@ -164,7 +164,7 @@ export interface ParamDouble200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
 export interface ParamDoubledefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseDouble200Headers {
@@ -182,7 +182,7 @@ export interface ResponseDouble200Response extends HttpResponse {
 /** Get a response with header value "value": 7e120 or -3.0 */
 export interface ResponseDoubledefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
@@ -194,7 +194,7 @@ export interface ParamBool200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
 export interface ParamBooldefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseBool200Headers {
@@ -212,7 +212,7 @@ export interface ResponseBool200Response extends HttpResponse {
 /** Get a response with header value "value": true or false */
 export interface ResponseBooldefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
@@ -224,7 +224,7 @@ export interface ParamString200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
 export interface ParamStringdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseString200Headers {
@@ -242,7 +242,7 @@ export interface ResponseString200Response extends HttpResponse {
 /** Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
 export interface ResponseStringdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
@@ -254,12 +254,12 @@ export interface ParamDate200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
 export interface ParamDatedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseDate200Headers {
   /** response with header values "2010-01-01" or "0001-01-01" */
-  value?: Date;
+  value?: string;
 }
 
 /** Get a response with header values "2010-01-01" or "0001-01-01" */
@@ -272,7 +272,7 @@ export interface ResponseDate200Response extends HttpResponse {
 /** Get a response with header values "2010-01-01" or "0001-01-01" */
 export interface ResponseDatedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
@@ -284,12 +284,12 @@ export interface ParamDatetime200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
 export interface ParamDatetimedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseDatetime200Headers {
   /** response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
-  value?: Date;
+  value?: string;
 }
 
 /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
@@ -302,7 +302,7 @@ export interface ResponseDatetime200Response extends HttpResponse {
 /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
 export interface ResponseDatetimedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
@@ -314,12 +314,12 @@ export interface ParamDatetimeRfc1123200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
 export interface ParamDatetimeRfc1123defaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseDatetimeRfc1123200Headers {
   /** response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
-  value?: Date;
+  value?: string;
 }
 
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
@@ -332,7 +332,7 @@ export interface ResponseDatetimeRfc1123200Response extends HttpResponse {
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
 export interface ResponseDatetimeRfc1123defaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
@@ -344,7 +344,7 @@ export interface ParamDuration200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
 export interface ParamDurationdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseDuration200Headers {
@@ -362,7 +362,7 @@ export interface ResponseDuration200Response extends HttpResponse {
 /** Get a response with header values "P123DT22H14M12.011S" */
 export interface ResponseDurationdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
@@ -374,7 +374,7 @@ export interface ParamByte200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
 export interface ParamBytedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseByte200Headers {
@@ -392,7 +392,7 @@ export interface ResponseByte200Response extends HttpResponse {
 /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
 export interface ResponseBytedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
@@ -404,7 +404,7 @@ export interface ParamEnum200Response extends HttpResponse {
 /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
 export interface ParamEnumdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 export interface ResponseEnum200Headers {
@@ -422,7 +422,7 @@ export interface ResponseEnum200Response extends HttpResponse {
 /** Get a response with header values "GREY" or null */
 export interface ResponseEnumdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request */
@@ -434,5 +434,5 @@ export interface CustomRequestId200Response extends HttpResponse {
 /** Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request */
 export interface CustomRequestIddefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }

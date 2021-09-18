@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import PagingClient, {
-  Product,
+  ProductOutput,
   PagingRestClient,
   paginate,
   getLongRunningPoller
@@ -30,7 +30,7 @@ describe("Integration tests for Paging Rest Client", () => {
 
       const iter = paginate(client, initialResponse);
 
-      let result: Product[] = [];
+      let result: ProductOutput[] = [];
       for await (const item of iter) {
         result.push(item);
       }
@@ -43,7 +43,7 @@ describe("Integration tests for Paging Rest Client", () => {
       const initialResponse = await client.path("/paging/noitemname").get();
       const iter = paginate(client, initialResponse);
 
-      const items: Product[] = [];
+      const items: ProductOutput[] = [];
       for await (const item of iter) {
         items.push(item);
       }
@@ -58,7 +58,7 @@ describe("Integration tests for Paging Rest Client", () => {
 
   describe("#getNullNextLinkNamePages", () => {
     it("should ignore any kind of nextLink, and stop after page 1", async () => {
-      const expected: Product[] = [
+      const expected: ProductOutput[] = [
         {
           properties: {
             id: 1,
@@ -74,7 +74,7 @@ describe("Integration tests for Paging Rest Client", () => {
   describe("#getWithQueryParams", () => {
     it("should return a ProductResult", async () => {
       // NextOperation
-      const expected: Product[] = [
+      const expected: ProductOutput[] = [
         {
           properties: {
             id: 1,
@@ -100,7 +100,7 @@ describe("Integration tests for Paging Rest Client", () => {
         throw error;
       }
 
-      const items: Product[] = response.body.values || [];
+      const items: ProductOutput[] = response.body.values || [];
 
       const nextResponse = await client
         .path("/paging/multiple/nextOperationWithQueryParams")
@@ -120,7 +120,7 @@ describe("Integration tests for Paging Rest Client", () => {
     it("should return a ProductResult", async () => {
       let response = await client.path("/paging/multiple/odata").get();
       let index = 1;
-      let items: Product[] = [];
+      let items: ProductOutput[] = [];
 
       const iter = paginate(client, response);
 
@@ -179,7 +179,7 @@ describe("Integration tests for Paging Rest Client", () => {
       const iter = paginate(client, response);
 
       let index = 1;
-      let items: Product[] = [];
+      let items: ProductOutput[] = [];
 
       for await (const item of iter) {
         assert.equal(item.properties?.id, index);
@@ -256,7 +256,7 @@ describe("Integration tests for Paging Rest Client", () => {
       });
 
       let index = 0;
-      let items: Product[] = [];
+      let items: ProductOutput[] = [];
       for await (const item of iter) {
         index++;
         assert.equal(item.properties?.id, index);
@@ -268,7 +268,7 @@ describe("Integration tests for Paging Rest Client", () => {
 
   describe("#getWithQueryParams", () => {
     it("should return a ProductResult", async () => {
-      const expected: Product[] = [
+      const expected: ProductOutput[] = [
         {
           properties: {
             id: 1,
@@ -282,7 +282,7 @@ describe("Integration tests for Paging Rest Client", () => {
           }
         }
       ];
-      const items: Product[] = [];
+      const items: ProductOutput[] = [];
       // const result = client.paging.listWithQueryParams(100);
       const initialResponse = await client
         .path("/paging/multiple/getWithQueryParams")
@@ -327,7 +327,7 @@ describe("Integration tests for Paging Rest Client", () => {
 
       const iter = paginate(client, response);
 
-      let items: Product[] = [];
+      let items: ProductOutput[] = [];
 
       for await (const item of iter) {
         items.push(item);
@@ -351,7 +351,7 @@ describe("Integration tests for Paging Rest Client", () => {
       const iter = paginate(client, pagingResult);
 
       let index = 0;
-      let items: Product[] = [];
+      let items: ProductOutput[] = [];
       for await (const item of iter) {
         index++;
         assert.equal(item.properties?.id, index);

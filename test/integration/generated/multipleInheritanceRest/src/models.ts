@@ -9,11 +9,6 @@ export interface Horse extends Pet {
   isAShowHorse?: boolean;
 }
 
-export interface ErrorModel {
-  status?: number;
-  message?: string;
-}
-
 export interface Feline {
   meows?: boolean;
   hisses?: boolean;

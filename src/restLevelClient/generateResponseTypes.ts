@@ -3,6 +3,7 @@ import {
   HttpHeader,
   Operation,
   Response,
+  SchemaContext,
   SchemaResponse
 } from "@autorest/codemodel";
 import {
@@ -120,7 +121,7 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
   responsesFile.addImportDeclarations([
     {
       namedImports: [...importedModels],
-      moduleSpecifier: "./models"
+      moduleSpecifier: "./outputModels"
     }
   ]);
 }
@@ -174,7 +175,11 @@ function getBodyTypeName(
   response: SchemaResponse,
   importedModels: Set<string>
 ): string | undefined {
-  return getElementType(response.schema, importedModels);
+  return getElementType(
+    response.schema,
+    [SchemaContext.Output, SchemaContext.Exception],
+    importedModels
+  );
 }
 
 function getResponseHeaderInterfaceDefinition(
@@ -197,7 +202,7 @@ function getResponseHeaderInterfaceDefinition(
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
-          type: primitiveSchemaToType(h.schema),
+          type: primitiveSchemaToType(h.schema, [SchemaContext.Output, SchemaContext.Exception]),
           hasQuestionToken: true
         };
       })

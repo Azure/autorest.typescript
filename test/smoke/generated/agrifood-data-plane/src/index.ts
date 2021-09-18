@@ -4,9 +4,10 @@
 import AzureAgriFoodPlatformDataPlaneService from "./azureAgriFoodPlatformDataPlaneService";
 
 export * from "./azureAgriFoodPlatformDataPlaneService";
-export * from "./models";
 export * from "./parameters";
 export * from "./responses";
+export * from "./models";
+export * from "./outputModels";
 export * from "./paginateHelper";
 export * from "./pollingHelper";
 

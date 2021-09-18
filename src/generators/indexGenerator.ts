@@ -4,7 +4,10 @@ import { getAutorestOptions, getSession } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "../restLevelClient/helpers/hasPollingOperations";
-
+import {
+  hasInputModels,
+  hasOutputModels
+} from "../restLevelClient/helpers/modelHelpers";
 export function generateIndexFile(
   project: Project,
   clientDetails?: ClientDetails
@@ -41,15 +44,28 @@ function generateRLCIndex(file: SourceFile) {
       moduleSpecifier: `./${moduleName}`
     },
     {
-      moduleSpecifier: "./models"
-    },
-    {
       moduleSpecifier: "./parameters"
     },
     {
       moduleSpecifier: "./responses"
     }
   ]);
+
+  if (hasInputModels(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./models"
+      }
+    ]);
+  }
+
+  if (hasOutputModels(model)) {
+    file.addExportDeclarations([
+      {
+        moduleSpecifier: "./outputModels"
+      }
+    ]);
+  }
 
   if (hasPagingOperations(model)) {
     file.addExportDeclarations([
