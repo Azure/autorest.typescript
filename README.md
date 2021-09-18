@@ -94,11 +94,16 @@ use-extension:
 pipeline:
   test-modeler:
     input: modelerfour/identity
-    scope : output-scope
+    # scope : output-scope
   test-modeler/identity:
     input: test-modeler
   typescript:
     input: test-modeler/identity
+    output-artifact: typescript-files
+
+  typescript/emitter:
+    input: typescript
+    scope: typescript-scope/emitter
 
 ```
 
