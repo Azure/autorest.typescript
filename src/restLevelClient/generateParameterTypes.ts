@@ -1,3 +1,4 @@
+
 import {
   CodeModel,
   Operation,
@@ -7,11 +8,13 @@ import {
 import {
   InterfaceDeclarationStructure,
   Project,
+  SourceFile,
   StructureKind
 } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getPropertySignature } from "./getPropertySignature";
+import { getDocs, getPropertySignature } from "./getPropertySignature";
+import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
 import { hasInputModels } from "./helpers/modelHelpers";
 
@@ -35,6 +38,7 @@ export function generateParameterInterfaces(
   // Tracks the generated parameter types
 
   const operations = getAllOperations(model);
+  let hasHeaders = false;
 
   for (const operation of operations) {
     const internalReferences = new Set<string>();
@@ -44,6 +48,15 @@ export function generateParameterInterfaces(
     );
     const parameterInterfaceName = `${operationName}Parameters`;
     const parameters = getOperationParameters(operation);
+
+    const headerParameterDefinitions =  buildHeaderParameterDefinitions(
+      operationName,
+      parameters,
+      parametersFile,
+      internalReferences,
+    );
+
+
     const queryParameterDefinitions = buildQueryParameterDefinition(
       operationName,
       parameters,
@@ -63,8 +76,13 @@ export function generateParameterInterfaces(
     // Add interfaces for body and query parameters
     parametersFile.addInterfaces([
       ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
-      ...(queryParameterDefinitions ?? [])
+      ...(queryParameterDefinitions ?? []),
+      ...(headerParameterDefinitions ? [headerParameterDefinitions] : [])
     ]);
+
+    if (headerParameterDefinitions !== undefined) {
+      hasHeaders = true;
+    }
 
     // Add Operation parameters type alias which is composed of the types we generated above
     // plus the common type RequestParameters
@@ -73,6 +91,15 @@ export function generateParameterInterfaces(
       isExported: true,
       type: [...internalReferences, "RequestParameters"].join(" & ")
     });
+  }
+
+  if (hasHeaders) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeadersInput"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
   }
 
   parametersFile.addImportDeclarations([
@@ -90,6 +117,67 @@ export function generateParameterInterfaces(
       }
     ]);
   }
+}
+
+function getRequestHeaderInterfaceDefinition(
+  parameters: Parameter[],
+  baseName: string
+): undefined | InterfaceDeclarationStructure {
+  // Check if there are any required headers
+  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  if (!headerParameters.length) {
+    return undefined;
+  }
+  const headersInterfaceName = `${baseName}Headers`;
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: headersInterfaceName,
+    properties: headerParameters.map((h: Parameter) => {
+      const description = getLanguageMetadata(h.language).description;
+      return {
+        name: `"${getLanguageMetadata(h.language).serializedName}"`,
+        ...(description && { docs: [{ description }] }),
+        type: primitiveSchemaToType(h.schema, [SchemaContext.Input, SchemaContext.Exception]),
+        hasQuestionToken: !h.required
+      };
+    })
+  }
+}
+
+function buildHeaderParameterDefinitions(
+  operationName: string,
+  parameters: Parameter[],
+  parametersFile: SourceFile,
+  internalReferences: Set<string>
+): InterfaceDeclarationStructure | undefined {
+  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  if (!headerParameters.length) {
+    return undefined;
+  }
+
+  const headerParameterInterfaceName = `${operationName}HeaderParam`;
+
+  const headersInterface = getRequestHeaderInterfaceDefinition(headerParameters, operationName);
+
+  if (headersInterface) {
+    parametersFile.addInterface(headersInterface);
+  }
+
+  internalReferences.add(headerParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: headerParameterInterfaceName,
+    properties: [
+      {
+        name: "headers",
+        type: `RawHttpHeadersInput & ${operationName}Headers`,
+        kind: StructureKind.PropertySignature
+      }
+    ]
+  };
 }
 
 /**
