@@ -9,10 +9,10 @@ import { RestError } from "@azure/core-http";
 import { TokenCredential } from "@azure/core-auth";
 import { FullOperationResponse, OperationOptions } from "@azure/core-client";
 import {
-  bearerTokenAuthenticationPolicyName,
   createHttpHeaders,
   setClientRequestIdPolicyName,
-  bearerTokenAuthenticationPolicy
+  bearerTokenAuthenticationPolicy,
+  bearerTokenAuthenticationPolicyName
 } from "@azure/core-rest-pipeline";
 
 describe.skip("auth validation", () => {
@@ -275,9 +275,6 @@ describe("AzureSpecialProperties", () => {
           ...clientOptions
         }
       );
-      client.pipeline.removePolicy({
-        name: bearerTokenAuthenticationPolicyName
-      });
 
       client.pipeline.removePolicy({ name: setClientRequestIdPolicyName });
       client.pipeline.removePolicy({
@@ -416,14 +413,12 @@ describe("AzureSpecialProperties", () => {
                 request: req
               })
           },
-          allowInsecureConnection: true,
           endpoint: "http://usethisone.com"
         }
       );
       client.pipeline.removePolicy({
         name: bearerTokenAuthenticationPolicyName
       });
-      
       await client.apiVersionDefault.getMethodGlobalValid({
         onResponse: r => {
           _response = r;
