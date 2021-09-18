@@ -5,7 +5,7 @@ import HeaderRestClient, { HeaderRestClientRestClient } from "./generated/header
 
 should();
 
-describe("header Rest", function() {
+describe.only("header Rest", function() {
   describe("Swagger Header BAT", function() {
     describe("Basic Header Operations", function() {
       let testClient: HeaderRestClientRestClient;
@@ -20,7 +20,7 @@ describe("header Rest", function() {
 
         await testClient.path("/header/param/existingkey").post({
           headers: {
-            "userAgent": "overwrite"
+            "User-Agent": "overwrite"
           },
           allowInsecureConnection: true
         });
@@ -33,7 +33,7 @@ describe("header Rest", function() {
       it("should throw on changing protected headers", async function() {
         await testClient.path("/header/param/protectedkey").post({
           headers: {
-            "contentType": "text/html"
+            "Content-Type": "text/html"
           },
           allowInsecureConnection: true
         })

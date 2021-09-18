@@ -10,7 +10,7 @@ export type GetSinglePagesParameters = RequestParameters;
 export type FirstResponseEmptyParameters = RequestParameters;
 
 export interface GetMultiplePagesHeaders {
-  clientRequestId?: string;
+  "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
   /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
@@ -51,7 +51,7 @@ export type NextOperationWithQueryParamsParameters = NextOperationWithQueryParam
   RequestParameters;
 
 export interface GetOdataMultiplePagesHeaders {
-  clientRequestId?: string;
+  "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
   /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
@@ -66,7 +66,7 @@ export type GetOdataMultiplePagesParameters = GetOdataMultiplePagesHeaderParam &
   RequestParameters;
 
 export interface GetMultiplePagesWithOffsetHeaders {
-  clientRequestId?: string;
+  "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
   /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */
@@ -110,7 +110,7 @@ export type GetMultiplePagesFragmentWithGroupingNextLinkParameters = GetMultiple
   RequestParameters;
 
 export interface GetMultiplePagesLROHeaders {
-  clientRequestId?: string;
+  "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
   /** Sets the maximum time that the server can spend processing the request, in seconds. The default is 30 seconds. */

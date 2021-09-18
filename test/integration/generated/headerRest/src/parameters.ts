@@ -6,7 +6,7 @@ import { RequestParameters } from "@azure-rest/core-client";
 
 export interface ParamExistingKeyHeaders {
   /** Send a post request with header value "User-Agent": "overwrite" */
-  userAgent: string;
+  "User-Agent": string;
 }
 
 export interface ParamExistingKeyHeaderParam {
@@ -19,7 +19,7 @@ export type ResponseExistingKeyParameters = RequestParameters;
 
 export interface ParamProtectedKeyHeaders {
   /** Send a post request with header value "Content-Type": "text/html" */
-  contentType: string;
+  "Content-Type": string;
 }
 
 export interface ParamProtectedKeyHeaderParam {

@@ -136,7 +136,7 @@ function getRequestHeaderInterfaceDefinition(
     properties: headerParameters.map((h: Parameter) => {
       const description = getLanguageMetadata(h.language).description;
       return {
-        name: `"${getLanguageMetadata(h.language).name}"`,
+        name: `"${getLanguageMetadata(h.language).serializedName}"`,
         ...(description && { docs: [{ description }] }),
         type: primitiveSchemaToType(h.schema, [SchemaContext.Input, SchemaContext.Exception]),
         hasQuestionToken: !h.required
