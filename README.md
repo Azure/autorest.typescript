@@ -69,6 +69,13 @@ modelerfour:
   # enables parameter grouping via x-ms-parameter-grouping
   group-parameters: true
 
+typescript-scope/emitter:
+  input-artifact: typescript-files
+
+output-artifact: typescript-files
+```
+
+```yaml !$(generate-test)
 pipeline:
   typescript: # <- name of plugin
     input: modelerfour/identity
@@ -78,10 +85,21 @@ pipeline:
     input: typescript
     scope: typescript-scope/emitter
 
-typescript-scope/emitter:
-  input-artifact: typescript-files
+```
 
-output-artifact: typescript-files
+```yaml $(generate-test)
+use-extension:
+  "@autorest/tests": "/Users/zhangqiaoqiao/work/code/autorest.tests"
+
+pipeline:
+  test-modeler:
+    input: modelerfour/identity
+    scope : output-scope
+  test-modeler/identity:
+    input: test-modeler
+  typescript:
+    input: test-modeler/identity
+
 ```
 
 ### REST Client Generator overrides
