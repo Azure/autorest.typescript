@@ -3,6 +3,7 @@ import {
   HttpHeader,
   Operation,
   Response,
+  SchemaContext,
   SchemaResponse
 } from "@autorest/codemodel";
 import {
@@ -18,7 +19,7 @@ import {
   StructureKind
 } from "ts-morph";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getElementType, getFormatDocs } from "./schemaHelpers";
+import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
@@ -100,6 +101,14 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   }
 
+  if (hasHeaders) {
+    responsesFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeaders"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
+  }
   responsesFile.addImportDeclarations([
     {
       namedImports: ["HttpResponse"],
@@ -107,17 +116,12 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
     }
   ]);
 
-  if (hasHeaders) {
-    responsesFile.addImportDeclaration({
-      namedImports: ["RawHttpHeaders"],
-      moduleSpecifier: "@azure/core-rest-pipeline"
-    });
-  }
+
 
   responsesFile.addImportDeclarations([
     {
       namedImports: [...importedModels],
-      moduleSpecifier: "./models"
+      moduleSpecifier: "./outputModels"
     }
   ]);
 }
@@ -171,7 +175,11 @@ function getBodyTypeName(
   response: SchemaResponse,
   importedModels: Set<string>
 ): string | undefined {
-  return getElementType(response.schema, importedModels);
+  return getElementType(
+    response.schema,
+    [SchemaContext.Output, SchemaContext.Exception],
+    importedModels
+  );
 }
 
 function getResponseHeaderInterfaceDefinition(
@@ -194,7 +202,7 @@ function getResponseHeaderInterfaceDefinition(
         return {
           name: `"${h.header.toLowerCase()}"`,
           ...(description && { docs: [{ description }] }),
-          type: "string",
+          type: primitiveSchemaToType(h.schema, [SchemaContext.Output, SchemaContext.Exception]),
           hasQuestionToken: true
         };
       })

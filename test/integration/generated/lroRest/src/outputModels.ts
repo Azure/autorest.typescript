@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface Resource {
+export interface ResourceOutput {
   /** Resource Id */
   id?: string;
   /** Resource Type */
@@ -14,11 +14,11 @@ export interface Resource {
   name?: string;
 }
 
-export interface Product extends Resource {
-  properties?: ProductProperties;
+export interface ProductOutput extends ResourceOutput {
+  properties?: ProductPropertiesOutput;
 }
 
-export interface ProductProperties {
+export interface ProductPropertiesOutput {
   provisioningState?: string;
   provisioningStateValues?:
     | "Succeeded"
@@ -34,21 +34,26 @@ export interface ProductProperties {
     | "OK";
 }
 
-export interface Sku {
+export interface CloudErrorOutput {
+  code?: number;
+  message?: string;
+}
+
+export interface SkuOutput {
   name?: string;
   id?: string;
 }
 
-export interface SubResource {
+export interface SubResourceOutput {
   /** Sub Resource Id */
   id?: string;
 }
 
-export interface SubProduct extends SubResource {
-  properties?: SubProductProperties;
+export interface SubProductOutput extends SubResourceOutput {
+  properties?: SubProductPropertiesOutput;
 }
 
-export interface SubProductProperties {
+export interface SubProductPropertiesOutput {
   provisioningState?: string;
   provisioningStateValues?:
     | "Succeeded"

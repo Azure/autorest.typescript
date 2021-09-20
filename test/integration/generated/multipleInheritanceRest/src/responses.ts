@@ -2,18 +2,25 @@
 // Licensed under the MIT license.
 
 import { HttpResponse } from "@azure-rest/core-client";
-import { Horse, ErrorModel, Pet, Feline, Cat, Kitten } from "./models";
+import {
+  HorseOutput,
+  ErrorModelOutput,
+  PetOutput,
+  FelineOutput,
+  CatOutput,
+  KittenOutput
+} from "./outputModels";
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
 export interface GetHorse200Response extends HttpResponse {
   status: "200";
-  body: Horse;
+  body: HorseOutput;
 }
 
 /** Get a horse with name 'Fred' and isAShowHorse true */
 export interface GetHorsedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Put a horse with name 'General' and isAShowHorse false */
@@ -25,13 +32,13 @@ export interface PutHorse200Response extends HttpResponse {
 /** Get a pet with name 'Peanut' */
 export interface GetPet200Response extends HttpResponse {
   status: "200";
-  body: Pet;
+  body: PetOutput;
 }
 
 /** Get a pet with name 'Peanut' */
 export interface GetPetdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Put a pet with name 'Butter' */
@@ -43,13 +50,13 @@ export interface PutPet200Response extends HttpResponse {
 /** Get a feline where meows and hisses are true */
 export interface GetFeline200Response extends HttpResponse {
   status: "200";
-  body: Feline;
+  body: FelineOutput;
 }
 
 /** Get a feline where meows and hisses are true */
 export interface GetFelinedefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Put a feline who hisses and doesn't meow */
@@ -61,13 +68,13 @@ export interface PutFeline200Response extends HttpResponse {
 /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
 export interface GetCat200Response extends HttpResponse {
   status: "200";
-  body: Cat;
+  body: CatOutput;
 }
 
 /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
 export interface GetCatdefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true */
@@ -79,13 +86,13 @@ export interface PutCat200Response extends HttpResponse {
 /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
 export interface GetKitten200Response extends HttpResponse {
   status: "200";
-  body: Kitten;
+  body: KittenOutput;
 }
 
 /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
 export interface GetKittendefaultResponse extends HttpResponse {
   status: "500";
-  body: ErrorModel;
+  body: ErrorModelOutput;
 }
 
 /** Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true */

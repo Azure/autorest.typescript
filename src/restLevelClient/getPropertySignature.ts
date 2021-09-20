@@ -1,4 +1,4 @@
-import { Parameter, Property } from "@autorest/codemodel";
+import { Parameter, Property, SchemaContext } from "@autorest/codemodel";
 import { PropertySignatureStructure, StructureKind } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getElementType, getFormatDocs } from "./schemaHelpers";
@@ -11,6 +11,7 @@ import { getElementType, getFormatDocs } from "./schemaHelpers";
  */
 export function getPropertySignature(
   property: Property | Parameter,
+  schemaUsage: SchemaContext[],
   importedModels = new Set<string>()
 ): PropertySignatureStructure {
   const propertyLangMetadata = getLanguageMetadata(property.language);
@@ -24,7 +25,7 @@ export function getPropertySignature(
   }
 
   const description = getDocs(property);
-  const type = getElementType(property.schema, importedModels);
+  const type = getElementType(property.schema, schemaUsage, importedModels);
   return {
     name: propertyName,
     ...(description && { docs: [{ description }] }),

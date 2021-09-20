@@ -4,8 +4,9 @@
 import BodyComplexRestClient from "./bodyComplexRestClient";
 
 export * from "./bodyComplexRestClient";
-export * from "./models";
 export * from "./parameters";
 export * from "./responses";
+export * from "./models";
+export * from "./outputModels";
 
 export default BodyComplexRestClient;
