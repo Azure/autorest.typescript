@@ -1,9 +1,9 @@
-
 import {
   CodeModel,
   Operation,
   Parameter,
-  SchemaContext
+  SchemaContext,
+  Request as OperationRequest
 } from "@autorest/codemodel";
 import {
   InterfaceDeclarationStructure,
@@ -41,56 +41,95 @@ export function generateParameterInterfaces(
   let hasHeaders = false;
 
   for (const operation of operations) {
-    const internalReferences = new Set<string>();
     const operationName = normalizeName(
       getLanguageMetadata(operation.language).name,
       NameType.Interface
     );
-    const parameterInterfaceName = `${operationName}Parameters`;
-    const parameters = getOperationParameters(operation);
 
-    const headerParameterDefinitions =  buildHeaderParameterDefinitions(
-      operationName,
-      parameters,
-      parametersFile,
-      internalReferences,
-    );
+    const requestCount = operation?.requests?.length ?? 0;
+    const topParamName = `${operationName}Parameters`;
+    const subParamNames: string[] = [];
 
+    // We need to loop the requests. An operation with multiple requests means that
+    // the operation can get different values for content-type and each value may
+    // have a different type associated to it.
+    for (let i = 0; i < requestCount; i++) {
+      const internalReferences = new Set<string>();
+      // In case we have more than one request to model we need to add a suffix to differentiate
+      const nameSuffix = i > 0 ? `${i}` : "";
+      const parameterInterfaceName =
+        requestCount > 1
+          ? `${operationName}RequestParameters${nameSuffix}`
+          : topParamName;
+      const parameters = getOperationParameters(operation, i);
+      const queryParameterDefinitions = buildQueryParameterDefinition(
+        operationName,
+        parameters,
+        [SchemaContext.Input],
+        importedModels,
+        internalReferences,
+        i
+      );
 
-    const queryParameterDefinitions = buildQueryParameterDefinition(
-      operationName,
-      parameters,
-      [SchemaContext.Input],
-      importedModels,
-      internalReferences
-    );
+      const request = operation.requests ? operation.requests[i] : undefined;
 
-    const bodyParameterDefinition = buildBodyParametersDefinition(
-      operationName,
-      parameters,
-      [SchemaContext.Input],
-      importedModels,
-      internalReferences
-    );
+      const headerParameterDefinitions = buildHeaderParameterDefinitions(
+        operationName,
+        parameters,
+        parametersFile,
+        internalReferences,
+        i
+      );
 
-    // Add interfaces for body and query parameters
-    parametersFile.addInterfaces([
-      ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
-      ...(queryParameterDefinitions ?? []),
-      ...(headerParameterDefinitions ? [headerParameterDefinitions] : [])
-    ]);
+      const contentTypeParameterDefinition = buildContentTypeParametersDefinition(
+        operationName,
+        request,
+        internalReferences,
+        i
+      );
 
-    if (headerParameterDefinitions !== undefined) {
-      hasHeaders = true;
+      const bodyParameterDefinition = buildBodyParametersDefinition(
+        operationName,
+        parameters,
+        [SchemaContext.Input],
+        importedModels,
+        internalReferences,
+        i
+      );
+
+      // Add interfaces for body and query parameters
+      parametersFile.addInterfaces([
+        ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
+        ...(queryParameterDefinitions ?? []),
+        ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
+        ...(contentTypeParameterDefinition
+          ? [contentTypeParameterDefinition]
+          : [])
+      ]);
+
+      // Add Operation parameters type alias which is composed of the types we generated above
+      // plus the common type RequestParameters
+      parametersFile.addTypeAlias({
+        name: parameterInterfaceName,
+        isExported: true,
+        type: [...internalReferences, "RequestParameters"].join(" & ")
+      });
+
+      subParamNames.push(parameterInterfaceName);
+      if (headerParameterDefinitions !== undefined) {
+        hasHeaders = true;
+      }
     }
 
     // Add Operation parameters type alias which is composed of the types we generated above
     // plus the common type RequestParameters
-    parametersFile.addTypeAlias({
-      name: parameterInterfaceName,
-      isExported: true,
-      type: [...internalReferences, "RequestParameters"].join(" & ")
-    });
+    if (requestCount > 1) {
+      parametersFile.addTypeAlias({
+        name: topParamName,
+        isExported: true,
+        type: [...subParamNames].join(" | ")
+      });
+    }
   }
 
   if (hasHeaders) {
@@ -124,7 +163,9 @@ function getRequestHeaderInterfaceDefinition(
   baseName: string
 ): undefined | InterfaceDeclarationStructure {
   // Check if there are any required headers
-  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  const headerParameters = parameters.filter(
+    p => p.protocol.http?.in === "header"
+  );
   if (!headerParameters.length) {
     return undefined;
   }
@@ -138,27 +179,37 @@ function getRequestHeaderInterfaceDefinition(
       return {
         name: `"${getLanguageMetadata(h.language).serializedName}"`,
         ...(description && { docs: [{ description }] }),
-        type: primitiveSchemaToType(h.schema, [SchemaContext.Input, SchemaContext.Exception]),
+        type: primitiveSchemaToType(h.schema, [
+          SchemaContext.Input,
+          SchemaContext.Exception
+        ]),
         hasQuestionToken: !h.required
       };
     })
-  }
+  };
 }
 
 function buildHeaderParameterDefinitions(
   operationName: string,
   parameters: Parameter[],
   parametersFile: SourceFile,
-  internalReferences: Set<string>
+  internalReferences: Set<string>,
+  requestIndex: number
 ): InterfaceDeclarationStructure | undefined {
-  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  const headerParameters = parameters.filter(
+    p => p.protocol.http?.in === "header"
+  );
   if (!headerParameters.length) {
     return undefined;
   }
 
-  const headerParameterInterfaceName = `${operationName}HeaderParam`;
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const headerParameterInterfaceName = `${operationName}HeaderParam${nameSuffix}`;
 
-  const headersInterface = getRequestHeaderInterfaceDefinition(headerParameters, operationName);
+  const headersInterface = getRequestHeaderInterfaceDefinition(
+    headerParameters,
+    operationName
+  );
 
   if (headersInterface) {
     parametersFile.addInterface(headersInterface);
@@ -188,14 +239,16 @@ function buildBodyParametersDefinition(
   parameters: Parameter[],
   schemaUsage: SchemaContext[],
   importedModels: Set<string>,
-  internalReferences: Set<string>
+  internalReferences: Set<string>,
+  requestIndex: number
 ): InterfaceDeclarationStructure | undefined {
   const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
     return undefined;
   }
 
-  const bodyParameterInterfaceName = `${operationName}BodyParam`;
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const bodyParameterInterfaceName = `${operationName}BodyParam${nameSuffix}`;
   // There is only one body parameter can't be more than one so we can safely take the first
   const bodySignature = getPropertySignature(
     bodyParameters[0],
@@ -221,6 +274,45 @@ function buildBodyParametersDefinition(
 }
 
 /**
+ * Gets the interface definition for an operation bodyParameters
+ */
+function buildContentTypeParametersDefinition(
+  operationName: string,
+  request: OperationRequest | undefined,
+  internalReferences: Set<string>,
+  requestIndex: number
+): InterfaceDeclarationStructure | undefined {
+  if (!request) {
+    return undefined;
+  }
+  const mediaTypes: string[] = request.protocol.http?.mediaTypes ?? [];
+
+  if (!mediaTypes.length) {
+    return undefined;
+  }
+
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const mediaTypesParameterInterfaceName = `${operationName}MediaTypesParam${nameSuffix}`;
+
+  // Mark the queryParameter interface for importing
+  internalReferences.add(mediaTypesParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: mediaTypesParameterInterfaceName,
+    properties: [
+      {
+        docs: ["Request content type"],
+        name: "contentType",
+        type: mediaTypes.map(mt => `"${mt}"`).join(" | "),
+        hasQuestionToken: true
+      }
+    ]
+  };
+}
+
+/**
  * Gets the interface definition for an operation queryParameters
  */
 function buildQueryParameterDefinition(
@@ -228,7 +320,8 @@ function buildQueryParameterDefinition(
   parameters: Parameter[],
   schemaUsage: SchemaContext[],
   importedModels: Set<string>,
-  internalReferences: Set<string>
+  internalReferences: Set<string>,
+  requestIndex: number
 ): InterfaceDeclarationStructure[] | undefined {
   const queryParameters = parameters.filter(
     p => p.protocol.http?.in === "query"
@@ -238,7 +331,8 @@ function buildQueryParameterDefinition(
     return undefined;
   }
 
-  const queryParameterInterfaceName = `${operationName}QueryParam`;
+  const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
+  const queryParameterInterfaceName = `${operationName}QueryParam${nameSuffix}`;
   const queryParameterPropertiesName = `${operationName}QueryParamProperties`;
 
   // Get the property signature for each query parameter

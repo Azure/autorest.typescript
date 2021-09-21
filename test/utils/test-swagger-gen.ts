@@ -907,6 +907,17 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     isTestPackage: true
+  },
+  mediaTypesRest: {
+    swaggerOrConfig: "media_types.json",
+    clientName: "MediaTypes",
+    packageName: "media-types-service-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
   }
 };
 
