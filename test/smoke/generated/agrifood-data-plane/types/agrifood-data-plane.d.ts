@@ -24,11 +24,11 @@ export declare interface ApplicationData {
      * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
      * Note: this will be specified by the source provider itself.
      */
-    operationModifiedDateTime?: Date;
+    operationModifiedDateTime?: Date | string;
     /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationStartDateTime?: Date;
+    operationStartDateTime?: Date | string;
     /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationEndDateTime?: Date;
+    operationEndDateTime?: Date | string;
     /** Link for attachments. */
     attachmentsLink?: string;
     /** Optional boundary ID of the field for which operation was applied. */
@@ -44,9 +44,9 @@ export declare interface ApplicationData {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -63,13 +63,13 @@ export declare interface ApplicationData {
 /** Creates or updates an application data resource under a particular farmer. */
 export declare interface ApplicationDataCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: ApplicationData;
+    body: ApplicationDataOutput;
 }
 
 /** Creates or updates an application data resource under a particular farmer. */
 export declare interface ApplicationDataCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: ApplicationData;
+    body: ApplicationDataOutput;
 }
 
 export declare interface ApplicationDataCreateOrUpdateBodyParam {
@@ -80,7 +80,7 @@ export declare interface ApplicationDataCreateOrUpdateBodyParam {
 /** Creates or updates an application data resource under a particular farmer. */
 export declare interface ApplicationDataCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateBodyParam & RequestParameters;
@@ -94,7 +94,7 @@ export declare interface ApplicationDataDelete204Response extends HttpResponse {
 /** Deletes a specified application data resource under a particular farmer. */
 export declare interface ApplicationDataDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ApplicationDataDeleteParameters = RequestParameters;
@@ -111,13 +111,13 @@ export declare interface ApplicationDataGet {
 /** Get a specified application data resource under a particular farmer. */
 export declare interface ApplicationDataGet200Response extends HttpResponse {
     status: "200";
-    body: ApplicationData;
+    body: ApplicationDataOutput;
 }
 
 /** Get a specified application data resource under a particular farmer. */
 export declare interface ApplicationDataGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ApplicationDataGetParameters = RequestParameters;
@@ -130,7 +130,7 @@ export declare interface ApplicationDataList {
 /** Returns a paginated list of application data resources across all farmers. */
 export declare interface ApplicationDataList200Response extends HttpResponse {
     status: "200";
-    body: ApplicationDataListResponse;
+    body: ApplicationDataListResponseOutput;
 }
 
 export declare interface ApplicationDataListByFarmerId {
@@ -141,13 +141,13 @@ export declare interface ApplicationDataListByFarmerId {
 /** Returns a paginated list of application data resources under a particular farm. */
 export declare interface ApplicationDataListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: ApplicationDataListResponse;
+    body: ApplicationDataListResponseOutput;
 }
 
 /** Returns a paginated list of application data resources under a particular farm. */
 export declare interface ApplicationDataListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ApplicationDataListByFarmerIdParameters = ApplicationDataListByFarmerIdQueryParam & RequestParameters;
@@ -172,17 +172,17 @@ export declare interface ApplicationDataListByFarmerIdQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -199,13 +199,13 @@ export declare interface ApplicationDataListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -218,7 +218,7 @@ export declare interface ApplicationDataListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of application data resources across all farmers. */
 export declare interface ApplicationDataListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ApplicationDataListParameters = ApplicationDataListQueryParam & RequestParameters;
@@ -243,17 +243,17 @@ export declare interface ApplicationDataListQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -270,13 +270,13 @@ export declare interface ApplicationDataListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -286,13 +286,64 @@ export declare interface ApplicationDataListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface ApplicationDataListResponse {
+export declare interface ApplicationDataListResponseOutput {
     /** List of requested objects. */
-    value?: Array<ApplicationData>;
+    value?: Array<ApplicationDataOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
+}
+
+export declare interface ApplicationDataOutput {
+    /** Application product details. */
+    applicationProductDetails?: Array<ApplicationProductDetailOutput>;
+    /** Schema for storing measurement reading and unit. */
+    avgMaterial?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalMaterial?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Source of the operation data. */
+    source?: string;
+    /**
+     * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
+     * Note: this will be specified by the source provider itself.
+     */
+    operationModifiedDateTime?: string;
+    /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationStartDateTime?: string;
+    /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationEndDateTime?: string;
+    /** Link for attachments. */
+    attachmentsLink?: string;
+    /** Optional boundary ID of the field for which operation was applied. */
+    associatedBoundaryId?: string;
+    /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
+    operationBoundaryId?: string;
+    /** Farmer ID which belongs to the operation data. */
+    farmerId?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
 }
 
 export declare interface ApplicationProductDetail {
@@ -306,7 +357,27 @@ export declare interface ApplicationProductDetail {
     totalMaterial?: Measure;
 }
 
-export declare interface Attachment {
+export declare interface ApplicationProductDetailOutput {
+    /** Name of the product applied. */
+    productName?: string;
+    /** A flag indicating whether product is a carrier for a tank mix. */
+    isCarrier?: boolean;
+    /** Schema for storing measurement reading and unit. */
+    avgMaterial?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalMaterial?: MeasureOutput;
+}
+
+export declare interface AttachmentListResponseOutput {
+    /** List of requested objects. */
+    value?: Array<AttachmentOutput>;
+    /** Token used in retrieving the next page. If null, there are no additional pages. */
+    $skipToken?: string;
+    /** Continuation link (absolute URI) to the next page of results in the list. */
+    nextLink?: string;
+}
+
+export declare interface AttachmentOutput {
     /** Farmer id for this attachment. */
     farmerId?: string;
     /** Associated Resource id for this attachment. */
@@ -323,9 +394,9 @@ export declare interface Attachment {
     /** Status of the resource. */
     status?: string;
     /** Date when resource was created. */
-    createdDateTime?: Date;
+    createdDateTime?: string;
     /** Date when resource was last modified. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of resource. */
@@ -334,25 +405,16 @@ export declare interface Attachment {
     eTag?: string;
 }
 
-export declare interface AttachmentListResponse {
-    /** List of requested objects. */
-    value?: Array<Attachment>;
-    /** Token used in retrieving the next page. If null, there are no additional pages. */
-    $skipToken?: string;
-    /** Continuation link (absolute URI) to the next page of results in the list. */
-    nextLink?: string;
-}
-
 /** Creates or updates an attachment resource under a particular farmer. */
 export declare interface AttachmentsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Attachment;
+    body: AttachmentOutput;
 }
 
 /** Creates or updates an attachment resource under a particular farmer. */
 export declare interface AttachmentsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Attachment;
+    body: AttachmentOutput;
 }
 
 export declare interface AttachmentsCreateOrUpdateBodyParam {
@@ -367,7 +429,7 @@ export declare interface AttachmentsCreateOrUpdateBodyParam {
 /** Creates or updates an attachment resource under a particular farmer. */
 export declare interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateBodyParam & RequestParameters;
@@ -381,7 +443,7 @@ export declare interface AttachmentsDelete204Response extends HttpResponse {
 /** Deletes a specified attachment resource under a particular farmer. */
 export declare interface AttachmentsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type AttachmentsDeleteParameters = RequestParameters;
@@ -400,7 +462,7 @@ export declare interface AttachmentsDownload200Response extends HttpResponse {
 /** Downloads and returns attachment as response for the given input filePath. */
 export declare interface AttachmentsDownloaddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type AttachmentsDownloadParameters = RequestParameters;
@@ -417,13 +479,13 @@ export declare interface AttachmentsGet {
 /** Gets a specified attachment resource under a particular farmer. */
 export declare interface AttachmentsGet200Response extends HttpResponse {
     status: "200";
-    body: Attachment;
+    body: AttachmentOutput;
 }
 
 /** Gets a specified attachment resource under a particular farmer. */
 export declare interface AttachmentsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type AttachmentsGetParameters = RequestParameters;
@@ -436,13 +498,13 @@ export declare interface AttachmentsListByFarmerId {
 /** Returns a paginated list of attachment resources under a particular farmer. */
 export declare interface AttachmentsListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: AttachmentListResponse;
+    body: AttachmentListResponseOutput;
 }
 
 /** Returns a paginated list of attachment resources under a particular farmer. */
 export declare interface AttachmentsListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type AttachmentsListByFarmerIdParameters = AttachmentsListByFarmerIdQueryParam & RequestParameters;
@@ -468,13 +530,13 @@ export declare interface AttachmentsListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -494,13 +556,13 @@ export declare type AzureAgriFoodPlatformDataPlaneServiceRestClient = Client & {
 /** Create a cascade delete job for specified boundary. */
 export declare interface BoundariesCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified boundary. */
 export declare interface BoundariesCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesCreateCascadeDeleteJobParameters = BoundariesCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -519,13 +581,13 @@ export declare interface BoundariesCreateCascadeDeleteJobQueryParamProperties {
 /** Creates or updates a boundary resource. */
 export declare interface BoundariesCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Boundary;
+    body: BoundaryOutput;
 }
 
 /** Creates or updates a boundary resource. */
 export declare interface BoundariesCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Boundary;
+    body: BoundaryOutput;
 }
 
 export declare interface BoundariesCreateOrUpdateBodyParam {
@@ -536,7 +598,7 @@ export declare interface BoundariesCreateOrUpdateBodyParam {
 /** Creates or updates a boundary resource. */
 export declare interface BoundariesCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateBodyParam & RequestParameters;
@@ -550,7 +612,7 @@ export declare interface BoundariesDelete204Response extends HttpResponse {
 /** Deletes a specified boundary resource under a particular farmer. */
 export declare interface BoundariesDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesDeleteParameters = RequestParameters;
@@ -567,7 +629,7 @@ export declare interface BoundariesGet {
 /** Gets a specified boundary resource under a particular farmer. */
 export declare interface BoundariesGet200Response extends HttpResponse {
     status: "200";
-    body: Boundary;
+    body: BoundaryOutput;
 }
 
 export declare interface BoundariesGetCascadeDeleteJobDetails {
@@ -580,13 +642,13 @@ export declare interface BoundariesGetCascadeDeleteJobDetails {
 /** Get cascade delete job for specified boundary. */
 export declare interface BoundariesGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job for specified boundary. */
 export declare interface BoundariesGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -594,7 +656,7 @@ export declare type BoundariesGetCascadeDeleteJobDetailsParameters = RequestPara
 /** Gets a specified boundary resource under a particular farmer. */
 export declare interface BoundariesGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare interface BoundariesGetOverlap {
@@ -605,13 +667,13 @@ export declare interface BoundariesGetOverlap {
 /** Returns overlapping acreage between two boundary Ids. */
 export declare interface BoundariesGetOverlap200Response extends HttpResponse {
     status: "200";
-    body: BoundaryOverlapResponse;
+    body: BoundaryOverlapResponseOutput;
 }
 
 /** Returns overlapping acreage between two boundary Ids. */
 export declare interface BoundariesGetOverlapdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesGetOverlapParameters = BoundariesGetOverlapQueryParam & RequestParameters;
@@ -639,7 +701,7 @@ export declare interface BoundariesList {
 /** Returns a paginated list of boundary resources across all farmers. */
 export declare interface BoundariesList200Response extends HttpResponse {
     status: "200";
-    body: BoundaryListResponse;
+    body: BoundaryListResponseOutput;
 }
 
 export declare interface BoundariesListByFarmerId {
@@ -652,13 +714,13 @@ export declare interface BoundariesListByFarmerId {
 /** Returns a paginated list of boundary resources under a particular farmer. */
 export declare interface BoundariesListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: BoundaryListResponse;
+    body: BoundaryListResponseOutput;
 }
 
 /** Returns a paginated list of boundary resources under a particular farmer. */
 export declare interface BoundariesListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesListByFarmerIdParameters = BoundariesListByFarmerIdQueryParam & RequestParameters;
@@ -690,13 +752,13 @@ export declare interface BoundariesListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -709,7 +771,7 @@ export declare interface BoundariesListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of boundary resources across all farmers. */
 export declare interface BoundariesListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesListParameters = BoundariesListQueryParam & RequestParameters;
@@ -741,13 +803,13 @@ export declare interface BoundariesListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -760,7 +822,7 @@ export declare interface BoundariesListQueryParamProperties {
 /** Search for boundaries across all farmers by fields and intersecting geometry. */
 export declare interface BoundariesSearch200Response extends HttpResponse {
     status: "200";
-    body: BoundaryListResponse;
+    body: BoundaryListResponseOutput;
 }
 
 export declare interface BoundariesSearchBodyParam {
@@ -771,7 +833,7 @@ export declare interface BoundariesSearchBodyParam {
 /** Search for boundaries by fields and intersecting geometry. */
 export declare interface BoundariesSearchByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: BoundaryListResponse;
+    body: BoundaryListResponseOutput;
 }
 
 export declare interface BoundariesSearchByFarmerIdBodyParam {
@@ -782,7 +844,7 @@ export declare interface BoundariesSearchByFarmerIdBodyParam {
 /** Search for boundaries by fields and intersecting geometry. */
 export declare interface BoundariesSearchByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdBodyParam & RequestParameters;
@@ -790,7 +852,7 @@ export declare type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFar
 /** Search for boundaries across all farmers by fields and intersecting geometry. */
 export declare interface BoundariesSearchdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type BoundariesSearchParameters = BoundariesSearchBodyParam & RequestParameters;
@@ -815,9 +877,9 @@ export declare interface Boundary {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -831,16 +893,52 @@ export declare interface Boundary {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface BoundaryListResponse {
+export declare interface BoundaryListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Boundary>;
+    value?: Array<BoundaryOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
-export declare interface BoundaryOverlapResponse {
+export declare interface BoundaryOutput {
+    /** Farmer ID. */
+    farmerId?: string;
+    /** ID of the parent(field or seasonalField) it belongs to. */
+    parentId?: string;
+    /** GeoJSON abstract class. */
+    geometry?: GeoJsonObjectOutput;
+    /** Is the boundary primary. */
+    isPrimary?: boolean;
+    /** Boundary area in acres. */
+    acreage?: number;
+    /** Type of the parent it belongs to. */
+    parentType?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface BoundaryOverlapResponseOutput {
     /** Acreage of Main boundary. */
     boundaryAcreage?: number;
     /** Acreage of other boundary. */
@@ -849,7 +947,7 @@ export declare interface BoundaryOverlapResponse {
     intersectingAcreage?: number;
 }
 
-export declare interface CascadeDeleteJob {
+export declare interface CascadeDeleteJobOutput {
     /** Farmer ID. */
     farmerId: string;
     /** The id of the resource. */
@@ -868,13 +966,13 @@ export declare interface CascadeDeleteJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -898,9 +996,9 @@ export declare interface Crop {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -914,25 +1012,51 @@ export declare interface Crop {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface CropListResponse {
+export declare interface CropListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Crop>;
+    value?: Array<CropOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface CropOutput {
+    /** Crop phenotype. */
+    phenotype?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Creates or updates a crop resource. */
 export declare interface CropsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Crop;
+    body: CropOutput;
 }
 
 /** Creates or updates a crop resource. */
 export declare interface CropsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Crop;
+    body: CropOutput;
 }
 
 export declare interface CropsCreateOrUpdateBodyParam {
@@ -943,7 +1067,7 @@ export declare interface CropsCreateOrUpdateBodyParam {
 /** Creates or updates a crop resource. */
 export declare interface CropsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropsCreateOrUpdateParameters = CropsCreateOrUpdateBodyParam & RequestParameters;
@@ -957,7 +1081,7 @@ export declare interface CropsDelete204Response extends HttpResponse {
 /** Deletes Crop for given crop id. */
 export declare interface CropsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropsDeleteParameters = RequestParameters;
@@ -974,13 +1098,13 @@ export declare interface CropsGet {
 /** Gets a specified crop resource. */
 export declare interface CropsGet200Response extends HttpResponse {
     status: "200";
-    body: Crop;
+    body: CropOutput;
 }
 
 /** Gets a specified crop resource. */
 export declare interface CropsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropsGetParameters = RequestParameters;
@@ -993,13 +1117,13 @@ export declare interface CropsList {
 /** Returns a paginated list of crop resources. */
 export declare interface CropsList200Response extends HttpResponse {
     status: "200";
-    body: CropListResponse;
+    body: CropListResponseOutput;
 }
 
 /** Returns a paginated list of crop resources. */
 export declare interface CropsListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropsListParameters = CropsListQueryParam & RequestParameters;
@@ -1023,13 +1147,13 @@ export declare interface CropsListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1042,13 +1166,13 @@ export declare interface CropsListQueryParamProperties {
 /** Creates or updates a crop variety resource. */
 export declare interface CropVarietiesCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: CropVariety;
+    body: CropVarietyOutput;
 }
 
 /** Creates or updates a crop variety resource. */
 export declare interface CropVarietiesCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: CropVariety;
+    body: CropVarietyOutput;
 }
 
 export declare interface CropVarietiesCreateOrUpdateBodyParam {
@@ -1059,7 +1183,7 @@ export declare interface CropVarietiesCreateOrUpdateBodyParam {
 /** Creates or updates a crop variety resource. */
 export declare interface CropVarietiesCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateBodyParam & RequestParameters;
@@ -1073,7 +1197,7 @@ export declare interface CropVarietiesDelete204Response extends HttpResponse {
 /** Deletes a specified crop variety resource under a particular crop. */
 export declare interface CropVarietiesDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropVarietiesDeleteParameters = RequestParameters;
@@ -1090,13 +1214,13 @@ export declare interface CropVarietiesGet {
 /** Gets a specified crop variety resource under a particular crop. */
 export declare interface CropVarietiesGet200Response extends HttpResponse {
     status: "200";
-    body: CropVariety;
+    body: CropVarietyOutput;
 }
 
 /** Gets a specified crop variety resource under a particular crop. */
 export declare interface CropVarietiesGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropVarietiesGetParameters = RequestParameters;
@@ -1109,7 +1233,7 @@ export declare interface CropVarietiesList {
 /** Returns a paginated list of crop variety resources across all crops. */
 export declare interface CropVarietiesList200Response extends HttpResponse {
     status: "200";
-    body: CropVarietyListResponse;
+    body: CropVarietyListResponseOutput;
 }
 
 export declare interface CropVarietiesListByCropId {
@@ -1120,13 +1244,13 @@ export declare interface CropVarietiesListByCropId {
 /** Returns a paginated list of crop variety resources under a particular crop. */
 export declare interface CropVarietiesListByCropId200Response extends HttpResponse {
     status: "200";
-    body: CropVarietyListResponse;
+    body: CropVarietyListResponseOutput;
 }
 
 /** Returns a paginated list of crop variety resources under a particular crop. */
 export declare interface CropVarietiesListByCropIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropVarietiesListByCropIdParameters = CropVarietiesListByCropIdQueryParam & RequestParameters;
@@ -1154,13 +1278,13 @@ export declare interface CropVarietiesListByCropIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1173,7 +1297,7 @@ export declare interface CropVarietiesListByCropIdQueryParamProperties {
 /** Returns a paginated list of crop variety resources across all crops. */
 export declare interface CropVarietiesListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type CropVarietiesListParameters = CropVarietiesListQueryParam & RequestParameters;
@@ -1201,13 +1325,13 @@ export declare interface CropVarietiesListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1231,9 +1355,9 @@ export declare interface CropVariety {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -1247,16 +1371,46 @@ export declare interface CropVariety {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface CropVarietyListResponse {
+export declare interface CropVarietyListResponseOutput {
     /** List of requested objects. */
-    value?: Array<CropVariety>;
+    value?: Array<CropVarietyOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
-export declare interface ErrorModel {
+export declare interface CropVarietyOutput {
+    /** ID of the crop it belongs to. */
+    cropId?: string;
+    /** CropVariety Brand. */
+    brand?: string;
+    /** CropVariety product. */
+    product?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface ErrorModelOutput {
     /** Server-defined set of error codes. */
     code?: string;
     /** Human-readable representation of the error. */
@@ -1264,17 +1418,17 @@ export declare interface ErrorModel {
     /** Target of the error. */
     target?: string;
     /** Array of details about specific errors that led to this reported error. */
-    details?: Array<ErrorModel>;
+    details?: Array<ErrorModelOutput>;
     /**
      * Inner error containing list of errors.
      * <see href="https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#innererror--object">InnerError reference document</see>.
      */
-    innererror?: InnerError;
+    innererror?: InnerErrorOutput;
 }
 
-export declare interface ErrorResponse {
+export declare interface ErrorResponseOutput {
     /** An error from the Azure AgPlatform service. */
-    error?: ErrorModel;
+    error?: ErrorModelOutput;
     /** Unique trace ID. */
     traceId?: string;
 }
@@ -1289,9 +1443,9 @@ export declare interface Farm {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -1313,9 +1467,9 @@ export declare interface Farmer {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -1329,25 +1483,49 @@ export declare interface Farmer {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface FarmerListResponse {
+export declare interface FarmerListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Farmer>;
+    value?: Array<FarmerOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface FarmerOutput {
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Create a cascade delete job for specified farmer. */
 export declare interface FarmersCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified farmer. */
 export declare interface FarmersCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersCreateCascadeDeleteJobParameters = FarmersCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -1364,13 +1542,13 @@ export declare interface FarmersCreateCascadeDeleteJobQueryParamProperties {
 /** Creates or updates a farmer resource. */
 export declare interface FarmersCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Farmer;
+    body: FarmerOutput;
 }
 
 /** Creates or updates a farmer resource. */
 export declare interface FarmersCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Farmer;
+    body: FarmerOutput;
 }
 
 export declare interface FarmersCreateOrUpdateBodyParam {
@@ -1381,7 +1559,7 @@ export declare interface FarmersCreateOrUpdateBodyParam {
 /** Creates or updates a farmer resource. */
 export declare interface FarmersCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateBodyParam & RequestParameters;
@@ -1395,7 +1573,7 @@ export declare interface FarmersDelete204Response extends HttpResponse {
 /** Deletes a specified farmer resource. */
 export declare interface FarmersDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersDeleteParameters = RequestParameters;
@@ -1412,7 +1590,7 @@ export declare interface FarmersGet {
 /** Gets a specified farmer resource. */
 export declare interface FarmersGet200Response extends HttpResponse {
     status: "200";
-    body: Farmer;
+    body: FarmerOutput;
 }
 
 export declare interface FarmersGetCascadeDeleteJobDetails {
@@ -1425,13 +1603,13 @@ export declare interface FarmersGetCascadeDeleteJobDetails {
 /** Get a cascade delete job for specified farmer. */
 export declare interface FarmersGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified farmer. */
 export declare interface FarmersGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -1439,7 +1617,7 @@ export declare type FarmersGetCascadeDeleteJobDetailsParameters = RequestParamet
 /** Gets a specified farmer resource. */
 export declare interface FarmersGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersGetParameters = RequestParameters;
@@ -1452,13 +1630,13 @@ export declare interface FarmersList {
 /** Returns a paginated list of farmer resources. */
 export declare interface FarmersList200Response extends HttpResponse {
     status: "200";
-    body: FarmerListResponse;
+    body: FarmerListResponseOutput;
 }
 
 /** Returns a paginated list of farmer resources. */
 export declare interface FarmersListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmersListParameters = FarmersListQueryParam & RequestParameters;
@@ -1480,13 +1658,13 @@ export declare interface FarmersListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1496,9 +1674,9 @@ export declare interface FarmersListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface FarmListResponse {
+export declare interface FarmListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Farm>;
+    value?: Array<FarmOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
@@ -1526,13 +1704,54 @@ export declare interface FarmOperationDataIngestionJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: Date | string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: Date | string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: Date | string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface FarmOperationDataIngestionJobOutput {
+    /** Farmer ID. */
+    farmerId: string;
+    /** Authentication provider ID. */
+    authProviderId: string;
+    /** List of operation types for which data needs to be downloaded. Available values: AllOperations, Application, Planting, Harvest, Tillage. */
+    operations?: Array<string>;
+    /** Start Year (Minimum = 2000, Maximum = CurrentYear). */
+    startYear: number;
+    /** Unique job id. */
+    id?: string;
+    /**
+     * Status of the job.
+     * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
+     */
+    status?: string;
+    /** Duration of the job in seconds. */
+    durationInSeconds?: number;
+    /** Status message to capture more details of the job. */
+    message?: string;
+    /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    lastActionDateTime?: string;
+    /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startTime?: string;
+    /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endTime?: string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -1556,7 +1775,7 @@ export declare interface FarmOperationsCreateDataIngestionJob {
 /** Create a farm operation data ingestion job. */
 export declare interface FarmOperationsCreateDataIngestionJob202Response extends HttpResponse {
     status: "202";
-    body: FarmOperationDataIngestionJob;
+    body: FarmOperationDataIngestionJobOutput;
 }
 
 export declare interface FarmOperationsCreateDataIngestionJobBodyParam {
@@ -1567,7 +1786,7 @@ export declare interface FarmOperationsCreateDataIngestionJobBodyParam {
 /** Create a farm operation data ingestion job. */
 export declare interface FarmOperationsCreateDataIngestionJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobBodyParam & RequestParameters;
@@ -1575,27 +1794,53 @@ export declare type FarmOperationsCreateDataIngestionJobParameters = FarmOperati
 /** Get a farm operation data ingestion job. */
 export declare interface FarmOperationsGetDataIngestionJobDetails200Response extends HttpResponse {
     status: "200";
-    body: FarmOperationDataIngestionJob;
+    body: FarmOperationDataIngestionJobOutput;
 }
 
 /** Get a farm operation data ingestion job. */
 export declare interface FarmOperationsGetDataIngestionJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmOperationsGetDataIngestionJobDetailsParameters = RequestParameters;
 
+export declare interface FarmOutput {
+    /** Farmer ID. */
+    farmerId?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Create a cascade delete job for specified farm. */
 export declare interface FarmsCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified farm. */
 export declare interface FarmsCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsCreateCascadeDeleteJobParameters = FarmsCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -1614,13 +1859,13 @@ export declare interface FarmsCreateCascadeDeleteJobQueryParamProperties {
 /** Creates or updates a farm resource under a particular farmer. */
 export declare interface FarmsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Farm;
+    body: FarmOutput;
 }
 
 /** Creates or updates a farm resource under a particular farmer. */
 export declare interface FarmsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Farm;
+    body: FarmOutput;
 }
 
 export declare interface FarmsCreateOrUpdateBodyParam {
@@ -1631,7 +1876,7 @@ export declare interface FarmsCreateOrUpdateBodyParam {
 /** Creates or updates a farm resource under a particular farmer. */
 export declare interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateBodyParam & RequestParameters;
@@ -1645,7 +1890,7 @@ export declare interface FarmsDelete204Response extends HttpResponse {
 /** Deletes a specified farm resource under a particular farmer. */
 export declare interface FarmsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsDeleteParameters = RequestParameters;
@@ -1662,7 +1907,7 @@ export declare interface FarmsGet {
 /** Gets a specified farm resource under a particular farmer. */
 export declare interface FarmsGet200Response extends HttpResponse {
     status: "200";
-    body: Farm;
+    body: FarmOutput;
 }
 
 export declare interface FarmsGetCascadeDeleteJobDetails {
@@ -1675,13 +1920,13 @@ export declare interface FarmsGetCascadeDeleteJobDetails {
 /** Get a cascade delete job for specified farm. */
 export declare interface FarmsGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified farm. */
 export declare interface FarmsGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -1689,7 +1934,7 @@ export declare type FarmsGetCascadeDeleteJobDetailsParameters = RequestParameter
 /** Gets a specified farm resource under a particular farmer. */
 export declare interface FarmsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsGetParameters = RequestParameters;
@@ -1702,7 +1947,7 @@ export declare interface FarmsList {
 /** Returns a paginated list of farm resources across all farmers. */
 export declare interface FarmsList200Response extends HttpResponse {
     status: "200";
-    body: FarmListResponse;
+    body: FarmListResponseOutput;
 }
 
 export declare interface FarmsListByFarmerId {
@@ -1713,13 +1958,13 @@ export declare interface FarmsListByFarmerId {
 /** Returns a paginated list of farm resources under a particular farmer. */
 export declare interface FarmsListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: FarmListResponse;
+    body: FarmListResponseOutput;
 }
 
 /** Returns a paginated list of farm resources under a particular farmer. */
 export declare interface FarmsListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsListByFarmerIdParameters = FarmsListByFarmerIdQueryParam & RequestParameters;
@@ -1741,13 +1986,13 @@ export declare interface FarmsListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1760,7 +2005,7 @@ export declare interface FarmsListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of farm resources across all farmers. */
 export declare interface FarmsListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FarmsListParameters = FarmsListQueryParam & RequestParameters;
@@ -1782,13 +2027,13 @@ export declare interface FarmsListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -1814,9 +2059,9 @@ export declare interface Field {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -1830,25 +2075,57 @@ export declare interface Field {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface FieldListResponse {
+export declare interface FieldListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Field>;
+    value?: Array<FieldOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface FieldOutput {
+    /** ID of the associated Farm. */
+    farmId?: string;
+    /** Farmer ID. */
+    farmerId?: string;
+    /** Primary boundary id. */
+    primaryBoundaryId?: string;
+    /** Boundary Ids. */
+    boundaryIds?: Array<string>;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Create a cascade delete job for specified field. */
 export declare interface FieldsCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified field. */
 export declare interface FieldsCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsCreateCascadeDeleteJobParameters = FieldsCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -1867,13 +2144,13 @@ export declare interface FieldsCreateCascadeDeleteJobQueryParamProperties {
 /** Creates or Updates a field resource under a particular farmer. */
 export declare interface FieldsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Field;
+    body: FieldOutput;
 }
 
 /** Creates or Updates a field resource under a particular farmer. */
 export declare interface FieldsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Field;
+    body: FieldOutput;
 }
 
 export declare interface FieldsCreateOrUpdateBodyParam {
@@ -1884,7 +2161,7 @@ export declare interface FieldsCreateOrUpdateBodyParam {
 /** Creates or Updates a field resource under a particular farmer. */
 export declare interface FieldsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateBodyParam & RequestParameters;
@@ -1898,7 +2175,7 @@ export declare interface FieldsDelete204Response extends HttpResponse {
 /** Deletes a specified field resource under a particular farmer. */
 export declare interface FieldsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsDeleteParameters = RequestParameters;
@@ -1915,7 +2192,7 @@ export declare interface FieldsGet {
 /** Gets a specified field resource under a particular farmer. */
 export declare interface FieldsGet200Response extends HttpResponse {
     status: "200";
-    body: Field;
+    body: FieldOutput;
 }
 
 export declare interface FieldsGetCascadeDeleteJobDetails {
@@ -1928,13 +2205,13 @@ export declare interface FieldsGetCascadeDeleteJobDetails {
 /** Get a cascade delete job for specified field. */
 export declare interface FieldsGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get a cascade delete job for specified field. */
 export declare interface FieldsGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -1942,7 +2219,7 @@ export declare type FieldsGetCascadeDeleteJobDetailsParameters = RequestParamete
 /** Gets a specified field resource under a particular farmer. */
 export declare interface FieldsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsGetParameters = RequestParameters;
@@ -1955,7 +2232,7 @@ export declare interface FieldsList {
 /** Returns a paginated list of field resources across all farmers. */
 export declare interface FieldsList200Response extends HttpResponse {
     status: "200";
-    body: FieldListResponse;
+    body: FieldListResponseOutput;
 }
 
 export declare interface FieldsListByFarmerId {
@@ -1966,13 +2243,13 @@ export declare interface FieldsListByFarmerId {
 /** Returns a paginated list of field resources under a particular farmer. */
 export declare interface FieldsListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: FieldListResponse;
+    body: FieldListResponseOutput;
 }
 
 /** Returns a paginated list of field resources under a particular farmer. */
 export declare interface FieldsListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsListByFarmerIdParameters = FieldsListByFarmerIdQueryParam & RequestParameters;
@@ -1996,13 +2273,13 @@ export declare interface FieldsListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2015,7 +2292,7 @@ export declare interface FieldsListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of field resources across all farmers. */
 export declare interface FieldsListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type FieldsListParameters = FieldsListQueryParam & RequestParameters;
@@ -2039,13 +2316,13 @@ export declare interface FieldsListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2058,6 +2335,12 @@ export declare interface FieldsListQueryParamProperties {
 export declare type GeoJsonObject = MultiPolygon | Point | Polygon;
 
 export declare interface GeoJsonObjectBase {
+    type: "MultiPolygon" | "Point" | "Polygon";
+}
+
+export declare type GeoJsonObjectOutput = MultiPolygonOutput | PointOutput | PolygonOutput;
+
+export declare interface GeoJsonObjectOutputBase {
     type: "MultiPolygon" | "Point" | "Polygon";
 }
 
@@ -2106,11 +2389,11 @@ export declare interface HarvestData {
      * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
      * Note: this will be specified by the source provider itself.
      */
-    operationModifiedDateTime?: Date;
+    operationModifiedDateTime?: Date | string;
     /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationStartDateTime?: Date;
+    operationStartDateTime?: Date | string;
     /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationEndDateTime?: Date;
+    operationEndDateTime?: Date | string;
     /** Link for attachments. */
     attachmentsLink?: string;
     /** Optional boundary ID of the field for which operation was applied. */
@@ -2126,9 +2409,9 @@ export declare interface HarvestData {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -2145,13 +2428,13 @@ export declare interface HarvestData {
 /** Creates or updates harvest data resource under a particular farmer. */
 export declare interface HarvestDataCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: HarvestData;
+    body: HarvestDataOutput;
 }
 
 /** Creates or updates harvest data resource under a particular farmer. */
 export declare interface HarvestDataCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: HarvestData;
+    body: HarvestDataOutput;
 }
 
 export declare interface HarvestDataCreateOrUpdateBodyParam {
@@ -2162,7 +2445,7 @@ export declare interface HarvestDataCreateOrUpdateBodyParam {
 /** Creates or updates harvest data resource under a particular farmer. */
 export declare interface HarvestDataCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateBodyParam & RequestParameters;
@@ -2176,7 +2459,7 @@ export declare interface HarvestDataDelete204Response extends HttpResponse {
 /** Deletes a specified harvest data resource under a particular farmer. */
 export declare interface HarvestDataDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type HarvestDataDeleteParameters = RequestParameters;
@@ -2193,13 +2476,13 @@ export declare interface HarvestDataGet {
 /** Get a specified harvest data resource under a particular farmer. */
 export declare interface HarvestDataGet200Response extends HttpResponse {
     status: "200";
-    body: HarvestData;
+    body: HarvestDataOutput;
 }
 
 /** Get a specified harvest data resource under a particular farmer. */
 export declare interface HarvestDataGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type HarvestDataGetParameters = RequestParameters;
@@ -2212,7 +2495,7 @@ export declare interface HarvestDataList {
 /** Returns a paginated list of harvest data resources across all farmers. */
 export declare interface HarvestDataList200Response extends HttpResponse {
     status: "200";
-    body: HarvestDataListResponse;
+    body: HarvestDataListResponseOutput;
 }
 
 export declare interface HarvestDataListByFarmerId {
@@ -2223,13 +2506,13 @@ export declare interface HarvestDataListByFarmerId {
 /** Returns a paginated list of harvest data resources under a particular farm. */
 export declare interface HarvestDataListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: HarvestDataListResponse;
+    body: HarvestDataListResponseOutput;
 }
 
 /** Returns a paginated list of harvest data resources under a particular farm. */
 export declare interface HarvestDataListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type HarvestDataListByFarmerIdParameters = HarvestDataListByFarmerIdQueryParam & RequestParameters;
@@ -2270,17 +2553,17 @@ export declare interface HarvestDataListByFarmerIdQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -2297,13 +2580,13 @@ export declare interface HarvestDataListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2316,7 +2599,7 @@ export declare interface HarvestDataListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of harvest data resources across all farmers. */
 export declare interface HarvestDataListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type HarvestDataListParameters = HarvestDataListQueryParam & RequestParameters;
@@ -2357,17 +2640,17 @@ export declare interface HarvestDataListQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -2384,13 +2667,13 @@ export declare interface HarvestDataListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2400,13 +2683,72 @@ export declare interface HarvestDataListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface HarvestDataListResponse {
+export declare interface HarvestDataListResponseOutput {
     /** List of requested objects. */
-    value?: Array<HarvestData>;
+    value?: Array<HarvestDataOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
+}
+
+export declare interface HarvestDataOutput {
+    /** Schema for storing measurement reading and unit. */
+    totalYield?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgYield?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalWetMass?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgWetMass?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgMoisture?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgSpeed?: MeasureOutput;
+    /** Harvest product details. */
+    harvestProductDetails?: Array<HarvestProductDetailOutput>;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Source of the operation data. */
+    source?: string;
+    /**
+     * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
+     * Note: this will be specified by the source provider itself.
+     */
+    operationModifiedDateTime?: string;
+    /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationStartDateTime?: string;
+    /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationEndDateTime?: string;
+    /** Link for attachments. */
+    attachmentsLink?: string;
+    /** Optional boundary ID of the field for which operation was applied. */
+    associatedBoundaryId?: string;
+    /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
+    operationBoundaryId?: string;
+    /** Farmer ID which belongs to the operation data. */
+    farmerId?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
 }
 
 export declare interface HarvestProductDetail {
@@ -2426,7 +2768,24 @@ export declare interface HarvestProductDetail {
     avgWetMass?: Measure;
 }
 
-export declare interface ImageFile {
+export declare interface HarvestProductDetailOutput {
+    /** Name of the product. */
+    productName?: string;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalYield?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgYield?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgMoisture?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalWetMass?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgWetMass?: MeasureOutput;
+}
+
+export declare interface ImageFileOutput {
     /** Link of the image file. */
     fileLink?: string;
     /** Name of the image file. */
@@ -2447,7 +2806,7 @@ export declare interface ImageProcessingCreateRasterizeJob {
 /** Create a ImageProcessing Rasterize job. */
 export declare interface ImageProcessingCreateRasterizeJob202Response extends HttpResponse {
     status: "202";
-    body: ImageProcessingRasterizeJob;
+    body: ImageProcessingRasterizeJobOutput;
 }
 
 export declare interface ImageProcessingCreateRasterizeJobBodyParam {
@@ -2466,7 +2825,7 @@ export declare type ImageProcessingCreateRasterizeJobParameters = ImageProcessin
 /** Get ImageProcessing Rasterize job's details. */
 export declare interface ImageProcessingGetRasterizeJob200Response extends HttpResponse {
     status: "200";
-    body: ImageProcessingRasterizeJob;
+    body: ImageProcessingRasterizeJobOutput;
 }
 
 export declare type ImageProcessingGetRasterizeJobParameters = RequestParameters;
@@ -2490,13 +2849,13 @@ export declare interface ImageProcessingRasterizeJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: Date | string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: Date | string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -2510,7 +2869,46 @@ export declare interface ImageProcessingRasterizeJob {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface InnerError extends Record<string, unknown> {
+export declare interface ImageProcessingRasterizeJobOutput {
+    /** Farmer ID. */
+    farmerId: string;
+    /** Shapefile attachment ID. */
+    shapefileAttachmentId: string;
+    /** List of shapefile column names to create raster attachments. */
+    shapefileColumnNames: Array<string>;
+    /** Unique job id. */
+    id?: string;
+    /**
+     * Status of the job.
+     * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
+     */
+    status?: string;
+    /** Duration of the job in seconds. */
+    durationInSeconds?: number;
+    /** Status message to capture more details of the job. */
+    message?: string;
+    /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    lastActionDateTime?: string;
+    /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startTime?: string;
+    /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface InnerErrorOutput extends Record<string, unknown> {
     /**
      * Specific error code than was provided by the
      * containing error.
@@ -2520,18 +2918,24 @@ export declare interface InnerError extends Record<string, unknown> {
      * Inner error containing list of errors.
      * <see href="https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#innererror--object">InnerError reference document</see>.
      */
-    innererror?: InnerError;
+    innererror?: InnerErrorOutput;
 }
 
-declare interface Location_2 {
+export declare interface LocationOutput {
     /** Latitude of the location. */
     latitude: number;
     /** Longitude of the location. */
     longitude: number;
 }
-export { Location_2 as Location }
 
 export declare interface Measure {
+    /** Data unit. */
+    unit?: string;
+    /** Data value. */
+    value?: number;
+}
+
+export declare interface MeasureOutput {
     /** Data unit. */
     unit?: string;
     /** Data value. */
@@ -2550,6 +2954,20 @@ export declare interface MultiPolygonCoordinates {
      * and any others MUST be interior rings.
      */
     coordinates: Array<Array<Array<Array<number>>>>;
+}
+
+export declare interface MultiPolygonCoordinatesOutput {
+    /**
+     * Gets or sets Coordinates of GeoJSON Object.
+     * It must be an array of polygons, each polygon contains list of linear rings.
+     * For Polygons with more than one of these rings, the first MUST be the exterior ring,
+     * and any others MUST be interior rings.
+     */
+    coordinates: Array<Array<Array<Array<number>>>>;
+}
+
+export declare interface MultiPolygonOutput extends GeoJsonObjectOutputBase, MultiPolygonCoordinatesOutput {
+    type: "MultiPolygon";
 }
 
 export declare interface OAuthConnectRequest {
@@ -2586,9 +3004,9 @@ export declare interface OAuthProvider {
     /** The ETag value to implement optimistic concurrency. */
     eTag?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -2602,25 +3020,64 @@ export declare interface OAuthProvider {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface OAuthProviderListResponse {
+export declare interface OAuthProviderListResponseOutput {
     /** List of requested objects. */
-    value?: Array<OAuthProvider>;
+    value?: Array<OAuthProviderOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface OAuthProviderOutput {
+    /** OAuth App ID for given OAuth Provider. */
+    appId?: string;
+    /**
+     * OAuth App secret for given Provider.
+     * Note: Won't be sent in response.
+     */
+    appSecret?: string;
+    /**
+     * OAuth Api key for given Provider.
+     * Note: currently Applicable to Climate provider. Won't be sent in response.
+     */
+    apiKey?: string;
+    /**
+     * An optional flag to determine if the App is ready to be used for Production scenarios in the provider side or not. (Default value: false)
+     * Note: Currently applicable for JohnDeere.
+     */
+    isProductionApp?: boolean;
+    /** Unique OAuth provider ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Creates or updates an oauthProvider resource. */
 export declare interface OAuthProvidersCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: OAuthProvider;
+    body: OAuthProviderOutput;
 }
 
 /** Creates or updates an oauthProvider resource. */
 export declare interface OAuthProvidersCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: OAuthProvider;
+    body: OAuthProviderOutput;
 }
 
 export declare interface OAuthProvidersCreateOrUpdateBodyParam {
@@ -2631,7 +3088,7 @@ export declare interface OAuthProvidersCreateOrUpdateBodyParam {
 /** Creates or updates an oauthProvider resource. */
 export declare interface OAuthProvidersCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateBodyParam & RequestParameters;
@@ -2645,7 +3102,7 @@ export declare interface OAuthProvidersDelete204Response extends HttpResponse {
 /** Deletes an specified oauthProvider resource. */
 export declare interface OAuthProvidersDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthProvidersDeleteParameters = RequestParameters;
@@ -2662,13 +3119,13 @@ export declare interface OAuthProvidersGet {
 /** Get a specified oauthProvider resource. */
 export declare interface OAuthProvidersGet200Response extends HttpResponse {
     status: "200";
-    body: OAuthProvider;
+    body: OAuthProviderOutput;
 }
 
 /** Get a specified oauthProvider resource. */
 export declare interface OAuthProvidersGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthProvidersGetParameters = RequestParameters;
@@ -2681,13 +3138,13 @@ export declare interface OAuthProvidersList {
 /** Returns a paginated list of oauthProvider resources. */
 export declare interface OAuthProvidersList200Response extends HttpResponse {
     status: "200";
-    body: OAuthProviderListResponse;
+    body: OAuthProviderListResponseOutput;
 }
 
 /** Returns a paginated list of oauthProvider resources. */
 export declare interface OAuthProvidersListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthProvidersListParameters = OAuthProvidersListQueryParam & RequestParameters;
@@ -2709,13 +3166,13 @@ export declare interface OAuthProvidersListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2725,7 +3182,16 @@ export declare interface OAuthProvidersListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface OAuthToken {
+export declare interface OAuthTokenListResponseOutput {
+    /** List of requested objects. */
+    value?: Array<OAuthTokenOutput>;
+    /** Token used in retrieving the next page. If null, there are no additional pages. */
+    $skipToken?: string;
+    /** Continuation link (absolute URI) to the next page of results in the list. */
+    nextLink?: string;
+}
+
+export declare interface OAuthTokenOutput {
     /** Farmer ID for this OAuth config. */
     farmerId: string;
     /** ID of the OAuth provider resource containing app information. */
@@ -2735,30 +3201,21 @@ export declare interface OAuthToken {
     /** The ETag value to implement optimistic concurrency. */
     eTag?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
-}
-
-export declare interface OAuthTokenListResponse {
-    /** List of requested objects. */
-    value?: Array<OAuthToken>;
-    /** Token used in retrieving the next page. If null, there are no additional pages. */
-    $skipToken?: string;
-    /** Continuation link (absolute URI) to the next page of results in the list. */
-    nextLink?: string;
+    modifiedDateTime?: string;
 }
 
 /** Create a cascade delete job for OAuth tokens. */
 export declare interface OAuthTokensCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for OAuth tokens. */
 export declare interface OAuthTokensCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthTokensCreateCascadeDeleteJobParameters = OAuthTokensCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -2784,13 +3241,13 @@ export declare interface OAuthTokensGetCascadeDeleteJobDetails {
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
 export declare interface OAuthTokensGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job details for OAuth tokens for specified job ID. */
 export declare interface OAuthTokensGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthTokensGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -2814,7 +3271,7 @@ export declare interface OAuthTokensGetOAuthConnectionLinkBodyParam {
 /** Returns Connection link needed in the OAuth flow. */
 export declare interface OAuthTokensGetOAuthConnectionLinkdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkBodyParam & RequestParameters;
@@ -2827,13 +3284,13 @@ export declare interface OAuthTokensList {
 /** Returns a list of OAuthToken documents. */
 export declare interface OAuthTokensList200Response extends HttpResponse {
     status: "200";
-    body: OAuthTokenListResponse;
+    body: OAuthTokenListResponseOutput;
 }
 
 /** Returns a list of OAuthToken documents. */
 export declare interface OAuthTokensListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type OAuthTokensListParameters = OAuthTokensListQueryParam & RequestParameters;
@@ -2850,13 +3307,13 @@ export declare interface OAuthTokensListQueryParamProperties {
     /** If the token object is valid. */
     isValid?: boolean;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -2898,40 +3355,6 @@ export declare interface PagingOptions<TResponse> {
     customGetPage?: GetPage<PaginateReturn<TResponse>[]>;
 }
 
-export declare interface Paths1LxjoxzFarmersFarmeridAttachmentsAttachmentidPatchRequestbodyContentMultipartFormDataSchema {
-    /**
-     * File to be uploaded.
-     *
-     * Value may contain any sequence of octets
-     */
-    file?: string;
-    /** Farmer id for this attachment. */
-    FarmerId?: string;
-    /** Associated Resource id for this attachment. */
-    ResourceId?: string;
-    /**
-     * Associated Resource type for this attachment
-     * i.e. Farmer, Farm, Field, SeasonalField, Boundary, FarmOperationApplicationData, HarvestData, TillageData, PlantingData.
-     */
-    ResourceType?: string;
-    /** Original File Name for this attachment. */
-    OriginalFileName?: string;
-    /** Unique id. */
-    Id?: string;
-    /** Status of the resource. */
-    Status?: string;
-    /** Date when resource was created. */
-    CreatedDateTime?: string;
-    /** Date when resource was last modified. */
-    ModifiedDateTime?: string;
-    /** Name to identify resource. */
-    Name?: string;
-    /** Textual description of resource. */
-    Description?: string;
-    /** The ETag value to implement optimistic concurrency. */
-    ETag?: string;
-}
-
 export declare interface PlantingData {
     /** Schema for storing measurement reading and unit. */
     avgPlantingRate?: Measure;
@@ -2949,11 +3372,11 @@ export declare interface PlantingData {
      * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
      * Note: this will be specified by the source provider itself.
      */
-    operationModifiedDateTime?: Date;
+    operationModifiedDateTime?: Date | string;
     /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationStartDateTime?: Date;
+    operationStartDateTime?: Date | string;
     /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationEndDateTime?: Date;
+    operationEndDateTime?: Date | string;
     /** Link for attachments. */
     attachmentsLink?: string;
     /** Optional boundary ID of the field for which operation was applied. */
@@ -2969,9 +3392,9 @@ export declare interface PlantingData {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -2988,13 +3411,13 @@ export declare interface PlantingData {
 /** Creates or updates an planting data resource under a particular farmer. */
 export declare interface PlantingDataCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: PlantingData;
+    body: PlantingDataOutput;
 }
 
 /** Creates or updates an planting data resource under a particular farmer. */
 export declare interface PlantingDataCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: PlantingData;
+    body: PlantingDataOutput;
 }
 
 export declare interface PlantingDataCreateOrUpdateBodyParam {
@@ -3005,7 +3428,7 @@ export declare interface PlantingDataCreateOrUpdateBodyParam {
 /** Creates or updates an planting data resource under a particular farmer. */
 export declare interface PlantingDataCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateBodyParam & RequestParameters;
@@ -3019,7 +3442,7 @@ export declare interface PlantingDataDelete204Response extends HttpResponse {
 /** Deletes a specified planting data resource under a particular farmer. */
 export declare interface PlantingDataDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type PlantingDataDeleteParameters = RequestParameters;
@@ -3036,13 +3459,13 @@ export declare interface PlantingDataGet {
 /** Get a specified planting data resource under a particular farmer. */
 export declare interface PlantingDataGet200Response extends HttpResponse {
     status: "200";
-    body: PlantingData;
+    body: PlantingDataOutput;
 }
 
 /** Get a specified planting data resource under a particular farmer. */
 export declare interface PlantingDataGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type PlantingDataGetParameters = RequestParameters;
@@ -3055,7 +3478,7 @@ export declare interface PlantingDataList {
 /** Returns a paginated list of planting data resources across all farmers. */
 export declare interface PlantingDataList200Response extends HttpResponse {
     status: "200";
-    body: PlantingDataListResponse;
+    body: PlantingDataListResponseOutput;
 }
 
 export declare interface PlantingDataListByFarmerId {
@@ -3066,13 +3489,13 @@ export declare interface PlantingDataListByFarmerId {
 /** Returns a paginated list of planting data resources under a particular farm. */
 export declare interface PlantingDataListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: PlantingDataListResponse;
+    body: PlantingDataListResponseOutput;
 }
 
 /** Returns a paginated list of planting data resources under a particular farm. */
 export declare interface PlantingDataListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type PlantingDataListByFarmerIdParameters = PlantingDataListByFarmerIdQueryParam & RequestParameters;
@@ -3101,17 +3524,17 @@ export declare interface PlantingDataListByFarmerIdQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -3128,13 +3551,13 @@ export declare interface PlantingDataListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -3147,7 +3570,7 @@ export declare interface PlantingDataListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of planting data resources across all farmers. */
 export declare interface PlantingDataListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type PlantingDataListParameters = PlantingDataListQueryParam & RequestParameters;
@@ -3176,17 +3599,17 @@ export declare interface PlantingDataListQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -3203,13 +3626,13 @@ export declare interface PlantingDataListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -3219,13 +3642,66 @@ export declare interface PlantingDataListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface PlantingDataListResponse {
+export declare interface PlantingDataListResponseOutput {
     /** List of requested objects. */
-    value?: Array<PlantingData>;
+    value?: Array<PlantingDataOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
+}
+
+export declare interface PlantingDataOutput {
+    /** Schema for storing measurement reading and unit. */
+    avgPlantingRate?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalMaterial?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgMaterial?: MeasureOutput;
+    /** Planting product details. */
+    plantingProductDetails?: Array<PlantingProductDetailOutput>;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Source of the operation data. */
+    source?: string;
+    /**
+     * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
+     * Note: this will be specified by the source provider itself.
+     */
+    operationModifiedDateTime?: string;
+    /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationStartDateTime?: string;
+    /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationEndDateTime?: string;
+    /** Link for attachments. */
+    attachmentsLink?: string;
+    /** Optional boundary ID of the field for which operation was applied. */
+    associatedBoundaryId?: string;
+    /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
+    operationBoundaryId?: string;
+    /** Farmer ID which belongs to the operation data. */
+    farmerId?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
 }
 
 export declare interface PlantingProductDetail {
@@ -3237,6 +3713,17 @@ export declare interface PlantingProductDetail {
     totalMaterial?: Measure;
     /** Schema for storing measurement reading and unit. */
     avgMaterial?: Measure;
+}
+
+export declare interface PlantingProductDetailOutput {
+    /** Name of the product. */
+    productName?: string;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    totalMaterial?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    avgMaterial?: MeasureOutput;
 }
 
 export declare interface Point extends GeoJsonObjectBase, PointCoordinates {
@@ -3251,6 +3738,18 @@ export declare interface PointCoordinates {
     coordinates: Array<number>;
 }
 
+export declare interface PointCoordinatesOutput {
+    /**
+     * Gets or sets the coordinate of this point.
+     * It must be an array of 2 or 3 elements for a 2D or 3D system.
+     */
+    coordinates: Array<number>;
+}
+
+export declare interface PointOutput extends GeoJsonObjectOutputBase, PointCoordinatesOutput {
+    type: "Point";
+}
+
 export declare interface Polygon extends GeoJsonObjectBase, PolygonCoordinates {
     type: "Polygon";
 }
@@ -3263,6 +3762,20 @@ export declare interface PolygonCoordinates {
      * and any others MUST be interior rings.
      */
     coordinates: Array<Array<Array<number>>>;
+}
+
+export declare interface PolygonCoordinatesOutput {
+    /**
+     * Gets or sets type of the GeoJSON Object.
+     * It must be an array of linear ring coordinate arrays.
+     * For Polygons with more than one of these rings, the first MUST be the exterior ring,
+     * and any others MUST be interior rings.
+     */
+    coordinates: Array<Array<Array<number>>>;
+}
+
+export declare interface PolygonOutput extends GeoJsonObjectOutputBase, PolygonCoordinatesOutput {
+    type: "Polygon";
 }
 
 export declare interface Routes {
@@ -3393,9 +3906,9 @@ export declare interface SatelliteDataIngestionJob {
     /** The id of the boundary object for which satellite data is being fetched. */
     boundaryId: string;
     /** Start Date. */
-    startDateTime: Date;
+    startDateTime: Date | string;
     /** End Date. */
-    endDateTime: Date;
+    endDateTime: Date | string;
     /** Provider of satellite data. */
     provider?: "Microsoft";
     /** Source of satellite data. */
@@ -3414,13 +3927,13 @@ export declare interface SatelliteDataIngestionJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: Date | string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: Date | string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -3434,15 +3947,80 @@ export declare interface SatelliteDataIngestionJob {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface Scene {
+export declare interface SatelliteDataIngestionJobOutput {
+    /** Farmer ID. */
+    farmerId: string;
+    /** The id of the boundary object for which satellite data is being fetched. */
+    boundaryId: string;
+    /** Start Date. */
+    startDateTime: string;
+    /** End Date. */
+    endDateTime: string;
+    /** Provider of satellite data. */
+    provider?: "Microsoft";
+    /** Source of satellite data. */
+    source?: "Sentinel_2_L2A";
+    /** Data Model for SatelliteIngestionJobRequest. */
+    data?: SatelliteDataOutput;
+    /** Unique job id. */
+    id?: string;
+    /**
+     * Status of the job.
+     * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
+     */
+    status?: string;
+    /** Duration of the job in seconds. */
+    durationInSeconds?: number;
+    /** Status message to capture more details of the job. */
+    message?: string;
+    /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    lastActionDateTime?: string;
+    /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startTime?: string;
+    /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface SatelliteDataOutput {
+    /** List of ImageNames. */
+    imageNames?: Array<string>;
+    /** List of ImageFormats. Available value: TIF. */
+    imageFormats?: Array<string>;
+    /** List of ImageResolutions in meters. Available values: 10, 20, 60. */
+    imageResolutions?: Array<number>;
+}
+
+export declare interface SceneListResponseOutput {
+    /** List of requested objects. */
+    value?: Array<SceneOutput>;
+    /** Token used in retrieving the next page. If null, there are no additional pages. */
+    $skipToken?: string;
+    /** Continuation link (absolute URI) to the next page of results in the list. */
+    nextLink?: string;
+}
+
+export declare interface SceneOutput {
     /** Date-time of the scene, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    sceneDateTime?: Date;
+    sceneDateTime?: string;
     /** Data provider of the scene. */
     provider?: string;
     /** Data source of the scene. */
     source?: string;
     /** Collection of image files. */
-    imageFiles?: Array<ImageFile>;
+    imageFiles?: Array<ImageFileOutput>;
     /** Supported image formats for scene resource. */
     imageFormat?: "TIF";
     /** Cloud cover percentage of the scene. */
@@ -3461,15 +4039,6 @@ export declare interface Scene {
     eTag?: string;
 }
 
-export declare interface SceneListResponse {
-    /** List of requested objects. */
-    value?: Array<Scene>;
-    /** Token used in retrieving the next page. If null, there are no additional pages. */
-    $skipToken?: string;
-    /** Continuation link (absolute URI) to the next page of results in the list. */
-    nextLink?: string;
-}
-
 export declare interface ScenesCreateSatelliteDataIngestionJob {
     /** Create a satellite data ingestion job. */
     put(options?: ScenesCreateSatelliteDataIngestionJobParameters): Promise<ScenesCreateSatelliteDataIngestionJob202Response | ScenesCreateSatelliteDataIngestionJobdefaultResponse>;
@@ -3480,7 +4049,7 @@ export declare interface ScenesCreateSatelliteDataIngestionJob {
 /** Create a satellite data ingestion job. */
 export declare interface ScenesCreateSatelliteDataIngestionJob202Response extends HttpResponse {
     status: "202";
-    body: SatelliteDataIngestionJob;
+    body: SatelliteDataIngestionJobOutput;
 }
 
 export declare interface ScenesCreateSatelliteDataIngestionJobBodyParam {
@@ -3491,7 +4060,7 @@ export declare interface ScenesCreateSatelliteDataIngestionJobBodyParam {
 /** Create a satellite data ingestion job. */
 export declare interface ScenesCreateSatelliteDataIngestionJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobBodyParam & RequestParameters;
@@ -3510,7 +4079,7 @@ export declare interface ScenesDownload200Response extends HttpResponse {
 /** Downloads and returns file stream as response for the given input filePath. */
 export declare interface ScenesDownloaddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ScenesDownloadParameters = ScenesDownloadQueryParam & RequestParameters;
@@ -3527,13 +4096,13 @@ export declare interface ScenesDownloadQueryParamProperties {
 /** Get a satellite data ingestion job. */
 export declare interface ScenesGetSatelliteDataIngestionJobDetails200Response extends HttpResponse {
     status: "200";
-    body: SatelliteDataIngestionJob;
+    body: SatelliteDataIngestionJobOutput;
 }
 
 /** Get a satellite data ingestion job. */
 export declare interface ScenesGetSatelliteDataIngestionJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ScenesGetSatelliteDataIngestionJobDetailsParameters = RequestParameters;
@@ -3546,13 +4115,13 @@ export declare interface ScenesList {
 /** Returns a paginated list of scene resources. */
 export declare interface ScenesList200Response extends HttpResponse {
     status: "200";
-    body: SceneListResponse;
+    body: SceneListResponseOutput;
 }
 
 /** Returns a paginated list of scene resources. */
 export declare interface ScenesListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type ScenesListParameters = ScenesListQueryParam & RequestParameters;
@@ -3571,9 +4140,9 @@ export declare interface ScenesListQueryParamProperties {
     /** Source name of scene data, default value Sentinel_2_L2A (Sentinel 2 L2A). */
     source?: string;
     /** Scene start UTC datetime (inclusive), sample format: yyyy-MM-ddThh:mm:ssZ. */
-    startDateTime?: Date;
+    startDateTime?: Date | string;
     /** Scene end UTC datetime (inclusive), sample format: yyyy-MM-dThh:mm:ssZ. */
-    endDateTime?: Date;
+    endDateTime?: Date | string;
     /** Filter scenes with cloud coverage percentage less than max value. Range [0 to 100.0]. */
     maxCloudCoveragePercentage?: number;
     /** Filter scenes with dark pixel coverage percentage less than max value. Range [0 to 100.0]. */
@@ -3606,13 +4175,13 @@ export declare interface SearchBoundaryQuery {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -3636,9 +4205,9 @@ export declare interface SearchBoundaryQuery {
 
 export declare interface Season {
     /** Season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startDateTime?: Date;
+    startDateTime?: Date | string;
     /** Season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endDateTime?: Date;
+    endDateTime?: Date | string;
     /** Season year. */
     year?: number;
     /** Unique resource ID. */
@@ -3648,9 +4217,9 @@ export declare interface Season {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -3690,7 +4259,7 @@ export declare interface SeasonalField {
     /** Unit of average seed population value attribute. */
     avgSeedPopulationUnit?: string;
     /** Planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    plantingDateTime?: Date;
+    plantingDateTime?: Date | string;
     /** Unique resource ID. */
     id?: string;
     /** The ETag value to implement optimistic concurrency. */
@@ -3698,9 +4267,9 @@ export declare interface SeasonalField {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -3714,25 +4283,75 @@ export declare interface SeasonalField {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface SeasonalFieldListResponse {
+export declare interface SeasonalFieldListResponseOutput {
     /** List of requested objects. */
-    value?: Array<SeasonalField>;
+    value?: Array<SeasonalFieldOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface SeasonalFieldOutput {
+    /** Farmer ID. */
+    farmerId?: string;
+    /** Primary boundary id. */
+    primaryBoundaryId?: string;
+    /** Boundary Ids. */
+    boundaryIds?: Array<string>;
+    /** ID of the associated Farm. */
+    farmId?: string;
+    /** ID of the associated Field. */
+    fieldId?: string;
+    /** ID of the season it belongs to. */
+    seasonId?: string;
+    /** CropVariety ids. */
+    cropVarietyIds?: Array<string>;
+    /** ID of the crop it belongs to. */
+    cropId?: string;
+    /** Average yield value of the seasonal field. */
+    avgYieldValue?: number;
+    /** Unit of the average yield value attribute. */
+    avgYieldUnit?: string;
+    /** Average seed population value of the seasonal field. */
+    avgSeedPopulationValue?: number;
+    /** Unit of average seed population value attribute. */
+    avgSeedPopulationUnit?: string;
+    /** Planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    plantingDateTime?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Create a cascade delete job for specified seasonal field. */
 export declare interface SeasonalFieldsCreateCascadeDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Create a cascade delete job for specified seasonal field. */
 export declare interface SeasonalFieldsCreateCascadeDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsCreateCascadeDeleteJobParameters = SeasonalFieldsCreateCascadeDeleteJobQueryParam & RequestParameters;
@@ -3751,13 +4370,13 @@ export declare interface SeasonalFieldsCreateCascadeDeleteJobQueryParamPropertie
 /** Creates or Updates a seasonal field resource under a particular farmer. */
 export declare interface SeasonalFieldsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: SeasonalField;
+    body: SeasonalFieldOutput;
 }
 
 /** Creates or Updates a seasonal field resource under a particular farmer. */
 export declare interface SeasonalFieldsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: SeasonalField;
+    body: SeasonalFieldOutput;
 }
 
 export declare interface SeasonalFieldsCreateOrUpdateBodyParam {
@@ -3768,7 +4387,7 @@ export declare interface SeasonalFieldsCreateOrUpdateBodyParam {
 /** Creates or Updates a seasonal field resource under a particular farmer. */
 export declare interface SeasonalFieldsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateBodyParam & RequestParameters;
@@ -3782,7 +4401,7 @@ export declare interface SeasonalFieldsDelete204Response extends HttpResponse {
 /** Deletes a specified seasonal-field resource under a particular farmer. */
 export declare interface SeasonalFieldsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsDeleteParameters = RequestParameters;
@@ -3799,7 +4418,7 @@ export declare interface SeasonalFieldsGet {
 /** Gets a specified seasonal field resource under a particular farmer. */
 export declare interface SeasonalFieldsGet200Response extends HttpResponse {
     status: "200";
-    body: SeasonalField;
+    body: SeasonalFieldOutput;
 }
 
 export declare interface SeasonalFieldsGetCascadeDeleteJobDetails {
@@ -3812,13 +4431,13 @@ export declare interface SeasonalFieldsGetCascadeDeleteJobDetails {
 /** Get cascade delete job for specified seasonal field. */
 export declare interface SeasonalFieldsGetCascadeDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: CascadeDeleteJob;
+    body: CascadeDeleteJobOutput;
 }
 
 /** Get cascade delete job for specified seasonal field. */
 export declare interface SeasonalFieldsGetCascadeDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -3826,7 +4445,7 @@ export declare type SeasonalFieldsGetCascadeDeleteJobDetailsParameters = Request
 /** Gets a specified seasonal field resource under a particular farmer. */
 export declare interface SeasonalFieldsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsGetParameters = RequestParameters;
@@ -3839,7 +4458,7 @@ export declare interface SeasonalFieldsList {
 /** Returns a paginated list of seasonal field resources across all farmers. */
 export declare interface SeasonalFieldsList200Response extends HttpResponse {
     status: "200";
-    body: SeasonalFieldListResponse;
+    body: SeasonalFieldListResponseOutput;
 }
 
 export declare interface SeasonalFieldsListByFarmerId {
@@ -3850,13 +4469,13 @@ export declare interface SeasonalFieldsListByFarmerId {
 /** Returns a paginated list of seasonal field resources under a particular farmer. */
 export declare interface SeasonalFieldsListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: SeasonalFieldListResponse;
+    body: SeasonalFieldListResponseOutput;
 }
 
 /** Returns a paginated list of seasonal field resources under a particular farmer. */
 export declare interface SeasonalFieldsListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsListByFarmerIdParameters = SeasonalFieldsListByFarmerIdQueryParam & RequestParameters;
@@ -3889,9 +4508,9 @@ export declare interface SeasonalFieldsListByFarmerIdQueryParamProperties {
     /** Unit of average seed population value attribute. */
     avgSeedPopulationUnit?: string;
     /** Minimum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    minPlantingDateTime?: Date;
+    minPlantingDateTime?: Date | string;
     /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    maxPlantingDateTime?: Date;
+    maxPlantingDateTime?: Date | string;
     /** Ids of the resource. */
     ids?: Array<string>;
     /** Names of the resource. */
@@ -3904,13 +4523,13 @@ export declare interface SeasonalFieldsListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -3923,7 +4542,7 @@ export declare interface SeasonalFieldsListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of seasonal field resources across all farmers. */
 export declare interface SeasonalFieldsListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonalFieldsListParameters = SeasonalFieldsListQueryParam & RequestParameters;
@@ -3956,9 +4575,9 @@ export declare interface SeasonalFieldsListQueryParamProperties {
     /** Unit of average seed population value attribute. */
     avgSeedPopulationUnit?: string;
     /** Minimum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    minPlantingDateTime?: Date;
+    minPlantingDateTime?: Date | string;
     /** Maximum planting datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    maxPlantingDateTime?: Date;
+    maxPlantingDateTime?: Date | string;
     /** Ids of the resource. */
     ids?: Array<string>;
     /** Names of the resource. */
@@ -3971,13 +4590,13 @@ export declare interface SeasonalFieldsListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -3987,25 +4606,55 @@ export declare interface SeasonalFieldsListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface SeasonListResponse {
+export declare interface SeasonListResponseOutput {
     /** List of requested objects. */
-    value?: Array<Season>;
+    value?: Array<SeasonOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface SeasonOutput {
+    /** Season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startDateTime?: string;
+    /** Season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endDateTime?: string;
+    /** Season year. */
+    year?: number;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Creates or updates a season resource. */
 export declare interface SeasonsCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: Season;
+    body: SeasonOutput;
 }
 
 /** Creates or updates a season resource. */
 export declare interface SeasonsCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: Season;
+    body: SeasonOutput;
 }
 
 export declare interface SeasonsCreateOrUpdateBodyParam {
@@ -4016,7 +4665,7 @@ export declare interface SeasonsCreateOrUpdateBodyParam {
 /** Creates or updates a season resource. */
 export declare interface SeasonsCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateBodyParam & RequestParameters;
@@ -4030,7 +4679,7 @@ export declare interface SeasonsDelete204Response extends HttpResponse {
 /** Deletes a specified season resource. */
 export declare interface SeasonsDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonsDeleteParameters = RequestParameters;
@@ -4047,13 +4696,13 @@ export declare interface SeasonsGet {
 /** Gets a specified season resource. */
 export declare interface SeasonsGet200Response extends HttpResponse {
     status: "200";
-    body: Season;
+    body: SeasonOutput;
 }
 
 /** Gets a specified season resource. */
 export declare interface SeasonsGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonsGetParameters = RequestParameters;
@@ -4066,13 +4715,13 @@ export declare interface SeasonsList {
 /** Returns a paginated list of season resources. */
 export declare interface SeasonsList200Response extends HttpResponse {
     status: "200";
-    body: SeasonListResponse;
+    body: SeasonListResponseOutput;
 }
 
 /** Returns a paginated list of season resources. */
 export declare interface SeasonsListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type SeasonsListParameters = SeasonsListQueryParam & RequestParameters;
@@ -4083,13 +4732,13 @@ export declare interface SeasonsListQueryParam {
 
 export declare interface SeasonsListQueryParamProperties {
     /** Minimum season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    minStartDateTime?: Date;
+    minStartDateTime?: Date | string;
     /** Maximum season start datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    maxStartDateTime?: Date;
+    maxStartDateTime?: Date | string;
     /** Minimum season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    minEndDateTime?: Date;
+    minEndDateTime?: Date | string;
     /** Maximum season end datetime, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    maxEndDateTime?: Date;
+    maxEndDateTime?: Date | string;
     /** Years of the resource. */
     years?: Array<number>;
     /** Ids of the resource. */
@@ -4104,13 +4753,13 @@ export declare interface SeasonsListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -4133,11 +4782,11 @@ export declare interface TillageData {
      * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
      * Note: this will be specified by the source provider itself.
      */
-    operationModifiedDateTime?: Date;
+    operationModifiedDateTime?: Date | string;
     /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationStartDateTime?: Date;
+    operationStartDateTime?: Date | string;
     /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    operationEndDateTime?: Date;
+    operationEndDateTime?: Date | string;
     /** Link for attachments. */
     attachmentsLink?: string;
     /** Optional boundary ID of the field for which operation was applied. */
@@ -4153,9 +4802,9 @@ export declare interface TillageData {
     /** Status of the resource. */
     status?: string;
     /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
+    modifiedDateTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -4172,13 +4821,13 @@ export declare interface TillageData {
 /** Creates or updates an tillage data resource under a particular farmer. */
 export declare interface TillageDataCreateOrUpdate200Response extends HttpResponse {
     status: "200";
-    body: TillageData;
+    body: TillageDataOutput;
 }
 
 /** Creates or updates an tillage data resource under a particular farmer. */
 export declare interface TillageDataCreateOrUpdate201Response extends HttpResponse {
     status: "201";
-    body: TillageData;
+    body: TillageDataOutput;
 }
 
 export declare interface TillageDataCreateOrUpdateBodyParam {
@@ -4189,7 +4838,7 @@ export declare interface TillageDataCreateOrUpdateBodyParam {
 /** Creates or updates an tillage data resource under a particular farmer. */
 export declare interface TillageDataCreateOrUpdatedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateBodyParam & RequestParameters;
@@ -4203,7 +4852,7 @@ export declare interface TillageDataDelete204Response extends HttpResponse {
 /** Deletes a specified tillage data resource under a particular farmer. */
 export declare interface TillageDataDeletedefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type TillageDataDeleteParameters = RequestParameters;
@@ -4220,13 +4869,13 @@ export declare interface TillageDataGet {
 /** Get a specified tillage data resource under a particular farmer. */
 export declare interface TillageDataGet200Response extends HttpResponse {
     status: "200";
-    body: TillageData;
+    body: TillageDataOutput;
 }
 
 /** Get a specified tillage data resource under a particular farmer. */
 export declare interface TillageDataGetdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type TillageDataGetParameters = RequestParameters;
@@ -4239,7 +4888,7 @@ export declare interface TillageDataList {
 /** Returns a paginated list of tillage data resources across all farmers. */
 export declare interface TillageDataList200Response extends HttpResponse {
     status: "200";
-    body: TillageDataListResponse;
+    body: TillageDataListResponseOutput;
 }
 
 export declare interface TillageDataListByFarmerId {
@@ -4250,13 +4899,13 @@ export declare interface TillageDataListByFarmerId {
 /** Returns a paginated list of tillage data resources under a particular farm. */
 export declare interface TillageDataListByFarmerId200Response extends HttpResponse {
     status: "200";
-    body: TillageDataListResponse;
+    body: TillageDataListResponseOutput;
 }
 
 /** Returns a paginated list of tillage data resources under a particular farm. */
 export declare interface TillageDataListByFarmerIddefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type TillageDataListByFarmerIdParameters = TillageDataListByFarmerIdQueryParam & RequestParameters;
@@ -4281,17 +4930,17 @@ export declare interface TillageDataListByFarmerIdQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -4308,13 +4957,13 @@ export declare interface TillageDataListByFarmerIdQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -4327,7 +4976,7 @@ export declare interface TillageDataListByFarmerIdQueryParamProperties {
 /** Returns a paginated list of tillage data resources across all farmers. */
 export declare interface TillageDataListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type TillageDataListParameters = TillageDataListQueryParam & RequestParameters;
@@ -4352,17 +5001,17 @@ export declare interface TillageDataListQueryParamProperties {
     /** Operation boundary IDs associated with operation data. */
     operationBoundaryIds?: Array<string>;
     /** Minimum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationStartDateTime?: Date;
+    minOperationStartDateTime?: Date | string;
     /** Maximum start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationStartDateTime?: Date;
+    maxOperationStartDateTime?: Date | string;
     /** Minimum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationEndDateTime?: Date;
+    minOperationEndDateTime?: Date | string;
     /** Maximum end date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationEndDateTime?: Date;
+    maxOperationEndDateTime?: Date | string;
     /** Minimum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    minOperationModifiedDateTime?: Date;
+    minOperationModifiedDateTime?: Date | string;
     /** Maximum modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ (inclusive). */
-    maxOperationModifiedDateTime?: Date;
+    maxOperationModifiedDateTime?: Date | string;
     /** Minimum area for which operation was applied (inclusive). */
     minArea?: number;
     /** Maximum area for which operation was applied (inclusive). */
@@ -4379,13 +5028,13 @@ export declare interface TillageDataListQueryParamProperties {
     /** Statuses of the resource. */
     statuses?: Array<string>;
     /** Minimum creation date of resource (inclusive). */
-    minCreatedDateTime?: Date;
+    minCreatedDateTime?: Date | string;
     /** Maximum creation date of resource (inclusive). */
-    maxCreatedDateTime?: Date;
+    maxCreatedDateTime?: Date | string;
     /** Minimum last modified date of resource (inclusive). */
-    minLastModifiedDateTime?: Date;
+    minLastModifiedDateTime?: Date | string;
     /** Maximum last modified date of resource (inclusive). */
-    maxLastModifiedDateTime?: Date;
+    maxLastModifiedDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.
@@ -4395,19 +5044,68 @@ export declare interface TillageDataListQueryParamProperties {
     $skipToken?: string;
 }
 
-export declare interface TillageDataListResponse {
+export declare interface TillageDataListResponseOutput {
     /** List of requested objects. */
-    value?: Array<TillageData>;
+    value?: Array<TillageDataOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
 }
 
+export declare interface TillageDataOutput {
+    /** Schema for storing measurement reading and unit. */
+    tillageDepth?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    tillagePressure?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    area?: MeasureOutput;
+    /** Source of the operation data. */
+    source?: string;
+    /**
+     * Modified date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ.
+     * Note: this will be specified by the source provider itself.
+     */
+    operationModifiedDateTime?: string;
+    /** Start date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationStartDateTime?: string;
+    /** End date-time of the operation data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    operationEndDateTime?: string;
+    /** Link for attachments. */
+    attachmentsLink?: string;
+    /** Optional boundary ID of the field for which operation was applied. */
+    associatedBoundaryId?: string;
+    /** Optional boundary ID of the actual area for which operation was applied inside the specified field. */
+    operationBoundaryId?: string;
+    /** Farmer ID which belongs to the operation data. */
+    farmerId?: string;
+    /** Unique resource ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Status of the resource. */
+    status?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
 /** Create a weather data delete job. */
 export declare interface WeatherCreateDataDeleteJob202Response extends HttpResponse {
     status: "202";
-    body: WeatherDataDeleteJob;
+    body: WeatherDataDeleteJobOutput;
 }
 
 export declare interface WeatherCreateDataDeleteJobBodyParam {
@@ -4418,7 +5116,7 @@ export declare interface WeatherCreateDataDeleteJobBodyParam {
 /** Create a weather data delete job. */
 export declare interface WeatherCreateDataDeleteJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobBodyParam & RequestParameters;
@@ -4426,7 +5124,7 @@ export declare type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDele
 /** Create a weather data ingestion job. */
 export declare interface WeatherCreateDataIngestionJob202Response extends HttpResponse {
     status: "202";
-    body: WeatherDataIngestionJob;
+    body: WeatherDataIngestionJobOutput;
 }
 
 export declare interface WeatherCreateDataIngestionJobBodyParam {
@@ -4437,76 +5135,10 @@ export declare interface WeatherCreateDataIngestionJobBodyParam {
 /** Create a weather data ingestion job. */
 export declare interface WeatherCreateDataIngestionJobdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobBodyParam & RequestParameters;
-
-export declare interface WeatherData {
-    /** Farmer ID. */
-    farmerId: string;
-    /** Boundary ID. */
-    boundaryId: string;
-    /** ID of the weather extension. */
-    extensionId: string;
-    /** Location model class. */
-    location: Location_2;
-    /** Date-time of the weather data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    dateTime: Date;
-    /** Unit System like US/SI etc. */
-    unitSystemCode?: string;
-    /** Version of the weather data extension. */
-    extensionVersion: string;
-    /** Type of weather data (forecast/historical). */
-    weatherDataType: string;
-    /** Granularity of weather data (daily/hourly). */
-    granularity: string;
-    /** Schema for storing measurement reading and unit. */
-    cloudCover?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    dewPoint?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    growingDegreeDay?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    precipitation?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    pressure?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    relativeHumidity?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    soilMoisture?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    soilTemperature?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    temperature?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    visibility?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    wetBulbTemperature?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    windChill?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    windDirection?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    windGust?: Measure;
-    /** Schema for storing measurement reading and unit. */
-    windSpeed?: Measure;
-    /** Weather data ID. */
-    id?: string;
-    /** The ETag value to implement optimistic concurrency. */
-    eTag?: string;
-    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
-    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    modifiedDateTime?: Date;
-    /**
-     * A collection of key value pairs that belongs to the resource.
-     * Each pair must not have a key greater than 50 characters
-     * and must not have a value greater than 150 characters.
-     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
-     */
-    properties?: Record<string, Record<string, unknown>>;
-}
 
 export declare interface WeatherDataDeleteJob {
     /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
@@ -4520,9 +5152,9 @@ export declare interface WeatherDataDeleteJob {
     /** Granularity of weather data. Possible values include: 'daily' , 'hourly'. */
     granularity?: string;
     /** Weather data start UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startDateTime?: Date;
+    startDateTime?: Date | string;
     /** Weather data end UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endDateTime?: Date;
+    endDateTime?: Date | string;
     /** Unique job id. */
     id?: string;
     /**
@@ -4535,13 +5167,60 @@ export declare interface WeatherDataDeleteJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: Date | string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: Date | string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: Date | string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface WeatherDataDeleteJobOutput {
+    /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
+    extensionId: string;
+    /** The id of the farmer object for which weather data is being fetched. */
+    farmerId: string;
+    /** The id of the boundary object for which weather data is being fetched. */
+    boundaryId: string;
+    /** Type of weather data. Possible values include: 'forecast' , 'historical'. */
+    weatherDataType?: string;
+    /** Granularity of weather data. Possible values include: 'daily' , 'hourly'. */
+    granularity?: string;
+    /** Weather data start UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startDateTime?: string;
+    /** Weather data end UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endDateTime?: string;
+    /** Unique job id. */
+    id?: string;
+    /**
+     * Status of the job.
+     * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
+     */
+    status?: string;
+    /** Duration of the job in seconds. */
+    durationInSeconds?: number;
+    /** Status message to capture more details of the job. */
+    message?: string;
+    /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    lastActionDateTime?: string;
+    /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startTime?: string;
+    /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endTime?: string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -4582,13 +5261,13 @@ export declare interface WeatherDataIngestionJob {
     /** Status message to capture more details of the job. */
     message?: string;
     /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    createdDateTime?: Date;
+    createdDateTime?: Date | string;
     /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    lastActionDateTime?: Date;
+    lastActionDateTime?: Date | string;
     /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startTime?: Date;
+    startTime?: Date | string;
     /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endTime?: Date;
+    endTime?: Date | string;
     /** Name to identify resource. */
     name?: string;
     /** Textual description of the resource. */
@@ -4602,13 +5281,126 @@ export declare interface WeatherDataIngestionJob {
     properties?: Record<string, Record<string, unknown>>;
 }
 
-export declare interface WeatherDataListResponse {
+export declare interface WeatherDataIngestionJobOutput {
+    /** The id of the boundary object for which weather data is being fetched. */
+    boundaryId: string;
+    /** The id of the farmer object for which weather data is being fetched. */
+    farmerId: string;
+    /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
+    extensionId: string;
+    /** Extension api name to which request is to be made. */
+    extensionApiName: string;
+    /** Extension api input dictionary which would be used to feed request query/body/parameter information. */
+    extensionApiInput: Record<string, Record<string, unknown>>;
+    /** App id of the weather data provider. */
+    extensionDataProviderAppId?: string;
+    /** Api key of the weather data provider. */
+    extensionDataProviderApiKey?: string;
+    /** Unique job id. */
+    id?: string;
+    /**
+     * Status of the job.
+     * Possible values: 'Waiting', 'Running', 'Succeeded', 'Failed', 'Cancelled'.
+     */
+    status?: string;
+    /** Duration of the job in seconds. */
+    durationInSeconds?: number;
+    /** Status message to capture more details of the job. */
+    message?: string;
+    /** Job created at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Job was last acted upon at dateTime. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    lastActionDateTime?: string;
+    /** Job start time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    startTime?: string;
+    /** Job end time when available. Sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    endTime?: string;
+    /** Name to identify resource. */
+    name?: string;
+    /** Textual description of the resource. */
+    description?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
+}
+
+export declare interface WeatherDataListResponseOutput {
     /** List of requested objects. */
-    value?: Array<WeatherData>;
+    value?: Array<WeatherDataOutput>;
     /** Token used in retrieving the next page. If null, there are no additional pages. */
     $skipToken?: string;
     /** Continuation link (absolute URI) to the next page of results in the list. */
     nextLink?: string;
+}
+
+export declare interface WeatherDataOutput {
+    /** Farmer ID. */
+    farmerId: string;
+    /** Boundary ID. */
+    boundaryId: string;
+    /** ID of the weather extension. */
+    extensionId: string;
+    /** Location model class. */
+    location: LocationOutput;
+    /** Date-time of the weather data, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    dateTime: string;
+    /** Unit System like US/SI etc. */
+    unitSystemCode?: string;
+    /** Version of the weather data extension. */
+    extensionVersion: string;
+    /** Type of weather data (forecast/historical). */
+    weatherDataType: string;
+    /** Granularity of weather data (daily/hourly). */
+    granularity: string;
+    /** Schema for storing measurement reading and unit. */
+    cloudCover?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    dewPoint?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    growingDegreeDay?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    precipitation?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    pressure?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    relativeHumidity?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    soilMoisture?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    soilTemperature?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    temperature?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    visibility?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    wetBulbTemperature?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    windChill?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    windDirection?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    windGust?: MeasureOutput;
+    /** Schema for storing measurement reading and unit. */
+    windSpeed?: MeasureOutput;
+    /** Weather data ID. */
+    id?: string;
+    /** The ETag value to implement optimistic concurrency. */
+    eTag?: string;
+    /** Date-time when resource was created, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    createdDateTime?: string;
+    /** Date-time when resource was last modified, sample format: yyyy-MM-ddTHH:mm:ssZ. */
+    modifiedDateTime?: string;
+    /**
+     * A collection of key value pairs that belongs to the resource.
+     * Each pair must not have a key greater than 50 characters
+     * and must not have a value greater than 150 characters.
+     * Note: A maximum of 25 key value pairs can be provided for a resource and only string and numeral values are supported.
+     */
+    properties?: Record<string, Record<string, unknown>>;
 }
 
 export declare interface WeatherGetDataDeleteJobDetails {
@@ -4621,13 +5413,13 @@ export declare interface WeatherGetDataDeleteJobDetails {
 /** Get weather data delete job. */
 export declare interface WeatherGetDataDeleteJobDetails200Response extends HttpResponse {
     status: "200";
-    body: WeatherDataDeleteJob;
+    body: WeatherDataDeleteJobOutput;
 }
 
 /** Get weather data delete job. */
 export declare interface WeatherGetDataDeleteJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type WeatherGetDataDeleteJobDetailsParameters = RequestParameters;
@@ -4642,13 +5434,13 @@ export declare interface WeatherGetDataIngestionJobDetails {
 /** Get weather ingestion job. */
 export declare interface WeatherGetDataIngestionJobDetails200Response extends HttpResponse {
     status: "200";
-    body: WeatherDataIngestionJob;
+    body: WeatherDataIngestionJobOutput;
 }
 
 /** Get weather ingestion job. */
 export declare interface WeatherGetDataIngestionJobDetailsdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type WeatherGetDataIngestionJobDetailsParameters = RequestParameters;
@@ -4661,13 +5453,13 @@ export declare interface WeatherList {
 /** Returns a paginated list of weather data. */
 export declare interface WeatherList200Response extends HttpResponse {
     status: "200";
-    body: WeatherDataListResponse;
+    body: WeatherDataListResponseOutput;
 }
 
 /** Returns a paginated list of weather data. */
 export declare interface WeatherListdefaultResponse extends HttpResponse {
     status: "500";
-    body: ErrorResponse;
+    body: ErrorResponseOutput;
 }
 
 export declare type WeatherListParameters = WeatherListQueryParam & RequestParameters;
@@ -4688,9 +5480,9 @@ export declare interface WeatherListQueryParamProperties {
     /** Granularity of weather data (daily/hourly). */
     granularity: string;
     /** Weather data start UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    startDateTime?: Date;
+    startDateTime?: Date | string;
     /** Weather data end UTC date-time (inclusive), sample format: yyyy-MM-ddTHH:mm:ssZ. */
-    endDateTime?: Date;
+    endDateTime?: Date | string;
     /**
      * Maximum number of items needed (inclusive).
      * Minimum = 10, Maximum = 1000, Default value = 50.

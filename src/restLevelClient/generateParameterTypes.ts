@@ -1,13 +1,22 @@
-import { CodeModel, Operation, Parameter } from "@autorest/codemodel";
+
+import {
+  CodeModel,
+  Operation,
+  Parameter,
+  SchemaContext
+} from "@autorest/codemodel";
 import {
   InterfaceDeclarationStructure,
   Project,
+  SourceFile,
   StructureKind
 } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getPropertySignature } from "./getPropertySignature";
+import { getDocs, getPropertySignature } from "./getPropertySignature";
+import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
+import { hasInputModels } from "./helpers/modelHelpers";
 
 /**
  * Generates the interfaces describing each operation parameters
@@ -29,6 +38,7 @@ export function generateParameterInterfaces(
   // Tracks the generated parameter types
 
   const operations = getAllOperations(model);
+  let hasHeaders = false;
 
   for (const operation of operations) {
     const internalReferences = new Set<string>();
@@ -38,9 +48,19 @@ export function generateParameterInterfaces(
     );
     const parameterInterfaceName = `${operationName}Parameters`;
     const parameters = getOperationParameters(operation);
+
+    const headerParameterDefinitions =  buildHeaderParameterDefinitions(
+      operationName,
+      parameters,
+      parametersFile,
+      internalReferences,
+    );
+
+
     const queryParameterDefinitions = buildQueryParameterDefinition(
       operationName,
       parameters,
+      [SchemaContext.Input],
       importedModels,
       internalReferences
     );
@@ -48,6 +68,7 @@ export function generateParameterInterfaces(
     const bodyParameterDefinition = buildBodyParametersDefinition(
       operationName,
       parameters,
+      [SchemaContext.Input],
       importedModels,
       internalReferences
     );
@@ -55,8 +76,13 @@ export function generateParameterInterfaces(
     // Add interfaces for body and query parameters
     parametersFile.addInterfaces([
       ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
-      ...(queryParameterDefinitions ?? [])
+      ...(queryParameterDefinitions ?? []),
+      ...(headerParameterDefinitions ? [headerParameterDefinitions] : [])
     ]);
+
+    if (headerParameterDefinitions !== undefined) {
+      hasHeaders = true;
+    }
 
     // Add Operation parameters type alias which is composed of the types we generated above
     // plus the common type RequestParameters
@@ -67,6 +93,15 @@ export function generateParameterInterfaces(
     });
   }
 
+  if (hasHeaders) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: ["RawHttpHeadersInput"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
+      }
+    ]);
+  }
+
   parametersFile.addImportDeclarations([
     {
       namedImports: ["RequestParameters"],
@@ -74,12 +109,75 @@ export function generateParameterInterfaces(
     }
   ]);
 
-  parametersFile.addImportDeclarations([
-    {
-      namedImports: [...importedModels],
-      moduleSpecifier: "./models"
-    }
-  ]);
+  if (hasInputModels(model)) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: [...importedModels],
+        moduleSpecifier: "./models"
+      }
+    ]);
+  }
+}
+
+function getRequestHeaderInterfaceDefinition(
+  parameters: Parameter[],
+  baseName: string
+): undefined | InterfaceDeclarationStructure {
+  // Check if there are any required headers
+  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  if (!headerParameters.length) {
+    return undefined;
+  }
+  const headersInterfaceName = `${baseName}Headers`;
+  return {
+    kind: StructureKind.Interface,
+    isExported: true,
+    name: headersInterfaceName,
+    properties: headerParameters.map((h: Parameter) => {
+      const description = getLanguageMetadata(h.language).description;
+      return {
+        name: `"${getLanguageMetadata(h.language).serializedName}"`,
+        ...(description && { docs: [{ description }] }),
+        type: primitiveSchemaToType(h.schema, [SchemaContext.Input, SchemaContext.Exception]),
+        hasQuestionToken: !h.required
+      };
+    })
+  }
+}
+
+function buildHeaderParameterDefinitions(
+  operationName: string,
+  parameters: Parameter[],
+  parametersFile: SourceFile,
+  internalReferences: Set<string>
+): InterfaceDeclarationStructure | undefined {
+  const headerParameters = parameters.filter(p => p.protocol.http?.in === "header");
+  if (!headerParameters.length) {
+    return undefined;
+  }
+
+  const headerParameterInterfaceName = `${operationName}HeaderParam`;
+
+  const headersInterface = getRequestHeaderInterfaceDefinition(headerParameters, operationName);
+
+  if (headersInterface) {
+    parametersFile.addInterface(headersInterface);
+  }
+
+  internalReferences.add(headerParameterInterfaceName);
+
+  return {
+    isExported: true,
+    kind: StructureKind.Interface,
+    name: headerParameterInterfaceName,
+    properties: [
+      {
+        name: "headers",
+        type: `RawHttpHeadersInput & ${operationName}Headers`,
+        kind: StructureKind.PropertySignature
+      }
+    ]
+  };
 }
 
 /**
@@ -88,6 +186,7 @@ export function generateParameterInterfaces(
 function buildBodyParametersDefinition(
   operationName: string,
   parameters: Parameter[],
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   internalReferences: Set<string>
 ): InterfaceDeclarationStructure | undefined {
@@ -98,7 +197,11 @@ function buildBodyParametersDefinition(
 
   const bodyParameterInterfaceName = `${operationName}BodyParam`;
   // There is only one body parameter can't be more than one so we can safely take the first
-  const bodySignature = getPropertySignature(bodyParameters[0], importedModels);
+  const bodySignature = getPropertySignature(
+    bodyParameters[0],
+    schemaUsage,
+    importedModels
+  );
 
   internalReferences.add(bodyParameterInterfaceName);
 
@@ -123,6 +226,7 @@ function buildBodyParametersDefinition(
 function buildQueryParameterDefinition(
   operationName: string,
   parameters: Parameter[],
+  schemaUsage: SchemaContext[],
   importedModels: Set<string>,
   internalReferences: Set<string>
 ): InterfaceDeclarationStructure[] | undefined {
@@ -139,7 +243,7 @@ function buildQueryParameterDefinition(
 
   // Get the property signature for each query parameter
   const propertiesDefinition = queryParameters.map(qp =>
-    getPropertySignature(qp, importedModels)
+    getPropertySignature(qp, schemaUsage, importedModels)
   );
 
   const hasRequiredParameters = propertiesDefinition.some(
