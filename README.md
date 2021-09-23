@@ -91,6 +91,10 @@ pipeline:
 use-extension:
   "@autorest/tests": "/Users/zhangqiaoqiao/work/code/autorest.tests"
 
+try-require:
+    - ./readme.test.md
+    - ./readme.tests.md
+
 pipeline:
   test-modeler:
     input: modelerfour/identity
