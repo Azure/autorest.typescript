@@ -288,7 +288,7 @@ export interface ParamByteHeaders {
   /** Send a post request with header values "scenario": "valid" */
   scenario: string;
   /** Send a post request with header values "啊齄丂狛狜隣郎隣兀﨩" */
-  value: string;
+  value: Uint8Array | string;
 }
 
 export interface ParamByteHeaderParam {

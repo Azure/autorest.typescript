@@ -116,6 +116,7 @@ export function generateParameterInterfaces(
       });
 
       subParamNames.push(parameterInterfaceName);
+
       if (headerParameterDefinitions !== undefined) {
         hasHeaders = true;
       }
