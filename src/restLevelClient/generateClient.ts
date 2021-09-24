@@ -2,7 +2,9 @@ import {
   CodeModel,
   Operation,
   ParameterLocation,
-  ImplementationLocation
+  ImplementationLocation,
+  Schema,
+  SchemaContext
 } from "@autorest/codemodel";
 
 import { getResponseTypeName } from "./operationHelpers";
@@ -24,11 +26,11 @@ import {
 import { getAutorestOptions, getSession } from "../autorestSession";
 import { transformBaseUrl } from "../transforms/urlTransforms";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { isConstantSchema } from "./schemaHelpers";
+import { isConstantSchema, getElementType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
 
-type PathParameter = { name: string; description?: string };
+type PathParameter = { name: string; schema: Schema, description?: string };
 
 type Methods = {
   [key: string]: [
@@ -73,6 +75,7 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
             const languageMetadata = getLanguageMetadata(p.language);
             return {
               name: languageMetadata.serializedName || languageMetadata.name,
+              schema: p.schema,
               description: languageMetadata.description
             };
           }) || [];
@@ -343,7 +346,7 @@ function getPathFirstRoutesInterfaceDefinition(
       parameters: [
         { name: "path", type: `"${key}"` },
         ...pathParams.map(p => {
-          return { name: p.name, type: "string", description: p.description };
+          return { name: p.name, type: getElementType(p.schema, [SchemaContext.Input, SchemaContext.Exception]), description: p.description };
         })
       ],
       returnType: paths[key].name,
