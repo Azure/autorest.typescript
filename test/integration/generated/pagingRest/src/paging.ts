@@ -268,7 +268,7 @@ export interface Routes {
   /** Resource for '/paging/multiple/withpath/\{offset\}' has methods for the following verbs: get */
   (
     path: "/paging/multiple/withpath/{offset}",
-    offset: string
+    offset: number
   ): GetMultiplePagesWithOffset;
   /** Resource for '/paging/multiple/retryfirst' has methods for the following verbs: get */
   (path: "/paging/multiple/retryfirst"): GetMultiplePagesRetryFirst;

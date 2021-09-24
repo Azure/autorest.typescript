@@ -322,7 +322,7 @@ describe("Integration tests for Paging Rest Client", () => {
   describe("#getMultiplePagesWithOffset", () => {
     it("succeeds", async () => {
       let response = await client
-        .path("/paging/multiple/withpath/{offset}", "100")
+        .path("/paging/multiple/withpath/{offset}", 100)
         .get();
 
       const iter = paginate(client, response);
