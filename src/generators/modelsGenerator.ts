@@ -697,7 +697,7 @@ function writeOptionalParameters(
     return {
       name: p.name,
       hasQuestionToken: true,
-      type: p.typeDetails.typeName,
+      type: p.typeDetails.isConstant ? p.defaultValue : p.typeDetails.typeName,
       docs: description ? [description] : undefined,
       kind: StructureKind.PropertySignature
     };
