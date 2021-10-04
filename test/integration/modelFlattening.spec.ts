@@ -240,14 +240,15 @@ describe("ModelFlatteningClient", () => {
       description: "product description",
       maxProductDisplayName: "max name",
       odataValue: "http://foo",
-      genericValue: "https://generic"
+      genericValue: "https://generic",
+      capacity: "Large"
     };
     const expected: SimpleProduct = { ...simpleBodyProduct, capacity: "Large" };
     const result = await client.putSimpleProduct({ simpleBodyProduct });
     assert.deepEqual(result, expected);
   });
 
-  it("should post simple product", async () => {
+  it.only("should post simple product", async () => {
     const simpleBodyProduct: SimpleProduct = {
       productId: "123",
       description: "product description",
@@ -269,7 +270,8 @@ describe("ModelFlatteningClient", () => {
       description: "product description",
       maxProductDisplayName: "max name",
       odataValue: "http://foo",
-      name: "groupproduct"
+      name: "groupproduct",
+      capacity: "Large"
     };
     const result = await client.putSimpleProductWithGrouping(paramGroup);
 

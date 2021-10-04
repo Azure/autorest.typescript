@@ -60,9 +60,15 @@ export function filterOperationParameters(
   const optionalFilter = (param: ParameterDetails) =>
     !!(includeOptional || param.required);
 
-  const constantFilter = (param: ParameterDetails) =>
-    (includeContentType && isContentType(param)) ||
-    !!(includeConstantParameters || param.schemaType !== SchemaType.Constant);
+  const constantFilter = (param: ParameterDetails) => {
+    if (isContentType(param)) {
+      return !!includeContentType;
+    } else {
+      return (
+        includeConstantParameters || param.schemaType !== SchemaType.Constant
+      );
+    }
+  };
 
   const clientParamFilter = (param: ParameterDetails) =>
     !!(

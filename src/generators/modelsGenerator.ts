@@ -123,10 +123,16 @@ function writeOptionsParameter(
   operation: OperationDetails,
   sourceFile: SourceFile
 ) {
+  //this is the place we want
   const operationParameters = filterOperationParameters(
     clientDetails.parameters,
     operation,
-    { includeOptional: true, includeGroupedParameters: true }
+    {
+      includeOptional: true,
+      includeGroupedParameters: true,
+      includeConstantParameters: true,
+      includeContentType: false
+    }
   );
 
   const optionalParams = operationParameters.filter(
