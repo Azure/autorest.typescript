@@ -153,15 +153,15 @@ function regularAutorestPackage(
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.2.0" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
-      ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
+      ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.0.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "^1.1.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": "1.0.0-preview.11",
+        "@azure/core-tracing": "1.0.0-preview.13",
         "@opentelemetry/api": "^0.10.2"
       }),
 
