@@ -8,7 +8,7 @@
   "dependencies": {
     "@azure/core-client": "^1.0.0",
     "@azure/core-rest-pipeline": "^1.1.0",
-    "@azure/core-tracing": "1.0.0-preview.11",
+    "@azure/core-tracing": "1.0.0-preview.13",
     "@opentelemetry/api": "^0.10.2",
     "tslib": "^2.2.0"
   },
