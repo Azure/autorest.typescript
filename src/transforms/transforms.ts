@@ -18,6 +18,7 @@ import { transformOperationGroups } from "./operationTransforms";
 import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
+import { transformSamples } from "./samplesTransforms";
 import { ObjectDetails } from "../models/modelDetails";
 import { Host } from "@autorest/extension-base";
 import { transformBaseUrl } from "./urlTransforms";

@@ -25,9 +25,7 @@ import { ClientDetails } from "../../models/clientDetails";
     let fileNames: string[] = [];
   
     // Toplevel operations are inlined in the client
-    const operationGroups = clientDetails.operationGroups.filter(
-      og => !og.isTopLevel
-    );
+    const samples = clientDetails.samples;
   
     // operationGroups.forEach(operationDetails => {
     //   fileNames.push(normalizeName(operationDetails.name, NameType.File));
