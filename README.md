@@ -89,7 +89,7 @@ pipeline:
 
 ```yaml $(generate-test)
 use-extension:
-  "@autorest/tests": "/Users/zhangqiaoqiao/work/code/autorest.tests"
+  "@autorest/tests": "https://amecodegenstorage.blob.core.windows.net/tools/autorest-tests-0.1.0-preview.tgz"
 
 try-require:
     - ./readme.test.md
