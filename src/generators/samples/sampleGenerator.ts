@@ -5,6 +5,9 @@ import {
     Project,
     SourceFile
 } from "ts-morph";
+import * as fs from 'fs';
+import * as path from 'path';
+import * as hbs from "handlebars";
 import { getAutorestOptions } from "../../autorestSession";
 import { ClientDetails } from "../../models/clientDetails";
   
@@ -21,32 +24,20 @@ import { ClientDetails } from "../../models/clientDetails";
     clientDetails: ClientDetails,
     project: Project
   ): void {
-    const { outputPath } = getAutorestOptions();
-    let fileNames: string[] = [];
-  
     // Toplevel operations are inlined in the client
     const samples = clientDetails.samples;
-  
-    // operationGroups.forEach(operationDetails => {
-    //   fileNames.push(normalizeName(operationDetails.name, NameType.File));
-    //   generateSample(operationDetails, clientDetails, project);
-    // });
-  
-    // if (operationGroups.length) {
-    //   const operationIndexFile = project.createSourceFile(
-    //     `${srcPath}/operations/index.ts`,
-    //     undefined,
-    //     { overwrite: true }
-    //   );
-  
-    //   operationIndexFile.addExportDeclarations(
-    //     fileNames.map(fileName => {
-    //       return {
-    //         moduleSpecifier: `./${fileName}`
-    //       } as ExportDeclarationStructure;
-    //     })
-    //   );
-    // }
+    for(const sample of samples) {
+      if (sample.sampleFunctionName.indexOf(' ') > -1) {
+        continue;
+      }
+      const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
+        encoding: "utf-8"
+      });
+      const readmeFileContents = hbs.compile(file, { noEscape: true });
+      project.createSourceFile(`samples/v1/typescript/src/${sample.sampleFunctionName}.ts`, readmeFileContents(sample), {
+        overwrite: true
+      });
+    }
   }
   
   /**

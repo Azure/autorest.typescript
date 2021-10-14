@@ -1,4 +1,4 @@
-import { CodeModel, SchemaType } from "@autorest/codemodel";
+import { CodeModel, Protocol, SchemaType } from "@autorest/codemodel";
 import { ClientOptions } from "../models/clientDetails";
 import { SampleDetails } from "../models/sampleDetails";
 import { TestCodeModel } from "@autorest/tests/dist/src/core/model"
@@ -29,10 +29,10 @@ export function getAllExamples(codeModel: TestCodeModel) {
                     bodySchemaName: "",
                     sampleFunctionName: example.name,
                     bodyParamName: "",
-                    exampleValue: "",
-
+                    exampleValue: "{}",
+                    hasBody: false,
                 }
-                const clientParameterNames = [];
+                const clientParameterNames = ["credential"];
                 for(const clientParameter of example.clientParameters) {
                     if (clientParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
@@ -46,6 +46,11 @@ export function getAllExamples(codeModel: TestCodeModel) {
                 for(const methodParameter of example.methodParameters) {
                     if (methodParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
+                    }
+                    if (methodParameter.parameter.protocol?.http?.['in'] === "body") {
+                        sample.hasBody = true;
+                        sample.bodyParamName = getLanguageMetadata(methodParameter.exampleValue.language).name;
+                        sample.bodySchemaName = getLanguageMetadata(methodParameter.exampleValue.schema.language).name;
                     }
                     methodParameterNames.push(getLanguageMetadata(methodParameter.exampleValue.language).name);
                 }

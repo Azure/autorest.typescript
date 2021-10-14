@@ -7,13 +7,19 @@
  * @summary {{operationDescription}}
  */
 import {
+{{#if hasBody }}
   {{bodySchemaName}},
+{{/if}}
   {{clientClassName}},
 } from "{{clientPackageName}}";
 import { DefaultAzureCredential } from "@azure/identity";
+
+let client: {{clientClassName}};
 //{{operationGroupName}}.{{operationName}}
 async function {{sampleFunctionName}}() {
+  {{#if hasBody }}
   const {{bodyParamName}}: {{bodySchemaName}} = {{exampleValue}};
+  {{/if}}
   await client.{{operationGroupName}}
     .{{operationName}}({{methodParameterNames}})
     .then((res) => {
@@ -22,7 +28,7 @@ async function {{sampleFunctionName}}() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
-  client = new {{clientClassName}}(credential{{clientParameterNames}});
+  client = new {{clientClassName}}({{clientParameterNames}});
   await {{sampleFunctionName}}();
 }
 main();

@@ -10,5 +10,6 @@ export interface SampleDetails {
     clientParameterNames: string,
     methodParameterNames: string,
     exampleValue: string,
+    hasBody: boolean,
     
 }
