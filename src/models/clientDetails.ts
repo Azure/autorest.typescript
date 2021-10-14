@@ -9,7 +9,7 @@ import { ObjectDetails } from "./modelDetails";
 import { EndpointDetails } from "../transforms/urlTransforms";
 import { KnownMediaType } from "@azure-tools/codegen";
 import { Info } from "@autorest/codemodel";
-import { ExampleModel } from "@autorest/tests/dist/src/core/model";
+import { SampleDetails } from "./sampleDetails";
 
 export interface ClientOptions {
   mediaTypes?: Set<KnownMediaType>;
@@ -33,5 +33,5 @@ export interface ClientDetails {
   parameters: ParameterDetails[];
   options: ClientOptions;
   endpoint: EndpointDetails;
-  samples: ExampleModel[];
+  samples: SampleDetails[];
 }

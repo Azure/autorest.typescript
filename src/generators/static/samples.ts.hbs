@@ -1,0 +1,28 @@
+
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+/**
+ * This sample demonstrates how to {{operationDescription}}
+ *
+ * @summary {{operationDescription}}
+ */
+import {
+  {{bodySchemaName}},
+  {{clientClassName}},
+} from "{{clientPackageName}}";
+import { DefaultAzureCredential } from "@azure/identity";
+//{{operationGroupName}}.{{operationName}}
+async function {{sampleFunctionName}}() {
+  const {{bodyParamName}}: {{bodySchemaName}} = {{exampleValue}};
+  await client.{{operationGroupName}}
+    .{{operationName}}({{methodParameterNames}})
+    .then((res) => {
+      console.log(res);
+    });
+}
+async function main() {
+  const credential = new DefaultAzureCredential();
+  client = new {{clientClassName}}(credential{{clientParameterNames}});
+  await {{sampleFunctionName}}();
+}
+main();
