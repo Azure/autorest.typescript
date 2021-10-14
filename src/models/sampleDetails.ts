@@ -11,5 +11,7 @@ export interface SampleDetails {
     methodParameterNames: string,
     exampleValue: string,
     hasBody: boolean,
-    
+    methodParamAssignments: string[],
+    clientParamAssignments: string[],
+
 }

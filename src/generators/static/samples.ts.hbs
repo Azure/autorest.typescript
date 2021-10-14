@@ -20,6 +20,9 @@ async function {{sampleFunctionName}}() {
   {{#if hasBody }}
   const {{bodyParamName}}: {{bodySchemaName}} = {{exampleValue}};
   {{/if}}
+  {{#each methodParamAssignments}}
+  {{this}}
+  {{/each}}
   await client.{{operationGroupName}}
     .{{operationName}}({{methodParameterNames}})
     .then((res) => {
@@ -28,6 +31,9 @@ async function {{sampleFunctionName}}() {
 }
 async function main() {
   const credential = new DefaultAzureCredential();
+  {{#each clientParamAssignments}}
+  {{this}}
+  {{/each}}
   client = new {{clientClassName}}({{clientParameterNames}});
   await {{sampleFunctionName}}();
 }

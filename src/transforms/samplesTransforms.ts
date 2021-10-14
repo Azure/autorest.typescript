@@ -31,13 +31,18 @@ export function getAllExamples(codeModel: TestCodeModel) {
                     bodyParamName: "",
                     exampleValue: "{}",
                     hasBody: false,
+                    methodParamAssignments: [],
+                    clientParamAssignments: []
                 }
                 const clientParameterNames = ["credential"];
                 for(const clientParameter of example.clientParameters) {
                     if (clientParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
                     }
-                    clientParameterNames.push(getLanguageMetadata(clientParameter.exampleValue.language).name);
+                    const parameterName = getLanguageMetadata(clientParameter.exampleValue.language).name;
+                    const paramAssignment = `const ${parameterName} = "${clientParameter.exampleValue.rawValue}"`;
+                    sample.clientParamAssignments.push(paramAssignment)
+                    clientParameterNames.push(parameterName);
                 }
                 if (clientParameterNames.length > 0) {
                     sample.clientParameterNames = clientParameterNames.join(", ");
@@ -47,12 +52,15 @@ export function getAllExamples(codeModel: TestCodeModel) {
                     if (methodParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
                     }
+                    const parameterName = getLanguageMetadata(methodParameter.exampleValue.language).name;
                     if (methodParameter.parameter.protocol?.http?.['in'] === "body") {
                         sample.hasBody = true;
-                        sample.bodyParamName = getLanguageMetadata(methodParameter.exampleValue.language).name;
+                        sample.bodyParamName = parameterName;
                         sample.bodySchemaName = getLanguageMetadata(methodParameter.exampleValue.schema.language).name;
                     }
-                    methodParameterNames.push(getLanguageMetadata(methodParameter.exampleValue.language).name);
+                    const paramAssignment = `const ${parameterName} = "${methodParameter.exampleValue.rawValue}"`;
+                    sample.methodParamAssignments.push(paramAssignment);
+                    methodParameterNames.push(parameterName);
                 }
                 if (methodParameterNames.length > 0) {
                     sample.methodParameterNames = methodParameterNames.join(", ");
