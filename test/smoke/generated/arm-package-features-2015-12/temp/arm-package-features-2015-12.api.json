@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-features-2015-12!",
+  "canonicalReference": "@msinternal/arm-package-features-2015-12!",
   "docComment": "",
-  "name": "arm-package-features-2015-12",
+  "name": "@msinternal/arm-package-features-2015-12",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-features-2015-12!",
+      "canonicalReference": "@msinternal/arm-package-features-2015-12!",
       "name": "",
       "members": [
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClient:class",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -27,7 +27,7 @@
             {
               "kind": "Reference",
               "text": "FeatureClientContext",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext:class"
             },
             {
               "kind": "Content",
@@ -39,7 +39,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the FeatureClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -70,7 +70,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureClientOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -105,7 +105,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClient#features:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#features:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -115,7 +115,7 @@
                 {
                   "kind": "Reference",
                   "text": "Features",
-                  "canonicalReference": "arm-package-features-2015-12!Features:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Features:interface"
                 },
                 {
                   "kind": "Content",
@@ -132,7 +132,7 @@
             },
             {
               "kind": "Method",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClient#listOperations:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClient#listOperations:member(1)",
               "docComment": "/**\n * Lists all of the available Microsoft.Features REST API operations.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -142,7 +142,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureClientListOperationsOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -160,7 +160,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-features-2015-12!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -198,7 +198,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -224,7 +224,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the FeatureClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -255,7 +255,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureClientOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -290,7 +290,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -316,7 +316,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -342,7 +342,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -375,7 +375,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -408,7 +408,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsNextResponse:type",
           "docComment": "/**\n * Contains response data for the listOperationsNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -418,7 +418,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -434,7 +434,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -467,7 +467,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientListOperationsResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsResponse:type",
           "docComment": "/**\n * Contains response data for the listOperations operation.\n */\n",
           "excerptTokens": [
             {
@@ -477,7 +477,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -493,7 +493,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -519,7 +519,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -544,7 +544,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -569,7 +569,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -602,7 +602,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface",
           "docComment": "/**\n * List of previewed features.\n */\n",
           "excerptTokens": [
             {
@@ -615,7 +615,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -640,7 +640,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult#value:member",
               "docComment": "/**\n * The array of features.\n */\n",
               "excerptTokens": [
                 {
@@ -650,7 +650,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureResult",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
                 },
                 {
                   "kind": "Content",
@@ -673,7 +673,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureProperties:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureProperties:interface",
           "docComment": "/**\n * Information about feature.\n */\n",
           "excerptTokens": [
             {
@@ -686,7 +686,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureProperties#state:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureProperties#state:member",
               "docComment": "/**\n * The registration state of the feature for the subscription.\n */\n",
               "excerptTokens": [
                 {
@@ -714,7 +714,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface",
           "docComment": "/**\n * Previewed feature information.\n */\n",
           "excerptTokens": [
             {
@@ -727,7 +727,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult#id:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult#id:member",
               "docComment": "/**\n * The resource ID of the feature.\n */\n",
               "excerptTokens": [
                 {
@@ -752,7 +752,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult#name:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult#name:member",
               "docComment": "/**\n * The name of the feature.\n */\n",
               "excerptTokens": [
                 {
@@ -777,7 +777,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult#properties:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult#properties:member",
               "docComment": "/**\n * Properties of the previewed feature.\n */\n",
               "excerptTokens": [
                 {
@@ -787,7 +787,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureProperties",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureProperties:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureProperties:interface"
                 },
                 {
                   "kind": "Content",
@@ -803,7 +803,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult#type:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult#type:member",
               "docComment": "/**\n * The resource type of the feature.\n */\n",
               "excerptTokens": [
                 {
@@ -831,7 +831,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!Features:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!Features:interface",
           "docComment": "/**\n * Interface representing a Features.\n */\n",
           "excerptTokens": [
             {
@@ -844,7 +844,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-features-2015-12!Features#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#get:member(1)",
               "docComment": "/**\n * Gets the preview feature with the specified name.\n *\n * @param resourceProviderNamespace - The resource provider namespace for the feature.\n *\n * @param featureName - The name of the feature to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -870,7 +870,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesGetOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -888,7 +888,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesGetResponse",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -932,7 +932,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-features-2015-12!Features#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#list:member(1)",
               "docComment": "/**\n * Gets all the preview features in a provider namespace that are available through AFEC for the subscription.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider for getting features.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -950,7 +950,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesListOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -968,7 +968,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureResult",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
                 },
                 {
                   "kind": "Content",
@@ -1005,7 +1005,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-features-2015-12!Features#listAll:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#listAll:member(1)",
               "docComment": "/**\n * Gets all the preview features that are available through AFEC for the subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1015,7 +1015,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesListAllOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesListAllOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1033,7 +1033,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeatureResult",
-                  "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
                 },
                 {
                   "kind": "Content",
@@ -1063,7 +1063,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-features-2015-12!Features#register:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#register:member(1)",
               "docComment": "/**\n * Registers the preview feature for the subscription.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param featureName - The name of the feature to register.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1089,7 +1089,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesRegisterOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1107,7 +1107,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesRegisterResponse",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesRegisterResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1151,7 +1151,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-features-2015-12!Features#unregister:member(1)",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Features#unregister:member(1)",
               "docComment": "/**\n * Unregisters the preview feature for the subscription.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param featureName - The name of the feature to unregister.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1177,7 +1177,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesUnregisterOptionalParams",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1195,7 +1195,7 @@
                 {
                   "kind": "Reference",
                   "text": "FeaturesUnregisterResponse",
-                  "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesUnregisterResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1242,7 +1242,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1275,7 +1275,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -1285,7 +1285,7 @@
             {
               "kind": "Reference",
               "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
             },
             {
               "kind": "Content",
@@ -1301,7 +1301,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1334,7 +1334,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAllNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1344,7 +1344,7 @@
             {
               "kind": "Reference",
               "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
             },
             {
               "kind": "Content",
@@ -1360,7 +1360,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1393,7 +1393,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListAllResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListAllResponse:type",
           "docComment": "/**\n * Contains response data for the listAll operation.\n */\n",
           "excerptTokens": [
             {
@@ -1403,7 +1403,7 @@
             {
               "kind": "Reference",
               "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
             },
             {
               "kind": "Content",
@@ -1419,7 +1419,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1452,7 +1452,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1462,7 +1462,7 @@
             {
               "kind": "Reference",
               "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
             },
             {
               "kind": "Content",
@@ -1478,7 +1478,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1511,7 +1511,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -1521,7 +1521,7 @@
             {
               "kind": "Reference",
               "text": "FeatureOperationsListResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureOperationsListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureOperationsListResult:interface"
             },
             {
               "kind": "Content",
@@ -1537,7 +1537,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesRegisterOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1570,7 +1570,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesRegisterResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesRegisterResponse:type",
           "docComment": "/**\n * Contains response data for the register operation.\n */\n",
           "excerptTokens": [
             {
@@ -1580,7 +1580,7 @@
             {
               "kind": "Reference",
               "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
             },
             {
               "kind": "Content",
@@ -1596,7 +1596,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesUnregisterOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1629,7 +1629,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-features-2015-12!FeaturesUnregisterResponse:type",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeaturesUnregisterResponse:type",
           "docComment": "/**\n * Contains response data for the unregister operation.\n */\n",
           "excerptTokens": [
             {
@@ -1639,7 +1639,7 @@
             {
               "kind": "Reference",
               "text": "FeatureResult",
-              "canonicalReference": "arm-package-features-2015-12!FeatureResult:interface"
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureResult:interface"
             },
             {
               "kind": "Content",
@@ -1655,7 +1655,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!Operation:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface",
           "docComment": "/**\n * Microsoft.Features operation\n */\n",
           "excerptTokens": [
             {
@@ -1668,7 +1668,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!Operation#display:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation#display:member",
               "docComment": "/**\n * The object that represents the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -1678,7 +1678,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationDisplay",
-                  "canonicalReference": "arm-package-features-2015-12!OperationDisplay:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationDisplay:interface"
                 },
                 {
                   "kind": "Content",
@@ -1694,7 +1694,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!Operation#name:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation#name:member",
               "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
               "excerptTokens": [
                 {
@@ -1722,7 +1722,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!OperationDisplay:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationDisplay:interface",
           "docComment": "/**\n * The object that represents the operation.\n */\n",
           "excerptTokens": [
             {
@@ -1735,7 +1735,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!OperationDisplay#operation:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationDisplay#operation:member",
               "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -1760,7 +1760,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!OperationDisplay#provider:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationDisplay#provider:member",
               "docComment": "/**\n * Service provider: Microsoft.Features\n */\n",
               "excerptTokens": [
                 {
@@ -1785,7 +1785,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!OperationDisplay#resource:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationDisplay#resource:member",
               "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -1813,7 +1813,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-features-2015-12!OperationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface",
           "docComment": "/**\n * Result of the request to list Microsoft.Features operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
           "excerptTokens": [
             {
@@ -1826,7 +1826,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult#nextLink:member",
               "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
               "excerptTokens": [
                 {
@@ -1851,7 +1851,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-features-2015-12!OperationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult#value:member",
               "docComment": "/**\n * List of Microsoft.Features operations.\n */\n",
               "excerptTokens": [
                 {
@@ -1861,7 +1861,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-features-2015-12!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!Operation:interface"
                 },
                 {
                   "kind": "Content",

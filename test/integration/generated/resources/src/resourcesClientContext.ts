@@ -42,7 +42,7 @@ export class ResourcesClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-@msinternal/resources/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-resources/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

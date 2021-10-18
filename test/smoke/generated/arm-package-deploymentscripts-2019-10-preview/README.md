@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The APIs listed in this specification can be used to manage Deployment Scripts resource through the Azure Resource Manager.
 
-[Package (NPM)](https://www.npmjs.com/package/arm-package-deploymentscripts-2019-10-preview) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/arm-package-deploymentscripts-2019-10-preview) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

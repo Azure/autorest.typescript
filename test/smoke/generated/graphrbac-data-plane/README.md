@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The Graph RBAC Management Client
 
-[Package (NPM)](https://www.npmjs.com/package/graphrbac-data-plane) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/graphrbac-data-plane) |
 
 ## Getting started
 

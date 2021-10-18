@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 ARM applications
 
-[Package (NPM)](https://www.npmjs.com/package/arm-package-managedapplications-2018-06) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/arm-package-managedapplications-2018-06) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

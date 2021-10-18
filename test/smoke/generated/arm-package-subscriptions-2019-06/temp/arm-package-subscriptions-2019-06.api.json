@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-subscriptions-2019-06!",
+  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!",
   "docComment": "",
-  "name": "arm-package-subscriptions-2019-06",
+  "name": "@msinternal/arm-package-subscriptions-2019-06",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-subscriptions-2019-06!",
+      "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!",
       "name": "",
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location:interface",
           "docComment": "/**\n * Location information.\n */\n",
           "excerptTokens": [
             {
@@ -30,7 +30,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#displayName:member",
               "docComment": "/**\n * The display name of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -55,7 +55,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#id:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#id:member",
               "docComment": "/**\n * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -80,7 +80,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#latitude:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#latitude:member",
               "docComment": "/**\n * The latitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -105,7 +105,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#longitude:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#longitude:member",
               "docComment": "/**\n * The longitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -130,7 +130,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#name:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#name:member",
               "docComment": "/**\n * The location name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -155,7 +155,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#subscriptionId:member",
               "docComment": "/**\n * The subscription ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -183,7 +183,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!LocationListResult:interface",
           "docComment": "/**\n * Location list operation response.\n */\n",
           "excerptTokens": [
             {
@@ -196,7 +196,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!LocationListResult#value:member",
               "docComment": "/**\n * An array of locations.\n */\n",
               "excerptTokens": [
                 {
@@ -206,7 +206,7 @@
                 {
                   "kind": "Reference",
                   "text": "Location",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location:interface"
                 },
                 {
                   "kind": "Content",
@@ -229,7 +229,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ManagedByTenant:interface",
           "docComment": "/**\n * Information about a tenant managing the subscription.\n */\n",
           "excerptTokens": [
             {
@@ -242,7 +242,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant#tenantId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ManagedByTenant#tenantId:member",
               "docComment": "/**\n * The tenant ID of the managing tenant. This is a GUID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -270,7 +270,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface",
           "docComment": "/**\n * Microsoft.Resources operation\n */\n",
           "excerptTokens": [
             {
@@ -283,7 +283,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Operation#display:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation#display:member",
               "docComment": "/**\n * The object that represents the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -293,7 +293,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationDisplay",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay:interface"
                 },
                 {
                   "kind": "Content",
@@ -309,7 +309,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Operation#name:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation#name:member",
               "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
               "excerptTokens": [
                 {
@@ -337,7 +337,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay:interface",
           "docComment": "/**\n * The object that represents the operation.\n */\n",
           "excerptTokens": [
             {
@@ -350,7 +350,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#description:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay#description:member",
               "docComment": "/**\n * Description of the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -375,7 +375,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#operation:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay#operation:member",
               "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -400,7 +400,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#provider:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay#provider:member",
               "docComment": "/**\n * Service provider: Microsoft.Resources\n */\n",
               "excerptTokens": [
                 {
@@ -425,7 +425,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationDisplay#resource:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationDisplay#resource:member",
               "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -453,7 +453,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface",
           "docComment": "/**\n * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
           "excerptTokens": [
             {
@@ -466,7 +466,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult#nextLink:member",
               "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
               "excerptTokens": [
                 {
@@ -491,7 +491,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult#value:member",
               "docComment": "/**\n * List of Microsoft.Resources operations.\n */\n",
               "excerptTokens": [
                 {
@@ -501,7 +501,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -524,7 +524,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Operations:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations:interface",
           "docComment": "/**\n * Interface representing a Operations.\n */\n",
           "excerptTokens": [
             {
@@ -537,7 +537,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Operations#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations#list:member(1)",
               "docComment": "/**\n * Lists all of the available Microsoft.Resources REST API operations.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -547,7 +547,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationsListOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -565,7 +565,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -598,7 +598,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -631,7 +631,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -641,7 +641,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -657,7 +657,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -690,7 +690,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!OperationsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -700,7 +700,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -716,7 +716,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SpendingLimit:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SpendingLimit:type",
           "docComment": "/**\n * Defines values for SpendingLimit.\n */\n",
           "excerptTokens": [
             {
@@ -741,7 +741,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface",
           "docComment": "/**\n * Subscription information.\n */\n",
           "excerptTokens": [
             {
@@ -754,7 +754,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#authorizationSource:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#authorizationSource:member",
               "docComment": "/**\n * The authorization source of the request. Valid values are one or more combinations of Legacy, RoleBased, Bypassed, Direct and Management. For example, 'Legacy, RoleBased'.\n */\n",
               "excerptTokens": [
                 {
@@ -779,7 +779,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#displayName:member",
               "docComment": "/**\n * The subscription display name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -804,7 +804,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#id:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#id:member",
               "docComment": "/**\n * The fully qualified ID for the subscription. For example, /subscriptions/00000000-0000-0000-0000-000000000000. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -829,7 +829,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#managedByTenants:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#managedByTenants:member",
               "docComment": "/**\n * An array containing the tenants managing the subscription.\n */\n",
               "excerptTokens": [
                 {
@@ -839,7 +839,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagedByTenant",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!ManagedByTenant:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!ManagedByTenant:interface"
                 },
                 {
                   "kind": "Content",
@@ -859,7 +859,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#state:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#state:member",
               "docComment": "/**\n * The subscription state. Possible values are Enabled, Warned, PastDue, Disabled, and Deleted. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -869,7 +869,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionState",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionState:type"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionState:type"
                 },
                 {
                   "kind": "Content",
@@ -885,7 +885,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#subscriptionId:member",
               "docComment": "/**\n * The subscription ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -910,7 +910,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#subscriptionPolicies:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#subscriptionPolicies:member",
               "docComment": "/**\n * The subscription policies.\n */\n",
               "excerptTokens": [
                 {
@@ -920,7 +920,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionPolicies",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionPolicies:interface"
                 },
                 {
                   "kind": "Content",
@@ -936,7 +936,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription#tenantId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription#tenantId:member",
               "docComment": "/**\n * The subscription tenant ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -964,7 +964,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient:class",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -974,7 +974,7 @@
             {
               "kind": "Reference",
               "text": "SubscriptionClientContext",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientContext:class"
             },
             {
               "kind": "Content",
@@ -986,7 +986,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the SubscriptionClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -1009,7 +1009,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionClientOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1037,7 +1037,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#operations:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient#operations:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1047,7 +1047,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operations",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Operations:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Operations:interface"
                 },
                 {
                   "kind": "Content",
@@ -1064,7 +1064,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#subscriptions:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient#subscriptions:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1074,7 +1074,7 @@
                 {
                   "kind": "Reference",
                   "text": "Subscriptions",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions:interface"
                 },
                 {
                   "kind": "Content",
@@ -1091,7 +1091,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClient#tenants:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClient#tenants:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1101,7 +1101,7 @@
                 {
                   "kind": "Reference",
                   "text": "Tenants",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants:interface"
                 },
                 {
                   "kind": "Content",
@@ -1125,7 +1125,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1151,7 +1151,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the SubscriptionClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -1174,7 +1174,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionClientOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1202,7 +1202,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1228,7 +1228,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1261,7 +1261,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1287,7 +1287,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -1312,7 +1312,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -1337,7 +1337,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -1370,7 +1370,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface",
           "docComment": "/**\n * Subscription list operation response.\n */\n",
           "excerptTokens": [
             {
@@ -1383,7 +1383,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult#nextLink:member",
               "docComment": "/**\n * The URL to get the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -1408,7 +1408,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult#value:member",
               "docComment": "/**\n * An array of subscriptions.\n */\n",
               "excerptTokens": [
                 {
@@ -1418,7 +1418,7 @@
                 {
                   "kind": "Reference",
                   "text": "Subscription",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
                 },
                 {
                   "kind": "Content",
@@ -1441,7 +1441,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionPolicies:interface",
           "docComment": "/**\n * Subscription policies.\n */\n",
           "excerptTokens": [
             {
@@ -1454,7 +1454,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#locationPlacementId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionPolicies#locationPlacementId:member",
               "docComment": "/**\n * The subscription location placement ID. The ID indicates which regions are visible for a subscription. For example, a subscription with a location placement Id of Public_2014-09-01 has access to Azure public regions. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1479,7 +1479,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#quotaId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionPolicies#quotaId:member",
               "docComment": "/**\n * The subscription quota ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1504,7 +1504,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionPolicies#spendingLimit:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionPolicies#spendingLimit:member",
               "docComment": "/**\n * The subscription spending limit. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1514,7 +1514,7 @@
                 {
                   "kind": "Reference",
                   "text": "SpendingLimit",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SpendingLimit:type"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SpendingLimit:type"
                 },
                 {
                   "kind": "Content",
@@ -1533,7 +1533,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions:interface",
           "docComment": "/**\n * Interface representing a Subscriptions.\n */\n",
           "excerptTokens": [
             {
@@ -1546,7 +1546,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#get:member(1)",
               "docComment": "/**\n * Gets details about a specified subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1564,7 +1564,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionsGetOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1582,7 +1582,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionsGetResponse",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1619,7 +1619,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#list:member(1)",
               "docComment": "/**\n * Gets all subscriptions for a tenant.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1629,7 +1629,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionsListOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1647,7 +1647,7 @@
                 {
                   "kind": "Reference",
                   "text": "Subscription",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
                 },
                 {
                   "kind": "Content",
@@ -1677,7 +1677,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscriptions#listLocations:member(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscriptions#listLocations:member(1)",
               "docComment": "/**\n * This operation provides all the locations that are available for resource providers; however, each resource provider may support a subset of this list.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1695,7 +1695,7 @@
                 {
                   "kind": "Reference",
                   "text": "SubscriptionsListLocationsOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListLocationsOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListLocationsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1713,7 +1713,7 @@
                 {
                   "kind": "Reference",
                   "text": "Location",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!Location:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location:interface"
                 },
                 {
                   "kind": "Content",
@@ -1753,7 +1753,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1786,7 +1786,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -1796,7 +1796,7 @@
             {
               "kind": "Reference",
               "text": "Subscription",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Subscription:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Subscription:interface"
             },
             {
               "kind": "Content",
@@ -1812,7 +1812,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListLocationsOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListLocationsOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1845,7 +1845,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListLocationsResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListLocationsResponse:type",
           "docComment": "/**\n * Contains response data for the listLocations operation.\n */\n",
           "excerptTokens": [
             {
@@ -1855,7 +1855,7 @@
             {
               "kind": "Reference",
               "text": "LocationListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!LocationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!LocationListResult:interface"
             },
             {
               "kind": "Content",
@@ -1871,7 +1871,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1904,7 +1904,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1914,7 +1914,7 @@
             {
               "kind": "Reference",
               "text": "SubscriptionListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
             },
             {
               "kind": "Content",
@@ -1930,7 +1930,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1963,7 +1963,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -1973,7 +1973,7 @@
             {
               "kind": "Reference",
               "text": "SubscriptionListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionListResult:interface"
             },
             {
               "kind": "Content",
@@ -1989,7 +1989,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!SubscriptionState:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!SubscriptionState:type",
           "docComment": "/**\n * Defines values for SubscriptionState.\n */\n",
           "excerptTokens": [
             {
@@ -2014,7 +2014,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantCategory:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantCategory:type",
           "docComment": "/**\n * Defines values for TenantCategory.\n */\n",
           "excerptTokens": [
             {
@@ -2039,7 +2039,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface",
           "docComment": "/**\n * Tenant Id information.\n */\n",
           "excerptTokens": [
             {
@@ -2052,7 +2052,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#country:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#country:member",
               "docComment": "/**\n * Country/region name of the address for the tenant. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2077,7 +2077,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#countryCode:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#countryCode:member",
               "docComment": "/**\n * Country/region abbreviation for the tenant. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2102,7 +2102,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#displayName:member",
               "docComment": "/**\n * The display name of the tenant. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2127,7 +2127,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#domains:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#domains:member",
               "docComment": "/**\n * The list of domains for the tenant. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2152,7 +2152,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#id:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#id:member",
               "docComment": "/**\n * The fully qualified ID of the tenant. For example, /tenants/00000000-0000-0000-0000-000000000000. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2177,7 +2177,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantCategory:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#tenantCategory:member",
               "docComment": "/**\n * The tenant category. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2187,7 +2187,7 @@
                 {
                   "kind": "Reference",
                   "text": "TenantCategory",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantCategory:type"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantCategory:type"
                 },
                 {
                   "kind": "Content",
@@ -2203,7 +2203,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription#tenantId:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription#tenantId:member",
               "docComment": "/**\n * The tenant ID. For example, 00000000-0000-0000-0000-000000000000. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2231,7 +2231,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface",
           "docComment": "/**\n * Tenant Ids information.\n */\n",
           "excerptTokens": [
             {
@@ -2244,7 +2244,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -2269,7 +2269,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult#value:member",
               "docComment": "/**\n * An array of tenants.\n */\n",
               "excerptTokens": [
                 {
@@ -2279,7 +2279,7 @@
                 {
                   "kind": "Reference",
                   "text": "TenantIdDescription",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
                 },
                 {
                   "kind": "Content",
@@ -2302,7 +2302,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!Tenants:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants:interface",
           "docComment": "/**\n * Interface representing a Tenants.\n */\n",
           "excerptTokens": [
             {
@@ -2315,7 +2315,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-subscriptions-2019-06!Tenants#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Tenants#list:member(1)",
               "docComment": "/**\n * Gets the tenants for your account.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2325,7 +2325,7 @@
                 {
                   "kind": "Reference",
                   "text": "TenantsListOptionalParams",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2343,7 +2343,7 @@
                 {
                   "kind": "Reference",
                   "text": "TenantIdDescription",
-                  "canonicalReference": "arm-package-subscriptions-2019-06!TenantIdDescription:interface"
+                  "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantIdDescription:interface"
                 },
                 {
                   "kind": "Content",
@@ -2376,7 +2376,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2409,7 +2409,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2419,7 +2419,7 @@
             {
               "kind": "Reference",
               "text": "TenantListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
             },
             {
               "kind": "Content",
@@ -2435,7 +2435,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2468,7 +2468,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-subscriptions-2019-06!TenantsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -2478,7 +2478,7 @@
             {
               "kind": "Reference",
               "text": "TenantListResult",
-              "canonicalReference": "arm-package-subscriptions-2019-06!TenantListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!TenantListResult:interface"
             },
             {
               "kind": "Content",

@@ -1,5 +1,5 @@
 {
-  "name": "cosmos-db-resource-manager",
+  "name": "@msinternal/cosmos-db-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CosmosDBManagementClient.",

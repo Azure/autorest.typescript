@@ -43,7 +43,7 @@ export class AzureSpecialPropertiesClientContext extends coreClient.ServiceClien
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-@msinternal/azure-special-properties/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-azure-special-properties/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

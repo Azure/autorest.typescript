@@ -1,5 +1,5 @@
 {
-  "name": "keyvault-resource-manager",
+  "name": "@msinternal/keyvault-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for KeyVaultManagementClient.",

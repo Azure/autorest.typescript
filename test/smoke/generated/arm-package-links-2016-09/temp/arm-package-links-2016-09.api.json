@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-links-2016-09!",
+  "canonicalReference": "@msinternal/arm-package-links-2016-09!",
   "docComment": "",
-  "name": "arm-package-links-2016-09",
+  "name": "@msinternal/arm-package-links-2016-09",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-links-2016-09!",
+      "canonicalReference": "@msinternal/arm-package-links-2016-09!",
       "name": "",
       "members": [
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient:class",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -27,7 +27,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLinkClientContext",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext:class"
             },
             {
               "kind": "Content",
@@ -39,7 +39,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagementLinkClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -70,7 +70,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLinkClientOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -105,7 +105,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient#operations:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClient#operations:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -115,7 +115,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operations",
-                  "canonicalReference": "arm-package-links-2016-09!Operations:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!Operations:interface"
                 },
                 {
                   "kind": "Content",
@@ -132,7 +132,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClient#resourceLinks:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClient#resourceLinks:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -142,7 +142,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinks",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinks:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks:interface"
                 },
                 {
                   "kind": "Content",
@@ -166,7 +166,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -192,7 +192,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagementLinkClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -223,7 +223,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLinkClientOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -258,7 +258,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -284,7 +284,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -310,7 +310,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -343,7 +343,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -369,7 +369,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -394,7 +394,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -419,7 +419,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ManagementLinkClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ManagementLinkClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -452,7 +452,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!Operation:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!Operation:interface",
           "docComment": "/**\n * Microsoft.Resources operation\n */\n",
           "excerptTokens": [
             {
@@ -465,7 +465,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!Operation#display:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!Operation#display:member",
               "docComment": "/**\n * The object that represents the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -475,7 +475,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationDisplay",
-                  "canonicalReference": "arm-package-links-2016-09!OperationDisplay:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay:interface"
                 },
                 {
                   "kind": "Content",
@@ -491,7 +491,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!Operation#name:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!Operation#name:member",
               "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
               "excerptTokens": [
                 {
@@ -519,7 +519,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!OperationDisplay:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay:interface",
           "docComment": "/**\n * The object that represents the operation.\n */\n",
           "excerptTokens": [
             {
@@ -532,7 +532,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#description:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay#description:member",
               "docComment": "/**\n * Description of the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -557,7 +557,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#operation:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay#operation:member",
               "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -582,7 +582,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#provider:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay#provider:member",
               "docComment": "/**\n * Service provider: Microsoft.Resources\n */\n",
               "excerptTokens": [
                 {
@@ -607,7 +607,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationDisplay#resource:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationDisplay#resource:member",
               "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -635,7 +635,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationListResult:interface",
           "docComment": "/**\n * Result of the request to list Microsoft.Resources operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
           "excerptTokens": [
             {
@@ -648,7 +648,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationListResult#nextLink:member",
               "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
               "excerptTokens": [
                 {
@@ -673,7 +673,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!OperationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationListResult#value:member",
               "docComment": "/**\n * List of Microsoft.Resources operations.\n */\n",
               "excerptTokens": [
                 {
@@ -683,7 +683,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-links-2016-09!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -706,7 +706,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!Operations:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!Operations:interface",
           "docComment": "/**\n * Interface representing a Operations.\n */\n",
           "excerptTokens": [
             {
@@ -719,7 +719,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!Operations#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!Operations#list:member(1)",
               "docComment": "/**\n * Lists all of the available Microsoft.Resources REST API operations.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -729,7 +729,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationsListOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!OperationsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -747,7 +747,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-links-2016-09!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -780,7 +780,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!OperationsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -813,7 +813,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!OperationsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -823,7 +823,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -839,7 +839,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!OperationsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -872,7 +872,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!OperationsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -882,7 +882,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-links-2016-09!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -898,7 +898,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface",
           "docComment": "/**\n * The resource link.\n */\n",
           "excerptTokens": [
             {
@@ -911,7 +911,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink#id:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink#id:member",
               "docComment": "/**\n * The fully qualified ID of the resource link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -936,7 +936,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink#name:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink#name:member",
               "docComment": "/**\n * The name of the resource link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -961,7 +961,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink#properties:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink#properties:member",
               "docComment": "/**\n * Properties for resource link.\n */\n",
               "excerptTokens": [
                 {
@@ -971,7 +971,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinkProperties",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkProperties:interface"
                 },
                 {
                   "kind": "Content",
@@ -987,7 +987,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink#type:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink#type:member",
               "docComment": "/**\n * The resource link object. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1020,7 +1020,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinkFilter:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkFilter:interface",
           "docComment": "/**\n * Resource link filter.\n */\n",
           "excerptTokens": [
             {
@@ -1033,7 +1033,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkFilter#targetId:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkFilter#targetId:member",
               "docComment": "/**\n * The ID of the target resource.\n */\n",
               "excerptTokens": [
                 {
@@ -1061,7 +1061,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkProperties:interface",
           "docComment": "/**\n * The resource link properties.\n */\n",
           "excerptTokens": [
             {
@@ -1074,7 +1074,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#notes:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkProperties#notes:member",
               "docComment": "/**\n * Notes about the resource link.\n */\n",
               "excerptTokens": [
                 {
@@ -1099,7 +1099,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#sourceId:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkProperties#sourceId:member",
               "docComment": "/**\n * The fully qualified ID of the source resource in the link. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1124,7 +1124,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkProperties#targetId:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkProperties#targetId:member",
               "docComment": "/**\n * The fully qualified ID of the target resource in the link.\n */\n",
               "excerptTokens": [
                 {
@@ -1152,7 +1152,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult:interface",
           "docComment": "/**\n * List of resource links.\n */\n",
           "excerptTokens": [
             {
@@ -1165,7 +1165,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1190,7 +1190,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult#value:member",
               "docComment": "/**\n * An array of resource links.\n */\n",
               "excerptTokens": [
                 {
@@ -1200,7 +1200,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLink",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
                 },
                 {
                   "kind": "Content",
@@ -1223,7 +1223,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinks:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks:interface",
           "docComment": "/**\n * Interface representing a ResourceLinks.\n */\n",
           "excerptTokens": [
             {
@@ -1236,7 +1236,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinks#createOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks#createOrUpdate:member(1)",
               "docComment": "/**\n * Creates or updates a resource link between the specified resources.\n *\n * @param linkId - The fully qualified ID of the resource link. Use the format, /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/{provider-namespace}/{resource-type}/{resource-name}/Microsoft.Resources/links/{link-name}. For example, /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink\n *\n * @param parameters - Parameters for creating or updating a resource link.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1254,7 +1254,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLink",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
                 },
                 {
                   "kind": "Content",
@@ -1263,7 +1263,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1281,7 +1281,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1325,7 +1325,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinks#delete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks#delete:member(1)",
               "docComment": "/**\n * Deletes a resource link with the specified ID.\n *\n * @param linkId - The fully qualified ID of the resource link. Use the format, /subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/{provider-namespace}/{resource-type}/{resource-name}/Microsoft.Resources/links/{link-name}. For example, /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1343,7 +1343,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksDeleteOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1389,7 +1389,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinks#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks#get:member(1)",
               "docComment": "/**\n * Gets a resource link with the specified ID.\n *\n * @param linkId - The fully qualified Id of the resource link. For example, /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup/Microsoft.Web/sites/mySite/Microsoft.Resources/links/myLink\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1407,7 +1407,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksGetOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1425,7 +1425,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksGetResponse",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1462,7 +1462,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinks#listAtSourceScope:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks#listAtSourceScope:member(1)",
               "docComment": "/**\n * Gets a list of resource links at and below the specified source scope.\n *\n * @param scope - The fully qualified ID of the scope for getting the resource links. For example, to list resource links at and under a resource group, set the scope to /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myGroup.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1480,7 +1480,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksListAtSourceScopeOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSourceScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1498,7 +1498,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLink",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
                 },
                 {
                   "kind": "Content",
@@ -1535,7 +1535,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinks#listAtSubscription:member(1)",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinks#listAtSubscription:member(1)",
               "docComment": "/**\n * Gets all the linked resources for the subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1545,7 +1545,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLinksListAtSubscriptionOptionalParams",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1563,7 +1563,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceLink",
-                  "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+                  "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
                 },
                 {
                   "kind": "Content",
@@ -1596,7 +1596,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1629,7 +1629,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -1639,7 +1639,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLink",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
             },
             {
               "kind": "Content",
@@ -1655,7 +1655,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1688,7 +1688,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1721,7 +1721,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -1731,7 +1731,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLink",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLink:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLink:interface"
             },
             {
               "kind": "Content",
@@ -1747,7 +1747,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSourceScopeNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1780,7 +1780,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSourceScopeNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSourceScopeNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1790,7 +1790,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLinkResult",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult:interface"
             },
             {
               "kind": "Content",
@@ -1806,7 +1806,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSourceScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1839,7 +1839,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSourceScopeResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSourceScopeResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSourceScope operation.\n */\n",
           "excerptTokens": [
             {
@@ -1849,7 +1849,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLinkResult",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult:interface"
             },
             {
               "kind": "Content",
@@ -1865,7 +1865,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1891,7 +1891,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value}\n */\n",
               "excerptTokens": [
                 {
@@ -1924,7 +1924,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSubscriptionNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1934,7 +1934,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLinkResult",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult:interface"
             },
             {
               "kind": "Content",
@@ -1950,7 +1950,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1976,7 +1976,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the list resource links operation. The supported filter for list resource links is targetId. For example, $filter=targetId eq {value}\n */\n",
               "excerptTokens": [
                 {
@@ -2009,7 +2009,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-links-2016-09!ResourceLinksListAtSubscriptionResponse:type",
+          "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinksListAtSubscriptionResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSubscription operation.\n */\n",
           "excerptTokens": [
             {
@@ -2019,7 +2019,7 @@
             {
               "kind": "Reference",
               "text": "ResourceLinkResult",
-              "canonicalReference": "arm-package-links-2016-09!ResourceLinkResult:interface"
+              "canonicalReference": "@msinternal/arm-package-links-2016-09!ResourceLinkResult:interface"
             },
             {
               "kind": "Content",

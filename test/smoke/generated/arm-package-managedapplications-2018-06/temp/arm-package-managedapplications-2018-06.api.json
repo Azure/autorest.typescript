@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-managedapplications-2018-06!",
+  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!",
   "docComment": "",
-  "name": "arm-package-managedapplications-2018-06",
+  "name": "@msinternal/arm-package-managedapplications-2018-06",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-managedapplications-2018-06!",
+      "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!",
       "name": "",
       "members": [
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Application:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type",
           "docComment": "/**\n * Information about managed application.\n */\n",
           "excerptTokens": [
             {
@@ -27,7 +27,7 @@
             {
               "kind": "Reference",
               "text": "GenericResource",
-              "canonicalReference": "arm-package-managedapplications-2018-06!GenericResource:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!GenericResource:type"
             },
             {
               "kind": "Content",
@@ -36,7 +36,7 @@
             {
               "kind": "Reference",
               "text": "Plan",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan:interface"
             },
             {
               "kind": "Content",
@@ -63,7 +63,7 @@
             {
               "kind": "Reference",
               "text": "ProvisioningState",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ProvisioningState:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ProvisioningState:type"
             },
             {
               "kind": "Content",
@@ -83,7 +83,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifact:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifact:interface",
           "docComment": "/**\n * Managed application artifact.\n */\n",
           "excerptTokens": [
             {
@@ -96,7 +96,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifact#name:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifact#name:member",
               "docComment": "/**\n * The managed application artifact name.\n */\n",
               "excerptTokens": [
                 {
@@ -121,7 +121,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifact#type:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifact#type:member",
               "docComment": "/**\n * The managed application artifact type.\n */\n",
               "excerptTokens": [
                 {
@@ -131,7 +131,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationArtifactType",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifactType:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifactType:type"
                 },
                 {
                   "kind": "Content",
@@ -147,7 +147,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifact#uri:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifact#uri:member",
               "docComment": "/**\n * The managed application artifact blob uri.\n */\n",
               "excerptTokens": [
                 {
@@ -175,7 +175,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifactType:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifactType:type",
           "docComment": "/**\n * Defines values for ApplicationArtifactType.\n */\n",
           "excerptTokens": [
             {
@@ -200,7 +200,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClient:class",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -210,7 +210,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationClientContext",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext:class"
             },
             {
               "kind": "Content",
@@ -222,7 +222,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ApplicationClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -253,7 +253,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationClientOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -288,7 +288,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClient#applicationDefinitions:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#applicationDefinitions:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -298,7 +298,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitions",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions:interface"
                 },
                 {
                   "kind": "Content",
@@ -315,7 +315,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClient#applications:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClient#applications:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -325,7 +325,7 @@
                 {
                   "kind": "Reference",
                   "text": "Applications",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Applications:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications:interface"
                 },
                 {
                   "kind": "Content",
@@ -349,7 +349,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -375,7 +375,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ApplicationClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -406,7 +406,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationClientOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -441,7 +441,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -467,7 +467,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -493,7 +493,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -526,7 +526,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -552,7 +552,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -577,7 +577,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -602,7 +602,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -635,7 +635,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type",
           "docComment": "/**\n * Information about managed application definition.\n */\n",
           "excerptTokens": [
             {
@@ -645,7 +645,7 @@
             {
               "kind": "Reference",
               "text": "GenericResource",
-              "canonicalReference": "arm-package-managedapplications-2018-06!GenericResource:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!GenericResource:type"
             },
             {
               "kind": "Content",
@@ -654,7 +654,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationLockLevel",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationLockLevel:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationLockLevel:type"
             },
             {
               "kind": "Content",
@@ -663,7 +663,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationProviderAuthorization",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationProviderAuthorization:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationProviderAuthorization:interface"
             },
             {
               "kind": "Content",
@@ -672,7 +672,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationArtifact",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationArtifact:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationArtifact:interface"
             },
             {
               "kind": "Content",
@@ -710,7 +710,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface",
           "docComment": "/**\n * List of managed application definitions.\n */\n",
           "excerptTokens": [
             {
@@ -723,7 +723,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -748,7 +748,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult#value:member",
               "docComment": "/**\n * The array of managed application definitions.\n */\n",
               "excerptTokens": [
                 {
@@ -758,7 +758,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -781,7 +781,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions:interface",
           "docComment": "/**\n * Interface representing a ApplicationDefinitions.\n */\n",
           "excerptTokens": [
             {
@@ -794,7 +794,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update an managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -820,7 +820,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -829,7 +829,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -865,7 +865,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -874,7 +874,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -925,7 +925,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateAndWait:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param parameters - Parameters supplied to the create or update an managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -951,7 +951,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -960,7 +960,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -978,7 +978,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1029,7 +1029,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1047,7 +1047,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -1056,7 +1056,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1092,7 +1092,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1101,7 +1101,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1145,7 +1145,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateByIdAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginCreateOrUpdateByIdAndWait:member(1)",
               "docComment": "/**\n * Creates a new managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1163,7 +1163,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -1172,7 +1172,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1190,7 +1190,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1234,7 +1234,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDelete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1260,7 +1260,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1331,7 +1331,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteAndWait:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1357,7 +1357,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1410,7 +1410,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1428,7 +1428,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsDeleteByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1492,7 +1492,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteByIdAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#beginDeleteByIdAndWait:member(1)",
               "docComment": "/**\n * Deletes the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1510,7 +1510,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsDeleteByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1556,7 +1556,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#get:member(1)",
               "docComment": "/**\n * Gets the managed application definition.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationDefinitionName - The name of the managed application definition.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1582,7 +1582,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsGetOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1600,7 +1600,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsGetResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1644,7 +1644,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#getById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#getById:member(1)",
               "docComment": "/**\n * Gets the managed application definition.\n *\n * @param applicationDefinitionId - The fully qualified ID of the managed application definition, including the managed application name and the managed application definition resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applicationDefinitions/{applicationDefinition-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1662,7 +1662,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsGetByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1680,7 +1680,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsGetByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1717,7 +1717,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitions#listByResourceGroup:member(1)",
               "docComment": "/**\n * Lists the managed application definitions in a resource group.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1735,7 +1735,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinitionsListByResourceGroupOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1753,7 +1753,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationDefinition",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
                 },
                 {
                   "kind": "Content",
@@ -1793,7 +1793,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1819,7 +1819,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -1844,7 +1844,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -1877,7 +1877,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateById operation.\n */\n",
           "excerptTokens": [
             {
@@ -1887,7 +1887,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinition",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
             },
             {
               "kind": "Content",
@@ -1903,7 +1903,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1929,7 +1929,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -1954,7 +1954,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -1987,7 +1987,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -1997,7 +1997,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinition",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
             },
             {
               "kind": "Content",
@@ -2013,7 +2013,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2039,7 +2039,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -2064,7 +2064,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteByIdOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -2097,7 +2097,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2123,7 +2123,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -2148,7 +2148,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsDeleteOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -2181,7 +2181,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2214,7 +2214,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetByIdResponse:type",
           "docComment": "/**\n * Contains response data for the getById operation.\n */\n",
           "excerptTokens": [
             {
@@ -2224,7 +2224,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinition",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
             },
             {
               "kind": "Content",
@@ -2240,7 +2240,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2273,7 +2273,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -2283,7 +2283,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinition",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinition:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinition:type"
             },
             {
               "kind": "Content",
@@ -2299,7 +2299,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2332,7 +2332,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2342,7 +2342,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinitionListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -2358,7 +2358,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2391,7 +2391,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionsListByResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -2401,7 +2401,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationDefinitionListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -2417,7 +2417,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface",
           "docComment": "/**\n * List of managed applications.\n */\n",
           "excerptTokens": [
             {
@@ -2430,7 +2430,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -2455,7 +2455,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult#value:member",
               "docComment": "/**\n * The array of managed applications.\n */\n",
               "excerptTokens": [
                 {
@@ -2465,7 +2465,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -2488,7 +2488,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationLockLevel:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationLockLevel:type",
           "docComment": "/**\n * Defines values for ApplicationLockLevel.\n */\n",
           "excerptTokens": [
             {
@@ -2513,7 +2513,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationPatchable:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationPatchable:type",
           "docComment": "/**\n * Information about managed application.\n */\n",
           "excerptTokens": [
             {
@@ -2523,7 +2523,7 @@
             {
               "kind": "Reference",
               "text": "GenericResource",
-              "canonicalReference": "arm-package-managedapplications-2018-06!GenericResource:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!GenericResource:type"
             },
             {
               "kind": "Content",
@@ -2532,7 +2532,7 @@
             {
               "kind": "Reference",
               "text": "PlanPatchable",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable:interface"
             },
             {
               "kind": "Content",
@@ -2559,7 +2559,7 @@
             {
               "kind": "Reference",
               "text": "ProvisioningState",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ProvisioningState:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ProvisioningState:type"
             },
             {
               "kind": "Content",
@@ -2579,7 +2579,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationProviderAuthorization:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationProviderAuthorization:interface",
           "docComment": "/**\n * The managed application provider authorization.\n */\n",
           "excerptTokens": [
             {
@@ -2592,7 +2592,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationProviderAuthorization#principalId:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationProviderAuthorization#principalId:member",
               "docComment": "/**\n * The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the managed application resources.\n */\n",
               "excerptTokens": [
                 {
@@ -2617,7 +2617,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationProviderAuthorization#roleDefinitionId:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationProviderAuthorization#roleDefinitionId:member",
               "docComment": "/**\n * The provider's role definition identifier. This role will define all the permissions that the provider must have on the managed application's container resource group. This role definition cannot have permission to delete the resource group.\n */\n",
               "excerptTokens": [
                 {
@@ -2645,7 +2645,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Applications:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications:interface",
           "docComment": "/**\n * Interface representing a Applications.\n */\n",
           "excerptTokens": [
             {
@@ -2658,7 +2658,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdate:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2684,7 +2684,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -2693,7 +2693,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2729,7 +2729,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2738,7 +2738,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2789,7 +2789,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateAndWait:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2815,7 +2815,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -2824,7 +2824,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2842,7 +2842,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2893,7 +2893,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateById:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2911,7 +2911,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -2920,7 +2920,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2956,7 +2956,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2965,7 +2965,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3009,7 +3009,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateByIdAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginCreateOrUpdateByIdAndWait:member(1)",
               "docComment": "/**\n * Creates a new managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param parameters - Parameters supplied to the create or update a managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3027,7 +3027,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -3036,7 +3036,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3054,7 +3054,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsCreateOrUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3098,7 +3098,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDelete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginDelete:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3124,7 +3124,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3195,7 +3195,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginDeleteAndWait:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3221,7 +3221,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3274,7 +3274,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginDeleteById:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3292,7 +3292,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsDeleteByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3356,7 +3356,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#beginDeleteByIdAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#beginDeleteByIdAndWait:member(1)",
               "docComment": "/**\n * Deletes the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3374,7 +3374,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsDeleteByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3420,7 +3420,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#get:member(1)",
               "docComment": "/**\n * Gets the managed application.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3446,7 +3446,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsGetOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3464,7 +3464,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsGetResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3508,7 +3508,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#getById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#getById:member(1)",
               "docComment": "/**\n * Gets the managed application.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3526,7 +3526,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsGetByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3544,7 +3544,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsGetByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3581,7 +3581,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#listByResourceGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listByResourceGroup:member(1)",
               "docComment": "/**\n * Gets all the applications within a resource group.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3599,7 +3599,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsListByResourceGroupOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3617,7 +3617,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -3654,7 +3654,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#listBySubscription:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#listBySubscription:member(1)",
               "docComment": "/**\n * Gets all the applications within a subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3664,7 +3664,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsListBySubscriptionOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3682,7 +3682,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -3712,7 +3712,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#update:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#update:member(1)",
               "docComment": "/**\n * Updates an existing managed application. The only value that can be updated via PATCH currently is the tags.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param applicationName - The name of the managed application.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3738,7 +3738,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsUpdateOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3756,7 +3756,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsUpdateResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3800,7 +3800,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Applications#updateById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Applications#updateById:member(1)",
               "docComment": "/**\n * Updates an existing managed application. The only value that can be updated via PATCH currently is the tags.\n *\n * @param applicationId - The fully qualified ID of the managed application, including the managed application name and the managed application resource type. Use the format, /subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.Solutions/applications/{application-name}\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -3818,7 +3818,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsUpdateByIdOptionalParams",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3836,7 +3836,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApplicationsUpdateByIdResponse",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -3876,7 +3876,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3902,7 +3902,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3927,7 +3927,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -3960,7 +3960,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateById operation.\n */\n",
           "excerptTokens": [
             {
@@ -3970,7 +3970,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -3986,7 +3986,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4012,7 +4012,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -4037,7 +4037,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -4070,7 +4070,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -4080,7 +4080,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -4096,7 +4096,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4122,7 +4122,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -4147,7 +4147,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteByIdOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -4180,7 +4180,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4206,7 +4206,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -4231,7 +4231,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsDeleteOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -4264,7 +4264,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4297,7 +4297,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetByIdResponse:type",
           "docComment": "/**\n * Contains response data for the getById operation.\n */\n",
           "excerptTokens": [
             {
@@ -4307,7 +4307,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -4323,7 +4323,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4356,7 +4356,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -4366,7 +4366,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -4382,7 +4382,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4415,7 +4415,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -4425,7 +4425,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
             },
             {
               "kind": "Content",
@@ -4441,7 +4441,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4474,7 +4474,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListByResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -4484,7 +4484,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
             },
             {
               "kind": "Content",
@@ -4500,7 +4500,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4533,7 +4533,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscriptionNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -4543,7 +4543,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
             },
             {
               "kind": "Content",
@@ -4559,7 +4559,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4592,7 +4592,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsListBySubscriptionResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscription operation.\n */\n",
           "excerptTokens": [
             {
@@ -4602,7 +4602,7 @@
             {
               "kind": "Reference",
               "text": "ApplicationListResult",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationListResult:interface"
             },
             {
               "kind": "Content",
@@ -4618,7 +4618,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4644,7 +4644,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateByIdOptionalParams#parameters:member",
               "docComment": "/**\n * Parameters supplied to update an existing managed application.\n */\n",
               "excerptTokens": [
                 {
@@ -4654,7 +4654,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -4678,7 +4678,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the updateById operation.\n */\n",
           "excerptTokens": [
             {
@@ -4688,7 +4688,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -4704,7 +4704,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4730,7 +4730,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateOptionalParams#parameters:member",
               "docComment": "/**\n * Parameters supplied to update an existing managed application.\n */\n",
               "excerptTokens": [
                 {
@@ -4740,7 +4740,7 @@
                 {
                   "kind": "Reference",
                   "text": "Application",
-                  "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+                  "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
                 },
                 {
                   "kind": "Content",
@@ -4764,7 +4764,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ApplicationsUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ApplicationsUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the update operation.\n */\n",
           "excerptTokens": [
             {
@@ -4774,7 +4774,7 @@
             {
               "kind": "Reference",
               "text": "Application",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Application:type"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Application:type"
             },
             {
               "kind": "Content",
@@ -4790,7 +4790,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ErrorResponse:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ErrorResponse:interface",
           "docComment": "/**\n * Error response indicates managed application is not able to process the incoming request. The reason is provided in the error message.\n */\n",
           "excerptTokens": [
             {
@@ -4803,7 +4803,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ErrorResponse#errorCode:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ErrorResponse#errorCode:member",
               "docComment": "/**\n * Error code.\n */\n",
               "excerptTokens": [
                 {
@@ -4828,7 +4828,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ErrorResponse#errorMessage:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ErrorResponse#errorMessage:member",
               "docComment": "/**\n * Error message indicating why the operation failed.\n */\n",
               "excerptTokens": [
                 {
@@ -4853,7 +4853,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!ErrorResponse#httpStatus:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ErrorResponse#httpStatus:member",
               "docComment": "/**\n * Http status code.\n */\n",
               "excerptTokens": [
                 {
@@ -4881,7 +4881,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!GenericResource:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!GenericResource:type",
           "docComment": "/**\n * Resource information.\n */\n",
           "excerptTokens": [
             {
@@ -4891,7 +4891,7 @@
             {
               "kind": "Reference",
               "text": "Resource",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource:interface"
             },
             {
               "kind": "Content",
@@ -4900,7 +4900,7 @@
             {
               "kind": "Reference",
               "text": "Sku",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku:interface"
             },
             {
               "kind": "Content",
@@ -4909,7 +4909,7 @@
             {
               "kind": "Reference",
               "text": "Identity",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Identity:interface"
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Identity:interface"
             },
             {
               "kind": "Content",
@@ -4929,7 +4929,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Identity:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Identity:interface",
           "docComment": "/**\n * Identity for the resource.\n */\n",
           "excerptTokens": [
             {
@@ -4942,7 +4942,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Identity#principalId:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Identity#principalId:member",
               "docComment": "/**\n * The principal ID of resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4967,7 +4967,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Identity#tenantId:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Identity#tenantId:member",
               "docComment": "/**\n * The tenant ID of resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4992,7 +4992,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Identity#type:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Identity#type:member",
               "docComment": "/**\n * The identity type.\n */\n",
               "excerptTokens": [
                 {
@@ -5020,7 +5020,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState:enum",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState:enum",
           "docComment": "/**\n * Known values of {@link ProvisioningState} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -5033,7 +5033,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Accepted:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Accepted:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5054,7 +5054,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Canceled:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Canceled:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5075,7 +5075,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Created:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Created:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5096,7 +5096,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Creating:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Creating:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5117,7 +5117,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Deleted:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Deleted:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5138,7 +5138,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Deleting:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Deleting:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5159,7 +5159,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Failed:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Failed:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5180,7 +5180,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Ready:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Ready:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5201,7 +5201,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Running:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Running:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5222,7 +5222,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Succeeded:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Succeeded:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5243,7 +5243,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-managedapplications-2018-06!KnownProvisioningState.Updating:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!KnownProvisioningState.Updating:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -5266,7 +5266,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Plan:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan:interface",
           "docComment": "/**\n * Plan for the managed application.\n */\n",
           "excerptTokens": [
             {
@@ -5279,7 +5279,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan#name:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan#name:member",
               "docComment": "/**\n * The plan name.\n */\n",
               "excerptTokens": [
                 {
@@ -5304,7 +5304,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan#product:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan#product:member",
               "docComment": "/**\n * The product code.\n */\n",
               "excerptTokens": [
                 {
@@ -5329,7 +5329,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan#promotionCode:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan#promotionCode:member",
               "docComment": "/**\n * The promotion code.\n */\n",
               "excerptTokens": [
                 {
@@ -5354,7 +5354,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan#publisher:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan#publisher:member",
               "docComment": "/**\n * The publisher ID.\n */\n",
               "excerptTokens": [
                 {
@@ -5379,7 +5379,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Plan#version:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Plan#version:member",
               "docComment": "/**\n * The plan's version.\n */\n",
               "excerptTokens": [
                 {
@@ -5407,7 +5407,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable:interface",
           "docComment": "/**\n * Plan for the managed application.\n */\n",
           "excerptTokens": [
             {
@@ -5420,7 +5420,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable#name:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable#name:member",
               "docComment": "/**\n * The plan name.\n */\n",
               "excerptTokens": [
                 {
@@ -5445,7 +5445,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable#product:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable#product:member",
               "docComment": "/**\n * The product code.\n */\n",
               "excerptTokens": [
                 {
@@ -5470,7 +5470,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable#promotionCode:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable#promotionCode:member",
               "docComment": "/**\n * The promotion code.\n */\n",
               "excerptTokens": [
                 {
@@ -5495,7 +5495,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable#publisher:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable#publisher:member",
               "docComment": "/**\n * The publisher ID.\n */\n",
               "excerptTokens": [
                 {
@@ -5520,7 +5520,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!PlanPatchable#version:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!PlanPatchable#version:member",
               "docComment": "/**\n * The plan's version.\n */\n",
               "excerptTokens": [
                 {
@@ -5548,7 +5548,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-managedapplications-2018-06!ProvisioningState:type",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!ProvisioningState:type",
           "docComment": "/**\n * Defines values for ProvisioningState. \\ {@link KnownProvisioningState} can be used interchangeably with ProvisioningState, this enum contains the known values that the service supports. ### Known values supported by the service **Accepted** \\ **Running** \\ **Ready** \\ **Creating** \\ **Created** \\ **Deleting** \\ **Deleted** \\ **Canceled** \\ **Failed** \\ **Succeeded** \\ **Updating**\n */\n",
           "excerptTokens": [
             {
@@ -5573,7 +5573,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Resource:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource:interface",
           "docComment": "/**\n * Resource information.\n */\n",
           "excerptTokens": [
             {
@@ -5586,7 +5586,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource#id:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource#id:member",
               "docComment": "/**\n * Resource ID NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -5611,7 +5611,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource#location:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource#location:member",
               "docComment": "/**\n * Resource location\n */\n",
               "excerptTokens": [
                 {
@@ -5636,7 +5636,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource#name:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource#name:member",
               "docComment": "/**\n * Resource name NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -5661,7 +5661,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource#tags:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource#tags:member",
               "docComment": "/**\n * Resource tags\n */\n",
               "excerptTokens": [
                 {
@@ -5686,7 +5686,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Resource#type:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Resource#type:member",
               "docComment": "/**\n * Resource type NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -5714,7 +5714,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-managedapplications-2018-06!Sku:interface",
+          "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku:interface",
           "docComment": "/**\n * SKU for the resource.\n */\n",
           "excerptTokens": [
             {
@@ -5727,7 +5727,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#capacity:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#capacity:member",
               "docComment": "/**\n * The SKU capacity.\n */\n",
               "excerptTokens": [
                 {
@@ -5752,7 +5752,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#family:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#family:member",
               "docComment": "/**\n * The SKU family.\n */\n",
               "excerptTokens": [
                 {
@@ -5777,7 +5777,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#model:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#model:member",
               "docComment": "/**\n * The SKU model.\n */\n",
               "excerptTokens": [
                 {
@@ -5802,7 +5802,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#name:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#name:member",
               "docComment": "/**\n * The SKU name.\n */\n",
               "excerptTokens": [
                 {
@@ -5827,7 +5827,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#size:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#size:member",
               "docComment": "/**\n * The SKU size.\n */\n",
               "excerptTokens": [
                 {
@@ -5852,7 +5852,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-managedapplications-2018-06!Sku#tier:member",
+              "canonicalReference": "@msinternal/arm-package-managedapplications-2018-06!Sku#tier:member",
               "docComment": "/**\n * The SKU tier.\n */\n",
               "excerptTokens": [
                 {

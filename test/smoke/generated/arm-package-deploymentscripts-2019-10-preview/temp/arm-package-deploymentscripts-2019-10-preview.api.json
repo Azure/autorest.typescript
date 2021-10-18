@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!",
+  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!",
   "docComment": "",
-  "name": "arm-package-deploymentscripts-2019-10-preview",
+  "name": "@msinternal/arm-package-deploymentscripts-2019-10-preview",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!",
+      "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!",
       "name": "",
       "members": [
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type",
           "docComment": "/**\n * Object model for the Azure CLI script.\n */\n",
           "excerptTokens": [
             {
@@ -27,7 +27,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
             },
             {
               "kind": "Content",
@@ -36,7 +36,7 @@
             {
               "kind": "Reference",
               "text": "ContainerConfiguration",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
             },
             {
               "kind": "Content",
@@ -45,7 +45,7 @@
             {
               "kind": "Reference",
               "text": "StorageAccountConfiguration",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
             },
             {
               "kind": "Content",
@@ -54,7 +54,7 @@
             {
               "kind": "Reference",
               "text": "CleanupOptions",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
             },
             {
               "kind": "Content",
@@ -63,7 +63,7 @@
             {
               "kind": "Reference",
               "text": "ScriptProvisioningState",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
             },
             {
               "kind": "Content",
@@ -72,7 +72,7 @@
             {
               "kind": "Reference",
               "text": "ScriptStatus",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
             },
             {
               "kind": "Content",
@@ -90,7 +90,7 @@
             {
               "kind": "Reference",
               "text": "EnvironmentVariable",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
             },
             {
               "kind": "Content",
@@ -110,7 +110,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScriptProperties:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureCliScriptProperties:type",
           "docComment": "/**\n * Properties of the Azure CLI script object.\n */\n",
           "excerptTokens": [
             {
@@ -120,7 +120,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptPropertiesBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
             },
             {
               "kind": "Content",
@@ -129,7 +129,7 @@
             {
               "kind": "Reference",
               "text": "ScriptConfigurationBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
             },
             {
               "kind": "Content",
@@ -149,7 +149,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type",
           "docComment": "/**\n * Object model for the Azure PowerShell script.\n */\n",
           "excerptTokens": [
             {
@@ -159,7 +159,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
             },
             {
               "kind": "Content",
@@ -168,7 +168,7 @@
             {
               "kind": "Reference",
               "text": "ContainerConfiguration",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
             },
             {
               "kind": "Content",
@@ -177,7 +177,7 @@
             {
               "kind": "Reference",
               "text": "StorageAccountConfiguration",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
             },
             {
               "kind": "Content",
@@ -186,7 +186,7 @@
             {
               "kind": "Reference",
               "text": "CleanupOptions",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
             },
             {
               "kind": "Content",
@@ -195,7 +195,7 @@
             {
               "kind": "Reference",
               "text": "ScriptProvisioningState",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
             },
             {
               "kind": "Content",
@@ -204,7 +204,7 @@
             {
               "kind": "Reference",
               "text": "ScriptStatus",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
             },
             {
               "kind": "Content",
@@ -222,7 +222,7 @@
             {
               "kind": "Reference",
               "text": "EnvironmentVariable",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
             },
             {
               "kind": "Content",
@@ -242,7 +242,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScriptProperties:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScriptProperties:type",
           "docComment": "/**\n * Properties of the Azure PowerShell script object.\n */\n",
           "excerptTokens": [
             {
@@ -252,7 +252,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptPropertiesBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface"
             },
             {
               "kind": "Content",
@@ -261,7 +261,7 @@
             {
               "kind": "Reference",
               "text": "ScriptConfigurationBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface"
             },
             {
               "kind": "Content",
@@ -281,7 +281,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface",
           "docComment": "/**\n * Common properties for all Azure resources.\n */\n",
           "excerptTokens": [
             {
@@ -294,7 +294,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#id:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#id:member",
               "docComment": "/**\n * String Id used to locate any resource on Azure. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -319,7 +319,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#name:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#name:member",
               "docComment": "/**\n * Name of this resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -344,7 +344,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#type:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase#type:member",
               "docComment": "/**\n * Type of this resource. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -372,7 +372,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type",
           "docComment": "/**\n * Defines values for CleanupOptions. \\ {@link KnownCleanupOptions} can be used interchangeably with CleanupOptions, this enum contains the known values that the service supports. ### Known values supported by the service **Always** \\ **OnSuccess** \\ **OnExpiration**\n */\n",
           "excerptTokens": [
             {
@@ -397,7 +397,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface",
           "docComment": "/**\n * Settings to customize ACI container instance.\n */\n",
           "excerptTokens": [
             {
@@ -410,7 +410,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration#containerGroupName:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration#containerGroupName:member",
               "docComment": "/**\n * Container group name, if not specified then the name will get auto-generated. Not specifying a 'containerGroupName' indicates the system to generate a unique name which might end up flagging an Azure Policy as non-compliant. Use 'containerGroupName' when you have an Azure Policy that expects a specific naming convention or when you want to fully control the name. 'containerGroupName' property must be between 1 and 63 characters long, must contain only lowercase letters, numbers, and dashes and it cannot start or end with a dash and consecutive dashes are not allowed. To specify a 'containerGroupName', add the following object to properties: { \"containerSettings\": { \"containerGroupName\": \"contoso-container\" } }. If you do not want to specify a 'containerGroupName' then do not add 'containerSettings' property.\n */\n",
               "excerptTokens": [
                 {
@@ -438,7 +438,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CreatedByType:type",
           "docComment": "/**\n * Defines values for CreatedByType. \\ {@link KnownCreatedByType} can be used interchangeably with CreatedByType, this enum contains the known values that the service supports. ### Known values supported by the service **User** \\ **Application** \\ **ManagedIdentity** \\ **Key**\n */\n",
           "excerptTokens": [
             {
@@ -463,7 +463,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type",
           "docComment": "/**\n * Deployment script object.\n */\n",
           "excerptTokens": [
             {
@@ -473,7 +473,7 @@
             {
               "kind": "Reference",
               "text": "AzureResourceBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
             },
             {
               "kind": "Content",
@@ -482,7 +482,7 @@
             {
               "kind": "Reference",
               "text": "ManagedServiceIdentity",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface"
             },
             {
               "kind": "Content",
@@ -491,7 +491,7 @@
             {
               "kind": "Reference",
               "text": "ScriptType",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptType:type"
             },
             {
               "kind": "Content",
@@ -500,7 +500,7 @@
             {
               "kind": "Reference",
               "text": "SystemData",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData:interface"
             },
             {
               "kind": "Content",
@@ -520,7 +520,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface",
           "docComment": "/**\n * List of deployment scripts.\n */\n",
           "excerptTokens": [
             {
@@ -533,7 +533,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -558,7 +558,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult#value:member",
               "docComment": "/**\n * An array of deployment scripts.\n */\n",
               "excerptTokens": [
                 {
@@ -568,7 +568,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUnion",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
                 },
                 {
                   "kind": "Content",
@@ -591,7 +591,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase:interface",
           "docComment": "/**\n * Common properties for the deployment script.\n */\n",
           "excerptTokens": [
             {
@@ -604,7 +604,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#cleanupPreference:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#cleanupPreference:member",
               "docComment": "/**\n * The clean up preference when the script execution gets in a terminal state. Default setting is 'Always'.\n */\n",
               "excerptTokens": [
                 {
@@ -614,7 +614,7 @@
                 {
                   "kind": "Reference",
                   "text": "CleanupOptions",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CleanupOptions:type"
                 },
                 {
                   "kind": "Content",
@@ -630,7 +630,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#containerSettings:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#containerSettings:member",
               "docComment": "/**\n * Container settings.\n */\n",
               "excerptTokens": [
                 {
@@ -640,7 +640,7 @@
                 {
                   "kind": "Reference",
                   "text": "ContainerConfiguration",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ContainerConfiguration:interface"
                 },
                 {
                   "kind": "Content",
@@ -656,7 +656,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#outputs:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#outputs:member",
               "docComment": "/**\n * List of script outputs. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -690,7 +690,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#provisioningState:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#provisioningState:member",
               "docComment": "/**\n * State of the script execution. This only appears in the response. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -700,7 +700,7 @@
                 {
                   "kind": "Reference",
                   "text": "ScriptProvisioningState",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type"
                 },
                 {
                   "kind": "Content",
@@ -716,7 +716,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#status:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#status:member",
               "docComment": "/**\n * Contains the results of script execution. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -726,7 +726,7 @@
                 {
                   "kind": "Reference",
                   "text": "ScriptStatus",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface"
                 },
                 {
                   "kind": "Content",
@@ -742,7 +742,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#storageAccountSettings:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptPropertiesBase#storageAccountSettings:member",
               "docComment": "/**\n * Storage Account settings.\n */\n",
               "excerptTokens": [
                 {
@@ -752,7 +752,7 @@
                 {
                   "kind": "Reference",
                   "text": "StorageAccountConfiguration",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface"
                 },
                 {
                   "kind": "Content",
@@ -771,7 +771,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface",
           "docComment": "/**\n * Interface representing a DeploymentScripts.\n */\n",
           "excerptTokens": [
             {
@@ -784,7 +784,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreate:member(1)",
               "docComment": "/**\n * Creates a deployment script.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param deploymentScript - Deployment script supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -810,7 +810,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUnion",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
                 },
                 {
                   "kind": "Content",
@@ -819,7 +819,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsCreateOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -855,7 +855,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsCreateResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -864,7 +864,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsCreateResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -915,7 +915,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreateAndWait:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#beginCreateAndWait:member(1)",
               "docComment": "/**\n * Creates a deployment script.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param deploymentScript - Deployment script supplied to the operation.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -941,7 +941,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUnion",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
                 },
                 {
                   "kind": "Content",
@@ -950,7 +950,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsCreateOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -968,7 +968,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsCreateResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1019,7 +1019,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#delete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#delete:member(1)",
               "docComment": "/**\n * Deletes a deployment script. When operation completes, status code 200 returned without content.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1045,7 +1045,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1098,7 +1098,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#get:member(1)",
               "docComment": "/**\n * Gets a deployment script with a given name.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1124,7 +1124,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1142,7 +1142,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1186,7 +1186,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#getLogs:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#getLogs:member(1)",
               "docComment": "/**\n * Gets deployment script logs for a given deployment script name.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1212,7 +1212,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetLogsOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1230,7 +1230,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetLogsResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1274,7 +1274,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#getLogsDefault:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#getLogsDefault:member(1)",
               "docComment": "/**\n * Gets deployment script logs for a given deployment script name.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1300,7 +1300,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetLogsDefaultOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1318,7 +1318,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsGetLogsDefaultResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1362,7 +1362,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listByResourceGroup:member(1)",
               "docComment": "/**\n * Lists deployments scripts.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1380,7 +1380,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsListByResourceGroupOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1398,7 +1398,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUnion",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
                 },
                 {
                   "kind": "Content",
@@ -1435,7 +1435,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscription:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#listBySubscription:member(1)",
               "docComment": "/**\n * Lists all deployment scripts for a given subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1445,7 +1445,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsListBySubscriptionOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1463,7 +1463,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUnion",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
                 },
                 {
                   "kind": "Content",
@@ -1493,7 +1493,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#update:member(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts#update:member(1)",
               "docComment": "/**\n * Updates deployment script tags with specified values.\n *\n * @param resourceGroupName - The name of the resource group. The name is case insensitive.\n *\n * @param scriptName - Name of the deployment script.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1519,7 +1519,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsUpdateOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1537,7 +1537,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsUpdateResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1584,7 +1584,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:class",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1594,7 +1594,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptsClientContext",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class"
             },
             {
               "kind": "Content",
@@ -1606,7 +1606,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the DeploymentScriptsClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription Id which forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -1637,7 +1637,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsClientOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1672,7 +1672,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#deploymentScripts:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#deploymentScripts:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1682,7 +1682,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScripts",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface"
                 },
                 {
                   "kind": "Content",
@@ -1706,7 +1706,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1732,7 +1732,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the DeploymentScriptsClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription Id which forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -1763,7 +1763,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptsClientOptionalParams",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1798,7 +1798,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1824,7 +1824,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1850,7 +1850,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1883,7 +1883,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1909,7 +1909,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -1934,7 +1934,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -1959,7 +1959,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -1992,7 +1992,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2018,7 +2018,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams#resumeFrom:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams#resumeFrom:member",
               "docComment": "/**\n * A serialized poller which can be used to resume an existing paused Long-Running-Operation.\n */\n",
               "excerptTokens": [
                 {
@@ -2043,7 +2043,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams#updateIntervalInMs:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateOptionalParams#updateIntervalInMs:member",
               "docComment": "/**\n * Delay to wait until next poll, in milliseconds.\n */\n",
               "excerptTokens": [
                 {
@@ -2076,7 +2076,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsCreateResponse:type",
           "docComment": "/**\n * Contains response data for the create operation.\n */\n",
           "excerptTokens": [
             {
@@ -2086,7 +2086,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
             },
             {
               "kind": "Content",
@@ -2102,7 +2102,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2135,7 +2135,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError:interface",
           "docComment": "/**\n * Deployment scripts error response.\n */\n",
           "excerptTokens": [
             {
@@ -2148,7 +2148,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError#error:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsError#error:member",
               "docComment": "/**\n * The resource management error response.\n */\n",
               "excerptTokens": [
                 {
@@ -2158,7 +2158,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -2177,7 +2177,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2203,7 +2203,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams#tail:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultOptionalParams#tail:member",
               "docComment": "/**\n * The number of lines to show from the tail of the deployment script log. Valid value is a positive number up to 1000. If 'tail' is not provided, all available logs are shown up to container instance log capacity of 4mb.\n */\n",
               "excerptTokens": [
                 {
@@ -2236,7 +2236,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsDefaultResponse:type",
           "docComment": "/**\n * Contains response data for the getLogsDefault operation.\n */\n",
           "excerptTokens": [
             {
@@ -2246,7 +2246,7 @@
             {
               "kind": "Reference",
               "text": "ScriptLog",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
             },
             {
               "kind": "Content",
@@ -2262,7 +2262,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2295,7 +2295,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetLogsResponse:type",
           "docComment": "/**\n * Contains response data for the getLogs operation.\n */\n",
           "excerptTokens": [
             {
@@ -2305,7 +2305,7 @@
             {
               "kind": "Reference",
               "text": "ScriptLogsList",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface"
             },
             {
               "kind": "Content",
@@ -2321,7 +2321,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2354,7 +2354,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -2364,7 +2364,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
             },
             {
               "kind": "Content",
@@ -2380,7 +2380,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2413,7 +2413,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2423,7 +2423,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
             },
             {
               "kind": "Content",
@@ -2439,7 +2439,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2472,7 +2472,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListByResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -2482,7 +2482,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
             },
             {
               "kind": "Content",
@@ -2498,7 +2498,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2531,7 +2531,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscriptionNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2541,7 +2541,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
             },
             {
               "kind": "Content",
@@ -2557,7 +2557,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2590,7 +2590,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsListBySubscriptionResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscription operation.\n */\n",
           "excerptTokens": [
             {
@@ -2600,7 +2600,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptListResult",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptListResult:interface"
             },
             {
               "kind": "Content",
@@ -2616,7 +2616,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2642,7 +2642,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams#deploymentScript:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateOptionalParams#deploymentScript:member",
               "docComment": "/**\n * Deployment script resource with the tags to be updated.\n */\n",
               "excerptTokens": [
                 {
@@ -2652,7 +2652,7 @@
                 {
                   "kind": "Reference",
                   "text": "DeploymentScriptUpdateParameter",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type"
                 },
                 {
                   "kind": "Content",
@@ -2676,7 +2676,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the update operation.\n */\n",
           "excerptTokens": [
             {
@@ -2686,7 +2686,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScriptUnion",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type"
             },
             {
               "kind": "Content",
@@ -2702,7 +2702,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUnion:type",
           "docComment": "",
           "excerptTokens": [
             {
@@ -2712,7 +2712,7 @@
             {
               "kind": "Reference",
               "text": "DeploymentScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScript:type"
             },
             {
               "kind": "Content",
@@ -2721,7 +2721,7 @@
             {
               "kind": "Reference",
               "text": "AzurePowerShellScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzurePowerShellScript:type"
             },
             {
               "kind": "Content",
@@ -2730,7 +2730,7 @@
             {
               "kind": "Reference",
               "text": "AzureCliScript",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureCliScript:type"
             },
             {
               "kind": "Content",
@@ -2746,7 +2746,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptUpdateParameter:type",
           "docComment": "/**\n * Deployment script parameters to be updated.\n */\n",
           "excerptTokens": [
             {
@@ -2756,7 +2756,7 @@
             {
               "kind": "Reference",
               "text": "AzureResourceBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
             },
             {
               "kind": "Content",
@@ -2776,7 +2776,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface",
           "docComment": "/**\n * The environment variable to pass to the script in the container instance.\n */\n",
           "excerptTokens": [
             {
@@ -2789,7 +2789,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#name:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#name:member",
               "docComment": "/**\n * The name of the environment variable.\n */\n",
               "excerptTokens": [
                 {
@@ -2814,7 +2814,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#secureValue:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#secureValue:member",
               "docComment": "/**\n * The value of the secure environment variable.\n */\n",
               "excerptTokens": [
                 {
@@ -2839,7 +2839,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#value:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable#value:member",
               "docComment": "/**\n * The value of the environment variable.\n */\n",
               "excerptTokens": [
                 {
@@ -2867,7 +2867,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface",
           "docComment": "/**\n * The resource management error additional info.\n */\n",
           "excerptTokens": [
             {
@@ -2880,7 +2880,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#info:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#info:member",
               "docComment": "/**\n * The additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2910,7 +2910,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#type:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo#type:member",
               "docComment": "/**\n * The additional info type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2938,7 +2938,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface",
           "docComment": "/**\n * The resource management error response.\n */\n",
           "excerptTokens": [
             {
@@ -2951,7 +2951,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#additionalInfo:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse#additionalInfo:member",
               "docComment": "/**\n * The error additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -2961,7 +2961,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorAdditionalInfo",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorAdditionalInfo:interface"
                 },
                 {
                   "kind": "Content",
@@ -2981,7 +2981,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#code:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse#code:member",
               "docComment": "/**\n * The error code. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3006,7 +3006,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#details:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse#details:member",
               "docComment": "/**\n * The error details. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3016,7 +3016,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -3036,7 +3036,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#message:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse#message:member",
               "docComment": "/**\n * The error message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3061,7 +3061,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse#target:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse#target:member",
               "docComment": "/**\n * The error target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3089,7 +3089,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions:enum",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions:enum",
           "docComment": "/**\n * Known values of {@link CleanupOptions} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -3102,7 +3102,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.Always:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.Always:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3123,7 +3123,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnExpiration:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnExpiration:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3144,7 +3144,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnSuccess:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCleanupOptions.OnSuccess:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3167,7 +3167,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType:enum",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType:enum",
           "docComment": "/**\n * Known values of {@link CreatedByType} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -3180,7 +3180,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Application:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Application:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3201,7 +3201,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Key:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.Key:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3222,7 +3222,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.ManagedIdentity:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.ManagedIdentity:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3243,7 +3243,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.User:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownCreatedByType.User:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3266,7 +3266,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType:enum",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType:enum",
           "docComment": "/**\n * Known values of {@link ManagedServiceIdentityType} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -3279,7 +3279,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType.UserAssigned:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownManagedServiceIdentityType.UserAssigned:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3302,7 +3302,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState:enum",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState:enum",
           "docComment": "/**\n * Known values of {@link ScriptProvisioningState} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -3315,7 +3315,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Canceled:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Canceled:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3336,7 +3336,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Creating:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Creating:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3357,7 +3357,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Failed:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Failed:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3378,7 +3378,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.ProvisioningResources:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.ProvisioningResources:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3399,7 +3399,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Running:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Running:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3420,7 +3420,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Succeeded:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptProvisioningState.Succeeded:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3443,7 +3443,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType:enum",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptType:enum",
           "docComment": "/**\n * Known values of {@link ScriptType} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -3456,7 +3456,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzureCLI:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzureCLI:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3477,7 +3477,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzurePowerShell:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!KnownScriptType.AzurePowerShell:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3500,7 +3500,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity:interface",
           "docComment": "/**\n * Managed identity generic object.\n */\n",
           "excerptTokens": [
             {
@@ -3513,7 +3513,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#type:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#type:member",
               "docComment": "/**\n * Type of the managed identity.\n */\n",
               "excerptTokens": [
                 {
@@ -3523,7 +3523,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagedServiceIdentityType",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type"
                 },
                 {
                   "kind": "Content",
@@ -3539,7 +3539,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#userAssignedIdentities:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentity#userAssignedIdentities:member",
               "docComment": "/**\n * The list of user-assigned managed identities associated with the resource. Key is the Azure resource Id of the managed identity.\n */\n",
               "excerptTokens": [
                 {
@@ -3553,7 +3553,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentity",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface"
                 },
                 {
                   "kind": "Content",
@@ -3576,7 +3576,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ManagedServiceIdentityType:type",
           "docComment": "/**\n * Defines values for ManagedServiceIdentityType. \\ {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType, this enum contains the known values that the service supports. ### Known values supported by the service **UserAssigned**\n */\n",
           "excerptTokens": [
             {
@@ -3601,7 +3601,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase:interface",
           "docComment": "/**\n * Common configuration settings for both Azure PowerShell and Azure CLI scripts.\n */\n",
           "excerptTokens": [
             {
@@ -3614,7 +3614,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#arguments:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#arguments:member",
               "docComment": "/**\n * Command line arguments to pass to the script. Arguments are separated by spaces. ex: -Name blue* -Location 'West US 2'\n */\n",
               "excerptTokens": [
                 {
@@ -3639,7 +3639,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#environmentVariables:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#environmentVariables:member",
               "docComment": "/**\n * The environment variables to pass over to the script.\n */\n",
               "excerptTokens": [
                 {
@@ -3649,7 +3649,7 @@
                 {
                   "kind": "Reference",
                   "text": "EnvironmentVariable",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!EnvironmentVariable:interface"
                 },
                 {
                   "kind": "Content",
@@ -3669,7 +3669,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#forceUpdateTag:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#forceUpdateTag:member",
               "docComment": "/**\n * Gets or sets how the deployment script should be forced to execute even if the script resource has not changed. Can be current time stamp or a GUID.\n */\n",
               "excerptTokens": [
                 {
@@ -3694,7 +3694,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#primaryScriptUri:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#primaryScriptUri:member",
               "docComment": "/**\n * Uri for the script. This is the entry point for the external script.\n */\n",
               "excerptTokens": [
                 {
@@ -3719,7 +3719,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#retentionInterval:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#retentionInterval:member",
               "docComment": "/**\n * Interval for which the service retains the script resource after it reaches a terminal state. Resource will be deleted when this duration expires. Duration is based on ISO 8601 pattern (for example P7D means one week).\n */\n",
               "excerptTokens": [
                 {
@@ -3744,7 +3744,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#scriptContent:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#scriptContent:member",
               "docComment": "/**\n * Script body.\n */\n",
               "excerptTokens": [
                 {
@@ -3769,7 +3769,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#supportingScriptUris:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#supportingScriptUris:member",
               "docComment": "/**\n * Supporting files for the external script.\n */\n",
               "excerptTokens": [
                 {
@@ -3794,7 +3794,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#timeout:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptConfigurationBase#timeout:member",
               "docComment": "/**\n * Maximum allowed script execution time specified in ISO 8601 format. Default value is PT1H\n */\n",
               "excerptTokens": [
                 {
@@ -3822,7 +3822,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLog:type",
           "docComment": "/**\n * Script execution log object.\n */\n",
           "excerptTokens": [
             {
@@ -3832,7 +3832,7 @@
             {
               "kind": "Reference",
               "text": "AzureResourceBase",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!AzureResourceBase:interface"
             },
             {
               "kind": "Content",
@@ -3852,7 +3852,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLogsList:interface",
           "docComment": "/**\n * Deployment script execution logs.\n */\n",
           "excerptTokens": [
             {
@@ -3865,7 +3865,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLogsList#value:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLogsList#value:member",
               "docComment": "/**\n * Deployment scripts logs.\n */\n",
               "excerptTokens": [
                 {
@@ -3875,7 +3875,7 @@
                 {
                   "kind": "Reference",
                   "text": "ScriptLog",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptLog:type"
                 },
                 {
                   "kind": "Content",
@@ -3898,7 +3898,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptProvisioningState:type",
           "docComment": "/**\n * Defines values for ScriptProvisioningState. \\ {@link KnownScriptProvisioningState} can be used interchangeably with ScriptProvisioningState, this enum contains the known values that the service supports. ### Known values supported by the service **Creating** \\ **ProvisioningResources** \\ **Running** \\ **Succeeded** \\ **Failed** \\ **Canceled**\n */\n",
           "excerptTokens": [
             {
@@ -3923,7 +3923,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus:interface",
           "docComment": "/**\n * Generic object modeling results of script execution.\n */\n",
           "excerptTokens": [
             {
@@ -3936,7 +3936,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#containerInstanceId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#containerInstanceId:member",
               "docComment": "/**\n * ACI resource Id. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3961,7 +3961,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#endTime:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#endTime:member",
               "docComment": "/**\n * End time of the script execution. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -3987,7 +3987,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#error:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#error:member",
               "docComment": "/**\n * Error that is relayed from the script execution.\n */\n",
               "excerptTokens": [
                 {
@@ -3997,7 +3997,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorResponse",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ErrorResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -4013,7 +4013,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#expirationTime:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#expirationTime:member",
               "docComment": "/**\n * Time the deployment script resource will expire. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4039,7 +4039,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#startTime:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#startTime:member",
               "docComment": "/**\n * Start time of the script execution. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4065,7 +4065,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptStatus#storageAccountId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptStatus#storageAccountId:member",
               "docComment": "/**\n * Storage account resource Id. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4093,7 +4093,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!ScriptType:type",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!ScriptType:type",
           "docComment": "/**\n * Defines values for ScriptType. \\ {@link KnownScriptType} can be used interchangeably with ScriptType, this enum contains the known values that the service supports. ### Known values supported by the service **AzurePowerShell** \\ **AzureCLI**\n */\n",
           "excerptTokens": [
             {
@@ -4118,7 +4118,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration:interface",
           "docComment": "/**\n * Settings to use an existing storage account. Valid storage account kinds are: Storage, StorageV2 and FileStorage\n */\n",
           "excerptTokens": [
             {
@@ -4131,7 +4131,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountKey:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountKey:member",
               "docComment": "/**\n * The storage account access key.\n */\n",
               "excerptTokens": [
                 {
@@ -4156,7 +4156,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountName:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!StorageAccountConfiguration#storageAccountName:member",
               "docComment": "/**\n * The storage account name.\n */\n",
               "excerptTokens": [
                 {
@@ -4184,7 +4184,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData:interface",
           "docComment": "/**\n * Metadata pertaining to creation and last modification of the resource.\n */\n",
           "excerptTokens": [
             {
@@ -4197,7 +4197,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdAt:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#createdAt:member",
               "docComment": "/**\n * The timestamp of resource creation (UTC).\n */\n",
               "excerptTokens": [
                 {
@@ -4223,7 +4223,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdBy:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#createdBy:member",
               "docComment": "/**\n * The identity that created the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -4248,7 +4248,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#createdByType:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#createdByType:member",
               "docComment": "/**\n * The type of identity that created the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -4258,7 +4258,7 @@
                 {
                   "kind": "Reference",
                   "text": "CreatedByType",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
                 },
                 {
                   "kind": "Content",
@@ -4274,7 +4274,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedAt:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedAt:member",
               "docComment": "/**\n * The type of identity that last modified the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -4300,7 +4300,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedBy:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedBy:member",
               "docComment": "/**\n * The identity that last modified the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -4325,7 +4325,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedByType:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!SystemData#lastModifiedByType:member",
               "docComment": "/**\n * The type of identity that last modified the resource.\n */\n",
               "excerptTokens": [
                 {
@@ -4335,7 +4335,7 @@
                 {
                   "kind": "Reference",
                   "text": "CreatedByType",
-                  "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!CreatedByType:type"
                 },
                 {
                   "kind": "Content",
@@ -4354,7 +4354,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface",
+          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity:interface",
           "docComment": "/**\n * User-assigned managed identity.\n */\n",
           "excerptTokens": [
             {
@@ -4367,7 +4367,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#clientId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#clientId:member",
               "docComment": "/**\n * Client App Id associated with this identity.\n */\n",
               "excerptTokens": [
                 {
@@ -4392,7 +4392,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#principalId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!UserAssignedIdentity#principalId:member",
               "docComment": "/**\n * Azure Active Directory principal ID associated with this identity.\n */\n",
               "excerptTokens": [
                 {

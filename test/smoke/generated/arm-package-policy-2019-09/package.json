@@ -1,5 +1,5 @@
 {
-  "name": "arm-package-policy-2019-09",
+  "name": "@msinternal/arm-package-policy-2019-09",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for PolicyClient.",

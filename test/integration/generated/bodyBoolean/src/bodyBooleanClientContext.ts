@@ -25,7 +25,7 @@ export class BodyBooleanClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
-    const packageDetails = `azsdk-js-@msinternal/body-boolean/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-body-boolean/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

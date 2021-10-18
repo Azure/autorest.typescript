@@ -6,18 +6,18 @@
     "oldestForwardsCompatibleVersion": 1001
   },
   "kind": "Package",
-  "canonicalReference": "monitor-data-plane!",
+  "canonicalReference": "@msinternal/monitor-data-plane!",
   "docComment": "",
-  "name": "monitor-data-plane",
+  "name": "@msinternal/monitor-data-plane",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "monitor-data-plane!",
+      "canonicalReference": "@msinternal/monitor-data-plane!",
       "name": "",
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!ApiError:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!ApiError:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -30,7 +30,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!ApiError#code:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!ApiError#code:member",
               "docComment": "/**\n * Gets or sets the azure metrics error code\n */\n",
               "excerptTokens": [
                 {
@@ -55,7 +55,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!ApiError#message:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!ApiError#message:member",
               "docComment": "/**\n * Gets or sets the azure metrics error message\n */\n",
               "excerptTokens": [
                 {
@@ -83,7 +83,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!ApiFailureResponse:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!ApiFailureResponse:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -96,7 +96,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!ApiFailureResponse#error:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!ApiFailureResponse#error:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -106,7 +106,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApiError",
-                  "canonicalReference": "monitor-data-plane!ApiError:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!ApiError:interface"
                 },
                 {
                   "kind": "Content",
@@ -125,7 +125,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!AzureMetricsBaseData:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -138,7 +138,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#dimNames:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData#dimNames:member",
               "docComment": "/**\n * Gets or sets the list of dimension names (optional)\n */\n",
               "excerptTokens": [
                 {
@@ -163,7 +163,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#metric:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData#metric:member",
               "docComment": "/**\n * Gets or sets the Metric name\n */\n",
               "excerptTokens": [
                 {
@@ -188,7 +188,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#namespace:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData#namespace:member",
               "docComment": "/**\n * Gets or sets the Metric namespace\n */\n",
               "excerptTokens": [
                 {
@@ -213,7 +213,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsBaseData#series:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData#series:member",
               "docComment": "/**\n * Gets or sets the list of time series data for the metric (one per unique dimension combination)\n */\n",
               "excerptTokens": [
                 {
@@ -223,7 +223,7 @@
                 {
                   "kind": "Reference",
                   "text": "AzureTimeSeriesData",
-                  "canonicalReference": "monitor-data-plane!AzureTimeSeriesData:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData:interface"
                 },
                 {
                   "kind": "Content",
@@ -246,7 +246,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!AzureMetricsData:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsData:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -259,7 +259,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsData#baseData:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsData#baseData:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -269,7 +269,7 @@
                 {
                   "kind": "Reference",
                   "text": "AzureMetricsBaseData",
-                  "canonicalReference": "monitor-data-plane!AzureMetricsBaseData:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsBaseData:interface"
                 },
                 {
                   "kind": "Content",
@@ -288,7 +288,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!AzureMetricsDocument:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsDocument:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -301,7 +301,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsDocument#data:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsDocument#data:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -311,7 +311,7 @@
                 {
                   "kind": "Reference",
                   "text": "AzureMetricsData",
-                  "canonicalReference": "monitor-data-plane!AzureMetricsData:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsData:interface"
                 },
                 {
                   "kind": "Content",
@@ -327,7 +327,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsDocument#time:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsDocument#time:member",
               "docComment": "/**\n * Gets or sets Time property (in ISO 8601 format)\n */\n",
               "excerptTokens": [
                 {
@@ -355,7 +355,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!AzureMetricsResult:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsResult:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -368,7 +368,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsResult#apiFailureResponse:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsResult#apiFailureResponse:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -378,7 +378,7 @@
                 {
                   "kind": "Reference",
                   "text": "ApiFailureResponse",
-                  "canonicalReference": "monitor-data-plane!ApiFailureResponse:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!ApiFailureResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -394,7 +394,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureMetricsResult#statusCode:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsResult#statusCode:member",
               "docComment": "/**\n * Http status code response\n */\n",
               "excerptTokens": [
                 {
@@ -422,7 +422,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!AzureTimeSeriesData:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -435,7 +435,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#count:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData#count:member",
               "docComment": "/**\n * Gets or sets Count value\n */\n",
               "excerptTokens": [
                 {
@@ -460,7 +460,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#dimValues:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData#dimValues:member",
               "docComment": "/**\n * Gets or sets dimension values\n */\n",
               "excerptTokens": [
                 {
@@ -485,7 +485,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#max:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData#max:member",
               "docComment": "/**\n * Gets or sets Max value\n */\n",
               "excerptTokens": [
                 {
@@ -510,7 +510,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#min:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData#min:member",
               "docComment": "/**\n * Gets or sets Min value\n */\n",
               "excerptTokens": [
                 {
@@ -535,7 +535,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!AzureTimeSeriesData#sum:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureTimeSeriesData#sum:member",
               "docComment": "/**\n * Gets or sets Sum value\n */\n",
               "excerptTokens": [
                 {
@@ -563,7 +563,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!Metrics:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!Metrics:interface",
           "docComment": "/**\n * Interface representing a Metrics.\n */\n",
           "excerptTokens": [
             {
@@ -576,7 +576,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "monitor-data-plane!Metrics#create:member(1)",
+              "canonicalReference": "@msinternal/monitor-data-plane!Metrics#create:member(1)",
               "docComment": "/**\n * **Post the metric values for a resource**.\n *\n * @param contentType - Supports application/json and application/x-ndjson\n *\n * @param contentLength - Content length of the payload\n *\n * @param authorization - Authorization token issue for issued for audience \"https:\\\\monitoring.azure.com\\\"\n *\n * @param subscriptionId - The azure subscription id\n *\n * @param resourceGroupName - The ARM resource group name\n *\n * @param resourceProvider - The ARM resource provider name\n *\n * @param resourceTypeName - The ARM resource type name\n *\n * @param resourceName - The ARM resource name\n *\n * @param body - The Azure metrics document json payload\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -650,7 +650,7 @@
                 {
                   "kind": "Reference",
                   "text": "AzureMetricsDocument",
-                  "canonicalReference": "monitor-data-plane!AzureMetricsDocument:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsDocument:interface"
                 },
                 {
                   "kind": "Content",
@@ -659,7 +659,7 @@
                 {
                   "kind": "Reference",
                   "text": "MetricsCreateOptionalParams",
-                  "canonicalReference": "monitor-data-plane!MetricsCreateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!MetricsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -677,7 +677,7 @@
                 {
                   "kind": "Reference",
                   "text": "MetricsCreateResponse",
-                  "canonicalReference": "monitor-data-plane!MetricsCreateResponse:type"
+                  "canonicalReference": "@msinternal/monitor-data-plane!MetricsCreateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -773,7 +773,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!MetricsCreateOptionalParams:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!MetricsCreateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -806,7 +806,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "monitor-data-plane!MetricsCreateResponse:type",
+          "canonicalReference": "@msinternal/monitor-data-plane!MetricsCreateResponse:type",
           "docComment": "/**\n * Contains response data for the create operation.\n */\n",
           "excerptTokens": [
             {
@@ -816,7 +816,7 @@
             {
               "kind": "Reference",
               "text": "AzureMetricsResult",
-              "canonicalReference": "monitor-data-plane!AzureMetricsResult:interface"
+              "canonicalReference": "@msinternal/monitor-data-plane!AzureMetricsResult:interface"
             },
             {
               "kind": "Content",
@@ -832,7 +832,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "monitor-data-plane!MonitorClient:class",
+          "canonicalReference": "@msinternal/monitor-data-plane!MonitorClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -842,7 +842,7 @@
             {
               "kind": "Reference",
               "text": "MonitorClientContext",
-              "canonicalReference": "monitor-data-plane!MonitorClientContext:class"
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientContext:class"
             },
             {
               "kind": "Content",
@@ -854,7 +854,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "monitor-data-plane!MonitorClient:constructor(1)",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the MonitorClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -877,7 +877,7 @@
                 {
                   "kind": "Reference",
                   "text": "MonitorClientOptionalParams",
-                  "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -905,7 +905,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "monitor-data-plane!MonitorClient#metrics:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClient#metrics:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -915,7 +915,7 @@
                 {
                   "kind": "Reference",
                   "text": "Metrics",
-                  "canonicalReference": "monitor-data-plane!Metrics:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!Metrics:interface"
                 },
                 {
                   "kind": "Content",
@@ -939,7 +939,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "monitor-data-plane!MonitorClientContext:class",
+          "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -965,7 +965,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "monitor-data-plane!MonitorClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the MonitorClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -988,7 +988,7 @@
                 {
                   "kind": "Reference",
                   "text": "MonitorClientOptionalParams",
-                  "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1016,7 +1016,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "monitor-data-plane!MonitorClientContext#$host:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -1049,7 +1049,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1075,7 +1075,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -1100,7 +1100,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "monitor-data-plane!MonitorClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/monitor-data-plane!MonitorClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
