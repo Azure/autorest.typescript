@@ -29,7 +29,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   additionalProperties: {
     swaggerOrConfig: "additionalProperties.json",
     clientName: "AdditionalPropertiesClient",
-    packageName: "additional-properties",
+    packageName: "@msinternal/additional-properties",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -40,7 +40,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   arrayConstraints: {
     swaggerOrConfig: "test/integration/swaggers/arrayConstraints.md",
     clientName: "ArrayConstraintsClient",
-    packageName: "array-constraints-client",
+    packageName: "@msinternal/array-constraints-client",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -50,7 +50,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   attestation: {
     swaggerOrConfig: "test/integration/swaggers/attestation.json",
     clientName: "GeneratedClient",
-    packageName: "attestation",
+    packageName: "@msinternal/attestation",
     hideClients: true,
     licenseHeader: true,
     useCoreV2: true,
@@ -61,7 +61,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   azureParameterGrouping: {
     swaggerOrConfig: "azure-parameter-grouping.json",
     clientName: "AzureParameterGroupingClient",
-    packageName: "azure-parameter-grouping",
+    packageName: "@msinternal/azure-parameter-grouping",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -71,7 +71,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   azureReport: {
     swaggerOrConfig: "azure-report.json",
     clientName: "ReportClient",
-    packageName: "zzzAzureReport",
+    packageName: "@msinternal/zzzAzureReport",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -81,7 +81,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   azureSpecialProperties: {
     swaggerOrConfig: "azure-special-properties.json",
     clientName: "AzureSpecialPropertiesClient",
-    packageName: "azure-special-properties",
+    packageName: "@msinternal/azure-special-properties",
     licenseHeader: true,
     addCredentials: true,
     credentialScopes:
@@ -93,7 +93,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyArray: {
     swaggerOrConfig: "body-array.json",
     clientName: "BodyArrayClient",
-    packageName: "body-array",
+    packageName: "@msinternal/body-array",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -103,7 +103,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyBoolean: {
     swaggerOrConfig: "body-boolean.json",
     clientName: "BodyBooleanClient",
-    packageName: "body-boolean",
+    packageName: "@msinternal/body-boolean",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -113,7 +113,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyBooleanQuirks: {
     swaggerOrConfig: "body-boolean.quirks.json",
     clientName: "BodyBooleanQuirksClient",
-    packageName: "body-boolean-quirks",
+    packageName: "@msinternal/body-boolean-quirks",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -123,7 +123,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyByte: {
     swaggerOrConfig: "body-byte.json",
     clientName: "BodyByteClient",
-    packageName: "body-byte",
+    packageName: "@msinternal/body-byte",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -133,7 +133,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyComplex: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "BodyComplexClient",
-    packageName: "body-complex",
+    packageName: "@msinternal/body-complex",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -143,7 +143,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyComplexWithTracing: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "bodyComplexWithTracing",
-    packageName: "body-complex-tracing",
+    packageName: "@msinternal/body-complex-tracing",
     licenseHeader: true,
     tracing: {
       namespace: "Microsoft.Body.Complex",
@@ -157,7 +157,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyDate: {
     swaggerOrConfig: "body-date.json",
     clientName: "BodyDateClient",
-    packageName: "body-date",
+    packageName: "@msinternal/body-date",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -167,7 +167,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyDateTime: {
     swaggerOrConfig: "body-datetime.json",
     clientName: "BodyDateTimeClient",
-    packageName: "body-datetime",
+    packageName: "@msinternal/body-datetime",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -177,7 +177,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyDateTimeRfc1123: {
     swaggerOrConfig: "body-datetime-rfc1123.json",
     clientName: "BodyDateTimeRfc1123Client",
-    packageName: "body-datetime-rfc1123",
+    packageName: "@msinternal/body-datetime-rfc1123",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -187,7 +187,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyDictionary: {
     swaggerOrConfig: "body-dictionary.json",
     clientName: "BodyDictionaryClient",
-    packageName: "body-dictionary",
+    packageName: "@msinternal/body-dictionary",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -197,7 +197,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyDuration: {
     swaggerOrConfig: "body-duration.json",
     clientName: "BodyDurationClient",
-    packageName: "body-duration",
+    packageName: "@msinternal/body-duration",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -207,7 +207,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyFile: {
     swaggerOrConfig: "body-file.json",
     clientName: "BodyFileClient",
-    packageName: "body-file",
+    packageName: "@msinternal/body-file",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -217,7 +217,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyInteger: {
     swaggerOrConfig: "body-integer.json",
     clientName: "BodyIntegerClient",
-    packageName: "body-integer",
+    packageName: "@msinternal/body-integer",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -227,7 +227,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyNumber: {
     swaggerOrConfig: "body-number.json",
     clientName: "BodyNumberClient",
-    packageName: "body-number",
+    packageName: "@msinternal/body-number",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -237,7 +237,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyString: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringClient",
-    packageName: "body-string",
+    packageName: "@msinternal/body-string",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -247,7 +247,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyTime: {
     swaggerOrConfig: "body-time.json",
     clientName: "BodyTimeClient",
-    packageName: "body-time",
+    packageName: "@msinternal/body-time",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -257,7 +257,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   customUrl: {
     swaggerOrConfig: "custom-baseUrl.json",
     clientName: "CustomUrlClient",
-    packageName: "custom-url",
+    packageName: "@msinternal/custom-url",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -267,7 +267,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   customUrlMoreOptions: {
     swaggerOrConfig: "custom-baseUrl-more-options.json",
     clientName: "CustomUrlMoreOptionsClient",
-    packageName: "custom-url-MoreOptions",
+    packageName: "@msinternal/custom-url-MoreOptions",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -277,7 +277,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   customUrlPaging: {
     swaggerOrConfig: "custom-baseUrl-paging.json",
     clientName: "CustomUrlPagingClient",
-    packageName: "custom-url-paging",
+    packageName: "@msinternal/custom-url-paging",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -287,7 +287,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   header: {
     swaggerOrConfig: "header.json",
     clientName: "HeaderClient",
-    packageName: "header",
+    packageName: "@msinternal/header",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -297,7 +297,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   headerRest: {
     swaggerOrConfig: "header.json",
     clientName: "HeaderRestClient",
-    packageName: "header-rest",
+    packageName: "@msinternal/header-rest",
     licenseHeader: true,
     restLevelClient: true,
     allowInsecureConnection: true,
@@ -307,7 +307,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   httpInfrastructure: {
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureClient",
-    packageName: "httpInfrastructure",
+    packageName: "@msinternal/httpInfrastructure",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -317,7 +317,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   lro: {
     swaggerOrConfig: "lro.json",
     clientName: "LROClient",
-    packageName: "lro",
+    packageName: "@msinternal/lro",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -327,7 +327,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   lroParametrizedEndpoints: {
     swaggerOrConfig: "lro-parameterized-endpoints.json",
     clientName: "LroParametrizedEndpointsClient",
-    packageName: "lro-parameterized-endpoints",
+    packageName: "@msinternal/lro-parameterized-endpoints",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -337,7 +337,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   mediaTypes: {
     swaggerOrConfig: "media_types.json",
     clientName: "MediaTypesClient",
-    packageName: "media-types-service",
+    packageName: "@msinternal/media-types-service",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -347,7 +347,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   mediaTypesWithTracing: {
     swaggerOrConfig: "media_types.json",
     clientName: "mediaTypesWithTracingClient",
-    packageName: "media-types-service-tracing",
+    packageName: "@msinternal/media-types-service-tracing",
     licenseHeader: true,
     tracing: {
       namespace: "Microsoft.Media.Types",
@@ -361,7 +361,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   mediaTypesV3: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3.json",
     clientName: "MediaTypesV3Client",
-    packageName: "media-types-v3-client",
+    packageName: "@msinternal/media-types-v3-client",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -371,7 +371,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   mediaTypesV3Lro: {
     swaggerOrConfig: "test/integration/swaggers/media-types-v3-lro.json",
     clientName: "MediaTypesV3LROClient",
-    packageName: "media-types-v3-lro-client",
+    packageName: "@msinternal/media-types-v3-lro-client",
     licenseHeader: true,
     useCoreV2: true,
     addCredentials: false,
@@ -380,7 +380,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   modelFlattening: {
     swaggerOrConfig: "model-flattening.json",
     clientName: "ModelFlatteningClient",
-    packageName: "model-flattening",
+    packageName: "@msinternal/model-flattening",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -390,7 +390,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   multipleInheritance: {
     swaggerOrConfig: "multiple-inheritance.json",
     clientName: "MultipleInheritanceClient",
-    packageName: "multiple-inheritance",
+    packageName: "@msinternal/multiple-inheritance",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -400,7 +400,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   noMappers: {
     swaggerOrConfig: "test/integration/swaggers/no-mappers.json",
     clientName: "NoMappersClient",
-    packageName: "no-mappers",
+    packageName: "@msinternal/no-mappers",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -410,7 +410,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   noOperation: {
     swaggerOrConfig: "test/integration/swaggers/noOperation.json",
     clientName: "NoOperationsClient",
-    packageName: "no-operation",
+    packageName: "@msinternal/no-operation",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -420,7 +420,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   nonStringEnum: {
     swaggerOrConfig: "non-string-enum.json",
     clientName: "NonStringEnumClient",
-    packageName: "non-string-num",
+    packageName: "@msinternal/non-string-num",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -430,7 +430,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   objectType: {
     swaggerOrConfig: "object-type.json",
     clientName: "ObjectTypeClient",
-    packageName: "object-type",
+    packageName: "@msinternal/object-type",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -440,7 +440,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   paging: {
     swaggerOrConfig: "paging.json",
     clientName: "PagingClient",
-    packageName: "paging-service",
+    packageName: "@msinternal/paging-service",
     licenseHeader: true,
     tracing: {
       namespace: "Microsoft.Media.Types",
@@ -453,7 +453,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   pagingNoIterators: {
     swaggerOrConfig: "paging.json",
     clientName: "PagingNoIteratorsClient",
-    packageName: "paging-no-iterators",
+    packageName: "@msinternal/paging-no-iterators",
     licenseHeader: true,
     disableAsyncIterators: true,
     useCoreV2: true,
@@ -463,7 +463,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   requiredOptional: {
     swaggerOrConfig: "required-optional.json",
     clientName: "RequiredOptionalClient",
-    packageName: "required-optional",
+    packageName: "@msinternal/required-optional",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -473,7 +473,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   regexConstraint: {
     swaggerOrConfig: "test/integration/swaggers/regex-constraint.json",
     clientName: "RegexConstraint",
-    packageName: "regex-constraint",
+    packageName: "@msinternal/regex-constraint",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -483,7 +483,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   report: {
     swaggerOrConfig: "report.json",
     clientName: "ReportClient",
-    packageName: "zzzReport",
+    packageName: "@msinternal/zzzReport",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -493,7 +493,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   uuid: {
     swaggerOrConfig: "test/integration/swaggers/uuid.json",
     clientName: "UuidClient",
-    packageName: "uuid",
+    packageName: "@msinternal/uuid",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -503,7 +503,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   url: {
     swaggerOrConfig: "url.json",
     clientName: "UrlClient",
-    packageName: "url",
+    packageName: "@msinternal/url",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -513,7 +513,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   urlMulti: {
     swaggerOrConfig: "url-multi-collectionFormat.json",
     clientName: "UrlMultiClient",
-    packageName: "url-multi",
+    packageName: "@msinternal/url-multi",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -523,7 +523,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   url2: {
     swaggerOrConfig: "test/integration/swaggers/url.json",
     clientName: "UrlClient",
-    packageName: "url",
+    packageName: "@msinternal/url",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -533,7 +533,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   xmlservice: {
     swaggerOrConfig: "xml-service.json",
     clientName: "XmlServiceClient",
-    packageName: "xml-service",
+    packageName: "@msinternal/xml-service",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -543,7 +543,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   noLicenseHeader: {
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
     clientName: "NoLicenseHeaderClient",
-    packageName: "nolicense-header",
+    packageName: "@msinternal/nolicense-header",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -552,7 +552,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   licenseHeader: {
     swaggerOrConfig: "test/integration/swaggers/license-header.json",
     clientName: "LicenseHeaderClient",
-    packageName: "license-header",
+    packageName: "@msinternal/license-header",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -562,7 +562,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   subscriptionIdApiVersion: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "SubscriptionIdApiVersionClient",
-    packageName: "subscriptionid-apiversion",
+    packageName: "@msinternal/subscriptionid-apiversion",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -572,7 +572,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyFormData: {
     swaggerOrConfig: "body-formdata.json",
     clientName: "BodyFormDataClient",
-    packageName: "body-formdata",
+    packageName: "@msinternal/body-formdata",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -582,7 +582,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   validation: {
     swaggerOrConfig: "validation.json",
     clientName: "ValidationClient",
-    packageName: "validation",
+    packageName: "@msinternal/validation",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -592,7 +592,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   extensibleEnums: {
     swaggerOrConfig: "test/integration/swaggers/extensibleEnums.md",
     clientName: "ExtensibleEnumsClient",
-    packageName: "extensible-enums",
+    packageName: "@msinternal/extensible-enums",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -602,7 +602,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   xmsErrorResponses: {
     swaggerOrConfig: "test/integration/swaggers/xmsErrorResponses.md",
     clientName: "XmsErrorResponsesClient",
-    packageName: "xms-error-responses",
+    packageName: "@msinternal/xms-error-responses",
     licenseHeader: true,
     addCredentials: false,
     useCoreV2: true,
@@ -611,7 +611,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   odataDiscriminator: {
     swaggerOrConfig: "test/integration/swaggers/odata-discriminator.json",
     clientName: "ODataDiscriminatorClient",
-    packageName: "odata-discriminator",
+    packageName: "@msinternal/odata-discriminator",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -621,7 +621,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   appconfiguration: {
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
     clientName: "AppConfigurationClient",
-    packageName: "appconfiguration",
+    packageName: "@msinternal/appconfiguration",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -631,7 +631,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   appconfigurationexport: {
     swaggerOrConfig: "test/integration/swaggers/appconfiguration.json",
     clientName: "AppConfigurationClient",
-    packageName: "appconfiguration",
+    packageName: "@msinternal/appconfiguration",
     licenseHeader: true,
     hideClients: true,
     useCoreV2: true,
@@ -642,7 +642,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   mapperrequired: {
     swaggerOrConfig: "test/integration/swaggers/mapperrequired.json",
     clientName: "MapperRequiredClient",
-    packageName: "mapperrequired",
+    packageName: "@msinternal/mapperrequired",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -652,7 +652,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   readmeFileChecker: {
     swaggerOrConfig: "test/integration/swaggers/keyvaults-secrets.md",
     clientName: "KeyVaultClient",
-    packageName: "@azure/keyvault-secrets",
+    packageName: "@msinternal/keyvault-secrets",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -661,7 +661,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   nameChecker: {
     swaggerOrConfig: "test/integration/swaggers/Data.md",
     clientName: "SearchClient",
-    packageName: "@azure/search-documents",
+    packageName: "@msinternal/search-documents",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -671,7 +671,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig:
       "test/integration/swaggers/MediaServices_polymorphic_skipNormalize.md",
     clientName: "MediaServicesClient",
-    packageName: "@azure/media-services",
+    packageName: "@msinternal/media-services",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -680,7 +680,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   petstore: {
     swaggerOrConfig: "test/integration/swaggers/petstore.json",
     clientName: "PetStore",
-    packageName: "petstore",
+    packageName: "@msinternal/petstore",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -689,7 +689,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   textanalytics: {
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.md",
     clientName: "GeneratedClient",
-    packageName: "textanalytics",
+    packageName: "@msinternal/textanalytics",
     hideClients: true,
     licenseHeader: true,
     useCoreV2: true,
@@ -700,7 +700,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   constantParam: {
     swaggerOrConfig: "test/integration/swaggers/textAnalytics.json",
     clientName: "GeneratedClient",
-    packageName: "constantParam",
+    packageName: "@msinternal/constantParam",
     hideClients: true,
     licenseHeader: true,
     useCoreV2: true,
@@ -711,7 +711,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   storagefileshare: {
     swaggerOrConfig: "test/integration/swaggers/storagefileshare.json",
     clientName: "StorageFileShareClient",
-    packageName: "storagefileshare",
+    packageName: "@msinternal/storagefileshare",
     useCoreV2: true,
     addCredentials: false,
     isTestPackage: true
@@ -719,7 +719,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   optionalnull: {
     swaggerOrConfig: "test/integration/swaggers/optionalnull.json",
     clientName: "OptionalNullClient",
-    packageName: "optionalnull",
+    packageName: "@msinternal/optionalnull",
     ignoreNullableOnOptional: true,
     useCoreV2: true,
     addCredentials: false,
@@ -728,7 +728,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   storageblob: {
     swaggerOrConfig: "test/integration/swaggers/storageblob.json",
     clientName: "StorageBlobClient",
-    packageName: "storageblob",
+    packageName: "@msinternal/storageblob",
     useCoreV2: true,
     addCredentials: false,
     isTestPackage: true
@@ -736,7 +736,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   headerprefix: {
     swaggerOrConfig: "test/integration/swaggers/headerprefix.json",
     clientName: "HeaderPrefixClient",
-    packageName: "headerprefix",
+    packageName: "@msinternal/headerprefix",
     useCoreV2: true,
     addCredentials: false,
     isTestPackage: true
@@ -744,7 +744,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   operationgroupclash: {
     swaggerOrConfig: "test/integration/swaggers/operationGroupClash.json",
     clientName: "OperationGroupClashClient",
-    packageName: "operationgroupclash",
+    packageName: "@msinternal/operationgroupclash",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -753,7 +753,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   useragentcorev1: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV1Client",
-    packageName: "useragent-corev1",
+    packageName: "@msinternal/useragent-corev1",
     licenseHeader: true,
     useCoreV2: false,
     allowInsecureConnection: true,
@@ -763,7 +763,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   useragentcorev2: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV2Client",
-    packageName: "useragent-corev2",
+    packageName: "@msinternal/useragent-corev2",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -773,7 +773,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   iotspaces: {
     swaggerOrConfig: "test/integration/swaggers/iotspaces.json",
     clientName: "IoTSpacesClient",
-    packageName: "@azure/iotspaces",
+    packageName: "@msinternal/iotspaces",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -783,7 +783,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   resources: {
     swaggerOrConfig: "test/integration/swaggers/resources.json",
     clientName: "ResourcesClient",
-    packageName: "resources",
+    packageName: "@msinternal/resources",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -794,7 +794,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   sealedchoice: {
     swaggerOrConfig: "test/integration/swaggers/sealedchoice.json",
     clientName: "SealedChoiceClient",
-    packageName: "sealedchoice",
+    packageName: "@msinternal/sealedchoice",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -804,7 +804,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   datalakestorage: {
     swaggerOrConfig: "test/integration/swaggers/datalakestorage.json",
     clientName: "DataLakeStorageClient",
-    packageName: "datalakestorage",
+    packageName: "@msinternal/datalakestorage",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -815,7 +815,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   lroRest: {
     swaggerOrConfig: "lro.json",
     clientName: "LRORestClient",
-    packageName: "lro-rest",
+    packageName: "@msinternal/lro-rest",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -826,7 +826,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyStringRest: {
     swaggerOrConfig: "body-string.json",
     clientName: "BodyStringRest",
-    packageName: "body-string-rest",
+    packageName: "@msinternal/body-string-rest",
     addCredentials: false,
     restLevelClient: true,
     licenseHeader: true,
@@ -835,7 +835,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",
     clientName: "BodyComplexRestClient",
-    packageName: "body-complex-rest",
+    packageName: "@msinternal/body-complex-rest",
     licenseHeader: true,
     restLevelClient: true,
     allowInsecureConnection: true,
@@ -845,7 +845,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   pagingRest: {
     swaggerOrConfig: "paging.json",
     clientName: "Paging",
-    packageName: "paging-service",
+    packageName: "@msinternal/paging-service",
     licenseHeader: true,
     addCredentials: false,
     isTestPackage: true,
@@ -854,7 +854,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   multipleInheritanceRest: {
     swaggerOrConfig: "multiple-inheritance.json",
     clientName: "MultipleInheritanceRestClient",
-    packageName: "multiple-inheritance-rest",
+    packageName: "@msinternal/multiple-inheritance-rest",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
