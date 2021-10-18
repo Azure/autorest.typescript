@@ -797,6 +797,7 @@ export const VirtualNetworkRule: coreClient.CompositeMapper = {
         }
       },
       action: {
+        defaultValue: "Allow",
         isConstant: true,
         serializedName: "action",
         type: {
@@ -833,6 +834,7 @@ export const IPRule: coreClient.CompositeMapper = {
         }
       },
       action: {
+        defaultValue: "Allow",
         isConstant: true,
         serializedName: "action",
         type: {

@@ -155,6 +155,7 @@ export const parameters1: OperationParameter = {
 export const expand1: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
+    defaultValue: "kerb",
     isConstant: true,
     serializedName: "$expand",
     type: {
@@ -402,6 +403,7 @@ export const fileServicesName: OperationURLParameter = {
 export const expand2: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
+    defaultValue: "deleted",
     isConstant: true,
     serializedName: "$expand",
     type: {
@@ -433,6 +435,7 @@ export const shareName: OperationURLParameter = {
 export const expand3: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
+    defaultValue: "stats",
     isConstant: true,
     serializedName: "$expand",
     type: {

@@ -117,6 +117,7 @@ export const Identity: coreClient.CompositeMapper = {
         }
       },
       type: {
+        defaultValue: "SystemAssigned",
         isConstant: true,
         serializedName: "type",
         type: {

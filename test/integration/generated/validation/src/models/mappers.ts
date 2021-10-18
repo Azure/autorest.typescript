@@ -78,6 +78,7 @@ export const Product: coreClient.CompositeMapper = {
         }
       },
       constStringAsEnum: {
+        defaultValue: "constant_string_as_enum",
         isConstant: true,
         serializedName: "constStringAsEnum",
         type: {

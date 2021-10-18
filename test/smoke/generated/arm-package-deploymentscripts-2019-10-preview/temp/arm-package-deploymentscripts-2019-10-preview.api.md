@@ -378,7 +378,6 @@ export interface UserAssignedIdentity {
     principalId?: string;
 }
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

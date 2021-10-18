@@ -19,6 +19,7 @@ export const MethodRequest: coreClient.CompositeMapper = {
         }
       },
       apiVersion: {
+        defaultValue: "2.0",
         isConstant: true,
         serializedName: "@apiVersion",
         type: {

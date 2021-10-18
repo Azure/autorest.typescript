@@ -126,6 +126,7 @@ export const scope: OperationURLParameter = {
 export const filter1: OperationQueryParameter = {
   parameterPath: ["options", "filter"],
   mapper: {
+    defaultValue: "atScope()",
     isConstant: true,
     serializedName: "$filter",
     type: {

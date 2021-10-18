@@ -47,6 +47,7 @@ export const contentType: OperationParameter = {
 export const booleanValue: OperationParameter = {
   parameterPath: ["options", "booleanValue"],
   mapper: {
+    defaultValue: true,
     isConstant: true,
     serializedName: "booleanValue",
     type: {

@@ -226,8 +226,6 @@ export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
   description?: string;
   /** Display name of product. */
   maxProductDisplayName?: string;
-  /** Capacity of product. For example, 4 people. */
-  capacity?: "Large";
   /** Generic URL value. */
   genericValue?: string;
   /** URL value. */
@@ -244,8 +242,6 @@ export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
   description?: string;
   /** Display name of product. */
   maxProductDisplayName?: string;
-  /** Capacity of product. For example, 4 people. */
-  capacity?: "Large";
   /** Generic URL value. */
   genericValue?: string;
   /** URL value. */

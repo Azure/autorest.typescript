@@ -1322,6 +1322,7 @@ export const AdditionalUnattendContent: coreClient.CompositeMapper = {
     className: "AdditionalUnattendContent",
     modelProperties: {
       passName: {
+        defaultValue: "OobeSystem",
         isConstant: true,
         serializedName: "passName",
         type: {
@@ -1329,6 +1330,7 @@ export const AdditionalUnattendContent: coreClient.CompositeMapper = {
         }
       },
       componentName: {
+        defaultValue: "Microsoft-Windows-Shell-Setup",
         isConstant: true,
         serializedName: "componentName",
         type: {

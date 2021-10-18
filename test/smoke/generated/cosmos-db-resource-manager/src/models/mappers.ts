@@ -2468,6 +2468,7 @@ export const DatabaseAccountGetResults: coreClient.CompositeMapper = {
         }
       },
       databaseAccountOfferType: {
+        defaultValue: "Standard",
         isConstant: true,
         serializedName: "properties.databaseAccountOfferType",
         type: {

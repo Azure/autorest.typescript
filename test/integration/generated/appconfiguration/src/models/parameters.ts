@@ -268,6 +268,7 @@ export const select4: OperationQueryParameter = {
     type: {
       name: "Sequence",
       element: {
+        defaultValue: "name",
         isConstant: true,
         type: {
           name: "String"

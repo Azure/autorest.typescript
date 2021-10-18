@@ -253,6 +253,7 @@ export const parameters7: OperationParameter = {
 export const expand1: OperationQueryParameter = {
   parameterPath: ["options", "expand"],
   mapper: {
+    defaultValue: "instanceView",
     isConstant: true,
     serializedName: "$expand",
     type: {
