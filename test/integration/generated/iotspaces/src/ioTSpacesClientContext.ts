@@ -33,7 +33,7 @@ export class IoTSpacesClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-iotspaces/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-@msinternal/iotspaces/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

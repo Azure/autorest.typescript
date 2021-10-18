@@ -1,5 +1,5 @@
 {
-  "name": "body-time",
+  "name": "@msinternal/body-time",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyTimeClient.",

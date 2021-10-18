@@ -1,5 +1,5 @@
 {
-  "name": "no-operation",
+  "name": "@msinternal/no-operation",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NoOperationsClient.",

@@ -1,5 +1,5 @@
 {
-  "name": "lro",
+  "name": "@msinternal/lro",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for LROClient.",

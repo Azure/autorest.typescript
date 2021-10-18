@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 TextAnalytics Client
 
-[Package (NPM)](https://www.npmjs.com/package/textanalytics) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/textanalytics) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

@@ -1,5 +1,5 @@
 {
-  "name": "constantParam",
+  "name": "@msinternal/constantParam",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for GeneratedClient.",

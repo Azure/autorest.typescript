@@ -1,5 +1,5 @@
 {
-  "name": "nolicense-header",
+  "name": "@msinternal/nolicense-header",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NoLicenseHeaderClient.",

@@ -1,5 +1,5 @@
 {
-  "name": "sealedchoice",
+  "name": "@msinternal/sealedchoice",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SealedChoiceClient.",

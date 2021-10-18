@@ -1,5 +1,5 @@
 {
-  "name": "textanalytics",
+  "name": "@msinternal/textanalytics",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for GeneratedClient.",

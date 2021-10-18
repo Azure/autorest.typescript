@@ -1,5 +1,5 @@
 {
-  "name": "header",
+  "name": "@msinternal/header",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for HeaderClient.",

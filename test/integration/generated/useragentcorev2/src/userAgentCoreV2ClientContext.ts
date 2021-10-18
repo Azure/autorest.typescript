@@ -35,7 +35,7 @@ export class UserAgentCoreV2ClientContext extends coreClient.ServiceClient {
       requestContentType: "application/json; charset=utf-8"
     };
 
-    const packageDetails = `azsdk-js-useragent-corev2/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-@msinternal/useragent-corev2/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

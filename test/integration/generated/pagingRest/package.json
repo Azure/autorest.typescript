@@ -1,5 +1,5 @@
 {
-  "name": "paging-service",
+  "name": "@msinternal/paging-service",
   "sdk-type": "mgmt",
   "version": "1.0.0-preview1",
   "description": "",

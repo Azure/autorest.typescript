@@ -1,5 +1,5 @@
 {
-  "name": "custom-url-paging",
+  "name": "@msinternal/custom-url-paging",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CustomUrlPagingClient.",

@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 XMS Error Response Extensions
 
-[Package (NPM)](https://www.npmjs.com/package/xms-error-responses) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/xms-error-responses) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

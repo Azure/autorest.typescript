@@ -1,5 +1,5 @@
 {
-  "name": "custom-url",
+  "name": "@msinternal/custom-url",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CustomUrlClient.",

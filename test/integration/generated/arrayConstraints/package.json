@@ -1,5 +1,5 @@
 {
-  "name": "array-constraints-client",
+  "name": "@msinternal/array-constraints-client",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ArrayConstraintsClient.",

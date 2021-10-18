@@ -1,5 +1,5 @@
 {
-  "name": "body-number",
+  "name": "@msinternal/body-number",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyNumberClient.",

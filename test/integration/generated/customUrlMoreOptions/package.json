@@ -1,5 +1,5 @@
 {
-  "name": "custom-url-MoreOptions",
+  "name": "@msinternal/custom-url-MoreOptions",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for CustomUrlMoreOptionsClient.",

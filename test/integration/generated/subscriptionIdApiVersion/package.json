@@ -1,5 +1,5 @@
 {
-  "name": "subscriptionid-apiversion",
+  "name": "@msinternal/subscriptionid-apiversion",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SubscriptionIdApiVersionClient.",

@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 
 
-[Package (NPM)](https://www.npmjs.com/package/headerprefix) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/headerprefix) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

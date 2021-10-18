@@ -1,5 +1,5 @@
 {
-  "name": "httpInfrastructure",
+  "name": "@msinternal/httpInfrastructure",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for HttpInfrastructureClient.",

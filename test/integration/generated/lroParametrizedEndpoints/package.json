@@ -1,5 +1,5 @@
 {
-  "name": "lro-parameterized-endpoints",
+  "name": "@msinternal/lro-parameterized-endpoints",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for LroParametrizedEndpointsClient.",

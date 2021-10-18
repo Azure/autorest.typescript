@@ -1,5 +1,5 @@
 {
-  "name": "useragent-corev1",
+  "name": "@msinternal/useragent-corev1",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for UserAgentCoreV1Client.",

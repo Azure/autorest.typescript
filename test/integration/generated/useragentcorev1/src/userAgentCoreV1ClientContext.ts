@@ -9,7 +9,7 @@
 import * as coreHttp from "@azure/core-http";
 import { UserAgentCoreV1ClientOptionalParams } from "./models";
 
-const packageName = "useragent-corev1";
+const packageName = "@msinternal/useragent-corev1";
 const packageVersion = "1.0.0-preview1";
 
 export class UserAgentCoreV1ClientContext extends coreHttp.ServiceClient {

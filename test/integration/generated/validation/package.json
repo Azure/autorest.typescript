@@ -1,5 +1,5 @@
 {
-  "name": "validation",
+  "name": "@msinternal/validation",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ValidationClient.",

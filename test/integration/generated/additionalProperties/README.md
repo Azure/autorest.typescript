@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Test Infrastructure for AutoRest
 
-[Package (NPM)](https://www.npmjs.com/package/additional-properties) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/additional-properties) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

@@ -1,5 +1,5 @@
 {
-  "name": "paging-service",
+  "name": "@msinternal/paging-service",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for PagingClient.",

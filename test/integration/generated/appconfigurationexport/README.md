@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 
 
-[Package (NPM)](https://www.npmjs.com/package/appconfiguration) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/appconfiguration) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

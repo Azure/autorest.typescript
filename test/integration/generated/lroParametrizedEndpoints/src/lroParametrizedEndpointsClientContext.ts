@@ -25,7 +25,7 @@ export class LroParametrizedEndpointsClientContext extends coreClient.ServiceCli
       requestContentType: "application/json; charset=utf-8"
     };
 
-    const packageDetails = `azsdk-js-lro-parameterized-endpoints/1.0.0-preview1`;
+    const packageDetails = `azsdk-js-@msinternal/lro-parameterized-endpoints/1.0.0-preview1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
