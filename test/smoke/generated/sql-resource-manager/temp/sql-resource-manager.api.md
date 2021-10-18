@@ -7732,7 +7732,6 @@ export interface WorkloadGroupsListByDatabaseOptionalParams extends coreClient.O
 // @public
 export type WorkloadGroupsListByDatabaseResponse = WorkloadGroupListResult;
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

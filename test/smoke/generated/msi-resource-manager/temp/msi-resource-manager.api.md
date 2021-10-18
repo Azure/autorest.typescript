@@ -218,7 +218,6 @@ export interface UserAssignedIdentitiesUpdateOptionalParams extends coreClient.O
 // @public
 export type UserAssignedIdentitiesUpdateResponse = Identity;
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

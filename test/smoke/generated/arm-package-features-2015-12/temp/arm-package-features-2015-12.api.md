@@ -14,7 +14,7 @@ export class FeatureClient extends FeatureClientContext {
     // (undocumented)
     features: Features;
     listOperations(options?: FeatureClientListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
-    }
+}
 
 // @public (undocumented)
 export class FeatureClientContext extends coreClient.ServiceClient {
@@ -143,7 +143,6 @@ export interface OperationListResult {
     nextLink?: string;
     value?: Operation[];
 }
-
 
 // (No @packageDocumentation comment for this package)
 

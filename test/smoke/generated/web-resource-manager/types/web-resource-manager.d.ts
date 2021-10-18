@@ -1,4 +1,5 @@
 /// <reference types="node" />
+
 import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';

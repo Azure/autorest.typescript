@@ -263,7 +263,6 @@ export interface OperationListResult {
     value?: Operation[];
 }
 
-
 // (No @packageDocumentation comment for this package)
 
 ```
