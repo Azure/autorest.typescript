@@ -1,7 +1,7 @@
-import { CodeModel, Protocol, SchemaType } from "@autorest/codemodel";
+import { CodeModel, ConstantSchema, Protocol, SchemaType } from "@autorest/codemodel";
 import { ClientOptions } from "../models/clientDetails";
 import { SampleDetails } from "../models/sampleDetails";
-import { TestCodeModel } from "@autorest/tests/dist/src/core/model"
+import { ExampleValue, TestCodeModel } from "@autorest/tests/dist/src/core/model"
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions } from "../autorestSession";
 
@@ -27,10 +27,8 @@ export function getAllExamples(codeModel: TestCodeModel) {
                     clientParameterNames: "",
                     methodParameterNames: "",
                     bodySchemaName: "",
-                    sampleFunctionName: example.name,
-                    bodyParamName: "",
-                    exampleValue: "{}",
                     hasBody: false,
+                    sampleFunctionName: example.name,
                     methodParamAssignments: [],
                     clientParamAssignments: []
                 }
@@ -40,7 +38,7 @@ export function getAllExamples(codeModel: TestCodeModel) {
                         continue;
                     }
                     const parameterName = getLanguageMetadata(clientParameter.exampleValue.language).name;
-                    const paramAssignment = `const ${parameterName} = "${clientParameter.exampleValue.rawValue}"`;
+                    const paramAssignment = `const ${parameterName} = ` + getParameterAssignment(clientParameter.exampleValue);
                     sample.clientParamAssignments.push(paramAssignment)
                     clientParameterNames.push(parameterName);
                 }
@@ -53,12 +51,14 @@ export function getAllExamples(codeModel: TestCodeModel) {
                         continue;
                     }
                     const parameterName = getLanguageMetadata(methodParameter.exampleValue.language).name;
+                    let paramAssignment = "";
                     if (methodParameter.parameter.protocol?.http?.['in'] === "body") {
                         sample.hasBody = true;
-                        sample.bodyParamName = parameterName;
                         sample.bodySchemaName = getLanguageMetadata(methodParameter.exampleValue.schema.language).name;
+                        paramAssignment = `const ${parameterName}: ${sample.bodySchemaName} = ` + getParameterAssignment(methodParameter.exampleValue);
+                    } else {
+                        paramAssignment = `const ${parameterName} = ` + getParameterAssignment(methodParameter.exampleValue);
                     }
-                    const paramAssignment = `const ${parameterName} = "${methodParameter.exampleValue.rawValue}"`;
                     sample.methodParamAssignments.push(paramAssignment);
                     methodParameterNames.push(parameterName);
                 }
@@ -72,3 +72,48 @@ export function getAllExamples(codeModel: TestCodeModel) {
     }
     return examplesModels;
 }
+
+function getParameterAssignment(exampleValue: ExampleValue) {
+    let  schemaType = exampleValue.schema.type;
+    const rawValue = exampleValue.rawValue;
+    let retValue = rawValue
+    switch (schemaType) {
+        case SchemaType.Constant:
+            const contentSchema = exampleValue.schema as ConstantSchema;
+            schemaType = contentSchema.valueType.type;
+        case SchemaType.Choice:
+        case SchemaType.SealedChoice:
+        case SchemaType.String:
+        case SchemaType.Char:
+        case SchemaType.Time:
+        case SchemaType.Uuid:
+        case SchemaType.Uri:
+        case SchemaType.Credential:
+            retValue = `"${rawValue}"`;
+            break;
+        case SchemaType.Boolean:
+            retValue = rawValue,toString();
+            break;
+        case SchemaType.Object:
+        case SchemaType.Dictionary:
+            const values = []
+            for(const prop in exampleValue.properties) {
+                let propRetValue = `${prop}: ` + getParameterAssignment(exampleValue.properties[prop]);
+                values.push(propRetValue);
+            }
+            retValue = `{${values.join(", ")}}`
+            break;
+        case SchemaType.Array:
+            const valuesArr = []
+            for(const element of <ExampleValue[]>exampleValue.elements) {
+                let propRetValueArr = getParameterAssignment(element);
+                valuesArr.push(propRetValueArr);
+            }
+            retValue = `[${valuesArr.join(", ")}]`;
+            break;
+        default:
+            break;   
+    }
+    return retValue;
+}
+

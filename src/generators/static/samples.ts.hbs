@@ -17,9 +17,6 @@ import { DefaultAzureCredential } from "@azure/identity";
 let client: {{clientClassName}};
 //{{operationGroupName}}.{{operationName}}
 async function {{sampleFunctionName}}() {
-  {{#if hasBody }}
-  const {{bodyParamName}}: {{bodySchemaName}} = {{exampleValue}};
-  {{/if}}
   {{#each methodParamAssignments}}
   {{this}}
   {{/each}}
