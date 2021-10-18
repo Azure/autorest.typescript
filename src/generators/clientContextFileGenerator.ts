@@ -252,7 +252,7 @@ function writeDefaultOptions(
      options = {};
   }
 
-  const defaultUserAgent = \`azsdk-js-\${packageName.replace("@azure/","")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
+  const defaultUserAgent = \`azsdk-js-\${packageName.replace("@azure/","").replace("@msinternal/", "")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
   
   ${addScopes}
 
@@ -272,10 +272,9 @@ function writeDefaultOptions(
   }
   ${defaults}
 
-  const packageDetails = \`azsdk-js-${packageDetails.name.replace(
-    "@azure/",
-    ""
-  ).replace("@msinternal/", "")}/${packageDetails.version}\`;
+  const packageDetails = \`azsdk-js-${packageDetails.name
+    .replace("@azure/", "")
+    .replace("@msinternal/", "")}/${packageDetails.version}\`;
   const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
