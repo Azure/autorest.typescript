@@ -275,7 +275,7 @@ function writeDefaultOptions(
   const packageDetails = \`azsdk-js-${packageDetails.name.replace(
     "@azure/",
     ""
-  )}/${packageDetails.version}\`;
+  ).replace("@msinternal/", "")}/${packageDetails.version}\`;
   const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
