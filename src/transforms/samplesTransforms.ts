@@ -4,31 +4,41 @@ import { SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/tests/dist/src/core/model"
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions } from "../autorestSession";
+import { NameType, normalizeName } from "../utils/nameUtils";
+import { transformOperation } from "./operationTransforms";
+import { calculateMethodName } from "../generators/utils/operationsUtils";
 
-export function transformSamples(
+export async function transformSamples(
     codeModel: CodeModel,
     options: ClientOptions
-): SampleDetails[] {
-    return getAllExamples(codeModel);
+): Promise<SampleDetails[]> {
+    return await getAllExamples(codeModel);
 }
 
-export function getAllExamples(codeModel: TestCodeModel) {
+export async function getAllExamples(codeModel: TestCodeModel) {
     const { packageDetails } = getAutorestOptions();
     let examplesModels: SampleDetails[] = [];
     if (codeModel?.testModel?.mockTest?.exampleGroups !== undefined) {
         for(const exampleGroups of codeModel.testModel.mockTest.exampleGroups) {
             for(const example of exampleGroups.examples) {
+                const clientName = getLanguageMetadata(codeModel.language).name;
+                const opDetails = await transformOperation(example.operation, example.operationGroup, clientName);
+                let methodName = calculateMethodName(opDetails);
+                if (opDetails.isLro && opDetails.pagination === undefined) {
+                    methodName = `${methodName}AndWait`;
+                }
+                const opGroupName = getLanguageMetadata(example.operationGroup.language).name;
                 const sample: SampleDetails = {
                     operationDescription: getLanguageMetadata(example.operation.language).description,
-                    operationName: getLanguageMetadata(example.operation.language).name,
-                    operationGroupName: getLanguageMetadata(example.operationGroup.language).name,
-                    clientClassName: getLanguageMetadata(codeModel.language).name,
+                    operationName: methodName,
+                    operationGroupName: normalizeName(opGroupName, NameType.Property),
+                    clientClassName: clientName,
                     clientPackageName: packageDetails.name,
                     clientParameterNames: "",
                     methodParameterNames: "",
                     bodySchemaName: "",
                     hasBody: false,
-                    sampleFunctionName: example.name,
+                    sampleFunctionName: normalizeName(example.name.replace(/\//, " Or "), NameType.Operation),
                     methodParamAssignments: [],
                     clientParamAssignments: []
                 }
@@ -37,7 +47,7 @@ export function getAllExamples(codeModel: TestCodeModel) {
                     if (clientParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
                     }
-                    const parameterName = getLanguageMetadata(clientParameter.exampleValue.language).name;
+                    const parameterName =  normalizeName(getLanguageMetadata(clientParameter.exampleValue.language).name, NameType.Parameter);
                     const paramAssignment = `const ${parameterName} = ` + getParameterAssignment(clientParameter.exampleValue);
                     sample.clientParamAssignments.push(paramAssignment)
                     clientParameterNames.push(parameterName);
@@ -98,7 +108,13 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Dictionary:
             const values = []
             for(const prop in exampleValue.properties) {
-                let propRetValue = `${prop}: ` + getParameterAssignment(exampleValue.properties[prop]);
+                const propName = normalizeName(prop, NameType.Property);
+                let propRetValue: string;
+                if (propName.indexOf('/') > -1) {
+                    propRetValue = `"${propName}": ` + getParameterAssignment(exampleValue.properties[prop]);
+                } else {
+                    propRetValue = `${propName}: ` + getParameterAssignment(exampleValue.properties[prop]);
+                }
                 values.push(propRetValue);
             }
             retValue = `{${values.join(", ")}}`
@@ -110,6 +126,10 @@ function getParameterAssignment(exampleValue: ExampleValue) {
                 valuesArr.push(propRetValueArr);
             }
             retValue = `[${valuesArr.join(", ")}]`;
+            break;
+        case SchemaType.Date:
+        case SchemaType.DateTime:
+            retValue =  `new Date("${rawValue}")`;
             break;
         default:
             break;   

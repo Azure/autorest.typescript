@@ -27,16 +27,18 @@ import { ClientDetails } from "../../models/clientDetails";
     // Toplevel operations are inlined in the client
     const samples = clientDetails.samples;
     for(const sample of samples) {
-      if (sample.sampleFunctionName.indexOf(' ') > -1) {
-        continue;
+      try {
+        const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
+          encoding: "utf-8"
+        });
+  
+        const readmeFileContents = hbs.compile(file, { noEscape: true });
+        project.createSourceFile(`samples/v1/typescript/src/${sample.sampleFunctionName}.ts`, readmeFileContents(sample), {
+          overwrite: true
+        });
+      } catch (error) {
+        sample.sampleFunctionName;
       }
-      const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
-        encoding: "utf-8"
-      });
-      const readmeFileContents = hbs.compile(file, { noEscape: true });
-      project.createSourceFile(`samples/v1/typescript/src/${sample.sampleFunctionName}.ts`, readmeFileContents(sample), {
-        overwrite: true
-      });
     }
   }
   
