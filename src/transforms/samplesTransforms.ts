@@ -5,7 +5,7 @@ import { ExampleValue, TestCodeModel } from "@autorest/tests/dist/src/core/model
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { transformOperation } from "./operationTransforms";
+import { transformOperation, transformOperationGroup } from "./operationTransforms";
 import { calculateMethodName } from "../generators/utils/operationsUtils";
 
 export async function transformSamples(
@@ -22,6 +22,7 @@ export async function getAllExamples(codeModel: TestCodeModel) {
         for(const exampleGroups of codeModel.testModel.mockTest.exampleGroups) {
             for(const example of exampleGroups.examples) {
                 const clientName = getLanguageMetadata(codeModel.language).name;
+                const ogDetails = await transformOperationGroup(example.operationGroup, clientName);
                 const opDetails = await transformOperation(example.operation, example.operationGroup, clientName);
                 let methodName = calculateMethodName(opDetails);
                 if (opDetails.isLro && opDetails.pagination === undefined) {
@@ -38,9 +39,10 @@ export async function getAllExamples(codeModel: TestCodeModel) {
                     methodParameterNames: "",
                     bodySchemaName: "",
                     hasBody: false,
-                    sampleFunctionName: normalizeName(example.name.replace(/\//, " Or "), NameType.Operation),
+                    sampleFunctionName: normalizeName(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, ' '), NameType.Operation),
                     methodParamAssignments: [],
-                    clientParamAssignments: []
+                    clientParamAssignments: [],
+                    isTopLevel: ogDetails.isTopLevel,
                 }
                 const clientParameterNames = ["credential"];
                 for(const clientParameter of example.clientParameters) {
@@ -99,7 +101,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Uuid:
         case SchemaType.Uri:
         case SchemaType.Credential:
-            retValue = `"${rawValue}"`;
+            retValue = `"${escape(rawValue)}"`;
             break;
         case SchemaType.Boolean:
             retValue = rawValue,toString();
@@ -117,7 +119,11 @@ function getParameterAssignment(exampleValue: ExampleValue) {
                 }
                 values.push(propRetValue);
             }
-            retValue = `{${values.join(", ")}}`
+            if (values.length > 0) {
+                retValue = `{${values.join(", ")}}`
+            } else {
+                retValue = "{}";
+            }
             break;
         case SchemaType.Array:
             const valuesArr = []
@@ -125,11 +131,19 @@ function getParameterAssignment(exampleValue: ExampleValue) {
                 let propRetValueArr = getParameterAssignment(element);
                 valuesArr.push(propRetValueArr);
             }
-            retValue = `[${valuesArr.join(", ")}]`;
+            if (valuesArr.length > 0) {
+                retValue = `[${valuesArr.join(", ")}]`;
+            } else {
+                retValue = "[]";
+            }
             break;
         case SchemaType.Date:
         case SchemaType.DateTime:
             retValue =  `new Date("${rawValue}")`;
+            break;
+        case SchemaType.Any:
+        case SchemaType.AnyObject:
+            retValue = `"${escape(JSON.stringify(rawValue))}"`;
             break;
         default:
             break;   

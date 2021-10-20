@@ -20,7 +20,10 @@ async function {{sampleFunctionName}}() {
   {{#each methodParamAssignments}}
   {{this}}
   {{/each}}
-  await client.{{operationGroupName}}
+  await client
+    {{#unless isTopLevel}}
+    .{{operationGroupName}}
+    {{/unless}}
     .{{operationName}}({{methodParameterNames}})
     .then((res) => {
       console.log(res);

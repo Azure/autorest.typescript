@@ -11,5 +11,5 @@ export interface SampleDetails {
     methodParameterNames: string,
     methodParamAssignments: string[],
     clientParamAssignments: string[],
-
+    isTopLevel: boolean,
 }
