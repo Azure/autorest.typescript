@@ -88,7 +88,6 @@ export interface MonitorClientOptionalParams extends coreClient.ServiceClientOpt
     endpoint?: string;
 }
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

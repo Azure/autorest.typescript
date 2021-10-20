@@ -14,7 +14,7 @@ export declare interface AccountSasParameters {
     /** The signed resource types that are accessible with the account SAS. Service (s): Access to service-level APIs; Container (c): Access to container-level APIs; Object (o): Access to object-level APIs for blobs, queue messages, table entities, and files. */
     resourceTypes: SignedResourceTypes;
     /** The signed permissions for the account SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
-    permissions: Permissions;
+    permissions: Permissions_2;
     /** An IP address or a range of IP addresses from which to accept requests. */
     iPAddressOrRange?: string;
     /** The protocol permitted for a request made with the account SAS. */
@@ -946,7 +946,7 @@ export declare interface EncryptionService {
      */
     readonly lastEnabledTime?: Date;
     /** Encryption key type to be used for the encryption service. 'Account' key type implies that an account-scoped encryption key will be used. 'Service' key type implies that a default service key is used. */
-    keyType?: KeyType;
+    keyType?: KeyType_2;
 }
 
 /** A list of services that support encryption. */
@@ -1484,7 +1484,8 @@ export declare type KeySource = string;
  * **Service** \
  * **Account**
  */
-export declare type KeyType = string;
+declare type KeyType_2 = string;
+export { KeyType_2 as KeyType }
 
 /** Properties of key vault. */
 export declare interface KeyVaultProperties {
@@ -2288,7 +2289,8 @@ export declare type OperationsListResponse = OperationListResult;
  * **u** \
  * **p**
  */
-export declare type Permissions = string;
+declare type Permissions_2 = string;
+export { Permissions_2 as Permissions }
 
 /** The Private Endpoint resource. */
 export declare interface PrivateEndpoint {
@@ -2595,7 +2597,7 @@ export declare interface ServiceSasParameters {
     /** The signed services accessible with the service SAS. Possible values include: Blob (b), Container (c), File (f), Share (s). */
     resource?: SignedResource;
     /** The signed permissions for the service SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
-    permissions?: Permissions;
+    permissions?: Permissions_2;
     /** An IP address or a range of IP addresses from which to accept requests. */
     iPAddressOrRange?: string;
     /** The protocol permitted for a request made with the account SAS. */

@@ -9,7 +9,7 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public
-export interface Location {
+interface Location_2 {
     readonly displayName?: string;
     readonly id?: string;
     readonly latitude?: string;
@@ -17,10 +17,11 @@ export interface Location {
     readonly name?: string;
     readonly subscriptionId?: string;
 }
+export { Location_2 as Location }
 
 // @public
 export interface LocationListResult {
-    value?: Location[];
+    value?: Location_2[];
 }
 
 // @public
@@ -126,7 +127,7 @@ export interface SubscriptionPolicies {
 export interface Subscriptions {
     get(subscriptionId: string, options?: SubscriptionsGetOptionalParams): Promise<SubscriptionsGetResponse>;
     list(options?: SubscriptionsListOptionalParams): PagedAsyncIterableIterator<Subscription>;
-    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location>;
+    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location_2>;
 }
 
 // @public
@@ -198,7 +199,6 @@ export interface TenantsListOptionalParams extends coreClient.OperationOptions {
 
 // @public
 export type TenantsListResponse = TenantListResult;
-
 
 // (No @packageDocumentation comment for this package)
 
