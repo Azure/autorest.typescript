@@ -4,7 +4,7 @@ import { responseStatusChecker } from "../utils/responseStatusChecker";
 import { flatMap } from "lodash";
 import { UriColor } from "./generated/url/src";
 
-describe.only("Integration tests for UrlRest", () => {
+describe("Integration tests for UrlRest", () => {
   let client: UrlRestClientRestClient;
 
   beforeEach(() => {
