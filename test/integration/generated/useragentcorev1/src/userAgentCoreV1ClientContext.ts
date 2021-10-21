@@ -36,7 +36,7 @@ export class UserAgentCoreV1ClientContext extends coreHttp.ServiceClient {
     }
 
     const defaultUserAgent = `azsdk-js-${packageName.replace(
-      "@azure/",
+      /@.*\//,
       ""
     )}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
 

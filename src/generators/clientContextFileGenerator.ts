@@ -252,7 +252,7 @@ function writeDefaultOptions(
      options = {};
   }
 
-  const defaultUserAgent = \`azsdk-js-\${packageName.replace(/@.*\//,"")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
+  const defaultUserAgent = \`azsdk-js-\${packageName.replace(/@.*\\//,"")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
   
   ${addScopes}
 
