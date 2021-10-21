@@ -3,28 +3,34 @@
 These documents are Typescript-specific, see [our main docs][main_docs] for more general information
 
 1. Generating Typescript Clients with AutoRest
-    - How do I generate code? Main documents are [here][main_generate], while here are the [typescript-specific docs][typescript_generate]
+
+   - How do I generate code? Main documents are [here][main_generate], while here are the [typescript-specific docs][typescript_generate]
 
 2. Using Your Generated Typescript Client
-    - How do I [use my Typescript client][typescript_client] now that I've generated it? Main docs are [here][main_client]
+
+   - How do I [use my Typescript client][typescript_client] now that I've generated it? Main docs are [here][main_client]
 
 3. Migrating from AutoRest 2.0 to 3.0
-    - I have old generated code using the previous version of AutoRest. How do I upgrade my code? Main docs [here][main_migrate], Typescript-specific docs [here][typescript_migrate]
+
+   - I have old generated code using the previous version of AutoRest. How do I upgrade my code? Main docs [here][main_migrate], Typescript-specific docs [here][typescript_migrate]
 
 4. Developing with AutoRest
-    - How do I generate or contribute to AutoRest in [dev mode][typescript_dev] Main docs [here][main_dev]
+
+   - How do I generate or contribute to AutoRest in [dev mode][typescript_dev] Main docs [here][main_dev]
 
 5. Samples
-    - [Sample][sample] readmes and generated code for common scenarios.
+
+   - [Sample][sample] readmes and generated code for common scenarios.
 
 6. [FAQ][faq]
 
 7. [Troubleshooting][troubleshooting]
 
 <!-- LINKS -->
+
 [main_docs]: https://github.com/Azure/autorest/tree/master/docs
 [main_generate]: https://github.com/Azure/autorest/tree/master/docs/generate/readme.md
-[typescript_generate]: ./generate/readme.md
+[typescript_generate]: ./docs/migrate/readme.md
 [typescript_client]: ./client/readme.md
 [main_client]: https://github.com/Azure/autorest/tree/master/docs/generate/client.md
 [main_migrate]: https://github.com/Azure/autorest/tree/master/docs/migrate/readme.md

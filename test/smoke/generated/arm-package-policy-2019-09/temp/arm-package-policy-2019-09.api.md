@@ -543,7 +543,6 @@ export type PolicyType = string;
 // @public
 export type ResourceIdentityType = "SystemAssigned" | "None";
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

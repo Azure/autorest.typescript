@@ -4,6 +4,8 @@
 
 ```ts
 
+/// <reference types="node" />
+
 import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
@@ -8964,7 +8966,6 @@ export type WorkerPoolResource = ProxyOnlyResource & {
 
 // @public
 export type WorkerSizeOptions = "Small" | "Medium" | "Large" | "D1" | "D2" | "D3" | "NestedSmall" | "Default";
-
 
 // (No @packageDocumentation comment for this package)
 

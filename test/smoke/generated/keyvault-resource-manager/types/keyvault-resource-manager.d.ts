@@ -13,7 +13,7 @@ export declare interface AccessPolicyEntry {
     /**  Application ID of the client making request on behalf of a principal */
     applicationId?: string;
     /** Permissions the identity has for keys, secrets and certificates. */
-    permissions: Permissions;
+    permissions: Permissions_2;
 }
 
 /** Defines values for AccessPolicyUpdateKind. */
@@ -411,7 +411,7 @@ export declare interface OperationsListOptionalParams extends coreClient.Operati
 export declare type OperationsListResponse = OperationListResult;
 
 /** Permissions the identity has for keys, secrets, certificates and storage. */
-export declare interface Permissions {
+declare interface Permissions_2 {
     /** Permissions to keys */
     keys?: KeyPermissions[];
     /** Permissions to secrets */
@@ -421,6 +421,7 @@ export declare interface Permissions {
     /** Permissions to storage accounts */
     storage?: StoragePermissions[];
 }
+export { Permissions_2 as Permissions }
 
 /** Private endpoint object properties. */
 export declare interface PrivateEndpoint {

@@ -1415,7 +1415,6 @@ export interface WhatIfPropertyChange {
 // @public
 export type WhatIfResultFormat = "ResourceIdOnly" | "FullResourcePayloads";
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

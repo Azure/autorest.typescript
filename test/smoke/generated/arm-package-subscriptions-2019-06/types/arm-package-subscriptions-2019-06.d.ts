@@ -3,7 +3,7 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 /** Location information. */
-export declare interface Location {
+declare interface Location_2 {
     /**
      * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -35,11 +35,12 @@ export declare interface Location {
      */
     readonly longitude?: string;
 }
+export { Location_2 as Location }
 
 /** Location list operation response. */
 export declare interface LocationListResult {
     /** An array of locations. */
-    value?: Location[];
+    value?: Location_2[];
 }
 
 /** Information about a tenant managing the subscription. */
@@ -208,7 +209,7 @@ export declare interface Subscriptions {
      * @param subscriptionId The ID of the target subscription.
      * @param options The options parameters.
      */
-    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location>;
+    listLocations(subscriptionId: string, options?: SubscriptionsListLocationsOptionalParams): PagedAsyncIterableIterator<Location_2>;
     /**
      * Gets all subscriptions for a tenant.
      * @param options The options parameters.

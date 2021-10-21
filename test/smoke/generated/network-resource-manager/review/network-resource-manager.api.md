@@ -11664,7 +11664,6 @@ export type WebApplicationFirewallRuleType = string;
 // @public
 export type WebApplicationFirewallTransform = string;
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

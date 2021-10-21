@@ -1045,7 +1045,6 @@ export type UserUpdateParameters = UserBase & {
     mailNickname?: string;
 };
 
-
 // (No @packageDocumentation comment for this package)
 
 ```
