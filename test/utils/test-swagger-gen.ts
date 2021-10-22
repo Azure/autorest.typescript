@@ -830,7 +830,8 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     licenseHeader: true,
-    isTestPackage: true
+    isTestPackage: true,
+    generateTest: true
   },
   bodyComplexRest: {
     swaggerOrConfig: "test/integration/swaggers/bodyComplex.md",

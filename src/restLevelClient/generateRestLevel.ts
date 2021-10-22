@@ -16,6 +16,11 @@ import { generatePagingHelper } from "./generatePagingHelper";
 import { generatePollingHelper } from "./generatePollingHelper";
 import { hasPagingOperations } from "../utils/extractPaginationDetails";
 import { hasPollingOperations } from "./helpers/hasPollingOperations";
+import { generateSampleTestFile } from "../generators/test/sampleTestGenerator";
+import { generateKarmaConfigFile } from "../generators/static/karmaConfigFileGenerator";
+import { generateEnvFile } from "../generators/test/envFileGenerator";
+import { generateEnvBrowserFile } from "../generators/test/envBrowserFileGenerator";
+import { generateRecordedClientFile } from "../generators/test/recordedClientFileGenerator";
 /**
  * Generates a Rest Level Client library
  */
@@ -43,6 +48,13 @@ export async function generateRestLevelClient() {
   generateLicenseFile(project);
   generateTsConfig(project);
   generateApiExtractorConfig(project);
+
+  generateKarmaConfigFile(project)
+  generateEnvFile(project);
+  generateEnvBrowserFile(project);
+  generateRecordedClientFile(project);
+  generateSampleTestFile(project);
+
   generateResponseInterfaces(model, project);
   generateSchemaTypes(model, project);
   generateParameterInterfaces(model, project);

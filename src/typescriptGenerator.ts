@@ -27,6 +27,10 @@ import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
+import { generateKarmaConfigFile } from "./generators/static/karmaConfigFileGenerator";
+import { generateEnvFile } from "./generators/test/envFileGenerator";
+import { generateEnvBrowserFile } from "./generators/test/envBrowserFileGenerator";
+import { generateRecordedClientFile } from "./generators/test/recordedClientFileGenerator";
 
 /**
  * ServiceClient members should be reserved
@@ -65,7 +69,6 @@ export async function generateTypeScriptLibrary(
   const {
     packageDetails,
     licenseHeader: shouldGenerateLicense,
-    generateTest,
     outputPath,
     srcPath
   } = getAutorestOptions();
@@ -88,12 +91,15 @@ export async function generateTypeScriptLibrary(
   generatePackageJson(project, clientDetails);
   generateLicenseFile(project);
   generateReadmeFile(clientDetails, project);
-  if (generateTest) {
-    generateSampleTestFile(project);
-  }
   generateTsConfig(project);
   generateRollupConfig(project);
   generateApiExtractorConfig(project);
+
+  generateKarmaConfigFile(project)
+  generateEnvFile(project);
+  generateEnvBrowserFile(project);
+  generateRecordedClientFile(project);
+  generateSampleTestFile(project);
 
   generateClient(clientDetails, project);
   generateClientContext(clientDetails, packageDetails, project);
