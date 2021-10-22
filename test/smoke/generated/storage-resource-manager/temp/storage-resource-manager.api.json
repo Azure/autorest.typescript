@@ -9584,11 +9584,7 @@
         },
         {
           "kind": "TypeAlias",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/storage-resource-manager!KeyType:type",
-=======
-          "canonicalReference": "storage-resource-manager!KeyType_2:type",
->>>>>>> main
+          "canonicalReference": "@msinternal/storage-resource-manager!KeyType_2:type",
           "docComment": "/**\n * Defines values for KeyType. \\ {@link KnownKeyType} can be used interchangeably with KeyType, this enum contains the known values that the service supports. ### Known values supported by the service **Service** \\ **Account**\n */\n",
           "excerptTokens": [
             {
@@ -15982,11 +15978,7 @@
         },
         {
           "kind": "TypeAlias",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/storage-resource-manager!Permissions:type",
-=======
-          "canonicalReference": "storage-resource-manager!Permissions_2:type",
->>>>>>> main
+          "canonicalReference": "@msinternal/storage-resource-manager!Permissions_2:type",
           "docComment": "/**\n * Defines values for Permissions. \\ {@link KnownPermissions} can be used interchangeably with Permissions, this enum contains the known values that the service supports. ### Known values supported by the service **r** \\ **d** \\ **w** \\ **l** \\ **a** \\ **c** \\ **u** \\ **p**\n */\n",
           "excerptTokens": [
             {

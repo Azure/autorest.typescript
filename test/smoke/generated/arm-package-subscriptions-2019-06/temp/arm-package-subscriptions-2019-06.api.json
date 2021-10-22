@@ -171,11 +171,7 @@
       "members": [
         {
           "kind": "Interface",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location:interface",
-=======
-          "canonicalReference": "arm-package-subscriptions-2019-06!Location_2:interface",
->>>>>>> main
+          "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2:interface",
           "docComment": "/**\n * Location information.\n */\n",
           "excerptTokens": [
             {
@@ -188,11 +184,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#displayName:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#displayName:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#displayName:member",
               "docComment": "/**\n * The display name of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -218,11 +210,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#id:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#id:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#id:member",
               "docComment": "/**\n * The fully qualified ID of the location. For example, /subscriptions/00000000-0000-0000-0000-000000000000/locations/westus. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -248,11 +236,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#latitude:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#latitude:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#latitude:member",
               "docComment": "/**\n * The latitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -278,11 +262,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#longitude:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#longitude:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#longitude:member",
               "docComment": "/**\n * The longitude of the location. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -308,11 +288,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#name:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#name:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#name:member",
               "docComment": "/**\n * The location name. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -338,11 +314,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location#subscriptionId:member",
-=======
-              "canonicalReference": "arm-package-subscriptions-2019-06!Location_2#subscriptionId:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/arm-package-subscriptions-2019-06!Location_2#subscriptionId:member",
               "docComment": "/**\n * The subscription ID. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {

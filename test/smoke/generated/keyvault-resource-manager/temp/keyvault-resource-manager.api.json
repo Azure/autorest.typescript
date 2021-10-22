@@ -3849,11 +3849,7 @@
         },
         {
           "kind": "Interface",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions:interface",
-=======
-          "canonicalReference": "keyvault-resource-manager!Permissions_2:interface",
->>>>>>> main
+          "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions_2:interface",
           "docComment": "/**\n * Permissions the identity has for keys, secrets, certificates and storage.\n */\n",
           "excerptTokens": [
             {
@@ -3866,11 +3862,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions#certificates:member",
-=======
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#certificates:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions_2#certificates:member",
               "docComment": "/**\n * Permissions to certificates\n */\n",
               "excerptTokens": [
                 {
@@ -3901,11 +3893,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions#keys:member",
-=======
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#keys:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions_2#keys:member",
               "docComment": "/**\n * Permissions to keys\n */\n",
               "excerptTokens": [
                 {
@@ -3936,11 +3924,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions#secrets:member",
-=======
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#secrets:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions_2#secrets:member",
               "docComment": "/**\n * Permissions to secrets\n */\n",
               "excerptTokens": [
                 {
@@ -3971,11 +3955,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions#storage:member",
-=======
-              "canonicalReference": "keyvault-resource-manager!Permissions_2#storage:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/keyvault-resource-manager!Permissions_2#storage:member",
               "docComment": "/**\n * Permissions to storage accounts\n */\n",
               "excerptTokens": [
                 {

@@ -24879,11 +24879,7 @@
         },
         {
           "kind": "TypeAlias",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/compute-resource-manager!Image:type",
-=======
-          "canonicalReference": "compute-resource-manager!Image_2:type",
->>>>>>> main
+          "canonicalReference": "@msinternal/compute-resource-manager!Image_2:type",
           "docComment": "/**\n * The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist.\n */\n",
           "excerptTokens": [
             {

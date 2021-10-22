@@ -18918,11 +18918,7 @@
         },
         {
           "kind": "Interface",
-<<<<<<< HEAD
-          "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location:interface",
-=======
-          "canonicalReference": "cosmos-db-resource-manager!Location_2:interface",
->>>>>>> main
+          "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2:interface",
           "docComment": "/**\n * A region in which the Azure Cosmos DB database account is deployed.\n */\n",
           "excerptTokens": [
             {
@@ -18935,11 +18931,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#documentEndpoint:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#documentEndpoint:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#documentEndpoint:member",
               "docComment": "/**\n * The connection endpoint for the specific region. Example: https://&lt;accountName&gt;-&lt;locationName&gt;.documents.azure.com:443/ NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -18965,11 +18957,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#failoverPriority:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#failoverPriority:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#failoverPriority:member",
               "docComment": "/**\n * The failover priority of the region. A failover priority of 0 indicates a write region. The maximum value for a failover priority = (total number of regions - 1). Failover priority values must be unique for each of the regions in which the database account exists.\n */\n",
               "excerptTokens": [
                 {
@@ -18995,11 +18983,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#id:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#id:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#id:member",
               "docComment": "/**\n * The unique identifier of the region within the database account. Example: &lt;accountName&gt;-&lt;locationName&gt;. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -19025,11 +19009,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#isZoneRedundant:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#isZoneRedundant:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#isZoneRedundant:member",
               "docComment": "/**\n * Flag to indicate whether or not this region is an AvailabilityZone region\n */\n",
               "excerptTokens": [
                 {
@@ -19055,11 +19035,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#locationName:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#locationName:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#locationName:member",
               "docComment": "/**\n * The name of the region.\n */\n",
               "excerptTokens": [
                 {
@@ -19085,11 +19061,7 @@
             },
             {
               "kind": "PropertySignature",
-<<<<<<< HEAD
-              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location#provisioningState:member",
-=======
-              "canonicalReference": "cosmos-db-resource-manager!Location_2#provisioningState:member",
->>>>>>> main
+              "canonicalReference": "@msinternal/cosmos-db-resource-manager!Location_2#provisioningState:member",
               "docComment": "/**\n * The status of the Cosmos DB account at the time the operation was called. The status can be one of following. 'Creating' – the Cosmos DB account is being created. When an account is in Creating state, only properties that are specified as input for the Create Cosmos DB account operation are returned. 'Succeeded' – the Cosmos DB account is active for use. 'Updating' – the Cosmos DB account is being updated. 'Deleting' – the Cosmos DB account is being deleted. 'Failed' – the Cosmos DB account failed creation. 'DeletionFailed' – the Cosmos DB account deletion failed. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
