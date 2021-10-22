@@ -1,9 +1,163 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.7.11",
-    "schemaVersion": 1003,
-    "oldestForwardsCompatibleVersion": 1001
+    "toolVersion": "7.18.16",
+    "schemaVersion": 1004,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      }
+    }
   },
   "kind": "Package",
   "canonicalReference": "arm-package-policy-2019-09!",
@@ -47,6 +201,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "error",
               "propertyTypeTokenRange": {
@@ -118,6 +273,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "info",
               "propertyTypeTokenRange": {
@@ -143,6 +299,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -189,6 +346,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "additionalInfo",
               "propertyTypeTokenRange": {
@@ -214,6 +372,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "code",
               "propertyTypeTokenRange": {
@@ -244,6 +403,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "details",
               "propertyTypeTokenRange": {
@@ -269,6 +429,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "message",
               "propertyTypeTokenRange": {
@@ -294,6 +455,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "target",
               "propertyTypeTokenRange": {
@@ -335,6 +497,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "principalId",
               "propertyTypeTokenRange": {
@@ -360,6 +523,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tenantId",
               "propertyTypeTokenRange": {
@@ -386,6 +550,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -750,6 +915,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "allowedValues",
               "propertyTypeTokenRange": {
@@ -780,6 +946,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "defaultValue",
               "propertyTypeTokenRange": {
@@ -806,6 +973,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "metadata",
               "propertyTypeTokenRange": {
@@ -832,6 +1000,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -915,6 +1084,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -940,6 +1110,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "displayName",
               "propertyTypeTokenRange": {
@@ -1011,6 +1182,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -1052,6 +1224,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -1077,6 +1250,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "displayName",
               "propertyTypeTokenRange": {
@@ -1103,6 +1277,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "enforcementMode",
               "propertyTypeTokenRange": {
@@ -1128,6 +1303,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -1154,6 +1330,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "identity",
               "propertyTypeTokenRange": {
@@ -1179,6 +1356,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -1209,6 +1387,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "metadata",
               "propertyTypeTokenRange": {
@@ -1234,6 +1413,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -1259,6 +1439,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "notScopes",
               "propertyTypeTokenRange": {
@@ -1293,6 +1474,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -1318,6 +1500,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyDefinitionId",
               "propertyTypeTokenRange": {
@@ -1343,6 +1526,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "scope",
               "propertyTypeTokenRange": {
@@ -1369,6 +1553,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "sku",
               "propertyTypeTokenRange": {
@@ -1394,6 +1579,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -1435,6 +1621,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -1465,6 +1652,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -1554,6 +1742,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -1650,6 +1839,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1738,6 +1928,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1818,6 +2009,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -1899,6 +2091,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1979,6 +2172,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -2044,6 +2238,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -2118,6 +2313,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -2230,6 +2426,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 13,
                 "endIndex": 17
@@ -2331,6 +2528,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -2874,6 +3072,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -2959,6 +3158,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -3044,6 +3244,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -3129,6 +3330,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -3214,6 +3416,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -3299,6 +3502,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -3447,6 +3651,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "policyAssignments",
               "propertyTypeTokenRange": {
@@ -3474,6 +3679,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "policyDefinitions",
               "propertyTypeTokenRange": {
@@ -3501,6 +3707,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "policySetDefinitions",
               "propertyTypeTokenRange": {
@@ -3626,6 +3833,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "$host",
               "propertyTypeTokenRange": {
@@ -3652,6 +3860,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "apiVersion",
               "propertyTypeTokenRange": {
@@ -3678,6 +3887,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "subscriptionId",
               "propertyTypeTokenRange": {
@@ -3737,6 +3947,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "$host",
               "propertyTypeTokenRange": {
@@ -3762,6 +3973,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "apiVersion",
               "propertyTypeTokenRange": {
@@ -3787,6 +3999,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "endpoint",
               "propertyTypeTokenRange": {
@@ -3833,6 +4046,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -3858,6 +4072,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "displayName",
               "propertyTypeTokenRange": {
@@ -3883,6 +4098,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -3913,6 +4129,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "metadata",
               "propertyTypeTokenRange": {
@@ -3938,6 +4155,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "mode",
               "propertyTypeTokenRange": {
@@ -3963,6 +4181,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -3997,6 +4216,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -4027,6 +4247,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyRule",
               "propertyTypeTokenRange": {
@@ -4053,6 +4274,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyType",
               "propertyTypeTokenRange": {
@@ -4078,6 +4300,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -4119,6 +4342,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "additionalMetadataId",
               "propertyTypeTokenRange": {
@@ -4144,6 +4368,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "category",
               "propertyTypeTokenRange": {
@@ -4169,6 +4394,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -4194,6 +4420,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "displayName",
               "propertyTypeTokenRange": {
@@ -4219,6 +4446,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -4260,6 +4488,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -4290,6 +4519,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -4331,6 +4561,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "groupNames",
               "propertyTypeTokenRange": {
@@ -4365,6 +4596,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -4390,6 +4622,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "policyDefinitionId",
               "propertyTypeTokenRange": {
@@ -4415,6 +4648,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyDefinitionReferenceId",
               "propertyTypeTokenRange": {
@@ -4496,6 +4730,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -4593,6 +4828,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -4671,6 +4907,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -4743,6 +4980,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -4823,6 +5061,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -4904,6 +5143,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -4984,6 +5224,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -5049,6 +5290,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -5107,6 +5349,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -5173,6 +5416,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -5946,6 +6190,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -5971,6 +6216,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "displayName",
               "propertyTypeTokenRange": {
@@ -5996,6 +6242,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -6026,6 +6273,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "metadata",
               "propertyTypeTokenRange": {
@@ -6051,6 +6299,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -6085,6 +6334,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -6115,6 +6365,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyDefinitionGroups",
               "propertyTypeTokenRange": {
@@ -6145,6 +6396,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyDefinitions",
               "propertyTypeTokenRange": {
@@ -6171,6 +6423,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "policyType",
               "propertyTypeTokenRange": {
@@ -6196,6 +6449,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -6237,6 +6491,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -6267,6 +6522,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -6348,6 +6604,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -6445,6 +6702,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -6523,6 +6781,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -6595,6 +6854,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -6675,6 +6935,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -6756,6 +7017,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -6836,6 +7098,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -6901,6 +7164,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -6959,6 +7223,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -7025,6 +7290,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -7798,6 +8064,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -7823,6 +8090,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tier",
               "propertyTypeTokenRange": {

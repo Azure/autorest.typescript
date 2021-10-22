@@ -3060,7 +3060,7 @@ export declare type HyperVGenerationType = string;
 export declare type HyperVGenerationTypes = string;
 
 /** The source user image virtual hard disk. The virtual hard disk will be copied before being attached to the virtual machine. If SourceImage is provided, the destination virtual hard drive must not exist. */
-export declare type Image = Resource & {
+declare type Image_2 = Resource & {
     /** The source virtual machine from which Image is created. */
     sourceVirtualMachine?: SubResource;
     /** Specifies the storage settings for the virtual machine disks. */
@@ -3073,6 +3073,7 @@ export declare type Image = Resource & {
     /** Gets the HyperVGenerationType of the VirtualMachine created from the image */
     hyperVGeneration?: HyperVGenerationTypes;
 };
+export { Image_2 as Image }
 
 /** Describes a data disk. */
 export declare type ImageDataDisk = ImageDisk & {
@@ -3109,7 +3110,7 @@ export declare interface ImageDiskReference {
 /** The List Image operation response. */
 export declare interface ImageListResult {
     /** The list of Images. */
-    value: Image[];
+    value: Image_2[];
     /** The uri to fetch the next page of Images. Call ListNext() with this to fetch the next page of Images. */
     nextLink?: string;
 }
@@ -3156,13 +3157,13 @@ export declare interface Images {
      * @param resourceGroupName The name of the resource group.
      * @param options The options parameters.
      */
-    listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image>;
+    listByResourceGroup(resourceGroupName: string, options?: ImagesListByResourceGroupOptionalParams): PagedAsyncIterableIterator<Image_2>;
     /**
      * Gets the list of Images in the subscription. Use nextLink property in the response to get the next
      * page of Images. Do this till nextLink is null to fetch all the Images.
      * @param options The options parameters.
      */
-    list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image>;
+    list(options?: ImagesListOptionalParams): PagedAsyncIterableIterator<Image_2>;
     /**
      * Create or update an image.
      * @param resourceGroupName The name of the resource group.
@@ -3170,7 +3171,7 @@ export declare interface Images {
      * @param parameters Parameters supplied to the Create Image operation.
      * @param options The options parameters.
      */
-    beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<ImagesCreateOrUpdateResponse>, ImagesCreateOrUpdateResponse>>;
     /**
      * Create or update an image.
      * @param resourceGroupName The name of the resource group.
@@ -3178,7 +3179,7 @@ export declare interface Images {
      * @param parameters Parameters supplied to the Create Image operation.
      * @param options The options parameters.
      */
-    beginCreateOrUpdateAndWait(resourceGroupName: string, imageName: string, parameters: Image, options?: ImagesCreateOrUpdateOptionalParams): Promise<ImagesCreateOrUpdateResponse>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, imageName: string, parameters: Image_2, options?: ImagesCreateOrUpdateOptionalParams): Promise<ImagesCreateOrUpdateResponse>;
     /**
      * Update an image.
      * @param resourceGroupName The name of the resource group.
@@ -3227,7 +3228,7 @@ export declare interface ImagesCreateOrUpdateOptionalParams extends coreClient.O
 }
 
 /** Contains response data for the createOrUpdate operation. */
-export declare type ImagesCreateOrUpdateResponse = Image;
+export declare type ImagesCreateOrUpdateResponse = Image_2;
 
 /** Optional parameters. */
 export declare interface ImagesDeleteOptionalParams extends coreClient.OperationOptions {
@@ -3244,7 +3245,7 @@ export declare interface ImagesGetOptionalParams extends coreClient.OperationOpt
 }
 
 /** Contains response data for the get operation. */
-export declare type ImagesGetResponse = Image;
+export declare type ImagesGetResponse = Image_2;
 
 /** Optional parameters. */
 export declare interface ImagesListByResourceGroupNextOptionalParams extends coreClient.OperationOptions {
@@ -3293,7 +3294,7 @@ export declare interface ImagesUpdateOptionalParams extends coreClient.Operation
 }
 
 /** Contains response data for the update operation. */
-export declare type ImagesUpdateResponse = Image;
+export declare type ImagesUpdateResponse = Image_2;
 
 /** The source user image virtual hard disk. Only tags may be updated. */
 export declare type ImageUpdate = UpdateResource & {

@@ -1,9 +1,163 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.7.11",
-    "schemaVersion": 1003,
-    "oldestForwardsCompatibleVersion": 1001
+    "toolVersion": "7.18.16",
+    "schemaVersion": 1004,
+    "oldestForwardsCompatibleVersion": 1001,
+    "tsdocConfig": {
+      "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+      "noStandardTags": true,
+      "tagDefinitions": [
+        {
+          "tagName": "@alpha",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@beta",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@defaultValue",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@decorator",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@deprecated",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@eventProperty",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@example",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@experimental",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@inheritDoc",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@internal",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@label",
+          "syntaxKind": "inline"
+        },
+        {
+          "tagName": "@link",
+          "syntaxKind": "inline",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@override",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@packageDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@param",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@privateRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@public",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@readonly",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@remarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@returns",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@sealed",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@see",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@throws",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@typeParam",
+          "syntaxKind": "block",
+          "allowMultiple": true
+        },
+        {
+          "tagName": "@virtual",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@betaDocumentation",
+          "syntaxKind": "modifier"
+        },
+        {
+          "tagName": "@internalRemarks",
+          "syntaxKind": "block"
+        },
+        {
+          "tagName": "@preapproved",
+          "syntaxKind": "modifier"
+        }
+      ],
+      "supportForTags": {
+        "@alpha": true,
+        "@beta": true,
+        "@defaultValue": true,
+        "@decorator": true,
+        "@deprecated": true,
+        "@eventProperty": true,
+        "@example": true,
+        "@experimental": true,
+        "@inheritDoc": true,
+        "@internal": true,
+        "@label": true,
+        "@link": true,
+        "@override": true,
+        "@packageDocumentation": true,
+        "@param": true,
+        "@privateRemarks": true,
+        "@public": true,
+        "@readonly": true,
+        "@remarks": true,
+        "@returns": true,
+        "@sealed": true,
+        "@see": true,
+        "@throws": true,
+        "@typeParam": true,
+        "@virtual": true,
+        "@betaDocumentation": true,
+        "@internalRemarks": true,
+        "@preapproved": true
+      }
+    }
   },
   "kind": "Package",
   "canonicalReference": "arm-package-resources-2019-08!",
@@ -46,6 +200,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "apiVersions",
               "propertyTypeTokenRange": {
@@ -71,6 +226,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "path",
               "propertyTypeTokenRange": {
@@ -112,6 +268,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -142,6 +299,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "paths",
               "propertyTypeTokenRange": {
@@ -183,6 +341,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -208,6 +367,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceName",
               "propertyTypeTokenRange": {
@@ -233,6 +393,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceType",
               "propertyTypeTokenRange": {
@@ -300,6 +461,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "error",
               "propertyTypeTokenRange": {
@@ -341,6 +503,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "clientId",
               "propertyTypeTokenRange": {
@@ -366,6 +529,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "principalId",
               "propertyTypeTokenRange": {
@@ -407,6 +571,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "detailLevel",
               "propertyTypeTokenRange": {
@@ -453,6 +618,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "dependsOn",
               "propertyTypeTokenRange": {
@@ -478,6 +644,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -503,6 +670,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceName",
               "propertyTypeTokenRange": {
@@ -528,6 +696,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceType",
               "propertyTypeTokenRange": {
@@ -569,6 +738,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -595,6 +765,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -641,6 +812,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "template",
               "propertyTypeTokenRange": {
@@ -682,6 +854,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -707,6 +880,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -732,6 +906,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -758,6 +933,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -783,6 +959,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -824,6 +1001,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provisioningState",
               "propertyTypeTokenRange": {
@@ -865,6 +1043,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -895,6 +1074,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -961,6 +1141,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -986,6 +1167,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "operationId",
               "propertyTypeTokenRange": {
@@ -1012,6 +1194,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -1053,6 +1236,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "duration",
               "propertyTypeTokenRange": {
@@ -1078,6 +1262,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provisioningState",
               "propertyTypeTokenRange": {
@@ -1104,6 +1289,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "request",
               "propertyTypeTokenRange": {
@@ -1130,6 +1316,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "response",
               "propertyTypeTokenRange": {
@@ -1155,6 +1342,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "serviceRequestId",
               "propertyTypeTokenRange": {
@@ -1180,6 +1368,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "statusCode",
               "propertyTypeTokenRange": {
@@ -1210,6 +1399,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "statusMessage",
               "propertyTypeTokenRange": {
@@ -1236,6 +1426,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "targetResource",
               "propertyTypeTokenRange": {
@@ -1262,6 +1453,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "timestamp",
               "propertyTypeTokenRange": {
@@ -1350,6 +1542,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -1453,6 +1646,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -1556,6 +1750,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -1651,6 +1846,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1739,6 +1935,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1827,6 +2024,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -1915,6 +2113,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -2003,6 +2202,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -2083,6 +2283,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -2156,6 +2357,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -2522,6 +2724,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -2607,6 +2810,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -2692,6 +2896,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -2777,6 +2982,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -2862,6 +3068,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -2947,6 +3154,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -3032,6 +3240,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -3117,6 +3326,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -3202,6 +3412,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -3287,6 +3498,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -3359,6 +3571,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -3389,6 +3602,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -3431,6 +3645,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "debugSetting",
               "propertyTypeTokenRange": {
@@ -3457,6 +3672,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "mode",
               "propertyTypeTokenRange": {
@@ -3483,6 +3699,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "onErrorDeployment",
               "propertyTypeTokenRange": {
@@ -3513,6 +3730,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -3539,6 +3757,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parametersLink",
               "propertyTypeTokenRange": {
@@ -3569,6 +3788,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "template",
               "propertyTypeTokenRange": {
@@ -3595,6 +3815,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "templateLink",
               "propertyTypeTokenRange": {
@@ -3636,6 +3857,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "correlationId",
               "propertyTypeTokenRange": {
@@ -3662,6 +3884,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "debugSetting",
               "propertyTypeTokenRange": {
@@ -3692,6 +3915,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "dependencies",
               "propertyTypeTokenRange": {
@@ -3717,6 +3941,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "duration",
               "propertyTypeTokenRange": {
@@ -3743,6 +3968,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "mode",
               "propertyTypeTokenRange": {
@@ -3769,6 +3995,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "onErrorDeployment",
               "propertyTypeTokenRange": {
@@ -3799,6 +4026,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "outputs",
               "propertyTypeTokenRange": {
@@ -3829,6 +4057,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parameters",
               "propertyTypeTokenRange": {
@@ -3855,6 +4084,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "parametersLink",
               "propertyTypeTokenRange": {
@@ -3885,6 +4115,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "providers",
               "propertyTypeTokenRange": {
@@ -3910,6 +4141,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provisioningState",
               "propertyTypeTokenRange": {
@@ -3940,6 +4172,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "template",
               "propertyTypeTokenRange": {
@@ -3966,6 +4199,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "templateLink",
               "propertyTypeTokenRange": {
@@ -3992,6 +4226,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "timestamp",
               "propertyTypeTokenRange": {
@@ -4108,6 +4343,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -4212,6 +4448,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -4343,6 +4580,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -4447,6 +4685,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -4578,6 +4817,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -4682,6 +4922,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -4805,6 +5046,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 17
@@ -4894,6 +5136,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -5010,6 +5253,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 17
@@ -5099,6 +5343,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -5196,6 +5441,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -5275,6 +5521,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -5372,6 +5619,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -5451,6 +5699,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -5548,6 +5797,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -5627,6 +5877,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -5716,6 +5967,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 11
@@ -5780,6 +6032,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -5862,6 +6115,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 11
@@ -5926,6 +6180,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -6043,6 +6298,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -6147,6 +6403,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -6270,6 +6527,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 17
@@ -6359,6 +6617,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -6444,6 +6703,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 6,
                 "endIndex": 10
@@ -6516,6 +6776,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -6595,6 +6856,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -6674,6 +6936,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -6745,6 +7008,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -6809,6 +7073,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -6881,6 +7146,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -6960,6 +7226,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -7039,6 +7306,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -7110,6 +7378,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -7174,6 +7443,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -7255,6 +7525,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7343,6 +7614,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7431,6 +7703,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7511,6 +7784,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -7584,6 +7858,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -7665,6 +7940,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7753,6 +8029,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7841,6 +8118,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -7921,6 +8199,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -7994,6 +8273,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -8067,6 +8347,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -8140,6 +8421,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -8205,6 +8487,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -8263,6 +8546,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -8329,6 +8613,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -8419,6 +8704,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -8523,6 +8809,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -8627,6 +8914,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -8723,6 +9011,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -8812,6 +9101,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -9279,6 +9569,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9304,6 +9595,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9389,6 +9681,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9414,6 +9707,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9499,6 +9793,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9524,6 +9819,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9609,6 +9905,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9634,6 +9931,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9719,6 +10017,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9744,6 +10043,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9829,6 +10129,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9854,6 +10155,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9913,6 +10215,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -9938,6 +10241,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -9997,6 +10301,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -10022,6 +10327,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -10081,6 +10387,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -10106,6 +10413,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -10165,6 +10473,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -10190,6 +10499,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -10839,6 +11149,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -10864,6 +11175,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -10949,6 +11261,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -10974,6 +11287,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11059,6 +11373,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11084,6 +11399,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11169,6 +11485,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11194,6 +11511,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11279,6 +11597,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11304,6 +11623,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11389,6 +11709,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11414,6 +11735,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11499,6 +11821,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11524,6 +11847,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11609,6 +11933,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11634,6 +11959,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11719,6 +12045,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11744,6 +12071,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -11829,6 +12157,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -11854,6 +12183,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -12221,6 +12551,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -12246,6 +12577,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "retryAfter",
               "propertyTypeTokenRange": {
@@ -12300,6 +12632,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -12325,6 +12658,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -12397,6 +12731,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -12422,6 +12757,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "retryAfter",
               "propertyTypeTokenRange": {
@@ -12476,6 +12812,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -12501,6 +12838,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -12574,6 +12912,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "error",
               "propertyTypeTokenRange": {
@@ -12600,6 +12939,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -12641,6 +12981,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -12667,6 +13008,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -12748,6 +13090,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resultFormat",
               "propertyTypeTokenRange": {
@@ -12794,6 +13137,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "info",
               "propertyTypeTokenRange": {
@@ -12819,6 +13163,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -12865,6 +13210,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "additionalInfo",
               "propertyTypeTokenRange": {
@@ -12890,6 +13236,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "code",
               "propertyTypeTokenRange": {
@@ -12920,6 +13267,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "details",
               "propertyTypeTokenRange": {
@@ -12945,6 +13293,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "message",
               "propertyTypeTokenRange": {
@@ -12970,6 +13319,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "target",
               "propertyTypeTokenRange": {
@@ -13011,6 +13361,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "options",
               "propertyTypeTokenRange": {
@@ -13036,6 +13387,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resources",
               "propertyTypeTokenRange": {
@@ -13191,6 +13543,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceType",
               "propertyTypeTokenRange": {
@@ -13216,6 +13569,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagname",
               "propertyTypeTokenRange": {
@@ -13241,6 +13595,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagvalue",
               "propertyTypeTokenRange": {
@@ -13287,6 +13642,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "content",
               "propertyTypeTokenRange": {
@@ -13328,6 +13684,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "principalId",
               "propertyTypeTokenRange": {
@@ -13353,6 +13710,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tenantId",
               "propertyTypeTokenRange": {
@@ -13379,6 +13737,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -13413,6 +13772,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "userAssignedIdentities",
               "propertyTypeTokenRange": {
@@ -13454,6 +13814,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "deploymentName",
               "propertyTypeTokenRange": {
@@ -13480,6 +13841,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -13521,6 +13883,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "deploymentName",
               "propertyTypeTokenRange": {
@@ -13546,6 +13909,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provisioningState",
               "propertyTypeTokenRange": {
@@ -13572,6 +13936,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -13639,6 +14004,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "display",
               "propertyTypeTokenRange": {
@@ -13664,6 +14030,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -13705,6 +14072,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -13730,6 +14098,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "operation",
               "propertyTypeTokenRange": {
@@ -13755,6 +14124,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provider",
               "propertyTypeTokenRange": {
@@ -13780,6 +14150,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resource",
               "propertyTypeTokenRange": {
@@ -13821,6 +14192,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -13851,6 +14223,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -13915,6 +14288,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -14084,6 +14458,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "contentVersion",
               "propertyTypeTokenRange": {
@@ -14109,6 +14484,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "uri",
               "propertyTypeTokenRange": {
@@ -14150,6 +14526,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -14175,6 +14552,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "product",
               "propertyTypeTokenRange": {
@@ -14200,6 +14578,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "promotionCode",
               "propertyTypeTokenRange": {
@@ -14225,6 +14604,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "publisher",
               "propertyTypeTokenRange": {
@@ -14250,6 +14630,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "version",
               "propertyTypeTokenRange": {
@@ -14316,6 +14697,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -14341,6 +14723,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "namespace",
               "propertyTypeTokenRange": {
@@ -14366,6 +14749,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "registrationPolicy",
               "propertyTypeTokenRange": {
@@ -14391,6 +14775,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "registrationState",
               "propertyTypeTokenRange": {
@@ -14421,6 +14806,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceTypes",
               "propertyTypeTokenRange": {
@@ -14462,6 +14848,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -14492,6 +14879,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -14538,6 +14926,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "aliases",
               "propertyTypeTokenRange": {
@@ -14563,6 +14952,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "apiVersions",
               "propertyTypeTokenRange": {
@@ -14588,6 +14978,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "capabilities",
               "propertyTypeTokenRange": {
@@ -14613,6 +15004,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "locations",
               "propertyTypeTokenRange": {
@@ -14638,6 +15030,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -14663,6 +15056,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceType",
               "propertyTypeTokenRange": {
@@ -14735,6 +15129,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -14808,6 +15203,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -14873,6 +15269,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -14931,6 +15328,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -14997,6 +15395,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -15070,6 +15469,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -15141,6 +15541,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15226,6 +15627,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15311,6 +15713,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15336,6 +15739,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -15421,6 +15825,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15446,6 +15851,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -15531,6 +15937,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15556,6 +15963,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -15641,6 +16049,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -15666,6 +16075,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -15856,6 +16266,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -15881,6 +16292,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -15906,6 +16318,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -15931,6 +16344,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tags",
               "propertyTypeTokenRange": {
@@ -15956,6 +16370,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -15997,6 +16412,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -16022,6 +16438,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -16047,6 +16464,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "managedBy",
               "propertyTypeTokenRange": {
@@ -16072,6 +16490,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -16098,6 +16517,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -16123,6 +16543,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tags",
               "propertyTypeTokenRange": {
@@ -16148,6 +16569,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -16190,6 +16612,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "error",
               "propertyTypeTokenRange": {
@@ -16220,6 +16643,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "template",
               "propertyTypeTokenRange": {
@@ -16261,6 +16685,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagName",
               "propertyTypeTokenRange": {
@@ -16286,6 +16711,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagValue",
               "propertyTypeTokenRange": {
@@ -16327,6 +16753,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -16357,6 +16784,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -16398,6 +16826,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "managedBy",
               "propertyTypeTokenRange": {
@@ -16423,6 +16852,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -16449,6 +16879,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -16474,6 +16905,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tags",
               "propertyTypeTokenRange": {
@@ -16515,6 +16947,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provisioningState",
               "propertyTypeTokenRange": {
@@ -16596,6 +17029,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 11
@@ -16660,6 +17094,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -16769,6 +17204,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 17
@@ -16858,6 +17294,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -16929,6 +17366,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -17011,6 +17449,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -17091,6 +17530,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -17156,6 +17596,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -17231,6 +17672,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -17401,6 +17843,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -17426,6 +17869,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -17485,6 +17929,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -17510,6 +17955,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -17654,6 +18100,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -17679,6 +18126,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -17764,6 +18212,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -17789,6 +18238,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -17945,6 +18395,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -17975,6 +18426,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -18092,6 +18544,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "deploymentOperations",
               "propertyTypeTokenRange": {
@@ -18119,6 +18572,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "deployments",
               "propertyTypeTokenRange": {
@@ -18146,6 +18600,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "operations",
               "propertyTypeTokenRange": {
@@ -18173,6 +18628,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "providers",
               "propertyTypeTokenRange": {
@@ -18200,6 +18656,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "resourceGroups",
               "propertyTypeTokenRange": {
@@ -18227,6 +18684,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "resources",
               "propertyTypeTokenRange": {
@@ -18254,6 +18712,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "tags",
               "propertyTypeTokenRange": {
@@ -18379,6 +18838,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "$host",
               "propertyTypeTokenRange": {
@@ -18405,6 +18865,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "apiVersion",
               "propertyTypeTokenRange": {
@@ -18431,6 +18892,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "subscriptionId",
               "propertyTypeTokenRange": {
@@ -18490,6 +18952,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "$host",
               "propertyTypeTokenRange": {
@@ -18515,6 +18978,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "apiVersion",
               "propertyTypeTokenRange": {
@@ -18540,6 +19004,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "endpoint",
               "propertyTypeTokenRange": {
@@ -18586,6 +19051,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "description",
               "propertyTypeTokenRange": {
@@ -18611,6 +19077,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "operation",
               "propertyTypeTokenRange": {
@@ -18636,6 +19103,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "provider",
               "propertyTypeTokenRange": {
@@ -18661,6 +19129,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "publisher",
               "propertyTypeTokenRange": {
@@ -18686,6 +19155,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resource",
               "propertyTypeTokenRange": {
@@ -18834,6 +19304,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 17,
                 "endIndex": 27
@@ -18998,6 +19469,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 17,
                 "endIndex": 21
@@ -19157,6 +19629,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -19261,6 +19734,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -19397,6 +19871,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 15,
                 "endIndex": 21
@@ -19536,6 +20011,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 15,
                 "endIndex": 17
@@ -19661,6 +20137,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -19740,6 +20217,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -19838,6 +20316,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -19918,6 +20397,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -20074,6 +20554,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 17,
                 "endIndex": 27
@@ -20238,6 +20719,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 17,
                 "endIndex": 21
@@ -20397,6 +20879,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 19
@@ -20501,6 +20984,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 9,
                 "endIndex": 13
@@ -20606,6 +21090,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 13
@@ -20686,6 +21171,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -20797,6 +21283,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 15,
                 "endIndex": 17
@@ -20904,6 +21391,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -21024,6 +21512,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 15,
                 "endIndex": 19
@@ -21140,6 +21629,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -21212,6 +21702,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -21278,6 +21769,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -21415,6 +21907,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -21440,6 +21933,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -21525,6 +22019,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -21550,6 +22045,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -21635,6 +22131,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -21660,6 +22157,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -21719,6 +22217,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -21744,6 +22243,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -21921,6 +22421,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -21946,6 +22447,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -21971,6 +22473,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -22056,6 +22559,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -22081,6 +22585,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -22106,6 +22611,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -22191,6 +22697,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -22216,6 +22723,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -22241,6 +22749,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -22326,6 +22835,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "expand",
               "propertyTypeTokenRange": {
@@ -22351,6 +22861,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "filter",
               "propertyTypeTokenRange": {
@@ -22376,6 +22887,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "top",
               "propertyTypeTokenRange": {
@@ -22448,6 +22960,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resources",
               "propertyTypeTokenRange": {
@@ -22473,6 +22986,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "targetResourceGroup",
               "propertyTypeTokenRange": {
@@ -22527,6 +23041,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -22552,6 +23067,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -22611,6 +23127,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -22636,6 +23153,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -22721,6 +23239,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -22746,6 +23265,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -22831,6 +23351,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resumeFrom",
               "propertyTypeTokenRange": {
@@ -22856,6 +23377,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "updateIntervalInMs",
               "propertyTypeTokenRange": {
@@ -22902,6 +23424,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "location",
               "propertyTypeTokenRange": {
@@ -22928,6 +23451,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "properties",
               "propertyTypeTokenRange": {
@@ -22969,6 +23493,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "capacity",
               "propertyTypeTokenRange": {
@@ -22994,6 +23519,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "family",
               "propertyTypeTokenRange": {
@@ -23019,6 +23545,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "model",
               "propertyTypeTokenRange": {
@@ -23044,6 +23571,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "name",
               "propertyTypeTokenRange": {
@@ -23069,6 +23597,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "size",
               "propertyTypeTokenRange": {
@@ -23094,6 +23623,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tier",
               "propertyTypeTokenRange": {
@@ -23135,6 +23665,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -23176,6 +23707,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "type",
               "propertyTypeTokenRange": {
@@ -23201,6 +23733,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -23243,6 +23776,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "count",
               "propertyTypeTokenRange": {
@@ -23268,6 +23802,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -23293,6 +23828,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagName",
               "propertyTypeTokenRange": {
@@ -23323,6 +23859,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "values",
               "propertyTypeTokenRange": {
@@ -23395,6 +23932,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 9
@@ -23476,6 +24014,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 11
@@ -23547,6 +24086,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 5,
                 "endIndex": 7
@@ -23619,6 +24159,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 7,
                 "endIndex": 9
@@ -23691,6 +24232,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "returnTypeTokenRange": {
                 "startIndex": 3,
                 "endIndex": 7
@@ -24044,6 +24586,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "nextLink",
               "propertyTypeTokenRange": {
@@ -24074,6 +24617,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "value",
               "propertyTypeTokenRange": {
@@ -24116,6 +24660,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "count",
               "propertyTypeTokenRange": {
@@ -24141,6 +24686,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -24166,6 +24712,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "tagValue",
               "propertyTypeTokenRange": {
@@ -24207,6 +24754,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "id",
               "propertyTypeTokenRange": {
@@ -24232,6 +24780,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceName",
               "propertyTypeTokenRange": {
@@ -24257,6 +24806,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "resourceType",
               "propertyTypeTokenRange": {
@@ -24298,6 +24848,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "minifiedTemplate",
               "propertyTypeTokenRange": {
@@ -24323,6 +24874,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "templateHash",
               "propertyTypeTokenRange": {
@@ -24364,6 +24916,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "contentVersion",
               "propertyTypeTokenRange": {
@@ -24389,6 +24942,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "uri",
               "propertyTypeTokenRange": {
@@ -24435,6 +24989,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "after",
               "propertyTypeTokenRange": {
@@ -24465,6 +25020,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "before",
               "propertyTypeTokenRange": {
@@ -24491,6 +25047,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "changeType",
               "propertyTypeTokenRange": {
@@ -24521,6 +25078,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "delta",
               "propertyTypeTokenRange": {
@@ -24546,6 +25104,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "resourceId",
               "propertyTypeTokenRange": {
@@ -24592,6 +25151,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "changes",
               "propertyTypeTokenRange": {
@@ -24618,6 +25178,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "error",
               "propertyTypeTokenRange": {
@@ -24643,6 +25204,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "status",
               "propertyTypeTokenRange": {
@@ -24689,6 +25251,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "after",
               "propertyTypeTokenRange": {
@@ -24719,6 +25282,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "before",
               "propertyTypeTokenRange": {
@@ -24749,6 +25313,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": true,
               "releaseTag": "Public",
               "name": "children",
               "propertyTypeTokenRange": {
@@ -24774,6 +25339,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "path",
               "propertyTypeTokenRange": {
@@ -24800,6 +25366,7 @@
                   "text": ";"
                 }
               ],
+              "isOptional": false,
               "releaseTag": "Public",
               "name": "propertyChangeType",
               "propertyTypeTokenRange": {
