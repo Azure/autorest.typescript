@@ -30,7 +30,7 @@ async function check_tree() {
   // there are non committed changes so we need to handle
   // stout
   const messages = await onExit(
-    spawn("git", ["diff", "--staged", "--ignore-space-at-eol", "--compact-summary"])
+    spawn("git", ["diff", "--staged", "--compact-summary"])
   );
 
   if (messages.length !== 0) {
@@ -38,7 +38,7 @@ async function check_tree() {
     // run git diff again, this time forwarding the stout to present
     // a readable hint to the user
     await onExit(
-      spawn("git", ["diff", "--staged", "--ignore-space-at-eol"], {
+      spawn("git", ["diff", "--staged", "--compact-summary"], {
         stdio: [process.stdin, process.stdout, process.stderr]
       })
     );
