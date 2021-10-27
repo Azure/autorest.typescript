@@ -750,6 +750,42 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  domainservices: {
+    swaggerOrConfig: "test/integration/swaggers/domainservices.md",
+    clientName: "DomainServicesClient",
+    packageName: "domainservices",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  deviceprovisioningservice: {
+    swaggerOrConfig: "test/integration/swaggers/deviceprovisioningservices.md",
+    clientName: "DeviceProvisioningClient",
+    packageName: "deviceprovisioning",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  datafactory: {
+    swaggerOrConfig: "test/integration/swaggers/datafactory.md",
+    clientName: "DataFactoryClient",
+    packageName: "datafactory",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  healthcareapis: {
+    swaggerOrConfig: "test/integration/swaggers/healthcareapis.md",
+    clientName: "HealthCareApisClient",
+    packageName: "healthcareapis",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   useragentcorev1: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV1Client",

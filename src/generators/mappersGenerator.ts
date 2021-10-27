@@ -19,7 +19,7 @@ import {
   MapperConstraints
 } from "@azure/core-http";
 import { ModelProperties } from "../transforms/mapperTransforms";
-import { keys, isEmpty, isString, isNil, isEqual } from "lodash";
+import { keys, isEmpty, isString, isNil, isEqual, List } from "lodash";
 import { getStringForValue, MapperTypes } from "../utils/valueHelpers";
 import { PolymorphicObjectDetails, ObjectKind } from "../models/modelDetails";
 import { logger } from "../utils/logger";
@@ -57,14 +57,89 @@ export function generateMappers(
   mappersFile.fixUnusedIdentifiers();
 }
 
+function getParents(
+  mapperParentMap: Map<string, Array<string>>,
+  parent: string
+) {
+  const list: Array<string> = new Array<string>();
+  const parents = mapperParentMap.get(parent);
+
+  if (!parents) {
+    parents!.forEach(pnt => {
+      if (!list.includes(pnt)) {
+        getParents(mapperParentMap, pnt).forEach(str => list.push(str));
+      }
+    });
+  }
+
+  if (!list.includes(parent)) {
+    list.push(parent);
+  }
+
+  return list;
+}
+
+function traverse(mapperParentMap: Map<string, Array<string>>) {
+  const list: Array<string> = new Array<string>();
+  mapperParentMap.forEach((value: string[], key: string) => {
+    value.forEach(parent => {
+      if (!list.includes(parent)) {
+        getParents(mapperParentMap, parent).forEach(str => list.push(str));
+      }
+    });
+    if (!list.includes(key)) {
+      list.push(key);
+    }
+  });
+  return list;
+}
+
 /**
  * This function writes to the mappers.ts file all the mappers to be used by @azure/core-http for serialization
  */
 function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
+  const mapperParentMap: Map<string, Array<string>> = new Map<
+    string,
+    Array<string>
+  >();
+  const mapperPositionMap: Map<string, number> = new Map<string, number>();
+  let position = 0;
+  mappers.forEach(mapper => {
+    const compositeMapper = mapper as CompositeMapper;
+    const mapperClassName = compositeMapper.type.className;
+    if (!mapperClassName) return;
+    mapperPositionMap.set(mapperClassName, position);
+    position += 1;
+    let listOfParents = mapperParentMap.get(mapperClassName);
+    if (!listOfParents) {
+      listOfParents = new Array<string>();
+    }
+
+    if (
+      compositeMapper.type.modelProperties &&
+      compositeMapper.type.modelProperties.parentsRefs
+    ) {
+      const { parentsRefs } = (compositeMapper.type.modelProperties ||
+        {}) as ModelProperties;
+
+      if (parentsRefs) {
+        (parentsRefs as string[]).forEach(parentsRef => {
+          listOfParents!.push(parentsRef);
+        });
+      }
+    }
+
+    mapperParentMap.set(mapperClassName, listOfParents);
+  });
+
+  const modifiedList = traverse(mapperParentMap);
   const { useCoreV2 } = getAutorestOptions();
   const generatedMappers: Map<string, Mapper> = new Map<string, Mapper>();
 
-  mappers.forEach(mapper => {
+  modifiedList.forEach(name => {
+    const arrayIndex = mapperPositionMap.get(name) || 0;
+    const mapper = mappers[arrayIndex];
+
     const mapperClassName = (mapper as CompositeMapper).type.className;
     if (!mapperClassName) {
       logger.warning(`Expected a mapper with a className, skipping generation`);
@@ -102,6 +177,19 @@ function writeMappers(sourceFile: SourceFile, { mappers }: ClientDetails) {
       declarationKind: VariableDeclarationKind.Const,
       leadingTrivia: writer => writer.blankLine()
     });
+
+    const { polymorphicDiscriminator } = mapper.type as CompositeMapperType;
+
+    if (polymorphicDiscriminator) {
+      if (
+        isString(polymorphicDiscriminator) &&
+        `${polymorphicDiscriminator}`.startsWith(mapper.serializedName!)
+      ) {
+        sourceFile.addStatements(
+          `${polymorphicDiscriminator}=${polymorphicDiscriminator};`
+        );
+      }
+    }
 
     // Keep track of the mapper we just generated
     generatedMappers.set(mapperClassName, mapper);
@@ -178,7 +266,7 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
       .write("type:")
       .block(() => {
         // Write tipe properties for the current mapper
-        writeMapperType(writer, mapper.type, parents);
+        writeMapperType(writer, mapper, parents);
       });
   });
 }
@@ -189,14 +277,16 @@ export function writeMapper(writer: CodeBlockWriter, mapper: Mapper) {
  */
 function writeMapperType(
   writer: CodeBlockWriter,
-  mapperType: MapperType,
+  mapper: Mapper,
   parents: string[]
 ) {
+  const mapperType = mapper.type;
+
   if (isSequenceMapperType(mapperType)) {
     return writeSequenceMapperType(writer, mapperType);
   }
 
-  return writeCompositeMapperType(writer, mapperType, parents);
+  return writeCompositeMapperType(writer, mapper, parents);
 }
 
 /**
@@ -213,9 +303,10 @@ function isSequenceMapperType(
  */
 function writeCompositeMapperType(
   writer: CodeBlockWriter,
-  mapperType: MapperType,
+  mapper: Mapper,
   parents: string[]
 ) {
+  const mapperType = mapper.type;
   const {
     modelProperties,
     polymorphicDiscriminator,
@@ -223,7 +314,14 @@ function writeCompositeMapperType(
   } = mapperType as CompositeMapperType;
   writeObjectProps(restType, writer);
   // Write type properties that need special handling
-  writePolymorphicDiscriminator(writer, polymorphicDiscriminator);
+  if (polymorphicDiscriminator) {
+    if (
+      !isString(polymorphicDiscriminator) ||
+      !`${polymorphicDiscriminator}`.startsWith(mapper.serializedName!)
+    ) {
+      writePolymorphicDiscriminator(writer, polymorphicDiscriminator);
+    }
+  }
   writeModelProperties(writer, parents, modelProperties);
 }
 
