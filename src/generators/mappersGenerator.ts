@@ -356,7 +356,9 @@ function writeMapperContraints(
     .block(() => {
       if (Pattern) {
         writer.write(
-          `Pattern: new RegExp("${Pattern.source.replace(/\\/g, "\\\\")}"), `
+          `Pattern: new RegExp("${Pattern.source
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')}"), `
         );
       }
 
