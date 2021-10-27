@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Long-running Operation for AutoRest
 
-[Package (NPM)](https://www.npmjs.com/package/paging-service) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/paging-service) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

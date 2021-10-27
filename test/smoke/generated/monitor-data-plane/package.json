@@ -1,5 +1,5 @@
 {
-  "name": "monitor-data-plane",
+  "name": "@msinternal/monitor-data-plane",
   "sdk-type": "client",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MonitorClient.",

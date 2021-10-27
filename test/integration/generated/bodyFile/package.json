@@ -1,5 +1,5 @@
 {
-  "name": "body-file",
+  "name": "@msinternal/body-file",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyFileClient.",

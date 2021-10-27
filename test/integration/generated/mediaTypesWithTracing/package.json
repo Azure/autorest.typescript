@@ -1,5 +1,5 @@
 {
-  "name": "media-types-service-tracing",
+  "name": "@msinternal/media-types-service-tracing",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MediaTypesWithTracingClient.",

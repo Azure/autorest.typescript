@@ -1,5 +1,5 @@
 {
-  "name": "body-complex-tracing",
+  "name": "@msinternal/body-complex-tracing",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyComplexWithTracing.",

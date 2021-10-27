@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Testing non-string enums.
 
-[Package (NPM)](https://www.npmjs.com/package/non-string-num) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/non-string-num) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

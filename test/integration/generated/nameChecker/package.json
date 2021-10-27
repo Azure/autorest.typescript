@@ -1,5 +1,5 @@
 {
-  "name": "@azure/search-documents",
+  "name": "@msinternal/search-documents",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SearchClient.",

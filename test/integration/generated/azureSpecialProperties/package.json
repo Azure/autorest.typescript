@@ -1,5 +1,5 @@
 {
-  "name": "azure-special-properties",
+  "name": "@msinternal/azure-special-properties",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for AzureSpecialPropertiesClient.",

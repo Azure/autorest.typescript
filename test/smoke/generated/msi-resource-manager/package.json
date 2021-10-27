@@ -1,5 +1,5 @@
 {
-  "name": "msi-resource-manager",
+  "name": "@msinternal/msi-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ManagedServiceIdentityClient.",

@@ -1,5 +1,5 @@
 {
-  "name": "model-flattening",
+  "name": "@msinternal/model-flattening",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ModelFlatteningClient.",

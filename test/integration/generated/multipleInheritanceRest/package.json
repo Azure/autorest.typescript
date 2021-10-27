@@ -1,5 +1,5 @@
 {
-  "name": "multiple-inheritance-rest",
+  "name": "@msinternal/multiple-inheritance-rest",
   "sdk-type": "mgmt",
   "version": "1.0.0-preview1",
   "description": "",

@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Monitor Management Client
 
-[Package (NPM)](https://www.npmjs.com/package/monitor-data-plane) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/monitor-data-plane) |
 
 ## Getting started
 

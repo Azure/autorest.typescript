@@ -1,5 +1,5 @@
 {
-  "name": "odata-discriminator",
+  "name": "@msinternal/odata-discriminator",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ODataDiscriminatorClient.",

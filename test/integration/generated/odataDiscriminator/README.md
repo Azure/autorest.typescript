@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Client that can be used to manage and query indexes and documents, as well as manage other resources, on a search service.
 
-[Package (NPM)](https://www.npmjs.com/package/odata-discriminator) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/odata-discriminator) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
