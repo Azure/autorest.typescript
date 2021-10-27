@@ -157,7 +157,6 @@ export interface ResourceLinksListAtSubscriptionOptionalParams extends coreClien
 // @public
 export type ResourceLinksListAtSubscriptionResponse = ResourceLinkResult;
 
-
 // (No @packageDocumentation comment for this package)
 
 ```

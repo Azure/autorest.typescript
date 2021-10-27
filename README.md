@@ -55,7 +55,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ```yaml
 version: 3.4.5
 use-extension:
-  "@autorest/modelerfour": "4.19.3"
+  "@autorest/modelerfour": "4.21.3"
 
 modelerfour:
   # this runs a pre-namer step to clean up names

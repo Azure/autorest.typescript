@@ -16,7 +16,7 @@
   "module": "./dist-esm/index.js",
   "types": "./types/body-time.d.ts",
   "devDependencies": {
-    "@microsoft/api-extractor": "7.7.11",
+    "@microsoft/api-extractor": "^7.18.11",
     "@rollup/plugin-commonjs": "11.0.2",
     "@rollup/plugin-json": "^4.0.0",
     "@rollup/plugin-multi-entry": "^3.0.0",
@@ -52,7 +52,7 @@
     "types/*"
   ],
   "scripts": {
-    "build": "tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+    "build": "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
     "minify": "uglifyjs -c -m --comments --source-map \"content='./dist/index.js.map'\" -o ./dist/index.min.js ./dist/index.js",
     "prepack": "npm run build",
     "pack": "npm pack 2>&1",
@@ -68,7 +68,6 @@
     "execute:samples": "echo skipped",
     "format": "echo skipped",
     "test": "echo skipped",
-    "prebuild": "echo skipped",
     "test:node": "echo skipped",
     "test:browser": "echo skipped",
     "unit-test": "echo skipped",

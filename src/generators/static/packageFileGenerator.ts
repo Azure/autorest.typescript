@@ -61,7 +61,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     scripts: {
       test: 'echo "Error: no test specified" && exit 1',
-      build: "tsc --build && npm run extract-api",
+      build: "npm run clean && tsc --build && npm run extract-api",
       "extract-api": "mkdirp ./review && api-extractor run --local",
       pack: "npm pack 2>&1",
       lint: "echo skipped",
@@ -74,7 +74,6 @@ function restLevelPackage(packageDetails: PackageDetails) {
       "check-format": "echo skipped",
       "execute:samples": "echo skipped",
       format: "echo skipped",
-      prebuild: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
       "unit-test": "echo skipped",
@@ -104,7 +103,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     },
     devDependencies: {
       autorest: "latest",
-      "@microsoft/api-extractor": "^7.13.2",
+      "@microsoft/api-extractor": "^7.18.11",
       "@types/node": "^14.14.22",
       dotenv: "^8.2.0",
       prettier: "^2.2.1",
@@ -154,15 +153,15 @@ function regularAutorestPackage(
     dependencies: {
       ...(hasLro && { "@azure/core-lro": "^2.2.0" }),
       ...(hasLro && { "@azure/abort-controller": "^1.0.0" }),
-      ...(hasAsyncIterators && { "@azure/core-paging": "^1.1.1" }),
-      ...(!useCoreV2 && { "@azure/core-http": "^1.2.4" }),
+      ...(hasAsyncIterators && { "@azure/core-paging": "^1.2.0" }),
+      ...(!useCoreV2 && { "@azure/core-http": "^2.0.0" }),
       ...(useCoreV2 && { "@azure/core-client": "^1.0.0" }),
       ...(useCoreV2 && addCredentials && { "@azure/core-auth": "^1.3.0" }),
       ...(useCoreV2 && {
         "@azure/core-rest-pipeline": "^1.1.0"
       }),
       ...(tracingInfo && {
-        "@azure/core-tracing": "1.0.0-preview.11",
+        "@azure/core-tracing": "1.0.0-preview.13",
         "@opentelemetry/api": "^0.10.2"
       }),
 
@@ -174,7 +173,7 @@ function regularAutorestPackage(
     module: `./dist-esm/index.js`,
     types: `./types/${packageDetails.nameWithoutScope}.d.ts`,
     devDependencies: {
-      "@microsoft/api-extractor": "7.7.11",
+      "@microsoft/api-extractor": "^7.18.11",
       "@rollup/plugin-commonjs": "11.0.2",
       "@rollup/plugin-json": "^4.0.0",
       "@rollup/plugin-multi-entry": "^3.0.0",
@@ -214,7 +213,7 @@ function regularAutorestPackage(
     ],
     scripts: {
       build:
-        "tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
+        "npm run clean && tsc && rollup -c 2>&1 && npm run minify && mkdirp ./review && npm run extract-api",
       minify: `uglifyjs -c -m --comments --source-map "content='./dist/index.js.map'" -o ./dist/index.min.js ./dist/index.js`,
       prepack: "npm run build",
       pack: "npm pack 2>&1",
@@ -230,7 +229,6 @@ function regularAutorestPackage(
       "execute:samples": "echo skipped",
       format: "echo skipped",
       test: "echo skipped",
-      prebuild: "echo skipped",
       "test:node": "echo skipped",
       "test:browser": "echo skipped",
       "unit-test": "echo skipped",

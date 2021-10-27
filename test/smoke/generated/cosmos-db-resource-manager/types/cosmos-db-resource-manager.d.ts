@@ -763,7 +763,7 @@ export declare type DatabaseAccountCreateUpdateParameters = ARMResourcePropertie
     /** The consistency policy for the Cosmos DB account. */
     consistencyPolicy?: ConsistencyPolicy;
     /** An array that contains the georeplication locations enabled for the Cosmos DB account. */
-    locations: Location[];
+    locations: Location_2[];
     /** The offer type for the database */
     databaseAccountOfferType: "Standard";
     /** Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces. */
@@ -826,17 +826,17 @@ export declare type DatabaseAccountGetResults = ARMResourceProperties & {
      * An array that contains the write location for the Cosmos DB account.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly writeLocations?: Location[];
+    readonly writeLocations?: Location_2[];
     /**
      * An array that contains of the read locations enabled for the Cosmos DB account.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly readLocations?: Location[];
+    readonly readLocations?: Location_2[];
     /**
      * An array that contains all of the locations enabled for the Cosmos DB account.
      * NOTE: This property will not be serialized. It can only be populated by the server.
      */
-    readonly locations?: Location[];
+    readonly locations?: Location_2[];
     /**
      * An array that contains the regions ordered by their failover priorities.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1296,7 +1296,7 @@ export declare interface DatabaseAccountUpdateParameters {
     /** The consistency policy for the Cosmos DB account. */
     consistencyPolicy?: ConsistencyPolicy;
     /** An array that contains the georeplication locations enabled for the Cosmos DB account. */
-    locations?: Location[];
+    locations?: Location_2[];
     /** Cosmos DB Firewall Support: This value specifies the set of IP addresses or IP address ranges in CIDR form to be included as the allowed list of client IPs for a given database account. IP addresses/ranges must be comma separated and must not contain any spaces. */
     ipRangeFilter?: string;
     /** Flag to indicate whether to enable/disable Virtual Network ACL rules. */
@@ -1951,7 +1951,7 @@ export declare enum KnownUnitType {
 }
 
 /** A region in which the Azure Cosmos DB database account is deployed. */
-export declare interface Location {
+declare interface Location_2 {
     /**
      * The unique identifier of the region within the database account. Example: &lt;accountName&gt;-&lt;locationName&gt;.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1974,6 +1974,7 @@ export declare interface Location {
     /** Flag to indicate whether or not this region is an AvailabilityZone region */
     isZoneRedundant?: boolean;
 }
+export { Location_2 as Location }
 
 /** Metric data */
 export declare interface Metric {

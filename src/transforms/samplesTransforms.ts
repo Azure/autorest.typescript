@@ -7,6 +7,7 @@ import { getAutorestOptions } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { transformOperation, transformOperationGroup } from "./operationTransforms";
 import { calculateMethodName } from "../generators/utils/operationsUtils";
+import { isNumber } from "lodash";
 
 export async function transformSamples(
     codeModel: CodeModel,
@@ -112,7 +113,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
             for(const prop in exampleValue.properties) {
                 const propName = normalizeName(prop, NameType.Property);
                 let propRetValue: string;
-                if (propName.indexOf('/') > -1) {
+                if (propName.indexOf('/') > -1 || propName.match(/^\d/)) {
                     propRetValue = `"${propName}": ` + getParameterAssignment(exampleValue.properties[prop]);
                 } else {
                     propRetValue = `${propName}: ` + getParameterAssignment(exampleValue.properties[prop]);
