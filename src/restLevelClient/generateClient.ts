@@ -29,6 +29,7 @@ import { NameType, normalizeName } from "../utils/nameUtils";
 import { isConstantSchema, getElementType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
+import { ParameterPath } from "@azure/core-http";
 
 type PathParameter = { name: string; schema: Schema, description?: string };
 
@@ -79,6 +80,10 @@ export function generatePathFirstClient(model: CodeModel, project: Project) {
               description: languageMetadata.description
             };
           }) || [];
+      const path: string = operation.requests?.[0].protocol.http?.path;
+      pathParameters.sort(function compare(a: PathParameter, b: PathParameter) {
+        return path.indexOf(a.name) - path.indexOf(b.name);
+      })
 
       for (const request of operation.requests || []) {
         const path: string = (request.protocol.http?.path as string) || "";

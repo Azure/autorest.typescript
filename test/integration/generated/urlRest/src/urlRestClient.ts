@@ -965,29 +965,29 @@ export interface Routes {
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/globalStringQuery/pathItemStringQuery/localStringQuery' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
-    pathItemStringPath: string,
     globalStringPath: string,
+    pathItemStringPath: string,
     localStringPath: string
   ): PathItemsGetAllWithValues;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/null/pathItemStringQuery/localStringQuery' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
-    pathItemStringPath: string,
     globalStringPath: string,
+    pathItemStringPath: string,
     localStringPath: string
   ): PathItemsGetGlobalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/null/pathItemStringQuery/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
-    pathItemStringPath: string,
     globalStringPath: string,
+    pathItemStringPath: string,
     localStringPath: string
   ): PathItemsGetGlobalAndLocalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/globalStringQuery/null/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
-    pathItemStringPath: string,
     globalStringPath: string,
+    pathItemStringPath: string,
     localStringPath: string
   ): PathItemsGetLocalPathItemQueryNull;
 }
