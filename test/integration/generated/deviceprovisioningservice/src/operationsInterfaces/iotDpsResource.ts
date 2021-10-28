@@ -203,12 +203,12 @@ export interface IotDpsResource {
   /**
    * Check if a provisioning service name is available. This will validate if the name is syntactically
    * valid and if the name is usable
-   * @param argumentsParameter Set the name parameter in the OperationInputs structure to the name of the
-   *                           provisioning service to check.
+   * @param argumentsParam Set the name parameter in the OperationInputs structure to the name of the
+   *                       provisioning service to check.
    * @param options The options parameters.
    */
   checkProvisioningServiceNameAvailability(
-    argumentsParameter: OperationInputs,
+    argumentsParam: OperationInputs,
     options?: IotDpsResourceCheckProvisioningServiceNameAvailabilityOptionalParams
   ): Promise<IotDpsResourceCheckProvisioningServiceNameAvailabilityResponse>;
   /**

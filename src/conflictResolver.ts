@@ -2,11 +2,9 @@ import { ClientDetails } from "./models/clientDetails";
 import { ParameterDetails } from "./models/parameterDetails";
 
 const RESERVED_MEMBER_NAMES = ["pipeline"];
-const RESERVED_PARAMETER_NAMES = ["arguments"];
 
 export function conflictResolver(clientDetails: ClientDetails) {
   resolveConflictWithOperationGroupNames(clientDetails);
-  resolveConflictWithParameterNames(clientDetails);
 }
 
 function resolveConflictWithOperationGroupNames(clientDetails: ClientDetails) {
@@ -31,25 +29,6 @@ function resolveConflictWithOperationGroupNames(clientDetails: ClientDetails) {
       }
     }
   });
-}
-
-function resolveConflictWithParameterNames(clientDetails: ClientDetails) {
-  clientDetails.parameters.forEach(parameter => {
-    const isConflict: boolean = checkParameterNamesForConflict(parameter);
-
-    if (isConflict) {
-      parameter.name = `${parameter.name}Parameter`;
-      parameter.nameRef = `${parameter.nameRef}Parameter`;
-      parameter.parameterPath = `${parameter.parameterPath}Parameter`;
-    }
-  });
-}
-
-function checkParameterNamesForConflict(parameter: ParameterDetails): boolean {
-  if (RESERVED_PARAMETER_NAMES.includes(parameter.name.toLowerCase())) {
-    return true;
-  }
-  return false;
 }
 
 function checkForConflictWithDefinitions(

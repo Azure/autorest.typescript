@@ -683,16 +683,16 @@ export class IotDpsResourceImpl implements IotDpsResource {
   /**
    * Check if a provisioning service name is available. This will validate if the name is syntactically
    * valid and if the name is usable
-   * @param argumentsParameter Set the name parameter in the OperationInputs structure to the name of the
-   *                           provisioning service to check.
+   * @param argumentsParam Set the name parameter in the OperationInputs structure to the name of the
+   *                       provisioning service to check.
    * @param options The options parameters.
    */
   checkProvisioningServiceNameAvailability(
-    argumentsParameter: OperationInputs,
+    argumentsParam: OperationInputs,
     options?: IotDpsResourceCheckProvisioningServiceNameAvailabilityOptionalParams
   ): Promise<IotDpsResourceCheckProvisioningServiceNameAvailabilityResponse> {
     return this.client.sendOperationRequest(
-      { argumentsParameter, options },
+      { argumentsParam, options },
       checkProvisioningServiceNameAvailabilityOperationSpec
     );
   }
@@ -1284,7 +1284,7 @@ const checkProvisioningServiceNameAvailabilityOperationSpec: coreClient.Operatio
       bodyMapper: Mappers.ErrorDetails
     }
   },
-  requestBody: Parameters.argumentsParameter,
+  requestBody: Parameters.argumentsParam,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept, Parameters.contentType],

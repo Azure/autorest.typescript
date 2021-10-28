@@ -274,8 +274,8 @@ export const asyncinfo: OperationQueryParameter = {
   }
 };
 
-export const argumentsParameter: OperationParameter = {
-  parameterPath: "argumentsParameter",
+export const argumentsParam: OperationParameter = {
+  parameterPath: "argumentsParam",
   mapper: OperationInputsMapper
 };
 
