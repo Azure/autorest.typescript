@@ -45,6 +45,7 @@
         "@azure/logger": "^1.0.0",
         "@opentelemetry/api": "^0.10.2",
         "@types/lodash": "^4.14.149",
+        "cd": "^0.3.3",
         "fs-extra": "^10.0.0",
         "handlebars": "^4.7.7",
         "lodash": "^4.17.21",

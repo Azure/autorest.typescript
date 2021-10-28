@@ -8,6 +8,7 @@ import {
 import {
   InterfaceDeclarationStructure,
   Project,
+  PropertySignatureStructure,
   SourceFile,
   StructureKind
 } from "ts-morph";
@@ -99,7 +100,7 @@ export function generateParameterInterfaces(
 
       // Add interfaces for body and query parameters
       parametersFile.addInterfaces([
-        ...(bodyParameterDefinition ? [bodyParameterDefinition] : []),
+        ...(bodyParameterDefinition ?? []),
         ...(queryParameterDefinitions ?? []),
         ...(headerParameterDefinitions ? [headerParameterDefinitions] : []),
         ...(contentTypeParameterDefinition
@@ -120,42 +121,42 @@ export function generateParameterInterfaces(
       if (headerParameterDefinitions !== undefined) {
         hasHeaders = true;
       }
+
+      // Add Operation parameters type alias which is composed of the types we generated above
+      // plus the common type RequestParameters
+      if (requestCount > 1) {
+        parametersFile.addTypeAlias({
+          name: topParamName,
+          isExported: true,
+          type: [...subParamNames].join(" | ")
+        });
+      }
     }
 
-    // Add Operation parameters type alias which is composed of the types we generated above
-    // plus the common type RequestParameters
-    if (requestCount > 1) {
-      parametersFile.addTypeAlias({
-        name: topParamName,
-        isExported: true,
-        type: [...subParamNames].join(" | ")
-      });
+    if (hasHeaders) {
+      parametersFile.addImportDeclarations([
+        {
+          namedImports: ["RawHttpHeadersInput"],
+          moduleSpecifier: "@azure/core-rest-pipeline"
+        }
+      ]);
     }
-  }
 
-  if (hasHeaders) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: ["RawHttpHeadersInput"],
-        moduleSpecifier: "@azure/core-rest-pipeline"
+        namedImports: ["RequestParameters"],
+        moduleSpecifier: "@azure-rest/core-client"
       }
     ]);
-  }
 
-  parametersFile.addImportDeclarations([
-    {
-      namedImports: ["RequestParameters"],
-      moduleSpecifier: "@azure-rest/core-client"
+    if (hasInputModels(model)) {
+      parametersFile.addImportDeclarations([
+        {
+          namedImports: [...importedModels],
+          moduleSpecifier: "./models"
+        }
+      ]);
     }
-  ]);
-
-  if (hasInputModels(model)) {
-    parametersFile.addImportDeclarations([
-      {
-        namedImports: [...importedModels],
-        moduleSpecifier: "./models"
-      }
-    ]);
   }
 }
 
@@ -242,36 +243,79 @@ function buildBodyParametersDefinition(
   importedModels: Set<string>,
   internalReferences: Set<string>,
   requestIndex: number
-): InterfaceDeclarationStructure | undefined {
+): InterfaceDeclarationStructure[] {
   const bodyParameters = parameters.filter(p => p.protocol.http?.in === "body");
   if (!bodyParameters.length) {
-    return undefined;
+    return [];
   }
 
   const nameSuffix = requestIndex > 0 ? `${requestIndex}` : "";
   const bodyParameterInterfaceName = `${operationName}BodyParam${nameSuffix}`;
-  // There is only one body parameter can't be more than one so we can safely take the first
-  const bodySignature = getPropertySignature(
-    bodyParameters[0],
-    schemaUsage,
-    importedModels
-  );
-
   internalReferences.add(bodyParameterInterfaceName);
 
-  return {
-    isExported: true,
-    kind: StructureKind.Interface,
-    name: bodyParameterInterfaceName,
-    properties: [
-      {
-        docs: bodySignature.docs,
-        name: "body",
-        type: bodySignature.type,
-        hasQuestionToken: bodySignature.hasQuestionToken
+  // In case of formData we'd get multiple properties in body marked as partialBody
+  if (
+    bodyParameters.length > 1 &&
+    !bodyParameters.some(p => !p.isPartialBody)
+  ) {
+    let allOptionalParts = true;
+    const propertiesDefinitions: PropertySignatureStructure[] = [];
+    for (const param of bodyParameters) {
+      if (param.required) {
+        allOptionalParts = false;
       }
-    ]
-  };
+
+      propertiesDefinitions.push(
+        getPropertySignature(param, schemaUsage, importedModels)
+      );
+    }
+
+    const formBodyName = `${operationName}FormBody`;
+    const formBodyInterface: InterfaceDeclarationStructure = {
+      isExported: true,
+      kind: StructureKind.Interface,
+      name: formBodyName,
+      properties: propertiesDefinitions
+    };
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            name: "body",
+            type: formBodyName,
+            hasQuestionToken: allOptionalParts
+          }
+        ]
+      },
+      formBodyInterface
+    ];
+  } else {
+    const bodySignature = getPropertySignature(
+      bodyParameters[0],
+      schemaUsage,
+      importedModels
+    );
+
+    return [
+      {
+        isExported: true,
+        kind: StructureKind.Interface,
+        name: bodyParameterInterfaceName,
+        properties: [
+          {
+            docs: bodySignature.docs,
+            name: "body",
+            type: bodySignature.type,
+            hasQuestionToken: bodySignature.hasQuestionToken
+          }
+        ]
+      }
+    ];
+  }
 }
 
 /**
