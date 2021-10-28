@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The Managed Service Identity Client.
 
-[Package (NPM)](https://www.npmjs.com/package/msi-resource-manager) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/msi-resource-manager) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

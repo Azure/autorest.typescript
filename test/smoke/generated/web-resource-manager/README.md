@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 WebSite Management Client
 
-[Package (NPM)](https://www.npmjs.com/package/web-resource-manager) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/web-resource-manager) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

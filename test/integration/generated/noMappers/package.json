@@ -1,5 +1,5 @@
 {
-  "name": "no-mappers",
+  "name": "@msinternal/no-mappers",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NoMappersClient.",

@@ -1,5 +1,5 @@
 {
-  "name": "resources",
+  "name": "@msinternal/resources",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ResourcesClient.",

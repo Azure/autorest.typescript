@@ -1,5 +1,5 @@
 {
-  "name": "xml-service",
+  "name": "@msinternal/xml-service",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for XmlServiceClient.",

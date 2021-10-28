@@ -160,18 +160,18 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-policy-2019-09!",
+  "canonicalReference": "@msinternal/arm-package-policy-2019-09!",
   "docComment": "",
-  "name": "arm-package-policy-2019-09",
+  "name": "@msinternal/arm-package-policy-2019-09",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-policy-2019-09!",
+      "canonicalReference": "@msinternal/arm-package-policy-2019-09!",
       "name": "",
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!CloudError:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!CloudError:interface",
           "docComment": "/**\n * An error response from a policy operation.\n */\n",
           "excerptTokens": [
             {
@@ -184,7 +184,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!CloudError#error:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!CloudError#error:member",
               "docComment": "/**\n * The resource management error response.\n */\n",
               "excerptTokens": [
                 {
@@ -194,7 +194,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!ErrorResponse:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -214,7 +214,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!EnforcementMode:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!EnforcementMode:type",
           "docComment": "/**\n * Defines values for EnforcementMode. \\ {@link KnownEnforcementMode} can be used interchangeably with EnforcementMode, this enum contains the known values that the service supports. ### Known values supported by the service **Default**: The policy effect is enforced during resource creation or update. \\ **DoNotEnforce**: The policy effect is not enforced during resource creation or update.\n */\n",
           "excerptTokens": [
             {
@@ -239,7 +239,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorAdditionalInfo:interface",
           "docComment": "/**\n * The resource management error additional info.\n */\n",
           "excerptTokens": [
             {
@@ -252,7 +252,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo#info:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorAdditionalInfo#info:member",
               "docComment": "/**\n * The additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -283,7 +283,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorAdditionalInfo#type:member",
               "docComment": "/**\n * The additional info type. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -312,7 +312,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!ErrorResponse:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse:interface",
           "docComment": "/**\n * The resource management error response.\n */\n",
           "excerptTokens": [
             {
@@ -325,7 +325,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#additionalInfo:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse#additionalInfo:member",
               "docComment": "/**\n * The error additional info. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -335,7 +335,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorAdditionalInfo",
-                  "canonicalReference": "arm-package-policy-2019-09!ErrorAdditionalInfo:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorAdditionalInfo:interface"
                 },
                 {
                   "kind": "Content",
@@ -356,7 +356,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#code:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse#code:member",
               "docComment": "/**\n * The error code. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -382,7 +382,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#details:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse#details:member",
               "docComment": "/**\n * The error details. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -392,7 +392,7 @@
                 {
                   "kind": "Reference",
                   "text": "ErrorResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!ErrorResponse:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse:interface"
                 },
                 {
                   "kind": "Content",
@@ -413,7 +413,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#message:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse#message:member",
               "docComment": "/**\n * The error message. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -439,7 +439,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ErrorResponse#target:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ErrorResponse#target:member",
               "docComment": "/**\n * The error target. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -468,7 +468,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!Identity:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!Identity:interface",
           "docComment": "/**\n * Identity for the resource.\n */\n",
           "excerptTokens": [
             {
@@ -481,7 +481,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!Identity#principalId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!Identity#principalId:member",
               "docComment": "/**\n * The principal ID of the resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -507,7 +507,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!Identity#tenantId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!Identity#tenantId:member",
               "docComment": "/**\n * The tenant ID of the resource identity. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -533,7 +533,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!Identity#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!Identity#type:member",
               "docComment": "/**\n * The identity type. This is the only required field when adding a system assigned identity to a resource.\n */\n",
               "excerptTokens": [
                 {
@@ -543,7 +543,7 @@
                 {
                   "kind": "Reference",
                   "text": "ResourceIdentityType",
-                  "canonicalReference": "arm-package-policy-2019-09!ResourceIdentityType:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ResourceIdentityType:type"
                 },
                 {
                   "kind": "Content",
@@ -563,7 +563,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode:enum",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownEnforcementMode:enum",
           "docComment": "/**\n * Known values of {@link EnforcementMode} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -576,7 +576,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode.Default:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownEnforcementMode.Default:member",
               "docComment": "/**\n * The policy effect is enforced during resource creation or update.\n */\n",
               "excerptTokens": [
                 {
@@ -597,7 +597,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownEnforcementMode.DoNotEnforce:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownEnforcementMode.DoNotEnforce:member",
               "docComment": "/**\n * The policy effect is not enforced during resource creation or update.\n */\n",
               "excerptTokens": [
                 {
@@ -620,7 +620,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-policy-2019-09!KnownParameterType:enum",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType:enum",
           "docComment": "/**\n * Known values of {@link ParameterType} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -633,7 +633,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Array:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.Array:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -654,7 +654,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Boolean:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.Boolean:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -675,7 +675,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.DateTime:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.DateTime:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -696,7 +696,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Float:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.Float:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -717,7 +717,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Integer:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.Integer:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -738,7 +738,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.Object:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.Object:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -759,7 +759,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownParameterType.String:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownParameterType.String:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -782,7 +782,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType:enum",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownPolicyType:enum",
           "docComment": "/**\n * Known values of {@link PolicyType} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -795,7 +795,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.BuiltIn:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownPolicyType.BuiltIn:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -816,7 +816,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.Custom:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownPolicyType.Custom:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -837,7 +837,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.NotSpecified:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownPolicyType.NotSpecified:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -858,7 +858,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-policy-2019-09!KnownPolicyType.Static:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!KnownPolicyType.Static:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -881,7 +881,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue:interface",
           "docComment": "/**\n * The definition of a parameter that can be provided to the policy.\n */\n",
           "excerptTokens": [
             {
@@ -894,7 +894,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue#allowedValues:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue#allowedValues:member",
               "docComment": "/**\n * The allowed values for the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -925,7 +925,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue#defaultValue:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue#defaultValue:member",
               "docComment": "/**\n * The default value for the parameter if no value is provided.\n */\n",
               "excerptTokens": [
                 {
@@ -956,7 +956,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue#metadata:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue#metadata:member",
               "docComment": "/**\n * General metadata for the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -966,7 +966,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterDefinitionsValueMetadata",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:interface"
                 },
                 {
                   "kind": "Content",
@@ -983,7 +983,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue#type:member",
               "docComment": "/**\n * The data type of the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -993,7 +993,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterType",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterType:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterType:type"
                 },
                 {
                   "kind": "Content",
@@ -1013,7 +1013,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:interface",
           "docComment": "/**\n * General metadata for the parameter.\n */\n",
           "excerptTokens": [
             {
@@ -1026,7 +1026,7 @@
           "members": [
             {
               "kind": "IndexSignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:index(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValueMetadata:index(1)",
               "docComment": "/**\n * Describes unknown properties. The value of an unknown property can be of \"any\" type.\n */\n",
               "excerptTokens": [
                 {
@@ -1068,7 +1068,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValueMetadata#description:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValueMetadata#description:member",
               "docComment": "/**\n * The description of the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -1094,7 +1094,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValueMetadata#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValueMetadata#displayName:member",
               "docComment": "/**\n * The display name for the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -1123,7 +1123,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!ParameterType:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterType:type",
           "docComment": "/**\n * Defines values for ParameterType. \\ {@link KnownParameterType} can be used interchangeably with ParameterType, this enum contains the known values that the service supports. ### Known values supported by the service **String** \\ **Array** \\ **Object** \\ **Boolean** \\ **Integer** \\ **Float** \\ **DateTime**\n */\n",
           "excerptTokens": [
             {
@@ -1148,7 +1148,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!ParameterValuesValue:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterValuesValue:interface",
           "docComment": "/**\n * The value of a parameter.\n */\n",
           "excerptTokens": [
             {
@@ -1161,7 +1161,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!ParameterValuesValue#value:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterValuesValue#value:member",
               "docComment": "/**\n * The value of the parameter.\n */\n",
               "excerptTokens": [
                 {
@@ -1195,7 +1195,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface",
           "docComment": "/**\n * The policy assignment.\n */\n",
           "excerptTokens": [
             {
@@ -1208,7 +1208,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#description:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#description:member",
               "docComment": "/**\n * This message will be part of response in case of policy violation.\n */\n",
               "excerptTokens": [
                 {
@@ -1234,7 +1234,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#displayName:member",
               "docComment": "/**\n * The display name of the policy assignment.\n */\n",
               "excerptTokens": [
                 {
@@ -1260,7 +1260,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#enforcementMode:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#enforcementMode:member",
               "docComment": "/**\n * The policy assignment enforcement mode. Possible values are Default and DoNotEnforce.\n */\n",
               "excerptTokens": [
                 {
@@ -1270,7 +1270,7 @@
                 {
                   "kind": "Reference",
                   "text": "EnforcementMode",
-                  "canonicalReference": "arm-package-policy-2019-09!EnforcementMode:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!EnforcementMode:type"
                 },
                 {
                   "kind": "Content",
@@ -1287,7 +1287,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#id:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#id:member",
               "docComment": "/**\n * The ID of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1313,7 +1313,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#identity:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#identity:member",
               "docComment": "/**\n * The managed identity associated with the policy assignment.\n */\n",
               "excerptTokens": [
                 {
@@ -1323,7 +1323,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identity",
-                  "canonicalReference": "arm-package-policy-2019-09!Identity:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!Identity:interface"
                 },
                 {
                   "kind": "Content",
@@ -1340,7 +1340,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#location:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#location:member",
               "docComment": "/**\n * The location of the policy assignment. Only required when utilizing managed identity.\n */\n",
               "excerptTokens": [
                 {
@@ -1366,7 +1366,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#metadata:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#metadata:member",
               "docComment": "/**\n * The policy assignment metadata. Metadata is an open ended object and is typically a collection of key value pairs.\n */\n",
               "excerptTokens": [
                 {
@@ -1397,7 +1397,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#name:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#name:member",
               "docComment": "/**\n * The name of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1423,7 +1423,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#notScopes:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#notScopes:member",
               "docComment": "/**\n * The policy's excluded scopes.\n */\n",
               "excerptTokens": [
                 {
@@ -1449,7 +1449,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#parameters:member",
               "docComment": "/**\n * The parameter values for the assigned policy rule. The keys are the parameter names.\n */\n",
               "excerptTokens": [
                 {
@@ -1463,7 +1463,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterValuesValue",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterValuesValue:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterValuesValue:interface"
                 },
                 {
                   "kind": "Content",
@@ -1484,7 +1484,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#policyDefinitionId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#policyDefinitionId:member",
               "docComment": "/**\n * The ID of the policy definition or policy set definition being assigned.\n */\n",
               "excerptTokens": [
                 {
@@ -1510,7 +1510,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#scope:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#scope:member",
               "docComment": "/**\n * The scope for the policy assignment.\n */\n",
               "excerptTokens": [
                 {
@@ -1536,7 +1536,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#sku:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#sku:member",
               "docComment": "/**\n * The policy sku. This property is optional, obsolete, and will be ignored.\n */\n",
               "excerptTokens": [
                 {
@@ -1546,7 +1546,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySku",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySku:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySku:interface"
                 },
                 {
                   "kind": "Content",
@@ -1563,7 +1563,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment#type:member",
               "docComment": "/**\n * The type of the policy assignment. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1592,7 +1592,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface",
           "docComment": "/**\n * List of policy assignments.\n */\n",
           "excerptTokens": [
             {
@@ -1605,7 +1605,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -1631,7 +1631,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult#value:member",
               "docComment": "/**\n * An array of policy assignments.\n */\n",
               "excerptTokens": [
                 {
@@ -1641,7 +1641,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -1665,7 +1665,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments:interface",
           "docComment": "/**\n * Interface representing a PolicyAssignments.\n */\n",
           "excerptTokens": [
             {
@@ -1678,7 +1678,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#create:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#create:member(1)",
               "docComment": "/**\n * This operation creates or updates a policy assignment with the given scope and name. Policy assignments apply to all resources contained within their scope. For example, when you assign a policy at resource group scope, that policy applies to all resources in the group.\n *\n * @param scope - The scope of the policy assignment. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'\n *\n * @param policyAssignmentName - The name of the policy assignment.\n *\n * @param parameters - Parameters for the policy assignment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1704,7 +1704,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -1713,7 +1713,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsCreateOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1731,7 +1731,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsCreateResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1783,7 +1783,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#createById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#createById:member(1)",
               "docComment": "/**\n * This operation creates or updates the policy assignment with the given ID. Policy assignments made on a scope apply to all resources contained in that scope. For example, when you assign a policy to a resource group that policy applies to all resources in the group. Policy assignment IDs have this format: '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'.\n *\n * @param policyAssignmentId - The ID of the policy assignment to create. Use the format '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.\n *\n * @param parameters - Parameters for policy assignment.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1801,7 +1801,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -1810,7 +1810,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsCreateByIdOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1828,7 +1828,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsCreateByIdResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1873,7 +1873,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#delete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#delete:member(1)",
               "docComment": "/**\n * This operation deletes a policy assignment, given its name and the scope it was created in. The scope of a policy assignment is the part of its ID preceding '/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.\n *\n * @param scope - The scope of the policy assignment. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'\n *\n * @param policyAssignmentName - The name of the policy assignment to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1899,7 +1899,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1917,7 +1917,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsDeleteResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1962,7 +1962,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#deleteById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#deleteById:member(1)",
               "docComment": "/**\n * This operation deletes the policy with the given ID. Policy assignment IDs have this format: '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'. Valid formats for {scope} are: '/providers/Microsoft.Management/managementGroups/{managementGroup}' (management group), '/subscriptions/{subscriptionId}' (subscription), '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' (resource group), or '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}' (resource).\n *\n * @param policyAssignmentId - The ID of the policy assignment to delete. Use the format '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1980,7 +1980,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsDeleteByIdOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1998,7 +1998,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsDeleteByIdResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2036,7 +2036,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#get:member(1)",
               "docComment": "/**\n * This operation retrieves a single policy assignment, given its name and the scope it was created at.\n *\n * @param scope - The scope of the policy assignment. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'\n *\n * @param policyAssignmentName - The name of the policy assignment to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2062,7 +2062,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsGetOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2080,7 +2080,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsGetResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2125,7 +2125,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#getById:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#getById:member(1)",
               "docComment": "/**\n * The operation retrieves the policy assignment with the given ID. Policy assignment IDs have this format: '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'.\n *\n * @param policyAssignmentId - The ID of the policy assignment to get. Use the format '{scope}/providers/Microsoft.Authorization/policyAssignments/{policyAssignmentName}'.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2143,7 +2143,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsGetByIdOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2161,7 +2161,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsGetByIdResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetByIdResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2199,7 +2199,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#list:member(1)",
               "docComment": "/**\n * This operation retrieves the list of all policy assignments associated with the given subscription that match the optional given $filter. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, the unfiltered list includes all policy assignments associated with the subscription, including those that apply directly or from management groups that contain the given subscription, as well as any applied to objects contained within the subscription. If $filter=atScope() is provided, the returned list includes all policy assignments that apply to the subscription, which is everything in the unfiltered list except those applied to objects contained within the subscription. If $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy assignments of the policy definition whose id is {value}.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2209,7 +2209,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsListOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2227,7 +2227,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -2258,7 +2258,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#listForManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#listForManagementGroup:member(1)",
               "docComment": "/**\n * This operation retrieves the list of all policy assignments applicable to the management group that match the given $filter. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter=atScope() is provided, the returned list includes all policy assignments that are assigned to the management group or the management group's ancestors. If $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy assignments of the policy definition whose id is {value} that apply to the management group.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param filter - The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. A filter is required when listing policy assignments at management group scope.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2284,7 +2284,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsListForManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2302,7 +2302,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -2347,7 +2347,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#listForResource:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#listForResource:member(1)",
               "docComment": "/**\n * This operation retrieves the list of all policy assignments associated with the specified resource in the given resource group and subscription that match the optional given $filter. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, the unfiltered list includes all policy assignments associated with the resource, including those that apply directly or from all containing scopes, as well as any applied to resources contained within the resource. If $filter=atScope() is provided, the returned list includes all policy assignments that apply to the resource, which is everything in the unfiltered list except those applied to resources contained within the resource. If $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy assignments of the policy definition whose id is {value} that apply to the resource. Three parameters plus the resource name are used to identify a specific resource. If the resource is not part of a parent resource (the more common case), the parent resource path should not be provided (or provided as ''). For example a web app could be specified as ({resourceProviderNamespace} == 'Microsoft.Web', {parentResourcePath} == '', {resourceType} == 'sites', {resourceName} == 'MyWebApp'). If the resource is part of a parent resource, then all parameters should be provided. For example a virtual machine DNS name could be specified as ({resourceProviderNamespace} == 'Microsoft.Compute', {parentResourcePath} == 'virtualMachines/MyVirtualMachine', {resourceType} == 'domainNames', {resourceName} == 'MyComputerName'). A convenient alternative to providing the namespace and type name separately is to provide both in the {resourceType} parameter, format: ({resourceProviderNamespace} == '', {parentResourcePath} == '', {resourceType} == 'Microsoft.Web/sites', {resourceName} == 'MyWebApp').\n *\n * @param resourceGroupName - The name of the resource group containing the resource.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider. For example, the namespace of a virtual machine is Microsoft.Compute (from Microsoft.Compute/virtualMachines)\n *\n * @param parentResourcePath - The parent resource path. Use empty string if there is none.\n *\n * @param resourceType - The resource type name. For example the type name of a web app is 'sites' (from Microsoft.Web/sites).\n *\n * @param resourceName - The name of the resource.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2397,7 +2397,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsListForResourceOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2415,7 +2415,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -2481,7 +2481,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments#listForResourceGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments#listForResourceGroup:member(1)",
               "docComment": "/**\n * This operation retrieves the list of all policy assignments associated with the given resource group in the given subscription that match the optional given $filter. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, the unfiltered list includes all policy assignments associated with the resource group, including those that apply directly or apply from containing scopes, as well as any applied to resources contained within the resource group. If $filter=atScope() is provided, the returned list includes all policy assignments that apply to the resource group, which is everything in the unfiltered list except those applied to resources contained within the resource group. If $filter=policyDefinitionId eq '{value}' is provided, the returned list includes all policy assignments of the policy definition whose id is {value} that apply to the resource group.\n *\n * @param resourceGroupName - The name of the resource group that contains policy assignments.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2499,7 +2499,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignmentsListForResourceGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2517,7 +2517,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignment",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
                 },
                 {
                   "kind": "Content",
@@ -2558,7 +2558,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2591,7 +2591,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateByIdResponse:type",
           "docComment": "/**\n * Contains response data for the createById operation.\n */\n",
           "excerptTokens": [
             {
@@ -2601,7 +2601,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2617,7 +2617,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2650,7 +2650,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsCreateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsCreateResponse:type",
           "docComment": "/**\n * Contains response data for the create operation.\n */\n",
           "excerptTokens": [
             {
@@ -2660,7 +2660,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2676,7 +2676,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2709,7 +2709,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteByIdResponse:type",
           "docComment": "/**\n * Contains response data for the deleteById operation.\n */\n",
           "excerptTokens": [
             {
@@ -2719,7 +2719,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2735,7 +2735,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2768,7 +2768,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsDeleteResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsDeleteResponse:type",
           "docComment": "/**\n * Contains response data for the delete operation.\n */\n",
           "excerptTokens": [
             {
@@ -2778,7 +2778,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2794,7 +2794,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetByIdOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2827,7 +2827,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetByIdResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetByIdResponse:type",
           "docComment": "/**\n * Contains response data for the getById operation.\n */\n",
           "excerptTokens": [
             {
@@ -2837,7 +2837,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2853,7 +2853,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2886,7 +2886,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -2896,7 +2896,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignment",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignment:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignment:interface"
             },
             {
               "kind": "Content",
@@ -2912,7 +2912,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2945,7 +2945,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listForManagementGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2955,7 +2955,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -2971,7 +2971,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3004,7 +3004,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listForManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -3014,7 +3014,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3030,7 +3030,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3056,7 +3056,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3090,7 +3090,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listForResourceGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3100,7 +3100,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3116,7 +3116,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3142,7 +3142,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3176,7 +3176,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listForResourceGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -3186,7 +3186,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3202,7 +3202,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3228,7 +3228,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3262,7 +3262,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceNextResponse:type",
           "docComment": "/**\n * Contains response data for the listForResourceNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3272,7 +3272,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3288,7 +3288,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3314,7 +3314,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3348,7 +3348,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListForResourceResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListForResourceResponse:type",
           "docComment": "/**\n * Contains response data for the listForResource operation.\n */\n",
           "excerptTokens": [
             {
@@ -3358,7 +3358,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3374,7 +3374,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3400,7 +3400,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3434,7 +3434,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3444,7 +3444,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3460,7 +3460,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3486,7 +3486,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation. Valid values for $filter are: 'atScope()' or 'policyDefinitionId eq '{value}''. If $filter is not provided, no filtering is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -3520,7 +3520,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -3530,7 +3530,7 @@
             {
               "kind": "Reference",
               "text": "PolicyAssignmentListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignmentListResult:interface"
             },
             {
               "kind": "Content",
@@ -3546,7 +3546,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyClient:class",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -3556,7 +3556,7 @@
             {
               "kind": "Reference",
               "text": "PolicyClientContext",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext:class"
             },
             {
               "kind": "Content",
@@ -3568,7 +3568,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the PolicyClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -3599,7 +3599,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyClientOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3634,7 +3634,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClient#policyAssignments:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClient#policyAssignments:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3644,7 +3644,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyAssignments",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyAssignments:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyAssignments:interface"
                 },
                 {
                   "kind": "Content",
@@ -3662,7 +3662,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClient#policyDefinitions:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClient#policyDefinitions:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3672,7 +3672,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitions",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3690,7 +3690,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClient#policySetDefinitions:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClient#policySetDefinitions:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3700,7 +3700,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitions",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions:interface"
                 },
                 {
                   "kind": "Content",
@@ -3725,7 +3725,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -3751,7 +3751,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the PolicyClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -3782,7 +3782,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyClientOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -3817,7 +3817,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3844,7 +3844,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3871,7 +3871,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -3905,7 +3905,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3931,7 +3931,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -3957,7 +3957,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -3983,7 +3983,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -4017,7 +4017,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface",
           "docComment": "/**\n * The policy definition.\n */\n",
           "excerptTokens": [
             {
@@ -4030,7 +4030,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#description:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#description:member",
               "docComment": "/**\n * The policy definition description.\n */\n",
               "excerptTokens": [
                 {
@@ -4056,7 +4056,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#displayName:member",
               "docComment": "/**\n * The display name of the policy definition.\n */\n",
               "excerptTokens": [
                 {
@@ -4082,7 +4082,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#id:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#id:member",
               "docComment": "/**\n * The ID of the policy definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4108,7 +4108,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#metadata:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#metadata:member",
               "docComment": "/**\n * The policy definition metadata. Metadata is an open ended object and is typically a collection of key value pairs.\n */\n",
               "excerptTokens": [
                 {
@@ -4139,7 +4139,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#mode:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#mode:member",
               "docComment": "/**\n * The policy definition mode. Some examples are All, Indexed, Microsoft.KeyVault.Data.\n */\n",
               "excerptTokens": [
                 {
@@ -4165,7 +4165,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#name:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#name:member",
               "docComment": "/**\n * The name of the policy definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4191,7 +4191,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#parameters:member",
               "docComment": "/**\n * The parameter definitions for parameters used in the policy rule. The keys are the parameter names.\n */\n",
               "excerptTokens": [
                 {
@@ -4205,7 +4205,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterDefinitionsValue",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue:interface"
                 },
                 {
                   "kind": "Content",
@@ -4226,7 +4226,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#policyRule:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#policyRule:member",
               "docComment": "/**\n * The policy rule.\n */\n",
               "excerptTokens": [
                 {
@@ -4257,7 +4257,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#policyType:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#policyType:member",
               "docComment": "/**\n * The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static.\n */\n",
               "excerptTokens": [
                 {
@@ -4267,7 +4267,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyType",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyType:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyType:type"
                 },
                 {
                   "kind": "Content",
@@ -4284,7 +4284,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition#type:member",
               "docComment": "/**\n * The type of the resource (Microsoft.Authorization/policyDefinitions). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -4313,7 +4313,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup:interface",
           "docComment": "/**\n * The policy definition group.\n */\n",
           "excerptTokens": [
             {
@@ -4326,7 +4326,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup#additionalMetadataId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup#additionalMetadataId:member",
               "docComment": "/**\n * A resource ID of a resource that contains additional metadata about the group.\n */\n",
               "excerptTokens": [
                 {
@@ -4352,7 +4352,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup#category:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup#category:member",
               "docComment": "/**\n * The group's category.\n */\n",
               "excerptTokens": [
                 {
@@ -4378,7 +4378,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup#description:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup#description:member",
               "docComment": "/**\n * The group's description.\n */\n",
               "excerptTokens": [
                 {
@@ -4404,7 +4404,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup#displayName:member",
               "docComment": "/**\n * The group's display name.\n */\n",
               "excerptTokens": [
                 {
@@ -4430,7 +4430,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup#name:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup#name:member",
               "docComment": "/**\n * The name of the group.\n */\n",
               "excerptTokens": [
                 {
@@ -4459,7 +4459,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface",
           "docComment": "/**\n * List of policy definitions.\n */\n",
           "excerptTokens": [
             {
@@ -4472,7 +4472,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -4498,7 +4498,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult#value:member",
               "docComment": "/**\n * An array of policy definitions.\n */\n",
               "excerptTokens": [
                 {
@@ -4508,7 +4508,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -4532,7 +4532,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference:interface",
           "docComment": "/**\n * The policy definition reference.\n */\n",
           "excerptTokens": [
             {
@@ -4545,7 +4545,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference#groupNames:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference#groupNames:member",
               "docComment": "/**\n * The name of the groups that this policy definition reference belongs to.\n */\n",
               "excerptTokens": [
                 {
@@ -4571,7 +4571,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference#parameters:member",
               "docComment": "/**\n * The parameter values for the referenced policy rule. The keys are the parameter names.\n */\n",
               "excerptTokens": [
                 {
@@ -4585,7 +4585,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterValuesValue",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterValuesValue:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterValuesValue:interface"
                 },
                 {
                   "kind": "Content",
@@ -4606,7 +4606,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference#policyDefinitionId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference#policyDefinitionId:member",
               "docComment": "/**\n * The ID of the policy definition or policy set definition.\n */\n",
               "excerptTokens": [
                 {
@@ -4632,7 +4632,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference#policyDefinitionReferenceId:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference#policyDefinitionReferenceId:member",
               "docComment": "/**\n * A unique id (within the policy set definition) for this policy definition reference.\n */\n",
               "excerptTokens": [
                 {
@@ -4661,7 +4661,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions:interface",
           "docComment": "/**\n * Interface representing a PolicyDefinitions.\n */\n",
           "excerptTokens": [
             {
@@ -4674,7 +4674,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#createOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#createOrUpdate:member(1)",
               "docComment": "/**\n * This operation creates or updates a policy definition in the given subscription with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to create.\n *\n * @param parameters - The policy definition properties.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -4692,7 +4692,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -4701,7 +4701,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4719,7 +4719,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -4764,7 +4764,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#createOrUpdateAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#createOrUpdateAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation creates or updates a policy definition in the given management group with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to create.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param parameters - The policy definition properties.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -4790,7 +4790,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -4799,7 +4799,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4817,7 +4817,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -4869,7 +4869,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#delete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#delete:member(1)",
               "docComment": "/**\n * This operation deletes the policy definition in the given subscription with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -4887,7 +4887,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -4934,7 +4934,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#deleteAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#deleteAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation deletes the policy definition in the given management group with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to delete.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -4960,7 +4960,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsDeleteAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5014,7 +5014,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#get:member(1)",
               "docComment": "/**\n * This operation retrieves the policy definition in the given subscription with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5032,7 +5032,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5050,7 +5050,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -5088,7 +5088,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#getAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#getAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation retrieves the policy definition in the given management group with the given name.\n *\n * @param policyDefinitionName - The name of the policy definition to get.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5114,7 +5114,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5132,7 +5132,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetAtManagementGroupResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -5177,7 +5177,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#getBuiltIn:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#getBuiltIn:member(1)",
               "docComment": "/**\n * This operation retrieves the built-in policy definition with the given name.\n *\n * @param policyDefinitionName - The name of the built-in policy definition to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5195,7 +5195,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetBuiltInOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5213,7 +5213,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsGetBuiltInResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -5251,7 +5251,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#list:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the policy definitions in a given subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5261,7 +5261,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsListOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5279,7 +5279,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -5310,7 +5310,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#listBuiltIn:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#listBuiltIn:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the built-in policy definitions.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5320,7 +5320,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsListBuiltInOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5338,7 +5338,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -5369,7 +5369,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitions#listByManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitions#listByManagementGroup:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the policy definitions in a given management group.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -5387,7 +5387,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionsListByManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -5405,7 +5405,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -5446,7 +5446,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5479,7 +5479,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateAtManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateAtManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -5489,7 +5489,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
             },
             {
               "kind": "Content",
@@ -5505,7 +5505,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5538,7 +5538,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -5548,7 +5548,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
             },
             {
               "kind": "Content",
@@ -5564,7 +5564,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsDeleteAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5597,7 +5597,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5630,7 +5630,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5663,7 +5663,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetAtManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the getAtManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -5673,7 +5673,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
             },
             {
               "kind": "Content",
@@ -5689,7 +5689,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5722,7 +5722,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the getBuiltIn operation.\n */\n",
           "excerptTokens": [
             {
@@ -5732,7 +5732,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
             },
             {
               "kind": "Content",
@@ -5748,7 +5748,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5781,7 +5781,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -5791,7 +5791,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinition:interface"
             },
             {
               "kind": "Content",
@@ -5807,7 +5807,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5840,7 +5840,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListBuiltInNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltInNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -5850,7 +5850,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -5866,7 +5866,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListBuiltInOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5899,7 +5899,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListBuiltInResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltIn operation.\n */\n",
           "excerptTokens": [
             {
@@ -5909,7 +5909,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -5925,7 +5925,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -5958,7 +5958,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -5968,7 +5968,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -5984,7 +5984,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -6017,7 +6017,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListByManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -6027,7 +6027,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -6043,7 +6043,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -6076,7 +6076,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -6086,7 +6086,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -6102,7 +6102,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -6135,7 +6135,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -6145,7 +6145,7 @@
             {
               "kind": "Reference",
               "text": "PolicyDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -6161,7 +6161,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface",
           "docComment": "/**\n * The policy set definition.\n */\n",
           "excerptTokens": [
             {
@@ -6174,7 +6174,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#description:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#description:member",
               "docComment": "/**\n * The policy set definition description.\n */\n",
               "excerptTokens": [
                 {
@@ -6200,7 +6200,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#displayName:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#displayName:member",
               "docComment": "/**\n * The display name of the policy set definition.\n */\n",
               "excerptTokens": [
                 {
@@ -6226,7 +6226,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#id:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#id:member",
               "docComment": "/**\n * The ID of the policy set definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -6252,7 +6252,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#metadata:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#metadata:member",
               "docComment": "/**\n * The policy set definition metadata. Metadata is an open ended object and is typically a collection of key value pairs.\n */\n",
               "excerptTokens": [
                 {
@@ -6283,7 +6283,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#name:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#name:member",
               "docComment": "/**\n * The name of the policy set definition. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -6309,7 +6309,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#parameters:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#parameters:member",
               "docComment": "/**\n * The policy set definition parameters that can be used in policy definition references.\n */\n",
               "excerptTokens": [
                 {
@@ -6323,7 +6323,7 @@
                 {
                   "kind": "Reference",
                   "text": "ParameterDefinitionsValue",
-                  "canonicalReference": "arm-package-policy-2019-09!ParameterDefinitionsValue:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!ParameterDefinitionsValue:interface"
                 },
                 {
                   "kind": "Content",
@@ -6344,7 +6344,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#policyDefinitionGroups:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#policyDefinitionGroups:member",
               "docComment": "/**\n * The metadata describing groups of policy definition references within the policy set definition.\n */\n",
               "excerptTokens": [
                 {
@@ -6354,7 +6354,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionGroup",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionGroup:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionGroup:interface"
                 },
                 {
                   "kind": "Content",
@@ -6375,7 +6375,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#policyDefinitions:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#policyDefinitions:member",
               "docComment": "/**\n * An array of policy definition references.\n */\n",
               "excerptTokens": [
                 {
@@ -6385,7 +6385,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyDefinitionReference",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyDefinitionReference:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyDefinitionReference:interface"
                 },
                 {
                   "kind": "Content",
@@ -6406,7 +6406,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#policyType:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#policyType:member",
               "docComment": "/**\n * The type of policy definition. Possible values are NotSpecified, BuiltIn, Custom, and Static.\n */\n",
               "excerptTokens": [
                 {
@@ -6416,7 +6416,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicyType",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicyType:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyType:type"
                 },
                 {
                   "kind": "Content",
@@ -6433,7 +6433,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition#type:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition#type:member",
               "docComment": "/**\n * The type of the resource (Microsoft.Authorization/policySetDefinitions). NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -6462,7 +6462,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface",
           "docComment": "/**\n * List of policy set definitions.\n */\n",
           "excerptTokens": [
             {
@@ -6475,7 +6475,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -6501,7 +6501,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult#value:member",
               "docComment": "/**\n * An array of policy set definitions.\n */\n",
               "excerptTokens": [
                 {
@@ -6511,7 +6511,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -6535,7 +6535,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions:interface",
           "docComment": "/**\n * Interface representing a PolicySetDefinitions.\n */\n",
           "excerptTokens": [
             {
@@ -6548,7 +6548,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#createOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#createOrUpdate:member(1)",
               "docComment": "/**\n * This operation creates or updates a policy set definition in the given subscription with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to create.\n *\n * @param parameters - The policy set definition properties.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6566,7 +6566,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -6575,7 +6575,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsCreateOrUpdateOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6593,7 +6593,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsCreateOrUpdateResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -6638,7 +6638,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#createOrUpdateAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#createOrUpdateAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation creates or updates a policy set definition in the given management group with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to create.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param parameters - The policy set definition properties.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6664,7 +6664,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -6673,7 +6673,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6691,7 +6691,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -6743,7 +6743,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#delete:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#delete:member(1)",
               "docComment": "/**\n * This operation deletes the policy set definition in the given subscription with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6761,7 +6761,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsDeleteOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6808,7 +6808,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#deleteAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#deleteAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation deletes the policy set definition in the given management group with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to delete.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6834,7 +6834,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsDeleteAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6888,7 +6888,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#get:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#get:member(1)",
               "docComment": "/**\n * This operation retrieves the policy set definition in the given subscription with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6906,7 +6906,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -6924,7 +6924,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -6962,7 +6962,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#getAtManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#getAtManagementGroup:member(1)",
               "docComment": "/**\n * This operation retrieves the policy set definition in the given management group with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to get.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -6988,7 +6988,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetAtManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7006,7 +7006,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetAtManagementGroupResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -7051,7 +7051,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#getBuiltIn:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#getBuiltIn:member(1)",
               "docComment": "/**\n * This operation retrieves the built-in policy set definition with the given name.\n *\n * @param policySetDefinitionName - The name of the policy set definition to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -7069,7 +7069,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetBuiltInOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7087,7 +7087,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsGetBuiltInResponse",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -7125,7 +7125,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#list:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the policy set definitions in the given subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -7135,7 +7135,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsListOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7153,7 +7153,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -7184,7 +7184,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#listBuiltIn:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#listBuiltIn:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the built-in policy set definitions.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -7194,7 +7194,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsListBuiltInOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7212,7 +7212,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -7243,7 +7243,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitions#listByManagementGroup:member(1)",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitions#listByManagementGroup:member(1)",
               "docComment": "/**\n * This operation retrieves a list of all the a policy set definition in the given management group.\n *\n * @param managementGroupId - The ID of the management group.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -7261,7 +7261,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinitionsListByManagementGroupOptionalParams",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -7279,7 +7279,7 @@
                 {
                   "kind": "Reference",
                   "text": "PolicySetDefinition",
-                  "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+                  "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
                 },
                 {
                   "kind": "Content",
@@ -7320,7 +7320,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7353,7 +7353,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateAtManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateAtManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -7363,7 +7363,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
             },
             {
               "kind": "Content",
@@ -7379,7 +7379,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7412,7 +7412,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -7422,7 +7422,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
             },
             {
               "kind": "Content",
@@ -7438,7 +7438,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsDeleteAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7471,7 +7471,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7504,7 +7504,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7537,7 +7537,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetAtManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the getAtManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -7547,7 +7547,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
             },
             {
               "kind": "Content",
@@ -7563,7 +7563,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7596,7 +7596,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the getBuiltIn operation.\n */\n",
           "excerptTokens": [
             {
@@ -7606,7 +7606,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
             },
             {
               "kind": "Content",
@@ -7622,7 +7622,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7655,7 +7655,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsGetResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -7665,7 +7665,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinition",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinition:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinition:interface"
             },
             {
               "kind": "Content",
@@ -7681,7 +7681,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7714,7 +7714,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltInNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -7724,7 +7724,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -7740,7 +7740,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7773,7 +7773,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListBuiltInResponse:type",
           "docComment": "/**\n * Contains response data for the listBuiltIn operation.\n */\n",
           "excerptTokens": [
             {
@@ -7783,7 +7783,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -7799,7 +7799,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7832,7 +7832,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -7842,7 +7842,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -7858,7 +7858,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7891,7 +7891,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListByManagementGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByManagementGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -7901,7 +7901,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -7917,7 +7917,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -7950,7 +7950,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -7960,7 +7960,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -7976,7 +7976,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -8009,7 +8009,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -8019,7 +8019,7 @@
             {
               "kind": "Reference",
               "text": "PolicySetDefinitionListResult",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySetDefinitionListResult:interface"
             },
             {
               "kind": "Content",
@@ -8035,7 +8035,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-policy-2019-09!PolicySku:interface",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySku:interface",
           "docComment": "/**\n * The policy sku. This property is optional, obsolete, and will be ignored.\n */\n",
           "excerptTokens": [
             {
@@ -8048,7 +8048,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySku#name:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySku#name:member",
               "docComment": "/**\n * The name of the policy sku. Possible values are A0 and A1.\n */\n",
               "excerptTokens": [
                 {
@@ -8074,7 +8074,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-policy-2019-09!PolicySku#tier:member",
+              "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicySku#tier:member",
               "docComment": "/**\n * The policy sku tier. Possible values are Free and Standard.\n */\n",
               "excerptTokens": [
                 {
@@ -8103,7 +8103,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!PolicyType:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!PolicyType:type",
           "docComment": "/**\n * Defines values for PolicyType. \\ {@link KnownPolicyType} can be used interchangeably with PolicyType, this enum contains the known values that the service supports. ### Known values supported by the service **NotSpecified** \\ **BuiltIn** \\ **Custom** \\ **Static**\n */\n",
           "excerptTokens": [
             {
@@ -8128,7 +8128,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-policy-2019-09!ResourceIdentityType:type",
+          "canonicalReference": "@msinternal/arm-package-policy-2019-09!ResourceIdentityType:type",
           "docComment": "/**\n * Defines values for ResourceIdentityType.\n */\n",
           "excerptTokens": [
             {

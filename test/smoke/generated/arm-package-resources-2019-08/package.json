@@ -1,5 +1,5 @@
 {
-  "name": "arm-package-resources-2019-08",
+  "name": "@msinternal/arm-package-resources-2019-08",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ResourceManagementClient.",

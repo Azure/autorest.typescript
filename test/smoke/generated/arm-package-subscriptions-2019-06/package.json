@@ -1,5 +1,5 @@
 {
-  "name": "arm-package-subscriptions-2019-06",
+  "name": "@msinternal/arm-package-subscriptions-2019-06",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for SubscriptionClient.",

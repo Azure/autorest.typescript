@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Provides operations for working with resources and resource groups.
 
-[Package (NPM)](https://www.npmjs.com/package/resources) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/resources) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

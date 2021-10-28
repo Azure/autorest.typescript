@@ -1,5 +1,5 @@
 {
-  "name": "arm-package-deploymentscripts-2019-10-preview",
+  "name": "@msinternal/arm-package-deploymentscripts-2019-10-preview",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for DeploymentScriptsClient.",

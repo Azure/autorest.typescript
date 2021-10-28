@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Service client for multiinheritance client testing
 
-[Package (NPM)](https://www.npmjs.com/package/multiple-inheritance) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/multiple-inheritance) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

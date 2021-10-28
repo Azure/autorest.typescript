@@ -1,5 +1,5 @@
 {
-  "name": "extensible-enums",
+  "name": "@msinternal/extensible-enums",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ExtensibleEnumsClient.",

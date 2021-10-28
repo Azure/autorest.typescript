@@ -1,5 +1,5 @@
 {
-  "name": "media-types-service",
+  "name": "@msinternal/media-types-service",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for MediaTypesClient.",

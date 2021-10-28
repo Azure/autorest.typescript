@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Test Infrastructure for AutoRest Swagger BAT
 
-[Package (NPM)](https://www.npmjs.com/package/xml-service) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/xml-service) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
