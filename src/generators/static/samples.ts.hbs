@@ -20,6 +20,13 @@ async function {{sampleFunctionName}}() {
   {{#each methodParamAssignments}}
   {{this}}
   {{/each}}
+  {{#if isPaging}}
+  const resArray = new Array();
+  for await (let item of client{{#unless isTopLevel}}.{{operationGroupName}}{{/unless}}.{{operationName}}({{methodParameterNames}})){
+    resArray.push(item);
+  }
+  console.log(resArray);
+  {{else}}  
   await client
     {{#unless isTopLevel}}
     .{{operationGroupName}}
@@ -28,6 +35,7 @@ async function {{sampleFunctionName}}() {
     .then((res) => {
       console.log(res);
     });
+  {{/if}}
 }
 async function main() {
   const credential = new DefaultAzureCredential();

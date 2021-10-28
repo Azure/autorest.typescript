@@ -12,4 +12,5 @@ export interface SampleDetails {
     methodParamAssignments: string[],
     clientParamAssignments: string[],
     isTopLevel: boolean,
+    isPaging: boolean,
 }

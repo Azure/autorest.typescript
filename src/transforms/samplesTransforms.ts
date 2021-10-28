@@ -44,6 +44,7 @@ export async function getAllExamples(codeModel: TestCodeModel) {
                     methodParamAssignments: [],
                     clientParamAssignments: [],
                     isTopLevel: ogDetails.isTopLevel,
+                    isPaging: opDetails.pagination !== undefined
                 }
                 const clientParameterNames = ["credential"];
                 for(const clientParameter of example.clientParameters) {
