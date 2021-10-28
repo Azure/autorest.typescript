@@ -12,25 +12,25 @@ import * as Mappers from "./models/mappers";
 import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
   ModelFlatteningClientOptionalParams,
-  ModelFlatteningClientPutArrayOptionalParams,
-  ModelFlatteningClientGetArrayOptionalParams,
-  ModelFlatteningClientGetArrayResponse,
-  ModelFlatteningClientPutWrappedArrayOptionalParams,
-  ModelFlatteningClientGetWrappedArrayOptionalParams,
-  ModelFlatteningClientGetWrappedArrayResponse,
-  ModelFlatteningClientPutDictionaryOptionalParams,
-  ModelFlatteningClientGetDictionaryOptionalParams,
-  ModelFlatteningClientGetDictionaryResponse,
-  ModelFlatteningClientPutResourceCollectionOptionalParams,
-  ModelFlatteningClientGetResourceCollectionOptionalParams,
-  ModelFlatteningClientGetResourceCollectionResponse,
-  ModelFlatteningClientPutSimpleProductOptionalParams,
-  ModelFlatteningClientPutSimpleProductResponse,
-  ModelFlatteningClientPostFlattenedSimpleProductOptionalParams,
-  ModelFlatteningClientPostFlattenedSimpleProductResponse,
+  PutArrayOptionalParams,
+  GetArrayOptionalParams,
+  GetArrayResponse,
+  PutWrappedArrayOptionalParams,
+  GetWrappedArrayOptionalParams,
+  GetWrappedArrayResponse,
+  PutDictionaryOptionalParams,
+  GetDictionaryOptionalParams,
+  GetDictionaryResponse,
+  PutResourceCollectionOptionalParams,
+  GetResourceCollectionOptionalParams,
+  GetResourceCollectionResponse,
+  PutSimpleProductOptionalParams,
+  PutSimpleProductResponse,
+  PostFlattenedSimpleProductOptionalParams,
+  PostFlattenedSimpleProductResponse,
   FlattenParameterGroup,
-  ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams,
-  ModelFlatteningClientPutSimpleProductWithGroupingResponse
+  PutSimpleProductWithGroupingOptionalParams,
+  PutSimpleProductWithGroupingResponse
 } from "./models";
 
 export class ModelFlatteningClient extends ModelFlatteningClientContext {
@@ -46,9 +46,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * Put External Resource as an Array
    * @param options The options parameters.
    */
-  putArray(
-    options?: ModelFlatteningClientPutArrayOptionalParams
-  ): Promise<void> {
+  putArray(options?: PutArrayOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, putArrayOperationSpec);
   }
 
@@ -56,9 +54,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * Get External Resource as an Array
    * @param options The options parameters.
    */
-  getArray(
-    options?: ModelFlatteningClientGetArrayOptionalParams
-  ): Promise<ModelFlatteningClientGetArrayResponse> {
+  getArray(options?: GetArrayOptionalParams): Promise<GetArrayResponse> {
     return this.sendOperationRequest({ options }, getArrayOperationSpec);
   }
 
@@ -67,9 +63,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * not removed if it's referenced in an array
    * @param options The options parameters.
    */
-  putWrappedArray(
-    options?: ModelFlatteningClientPutWrappedArrayOptionalParams
-  ): Promise<void> {
+  putWrappedArray(options?: PutWrappedArrayOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, putWrappedArrayOperationSpec);
   }
 
@@ -79,8 +73,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getWrappedArray(
-    options?: ModelFlatteningClientGetWrappedArrayOptionalParams
-  ): Promise<ModelFlatteningClientGetWrappedArrayResponse> {
+    options?: GetWrappedArrayOptionalParams
+  ): Promise<GetWrappedArrayResponse> {
     return this.sendOperationRequest({ options }, getWrappedArrayOperationSpec);
   }
 
@@ -88,9 +82,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * Put External Resource as a Dictionary
    * @param options The options parameters.
    */
-  putDictionary(
-    options?: ModelFlatteningClientPutDictionaryOptionalParams
-  ): Promise<void> {
+  putDictionary(options?: PutDictionaryOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, putDictionaryOperationSpec);
   }
 
@@ -99,8 +91,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getDictionary(
-    options?: ModelFlatteningClientGetDictionaryOptionalParams
-  ): Promise<ModelFlatteningClientGetDictionaryResponse> {
+    options?: GetDictionaryOptionalParams
+  ): Promise<GetDictionaryResponse> {
     return this.sendOperationRequest({ options }, getDictionaryOperationSpec);
   }
 
@@ -109,7 +101,7 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   putResourceCollection(
-    options?: ModelFlatteningClientPutResourceCollectionOptionalParams
+    options?: PutResourceCollectionOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
@@ -122,8 +114,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   getResourceCollection(
-    options?: ModelFlatteningClientGetResourceCollectionOptionalParams
-  ): Promise<ModelFlatteningClientGetResourceCollectionResponse> {
+    options?: GetResourceCollectionOptionalParams
+  ): Promise<GetResourceCollectionResponse> {
     return this.sendOperationRequest(
       { options },
       getResourceCollectionOperationSpec
@@ -135,8 +127,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    * @param options The options parameters.
    */
   putSimpleProduct(
-    options?: ModelFlatteningClientPutSimpleProductOptionalParams
-  ): Promise<ModelFlatteningClientPutSimpleProductResponse> {
+    options?: PutSimpleProductOptionalParams
+  ): Promise<PutSimpleProductResponse> {
     return this.sendOperationRequest(
       { options },
       putSimpleProductOperationSpec
@@ -151,8 +143,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   postFlattenedSimpleProduct(
     productId: string,
-    options?: ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
-  ): Promise<ModelFlatteningClientPostFlattenedSimpleProductResponse> {
+    options?: PostFlattenedSimpleProductOptionalParams
+  ): Promise<PostFlattenedSimpleProductResponse> {
     return this.sendOperationRequest(
       { productId, options },
       postFlattenedSimpleProductOperationSpec
@@ -166,8 +158,8 @@ export class ModelFlatteningClient extends ModelFlatteningClientContext {
    */
   putSimpleProductWithGrouping(
     flattenParameterGroup: FlattenParameterGroup,
-    options?: ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
-  ): Promise<ModelFlatteningClientPutSimpleProductWithGroupingResponse> {
+    options?: PutSimpleProductWithGroupingOptionalParams
+  ): Promise<PutSimpleProductWithGroupingResponse> {
     return this.sendOperationRequest(
       { flattenParameterGroup, options },
       putSimpleProductWithGroupingOperationSpec

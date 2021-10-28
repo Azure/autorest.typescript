@@ -15,11 +15,11 @@ import { MediaTypesWithTracingClientContext } from "./mediaTypesWithTracingClien
 import {
   MediaTypesWithTracingClientOptionalParams,
   ContentType,
-  MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams,
-  MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams,
-  MediaTypesWithTracingClientAnalyzeBodyResponse,
-  MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams,
-  MediaTypesWithTracingClientContentTypeWithEncodingResponse
+  AnalyzeBody$binaryOptionalParams,
+  AnalyzeBody$jsonOptionalParams,
+  AnalyzeBodyResponse,
+  ContentTypeWithEncodingOptionalParams,
+  ContentTypeWithEncodingResponse
 } from "./models";
 
 export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientContext {
@@ -38,8 +38,8 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
    */
   analyzeBody(
     contentType: ContentType,
-    options?: MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams
-  ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse>;
+    options?: AnalyzeBody$binaryOptionalParams
+  ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
    * @param contentType Body Parameter content-type
@@ -47,23 +47,17 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
    */
   analyzeBody(
     contentType: "application/json",
-    options?: MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams
-  ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse>;
+    options?: AnalyzeBody$jsonOptionalParams
+  ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
    * @param args Includes all the parameters for this operation.
    */
   async analyzeBody(
     ...args:
-      | [
-          ContentType,
-          MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams?
-        ]
-      | [
-          "application/json",
-          MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams?
-        ]
-  ): Promise<MediaTypesWithTracingClientAnalyzeBodyResponse> {
+      | [ContentType, AnalyzeBody$binaryOptionalParams?]
+      | ["application/json", AnalyzeBody$jsonOptionalParams?]
+  ): Promise<AnalyzeBodyResponse> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
     let options;
@@ -95,7 +89,7 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
         operationArguments,
         operationSpec
       );
-      return result as MediaTypesWithTracingClientAnalyzeBodyResponse;
+      return result as AnalyzeBodyResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -112,8 +106,8 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
    * @param options The options parameters.
    */
   async contentTypeWithEncoding(
-    options?: MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
-  ): Promise<MediaTypesWithTracingClientContentTypeWithEncodingResponse> {
+    options?: ContentTypeWithEncodingOptionalParams
+  ): Promise<ContentTypeWithEncodingResponse> {
     const { span } = createSpan(
       "MediaTypesWithTracingClient-contentTypeWithEncoding",
       options || {}
@@ -123,7 +117,7 @@ export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientCont
         { options },
         contentTypeWithEncodingOperationSpec
       );
-      return result as MediaTypesWithTracingClientContentTypeWithEncodingResponse;
+      return result as ContentTypeWithEncodingResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,

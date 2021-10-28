@@ -13,8 +13,8 @@ import { ODataDiscriminatorClientContext } from "./oDataDiscriminatorClientConte
 import {
   ODataDiscriminatorClientOptionalParams,
   Enum0,
-  ODataDiscriminatorClientApiV1ValueGetOptionalParams,
-  ODataDiscriminatorClientApiV1ValueGetResponse
+  ApiV1ValueGetOptionalParams,
+  ApiV1ValueGetResponse
 } from "./models";
 
 export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
@@ -34,8 +34,8 @@ export class ODataDiscriminatorClient extends ODataDiscriminatorClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ODataDiscriminatorClientApiV1ValueGetOptionalParams
-  ): Promise<ODataDiscriminatorClientApiV1ValueGetResponse> {
+    options?: ApiV1ValueGetOptionalParams
+  ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }

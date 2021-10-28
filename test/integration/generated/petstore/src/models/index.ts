@@ -97,59 +97,57 @@ export enum KnownOrderStatus {
 export type OrderStatus = string;
 
 /** Optional parameters. */
-export interface PetStoreAddPetUsingByteArray$binaryOptionalParams
+export interface AddPetUsingByteArray$binaryOptionalParams
   extends coreClient.OperationOptions {
   /** Pet object in the form of byte array */
   body?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
-export interface PetStoreAddPetUsingByteArray$xmlOptionalParams
+export interface AddPetUsingByteArray$xmlOptionalParams
   extends coreClient.OperationOptions {
   /** Pet object in the form of byte array */
   body?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
-export interface PetStoreAddPetOptionalParams
-  extends coreClient.OperationOptions {
+export interface AddPetOptionalParams extends coreClient.OperationOptions {
   /** Pet object that needs to be added to the store */
   body?: Pet;
 }
 
 /** Optional parameters. */
-export interface PetStoreUpdatePetOptionalParams
-  extends coreClient.OperationOptions {
+export interface UpdatePetOptionalParams extends coreClient.OperationOptions {
   /** Pet object that needs to be added to the store */
   body?: Pet;
 }
 
 /** Optional parameters. */
-export interface PetStoreFindPetsByStatusOptionalParams
+export interface FindPetsByStatusOptionalParams
   extends coreClient.OperationOptions {
   /** Status values that need to be considered for filter */
   status?: string[];
 }
 
 /** Contains response data for the findPetsByStatus operation. */
-export type PetStoreFindPetsByStatusResponse = Pet[];
+export type FindPetsByStatusResponse = Pet[];
 
 /** Optional parameters. */
-export interface PetStoreFindPetsByTagsOptionalParams
+export interface FindPetsByTagsOptionalParams
   extends coreClient.OperationOptions {
   /** Tags to filter by */
   tags?: string[];
 }
 
 /** Contains response data for the findPetsByTags operation. */
-export type PetStoreFindPetsByTagsResponse = Pet[];
+export type FindPetsByTagsResponse = Pet[];
 
 /** Optional parameters. */
-export interface PetStoreFindPetsWithByteArrayOptionalParams
+export interface FindPetsWithByteArrayOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the findPetsWithByteArray operation. */
-export type PetStoreFindPetsWithByteArrayResponse = {
+export type FindPetsWithByteArrayResponse = {
   /**
    * BROWSER ONLY
    *
@@ -167,14 +165,13 @@ export type PetStoreFindPetsWithByteArrayResponse = {
 };
 
 /** Optional parameters. */
-export interface PetStoreGetPetByIdOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetPetByIdOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPetById operation. */
-export type PetStoreGetPetByIdResponse = Pet;
+export type GetPetByIdResponse = Pet;
 
 /** Optional parameters. */
-export interface PetStoreUpdatePetWithFormOptionalParams
+export interface UpdatePetWithFormOptionalParams
   extends coreClient.OperationOptions {
   /** Updated name of the pet */
   name?: string;
@@ -183,14 +180,12 @@ export interface PetStoreUpdatePetWithFormOptionalParams
 }
 
 /** Optional parameters. */
-export interface PetStoreDeletePetOptionalParams
-  extends coreClient.OperationOptions {
+export interface DeletePetOptionalParams extends coreClient.OperationOptions {
   apiKey?: string;
 }
 
 /** Optional parameters. */
-export interface PetStoreUploadFileOptionalParams
-  extends coreClient.OperationOptions {
+export interface UploadFileOptionalParams extends coreClient.OperationOptions {
   /** Additional data to pass to server */
   additionalMetadata?: string;
   /** file to upload */
@@ -198,57 +193,54 @@ export interface PetStoreUploadFileOptionalParams
 }
 
 /** Optional parameters. */
-export interface PetStoreGetInventoryOptionalParams
+export interface GetInventoryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getInventory operation. */
-export type PetStoreGetInventoryResponse = { [propertyName: string]: number };
+export type GetInventoryResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
-export interface PetStorePlaceOrderOptionalParams
-  extends coreClient.OperationOptions {
+export interface PlaceOrderOptionalParams extends coreClient.OperationOptions {
   /** order placed for purchasing the pet */
   body?: Order;
 }
 
 /** Contains response data for the placeOrder operation. */
-export type PetStorePlaceOrderResponse = Order;
+export type PlaceOrderResponse = Order;
 
 /** Optional parameters. */
-export interface PetStoreGetOrderByIdOptionalParams
+export interface GetOrderByIdOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getOrderById operation. */
-export type PetStoreGetOrderByIdResponse = Order;
+export type GetOrderByIdResponse = Order;
 
 /** Optional parameters. */
-export interface PetStoreDeleteOrderOptionalParams
+export interface DeleteOrderOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface PetStoreCreateUserOptionalParams
-  extends coreClient.OperationOptions {
+export interface CreateUserOptionalParams extends coreClient.OperationOptions {
   /** Created user object */
   body?: User;
 }
 
 /** Optional parameters. */
-export interface PetStoreCreateUsersWithArrayInputOptionalParams
+export interface CreateUsersWithArrayInputOptionalParams
   extends coreClient.OperationOptions {
   /** List of user object */
   body?: User[];
 }
 
 /** Optional parameters. */
-export interface PetStoreCreateUsersWithListInputOptionalParams
+export interface CreateUsersWithListInputOptionalParams
   extends coreClient.OperationOptions {
   /** List of user object */
   body?: User[];
 }
 
 /** Optional parameters. */
-export interface PetStoreLoginUserOptionalParams
-  extends coreClient.OperationOptions {
+export interface LoginUserOptionalParams extends coreClient.OperationOptions {
   /** The user name for login */
   username?: string;
   /** The password for login in clear text */
@@ -256,32 +248,29 @@ export interface PetStoreLoginUserOptionalParams
 }
 
 /** Contains response data for the loginUser operation. */
-export type PetStoreLoginUserResponse = {
+export type LoginUserResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface PetStoreLogoutUserOptionalParams
-  extends coreClient.OperationOptions {}
+export interface LogoutUserOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface PetStoreGetUserByNameOptionalParams
+export interface GetUserByNameOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getUserByName operation. */
-export type PetStoreGetUserByNameResponse = User;
+export type GetUserByNameResponse = User;
 
 /** Optional parameters. */
-export interface PetStoreUpdateUserOptionalParams
-  extends coreClient.OperationOptions {
+export interface UpdateUserOptionalParams extends coreClient.OperationOptions {
   /** Updated user object */
   body?: User;
 }
 
 /** Optional parameters. */
-export interface PetStoreDeleteUserOptionalParams
-  extends coreClient.OperationOptions {}
+export interface DeleteUserOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface PetStoreOptionalParams

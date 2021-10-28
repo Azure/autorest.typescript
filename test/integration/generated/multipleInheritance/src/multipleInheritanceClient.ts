@@ -12,31 +12,31 @@ import * as Mappers from "./models/mappers";
 import { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";
 import {
   MultipleInheritanceClientOptionalParams,
-  MultipleInheritanceClientGetHorseOptionalParams,
-  MultipleInheritanceClientGetHorseResponse,
+  GetHorseOptionalParams,
+  GetHorseResponse,
   Horse,
-  MultipleInheritanceClientPutHorseOptionalParams,
-  MultipleInheritanceClientPutHorseResponse,
-  MultipleInheritanceClientGetPetOptionalParams,
-  MultipleInheritanceClientGetPetResponse,
+  PutHorseOptionalParams,
+  PutHorseResponse,
+  GetPetOptionalParams,
+  GetPetResponse,
   Pet,
-  MultipleInheritanceClientPutPetOptionalParams,
-  MultipleInheritanceClientPutPetResponse,
-  MultipleInheritanceClientGetFelineOptionalParams,
-  MultipleInheritanceClientGetFelineResponse,
+  PutPetOptionalParams,
+  PutPetResponse,
+  GetFelineOptionalParams,
+  GetFelineResponse,
   Feline,
-  MultipleInheritanceClientPutFelineOptionalParams,
-  MultipleInheritanceClientPutFelineResponse,
-  MultipleInheritanceClientGetCatOptionalParams,
-  MultipleInheritanceClientGetCatResponse,
+  PutFelineOptionalParams,
+  PutFelineResponse,
+  GetCatOptionalParams,
+  GetCatResponse,
   Cat,
-  MultipleInheritanceClientPutCatOptionalParams,
-  MultipleInheritanceClientPutCatResponse,
-  MultipleInheritanceClientGetKittenOptionalParams,
-  MultipleInheritanceClientGetKittenResponse,
+  PutCatOptionalParams,
+  PutCatResponse,
+  GetKittenOptionalParams,
+  GetKittenResponse,
   Kitten,
-  MultipleInheritanceClientPutKittenOptionalParams,
-  MultipleInheritanceClientPutKittenResponse
+  PutKittenOptionalParams,
+  PutKittenResponse
 } from "./models";
 
 export class MultipleInheritanceClient extends MultipleInheritanceClientContext {
@@ -52,9 +52,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * Get a horse with name 'Fred' and isAShowHorse true
    * @param options The options parameters.
    */
-  getHorse(
-    options?: MultipleInheritanceClientGetHorseOptionalParams
-  ): Promise<MultipleInheritanceClientGetHorseResponse> {
+  getHorse(options?: GetHorseOptionalParams): Promise<GetHorseResponse> {
     return this.sendOperationRequest({ options }, getHorseOperationSpec);
   }
 
@@ -65,8 +63,8 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putHorse(
     horse: Horse,
-    options?: MultipleInheritanceClientPutHorseOptionalParams
-  ): Promise<MultipleInheritanceClientPutHorseResponse> {
+    options?: PutHorseOptionalParams
+  ): Promise<PutHorseResponse> {
     return this.sendOperationRequest({ horse, options }, putHorseOperationSpec);
   }
 
@@ -74,9 +72,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * Get a pet with name 'Peanut'
    * @param options The options parameters.
    */
-  getPet(
-    options?: MultipleInheritanceClientGetPetOptionalParams
-  ): Promise<MultipleInheritanceClientGetPetResponse> {
+  getPet(options?: GetPetOptionalParams): Promise<GetPetResponse> {
     return this.sendOperationRequest({ options }, getPetOperationSpec);
   }
 
@@ -85,10 +81,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param pet Put a pet with name 'Butter'
    * @param options The options parameters.
    */
-  putPet(
-    pet: Pet,
-    options?: MultipleInheritanceClientPutPetOptionalParams
-  ): Promise<MultipleInheritanceClientPutPetResponse> {
+  putPet(pet: Pet, options?: PutPetOptionalParams): Promise<PutPetResponse> {
     return this.sendOperationRequest({ pet, options }, putPetOperationSpec);
   }
 
@@ -96,9 +89,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * Get a feline where meows and hisses are true
    * @param options The options parameters.
    */
-  getFeline(
-    options?: MultipleInheritanceClientGetFelineOptionalParams
-  ): Promise<MultipleInheritanceClientGetFelineResponse> {
+  getFeline(options?: GetFelineOptionalParams): Promise<GetFelineResponse> {
     return this.sendOperationRequest({ options }, getFelineOperationSpec);
   }
 
@@ -109,8 +100,8 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putFeline(
     feline: Feline,
-    options?: MultipleInheritanceClientPutFelineOptionalParams
-  ): Promise<MultipleInheritanceClientPutFelineResponse> {
+    options?: PutFelineOptionalParams
+  ): Promise<PutFelineResponse> {
     return this.sendOperationRequest(
       { feline, options },
       putFelineOperationSpec
@@ -121,9 +112,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true
    * @param options The options parameters.
    */
-  getCat(
-    options?: MultipleInheritanceClientGetCatOptionalParams
-  ): Promise<MultipleInheritanceClientGetCatResponse> {
+  getCat(options?: GetCatOptionalParams): Promise<GetCatResponse> {
     return this.sendOperationRequest({ options }, getCatOperationSpec);
   }
 
@@ -132,10 +121,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * @param cat Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true
    * @param options The options parameters.
    */
-  putCat(
-    cat: Cat,
-    options?: MultipleInheritanceClientPutCatOptionalParams
-  ): Promise<MultipleInheritanceClientPutCatResponse> {
+  putCat(cat: Cat, options?: PutCatOptionalParams): Promise<PutCatResponse> {
     return this.sendOperationRequest({ cat, options }, putCatOperationSpec);
   }
 
@@ -144,9 +130,7 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    * false
    * @param options The options parameters.
    */
-  getKitten(
-    options?: MultipleInheritanceClientGetKittenOptionalParams
-  ): Promise<MultipleInheritanceClientGetKittenResponse> {
+  getKitten(options?: GetKittenOptionalParams): Promise<GetKittenResponse> {
     return this.sendOperationRequest({ options }, getKittenOperationSpec);
   }
 
@@ -158,8 +142,8 @@ export class MultipleInheritanceClient extends MultipleInheritanceClientContext 
    */
   putKitten(
     kitten: Kitten,
-    options?: MultipleInheritanceClientPutKittenOptionalParams
-  ): Promise<MultipleInheritanceClientPutKittenResponse> {
+    options?: PutKittenOptionalParams
+  ): Promise<PutKittenResponse> {
     return this.sendOperationRequest(
       { kitten, options },
       putKittenOperationSpec

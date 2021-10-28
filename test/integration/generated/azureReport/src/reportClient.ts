@@ -12,8 +12,8 @@ import * as Mappers from "./models/mappers";
 import { ReportClientContext } from "./reportClientContext";
 import {
   ReportClientOptionalParams,
-  ReportClientGetReportOptionalParams,
-  ReportClientGetReportResponse
+  GetReportOptionalParams,
+  GetReportResponse
 } from "./models";
 
 export class ReportClient extends ReportClientContext {
@@ -29,9 +29,7 @@ export class ReportClient extends ReportClientContext {
    * Get test coverage report
    * @param options The options parameters.
    */
-  getReport(
-    options?: ReportClientGetReportOptionalParams
-  ): Promise<ReportClientGetReportResponse> {
+  getReport(options?: GetReportOptionalParams): Promise<GetReportResponse> {
     return this.sendOperationRequest({ options }, getReportOperationSpec);
   }
 }

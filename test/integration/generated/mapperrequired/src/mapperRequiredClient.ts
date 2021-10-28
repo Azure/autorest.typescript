@@ -12,8 +12,8 @@ import * as Mappers from "./models/mappers";
 import { MapperRequiredClientContext } from "./mapperRequiredClientContext";
 import {
   MapperRequiredClientOptionalParams,
-  MapperRequiredClientUpdateCertificateIssuerOptionalParams,
-  MapperRequiredClientUpdateCertificateIssuerResponse
+  UpdateCertificateIssuerOptionalParams,
+  UpdateCertificateIssuerResponse
 } from "./models";
 
 export class MapperRequiredClient extends MapperRequiredClientContext {
@@ -34,8 +34,8 @@ export class MapperRequiredClient extends MapperRequiredClientContext {
    */
   updateCertificateIssuer(
     issuerName: string,
-    options?: MapperRequiredClientUpdateCertificateIssuerOptionalParams
-  ): Promise<MapperRequiredClientUpdateCertificateIssuerResponse> {
+    options?: UpdateCertificateIssuerOptionalParams
+  ): Promise<UpdateCertificateIssuerResponse> {
     return this.sendOperationRequest(
       { issuerName, options },
       updateCertificateIssuerOperationSpec

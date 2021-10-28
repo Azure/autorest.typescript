@@ -9,15 +9,13 @@
 import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface ObjectTypeClientGetOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the get operation. */
-export type ObjectTypeClientGetResponse = Record<string, unknown>;
+export type GetResponse = Record<string, unknown>;
 
 /** Optional parameters. */
-export interface ObjectTypeClientPutOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutOptionalParams extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
 export interface ObjectTypeClientOptionalParams

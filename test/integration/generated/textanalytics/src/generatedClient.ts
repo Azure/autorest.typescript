@@ -12,30 +12,30 @@ import * as Mappers from "./models/mappers";
 import { GeneratedClientContext } from "./generatedClientContext";
 import {
   GeneratedClientOptionalParams,
-  GeneratedClientAnalyzeOptionalParams,
-  GeneratedClientAnalyzeResponse,
-  GeneratedClientAnalyzeStatusOptionalParams,
-  GeneratedClientAnalyzeStatusResponse,
-  GeneratedClientHealthStatusOptionalParams,
-  GeneratedClientHealthStatusResponse,
-  GeneratedClientCancelHealthJobOptionalParams,
-  GeneratedClientCancelHealthJobResponse,
+  AnalyzeOptionalParams,
+  AnalyzeResponse,
+  AnalyzeStatusOptionalParams,
+  AnalyzeStatusResponse,
+  HealthStatusOptionalParams,
+  HealthStatusResponse,
+  CancelHealthJobOptionalParams,
+  CancelHealthJobResponse,
   MultiLanguageBatchInput,
-  GeneratedClientHealthOptionalParams,
-  GeneratedClientHealthResponse,
-  GeneratedClientEntitiesRecognitionGeneralOptionalParams,
-  GeneratedClientEntitiesRecognitionGeneralResponse,
-  GeneratedClientEntitiesRecognitionPiiOptionalParams,
-  GeneratedClientEntitiesRecognitionPiiResponse,
-  GeneratedClientEntitiesLinkingOptionalParams,
-  GeneratedClientEntitiesLinkingResponse,
-  GeneratedClientKeyPhrasesOptionalParams,
-  GeneratedClientKeyPhrasesResponse,
+  HealthOptionalParams,
+  HealthResponse,
+  EntitiesRecognitionGeneralOptionalParams,
+  EntitiesRecognitionGeneralResponse,
+  EntitiesRecognitionPiiOptionalParams,
+  EntitiesRecognitionPiiResponse,
+  EntitiesLinkingOptionalParams,
+  EntitiesLinkingResponse,
+  KeyPhrasesOptionalParams,
+  KeyPhrasesResponse,
   LanguageBatchInput,
-  GeneratedClientLanguagesOptionalParams,
-  GeneratedClientLanguagesResponse,
-  GeneratedClientSentimentOptionalParams,
-  GeneratedClientSentimentResponse
+  LanguagesOptionalParams,
+  LanguagesResponse,
+  SentimentOptionalParams,
+  SentimentOperationResponse
 } from "./models";
 
 /** @internal */
@@ -54,9 +54,7 @@ export class GeneratedClient extends GeneratedClientContext {
    * Submit a collection of text documents for analysis. Specify one or more unique tasks to be executed.
    * @param options The options parameters.
    */
-  analyze(
-    options?: GeneratedClientAnalyzeOptionalParams
-  ): Promise<GeneratedClientAnalyzeResponse> {
+  analyze(options?: AnalyzeOptionalParams): Promise<AnalyzeResponse> {
     return this.sendOperationRequest({ options }, analyzeOperationSpec);
   }
 
@@ -69,8 +67,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   analyzeStatus(
     jobId: string,
-    options?: GeneratedClientAnalyzeStatusOptionalParams
-  ): Promise<GeneratedClientAnalyzeStatusResponse> {
+    options?: AnalyzeStatusOptionalParams
+  ): Promise<AnalyzeStatusResponse> {
     return this.sendOperationRequest(
       { jobId, options },
       analyzeStatusOperationSpec
@@ -84,8 +82,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   healthStatus(
     jobId: string,
-    options?: GeneratedClientHealthStatusOptionalParams
-  ): Promise<GeneratedClientHealthStatusResponse> {
+    options?: HealthStatusOptionalParams
+  ): Promise<HealthStatusResponse> {
     return this.sendOperationRequest(
       { jobId, options },
       healthStatusOperationSpec
@@ -99,8 +97,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   cancelHealthJob(
     jobId: string,
-    options?: GeneratedClientCancelHealthJobOptionalParams
-  ): Promise<GeneratedClientCancelHealthJobResponse> {
+    options?: CancelHealthJobOptionalParams
+  ): Promise<CancelHealthJobResponse> {
     return this.sendOperationRequest(
       { jobId, options },
       cancelHealthJobOperationSpec
@@ -115,8 +113,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   health(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientHealthOptionalParams
-  ): Promise<GeneratedClientHealthResponse> {
+    options?: HealthOptionalParams
+  ): Promise<HealthResponse> {
     return this.sendOperationRequest({ input, options }, healthOperationSpec);
   }
 
@@ -130,8 +128,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   entitiesRecognitionGeneral(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientEntitiesRecognitionGeneralOptionalParams
-  ): Promise<GeneratedClientEntitiesRecognitionGeneralResponse> {
+    options?: EntitiesRecognitionGeneralOptionalParams
+  ): Promise<EntitiesRecognitionGeneralResponse> {
     return this.sendOperationRequest(
       { input, options },
       entitiesRecognitionGeneralOperationSpec
@@ -149,8 +147,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   entitiesRecognitionPii(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientEntitiesRecognitionPiiOptionalParams
-  ): Promise<GeneratedClientEntitiesRecognitionPiiResponse> {
+    options?: EntitiesRecognitionPiiOptionalParams
+  ): Promise<EntitiesRecognitionPiiResponse> {
     return this.sendOperationRequest(
       { input, options },
       entitiesRecognitionPiiOperationSpec
@@ -166,8 +164,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   entitiesLinking(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientEntitiesLinkingOptionalParams
-  ): Promise<GeneratedClientEntitiesLinkingResponse> {
+    options?: EntitiesLinkingOptionalParams
+  ): Promise<EntitiesLinkingResponse> {
     return this.sendOperationRequest(
       { input, options },
       entitiesLinkingOperationSpec
@@ -183,8 +181,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   keyPhrases(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientKeyPhrasesOptionalParams
-  ): Promise<GeneratedClientKeyPhrasesResponse> {
+    options?: KeyPhrasesOptionalParams
+  ): Promise<KeyPhrasesResponse> {
     return this.sendOperationRequest(
       { input, options },
       keyPhrasesOperationSpec
@@ -201,8 +199,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   languages(
     input: LanguageBatchInput,
-    options?: GeneratedClientLanguagesOptionalParams
-  ): Promise<GeneratedClientLanguagesResponse> {
+    options?: LanguagesOptionalParams
+  ): Promise<LanguagesResponse> {
     return this.sendOperationRequest(
       { input, options },
       languagesOperationSpec
@@ -218,8 +216,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   sentiment(
     input: MultiLanguageBatchInput,
-    options?: GeneratedClientSentimentOptionalParams
-  ): Promise<GeneratedClientSentimentResponse> {
+    options?: SentimentOptionalParams
+  ): Promise<SentimentOperationResponse> {
     return this.sendOperationRequest(
       { input, options },
       sentimentOperationSpec

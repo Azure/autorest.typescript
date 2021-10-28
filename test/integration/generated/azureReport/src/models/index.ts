@@ -14,14 +14,13 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface ReportClientGetReportOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetReportOptionalParams extends coreClient.OperationOptions {
   /** If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in for Python). The only effect is, that generators that run all tests several times, can distinguish the generated reports. */
   qualifier?: string;
 }
 
 /** Contains response data for the getReport operation. */
-export type ReportClientGetReportResponse = { [propertyName: string]: number };
+export type GetReportResponse = { [propertyName: string]: number };
 
 /** Optional parameters. */
 export interface ReportClientOptionalParams

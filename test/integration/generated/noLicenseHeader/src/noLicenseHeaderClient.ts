@@ -4,8 +4,8 @@ import { NoLicenseHeaderClientContext } from "./noLicenseHeaderClientContext";
 import {
   NoLicenseHeaderClientOptionalParams,
   Enum0,
-  NoLicenseHeaderClientApiV1ValueGetOptionalParams,
-  NoLicenseHeaderClientApiV1ValueGetResponse
+  ApiV1ValueGetOptionalParams,
+  ApiV1ValueGetResponse
 } from "./models";
 
 export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
@@ -25,8 +25,8 @@ export class NoLicenseHeaderClient extends NoLicenseHeaderClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: NoLicenseHeaderClientApiV1ValueGetOptionalParams
-  ): Promise<NoLicenseHeaderClientApiV1ValueGetResponse> {
+    options?: ApiV1ValueGetOptionalParams
+  ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }
