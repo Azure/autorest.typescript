@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The Azure Data Factory V2 management API provides a RESTful set of web services that interact with Azure Data Factory V2 services.
 
-[Package (NPM)](https://www.npmjs.com/package/datafactory) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/datafactory) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 API for using the Azure IoT Hub Device Provisioning Service features.
 
-[Package (NPM)](https://www.npmjs.com/package/deviceprovisioning) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/deviceprovisioning) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

@@ -1,5 +1,5 @@
 {
-  "name": "domainservices",
+  "name": "@msinternal/domainservices",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for DomainServicesClient.",
