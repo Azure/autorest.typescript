@@ -111,12 +111,17 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Dictionary:
             const values = []
             for(const prop in exampleValue.properties) {
-                const propName = normalizeName(prop, NameType.Property);
+                const property = exampleValue.properties[prop];
+                if (property === undefined || property === null) {
+                    continue;
+                }
+                const initPropName = property.language?.default?.name ? property.language?.default?.name : prop;
+                const propName = normalizeName(initPropName, NameType.Property, true);
                 let propRetValue: string;
                 if (propName.indexOf('/') > -1 || propName.match(/^\d/)) {
-                    propRetValue = `"${propName}": ` + getParameterAssignment(exampleValue.properties[prop]);
+                    propRetValue = `"${propName}": ` + getParameterAssignment(property);
                 } else {
-                    propRetValue = `${propName}: ` + getParameterAssignment(exampleValue.properties[prop]);
+                    propRetValue = `${propName}: ` + getParameterAssignment(property);
                 }
                 values.push(propRetValue);
             }
