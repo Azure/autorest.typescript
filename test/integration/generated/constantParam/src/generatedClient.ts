@@ -13,8 +13,8 @@ import { GeneratedClientContext } from "./generatedClientContext";
 import {
   GeneratedClientOptionalParams,
   LanguageBatchInput,
-  GeneratedClientLanguagesOptionalParams,
-  GeneratedClientLanguagesResponse
+  LanguagesOptionalParams,
+  LanguagesResponse
 } from "./models";
 
 /** @internal */
@@ -39,8 +39,8 @@ export class GeneratedClient extends GeneratedClientContext {
    */
   languages(
     input: LanguageBatchInput,
-    options?: GeneratedClientLanguagesOptionalParams
-  ): Promise<GeneratedClientLanguagesResponse> {
+    options?: LanguagesOptionalParams
+  ): Promise<LanguagesResponse> {
     return this.sendOperationRequest(
       { input, options },
       languagesOperationSpec

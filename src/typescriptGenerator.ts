@@ -8,7 +8,6 @@ import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
-import { ClientDetails } from "./models/clientDetails";
 import { generateClient } from "./generators/clientFileGenerator";
 import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
@@ -18,7 +17,7 @@ import { generatePackageJson } from "./generators/static/packageFileGenerator";
 import { generateApiExtractorConfig } from "./generators/static/apiExtractorConfig";
 import { generateLicenseFile } from "./generators/static/licenseFileGenerator";
 import { generateReadmeFile } from "./generators/static/readmeFileGenerator";
-import { generateSampleTestFile } from './generators/test/sampleTestGenerator';
+import { generateSampleTestFile } from "./generators/test/sampleTestGenerator";
 import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
@@ -27,11 +26,7 @@ import { generateParameters } from "./generators/parametersGenerator";
 import { generateLroFiles } from "./generators/LROGenerator";
 import { generateTracingFile } from "./generators/tracingFileGenerator";
 import { getAutorestOptions } from "./autorestSession";
-
-/**
- * ServiceClient members should be reserved
- */
-const RESERVED_MEMBER_NAMES = ["pipeline"];
+import { conflictResolver } from "./conflictResolver";
 
 const prettierTypeScriptOptions: prettier.Options = {
   parser: "typescript",
@@ -71,18 +66,7 @@ export async function generateTypeScriptLibrary(
   } = getAutorestOptions();
 
   const clientDetails = await transformCodeModel(codeModel, host);
-
-  clientDetails.operationGroups.forEach(operationGroup => {
-    const isConflict: boolean = checkForConflictWithDefinitions(
-      operationGroup.name,
-      clientDetails
-    );
-
-    if (isConflict) {
-      operationGroup.name = `${operationGroup.name}Operations`;
-      operationGroup.key = `${operationGroup.key}Operations`;
-    }
-  });
+  conflictResolver(clientDetails);
 
   // Skip metadata generation if `generate-metadata` is explicitly false
   generatePackageJson(project, clientDetails);
@@ -149,21 +133,4 @@ export async function generateTypeScriptLibrary(
       fileContents
     );
   }
-}
-
-function checkForConflictWithDefinitions(
-  operationGroupName: string,
-  clientDetails: ClientDetails
-): boolean {
-  if (RESERVED_MEMBER_NAMES.includes(operationGroupName.toLowerCase())) {
-    return true;
-  }
-
-  for (const model of clientDetails.objects) {
-    if (model.name === operationGroupName) {
-      return true;
-    }
-  }
-
-  return false;
 }

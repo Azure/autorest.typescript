@@ -13,11 +13,11 @@ import { MediaTypesClientContext } from "./mediaTypesClientContext";
 import {
   MediaTypesClientOptionalParams,
   ContentType,
-  MediaTypesClientAnalyzeBody$binaryOptionalParams,
-  MediaTypesClientAnalyzeBody$jsonOptionalParams,
-  MediaTypesClientAnalyzeBodyResponse,
-  MediaTypesClientContentTypeWithEncodingOptionalParams,
-  MediaTypesClientContentTypeWithEncodingResponse
+  AnalyzeBody$binaryOptionalParams,
+  AnalyzeBody$jsonOptionalParams,
+  AnalyzeBodyResponse,
+  ContentTypeWithEncodingOptionalParams,
+  ContentTypeWithEncodingResponse
 } from "./models";
 
 export class MediaTypesClient extends MediaTypesClientContext {
@@ -36,8 +36,8 @@ export class MediaTypesClient extends MediaTypesClientContext {
    */
   analyzeBody(
     contentType: ContentType,
-    options?: MediaTypesClientAnalyzeBody$binaryOptionalParams
-  ): Promise<MediaTypesClientAnalyzeBodyResponse>;
+    options?: AnalyzeBody$binaryOptionalParams
+  ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
    * @param contentType Body Parameter content-type
@@ -45,17 +45,17 @@ export class MediaTypesClient extends MediaTypesClientContext {
    */
   analyzeBody(
     contentType: "application/json",
-    options?: MediaTypesClientAnalyzeBody$jsonOptionalParams
-  ): Promise<MediaTypesClientAnalyzeBodyResponse>;
+    options?: AnalyzeBody$jsonOptionalParams
+  ): Promise<AnalyzeBodyResponse>;
   /**
    * Analyze body, that could be different media types.
    * @param args Includes all the parameters for this operation.
    */
   analyzeBody(
     ...args:
-      | [ContentType, MediaTypesClientAnalyzeBody$binaryOptionalParams?]
-      | ["application/json", MediaTypesClientAnalyzeBody$jsonOptionalParams?]
-  ): Promise<MediaTypesClientAnalyzeBodyResponse> {
+      | [ContentType, AnalyzeBody$binaryOptionalParams?]
+      | ["application/json", AnalyzeBody$jsonOptionalParams?]
+  ): Promise<AnalyzeBodyResponse> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
     let options;
@@ -86,8 +86,8 @@ export class MediaTypesClient extends MediaTypesClientContext {
    * @param options The options parameters.
    */
   contentTypeWithEncoding(
-    options?: MediaTypesClientContentTypeWithEncodingOptionalParams
-  ): Promise<MediaTypesClientContentTypeWithEncodingResponse> {
+    options?: ContentTypeWithEncodingOptionalParams
+  ): Promise<ContentTypeWithEncodingResponse> {
     return this.sendOperationRequest(
       { options },
       contentTypeWithEncodingOperationSpec

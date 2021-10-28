@@ -12,13 +12,13 @@ import * as Mappers from "./models/mappers";
 import { ValidationClientContext } from "./validationClientContext";
 import {
   ValidationClientOptionalParams,
-  ValidationClientValidationOfMethodParametersOptionalParams,
-  ValidationClientValidationOfMethodParametersResponse,
-  ValidationClientValidationOfBodyOptionalParams,
-  ValidationClientValidationOfBodyResponse,
-  ValidationClientGetWithConstantInPathOptionalParams,
-  ValidationClientPostWithConstantInBodyOptionalParams,
-  ValidationClientPostWithConstantInBodyResponse
+  ValidationOfMethodParametersOptionalParams,
+  ValidationOfMethodParametersResponse,
+  ValidationOfBodyOptionalParams,
+  ValidationOfBodyResponse,
+  GetWithConstantInPathOptionalParams,
+  PostWithConstantInBodyOptionalParams,
+  PostWithConstantInBodyResponse
 } from "./models";
 
 export class ValidationClient extends ValidationClientContext {
@@ -43,8 +43,8 @@ export class ValidationClient extends ValidationClientContext {
   validationOfMethodParameters(
     resourceGroupName: string,
     id: number,
-    options?: ValidationClientValidationOfMethodParametersOptionalParams
-  ): Promise<ValidationClientValidationOfMethodParametersResponse> {
+    options?: ValidationOfMethodParametersOptionalParams
+  ): Promise<ValidationOfMethodParametersResponse> {
     return this.sendOperationRequest(
       { resourceGroupName, id, options },
       validationOfMethodParametersOperationSpec
@@ -60,8 +60,8 @@ export class ValidationClient extends ValidationClientContext {
   validationOfBody(
     resourceGroupName: string,
     id: number,
-    options?: ValidationClientValidationOfBodyOptionalParams
-  ): Promise<ValidationClientValidationOfBodyResponse> {
+    options?: ValidationOfBodyOptionalParams
+  ): Promise<ValidationOfBodyResponse> {
     return this.sendOperationRequest(
       { resourceGroupName, id, options },
       validationOfBodyOperationSpec
@@ -70,7 +70,7 @@ export class ValidationClient extends ValidationClientContext {
 
   /** @param options The options parameters. */
   getWithConstantInPath(
-    options?: ValidationClientGetWithConstantInPathOptionalParams
+    options?: GetWithConstantInPathOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
@@ -80,8 +80,8 @@ export class ValidationClient extends ValidationClientContext {
 
   /** @param options The options parameters. */
   postWithConstantInBody(
-    options?: ValidationClientPostWithConstantInBodyOptionalParams
-  ): Promise<ValidationClientPostWithConstantInBodyResponse> {
+    options?: PostWithConstantInBodyOptionalParams
+  ): Promise<PostWithConstantInBodyResponse> {
     return this.sendOperationRequest(
       { options },
       postWithConstantInBodyOperationSpec

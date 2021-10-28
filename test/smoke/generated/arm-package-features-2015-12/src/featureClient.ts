@@ -17,10 +17,10 @@ import { FeatureClientContext } from "./featureClientContext";
 import {
   FeatureClientOptionalParams,
   Operation,
-  FeatureClientListOperationsNextOptionalParams,
-  FeatureClientListOperationsOptionalParams,
-  FeatureClientListOperationsResponse,
-  FeatureClientListOperationsNextResponse
+  ListOperationsNextOptionalParams,
+  ListOperationsOptionalParams,
+  ListOperationsResponse,
+  ListOperationsNextResponse
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -45,7 +45,7 @@ export class FeatureClient extends FeatureClientContext {
    * @param options The options parameters.
    */
   public listOperations(
-    options?: FeatureClientListOperationsOptionalParams
+    options?: ListOperationsOptionalParams
   ): PagedAsyncIterableIterator<Operation> {
     const iter = this.listOperationsPagingAll(options);
     return {
@@ -62,7 +62,7 @@ export class FeatureClient extends FeatureClientContext {
   }
 
   private async *listOperationsPagingPage(
-    options?: FeatureClientListOperationsOptionalParams
+    options?: ListOperationsOptionalParams
   ): AsyncIterableIterator<Operation[]> {
     let result = await this._listOperations(options);
     yield result.value || [];
@@ -75,7 +75,7 @@ export class FeatureClient extends FeatureClientContext {
   }
 
   private async *listOperationsPagingAll(
-    options?: FeatureClientListOperationsOptionalParams
+    options?: ListOperationsOptionalParams
   ): AsyncIterableIterator<Operation> {
     for await (const page of this.listOperationsPagingPage(options)) {
       yield* page;
@@ -87,8 +87,8 @@ export class FeatureClient extends FeatureClientContext {
    * @param options The options parameters.
    */
   private _listOperations(
-    options?: FeatureClientListOperationsOptionalParams
-  ): Promise<FeatureClientListOperationsResponse> {
+    options?: ListOperationsOptionalParams
+  ): Promise<ListOperationsResponse> {
     return this.sendOperationRequest({ options }, listOperationsOperationSpec);
   }
 
@@ -99,8 +99,8 @@ export class FeatureClient extends FeatureClientContext {
    */
   private _listOperationsNext(
     nextLink: string,
-    options?: FeatureClientListOperationsNextOptionalParams
-  ): Promise<FeatureClientListOperationsNextResponse> {
+    options?: ListOperationsNextOptionalParams
+  ): Promise<ListOperationsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       listOperationsNextOperationSpec

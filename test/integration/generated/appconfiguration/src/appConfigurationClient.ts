@@ -14,44 +14,44 @@ import { AppConfigurationClientContext } from "./appConfigurationClientContext";
 import {
   AppConfigurationClientOptionalParams,
   Key,
-  AppConfigurationClientGetKeysNextOptionalParams,
-  AppConfigurationClientGetKeysOptionalParams,
+  GetKeysNextOptionalParams,
+  GetKeysOptionalParams,
   KeyValue,
-  AppConfigurationClientGetKeyValuesNextOptionalParams,
-  AppConfigurationClientGetKeyValuesOptionalParams,
+  GetKeyValuesNextOptionalParams,
+  GetKeyValuesOptionalParams,
   Label,
-  AppConfigurationClientGetLabelsNextOptionalParams,
-  AppConfigurationClientGetLabelsOptionalParams,
-  AppConfigurationClientGetRevisionsNextOptionalParams,
-  AppConfigurationClientGetRevisionsOptionalParams,
-  AppConfigurationClientGetKeysResponse,
-  AppConfigurationClientCheckKeysOptionalParams,
-  AppConfigurationClientCheckKeysResponse,
-  AppConfigurationClientGetKeyValuesResponse,
-  AppConfigurationClientCheckKeyValuesOptionalParams,
-  AppConfigurationClientCheckKeyValuesResponse,
-  AppConfigurationClientGetKeyValueOptionalParams,
-  AppConfigurationClientGetKeyValueResponse,
-  AppConfigurationClientPutKeyValueOptionalParams,
-  AppConfigurationClientPutKeyValueResponse,
-  AppConfigurationClientDeleteKeyValueOptionalParams,
-  AppConfigurationClientDeleteKeyValueResponse,
-  AppConfigurationClientCheckKeyValueOptionalParams,
-  AppConfigurationClientCheckKeyValueResponse,
-  AppConfigurationClientGetLabelsResponse,
-  AppConfigurationClientCheckLabelsOptionalParams,
-  AppConfigurationClientCheckLabelsResponse,
-  AppConfigurationClientPutLockOptionalParams,
-  AppConfigurationClientPutLockResponse,
-  AppConfigurationClientDeleteLockOptionalParams,
-  AppConfigurationClientDeleteLockResponse,
-  AppConfigurationClientGetRevisionsResponse,
-  AppConfigurationClientCheckRevisionsOptionalParams,
-  AppConfigurationClientCheckRevisionsResponse,
-  AppConfigurationClientGetKeysNextResponse,
-  AppConfigurationClientGetKeyValuesNextResponse,
-  AppConfigurationClientGetLabelsNextResponse,
-  AppConfigurationClientGetRevisionsNextResponse
+  GetLabelsNextOptionalParams,
+  GetLabelsOptionalParams,
+  GetRevisionsNextOptionalParams,
+  GetRevisionsOptionalParams,
+  GetKeysResponse,
+  CheckKeysOptionalParams,
+  CheckKeysResponse,
+  GetKeyValuesResponse,
+  CheckKeyValuesOptionalParams,
+  CheckKeyValuesResponse,
+  GetKeyValueOptionalParams,
+  GetKeyValueResponse,
+  PutKeyValueOptionalParams,
+  PutKeyValueResponse,
+  DeleteKeyValueOptionalParams,
+  DeleteKeyValueResponse,
+  CheckKeyValueOptionalParams,
+  CheckKeyValueResponse,
+  GetLabelsResponse,
+  CheckLabelsOptionalParams,
+  CheckLabelsResponse,
+  PutLockOptionalParams,
+  PutLockResponse,
+  DeleteLockOptionalParams,
+  DeleteLockResponse,
+  GetRevisionsResponse,
+  CheckRevisionsOptionalParams,
+  CheckRevisionsResponse,
+  GetKeysNextResponse,
+  GetKeyValuesNextResponse,
+  GetLabelsNextResponse,
+  GetRevisionsNextResponse
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -73,7 +73,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   public listKeys(
-    options?: AppConfigurationClientGetKeysOptionalParams
+    options?: GetKeysOptionalParams
   ): PagedAsyncIterableIterator<Key> {
     const iter = this.getKeysPagingAll(options);
     return {
@@ -90,7 +90,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getKeysPagingPage(
-    options?: AppConfigurationClientGetKeysOptionalParams
+    options?: GetKeysOptionalParams
   ): AsyncIterableIterator<Key[]> {
     let result = await this._getKeys(options);
     yield result.items || [];
@@ -103,7 +103,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getKeysPagingAll(
-    options?: AppConfigurationClientGetKeysOptionalParams
+    options?: GetKeysOptionalParams
   ): AsyncIterableIterator<Key> {
     for await (const page of this.getKeysPagingPage(options)) {
       yield* page;
@@ -115,7 +115,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   public listKeyValues(
-    options?: AppConfigurationClientGetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams
   ): PagedAsyncIterableIterator<KeyValue> {
     const iter = this.getKeyValuesPagingAll(options);
     return {
@@ -132,7 +132,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getKeyValuesPagingPage(
-    options?: AppConfigurationClientGetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getKeyValues(options);
     yield result.items || [];
@@ -145,7 +145,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getKeyValuesPagingAll(
-    options?: AppConfigurationClientGetKeyValuesOptionalParams
+    options?: GetKeyValuesOptionalParams
   ): AsyncIterableIterator<KeyValue> {
     for await (const page of this.getKeyValuesPagingPage(options)) {
       yield* page;
@@ -157,7 +157,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   public listLabels(
-    options?: AppConfigurationClientGetLabelsOptionalParams
+    options?: GetLabelsOptionalParams
   ): PagedAsyncIterableIterator<Label> {
     const iter = this.getLabelsPagingAll(options);
     return {
@@ -174,7 +174,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getLabelsPagingPage(
-    options?: AppConfigurationClientGetLabelsOptionalParams
+    options?: GetLabelsOptionalParams
   ): AsyncIterableIterator<Label[]> {
     let result = await this._getLabels(options);
     yield result.items || [];
@@ -187,7 +187,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getLabelsPagingAll(
-    options?: AppConfigurationClientGetLabelsOptionalParams
+    options?: GetLabelsOptionalParams
   ): AsyncIterableIterator<Label> {
     for await (const page of this.getLabelsPagingPage(options)) {
       yield* page;
@@ -199,7 +199,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   public listRevisions(
-    options?: AppConfigurationClientGetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams
   ): PagedAsyncIterableIterator<KeyValue> {
     const iter = this.getRevisionsPagingAll(options);
     return {
@@ -216,7 +216,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getRevisionsPagingPage(
-    options?: AppConfigurationClientGetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getRevisions(options);
     yield result.items || [];
@@ -229,7 +229,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   }
 
   private async *getRevisionsPagingAll(
-    options?: AppConfigurationClientGetRevisionsOptionalParams
+    options?: GetRevisionsOptionalParams
   ): AsyncIterableIterator<KeyValue> {
     for await (const page of this.getRevisionsPagingPage(options)) {
       yield* page;
@@ -240,9 +240,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * Gets a list of keys.
    * @param options The options parameters.
    */
-  private _getKeys(
-    options?: AppConfigurationClientGetKeysOptionalParams
-  ): Promise<AppConfigurationClientGetKeysResponse> {
+  private _getKeys(options?: GetKeysOptionalParams): Promise<GetKeysResponse> {
     return this.sendOperationRequest({ options }, getKeysOperationSpec);
   }
 
@@ -250,9 +248,7 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * Requests the headers and status of the given resource.
    * @param options The options parameters.
    */
-  checkKeys(
-    options?: AppConfigurationClientCheckKeysOptionalParams
-  ): Promise<AppConfigurationClientCheckKeysResponse> {
+  checkKeys(options?: CheckKeysOptionalParams): Promise<CheckKeysResponse> {
     return this.sendOperationRequest({ options }, checkKeysOperationSpec);
   }
 
@@ -261,8 +257,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   private _getKeyValues(
-    options?: AppConfigurationClientGetKeyValuesOptionalParams
-  ): Promise<AppConfigurationClientGetKeyValuesResponse> {
+    options?: GetKeyValuesOptionalParams
+  ): Promise<GetKeyValuesResponse> {
     return this.sendOperationRequest({ options }, getKeyValuesOperationSpec);
   }
 
@@ -271,8 +267,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   checkKeyValues(
-    options?: AppConfigurationClientCheckKeyValuesOptionalParams
-  ): Promise<AppConfigurationClientCheckKeyValuesResponse> {
+    options?: CheckKeyValuesOptionalParams
+  ): Promise<CheckKeyValuesResponse> {
     return this.sendOperationRequest({ options }, checkKeyValuesOperationSpec);
   }
 
@@ -283,8 +279,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   getKeyValue(
     key: string,
-    options?: AppConfigurationClientGetKeyValueOptionalParams
-  ): Promise<AppConfigurationClientGetKeyValueResponse> {
+    options?: GetKeyValueOptionalParams
+  ): Promise<GetKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
       getKeyValueOperationSpec
@@ -298,8 +294,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   putKeyValue(
     key: string,
-    options?: AppConfigurationClientPutKeyValueOptionalParams
-  ): Promise<AppConfigurationClientPutKeyValueResponse> {
+    options?: PutKeyValueOptionalParams
+  ): Promise<PutKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
       putKeyValueOperationSpec
@@ -313,8 +309,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   deleteKeyValue(
     key: string,
-    options?: AppConfigurationClientDeleteKeyValueOptionalParams
-  ): Promise<AppConfigurationClientDeleteKeyValueResponse> {
+    options?: DeleteKeyValueOptionalParams
+  ): Promise<DeleteKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
       deleteKeyValueOperationSpec
@@ -328,8 +324,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   checkKeyValue(
     key: string,
-    options?: AppConfigurationClientCheckKeyValueOptionalParams
-  ): Promise<AppConfigurationClientCheckKeyValueResponse> {
+    options?: CheckKeyValueOptionalParams
+  ): Promise<CheckKeyValueResponse> {
     return this.sendOperationRequest(
       { key, options },
       checkKeyValueOperationSpec
@@ -341,8 +337,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   private _getLabels(
-    options?: AppConfigurationClientGetLabelsOptionalParams
-  ): Promise<AppConfigurationClientGetLabelsResponse> {
+    options?: GetLabelsOptionalParams
+  ): Promise<GetLabelsResponse> {
     return this.sendOperationRequest({ options }, getLabelsOperationSpec);
   }
 
@@ -351,8 +347,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   checkLabels(
-    options?: AppConfigurationClientCheckLabelsOptionalParams
-  ): Promise<AppConfigurationClientCheckLabelsResponse> {
+    options?: CheckLabelsOptionalParams
+  ): Promise<CheckLabelsResponse> {
     return this.sendOperationRequest({ options }, checkLabelsOperationSpec);
   }
 
@@ -363,8 +359,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   putLock(
     key: string,
-    options?: AppConfigurationClientPutLockOptionalParams
-  ): Promise<AppConfigurationClientPutLockResponse> {
+    options?: PutLockOptionalParams
+  ): Promise<PutLockResponse> {
     return this.sendOperationRequest({ key, options }, putLockOperationSpec);
   }
 
@@ -375,8 +371,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   deleteLock(
     key: string,
-    options?: AppConfigurationClientDeleteLockOptionalParams
-  ): Promise<AppConfigurationClientDeleteLockResponse> {
+    options?: DeleteLockOptionalParams
+  ): Promise<DeleteLockResponse> {
     return this.sendOperationRequest({ key, options }, deleteLockOperationSpec);
   }
 
@@ -385,8 +381,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   private _getRevisions(
-    options?: AppConfigurationClientGetRevisionsOptionalParams
-  ): Promise<AppConfigurationClientGetRevisionsResponse> {
+    options?: GetRevisionsOptionalParams
+  ): Promise<GetRevisionsResponse> {
     return this.sendOperationRequest({ options }, getRevisionsOperationSpec);
   }
 
@@ -395,8 +391,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    * @param options The options parameters.
    */
   checkRevisions(
-    options?: AppConfigurationClientCheckRevisionsOptionalParams
-  ): Promise<AppConfigurationClientCheckRevisionsResponse> {
+    options?: CheckRevisionsOptionalParams
+  ): Promise<CheckRevisionsResponse> {
     return this.sendOperationRequest({ options }, checkRevisionsOperationSpec);
   }
 
@@ -407,8 +403,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   private _getKeysNext(
     nextLink: string,
-    options?: AppConfigurationClientGetKeysNextOptionalParams
-  ): Promise<AppConfigurationClientGetKeysNextResponse> {
+    options?: GetKeysNextOptionalParams
+  ): Promise<GetKeysNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       getKeysNextOperationSpec
@@ -422,8 +418,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   private _getKeyValuesNext(
     nextLink: string,
-    options?: AppConfigurationClientGetKeyValuesNextOptionalParams
-  ): Promise<AppConfigurationClientGetKeyValuesNextResponse> {
+    options?: GetKeyValuesNextOptionalParams
+  ): Promise<GetKeyValuesNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       getKeyValuesNextOperationSpec
@@ -437,8 +433,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   private _getLabelsNext(
     nextLink: string,
-    options?: AppConfigurationClientGetLabelsNextOptionalParams
-  ): Promise<AppConfigurationClientGetLabelsNextResponse> {
+    options?: GetLabelsNextOptionalParams
+  ): Promise<GetLabelsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       getLabelsNextOperationSpec
@@ -452,8 +448,8 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
    */
   private _getRevisionsNext(
     nextLink: string,
-    options?: AppConfigurationClientGetRevisionsNextOptionalParams
-  ): Promise<AppConfigurationClientGetRevisionsNextResponse> {
+    options?: GetRevisionsNextOptionalParams
+  ): Promise<GetRevisionsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       getRevisionsNextOperationSpec

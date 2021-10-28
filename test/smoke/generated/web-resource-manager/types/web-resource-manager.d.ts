@@ -3176,6 +3176,15 @@ export declare type CertificatesUpdateResponse = Certificate;
 /** Defines values for Channels. */
 export declare type Channels = "Notification" | "Api" | "Email" | "Webhook" | "All";
 
+/** Optional parameters. */
+export declare interface CheckNameAvailabilityOptionalParams extends coreClient.OperationOptions {
+    /** Is fully qualified domain name. */
+    isFqdn?: boolean;
+}
+
+/** Contains response data for the checkNameAvailability operation. */
+export declare type CheckNameAvailabilityResponse = ResourceNameAvailability;
+
 /**
  * Defines values for CheckNameResourceTypes. \
  * {@link KnownCheckNameResourceTypes} can be used interchangeably with CheckNameResourceTypes,
@@ -5226,6 +5235,27 @@ export declare interface GeoRegionCollection {
     readonly nextLink?: string;
 }
 
+/** Optional parameters. */
+export declare interface GetPublishingUserOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getPublishingUser operation. */
+export declare type GetPublishingUserResponse = User;
+
+/** Optional parameters. */
+export declare interface GetSourceControlOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSourceControl operation. */
+export declare type GetSourceControlResponse = SourceControl;
+
+/** Optional parameters. */
+export declare interface GetSubscriptionDeploymentLocationsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getSubscriptionDeploymentLocations operation. */
+export declare type GetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
+
 /** A Global SKU Description. */
 export declare interface GlobalCsmSkuDescription {
     /** Name of the resource SKU. */
@@ -5729,6 +5759,107 @@ export declare enum KnownValidateResourceTypes {
     Site = "Site"
 }
 
+/** Optional parameters. */
+export declare interface ListBillingMetersNextOptionalParams extends coreClient.OperationOptions {
+    /** Azure Location of billable resource */
+    billingLocation?: string;
+    /** App Service OS type meters used for */
+    osType?: string;
+}
+
+/** Contains response data for the listBillingMetersNext operation. */
+export declare type ListBillingMetersNextResponse = BillingMeterCollection;
+
+/** Optional parameters. */
+export declare interface ListBillingMetersOptionalParams extends coreClient.OperationOptions {
+    /** Azure Location of billable resource */
+    billingLocation?: string;
+    /** App Service OS type meters used for */
+    osType?: string;
+}
+
+/** Contains response data for the listBillingMeters operation. */
+export declare type ListBillingMetersResponse = BillingMeterCollection;
+
+/** Optional parameters. */
+export declare interface ListGeoRegionsNextOptionalParams extends coreClient.OperationOptions {
+    /** Name of SKU used to filter the regions. */
+    sku?: SkuName;
+    /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
+    linuxWorkersEnabled?: boolean;
+    /** Specify <code>true</code> if you want to filter to only regions that support Xenon workers. */
+    xenonWorkersEnabled?: boolean;
+    /** Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers. */
+    linuxDynamicWorkersEnabled?: boolean;
+}
+
+/** Contains response data for the listGeoRegionsNext operation. */
+export declare type ListGeoRegionsNextResponse = GeoRegionCollection;
+
+/** Optional parameters. */
+export declare interface ListGeoRegionsOptionalParams extends coreClient.OperationOptions {
+    /** Name of SKU used to filter the regions. */
+    sku?: SkuName;
+    /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
+    linuxWorkersEnabled?: boolean;
+    /** Specify <code>true</code> if you want to filter to only regions that support Xenon workers. */
+    xenonWorkersEnabled?: boolean;
+    /** Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers. */
+    linuxDynamicWorkersEnabled?: boolean;
+}
+
+/** Contains response data for the listGeoRegions operation. */
+export declare type ListGeoRegionsResponse = GeoRegionCollection;
+
+/** Optional parameters. */
+export declare interface ListPremierAddOnOffersNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listPremierAddOnOffersNext operation. */
+export declare type ListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection;
+
+/** Optional parameters. */
+export declare interface ListPremierAddOnOffersOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listPremierAddOnOffers operation. */
+export declare type ListPremierAddOnOffersResponse = PremierAddOnOfferCollection;
+
+/** Optional parameters. */
+export declare interface ListSiteIdentifiersAssignedToHostNameNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listSiteIdentifiersAssignedToHostNameNext operation. */
+export declare type ListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection;
+
+/** Optional parameters. */
+export declare interface ListSiteIdentifiersAssignedToHostNameOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listSiteIdentifiersAssignedToHostName operation. */
+export declare type ListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection;
+
+/** Optional parameters. */
+export declare interface ListSkusOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listSkus operation. */
+export declare type ListSkusResponse = SkuInfos;
+
+/** Optional parameters. */
+export declare interface ListSourceControlsNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listSourceControlsNext operation. */
+export declare type ListSourceControlsNextResponse = SourceControlCollection;
+
+/** Optional parameters. */
+export declare interface ListSourceControlsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listSourceControls operation. */
+export declare type ListSourceControlsResponse = SourceControlCollection;
+
 /** Localizable string object containing the name and a localized value. */
 export declare interface LocalizableString {
     /** Non-localized name. */
@@ -5825,6 +5956,10 @@ export declare type MigrateMySqlStatus = ProxyOnlyResource & {
      */
     readonly localMySqlEnabled?: boolean;
 };
+
+/** Optional parameters. */
+export declare interface MoveOptionalParams extends coreClient.OperationOptions {
+}
 
 /** MSDeploy ARM PUT information */
 export declare type MSDeploy = ProxyOnlyResource & {
@@ -9476,6 +9611,20 @@ export declare type TriggerTypes = string;
 /** Defines values for UnauthenticatedClientAction. */
 export declare type UnauthenticatedClientAction = "RedirectToLoginPage" | "AllowAnonymous";
 
+/** Optional parameters. */
+export declare interface UpdatePublishingUserOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updatePublishingUser operation. */
+export declare type UpdatePublishingUserResponse = User;
+
+/** Optional parameters. */
+export declare interface UpdateSourceControlOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the updateSourceControl operation. */
+export declare type UpdateSourceControlResponse = SourceControl;
+
 /** Usage of the quota resource. */
 export declare type Usage = ProxyOnlyResource & {
     /**
@@ -9557,6 +9706,17 @@ export declare type User = ProxyOnlyResource & {
     scmUri?: string;
 };
 
+/** Optional parameters. */
+export declare interface ValidateMoveOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the validate operation. */
+export declare type ValidateOperationResponse = ValidateResponse;
+
+/** Optional parameters. */
+export declare interface ValidateOptionalParams extends coreClient.OperationOptions {
+}
+
 /** Resource validation request content. */
 export declare interface ValidateRequest {
     /** Resource name to verify. */
@@ -9618,6 +9778,13 @@ export declare interface ValidateResponseError {
     /** Validation error message. */
     message?: string;
 }
+
+/** Optional parameters. */
+export declare interface VerifyHostingEnvironmentVnetOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the verifyHostingEnvironmentVnet operation. */
+export declare type VerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails;
 
 /** Virtual application in an app. */
 export declare interface VirtualApplication {
@@ -16506,21 +16673,21 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
      * Description for Gets the source controls available for Azure websites.
      * @param options The options parameters.
      */
-    listSourceControls(options?: WebSiteManagementClientListSourceControlsOptionalParams): PagedAsyncIterableIterator<SourceControl>;
+    listSourceControls(options?: ListSourceControlsOptionalParams): PagedAsyncIterableIterator<SourceControl>;
     private listSourceControlsPagingPage;
     private listSourceControlsPagingAll;
     /**
      * Description for Gets a list of meters for a given location.
      * @param options The options parameters.
      */
-    listBillingMeters(options?: WebSiteManagementClientListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;
+    listBillingMeters(options?: ListBillingMetersOptionalParams): PagedAsyncIterableIterator<BillingMeter>;
     private listBillingMetersPagingPage;
     private listBillingMetersPagingAll;
     /**
      * Description for Get a list of available geographical regions.
      * @param options The options parameters.
      */
-    listGeoRegions(options?: WebSiteManagementClientListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion>;
+    listGeoRegions(options?: ListGeoRegionsOptionalParams): PagedAsyncIterableIterator<GeoRegion>;
     private listGeoRegionsPagingPage;
     private listGeoRegionsPagingAll;
     /**
@@ -16528,27 +16695,27 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
      * @param nameIdentifier Hostname information.
      * @param options The options parameters.
      */
-    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams): PagedAsyncIterableIterator<Identifier>;
+    listSiteIdentifiersAssignedToHostName(nameIdentifier: NameIdentifier, options?: ListSiteIdentifiersAssignedToHostNameOptionalParams): PagedAsyncIterableIterator<Identifier>;
     private listSiteIdentifiersAssignedToHostNamePagingPage;
     private listSiteIdentifiersAssignedToHostNamePagingAll;
     /**
      * Description for List all premier add-on offers.
      * @param options The options parameters.
      */
-    listPremierAddOnOffers(options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams): PagedAsyncIterableIterator<PremierAddOnOffer>;
+    listPremierAddOnOffers(options?: ListPremierAddOnOffersOptionalParams): PagedAsyncIterableIterator<PremierAddOnOffer>;
     private listPremierAddOnOffersPagingPage;
     private listPremierAddOnOffersPagingAll;
     /**
      * Description for Gets publishing user
      * @param options The options parameters.
      */
-    getPublishingUser(options?: WebSiteManagementClientGetPublishingUserOptionalParams): Promise<WebSiteManagementClientGetPublishingUserResponse>;
+    getPublishingUser(options?: GetPublishingUserOptionalParams): Promise<GetPublishingUserResponse>;
     /**
      * Description for Updates publishing user
      * @param userDetails Details of publishing user
      * @param options The options parameters.
      */
-    updatePublishingUser(userDetails: User, options?: WebSiteManagementClientUpdatePublishingUserOptionalParams): Promise<WebSiteManagementClientUpdatePublishingUserResponse>;
+    updatePublishingUser(userDetails: User, options?: UpdatePublishingUserOptionalParams): Promise<UpdatePublishingUserResponse>;
     /**
      * Description for Gets the source controls available for Azure websites.
      * @param options The options parameters.
@@ -16559,14 +16726,14 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
      * @param sourceControlType Type of source control
      * @param options The options parameters.
      */
-    getSourceControl(sourceControlType: string, options?: WebSiteManagementClientGetSourceControlOptionalParams): Promise<WebSiteManagementClientGetSourceControlResponse>;
+    getSourceControl(sourceControlType: string, options?: GetSourceControlOptionalParams): Promise<GetSourceControlResponse>;
     /**
      * Description for Updates source control token
      * @param sourceControlType Type of source control
      * @param requestMessage Source control token information
      * @param options The options parameters.
      */
-    updateSourceControl(sourceControlType: string, requestMessage: SourceControl, options?: WebSiteManagementClientUpdateSourceControlOptionalParams): Promise<WebSiteManagementClientUpdateSourceControlResponse>;
+    updateSourceControl(sourceControlType: string, requestMessage: SourceControl, options?: UpdateSourceControlOptionalParams): Promise<UpdateSourceControlResponse>;
     /**
      * Description for Gets a list of meters for a given location.
      * @param options The options parameters.
@@ -16578,12 +16745,12 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
      * @param typeParam Resource type used for verification.
      * @param options The options parameters.
      */
-    checkNameAvailability(name: string, typeParam: CheckNameResourceTypes, options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams): Promise<WebSiteManagementClientCheckNameAvailabilityResponse>;
+    checkNameAvailability(name: string, typeParam: CheckNameResourceTypes, options?: CheckNameAvailabilityOptionalParams): Promise<CheckNameAvailabilityResponse>;
     /**
      * Description for Gets list of available geo regions plus ministamps
      * @param options The options parameters.
      */
-    getSubscriptionDeploymentLocations(options?: WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams): Promise<WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse>;
+    getSubscriptionDeploymentLocations(options?: GetSubscriptionDeploymentLocationsOptionalParams): Promise<GetSubscriptionDeploymentLocationsResponse>;
     /**
      * Description for Get a list of available geographical regions.
      * @param options The options parameters.
@@ -16604,35 +16771,35 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
      * Description for List all SKUs.
      * @param options The options parameters.
      */
-    listSkus(options?: WebSiteManagementClientListSkusOptionalParams): Promise<WebSiteManagementClientListSkusResponse>;
+    listSkus(options?: ListSkusOptionalParams): Promise<ListSkusResponse>;
     /**
      * Description for Verifies if this VNET is compatible with an App Service Environment by analyzing the
      * Network Security Group rules.
      * @param parameters VNET information
      * @param options The options parameters.
      */
-    verifyHostingEnvironmentVnet(parameters: VnetParameters, options?: WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams): Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse>;
+    verifyHostingEnvironmentVnet(parameters: VnetParameters, options?: VerifyHostingEnvironmentVnetOptionalParams): Promise<VerifyHostingEnvironmentVnetResponse>;
     /**
      * Description for Move resources between resource groups.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param moveResourceEnvelope Object that represents the resource to move.
      * @param options The options parameters.
      */
-    move(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: WebSiteManagementClientMoveOptionalParams): Promise<void>;
+    move(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: MoveOptionalParams): Promise<void>;
     /**
      * Description for Validate if a resource can be created.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param validateRequest Request with the resources to validate.
      * @param options The options parameters.
      */
-    validate(resourceGroupName: string, validateRequest: ValidateRequest, options?: WebSiteManagementClientValidateOptionalParams): Promise<WebSiteManagementClientValidateResponse>;
+    validate(resourceGroupName: string, validateRequest: ValidateRequest, options?: ValidateOptionalParams): Promise<ValidateOperationResponse>;
     /**
      * Description for Validate whether a resource can be moved.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param moveResourceEnvelope Object that represents the resource to move.
      * @param options The options parameters.
      */
-    validateMove(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: WebSiteManagementClientValidateMoveOptionalParams): Promise<void>;
+    validateMove(resourceGroupName: string, moveResourceEnvelope: CsmMoveResourceEnvelope, options?: ValidateMoveOptionalParams): Promise<void>;
     /**
      * ListSourceControlsNext
      * @param nextLink The nextLink from the previous successful call to the ListSourceControls method.
@@ -16682,15 +16849,6 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
     resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
 }
 
-/** Optional parameters. */
-export declare interface WebSiteManagementClientCheckNameAvailabilityOptionalParams extends coreClient.OperationOptions {
-    /** Is fully qualified domain name. */
-    isFqdn?: boolean;
-}
-
-/** Contains response data for the checkNameAvailability operation. */
-export declare type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameAvailability;
-
 export declare class WebSiteManagementClientContext extends coreClient.ServiceClient {
     $host: string;
     subscriptionId: string;
@@ -16706,132 +16864,6 @@ export declare class WebSiteManagementClientContext extends coreClient.ServiceCl
 }
 
 /** Optional parameters. */
-export declare interface WebSiteManagementClientGetPublishingUserOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getPublishingUser operation. */
-export declare type WebSiteManagementClientGetPublishingUserResponse = User;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientGetSourceControlOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getSourceControl operation. */
-export declare type WebSiteManagementClientGetSourceControlResponse = SourceControl;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getSubscriptionDeploymentLocations operation. */
-export declare type WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListBillingMetersNextOptionalParams extends coreClient.OperationOptions {
-    /** Azure Location of billable resource */
-    billingLocation?: string;
-    /** App Service OS type meters used for */
-    osType?: string;
-}
-
-/** Contains response data for the listBillingMetersNext operation. */
-export declare type WebSiteManagementClientListBillingMetersNextResponse = BillingMeterCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListBillingMetersOptionalParams extends coreClient.OperationOptions {
-    /** Azure Location of billable resource */
-    billingLocation?: string;
-    /** App Service OS type meters used for */
-    osType?: string;
-}
-
-/** Contains response data for the listBillingMeters operation. */
-export declare type WebSiteManagementClientListBillingMetersResponse = BillingMeterCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListGeoRegionsNextOptionalParams extends coreClient.OperationOptions {
-    /** Name of SKU used to filter the regions. */
-    sku?: SkuName;
-    /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
-    linuxWorkersEnabled?: boolean;
-    /** Specify <code>true</code> if you want to filter to only regions that support Xenon workers. */
-    xenonWorkersEnabled?: boolean;
-    /** Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers. */
-    linuxDynamicWorkersEnabled?: boolean;
-}
-
-/** Contains response data for the listGeoRegionsNext operation. */
-export declare type WebSiteManagementClientListGeoRegionsNextResponse = GeoRegionCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListGeoRegionsOptionalParams extends coreClient.OperationOptions {
-    /** Name of SKU used to filter the regions. */
-    sku?: SkuName;
-    /** Specify <code>true</code> if you want to filter to only regions that support Linux workers. */
-    linuxWorkersEnabled?: boolean;
-    /** Specify <code>true</code> if you want to filter to only regions that support Xenon workers. */
-    xenonWorkersEnabled?: boolean;
-    /** Specify <code>true</code> if you want to filter to only regions that support Linux Consumption Workers. */
-    linuxDynamicWorkersEnabled?: boolean;
-}
-
-/** Contains response data for the listGeoRegions operation. */
-export declare type WebSiteManagementClientListGeoRegionsResponse = GeoRegionCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListPremierAddOnOffersNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listPremierAddOnOffersNext operation. */
-export declare type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListPremierAddOnOffersOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listPremierAddOnOffers operation. */
-export declare type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOnOfferCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listSiteIdentifiersAssignedToHostNameNext operation. */
-export declare type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listSiteIdentifiersAssignedToHostName operation. */
-export declare type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListSkusOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listSkus operation. */
-export declare type WebSiteManagementClientListSkusResponse = SkuInfos;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListSourceControlsNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listSourceControlsNext operation. */
-export declare type WebSiteManagementClientListSourceControlsNextResponse = SourceControlCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientListSourceControlsOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listSourceControls operation. */
-export declare type WebSiteManagementClientListSourceControlsResponse = SourceControlCollection;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientMoveOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Optional parameters. */
 export declare interface WebSiteManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     /** server parameter */
     $host?: string;
@@ -16840,38 +16872,6 @@ export declare interface WebSiteManagementClientOptionalParams extends coreClien
     /** Overrides client endpoint. */
     endpoint?: string;
 }
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientUpdatePublishingUserOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the updatePublishingUser operation. */
-export declare type WebSiteManagementClientUpdatePublishingUserResponse = User;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientUpdateSourceControlOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the updateSourceControl operation. */
-export declare type WebSiteManagementClientUpdateSourceControlResponse = SourceControl;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientValidateMoveOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientValidateOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the validate operation. */
-export declare type WebSiteManagementClientValidateResponse = ValidateResponse;
-
-/** Optional parameters. */
-export declare interface WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the verifyHostingEnvironmentVnet operation. */
-export declare type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails;
 
 /** Worker pool of an App Service Environment. */
 export declare interface WorkerPool {

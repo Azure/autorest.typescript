@@ -171,8 +171,7 @@ export type ErrorCodeValue =
   | "NotFound";
 
 /** Optional parameters. */
-export interface GeneratedClientLanguagesOptionalParams
-  extends coreClient.OperationOptions {
+export interface LanguagesOptionalParams extends coreClient.OperationOptions {
   /** (Optional) This value indicates which model will be used for scoring. If a model-version is not specified, the API should default to the latest, non-preview version. */
   modelVersion?: string;
   /** (Optional) if set to true, response will contain request and document level statistics. */
@@ -182,7 +181,7 @@ export interface GeneratedClientLanguagesOptionalParams
 }
 
 /** Contains response data for the languages operation. */
-export type GeneratedClientLanguagesResponse = LanguageResult;
+export type LanguagesResponse = LanguageResult;
 
 /** Optional parameters. */
 export interface GeneratedClientOptionalParams
