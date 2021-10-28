@@ -61,18 +61,18 @@ export interface FeatureProperties {
 }
 
 /** Optional parameters. */
-export interface FeatureClientListOperationsOptionalParams
+export interface ListOperationsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperations operation. */
-export type FeatureClientListOperationsResponse = OperationListResult;
+export type ListOperationsResponse = OperationListResult;
 
 /** Optional parameters. */
-export interface FeatureClientListOperationsNextOptionalParams
+export interface ListOperationsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listOperationsNext operation. */
-export type FeatureClientListOperationsNextResponse = OperationListResult;
+export type ListOperationsNextResponse = OperationListResult;
 
 /** Optional parameters. */
 export interface FeaturesListAllOptionalParams
