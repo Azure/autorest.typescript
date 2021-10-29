@@ -109,7 +109,8 @@ function restLevelPackage(packageDetails: PackageDetails) {
       prettier: "^2.2.1",
       "ts-node": "^9.1.1",
       typescript: "~4.2.4",
-      mkdirp: "^1.0.4"
+      mkdirp: "^1.0.4",
+      rimraf: "^3.0.0"
     },
     sideEffects: false,
     autoPublish: true
@@ -220,7 +221,8 @@ function regularAutorestPackage(
       "extract-api": "api-extractor run --local",
       lint: "echo skipped",
       audit: "echo skipped",
-      clean: "echo skipped",
+      clean:
+        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
       "build:browser": "echo skipped",
       "build:test": "echo skipped",
