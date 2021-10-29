@@ -1,5 +1,5 @@
 {
-  "name": "storage-resource-manager",
+  "name": "@msinternal/storage-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for StorageManagementClient.",

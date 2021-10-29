@@ -11107,7 +11107,7 @@ export interface BastionHostsListByResourceGroupNextOptionalParams
 export type BastionHostsListByResourceGroupNextResponse = BastionHostListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientPutBastionShareableLinkOptionalParams
+export interface PutBastionShareableLinkOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11116,10 +11116,10 @@ export interface NetworkManagementClientPutBastionShareableLinkOptionalParams
 }
 
 /** Contains response data for the putBastionShareableLink operation. */
-export type NetworkManagementClientPutBastionShareableLinkResponse = BastionShareableLinkListResult;
+export type PutBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams
+export interface DeleteBastionShareableLinkOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11128,14 +11128,14 @@ export interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams
 }
 
 /** Optional parameters. */
-export interface NetworkManagementClientGetBastionShareableLinkOptionalParams
+export interface GetBastionShareableLinkOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBastionShareableLink operation. */
-export type NetworkManagementClientGetBastionShareableLinkResponse = BastionShareableLinkListResult;
+export type GetBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientGetActiveSessionsOptionalParams
+export interface GetActiveSessionsOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11144,31 +11144,31 @@ export interface NetworkManagementClientGetActiveSessionsOptionalParams
 }
 
 /** Contains response data for the getActiveSessions operation. */
-export type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSessionListResult;
+export type GetActiveSessionsResponse = BastionActiveSessionListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientDisconnectActiveSessionsOptionalParams
+export interface DisconnectActiveSessionsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the disconnectActiveSessions operation. */
-export type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSessionDeleteResult;
+export type DisconnectActiveSessionsResponse = BastionSessionDeleteResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientCheckDnsNameAvailabilityOptionalParams
+export interface CheckDnsNameAvailabilityOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the checkDnsNameAvailability operation. */
-export type NetworkManagementClientCheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult;
+export type CheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientSupportedSecurityProvidersOptionalParams
+export interface SupportedSecurityProvidersOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the supportedSecurityProviders operation. */
-export type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualWanSecurityProviders;
+export type SupportedSecurityProvidersResponse = VirtualWanSecurityProviders;
 
 /** Optional parameters. */
-export interface NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
+export interface GeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -11177,35 +11177,35 @@ export interface NetworkManagementClientGeneratevirtualwanvpnserverconfiguration
 }
 
 /** Contains response data for the generatevirtualwanvpnserverconfigurationvpnprofile operation. */
-export type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse;
+export type GeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse;
 
 /** Optional parameters. */
-export interface NetworkManagementClientPutBastionShareableLinkNextOptionalParams
+export interface PutBastionShareableLinkNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the putBastionShareableLinkNext operation. */
-export type NetworkManagementClientPutBastionShareableLinkNextResponse = BastionShareableLinkListResult;
+export type PutBastionShareableLinkNextResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientGetBastionShareableLinkNextOptionalParams
+export interface GetBastionShareableLinkNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getBastionShareableLinkNext operation. */
-export type NetworkManagementClientGetBastionShareableLinkNextResponse = BastionShareableLinkListResult;
+export type GetBastionShareableLinkNextResponse = BastionShareableLinkListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientGetActiveSessionsNextOptionalParams
+export interface GetActiveSessionsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getActiveSessionsNext operation. */
-export type NetworkManagementClientGetActiveSessionsNextResponse = BastionActiveSessionListResult;
+export type GetActiveSessionsNextResponse = BastionActiveSessionListResult;
 
 /** Optional parameters. */
-export interface NetworkManagementClientDisconnectActiveSessionsNextOptionalParams
+export interface DisconnectActiveSessionsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the disconnectActiveSessionsNext operation. */
-export type NetworkManagementClientDisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
+export type DisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
 
 /** Optional parameters. */
 export interface DdosCustomPoliciesDeleteOptionalParams

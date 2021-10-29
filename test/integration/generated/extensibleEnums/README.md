@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 PetStore
 
-[Package (NPM)](https://www.npmjs.com/package/extensible-enums) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/extensible-enums) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

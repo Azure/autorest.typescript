@@ -14,11 +14,11 @@ import * as Parameters from "./models/parameters";
 import { MediaTypesV3LROClientContext } from "./mediaTypesV3LROClientContext";
 import {
   MediaTypesV3LROClientOptionalParams,
-  MediaTypesV3LROClientSendOnDefault$binaryOptionalParams,
-  MediaTypesV3LROClientSendOnDefault$textOptionalParams,
-  MediaTypesV3LROClientSend$binaryOptionalParams,
-  MediaTypesV3LROClientSend$textOptionalParams,
-  MediaTypesV3LROClientSendResponse
+  SendOnDefault$binaryOptionalParams,
+  SendOnDefault$textOptionalParams,
+  Send$binaryOptionalParams,
+  Send$textOptionalParams,
+  SendResponse
 } from "./models";
 
 export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
@@ -47,7 +47,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   beginSendOnDefault(
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
-    options?: MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
+    options?: SendOnDefault$binaryOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Send payload to Foo service.
@@ -58,7 +58,7 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
   beginSendOnDefault(
     contentType: "text/plain",
     data: string,
-    options?: MediaTypesV3LROClientSendOnDefault$textOptionalParams
+    options?: SendOnDefault$textOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>>;
   /**
    * Send payload to Foo service.
@@ -69,13 +69,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       | [
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          MediaTypesV3LROClientSendOnDefault$binaryOptionalParams?
+          SendOnDefault$binaryOptionalParams?
         ]
-      | [
-          "text/plain",
-          string,
-          MediaTypesV3LROClientSendOnDefault$textOptionalParams?
-        ]
+      | ["text/plain", string, SendOnDefault$textOptionalParams?]
   ): Promise<PollerLike<PollOperationState<void>, void>> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
@@ -157,13 +153,9 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
       | [
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          MediaTypesV3LROClientSendOnDefault$binaryOptionalParams?
+          SendOnDefault$binaryOptionalParams?
         ]
-      | [
-          "text/plain",
-          string,
-          MediaTypesV3LROClientSendOnDefault$textOptionalParams?
-        ]
+      | ["text/plain", string, SendOnDefault$textOptionalParams?]
   ): Promise<void> {
     if (args[0] === "application/octet-stream") {
       const poller = await this.beginSendOnDefault(...args);
@@ -186,8 +178,8 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     thing: string,
     contentType: "application/octet-stream",
     data: coreRestPipeline.RequestBodyType,
-    options?: MediaTypesV3LROClientSend$binaryOptionalParams
-  ): Promise<MediaTypesV3LROClientSendResponse>;
+    options?: Send$binaryOptionalParams
+  ): Promise<SendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param thing Target thing name
@@ -199,8 +191,8 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
     thing: string,
     contentType: "text/plain",
     data: string,
-    options?: MediaTypesV3LROClientSend$textOptionalParams
-  ): Promise<MediaTypesV3LROClientSendResponse>;
+    options?: Send$textOptionalParams
+  ): Promise<SendResponse>;
   /**
    * Send payload to targetted thing in Foo service.
    * @param args Includes all the parameters for this operation.
@@ -211,15 +203,10 @@ export class MediaTypesV3LROClient extends MediaTypesV3LROClientContext {
           string,
           "application/octet-stream",
           coreRestPipeline.RequestBodyType,
-          MediaTypesV3LROClientSend$binaryOptionalParams?
+          Send$binaryOptionalParams?
         ]
-      | [
-          string,
-          "text/plain",
-          string,
-          MediaTypesV3LROClientSend$textOptionalParams?
-        ]
-  ): Promise<MediaTypesV3LROClientSendResponse> {
+      | [string, "text/plain", string, Send$textOptionalParams?]
+  ): Promise<SendResponse> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
     let options;

@@ -20,7 +20,7 @@ export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsHea
 }
 
 /** Optional parameters. */
-export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
+export interface PollWithParameterizedEndpointsOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -29,7 +29,7 @@ export interface LroParametrizedEndpointsClientPollWithParameterizedEndpointsOpt
 }
 
 /** Contains response data for the pollWithParameterizedEndpoints operation. */
-export type LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse = {
+export type PollWithParameterizedEndpointsResponse = {
   /** The parsed response body. */
   body: string;
 };

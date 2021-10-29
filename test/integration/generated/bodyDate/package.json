@@ -1,5 +1,5 @@
 {
-  "name": "body-date",
+  "name": "@msinternal/body-date",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyDateClient.",

@@ -48,27 +48,26 @@ export enum KnownOS {
 export type OS = string;
 
 /** Optional parameters. */
-export interface ArrayConstraintsClientPostValueOptionalParams
-  extends coreClient.OperationOptions {
+export interface PostValueOptionalParams extends coreClient.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
 
 /** Contains response data for the postValue operation. */
-export type ArrayConstraintsClientPostValueResponse = {
+export type PostValueResponse = {
   /** The parsed response body. */
   body: string[];
 };
 
 /** Optional parameters. */
-export interface ArrayConstraintsClientApiV1ValueGetOptionalParams
+export interface ApiV1ValueGetOptionalParams
   extends coreClient.OperationOptions {
   /** Specify page number or range of page numbers to process, e.g: 1, 5, 7, 9-10 */
   pageRange?: string[];
 }
 
 /** Contains response data for the apiV1ValueGet operation. */
-export type ArrayConstraintsClientApiV1ValueGetResponse = {
+export type ApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string[];
 };

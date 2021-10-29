@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 All resource groups and resources exist within subscriptions. These operation enable you get information about your subscriptions and tenants. A tenant is a dedicated instance of Azure Active Directory (Azure AD) for your organization.
 
-[Package (NPM)](https://www.npmjs.com/package/arm-package-subscriptions-2019-06) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/arm-package-subscriptions-2019-06) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

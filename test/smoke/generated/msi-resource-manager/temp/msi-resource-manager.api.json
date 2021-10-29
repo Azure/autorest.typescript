@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.16",
+    "toolVersion": "7.18.17",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -160,18 +160,18 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "msi-resource-manager!",
+  "canonicalReference": "@msinternal/msi-resource-manager!",
   "docComment": "",
-  "name": "msi-resource-manager",
+  "name": "@msinternal/msi-resource-manager",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "msi-resource-manager!",
+      "canonicalReference": "@msinternal/msi-resource-manager!",
       "name": "",
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!CloudError:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!CloudError:interface",
           "docComment": "/**\n * An error response from the ManagedServiceIdentity service.\n */\n",
           "excerptTokens": [
             {
@@ -184,7 +184,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!CloudError#error:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!CloudError#error:member",
               "docComment": "/**\n * A list of additional details about the error.\n */\n",
               "excerptTokens": [
                 {
@@ -194,7 +194,7 @@
                 {
                   "kind": "Reference",
                   "text": "CloudErrorBody",
-                  "canonicalReference": "msi-resource-manager!CloudErrorBody:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody:interface"
                 },
                 {
                   "kind": "Content",
@@ -214,7 +214,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!CloudErrorBody:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody:interface",
           "docComment": "/**\n * An error response from the ManagedServiceIdentity service.\n */\n",
           "excerptTokens": [
             {
@@ -227,7 +227,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!CloudErrorBody#code:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody#code:member",
               "docComment": "/**\n * An identifier for the error.\n */\n",
               "excerptTokens": [
                 {
@@ -253,7 +253,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!CloudErrorBody#details:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody#details:member",
               "docComment": "/**\n * A list of additional details about the error.\n */\n",
               "excerptTokens": [
                 {
@@ -263,7 +263,7 @@
                 {
                   "kind": "Reference",
                   "text": "CloudErrorBody",
-                  "canonicalReference": "msi-resource-manager!CloudErrorBody:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody:interface"
                 },
                 {
                   "kind": "Content",
@@ -284,7 +284,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!CloudErrorBody#message:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody#message:member",
               "docComment": "/**\n * A message describing the error, intended to be suitable for display in a user interface.\n */\n",
               "excerptTokens": [
                 {
@@ -310,7 +310,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!CloudErrorBody#target:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!CloudErrorBody#target:member",
               "docComment": "/**\n * The target of the particular error. For example, the name of the property in error.\n */\n",
               "excerptTokens": [
                 {
@@ -339,7 +339,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!Identity:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!Identity:type",
           "docComment": "/**\n * Describes an identity resource.\n */\n",
           "excerptTokens": [
             {
@@ -349,7 +349,7 @@
             {
               "kind": "Reference",
               "text": "TrackedResource",
-              "canonicalReference": "msi-resource-manager!TrackedResource:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!TrackedResource:type"
             },
             {
               "kind": "Content",
@@ -369,7 +369,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!IdentityUpdate:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!IdentityUpdate:type",
           "docComment": "/**\n * Describes an identity resource.\n */\n",
           "excerptTokens": [
             {
@@ -379,7 +379,7 @@
             {
               "kind": "Reference",
               "text": "Resource",
-              "canonicalReference": "msi-resource-manager!Resource:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource:interface"
             },
             {
               "kind": "Content",
@@ -399,7 +399,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClient:class",
+          "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -409,7 +409,7 @@
             {
               "kind": "Reference",
               "text": "ManagedServiceIdentityClientContext",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext:class"
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext:class"
             },
             {
               "kind": "Content",
@@ -421,7 +421,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClient:constructor(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagedServiceIdentityClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The Id of the Subscription to which the identity belongs.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -452,7 +452,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagedServiceIdentityClientOptionalParams",
-                  "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -487,7 +487,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClient#operations:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClient#operations:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -497,7 +497,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operations",
-                  "canonicalReference": "msi-resource-manager!Operations:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Operations:interface"
                 },
                 {
                   "kind": "Content",
@@ -515,7 +515,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClient#systemAssignedIdentities:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClient#systemAssignedIdentities:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -525,7 +525,7 @@
                 {
                   "kind": "Reference",
                   "text": "SystemAssignedIdentities",
-                  "canonicalReference": "msi-resource-manager!SystemAssignedIdentities:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentities:interface"
                 },
                 {
                   "kind": "Content",
@@ -543,7 +543,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClient#userAssignedIdentities:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClient#userAssignedIdentities:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -553,7 +553,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentities",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentities:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities:interface"
                 },
                 {
                   "kind": "Content",
@@ -578,7 +578,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext:class",
+          "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -604,7 +604,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagedServiceIdentityClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The Id of the Subscription to which the identity belongs.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -635,7 +635,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagedServiceIdentityClientOptionalParams",
-                  "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -670,7 +670,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext#$host:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -697,7 +697,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -724,7 +724,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -758,7 +758,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -784,7 +784,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -810,7 +810,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -836,7 +836,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!ManagedServiceIdentityClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!ManagedServiceIdentityClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -870,7 +870,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!Operation:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!Operation:interface",
           "docComment": "/**\n * Operation supported by the Microsoft.ManagedIdentity REST API.\n */\n",
           "excerptTokens": [
             {
@@ -883,7 +883,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!Operation#display:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!Operation#display:member",
               "docComment": "/**\n * The object that describes the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -893,7 +893,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationDisplay",
-                  "canonicalReference": "msi-resource-manager!OperationDisplay:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay:interface"
                 },
                 {
                   "kind": "Content",
@@ -910,7 +910,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!Operation#name:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!Operation#name:member",
               "docComment": "/**\n * The name of the REST Operation. This is of the format {provider}/{resource}/{operation}.\n */\n",
               "excerptTokens": [
                 {
@@ -939,7 +939,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!OperationDisplay:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay:interface",
           "docComment": "/**\n * The object that describes the operation.\n */\n",
           "excerptTokens": [
             {
@@ -952,7 +952,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationDisplay#description:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay#description:member",
               "docComment": "/**\n * A description of the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -978,7 +978,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationDisplay#operation:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay#operation:member",
               "docComment": "/**\n * The type of operation. For example: read, write, delete.\n */\n",
               "excerptTokens": [
                 {
@@ -1004,7 +1004,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationDisplay#provider:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay#provider:member",
               "docComment": "/**\n * Friendly name of the resource provider.\n */\n",
               "excerptTokens": [
                 {
@@ -1030,7 +1030,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationDisplay#resource:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationDisplay#resource:member",
               "docComment": "/**\n * The resource type on which the operation is performed.\n */\n",
               "excerptTokens": [
                 {
@@ -1059,7 +1059,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!OperationListResult:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationListResult:interface",
           "docComment": "/**\n * A list of operations supported by Microsoft.ManagedIdentity Resource Provider.\n */\n",
           "excerptTokens": [
             {
@@ -1072,7 +1072,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationListResult#nextLink:member",
               "docComment": "/**\n * The url to get the next page of results, if any.\n */\n",
               "excerptTokens": [
                 {
@@ -1098,7 +1098,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!OperationListResult#value:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationListResult#value:member",
               "docComment": "/**\n * A list of operations supported by Microsoft.ManagedIdentity Resource Provider.\n */\n",
               "excerptTokens": [
                 {
@@ -1108,7 +1108,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "msi-resource-manager!Operation:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -1132,7 +1132,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!Operations:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!Operations:interface",
           "docComment": "/**\n * Interface representing a Operations.\n */\n",
           "excerptTokens": [
             {
@@ -1145,7 +1145,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!Operations#list:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!Operations#list:member(1)",
               "docComment": "/**\n * Lists available operations for the Microsoft.ManagedIdentity provider\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1155,7 +1155,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationsListOptionalParams",
-                  "canonicalReference": "msi-resource-manager!OperationsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!OperationsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1173,7 +1173,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "msi-resource-manager!Operation:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -1207,7 +1207,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!OperationsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1240,7 +1240,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!OperationsListNextResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -1250,7 +1250,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "msi-resource-manager!OperationListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -1266,7 +1266,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!OperationsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1299,7 +1299,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!OperationsListResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!OperationsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -1309,7 +1309,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "msi-resource-manager!OperationListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -1325,7 +1325,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!ProxyResource:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!ProxyResource:type",
           "docComment": "/**\n * The resource model definition for a ARM proxy resource. It will have everything other than required location and tags\n */\n",
           "excerptTokens": [
             {
@@ -1335,7 +1335,7 @@
             {
               "kind": "Reference",
               "text": "Resource",
-              "canonicalReference": "msi-resource-manager!Resource:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource:interface"
             },
             {
               "kind": "Content",
@@ -1355,7 +1355,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!Resource:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!Resource:interface",
           "docComment": "",
           "excerptTokens": [
             {
@@ -1368,7 +1368,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!Resource#id:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource#id:member",
               "docComment": "/**\n * Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1394,7 +1394,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!Resource#name:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource#name:member",
               "docComment": "/**\n * The name of the resource NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1420,7 +1420,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!Resource#type:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource#type:member",
               "docComment": "/**\n * The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1449,7 +1449,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!SystemAssignedIdentities:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentities:interface",
           "docComment": "/**\n * Interface representing a SystemAssignedIdentities.\n */\n",
           "excerptTokens": [
             {
@@ -1462,7 +1462,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!SystemAssignedIdentities#getByScope:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentities#getByScope:member(1)",
               "docComment": "/**\n * Gets the systemAssignedIdentity available under the specified RP scope.\n *\n * @param scope - The resource provider scope of the resource. Parent resource being extended by Managed Identities.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1480,7 +1480,7 @@
                 {
                   "kind": "Reference",
                   "text": "SystemAssignedIdentitiesGetByScopeOptionalParams",
-                  "canonicalReference": "msi-resource-manager!SystemAssignedIdentitiesGetByScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentitiesGetByScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1498,7 +1498,7 @@
                 {
                   "kind": "Reference",
                   "text": "SystemAssignedIdentitiesGetByScopeResponse",
-                  "canonicalReference": "msi-resource-manager!SystemAssignedIdentitiesGetByScopeResponse:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentitiesGetByScopeResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1539,7 +1539,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!SystemAssignedIdentitiesGetByScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentitiesGetByScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -1572,7 +1572,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!SystemAssignedIdentitiesGetByScopeResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentitiesGetByScopeResponse:type",
           "docComment": "/**\n * Contains response data for the getByScope operation.\n */\n",
           "excerptTokens": [
             {
@@ -1582,7 +1582,7 @@
             {
               "kind": "Reference",
               "text": "SystemAssignedIdentity",
-              "canonicalReference": "msi-resource-manager!SystemAssignedIdentity:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentity:type"
             },
             {
               "kind": "Content",
@@ -1598,7 +1598,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!SystemAssignedIdentity:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!SystemAssignedIdentity:type",
           "docComment": "/**\n * Describes a system assigned identity resource.\n */\n",
           "excerptTokens": [
             {
@@ -1608,7 +1608,7 @@
             {
               "kind": "Reference",
               "text": "ProxyResource",
-              "canonicalReference": "msi-resource-manager!ProxyResource:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!ProxyResource:type"
             },
             {
               "kind": "Content",
@@ -1628,7 +1628,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!TrackedResource:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!TrackedResource:type",
           "docComment": "/**\n * The resource model definition for a ARM tracked top level resource\n */\n",
           "excerptTokens": [
             {
@@ -1638,7 +1638,7 @@
             {
               "kind": "Reference",
               "text": "Resource",
-              "canonicalReference": "msi-resource-manager!Resource:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!Resource:interface"
             },
             {
               "kind": "Content",
@@ -1658,7 +1658,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentities:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities:interface",
           "docComment": "/**\n * Interface representing a UserAssignedIdentities.\n */\n",
           "excerptTokens": [
             {
@@ -1671,7 +1671,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#createOrUpdate:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#createOrUpdate:member(1)",
               "docComment": "/**\n * Create or update an identity in the specified subscription and resource group.\n *\n * @param resourceGroupName - The name of the Resource Group to which the identity belongs.\n *\n * @param resourceName - The name of the identity resource.\n *\n * @param parameters - Parameters to create or update the identity\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1697,7 +1697,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identity",
-                  "canonicalReference": "msi-resource-manager!Identity:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
                 },
                 {
                   "kind": "Content",
@@ -1706,7 +1706,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesCreateOrUpdateOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1724,7 +1724,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesCreateOrUpdateResponse",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateResponse:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1776,7 +1776,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#delete:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#delete:member(1)",
               "docComment": "/**\n * Deletes the identity.\n *\n * @param resourceGroupName - The name of the Resource Group to which the identity belongs.\n *\n * @param resourceName - The name of the identity resource.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1802,7 +1802,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesDeleteOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesDeleteOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesDeleteOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1856,7 +1856,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#get:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#get:member(1)",
               "docComment": "/**\n * Gets the identity.\n *\n * @param resourceGroupName - The name of the Resource Group to which the identity belongs.\n *\n * @param resourceName - The name of the identity resource.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1882,7 +1882,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesGetOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesGetOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesGetOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1900,7 +1900,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesGetResponse",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesGetResponse:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesGetResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1945,7 +1945,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#listByResourceGroup:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#listByResourceGroup:member(1)",
               "docComment": "/**\n * Lists all the userAssignedIdentities available under the specified ResourceGroup.\n *\n * @param resourceGroupName - The name of the Resource Group to which the identity belongs.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1963,7 +1963,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesListByResourceGroupOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListByResourceGroupOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListByResourceGroupOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1981,7 +1981,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identity",
-                  "canonicalReference": "msi-resource-manager!Identity:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
                 },
                 {
                   "kind": "Content",
@@ -2019,7 +2019,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#listBySubscription:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#listBySubscription:member(1)",
               "docComment": "/**\n * Lists all the userAssignedIdentities available under the specified subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2029,7 +2029,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesListBySubscriptionOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListBySubscriptionOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListBySubscriptionOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2047,7 +2047,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identity",
-                  "canonicalReference": "msi-resource-manager!Identity:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
                 },
                 {
                   "kind": "Content",
@@ -2078,7 +2078,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentities#update:member(1)",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentities#update:member(1)",
               "docComment": "/**\n * Update an identity in the specified subscription and resource group.\n *\n * @param resourceGroupName - The name of the Resource Group to which the identity belongs.\n *\n * @param resourceName - The name of the identity resource.\n *\n * @param parameters - Parameters to update the identity\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2104,7 +2104,7 @@
                 {
                   "kind": "Reference",
                   "text": "IdentityUpdate",
-                  "canonicalReference": "msi-resource-manager!IdentityUpdate:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!IdentityUpdate:type"
                 },
                 {
                   "kind": "Content",
@@ -2113,7 +2113,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesUpdateOptionalParams",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesUpdateOptionalParams:interface"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesUpdateOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2131,7 +2131,7 @@
                 {
                   "kind": "Reference",
                   "text": "UserAssignedIdentitiesUpdateResponse",
-                  "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesUpdateResponse:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesUpdateResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2186,7 +2186,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2219,7 +2219,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesCreateOrUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdate operation.\n */\n",
           "excerptTokens": [
             {
@@ -2229,7 +2229,7 @@
             {
               "kind": "Reference",
               "text": "Identity",
-              "canonicalReference": "msi-resource-manager!Identity:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
             },
             {
               "kind": "Content",
@@ -2245,7 +2245,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesDeleteOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesDeleteOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2278,7 +2278,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesGetOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesGetOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2311,7 +2311,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesGetResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesGetResponse:type",
           "docComment": "/**\n * Contains response data for the get operation.\n */\n",
           "excerptTokens": [
             {
@@ -2321,7 +2321,7 @@
             {
               "kind": "Reference",
               "text": "Identity",
-              "canonicalReference": "msi-resource-manager!Identity:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
             },
             {
               "kind": "Content",
@@ -2337,7 +2337,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListByResourceGroupNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListByResourceGroupNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2370,7 +2370,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListByResourceGroupNextResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListByResourceGroupNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroupNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2380,7 +2380,7 @@
             {
               "kind": "Reference",
               "text": "UserAssignedIdentitiesListResult",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult:interface"
             },
             {
               "kind": "Content",
@@ -2396,7 +2396,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListByResourceGroupOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListByResourceGroupOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2429,7 +2429,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListByResourceGroupResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListByResourceGroupResponse:type",
           "docComment": "/**\n * Contains response data for the listByResourceGroup operation.\n */\n",
           "excerptTokens": [
             {
@@ -2439,7 +2439,7 @@
             {
               "kind": "Reference",
               "text": "UserAssignedIdentitiesListResult",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult:interface"
             },
             {
               "kind": "Content",
@@ -2455,7 +2455,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListBySubscriptionNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListBySubscriptionNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2488,7 +2488,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListBySubscriptionNextResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListBySubscriptionNextResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscriptionNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -2498,7 +2498,7 @@
             {
               "kind": "Reference",
               "text": "UserAssignedIdentitiesListResult",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult:interface"
             },
             {
               "kind": "Content",
@@ -2514,7 +2514,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListBySubscriptionOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListBySubscriptionOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2547,7 +2547,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListBySubscriptionResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListBySubscriptionResponse:type",
           "docComment": "/**\n * Contains response data for the listBySubscription operation.\n */\n",
           "excerptTokens": [
             {
@@ -2557,7 +2557,7 @@
             {
               "kind": "Reference",
               "text": "UserAssignedIdentitiesListResult",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult:interface"
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult:interface"
             },
             {
               "kind": "Content",
@@ -2573,7 +2573,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult:interface",
           "docComment": "/**\n * Values returned by the List operation.\n */\n",
           "excerptTokens": [
             {
@@ -2586,7 +2586,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult#nextLink:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult#nextLink:member",
               "docComment": "/**\n * The url to get the next page of results, if any.\n */\n",
               "excerptTokens": [
                 {
@@ -2612,7 +2612,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesListResult#value:member",
+              "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesListResult#value:member",
               "docComment": "/**\n * The collection of userAssignedIdentities returned by the listing operation.\n */\n",
               "excerptTokens": [
                 {
@@ -2622,7 +2622,7 @@
                 {
                   "kind": "Reference",
                   "text": "Identity",
-                  "canonicalReference": "msi-resource-manager!Identity:type"
+                  "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
                 },
                 {
                   "kind": "Content",
@@ -2646,7 +2646,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesUpdateOptionalParams:interface",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesUpdateOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2679,7 +2679,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "msi-resource-manager!UserAssignedIdentitiesUpdateResponse:type",
+          "canonicalReference": "@msinternal/msi-resource-manager!UserAssignedIdentitiesUpdateResponse:type",
           "docComment": "/**\n * Contains response data for the update operation.\n */\n",
           "excerptTokens": [
             {
@@ -2689,7 +2689,7 @@
             {
               "kind": "Reference",
               "text": "Identity",
-              "canonicalReference": "msi-resource-manager!Identity:type"
+              "canonicalReference": "@msinternal/msi-resource-manager!Identity:type"
             },
             {
               "kind": "Content",

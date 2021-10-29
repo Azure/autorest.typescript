@@ -14,8 +14,8 @@ import * as Mappers from "./models/mappers";
 import { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";
 import {
   LroParametrizedEndpointsClientOptionalParams,
-  LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams,
-  LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+  PollWithParameterizedEndpointsOptionalParams,
+  PollWithParameterizedEndpointsResponse
 } from "./models";
 
 export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClientContext {
@@ -34,19 +34,17 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    */
   async beginPollWithParameterizedEndpoints(
     accountName: string,
-    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
+    options?: PollWithParameterizedEndpointsOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<
-        LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
-      >,
-      LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+      PollOperationState<PollWithParameterizedEndpointsResponse>,
+      PollWithParameterizedEndpointsResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse> => {
+    ): Promise<PollWithParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -101,10 +99,8 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    */
   async beginPollWithParameterizedEndpointsAndWait(
     accountName: string,
-    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
-  ): Promise<
-    LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
-  > {
+    options?: PollWithParameterizedEndpointsOptionalParams
+  ): Promise<PollWithParameterizedEndpointsResponse> {
     const poller = await this.beginPollWithParameterizedEndpoints(
       accountName,
       options

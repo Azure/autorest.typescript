@@ -50,7 +50,7 @@ const generateFromReadme = async ({
       licenseHeader: true,
       outputPath: output,
       packageDetails: {
-        name: projectName,
+        name: `@msinternal/${projectName}`,
         version: "",
         nameWithoutScope: ""
       },

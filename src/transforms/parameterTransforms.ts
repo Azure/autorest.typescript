@@ -236,7 +236,9 @@ export function populateOperationParameters(
     true /** shouldGuard */
   );
 
-  const sameNameParams = operationParameters.filter(p => p.name === name);
+  const sameNameParams = operationParameters.filter(
+    p => p.name === name || p.nameRef === name
+  );
   description += getSchemaTypeDocumentation(parameter.schema);
   const isRequired = getParameterRequired(parameter);
   const isNullable = !!parameter.nullable;

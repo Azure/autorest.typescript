@@ -1,5 +1,5 @@
 {
-  "name": "body-datetime-rfc1123",
+  "name": "@msinternal/body-datetime-rfc1123",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyDateTimeRfc1123Client.",

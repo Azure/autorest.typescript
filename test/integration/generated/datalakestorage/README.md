@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Azure Data Lake Storage provides storage for Hadoop and other big data workloads.
 
-[Package (NPM)](https://www.npmjs.com/package/datalakestorage) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/datalakestorage) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

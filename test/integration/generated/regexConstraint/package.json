@@ -1,5 +1,5 @@
 {
-  "name": "regex-constraint",
+  "name": "@msinternal/regex-constraint",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for RegexConstraint.",

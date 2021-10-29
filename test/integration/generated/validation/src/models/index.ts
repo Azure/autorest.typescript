@@ -51,35 +51,35 @@ export interface ErrorModel {
 }
 
 /** Optional parameters. */
-export interface ValidationClientValidationOfMethodParametersOptionalParams
+export interface ValidationOfMethodParametersOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the validationOfMethodParameters operation. */
-export type ValidationClientValidationOfMethodParametersResponse = Product;
+export type ValidationOfMethodParametersResponse = Product;
 
 /** Optional parameters. */
-export interface ValidationClientValidationOfBodyOptionalParams
+export interface ValidationOfBodyOptionalParams
   extends coreClient.OperationOptions {
   /** The product documentation. */
   body?: Product;
 }
 
 /** Contains response data for the validationOfBody operation. */
-export type ValidationClientValidationOfBodyResponse = Product;
+export type ValidationOfBodyResponse = Product;
 
 /** Optional parameters. */
-export interface ValidationClientGetWithConstantInPathOptionalParams
+export interface GetWithConstantInPathOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface ValidationClientPostWithConstantInBodyOptionalParams
+export interface PostWithConstantInBodyOptionalParams
   extends coreClient.OperationOptions {
   /** The product documentation. */
   body?: Product;
 }
 
 /** Contains response data for the postWithConstantInBody operation. */
-export type ValidationClientPostWithConstantInBodyResponse = Product;
+export type PostWithConstantInBodyResponse = Product;
 
 /** Optional parameters. */
 export interface ValidationClientOptionalParams

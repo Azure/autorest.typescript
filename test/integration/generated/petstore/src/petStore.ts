@@ -4,38 +4,38 @@ import * as Mappers from "./models/mappers";
 import { PetStoreContext } from "./petStoreContext";
 import {
   PetStoreOptionalParams,
-  PetStoreAddPetUsingByteArray$binaryOptionalParams,
-  PetStoreAddPetUsingByteArray$xmlOptionalParams,
-  PetStoreAddPetOptionalParams,
-  PetStoreUpdatePetOptionalParams,
-  PetStoreFindPetsByStatusOptionalParams,
-  PetStoreFindPetsByStatusResponse,
-  PetStoreFindPetsByTagsOptionalParams,
-  PetStoreFindPetsByTagsResponse,
-  PetStoreFindPetsWithByteArrayOptionalParams,
-  PetStoreFindPetsWithByteArrayResponse,
-  PetStoreGetPetByIdOptionalParams,
-  PetStoreGetPetByIdResponse,
-  PetStoreUpdatePetWithFormOptionalParams,
-  PetStoreDeletePetOptionalParams,
-  PetStoreUploadFileOptionalParams,
-  PetStoreGetInventoryOptionalParams,
-  PetStoreGetInventoryResponse,
-  PetStorePlaceOrderOptionalParams,
-  PetStorePlaceOrderResponse,
-  PetStoreGetOrderByIdOptionalParams,
-  PetStoreGetOrderByIdResponse,
-  PetStoreDeleteOrderOptionalParams,
-  PetStoreCreateUserOptionalParams,
-  PetStoreCreateUsersWithArrayInputOptionalParams,
-  PetStoreCreateUsersWithListInputOptionalParams,
-  PetStoreLoginUserOptionalParams,
-  PetStoreLoginUserResponse,
-  PetStoreLogoutUserOptionalParams,
-  PetStoreGetUserByNameOptionalParams,
-  PetStoreGetUserByNameResponse,
-  PetStoreUpdateUserOptionalParams,
-  PetStoreDeleteUserOptionalParams
+  AddPetUsingByteArray$binaryOptionalParams,
+  AddPetUsingByteArray$xmlOptionalParams,
+  AddPetOptionalParams,
+  UpdatePetOptionalParams,
+  FindPetsByStatusOptionalParams,
+  FindPetsByStatusResponse,
+  FindPetsByTagsOptionalParams,
+  FindPetsByTagsResponse,
+  FindPetsWithByteArrayOptionalParams,
+  FindPetsWithByteArrayResponse,
+  GetPetByIdOptionalParams,
+  GetPetByIdResponse,
+  UpdatePetWithFormOptionalParams,
+  DeletePetOptionalParams,
+  UploadFileOptionalParams,
+  GetInventoryOptionalParams,
+  GetInventoryResponse,
+  PlaceOrderOptionalParams,
+  PlaceOrderResponse,
+  GetOrderByIdOptionalParams,
+  GetOrderByIdResponse,
+  DeleteOrderOptionalParams,
+  CreateUserOptionalParams,
+  CreateUsersWithArrayInputOptionalParams,
+  CreateUsersWithListInputOptionalParams,
+  LoginUserOptionalParams,
+  LoginUserResponse,
+  LogoutUserOptionalParams,
+  GetUserByNameOptionalParams,
+  GetUserByNameResponse,
+  UpdateUserOptionalParams,
+  DeleteUserOptionalParams
 } from "./models";
 
 export class PetStore extends PetStoreContext {
@@ -54,7 +54,7 @@ export class PetStore extends PetStoreContext {
    */
   addPetUsingByteArray(
     contentType: "application/json",
-    options?: PetStoreAddPetUsingByteArray$binaryOptionalParams
+    options?: AddPetUsingByteArray$binaryOptionalParams
   ): Promise<void>;
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
@@ -63,7 +63,7 @@ export class PetStore extends PetStoreContext {
    */
   addPetUsingByteArray(
     contentType: "application/xml",
-    options?: PetStoreAddPetUsingByteArray$xmlOptionalParams
+    options?: AddPetUsingByteArray$xmlOptionalParams
   ): Promise<void>;
   /**
    * Fake endpoint to test byte array in body parameter for adding a new pet to the store
@@ -71,8 +71,8 @@ export class PetStore extends PetStoreContext {
    */
   addPetUsingByteArray(
     ...args:
-      | ["application/json", PetStoreAddPetUsingByteArray$binaryOptionalParams?]
-      | ["application/xml", PetStoreAddPetUsingByteArray$xmlOptionalParams?]
+      | ["application/json", AddPetUsingByteArray$binaryOptionalParams?]
+      | ["application/xml", AddPetUsingByteArray$xmlOptionalParams?]
   ): Promise<void> {
     let operationSpec: coreClient.OperationSpec;
     let operationArguments: coreClient.OperationArguments;
@@ -98,7 +98,7 @@ export class PetStore extends PetStoreContext {
    * Adds a new pet to the store. You may receive an HTTP invalid input if your pet is invalid.
    * @param options The options parameters.
    */
-  addPet(options?: PetStoreAddPetOptionalParams): Promise<void> {
+  addPet(options?: AddPetOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, addPetOperationSpec);
   }
 
@@ -106,7 +106,7 @@ export class PetStore extends PetStoreContext {
    * Update an existing pet
    * @param options The options parameters.
    */
-  updatePet(options?: PetStoreUpdatePetOptionalParams): Promise<void> {
+  updatePet(options?: UpdatePetOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, updatePetOperationSpec);
   }
 
@@ -115,8 +115,8 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   findPetsByStatus(
-    options?: PetStoreFindPetsByStatusOptionalParams
-  ): Promise<PetStoreFindPetsByStatusResponse> {
+    options?: FindPetsByStatusOptionalParams
+  ): Promise<FindPetsByStatusResponse> {
     return this.sendOperationRequest(
       { options },
       findPetsByStatusOperationSpec
@@ -128,8 +128,8 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   findPetsByTags(
-    options?: PetStoreFindPetsByTagsOptionalParams
-  ): Promise<PetStoreFindPetsByTagsResponse> {
+    options?: FindPetsByTagsOptionalParams
+  ): Promise<FindPetsByTagsResponse> {
     return this.sendOperationRequest({ options }, findPetsByTagsOperationSpec);
   }
 
@@ -140,8 +140,8 @@ export class PetStore extends PetStoreContext {
    */
   findPetsWithByteArray(
     petId: number,
-    options?: PetStoreFindPetsWithByteArrayOptionalParams
-  ): Promise<PetStoreFindPetsWithByteArrayResponse> {
+    options?: FindPetsWithByteArrayOptionalParams
+  ): Promise<FindPetsWithByteArrayResponse> {
     return this.sendOperationRequest(
       { petId, options },
       findPetsWithByteArrayOperationSpec
@@ -155,8 +155,8 @@ export class PetStore extends PetStoreContext {
    */
   getPetById(
     petId: number,
-    options?: PetStoreGetPetByIdOptionalParams
-  ): Promise<PetStoreGetPetByIdResponse> {
+    options?: GetPetByIdOptionalParams
+  ): Promise<GetPetByIdResponse> {
     return this.sendOperationRequest(
       { petId, options },
       getPetByIdOperationSpec
@@ -170,7 +170,7 @@ export class PetStore extends PetStoreContext {
    */
   updatePetWithForm(
     petId: string,
-    options?: PetStoreUpdatePetWithFormOptionalParams
+    options?: UpdatePetWithFormOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
@@ -183,10 +183,7 @@ export class PetStore extends PetStoreContext {
    * @param petId Pet id to delete
    * @param options The options parameters.
    */
-  deletePet(
-    petId: number,
-    options?: PetStoreDeletePetOptionalParams
-  ): Promise<void> {
+  deletePet(petId: number, options?: DeletePetOptionalParams): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
       deletePetOperationSpec
@@ -198,10 +195,7 @@ export class PetStore extends PetStoreContext {
    * @param petId ID of pet to update
    * @param options The options parameters.
    */
-  uploadFile(
-    petId: number,
-    options?: PetStoreUploadFileOptionalParams
-  ): Promise<void> {
+  uploadFile(petId: number, options?: UploadFileOptionalParams): Promise<void> {
     return this.sendOperationRequest(
       { petId, options },
       uploadFileOperationSpec
@@ -213,8 +207,8 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   getInventory(
-    options?: PetStoreGetInventoryOptionalParams
-  ): Promise<PetStoreGetInventoryResponse> {
+    options?: GetInventoryOptionalParams
+  ): Promise<GetInventoryResponse> {
     return this.sendOperationRequest({ options }, getInventoryOperationSpec);
   }
 
@@ -222,9 +216,7 @@ export class PetStore extends PetStoreContext {
    * Place an order for a pet
    * @param options The options parameters.
    */
-  placeOrder(
-    options?: PetStorePlaceOrderOptionalParams
-  ): Promise<PetStorePlaceOrderResponse> {
+  placeOrder(options?: PlaceOrderOptionalParams): Promise<PlaceOrderResponse> {
     return this.sendOperationRequest({ options }, placeOrderOperationSpec);
   }
 
@@ -235,8 +227,8 @@ export class PetStore extends PetStoreContext {
    */
   getOrderById(
     orderId: string,
-    options?: PetStoreGetOrderByIdOptionalParams
-  ): Promise<PetStoreGetOrderByIdResponse> {
+    options?: GetOrderByIdOptionalParams
+  ): Promise<GetOrderByIdResponse> {
     return this.sendOperationRequest(
       { orderId, options },
       getOrderByIdOperationSpec
@@ -251,7 +243,7 @@ export class PetStore extends PetStoreContext {
    */
   deleteOrder(
     orderId: string,
-    options?: PetStoreDeleteOrderOptionalParams
+    options?: DeleteOrderOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { orderId, options },
@@ -263,7 +255,7 @@ export class PetStore extends PetStoreContext {
    * This can only be done by the logged in user.
    * @param options The options parameters.
    */
-  createUser(options?: PetStoreCreateUserOptionalParams): Promise<void> {
+  createUser(options?: CreateUserOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, createUserOperationSpec);
   }
 
@@ -272,7 +264,7 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   createUsersWithArrayInput(
-    options?: PetStoreCreateUsersWithArrayInputOptionalParams
+    options?: CreateUsersWithArrayInputOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
@@ -285,7 +277,7 @@ export class PetStore extends PetStoreContext {
    * @param options The options parameters.
    */
   createUsersWithListInput(
-    options?: PetStoreCreateUsersWithListInputOptionalParams
+    options?: CreateUsersWithListInputOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { options },
@@ -297,9 +289,7 @@ export class PetStore extends PetStoreContext {
    * Logs user into the system
    * @param options The options parameters.
    */
-  loginUser(
-    options?: PetStoreLoginUserOptionalParams
-  ): Promise<PetStoreLoginUserResponse> {
+  loginUser(options?: LoginUserOptionalParams): Promise<LoginUserResponse> {
     return this.sendOperationRequest({ options }, loginUserOperationSpec);
   }
 
@@ -307,7 +297,7 @@ export class PetStore extends PetStoreContext {
    * Logs out current logged in user session
    * @param options The options parameters.
    */
-  logoutUser(options?: PetStoreLogoutUserOptionalParams): Promise<void> {
+  logoutUser(options?: LogoutUserOptionalParams): Promise<void> {
     return this.sendOperationRequest({ options }, logoutUserOperationSpec);
   }
 
@@ -318,8 +308,8 @@ export class PetStore extends PetStoreContext {
    */
   getUserByName(
     username: string,
-    options?: PetStoreGetUserByNameOptionalParams
-  ): Promise<PetStoreGetUserByNameResponse> {
+    options?: GetUserByNameOptionalParams
+  ): Promise<GetUserByNameResponse> {
     return this.sendOperationRequest(
       { username, options },
       getUserByNameOperationSpec
@@ -333,7 +323,7 @@ export class PetStore extends PetStoreContext {
    */
   updateUser(
     username: string,
-    options?: PetStoreUpdateUserOptionalParams
+    options?: UpdateUserOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { username, options },
@@ -348,7 +338,7 @@ export class PetStore extends PetStoreContext {
    */
   deleteUser(
     username: string,
-    options?: PetStoreDeleteUserOptionalParams
+    options?: DeleteUserOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { username, options },

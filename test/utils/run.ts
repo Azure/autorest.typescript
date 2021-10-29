@@ -77,7 +77,7 @@ export async function runAutorest(
   if (hideClients) {
     commandArguments.push(`--hide-clients=${hideClients}`);
   }
-  
+
   if (isTestPackage) {
     commandArguments.push(`--is-test-package=${isTestPackage}`);
   }

@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 This is a sample server Petstore server.  You can find out more about Swagger at <a href="http://swagger.io">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key "special-key" to test the authorization filters
 
-[Package (NPM)](https://www.npmjs.com/package/petstore) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/petstore) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started

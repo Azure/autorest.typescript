@@ -152,75 +152,73 @@ export enum KnownFlattenedProductPropertiesProvisioningStateValues {
 export type FlattenedProductPropertiesProvisioningStateValues = string;
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutArrayOptionalParams
-  extends coreClient.OperationOptions {
+export interface PutArrayOptionalParams extends coreClient.OperationOptions {
   /** External Resource as an Array to put */
   resourceArray?: Resource[];
 }
 
 /** Optional parameters. */
-export interface ModelFlatteningClientGetArrayOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetArrayOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getArray operation. */
-export type ModelFlatteningClientGetArrayResponse = FlattenedProduct[];
+export type GetArrayResponse = FlattenedProduct[];
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutWrappedArrayOptionalParams
+export interface PutWrappedArrayOptionalParams
   extends coreClient.OperationOptions {
   /** External Resource as an Array to put */
   resourceArray?: WrappedProduct[];
 }
 
 /** Optional parameters. */
-export interface ModelFlatteningClientGetWrappedArrayOptionalParams
+export interface GetWrappedArrayOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getWrappedArray operation. */
-export type ModelFlatteningClientGetWrappedArrayResponse = ProductWrapper[];
+export type GetWrappedArrayResponse = ProductWrapper[];
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutDictionaryOptionalParams
+export interface PutDictionaryOptionalParams
   extends coreClient.OperationOptions {
   /** External Resource as a Dictionary to put */
   resourceDictionary?: { [propertyName: string]: FlattenedProduct };
 }
 
 /** Optional parameters. */
-export interface ModelFlatteningClientGetDictionaryOptionalParams
+export interface GetDictionaryOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDictionary operation. */
-export type ModelFlatteningClientGetDictionaryResponse = {
+export type GetDictionaryResponse = {
   [propertyName: string]: FlattenedProduct;
 };
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutResourceCollectionOptionalParams
+export interface PutResourceCollectionOptionalParams
   extends coreClient.OperationOptions {
   /** External Resource as a ResourceCollection to put */
   resourceComplexObject?: ResourceCollection;
 }
 
 /** Optional parameters. */
-export interface ModelFlatteningClientGetResourceCollectionOptionalParams
+export interface GetResourceCollectionOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getResourceCollection operation. */
-export type ModelFlatteningClientGetResourceCollectionResponse = ResourceCollection;
+export type GetResourceCollectionResponse = ResourceCollection;
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutSimpleProductOptionalParams
+export interface PutSimpleProductOptionalParams
   extends coreClient.OperationOptions {
   /** Simple body product to put */
   simpleBodyProduct?: SimpleProduct;
 }
 
 /** Contains response data for the putSimpleProduct operation. */
-export type ModelFlatteningClientPutSimpleProductResponse = SimpleProduct;
+export type PutSimpleProductResponse = SimpleProduct;
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
+export interface PostFlattenedSimpleProductOptionalParams
   extends coreClient.OperationOptions {
   /** Description of product. */
   description?: string;
@@ -233,10 +231,10 @@ export interface ModelFlatteningClientPostFlattenedSimpleProductOptionalParams
 }
 
 /** Contains response data for the postFlattenedSimpleProduct operation. */
-export type ModelFlatteningClientPostFlattenedSimpleProductResponse = SimpleProduct;
+export type PostFlattenedSimpleProductResponse = SimpleProduct;
 
 /** Optional parameters. */
-export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
+export interface PutSimpleProductWithGroupingOptionalParams
   extends coreClient.OperationOptions {
   /** Description of product. */
   description?: string;
@@ -249,7 +247,7 @@ export interface ModelFlatteningClientPutSimpleProductWithGroupingOptionalParams
 }
 
 /** Contains response data for the putSimpleProductWithGrouping operation. */
-export type ModelFlatteningClientPutSimpleProductWithGroupingResponse = SimpleProduct;
+export type PutSimpleProductWithGroupingResponse = SimpleProduct;
 
 /** Optional parameters. */
 export interface ModelFlatteningClientOptionalParams

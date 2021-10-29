@@ -1,5 +1,5 @@
 {
-  "name": "arm-package-features-2015-12",
+  "name": "@msinternal/arm-package-features-2015-12",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for FeatureClient.",

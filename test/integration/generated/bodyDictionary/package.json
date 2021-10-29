@@ -1,5 +1,5 @@
 {
-  "name": "body-dictionary",
+  "name": "@msinternal/body-dictionary",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for BodyDictionaryClient.",

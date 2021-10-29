@@ -14,10 +14,10 @@ import {
   ArrayConstraintsClientOptionalParams,
   Enum0,
   Product,
-  ArrayConstraintsClientPostValueOptionalParams,
-  ArrayConstraintsClientPostValueResponse,
-  ArrayConstraintsClientApiV1ValueGetOptionalParams,
-  ArrayConstraintsClientApiV1ValueGetResponse
+  PostValueOptionalParams,
+  PostValueResponse,
+  ApiV1ValueGetOptionalParams,
+  ApiV1ValueGetResponse
 } from "./models";
 
 export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
@@ -42,8 +42,8 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
    */
   postValue(
     arrayBody: Product[],
-    options?: ArrayConstraintsClientPostValueOptionalParams
-  ): Promise<ArrayConstraintsClientPostValueResponse> {
+    options?: PostValueOptionalParams
+  ): Promise<PostValueResponse> {
     return this.sendOperationRequest(
       { arrayBody, options },
       postValueOperationSpec
@@ -52,8 +52,8 @@ export class ArrayConstraintsClient extends ArrayConstraintsClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: ArrayConstraintsClientApiV1ValueGetOptionalParams
-  ): Promise<ArrayConstraintsClientApiV1ValueGetResponse> {
+    options?: ApiV1ValueGetOptionalParams
+  ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }

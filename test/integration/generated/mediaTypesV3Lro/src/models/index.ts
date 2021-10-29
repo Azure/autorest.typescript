@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
+export interface SendOnDefault$binaryOptionalParams
   extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
@@ -20,7 +20,7 @@ export interface MediaTypesV3LROClientSendOnDefault$binaryOptionalParams
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
+export interface SendOnDefault$textOptionalParams
   extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
@@ -31,21 +31,19 @@ export interface MediaTypesV3LROClientSendOnDefault$textOptionalParams
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LROClientSend$binaryOptionalParams
-  extends coreClient.OperationOptions {
+export interface Send$binaryOptionalParams extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LROClientSend$textOptionalParams
-  extends coreClient.OperationOptions {
+export interface Send$textOptionalParams extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Contains response data for the send operation. */
-export type MediaTypesV3LROClientSendResponse = {
+export type SendResponse = {
   /** The parsed response body. */
   body: string;
 };

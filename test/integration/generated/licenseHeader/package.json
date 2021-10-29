@@ -1,5 +1,5 @@
 {
-  "name": "license-header",
+  "name": "@msinternal/license-header",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for LicenseHeaderClient.",

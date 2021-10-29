@@ -1,5 +1,5 @@
 {
-  "name": "network-resource-manager",
+  "name": "@msinternal/network-resource-manager",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for NetworkManagementClient.",

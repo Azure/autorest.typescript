@@ -11,9 +11,9 @@ import * as Parameters from "./models/parameters";
 import { ObjectTypeClientContext } from "./objectTypeClientContext";
 import {
   ObjectTypeClientOptionalParams,
-  ObjectTypeClientGetOptionalParams,
-  ObjectTypeClientGetResponse,
-  ObjectTypeClientPutOptionalParams
+  GetOptionalParams,
+  GetResponse,
+  PutOptionalParams
 } from "./models";
 
 export class ObjectTypeClient extends ObjectTypeClientContext {
@@ -30,9 +30,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    * }
    * @param options The options parameters.
    */
-  get(
-    options?: ObjectTypeClientGetOptionalParams
-  ): Promise<ObjectTypeClientGetResponse> {
+  get(options?: GetOptionalParams): Promise<GetResponse> {
     return this.sendOperationRequest({ options }, getOperationSpec);
   }
 
@@ -44,7 +42,7 @@ export class ObjectTypeClient extends ObjectTypeClientContext {
    */
   put(
     putObject: Record<string, unknown>,
-    options?: ObjectTypeClientPutOptionalParams
+    options?: PutOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest({ putObject, options }, putOperationSpec);
   }

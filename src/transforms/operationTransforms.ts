@@ -388,7 +388,11 @@ export async function transformOperation(
     NameType.Interface,
     true /** shouldGuard */
   );
-  const typeName = `${normalizedOperationGroupName}${normalizedOperationName}`;
+
+  const typeName =
+    normalizedOperationGroupName === clientName
+      ? `${normalizedOperationName}`
+      : `${normalizedOperationGroupName}${normalizedOperationName}`;
 
   const typeDetails: TypeDetails = {
     typeName,

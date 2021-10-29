@@ -23,34 +23,34 @@ export type ContentType =
   | "image/tiff";
 
 /** Optional parameters. */
-export interface MediaTypesWithTracingClientAnalyzeBody$binaryOptionalParams
+export interface AnalyzeBody$binaryOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
-export interface MediaTypesWithTracingClientAnalyzeBody$jsonOptionalParams
+export interface AnalyzeBody$jsonOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: SourcePath;
 }
 
 /** Contains response data for the analyzeBody operation. */
-export type MediaTypesWithTracingClientAnalyzeBodyResponse = {
+export type AnalyzeBodyResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MediaTypesWithTracingClientContentTypeWithEncodingOptionalParams
+export interface ContentTypeWithEncodingOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: string;
 }
 
 /** Contains response data for the contentTypeWithEncoding operation. */
-export type MediaTypesWithTracingClientContentTypeWithEncodingResponse = {
+export type ContentTypeWithEncodingResponse = {
   /** The parsed response body. */
   body: string;
 };

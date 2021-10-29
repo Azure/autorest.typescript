@@ -1,5 +1,5 @@
 {
-  "name": "object-type",
+  "name": "@msinternal/object-type",
   "sdk-type": "mgmt",
   "author": "Microsoft Corporation",
   "description": "A generated SDK for ObjectTypeClient.",
