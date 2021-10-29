@@ -2,7 +2,7 @@ import * as assert from "assert";
 import UrlRestClient, { UrlRestClientRestClient } from "./generated/urlRest/src";
 import { UriColor } from "./generated/url/src";
 
-describe("Integration tests for UrlRest", () => {
+describe.only("Integration tests for UrlRest", () => {
   let client: UrlRestClientRestClient;
 
   beforeEach(() => {
@@ -45,9 +45,7 @@ describe("Integration tests for UrlRest", () => {
     });
 
     it("should work when path has string URL Encoded", async () => {
-      const result = await client.path("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}", "begin!*'();:@ &=+$,/?#[]end").get({
-        enablePathParameterEncoding: true
-      });
+      const result = await client.path("/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}", "begin!*'();:@ &=+$,/?#[]end").get();
       assert.strictEqual(result.status, "200");
     });
 
@@ -388,26 +386,26 @@ describe("Integration tests for UrlRest", () => {
           arrayQuery: testArray
         }
       })
-      // const result2 = await client.path("/queries/array/pipes/string/valid").get({
-      //   queryParameters: {
-      //     arrayQuery: testArray
-      //   }
-      // })
-      // const result3 = await client.path("/queries/array/ssv/string/valid").get({
-      //   queryParameters: {
-      //     arrayQuery: testArray
-      //   }
-      // })
-      // const result4 = await client.path("/queries/array/tsv/string/valid").get({
-      //   queryParameters: {
-      //     arrayQuery: testArray
-      //   }
-      // })
+      const result2 = await client.path("/queries/array/pipes/string/valid").get({
+        queryParameters: {
+          arrayQuery: testArray.join("|") as any
+        }
+      })
+      const result3 = await client.path("/queries/array/ssv/string/valid").get({
+        queryParameters: {
+          arrayQuery: testArray.join(" ") as any
+        }
+      })
+      const result4 = await client.path("/queries/array/tsv/string/valid").get({
+        queryParameters: {
+          arrayQuery: testArray.join("\t") as any
+        }
+      })
       assert.strictEqual(result.status, "200");
       assert.strictEqual(result1.status, "200");
-      // assert.strictEqual(result2.status, "200");
-      // assert.strictEqual(result3.status, "200");
-      // assert.strictEqual(result4.status, "200");
+      assert.strictEqual(result2.status, "200");
+      assert.strictEqual(result3.status, "200");
+      assert.strictEqual(result4.status, "200");
       assert.ok("Calls succeeded");
     });
 
@@ -418,7 +416,7 @@ describe("Integration tests for UrlRest", () => {
         null as any,
         ""
       ]).get({
-        enablePathParameterEncoding: true
+        skipUrlEncoding: true
       });
       assert.strictEqual(result.status, '200')
       assert.ok("Call succeeded");
