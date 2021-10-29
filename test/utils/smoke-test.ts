@@ -68,7 +68,19 @@ const buildGenerated = async (projectPath?: string) => {
     return;
   }
   const npmCommand = `npm${/^win/.test(process.platform) ? ".cmd" : ""}`;
-  const npmInstall = spawn(npmCommand, ["install"], {
+
+  const apiExtractorInstall = spawn(
+    npmCommand,
+    ["install", "-g", `@microsoft/api-extractor@7.18.11`],
+    {
+      stdio: [process.stdin, process.stdout, process.stderr],
+      cwd: projectPath
+    }
+  );
+
+  await onExit(apiExtractorInstall);
+
+  const npmInstall = spawn(npmCommand, ["install", "--only=prod"], {
     stdio: [process.stdin, process.stdout, process.stderr],
     cwd: projectPath
   });
