@@ -40,6 +40,7 @@ export async function getAllExamples(codeModel: TestCodeModel) {
                     methodParameterNames: "",
                     bodySchemaName: "",
                     hasBody: false,
+                    hasOptional: false,
                     sampleFunctionName: normalizeName(example.name.replace(/\//g, " Or ").replace(/,|\.|\(|\)/g, ' '), NameType.Operation),
                     methodParamAssignments: [],
                     clientParamAssignments: [],
@@ -59,7 +60,8 @@ export async function getAllExamples(codeModel: TestCodeModel) {
                 if (clientParameterNames.length > 0) {
                     sample.clientParameterNames = clientParameterNames.join(", ");
                 }
-                const methodParameterNames = []
+                const methodParameterNames = [];
+                const optionalParams = [];
                 for(const methodParameter of example.methodParameters) {
                     if (methodParameter.exampleValue.schema.type === SchemaType.Constant) {
                         continue;
@@ -73,8 +75,17 @@ export async function getAllExamples(codeModel: TestCodeModel) {
                     } else {
                         paramAssignment = `const ${parameterName} = ` + getParameterAssignment(methodParameter.exampleValue);
                     }
+                    if (!methodParameter.parameter.required) {
+                        optionalParams.push(parameterName);
+                    } else {
+                        methodParameterNames.push(parameterName);
+                    }
                     sample.methodParamAssignments.push(paramAssignment);
-                    methodParameterNames.push(parameterName);
+                }
+                if (optionalParams.length > 0) {
+                    const optionAssignment = `const options = {${optionalParams.map((item) => { return item + ": " + item}).join(", ")}}`;
+                    sample.methodParamAssignments.push(optionAssignment);
+                    methodParameterNames.push('options');
                 }
                 if (methodParameterNames.length > 0) {
                     sample.methodParameterNames = methodParameterNames.join(", ");
@@ -103,7 +114,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Uuid:
         case SchemaType.Uri:
         case SchemaType.Credential:
-            retValue = `"${escape(rawValue)}"`;
+            retValue = `"${rawValue?.replace(/"/g, '\\"')}"`;
             break;
         case SchemaType.Boolean:
             retValue = rawValue,toString();
@@ -150,7 +161,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
             break;
         case SchemaType.Any:
         case SchemaType.AnyObject:
-            retValue = `"${escape(JSON.stringify(rawValue))}"`;
+            retValue = `${JSON.stringify(rawValue)}`;
             break;
         default:
             break;   

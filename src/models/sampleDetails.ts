@@ -5,6 +5,7 @@ export interface SampleDetails {
     operationDescription: string,
     operationName: string,
     hasBody: boolean,
+    hasOptional: boolean,
     bodySchemaName: string,
     sampleFunctionName: string,
     clientParameterNames: string,
