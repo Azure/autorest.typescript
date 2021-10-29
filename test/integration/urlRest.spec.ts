@@ -415,9 +415,7 @@ describe.only("Integration tests for UrlRest", () => {
         "begin!*'();:@ &=+$,/?#[]end",
         null as any,
         ""
-      ]).get({
-        skipUrlEncoding: true
-      });
+      ]).get();
       assert.strictEqual(result.status, '200')
       assert.ok("Call succeeded");
     });
