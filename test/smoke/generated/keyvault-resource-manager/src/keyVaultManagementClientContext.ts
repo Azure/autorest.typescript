@@ -43,7 +43,7 @@ export class KeyVaultManagementClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-@msinternal/keyvault-resource-manager/1.0.0-beta.1`;
+    const packageDetails = `azsdk-js-keyvault-resource-manager/1.0.0-beta.1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
