@@ -35,7 +35,7 @@ export class MonitorClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-monitor-data-plane/1.0.0-beta.1`;
+    const packageDetails = `azsdk-js-@msinternal/monitor-data-plane/1.0.0-beta.1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

@@ -49,56 +49,56 @@ import { WebSiteManagementClientContext } from "./webSiteManagementClientContext
 import {
   WebSiteManagementClientOptionalParams,
   SourceControl,
-  ListSourceControlsNextOptionalParams,
-  ListSourceControlsOptionalParams,
+  WebSiteManagementClientListSourceControlsNextOptionalParams,
+  WebSiteManagementClientListSourceControlsOptionalParams,
   BillingMeter,
-  ListBillingMetersNextOptionalParams,
-  ListBillingMetersOptionalParams,
+  WebSiteManagementClientListBillingMetersNextOptionalParams,
+  WebSiteManagementClientListBillingMetersOptionalParams,
   GeoRegion,
-  ListGeoRegionsNextOptionalParams,
-  ListGeoRegionsOptionalParams,
+  WebSiteManagementClientListGeoRegionsNextOptionalParams,
+  WebSiteManagementClientListGeoRegionsOptionalParams,
   Identifier,
   NameIdentifier,
-  ListSiteIdentifiersAssignedToHostNameNextOptionalParams,
-  ListSiteIdentifiersAssignedToHostNameOptionalParams,
+  WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams,
+  WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams,
   PremierAddOnOffer,
-  ListPremierAddOnOffersNextOptionalParams,
-  ListPremierAddOnOffersOptionalParams,
-  GetPublishingUserOptionalParams,
-  GetPublishingUserResponse,
+  WebSiteManagementClientListPremierAddOnOffersNextOptionalParams,
+  WebSiteManagementClientListPremierAddOnOffersOptionalParams,
+  WebSiteManagementClientGetPublishingUserOptionalParams,
+  WebSiteManagementClientGetPublishingUserResponse,
   User,
-  UpdatePublishingUserOptionalParams,
-  UpdatePublishingUserResponse,
-  ListSourceControlsResponse,
-  GetSourceControlOptionalParams,
-  GetSourceControlResponse,
-  UpdateSourceControlOptionalParams,
-  UpdateSourceControlResponse,
-  ListBillingMetersResponse,
+  WebSiteManagementClientUpdatePublishingUserOptionalParams,
+  WebSiteManagementClientUpdatePublishingUserResponse,
+  WebSiteManagementClientListSourceControlsResponse,
+  WebSiteManagementClientGetSourceControlOptionalParams,
+  WebSiteManagementClientGetSourceControlResponse,
+  WebSiteManagementClientUpdateSourceControlOptionalParams,
+  WebSiteManagementClientUpdateSourceControlResponse,
+  WebSiteManagementClientListBillingMetersResponse,
   CheckNameResourceTypes,
-  CheckNameAvailabilityOptionalParams,
-  CheckNameAvailabilityResponse,
-  GetSubscriptionDeploymentLocationsOptionalParams,
-  GetSubscriptionDeploymentLocationsResponse,
-  ListGeoRegionsResponse,
-  ListSiteIdentifiersAssignedToHostNameResponse,
-  ListPremierAddOnOffersResponse,
-  ListSkusOptionalParams,
-  ListSkusResponse,
+  WebSiteManagementClientCheckNameAvailabilityOptionalParams,
+  WebSiteManagementClientCheckNameAvailabilityResponse,
+  WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams,
+  WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse,
+  WebSiteManagementClientListGeoRegionsResponse,
+  WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse,
+  WebSiteManagementClientListPremierAddOnOffersResponse,
+  WebSiteManagementClientListSkusOptionalParams,
+  WebSiteManagementClientListSkusResponse,
   VnetParameters,
-  VerifyHostingEnvironmentVnetOptionalParams,
-  VerifyHostingEnvironmentVnetResponse,
+  WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams,
+  WebSiteManagementClientVerifyHostingEnvironmentVnetResponse,
   CsmMoveResourceEnvelope,
-  MoveOptionalParams,
+  WebSiteManagementClientMoveOptionalParams,
   ValidateRequest,
-  ValidateOptionalParams,
-  ValidateOperationResponse,
-  ValidateMoveOptionalParams,
-  ListSourceControlsNextResponse,
-  ListBillingMetersNextResponse,
-  ListGeoRegionsNextResponse,
-  ListSiteIdentifiersAssignedToHostNameNextResponse,
-  ListPremierAddOnOffersNextResponse
+  WebSiteManagementClientValidateOptionalParams,
+  WebSiteManagementClientValidateResponse,
+  WebSiteManagementClientValidateMoveOptionalParams,
+  WebSiteManagementClientListSourceControlsNextResponse,
+  WebSiteManagementClientListBillingMetersNextResponse,
+  WebSiteManagementClientListGeoRegionsNextResponse,
+  WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse,
+  WebSiteManagementClientListPremierAddOnOffersNextResponse
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -144,7 +144,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   public listSourceControls(
-    options?: ListSourceControlsOptionalParams
+    options?: WebSiteManagementClientListSourceControlsOptionalParams
   ): PagedAsyncIterableIterator<SourceControl> {
     const iter = this.listSourceControlsPagingAll(options);
     return {
@@ -161,7 +161,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listSourceControlsPagingPage(
-    options?: ListSourceControlsOptionalParams
+    options?: WebSiteManagementClientListSourceControlsOptionalParams
   ): AsyncIterableIterator<SourceControl[]> {
     let result = await this._listSourceControls(options);
     yield result.value || [];
@@ -174,7 +174,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listSourceControlsPagingAll(
-    options?: ListSourceControlsOptionalParams
+    options?: WebSiteManagementClientListSourceControlsOptionalParams
   ): AsyncIterableIterator<SourceControl> {
     for await (const page of this.listSourceControlsPagingPage(options)) {
       yield* page;
@@ -186,7 +186,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   public listBillingMeters(
-    options?: ListBillingMetersOptionalParams
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): PagedAsyncIterableIterator<BillingMeter> {
     const iter = this.listBillingMetersPagingAll(options);
     return {
@@ -203,7 +203,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listBillingMetersPagingPage(
-    options?: ListBillingMetersOptionalParams
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): AsyncIterableIterator<BillingMeter[]> {
     let result = await this._listBillingMeters(options);
     yield result.value || [];
@@ -216,7 +216,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listBillingMetersPagingAll(
-    options?: ListBillingMetersOptionalParams
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
   ): AsyncIterableIterator<BillingMeter> {
     for await (const page of this.listBillingMetersPagingPage(options)) {
       yield* page;
@@ -228,7 +228,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   public listGeoRegions(
-    options?: ListGeoRegionsOptionalParams
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): PagedAsyncIterableIterator<GeoRegion> {
     const iter = this.listGeoRegionsPagingAll(options);
     return {
@@ -245,7 +245,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listGeoRegionsPagingPage(
-    options?: ListGeoRegionsOptionalParams
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): AsyncIterableIterator<GeoRegion[]> {
     let result = await this._listGeoRegions(options);
     yield result.value || [];
@@ -258,7 +258,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listGeoRegionsPagingAll(
-    options?: ListGeoRegionsOptionalParams
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
   ): AsyncIterableIterator<GeoRegion> {
     for await (const page of this.listGeoRegionsPagingPage(options)) {
       yield* page;
@@ -272,7 +272,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   public listSiteIdentifiersAssignedToHostName(
     nameIdentifier: NameIdentifier,
-    options?: ListSiteIdentifiersAssignedToHostNameOptionalParams
+    options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
   ): PagedAsyncIterableIterator<Identifier> {
     const iter = this.listSiteIdentifiersAssignedToHostNamePagingAll(
       nameIdentifier,
@@ -296,7 +296,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
 
   private async *listSiteIdentifiersAssignedToHostNamePagingPage(
     nameIdentifier: NameIdentifier,
-    options?: ListSiteIdentifiersAssignedToHostNameOptionalParams
+    options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
   ): AsyncIterableIterator<Identifier[]> {
     let result = await this._listSiteIdentifiersAssignedToHostName(
       nameIdentifier,
@@ -317,7 +317,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
 
   private async *listSiteIdentifiersAssignedToHostNamePagingAll(
     nameIdentifier: NameIdentifier,
-    options?: ListSiteIdentifiersAssignedToHostNameOptionalParams
+    options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
   ): AsyncIterableIterator<Identifier> {
     for await (const page of this.listSiteIdentifiersAssignedToHostNamePagingPage(
       nameIdentifier,
@@ -332,7 +332,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   public listPremierAddOnOffers(
-    options?: ListPremierAddOnOffersOptionalParams
+    options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams
   ): PagedAsyncIterableIterator<PremierAddOnOffer> {
     const iter = this.listPremierAddOnOffersPagingAll(options);
     return {
@@ -349,7 +349,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listPremierAddOnOffersPagingPage(
-    options?: ListPremierAddOnOffersOptionalParams
+    options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams
   ): AsyncIterableIterator<PremierAddOnOffer[]> {
     let result = await this._listPremierAddOnOffers(options);
     yield result.value || [];
@@ -365,7 +365,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   }
 
   private async *listPremierAddOnOffersPagingAll(
-    options?: ListPremierAddOnOffersOptionalParams
+    options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams
   ): AsyncIterableIterator<PremierAddOnOffer> {
     for await (const page of this.listPremierAddOnOffersPagingPage(options)) {
       yield* page;
@@ -377,8 +377,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   getPublishingUser(
-    options?: GetPublishingUserOptionalParams
-  ): Promise<GetPublishingUserResponse> {
+    options?: WebSiteManagementClientGetPublishingUserOptionalParams
+  ): Promise<WebSiteManagementClientGetPublishingUserResponse> {
     return this.sendOperationRequest(
       { options },
       getPublishingUserOperationSpec
@@ -392,8 +392,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   updatePublishingUser(
     userDetails: User,
-    options?: UpdatePublishingUserOptionalParams
-  ): Promise<UpdatePublishingUserResponse> {
+    options?: WebSiteManagementClientUpdatePublishingUserOptionalParams
+  ): Promise<WebSiteManagementClientUpdatePublishingUserResponse> {
     return this.sendOperationRequest(
       { userDetails, options },
       updatePublishingUserOperationSpec
@@ -405,8 +405,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   private _listSourceControls(
-    options?: ListSourceControlsOptionalParams
-  ): Promise<ListSourceControlsResponse> {
+    options?: WebSiteManagementClientListSourceControlsOptionalParams
+  ): Promise<WebSiteManagementClientListSourceControlsResponse> {
     return this.sendOperationRequest(
       { options },
       listSourceControlsOperationSpec
@@ -420,8 +420,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   getSourceControl(
     sourceControlType: string,
-    options?: GetSourceControlOptionalParams
-  ): Promise<GetSourceControlResponse> {
+    options?: WebSiteManagementClientGetSourceControlOptionalParams
+  ): Promise<WebSiteManagementClientGetSourceControlResponse> {
     return this.sendOperationRequest(
       { sourceControlType, options },
       getSourceControlOperationSpec
@@ -437,8 +437,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   updateSourceControl(
     sourceControlType: string,
     requestMessage: SourceControl,
-    options?: UpdateSourceControlOptionalParams
-  ): Promise<UpdateSourceControlResponse> {
+    options?: WebSiteManagementClientUpdateSourceControlOptionalParams
+  ): Promise<WebSiteManagementClientUpdateSourceControlResponse> {
     return this.sendOperationRequest(
       { sourceControlType, requestMessage, options },
       updateSourceControlOperationSpec
@@ -450,8 +450,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   private _listBillingMeters(
-    options?: ListBillingMetersOptionalParams
-  ): Promise<ListBillingMetersResponse> {
+    options?: WebSiteManagementClientListBillingMetersOptionalParams
+  ): Promise<WebSiteManagementClientListBillingMetersResponse> {
     return this.sendOperationRequest(
       { options },
       listBillingMetersOperationSpec
@@ -467,8 +467,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   checkNameAvailability(
     name: string,
     typeParam: CheckNameResourceTypes,
-    options?: CheckNameAvailabilityOptionalParams
-  ): Promise<CheckNameAvailabilityResponse> {
+    options?: WebSiteManagementClientCheckNameAvailabilityOptionalParams
+  ): Promise<WebSiteManagementClientCheckNameAvailabilityResponse> {
     return this.sendOperationRequest(
       { name, typeParam, options },
       checkNameAvailabilityOperationSpec
@@ -480,8 +480,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   getSubscriptionDeploymentLocations(
-    options?: GetSubscriptionDeploymentLocationsOptionalParams
-  ): Promise<GetSubscriptionDeploymentLocationsResponse> {
+    options?: WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams
+  ): Promise<
+    WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse
+  > {
     return this.sendOperationRequest(
       { options },
       getSubscriptionDeploymentLocationsOperationSpec
@@ -493,8 +495,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   private _listGeoRegions(
-    options?: ListGeoRegionsOptionalParams
-  ): Promise<ListGeoRegionsResponse> {
+    options?: WebSiteManagementClientListGeoRegionsOptionalParams
+  ): Promise<WebSiteManagementClientListGeoRegionsResponse> {
     return this.sendOperationRequest({ options }, listGeoRegionsOperationSpec);
   }
 
@@ -505,8 +507,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   private _listSiteIdentifiersAssignedToHostName(
     nameIdentifier: NameIdentifier,
-    options?: ListSiteIdentifiersAssignedToHostNameOptionalParams
-  ): Promise<ListSiteIdentifiersAssignedToHostNameResponse> {
+    options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
+  ): Promise<
+    WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse
+  > {
     return this.sendOperationRequest(
       { nameIdentifier, options },
       listSiteIdentifiersAssignedToHostNameOperationSpec
@@ -518,8 +522,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * @param options The options parameters.
    */
   private _listPremierAddOnOffers(
-    options?: ListPremierAddOnOffersOptionalParams
-  ): Promise<ListPremierAddOnOffersResponse> {
+    options?: WebSiteManagementClientListPremierAddOnOffersOptionalParams
+  ): Promise<WebSiteManagementClientListPremierAddOnOffersResponse> {
     return this.sendOperationRequest(
       { options },
       listPremierAddOnOffersOperationSpec
@@ -530,7 +534,9 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    * Description for List all SKUs.
    * @param options The options parameters.
    */
-  listSkus(options?: ListSkusOptionalParams): Promise<ListSkusResponse> {
+  listSkus(
+    options?: WebSiteManagementClientListSkusOptionalParams
+  ): Promise<WebSiteManagementClientListSkusResponse> {
     return this.sendOperationRequest({ options }, listSkusOperationSpec);
   }
 
@@ -542,8 +548,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   verifyHostingEnvironmentVnet(
     parameters: VnetParameters,
-    options?: VerifyHostingEnvironmentVnetOptionalParams
-  ): Promise<VerifyHostingEnvironmentVnetResponse> {
+    options?: WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams
+  ): Promise<WebSiteManagementClientVerifyHostingEnvironmentVnetResponse> {
     return this.sendOperationRequest(
       { parameters, options },
       verifyHostingEnvironmentVnetOperationSpec
@@ -559,7 +565,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   move(
     resourceGroupName: string,
     moveResourceEnvelope: CsmMoveResourceEnvelope,
-    options?: MoveOptionalParams
+    options?: WebSiteManagementClientMoveOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { resourceGroupName, moveResourceEnvelope, options },
@@ -576,8 +582,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   validate(
     resourceGroupName: string,
     validateRequest: ValidateRequest,
-    options?: ValidateOptionalParams
-  ): Promise<ValidateOperationResponse> {
+    options?: WebSiteManagementClientValidateOptionalParams
+  ): Promise<WebSiteManagementClientValidateResponse> {
     return this.sendOperationRequest(
       { resourceGroupName, validateRequest, options },
       validateOperationSpec
@@ -593,7 +599,7 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   validateMove(
     resourceGroupName: string,
     moveResourceEnvelope: CsmMoveResourceEnvelope,
-    options?: ValidateMoveOptionalParams
+    options?: WebSiteManagementClientValidateMoveOptionalParams
   ): Promise<void> {
     return this.sendOperationRequest(
       { resourceGroupName, moveResourceEnvelope, options },
@@ -608,8 +614,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   private _listSourceControlsNext(
     nextLink: string,
-    options?: ListSourceControlsNextOptionalParams
-  ): Promise<ListSourceControlsNextResponse> {
+    options?: WebSiteManagementClientListSourceControlsNextOptionalParams
+  ): Promise<WebSiteManagementClientListSourceControlsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       listSourceControlsNextOperationSpec
@@ -623,8 +629,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   private _listBillingMetersNext(
     nextLink: string,
-    options?: ListBillingMetersNextOptionalParams
-  ): Promise<ListBillingMetersNextResponse> {
+    options?: WebSiteManagementClientListBillingMetersNextOptionalParams
+  ): Promise<WebSiteManagementClientListBillingMetersNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       listBillingMetersNextOperationSpec
@@ -638,8 +644,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   private _listGeoRegionsNext(
     nextLink: string,
-    options?: ListGeoRegionsNextOptionalParams
-  ): Promise<ListGeoRegionsNextResponse> {
+    options?: WebSiteManagementClientListGeoRegionsNextOptionalParams
+  ): Promise<WebSiteManagementClientListGeoRegionsNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       listGeoRegionsNextOperationSpec
@@ -656,8 +662,10 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
   private _listSiteIdentifiersAssignedToHostNameNext(
     nameIdentifier: NameIdentifier,
     nextLink: string,
-    options?: ListSiteIdentifiersAssignedToHostNameNextOptionalParams
-  ): Promise<ListSiteIdentifiersAssignedToHostNameNextResponse> {
+    options?: WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams
+  ): Promise<
+    WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse
+  > {
     return this.sendOperationRequest(
       { nameIdentifier, nextLink, options },
       listSiteIdentifiersAssignedToHostNameNextOperationSpec
@@ -671,8 +679,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
    */
   private _listPremierAddOnOffersNext(
     nextLink: string,
-    options?: ListPremierAddOnOffersNextOptionalParams
-  ): Promise<ListPremierAddOnOffersNextResponse> {
+    options?: WebSiteManagementClientListPremierAddOnOffersNextOptionalParams
+  ): Promise<WebSiteManagementClientListPremierAddOnOffersNextResponse> {
     return this.sendOperationRequest(
       { nextLink, options },
       listPremierAddOnOffersNextOperationSpec

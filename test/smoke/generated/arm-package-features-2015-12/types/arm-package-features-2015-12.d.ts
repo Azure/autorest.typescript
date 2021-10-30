@@ -14,7 +14,7 @@ export declare class FeatureClient extends FeatureClientContext {
      * Lists all of the available Microsoft.Features REST API operations.
      * @param options The options parameters.
      */
-    listOperations(options?: ListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
+    listOperations(options?: FeatureClientListOperationsOptionalParams): PagedAsyncIterableIterator<Operation>;
     private listOperationsPagingPage;
     private listOperationsPagingAll;
     /**
@@ -43,6 +43,20 @@ export declare class FeatureClientContext extends coreClient.ServiceClient {
      */
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
 }
+
+/** Optional parameters. */
+export declare interface FeatureClientListOperationsNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperationsNext operation. */
+export declare type FeatureClientListOperationsNextResponse = OperationListResult;
+
+/** Optional parameters. */
+export declare interface FeatureClientListOperationsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the listOperations operation. */
+export declare type FeatureClientListOperationsResponse = OperationListResult;
 
 /** Optional parameters. */
 export declare interface FeatureClientOptionalParams extends coreClient.ServiceClientOptions {
@@ -165,20 +179,6 @@ export declare interface FeaturesUnregisterOptionalParams extends coreClient.Ope
 
 /** Contains response data for the unregister operation. */
 export declare type FeaturesUnregisterResponse = FeatureResult;
-
-/** Optional parameters. */
-export declare interface ListOperationsNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listOperationsNext operation. */
-export declare type ListOperationsNextResponse = OperationListResult;
-
-/** Optional parameters. */
-export declare interface ListOperationsOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the listOperations operation. */
-export declare type ListOperationsResponse = OperationListResult;
 
 /** Microsoft.Features operation */
 export declare interface Operation {

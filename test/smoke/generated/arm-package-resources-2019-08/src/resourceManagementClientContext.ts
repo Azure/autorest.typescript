@@ -42,7 +42,7 @@ export class ResourceManagementClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-arm-package-resources-2019-08/1.0.0-beta.1`;
+    const packageDetails = `azsdk-js-@msinternal/arm-package-resources-2019-08/1.0.0-beta.1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`

@@ -7523,42 +7523,42 @@ export interface RecommendationsListRecommendedRulesForWebAppNextOptionalParams
 export type RecommendationsListRecommendedRulesForWebAppNextResponse = RecommendationCollection;
 
 /** Optional parameters. */
-export interface GetPublishingUserOptionalParams
+export interface WebSiteManagementClientGetPublishingUserOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPublishingUser operation. */
-export type GetPublishingUserResponse = User;
+export type WebSiteManagementClientGetPublishingUserResponse = User;
 
 /** Optional parameters. */
-export interface UpdatePublishingUserOptionalParams
+export interface WebSiteManagementClientUpdatePublishingUserOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the updatePublishingUser operation. */
-export type UpdatePublishingUserResponse = User;
+export type WebSiteManagementClientUpdatePublishingUserResponse = User;
 
 /** Optional parameters. */
-export interface ListSourceControlsOptionalParams
+export interface WebSiteManagementClientListSourceControlsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSourceControls operation. */
-export type ListSourceControlsResponse = SourceControlCollection;
+export type WebSiteManagementClientListSourceControlsResponse = SourceControlCollection;
 
 /** Optional parameters. */
-export interface GetSourceControlOptionalParams
+export interface WebSiteManagementClientGetSourceControlOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSourceControl operation. */
-export type GetSourceControlResponse = SourceControl;
+export type WebSiteManagementClientGetSourceControlResponse = SourceControl;
 
 /** Optional parameters. */
-export interface UpdateSourceControlOptionalParams
+export interface WebSiteManagementClientUpdateSourceControlOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the updateSourceControl operation. */
-export type UpdateSourceControlResponse = SourceControl;
+export type WebSiteManagementClientUpdateSourceControlResponse = SourceControl;
 
 /** Optional parameters. */
-export interface ListBillingMetersOptionalParams
+export interface WebSiteManagementClientListBillingMetersOptionalParams
   extends coreClient.OperationOptions {
   /** Azure Location of billable resource */
   billingLocation?: string;
@@ -7567,27 +7567,27 @@ export interface ListBillingMetersOptionalParams
 }
 
 /** Contains response data for the listBillingMeters operation. */
-export type ListBillingMetersResponse = BillingMeterCollection;
+export type WebSiteManagementClientListBillingMetersResponse = BillingMeterCollection;
 
 /** Optional parameters. */
-export interface CheckNameAvailabilityOptionalParams
+export interface WebSiteManagementClientCheckNameAvailabilityOptionalParams
   extends coreClient.OperationOptions {
   /** Is fully qualified domain name. */
   isFqdn?: boolean;
 }
 
 /** Contains response data for the checkNameAvailability operation. */
-export type CheckNameAvailabilityResponse = ResourceNameAvailability;
+export type WebSiteManagementClientCheckNameAvailabilityResponse = ResourceNameAvailability;
 
 /** Optional parameters. */
-export interface GetSubscriptionDeploymentLocationsOptionalParams
+export interface WebSiteManagementClientGetSubscriptionDeploymentLocationsOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSubscriptionDeploymentLocations operation. */
-export type GetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
+export type WebSiteManagementClientGetSubscriptionDeploymentLocationsResponse = DeploymentLocations;
 
 /** Optional parameters. */
-export interface ListGeoRegionsOptionalParams
+export interface WebSiteManagementClientListGeoRegionsOptionalParams
   extends coreClient.OperationOptions {
   /** Name of SKU used to filter the regions. */
   sku?: SkuName;
@@ -7600,57 +7600,60 @@ export interface ListGeoRegionsOptionalParams
 }
 
 /** Contains response data for the listGeoRegions operation. */
-export type ListGeoRegionsResponse = GeoRegionCollection;
+export type WebSiteManagementClientListGeoRegionsResponse = GeoRegionCollection;
 
 /** Optional parameters. */
-export interface ListSiteIdentifiersAssignedToHostNameOptionalParams
+export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteIdentifiersAssignedToHostName operation. */
-export type ListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection;
+export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameResponse = IdentifierCollection;
 
 /** Optional parameters. */
-export interface ListPremierAddOnOffersOptionalParams
+export interface WebSiteManagementClientListPremierAddOnOffersOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnOffers operation. */
-export type ListPremierAddOnOffersResponse = PremierAddOnOfferCollection;
+export type WebSiteManagementClientListPremierAddOnOffersResponse = PremierAddOnOfferCollection;
 
 /** Optional parameters. */
-export interface ListSkusOptionalParams extends coreClient.OperationOptions {}
+export interface WebSiteManagementClientListSkusOptionalParams
+  extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSkus operation. */
-export type ListSkusResponse = SkuInfos;
+export type WebSiteManagementClientListSkusResponse = SkuInfos;
 
 /** Optional parameters. */
-export interface VerifyHostingEnvironmentVnetOptionalParams
+export interface WebSiteManagementClientVerifyHostingEnvironmentVnetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the verifyHostingEnvironmentVnet operation. */
-export type VerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails;
+export type WebSiteManagementClientVerifyHostingEnvironmentVnetResponse = VnetValidationFailureDetails;
 
 /** Optional parameters. */
-export interface MoveOptionalParams extends coreClient.OperationOptions {}
-
-/** Optional parameters. */
-export interface ValidateOptionalParams extends coreClient.OperationOptions {}
-
-/** Contains response data for the validate operation. */
-export type ValidateOperationResponse = ValidateResponse;
-
-/** Optional parameters. */
-export interface ValidateMoveOptionalParams
+export interface WebSiteManagementClientMoveOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface ListSourceControlsNextOptionalParams
+export interface WebSiteManagementClientValidateOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the validate operation. */
+export type WebSiteManagementClientValidateResponse = ValidateResponse;
+
+/** Optional parameters. */
+export interface WebSiteManagementClientValidateMoveOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Optional parameters. */
+export interface WebSiteManagementClientListSourceControlsNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSourceControlsNext operation. */
-export type ListSourceControlsNextResponse = SourceControlCollection;
+export type WebSiteManagementClientListSourceControlsNextResponse = SourceControlCollection;
 
 /** Optional parameters. */
-export interface ListBillingMetersNextOptionalParams
+export interface WebSiteManagementClientListBillingMetersNextOptionalParams
   extends coreClient.OperationOptions {
   /** Azure Location of billable resource */
   billingLocation?: string;
@@ -7659,10 +7662,10 @@ export interface ListBillingMetersNextOptionalParams
 }
 
 /** Contains response data for the listBillingMetersNext operation. */
-export type ListBillingMetersNextResponse = BillingMeterCollection;
+export type WebSiteManagementClientListBillingMetersNextResponse = BillingMeterCollection;
 
 /** Optional parameters. */
-export interface ListGeoRegionsNextOptionalParams
+export interface WebSiteManagementClientListGeoRegionsNextOptionalParams
   extends coreClient.OperationOptions {
   /** Name of SKU used to filter the regions. */
   sku?: SkuName;
@@ -7675,21 +7678,21 @@ export interface ListGeoRegionsNextOptionalParams
 }
 
 /** Contains response data for the listGeoRegionsNext operation. */
-export type ListGeoRegionsNextResponse = GeoRegionCollection;
+export type WebSiteManagementClientListGeoRegionsNextResponse = GeoRegionCollection;
 
 /** Optional parameters. */
-export interface ListSiteIdentifiersAssignedToHostNameNextOptionalParams
+export interface WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listSiteIdentifiersAssignedToHostNameNext operation. */
-export type ListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection;
+export type WebSiteManagementClientListSiteIdentifiersAssignedToHostNameNextResponse = IdentifierCollection;
 
 /** Optional parameters. */
-export interface ListPremierAddOnOffersNextOptionalParams
+export interface WebSiteManagementClientListPremierAddOnOffersNextOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the listPremierAddOnOffersNext operation. */
-export type ListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection;
+export type WebSiteManagementClientListPremierAddOnOffersNextResponse = PremierAddOnOfferCollection;
 
 /** Optional parameters. */
 export interface WebAppsListOptionalParams

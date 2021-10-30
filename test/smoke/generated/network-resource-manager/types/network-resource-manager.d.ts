@@ -2938,13 +2938,6 @@ export declare interface BgpSettings {
     bgpPeeringAddresses?: IPConfigurationBgpPeeringAddress[];
 }
 
-/** Optional parameters. */
-export declare interface CheckDnsNameAvailabilityOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the checkDnsNameAvailability operation. */
-export declare type CheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult;
-
 /** Request body of the CheckPrivateLinkServiceVisibility API service call. */
 export declare interface CheckPrivateLinkServiceVisibilityRequest {
     /** The alias of the private link service. */
@@ -4182,14 +4175,6 @@ export declare type Delegation = SubResource & {
     readonly provisioningState?: ProvisioningState;
 };
 
-/** Optional parameters. */
-export declare interface DeleteBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
-
 /** List of properties of the device. */
 export declare interface DeviceProperties {
     /** Name of the device Vendor. */
@@ -4241,20 +4226,6 @@ export declare interface Dimension {
  * **Outbound**
  */
 export declare type Direction = string;
-
-/** Optional parameters. */
-export declare interface DisconnectActiveSessionsNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the disconnectActiveSessionsNext operation. */
-export declare type DisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
-
-/** Optional parameters. */
-export declare interface DisconnectActiveSessionsOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the disconnectActiveSessions operation. */
-export declare type DisconnectActiveSessionsResponse = BastionSessionDeleteResult;
 
 /** Response for the CheckDnsNameAvailability API service call. */
 export declare interface DnsNameAvailabilityResult {
@@ -7267,49 +7238,6 @@ export declare interface GatewayRouteListResult {
     /** List of gateway routes. */
     value?: GatewayRoute[];
 }
-
-/** Optional parameters. */
-export declare interface GeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
-
-/** Contains response data for the generatevirtualwanvpnserverconfigurationvpnprofile operation. */
-export declare type GeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse;
-
-/** Optional parameters. */
-export declare interface GetActiveSessionsNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getActiveSessionsNext operation. */
-export declare type GetActiveSessionsNextResponse = BastionActiveSessionListResult;
-
-/** Optional parameters. */
-export declare interface GetActiveSessionsOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
-
-/** Contains response data for the getActiveSessions operation. */
-export declare type GetActiveSessionsResponse = BastionActiveSessionListResult;
-
-/** Optional parameters. */
-export declare interface GetBastionShareableLinkNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getBastionShareableLinkNext operation. */
-export declare type GetBastionShareableLinkNextResponse = BastionShareableLinkListResult;
-
-/** Optional parameters. */
-export declare interface GetBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the getBastionShareableLink operation. */
-export declare type GetBastionShareableLinkResponse = BastionShareableLinkListResult;
 
 /** List of Vpn-Sites. */
 export declare interface GetVpnSitesConfigurationRequest {
@@ -11229,7 +11157,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
      * @param options The options parameters.
      */
-    beginListPutBastionShareableLinkAndWait(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: PutBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
+    beginListPutBastionShareableLinkAndWait(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientPutBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
     private putBastionShareableLinkPagingPage;
     private putBastionShareableLinkPagingAll;
     /**
@@ -11239,7 +11167,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
      * @param options The options parameters.
      */
-    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: GetBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
+    listBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientGetBastionShareableLinkOptionalParams): PagedAsyncIterableIterator<BastionShareableLink>;
     private getBastionShareableLinkPagingPage;
     private getBastionShareableLinkPagingAll;
     /**
@@ -11248,7 +11176,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param bastionHostName The name of the Bastion Host.
      * @param options The options parameters.
      */
-    beginListActiveSessionsAndWait(resourceGroupName: string, bastionHostName: string, options?: GetActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionActiveSession>;
+    beginListActiveSessionsAndWait(resourceGroupName: string, bastionHostName: string, options?: NetworkManagementClientGetActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionActiveSession>;
     private getActiveSessionsPagingPage;
     private getActiveSessionsPagingAll;
     /**
@@ -11258,7 +11186,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param sessionIds The list of sessionids to disconnect.
      * @param options The options parameters.
      */
-    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: DisconnectActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionSessionState>;
+    listDisconnectActiveSessions(resourceGroupName: string, bastionHostName: string, sessionIds: SessionIds, options?: NetworkManagementClientDisconnectActiveSessionsOptionalParams): PagedAsyncIterableIterator<BastionSessionState>;
     private disconnectActiveSessionsPagingPage;
     private disconnectActiveSessionsPagingAll;
     /**
@@ -11276,7 +11204,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
      * @param options The options parameters.
      */
-    beginDeleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: DeleteBastionShareableLinkOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
+    beginDeleteBastionShareableLink(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams): Promise<PollerLike<PollOperationState<void>, void>>;
     /**
      * Deletes the Bastion Shareable Links for all the VMs specified in the request.
      * @param resourceGroupName The name of the resource group.
@@ -11284,7 +11212,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      * @param bslRequest Post request for all the Bastion Shareable Link endpoints.
      * @param options The options parameters.
      */
-    beginDeleteBastionShareableLinkAndWait(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: DeleteBastionShareableLinkOptionalParams): Promise<void>;
+    beginDeleteBastionShareableLinkAndWait(resourceGroupName: string, bastionHostName: string, bslRequest: BastionShareableLinkListRequest, options?: NetworkManagementClientDeleteBastionShareableLinkOptionalParams): Promise<void>;
     /**
      * Return the Bastion Shareable Links for all the VMs specified in the request.
      * @param resourceGroupName The name of the resource group.
@@ -11315,14 +11243,14 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      *                        expression: ^[a-z][a-z0-9-]{1,61}[a-z0-9]$.
      * @param options The options parameters.
      */
-    checkDnsNameAvailability(location: string, domainNameLabel: string, options?: CheckDnsNameAvailabilityOptionalParams): Promise<CheckDnsNameAvailabilityResponse>;
+    checkDnsNameAvailability(location: string, domainNameLabel: string, options?: NetworkManagementClientCheckDnsNameAvailabilityOptionalParams): Promise<NetworkManagementClientCheckDnsNameAvailabilityResponse>;
     /**
      * Gives the supported security providers for the virtual wan.
      * @param resourceGroupName The resource group name.
      * @param virtualWANName The name of the VirtualWAN for which supported security providers are needed.
      * @param options The options parameters.
      */
-    supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: SupportedSecurityProvidersOptionalParams): Promise<SupportedSecurityProvidersResponse>;
+    supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: NetworkManagementClientSupportedSecurityProvidersOptionalParams): Promise<NetworkManagementClientSupportedSecurityProvidersResponse>;
     /**
      * Generates a unique VPN profile for P2S clients for VirtualWan and associated VpnServerConfiguration
      * combination in the specified resource group.
@@ -11332,7 +11260,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      *                        operation.
      * @param options The options parameters.
      */
-    beginGeneratevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: GeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams): Promise<PollerLike<PollOperationState<GeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, GeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
+    beginGeneratevirtualwanvpnserverconfigurationvpnprofile(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams): Promise<PollerLike<PollOperationState<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>, NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>>;
     /**
      * Generates a unique VPN profile for P2S clients for VirtualWan and associated VpnServerConfiguration
      * combination in the specified resource group.
@@ -11342,7 +11270,7 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
      *                        operation.
      * @param options The options parameters.
      */
-    beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: GeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams): Promise<GeneratevirtualwanvpnserverconfigurationvpnprofileResponse>;
+    beginGeneratevirtualwanvpnserverconfigurationvpnprofileAndWait(resourceGroupName: string, virtualWANName: string, vpnClientParams: VirtualWanVpnProfileParameters, options?: NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams): Promise<NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse>;
     /**
      * PutBastionShareableLinkNext
      * @param resourceGroupName The name of the resource group.
@@ -11477,6 +11405,13 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
     webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
 }
 
+/** Optional parameters. */
+export declare interface NetworkManagementClientCheckDnsNameAvailabilityOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the checkDnsNameAvailability operation. */
+export declare type NetworkManagementClientCheckDnsNameAvailabilityResponse = DnsNameAvailabilityResult;
+
 export declare class NetworkManagementClientContext extends coreClient.ServiceClient {
     $host: string;
     subscriptionId: string;
@@ -11491,12 +11426,102 @@ export declare class NetworkManagementClientContext extends coreClient.ServiceCl
 }
 
 /** Optional parameters. */
+export declare interface NetworkManagementClientDeleteBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientDisconnectActiveSessionsNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the disconnectActiveSessionsNext operation. */
+export declare type NetworkManagementClientDisconnectActiveSessionsNextResponse = BastionSessionDeleteResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientDisconnectActiveSessionsOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the disconnectActiveSessions operation. */
+export declare type NetworkManagementClientDisconnectActiveSessionsResponse = BastionSessionDeleteResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the generatevirtualwanvpnserverconfigurationvpnprofile operation. */
+export declare type NetworkManagementClientGeneratevirtualwanvpnserverconfigurationvpnprofileResponse = VpnProfileResponse;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientGetActiveSessionsNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getActiveSessionsNext operation. */
+export declare type NetworkManagementClientGetActiveSessionsNextResponse = BastionActiveSessionListResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientGetActiveSessionsOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the getActiveSessions operation. */
+export declare type NetworkManagementClientGetActiveSessionsResponse = BastionActiveSessionListResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientGetBastionShareableLinkNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getBastionShareableLinkNext operation. */
+export declare type NetworkManagementClientGetBastionShareableLinkNextResponse = BastionShareableLinkListResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientGetBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the getBastionShareableLink operation. */
+export declare type NetworkManagementClientGetBastionShareableLinkResponse = BastionShareableLinkListResult;
+
+/** Optional parameters. */
 export declare interface NetworkManagementClientOptionalParams extends coreClient.ServiceClientOptions {
     /** server parameter */
     $host?: string;
     /** Overrides client endpoint. */
     endpoint?: string;
 }
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientPutBastionShareableLinkNextOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the putBastionShareableLinkNext operation. */
+export declare type NetworkManagementClientPutBastionShareableLinkNextResponse = BastionShareableLinkListResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientPutBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
+    /** Delay to wait until next poll, in milliseconds. */
+    updateIntervalInMs?: number;
+    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+    resumeFrom?: string;
+}
+
+/** Contains response data for the putBastionShareableLink operation. */
+export declare type NetworkManagementClientPutBastionShareableLinkResponse = BastionShareableLinkListResult;
+
+/** Optional parameters. */
+export declare interface NetworkManagementClientSupportedSecurityProvidersOptionalParams extends coreClient.OperationOptions {
+}
+
+/** Contains response data for the supportedSecurityProviders operation. */
+export declare type NetworkManagementClientSupportedSecurityProvidersResponse = VirtualWanSecurityProviders;
 
 /**
  * Defines values for NetworkOperationStatus. \
@@ -14757,24 +14782,6 @@ export declare interface PublicIPPrefixSku {
  */
 export declare type PublicIPPrefixSkuName = string;
 
-/** Optional parameters. */
-export declare interface PutBastionShareableLinkNextOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the putBastionShareableLinkNext operation. */
-export declare type PutBastionShareableLinkNextResponse = BastionShareableLinkListResult;
-
-/** Optional parameters. */
-export declare interface PutBastionShareableLinkOptionalParams extends coreClient.OperationOptions {
-    /** Delay to wait until next poll, in milliseconds. */
-    updateIntervalInMs?: number;
-    /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
-    resumeFrom?: string;
-}
-
-/** Contains response data for the putBastionShareableLink operation. */
-export declare type PutBastionShareableLinkResponse = BastionShareableLinkListResult;
-
 /** Parameters that define the resource to query the troubleshooting result. */
 export declare interface QueryTroubleshootingParameters {
     /** The target resource ID to query the troubleshooting result. */
@@ -16627,13 +16634,6 @@ export declare interface SubResource {
     /** Resource ID. */
     id?: string;
 }
-
-/** Optional parameters. */
-export declare interface SupportedSecurityProvidersOptionalParams extends coreClient.OperationOptions {
-}
-
-/** Contains response data for the supportedSecurityProviders operation. */
-export declare type SupportedSecurityProvidersResponse = VirtualWanSecurityProviders;
 
 /** Tags object for patch operations. */
 export declare interface TagsObject {

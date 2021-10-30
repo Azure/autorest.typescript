@@ -296,8 +296,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "ListOperationsOptionalParams",
-                  "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsOptionalParams:interface"
+                  "text": "FeatureClientListOperationsOptionalParams",
+                  "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -531,6 +531,124 @@
             "endIndex": 4
           },
           "implementsTokenRanges": []
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsNextOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeatureClientListOperationsNextOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsNextOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsNextResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperationsNext operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeatureClientListOperationsNextResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsNextResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
+        },
+        {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsOptionalParams:interface",
+          "docComment": "/**\n * Optional parameters.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FeatureClientListOperationsOptionalParams extends "
+            },
+            {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationOptions",
+              "canonicalReference": "@azure/core-client!OperationOptions:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsOptionalParams",
+          "members": [],
+          "extendsTokenRanges": [
+            {
+              "startIndex": 1,
+              "endIndex": 4
+            }
+          ]
+        },
+        {
+          "kind": "TypeAlias",
+          "canonicalReference": "@msinternal/arm-package-features-2015-12!FeatureClientListOperationsResponse:type",
+          "docComment": "/**\n * Contains response data for the listOperations operation.\n */\n",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export declare type FeatureClientListOperationsResponse = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OperationListResult",
+              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
+            },
+            {
+              "kind": "Content",
+              "text": ";"
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FeatureClientListOperationsResponse",
+          "typeTokenRange": {
+            "startIndex": 1,
+            "endIndex": 2
+          }
         },
         {
           "kind": "Interface",
@@ -1704,124 +1822,6 @@
           ],
           "releaseTag": "Public",
           "name": "FeaturesUnregisterResponse",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextOptionalParams:interface",
-          "docComment": "/**\n * Optional parameters.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface ListOperationsNextOptionalParams extends "
-            },
-            {
-              "kind": "Content",
-              "text": "coreClient."
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationOptions",
-              "canonicalReference": "@azure/core-client!OperationOptions:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ListOperationsNextOptionalParams",
-          "members": [],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 4
-            }
-          ]
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsNextResponse:type",
-          "docComment": "/**\n * Contains response data for the listOperationsNext operation.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare type ListOperationsNextResponse = "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ListOperationsNextResponse",
-          "typeTokenRange": {
-            "startIndex": 1,
-            "endIndex": 2
-          }
-        },
-        {
-          "kind": "Interface",
-          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsOptionalParams:interface",
-          "docComment": "/**\n * Optional parameters.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export interface ListOperationsOptionalParams extends "
-            },
-            {
-              "kind": "Content",
-              "text": "coreClient."
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationOptions",
-              "canonicalReference": "@azure/core-client!OperationOptions:interface"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ListOperationsOptionalParams",
-          "members": [],
-          "extendsTokenRanges": [
-            {
-              "startIndex": 1,
-              "endIndex": 4
-            }
-          ]
-        },
-        {
-          "kind": "TypeAlias",
-          "canonicalReference": "@msinternal/arm-package-features-2015-12!ListOperationsResponse:type",
-          "docComment": "/**\n * Contains response data for the listOperations operation.\n */\n",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare type ListOperationsResponse = "
-            },
-            {
-              "kind": "Reference",
-              "text": "OperationListResult",
-              "canonicalReference": "@msinternal/arm-package-features-2015-12!OperationListResult:interface"
-            },
-            {
-              "kind": "Content",
-              "text": ";"
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ListOperationsResponse",
           "typeTokenRange": {
             "startIndex": 1,
             "endIndex": 2

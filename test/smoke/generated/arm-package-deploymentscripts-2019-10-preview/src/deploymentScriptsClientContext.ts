@@ -42,7 +42,7 @@ export class DeploymentScriptsClientContext extends coreClient.ServiceClient {
       credential: credentials
     };
 
-    const packageDetails = `azsdk-js-arm-package-deploymentscripts-2019-10-preview/1.0.0-beta.1`;
+    const packageDetails = `azsdk-js-@msinternal/arm-package-deploymentscripts-2019-10-preview/1.0.0-beta.1`;
     const userAgentPrefix =
       options.userAgentOptions && options.userAgentOptions.userAgentPrefix
         ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
