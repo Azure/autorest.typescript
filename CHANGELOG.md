@@ -1,3 +1,7 @@
+## 6.0.0-beta.14 (2021-11-01)
+
+- [BugFix] Several name conflicts with operation group names, parameter names, ordering of mappers have been fixed. Please refer [#1227](https://github.com/Azure/autorest.typescript/pull/1227) for further details.
+
 ## 6.0.0-beta.13 (2021-09-14)
 
 - [BugFix] The word `Operations` has been removed from parameters and interface names. Please refer [#1181](https://github.com/Azure/autorest.typescript/pull/1181) for further details.
