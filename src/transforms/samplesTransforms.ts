@@ -1,7 +1,7 @@
 import { CodeModel, ConstantSchema, Protocol, SchemaType } from "@autorest/codemodel";
 import { ClientOptions } from "../models/clientDetails";
 import { SampleDetails } from "../models/sampleDetails";
-import { ExampleValue, TestCodeModel } from "@autorest/tests/dist/src/core/model"
+import { ExampleValue, TestCodeModel } from "@autorest/testmodeler"
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions } from "../autorestSession";
 import { NameType, normalizeName } from "../utils/nameUtils";

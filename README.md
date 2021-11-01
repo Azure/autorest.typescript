@@ -89,11 +89,14 @@ pipeline:
 
 ```yaml $(generate-test)
 use-extension:
-  "@autorest/tests": "https://amecodegenstorage.blob.core.windows.net/tools/autorest-tests-0.1.0-preview.tgz"
+  "@autorest/testmodeler": "1.0.0"
 
 try-require:
     - ./readme.test.md
     - ./readme.tests.md
+
+testmodeler:
+  split-parents-value: false
 
 pipeline:
   test-modeler:
