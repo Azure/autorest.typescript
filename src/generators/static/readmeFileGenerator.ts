@@ -50,7 +50,7 @@ interface Metadata {
   /** Indicates if the package is a test/releasable package. */
   isReleasablePackage?: boolean;
   /** indicate if the package is management plane SDK */
-  azureArm?: boolean
+  azureArm?: boolean;
 }
 
 /**
@@ -100,6 +100,12 @@ function createMetadata(
     : simpleServiceName;
   const identityPackageURL =
     repoURL && `${repoURL}/tree/main/sdk/identity/identity`;
+
+  var PackageNPMURLSufix: string = "";
+  if (clientPackageName.includes("-beta")) {
+    PackageNPMURLSufix = "?view=azure-node-preview";
+  }
+
   return {
     serviceName: serviceName,
     clientPackageName: clientPackageName,
@@ -121,7 +127,7 @@ function createMetadata(
     apiRefURL: azureHuh
       ? `https://docs.microsoft.com/javascript/api/${clientPackageName}`
       : undefined,
-    packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
+    packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}${PackageNPMURLSufix}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
     projectName: azureHuh ? "Microsoft Azure SDK for JavaScript" : undefined,
     addCredentials,
