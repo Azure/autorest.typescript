@@ -642,34 +642,6 @@ export interface FactoryListResponse {
   nextLink?: string;
 }
 
-/** Azure Data Factory top-level resource. */
-export interface Resource {
-  /**
-   * The resource identifier.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * The resource name.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * The resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** The resource location. */
-  location?: string;
-  /** The resource tags. */
-  tags?: { [propertyName: string]: string };
-  /**
-   * Etag identifies change in the resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly eTag?: string;
-}
-
 /** Identity properties of the factory resource. */
 export interface FactoryIdentity {
   /** The identity type. */
@@ -728,6 +700,34 @@ export interface EncryptionConfiguration {
 export interface CMKIdentityDefinition {
   /** The resource id of the user assigned identity to authenticate to customer's key vault. */
   userAssignedIdentity?: string;
+}
+
+/** Azure Data Factory top-level resource. */
+export interface Resource {
+  /**
+   * The resource identifier.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * The resource name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The resource location. */
+  location?: string;
+  /** The resource tags. */
+  tags?: { [propertyName: string]: string };
+  /**
+   * Etag identifies change in the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly eTag?: string;
 }
 
 /** Factory's git repo information. */
@@ -840,6 +840,16 @@ export interface IntegrationRuntimeListResponse {
   nextLink?: string;
 }
 
+/** Azure Data Factory nested object which serves as a compute resource for activities. */
+export interface IntegrationRuntime {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  type: "Managed" | "SelfHosted";
+  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
+  [property: string]: any;
+  /** Integration runtime description. */
+  description?: string;
+}
+
 /** Azure Data Factory nested resource, which belongs to a factory. */
 export interface SubResource {
   /**
@@ -862,16 +872,6 @@ export interface SubResource {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly etag?: string;
-}
-
-/** Azure Data Factory nested object which serves as a compute resource for activities. */
-export interface IntegrationRuntime {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "Managed" | "SelfHosted";
-  /** Describes unknown properties. The value of an unknown property can be of "any" type. */
-  [property: string]: any;
-  /** Integration runtime description. */
-  description?: string;
 }
 
 /** Update integration runtime request. */
@@ -3561,6 +3561,28 @@ export interface TriggerReference {
   referenceName: string;
 }
 
+/** Factory's VSTS repo information. */
+export type FactoryVstsConfiguration = FactoryRepoConfiguration & {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  type: "FactoryVSTSConfiguration";
+  /** VSTS project name. */
+  projectName: string;
+  /** VSTS tenant id. */
+  tenantId?: string;
+};
+
+/** Factory's GitHub repo information. */
+export type FactoryGitHubConfiguration = FactoryRepoConfiguration & {
+  /** Polymorphic discriminator, which specifies the different types this object can be */
+  type: "FactoryGitHubConfiguration";
+  /** GitHub Enterprise host name. For example: https://github.mydomain.com */
+  hostName?: string;
+  /** GitHub bring your own app client id. */
+  clientId?: string;
+  /** GitHub bring your own app client secret information. */
+  clientSecret?: GitHubClientSecret;
+};
+
 /** Factory resource type. */
 export type Factory = Resource & {
   /** Describes unknown properties. The value of an unknown property can be of "any" type. */
@@ -3592,26 +3614,31 @@ export type Factory = Resource & {
   publicNetworkAccess?: PublicNetworkAccess;
 };
 
-/** Factory's VSTS repo information. */
-export type FactoryVstsConfiguration = FactoryRepoConfiguration & {
+/** Managed integration runtime, including managed elastic and managed dedicated integration runtimes. */
+export type ManagedIntegrationRuntime = IntegrationRuntime & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "FactoryVSTSConfiguration";
-  /** VSTS project name. */
-  projectName: string;
-  /** VSTS tenant id. */
-  tenantId?: string;
+  type: "Managed";
+  /**
+   * Integration runtime state, only valid for managed dedicated integration runtime.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly state?: IntegrationRuntimeState;
+  /** Managed Virtual Network reference. */
+  managedVirtualNetwork?: ManagedVirtualNetworkReference;
+  /** The compute resource for managed integration runtime. */
+  computeProperties?: IntegrationRuntimeComputeProperties;
+  /** SSIS properties for managed integration runtime. */
+  ssisProperties?: IntegrationRuntimeSsisProperties;
+  /** The name of virtual network to which Azure-SSIS integration runtime will join */
+  customerVirtualNetwork?: IntegrationRuntimeCustomerVirtualNetwork;
 };
 
-/** Factory's GitHub repo information. */
-export type FactoryGitHubConfiguration = FactoryRepoConfiguration & {
+/** Self-hosted integration runtime. */
+export type SelfHostedIntegrationRuntime = IntegrationRuntime & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "FactoryGitHubConfiguration";
-  /** GitHub Enterprise host name. For example: https://github.mydomain.com */
-  hostName?: string;
-  /** GitHub bring your own app client id. */
-  clientId?: string;
-  /** GitHub bring your own app client secret information. */
-  clientSecret?: GitHubClientSecret;
+  type: "SelfHosted";
+  /** The base definition of a linked integration runtime. */
+  linkedInfo?: LinkedIntegrationRuntimeTypeUnion;
 };
 
 /** Integration runtime resource type. */
@@ -3702,33 +3729,6 @@ export type PrivateLinkResource = SubResource & {
 export type CredentialResource = SubResource & {
   /** Properties of credentials. */
   properties: CredentialUnion;
-};
-
-/** Managed integration runtime, including managed elastic and managed dedicated integration runtimes. */
-export type ManagedIntegrationRuntime = IntegrationRuntime & {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "Managed";
-  /**
-   * Integration runtime state, only valid for managed dedicated integration runtime.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly state?: IntegrationRuntimeState;
-  /** Managed Virtual Network reference. */
-  managedVirtualNetwork?: ManagedVirtualNetworkReference;
-  /** The compute resource for managed integration runtime. */
-  computeProperties?: IntegrationRuntimeComputeProperties;
-  /** SSIS properties for managed integration runtime. */
-  ssisProperties?: IntegrationRuntimeSsisProperties;
-  /** The name of virtual network to which Azure-SSIS integration runtime will join */
-  customerVirtualNetwork?: IntegrationRuntimeCustomerVirtualNetwork;
-};
-
-/** Self-hosted integration runtime. */
-export type SelfHostedIntegrationRuntime = IntegrationRuntime & {
-  /** Polymorphic discriminator, which specifies the different types this object can be */
-  type: "SelfHosted";
-  /** The base definition of a linked integration runtime. */
-  linkedInfo?: LinkedIntegrationRuntimeTypeUnion;
 };
 
 /** Managed integration runtime status. */

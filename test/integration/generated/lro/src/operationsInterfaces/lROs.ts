@@ -10,6 +10,8 @@ import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
+  LROsPatch200SucceededIgnoreHeadersOptionalParams,
+  LROsPatch200SucceededIgnoreHeadersResponse,
   LROsPut201SucceededOptionalParams,
   LROsPut201SucceededResponse,
   LROsPost202ListOptionalParams,
@@ -114,6 +116,27 @@ export interface LROs {
   beginPut200SucceededAndWait(
     options?: LROsPut200SucceededOptionalParams
   ): Promise<LROsPut200SucceededResponse>;
+  /**
+   * Long running put request, service returns a 200 to the initial request with location header. We
+   * should not have any subsequent calls after receiving this first response.
+   * @param options The options parameters.
+   */
+  beginPatch200SucceededIgnoreHeaders(
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch200SucceededIgnoreHeadersResponse>,
+      LROsPatch200SucceededIgnoreHeadersResponse
+    >
+  >;
+  /**
+   * Long running put request, service returns a 200 to the initial request with location header. We
+   * should not have any subsequent calls after receiving this first response.
+   * @param options The options parameters.
+   */
+  beginPatch200SucceededIgnoreHeadersAndWait(
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
+  ): Promise<LROsPatch200SucceededIgnoreHeadersResponse>;
   /**
    * Long running put request, service returns a 201 to the initial request, with an entity that contains
    * ProvisioningState=’Succeeded’.

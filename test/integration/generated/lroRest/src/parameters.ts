@@ -12,6 +12,14 @@ export interface LROsPut200SucceededBodyParam {
 export type LROsPut200SucceededParameters = LROsPut200SucceededBodyParam &
   RequestParameters;
 
+export interface LROsPatch200SucceededIgnoreHeadersBodyParam {
+  /** Product to patch */
+  body?: Product;
+}
+
+export type LROsPatch200SucceededIgnoreHeadersParameters = LROsPatch200SucceededIgnoreHeadersBodyParam &
+  RequestParameters;
+
 export interface LROsPut201SucceededBodyParam {
   /** Product to put */
   body?: Product;

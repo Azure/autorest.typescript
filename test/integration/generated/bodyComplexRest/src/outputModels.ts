@@ -78,9 +78,8 @@ export interface DictionaryWrapperOutput {
   defaultProgram?: Record<string, string>;
 }
 
-export interface PetOutput {
-  id?: number;
-  name?: string;
+export interface SiameseOutput extends CatOutput {
+  breed?: string;
 }
 
 export interface CatOutput extends PetOutput {
@@ -92,8 +91,9 @@ export interface DogOutput extends PetOutput {
   food?: string;
 }
 
-export interface SiameseOutput extends CatOutput {
-  breed?: string;
+export interface PetOutput {
+  id?: number;
+  name?: string;
 }
 
 export interface FishOutputBase {

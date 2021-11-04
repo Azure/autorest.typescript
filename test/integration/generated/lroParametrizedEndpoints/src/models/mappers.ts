@@ -44,3 +44,19 @@ export const LroParametrizedEndpointsClientPollWithParameterizedEndpointsHeaders
     }
   }
 };
+
+export const LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className:
+      "LroParametrizedEndpointsClientPollWithConstantParameterizedEndpointsHeaders",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
