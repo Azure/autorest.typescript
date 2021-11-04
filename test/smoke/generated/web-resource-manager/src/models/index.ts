@@ -19,31 +19,6 @@ export interface AppServiceCertificateOrderCollection {
   readonly nextLink?: string;
 }
 
-/** Azure resource. This resource is tracked in Azure Resource Manager */
-export interface Resource {
-  /**
-   * Resource Id.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource Name.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /** Kind of resource. */
-  kind?: string;
-  /** Resource Location. */
-  location: string;
-  /**
-   * Resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource tags. */
-  tags?: { [propertyName: string]: string };
-}
-
 /** Key Vault container for a certificate that is purchased through Azure. */
 export interface AppServiceCertificate {
   /** Key Vault resource Id. */
@@ -104,6 +79,31 @@ export interface CertificateDetails {
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly rawData?: string;
+}
+
+/** Azure resource. This resource is tracked in Azure Resource Manager */
+export interface Resource {
+  /**
+   * Resource Id.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource Name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /** Kind of resource. */
+  kind?: string;
+  /** Resource Location. */
+  location: string;
+  /**
+   * Resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource tags. */
+  tags?: { [propertyName: string]: string };
 }
 
 /** App Service error response. */
