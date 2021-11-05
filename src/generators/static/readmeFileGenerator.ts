@@ -101,12 +101,9 @@ function createMetadata(
   const identityPackageURL =
     repoURL && `${repoURL}/tree/main/sdk/identity/identity`;
 
-  var apiRefUrlPreviewSufix: string = "";
-  if (
-    packageDetails.version.includes("preview") ||
-    packageDetails.version.includes("beta")
-  ) {
-    apiRefUrlPreviewSufix = "?view=azure-node-preview";
+  var apiRefUrlQueryParameter: string = "";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
   }
 
   return {
@@ -128,7 +125,7 @@ function createMetadata(
     clientDescriptiveName: `${serviceName} client`,
     description: clientDetails.info?.description,
     apiRefURL: azureHuh
-      ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlPreviewSufix}`
+      ? `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
       : undefined,
     packageNPMURL: `https://www.npmjs.com/package/${clientPackageName}`,
     contributingGuideURL: repoURL && `${repoURL}/blob/main/CONTRIBUTING.md`,
