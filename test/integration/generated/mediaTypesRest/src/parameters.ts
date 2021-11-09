@@ -10,7 +10,7 @@ export interface AnalyzeBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body?: Uint8Array | string;
+  body?: string;
 }
 
 export interface AnalyzeBodyMediaTypesParam {
