@@ -123,6 +123,14 @@ pipeline:
 ### REST Client Generator overrides
 
 ```yaml $(rest-level-client)
+generate-metadata: false
+license-header: MICROSOFT_MIT_NO_VERSION
+source-code-folder-path: ./src
+add-credentials: true
+
+typescript:
+  output-folder: ../
+
 modelerfour:
   # this runs a pre-namer step to clean up names
   prenamer: true
