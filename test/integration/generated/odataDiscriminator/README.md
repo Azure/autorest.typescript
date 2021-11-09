@@ -17,6 +17,8 @@ Client that can be used to manage and query indexes and documents, as well as ma
 
 
 
+
+
 ## Key concepts
 
 ### ODataDiscriminatorClient

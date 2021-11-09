@@ -17,6 +17,8 @@ Provides operations for working with resources and resource groups.
 
 
 
+
+
 ## Key concepts
 
 ### ResourcesClient

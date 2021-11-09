@@ -17,6 +17,8 @@ Client that can be used to query an index and upload, merge, or delete documents
 
 
 
+
+
 ## Key concepts
 
 ### SearchClient

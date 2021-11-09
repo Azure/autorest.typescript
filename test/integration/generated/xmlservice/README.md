@@ -17,6 +17,8 @@ Test Infrastructure for AutoRest Swagger BAT
 
 
 
+
+
 ## Key concepts
 
 ### XmlServiceClient

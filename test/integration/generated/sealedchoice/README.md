@@ -17,6 +17,8 @@ Metadata API definition for the Azure Container Registry runtime
 
 
 
+
+
 ## Key concepts
 
 ### SealedChoiceClient

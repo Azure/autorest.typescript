@@ -17,6 +17,8 @@ The key vault client performs cryptographic key operations and vault operations 
 
 
 
+
+
 ## Key concepts
 
 ### MapperRequiredClient

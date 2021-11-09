@@ -17,6 +17,8 @@ TextAnalytics Client
 
 
 
+
+
 ## Key concepts
 
 ### GeneratedClient

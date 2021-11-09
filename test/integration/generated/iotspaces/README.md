@@ -17,6 +17,8 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 
 
 
+
+
 ## Key concepts
 
 ### IoTSpacesClient

@@ -17,6 +17,8 @@ Some cool documentation.
 
 
 
+
+
 ## Key concepts
 
 ### SubscriptionIdApiVersionClient

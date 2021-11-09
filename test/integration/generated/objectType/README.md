@@ -17,6 +17,8 @@ Service client for testing basic type: object swaggers
 
 
 
+
+
 ## Key concepts
 
 ### ObjectTypeClient

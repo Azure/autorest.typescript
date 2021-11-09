@@ -17,6 +17,8 @@ The Text Analytics API is a suite of natural language processing (NLP) services 
 
 
 
+
+
 ## Key concepts
 
 ### GeneratedClient

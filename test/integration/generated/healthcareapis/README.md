@@ -17,6 +17,8 @@ Azure Healthcare APIs Client
 
 
 
+
+
 ## Key concepts
 
 ### HealthCareApisClient

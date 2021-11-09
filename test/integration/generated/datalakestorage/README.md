@@ -17,6 +17,8 @@ Azure Data Lake Storage provides storage for Hadoop and other big data workloads
 
 
 
+
+
 ## Key concepts
 
 ### DataLakeStorageClient

@@ -17,6 +17,8 @@ Resource Flattening for AutoRest
 
 
 
+
+
 ## Key concepts
 
 ### ModelFlatteningClient
