@@ -5,11 +5,7 @@
   "toolPackages": [
     {
       "packageName": "@microsoft/api-extractor",
-<<<<<<< HEAD
       "packageVersion": "7.18.19"
-=======
-      "packageVersion": "7.18.18"
->>>>>>> main
     }
   ]
 }
