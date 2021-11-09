@@ -1,10 +1,10 @@
 {
-  "name": "@msinternal/header-rest",
+  "name": "@msinternal/url-rest",
   "sdk-type": "mgmt",
   "version": "1.0.0-preview1",
   "description": "",
   "main": "dist-esm/index.js",
-  "types": "./types/header-rest.d.ts",
+  "types": "./types/url-rest.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clean && tsc --build && npm run extract-api",

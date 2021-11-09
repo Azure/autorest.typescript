@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es2015",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist-esm"
+  },
+  "exclude": [
+    "node_modules",
+    "types",
+    "temp",
+    "browser",
+    "dist",
+    "dist-esm",
+    "./samples/**/*.ts"
+  ]
+}

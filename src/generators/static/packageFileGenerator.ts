@@ -91,7 +91,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       node: ">=12.0.0"
     },
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.7",
+      "@azure-rest/core-client": "1.0.0-beta.8",
       "@azure/core-auth": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.3.0",
       ...(hasPaging && {
