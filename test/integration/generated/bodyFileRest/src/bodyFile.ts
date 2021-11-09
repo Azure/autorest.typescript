@@ -12,64 +12,30 @@ import {
   GetFileLarge200Response,
   GetFileLargedefaultResponse,
   GetEmptyFile200Response,
-  GetEmptyFiledefaultResponse,
-  GetFile200NodeStreamResponse,
-  GetFileLarge200NodeStreamResponse,
-  GetEmptyFile200NodeStreamResponse
+  GetEmptyFiledefaultResponse
 } from "./responses";
-import {
-  getClientWithStream,
-  ClientOptions,
-  ClientWithAsStream,
-  HttpResponse,
-  HttpNodeStreamResponse
-} from "@azure-rest/core-client";
+import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
-
-export interface NodeStreamResponse<
-  TResult extends HttpResponse,
-  TStream extends HttpNodeStreamResponse,
-  TError extends HttpResponse
-> {
-  then(
-    onFulfilled: (
-      response: Promise<TResult | TError>
-    ) => Promise<TResult | TError>
-  ): Promise<TResult>;
-  asNodeStream: () => Promise<TStream | TError>;
-}
 
 export interface GetFile {
   /** Get file */
   get(
     options?: GetFileParameters
-  ): NodeStreamResponse<
-    GetFile200Response,
-    GetFile200NodeStreamResponse,
-    GetFiledefaultResponse
-  >;
+  ): Promise<GetFile200Response | GetFiledefaultResponse>;
 }
 
 export interface GetFileLarge {
   /** Get a large file */
   get(
     options?: GetFileLargeParameters
-  ): NodeStreamResponse<
-    GetFileLarge200Response,
-    GetFileLarge200NodeStreamResponse,
-    GetFileLargedefaultResponse
-  >;
+  ): Promise<GetFileLarge200Response | GetFileLargedefaultResponse>;
 }
 
 export interface GetEmptyFile {
   /** Get empty file */
   get(
     options?: GetEmptyFileParameters
-  ): NodeStreamResponse<
-    GetEmptyFile200Response,
-    GetEmptyFile200NodeStreamResponse,
-    GetEmptyFiledefaultResponse
-  >;
+  ): Promise<GetEmptyFile200Response | GetEmptyFiledefaultResponse>;
 }
 
 export interface Routes {
@@ -81,7 +47,7 @@ export interface Routes {
   (path: "/files/stream/empty"): GetEmptyFile;
 }
 
-export type BodyFileRestClient = ClientWithAsStream & {
+export type BodyFileRestClient = Client & {
   path: Routes;
 };
 
@@ -90,5 +56,9 @@ export default function BodyFile(
 ): BodyFileRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClientWithStream(baseUrl, options) as BodyFileRestClient;
+  return getClient(
+    baseUrl,
+
+    options
+  ) as BodyFileRestClient;
 }

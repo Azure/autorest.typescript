@@ -19,7 +19,7 @@ export interface UploadFiledefaultResponse extends HttpResponse {
 /** Upload file */
 export interface UploadFileViaBody200Response extends HttpResponse {
   status: "200";
-  body: Uint8Array;
+  body: Record<string, unknown>;
 }
 
 /** Upload file */

@@ -7,13 +7,7 @@ import { ErrorModelOutput } from "./outputModels";
 /** Get file */
 export interface GetFile200Response extends HttpResponse {
   status: "200";
-  body: Uint8Array;
-}
-
-/** Get file as Stream */
-export interface GetFile200NodeStreamResponse extends HttpResponse {
-  status: "200";
-  body: NodeJS.ReadableStream;
+  body: Record<string, unknown>;
 }
 
 /** Get file */
@@ -25,13 +19,7 @@ export interface GetFiledefaultResponse extends HttpResponse {
 /** Get a large file */
 export interface GetFileLarge200Response extends HttpResponse {
   status: "200";
-  body: Uint8Array;
-}
-
-/** Get a large file as Stream */
-export interface GetFileLarge200NodeStreamResponse extends HttpResponse {
-  status: "200";
-  body: NodeJS.ReadableStream;
+  body: Record<string, unknown>;
 }
 
 /** Get a large file */
@@ -43,13 +31,7 @@ export interface GetFileLargedefaultResponse extends HttpResponse {
 /** Get empty file */
 export interface GetEmptyFile200Response extends HttpResponse {
   status: "200";
-  body: Uint8Array;
-}
-
-/** Get empty file */
-export interface GetEmptyFile200NodeStreamResponse extends HttpResponse {
-  status: "200";
-  body: NodeJS.ReadableStream;
+  body: Record<string, unknown>;
 }
 
 /** Get empty file */

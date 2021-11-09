@@ -62,13 +62,7 @@ import {
   EnumPutReferencedConstant200Response,
   EnumPutReferencedConstantdefaultResponse
 } from "./responses";
-import {
-  getClient,
-  ClientOptions,
-  Client,
-  getClientWithStream,
-  ClientWithAsStream
-} from "@azure-rest/core-client";
+import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
 export interface StringGetNull {
@@ -232,7 +226,7 @@ export interface Routes {
   (path: "/string/enum/ReferencedConstant"): EnumGetReferencedConstant;
 }
 
-export type BodyStringRestRestClient = ClientWithAsStream & {
+export type BodyStringRestRestClient = Client & {
   path: Routes;
 };
 
@@ -241,7 +235,7 @@ export default function BodyStringRest(
 ): BodyStringRestRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClientWithStream(
+  return getClient(
     baseUrl,
 
     options

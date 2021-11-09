@@ -14,13 +14,7 @@ import {
   UploadFiles200Response,
   UploadFilesdefaultResponse
 } from "./responses";
-import {
-  getClient,
-  ClientOptions,
-  Client,
-  getClientWithStream,
-  ClientWithAsStream
-} from "@azure-rest/core-client";
+import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
 export interface UploadFile {
@@ -48,7 +42,7 @@ export interface Routes {
   (path: "/formdata/stream/uploadfiles"): UploadFiles;
 }
 
-export type BodyFormDataRestClient = ClientWithAsStream & {
+export type BodyFormDataRestClient = Client & {
   path: Routes;
 };
 
@@ -57,5 +51,9 @@ export default function BodyFormData(
 ): BodyFormDataRestClient {
   const baseUrl = options.baseUrl ?? "http://localhost:3000";
 
-  return getClientWithStream(baseUrl, options) as BodyFormDataRestClient;
+  return getClient(
+    baseUrl,
+
+    options
+  ) as BodyFormDataRestClient;
 }
