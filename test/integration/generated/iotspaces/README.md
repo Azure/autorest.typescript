@@ -18,6 +18,8 @@ Use this API to manage the IoTSpaces service instances in your Azure subscriptio
 
 
 
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

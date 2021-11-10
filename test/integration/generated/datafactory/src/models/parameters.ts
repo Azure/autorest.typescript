@@ -279,7 +279,7 @@ export const linkedServiceName: OperationURLParameter = {
   parameterPath: "linkedServiceName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"),
+      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?\\/]*$"),
       MaxLength: 260,
       MinLength: 1
     },
@@ -300,7 +300,7 @@ export const datasetName: OperationURLParameter = {
   parameterPath: "datasetName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"),
+      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?\\/]*$"),
       MaxLength: 260,
       MinLength: 1
     },
@@ -321,7 +321,7 @@ export const pipelineName: OperationURLParameter = {
   parameterPath: "pipelineName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"),
+      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?\\/]*$"),
       MaxLength: 260,
       MinLength: 1
     },
@@ -424,7 +424,7 @@ export const triggerName: OperationURLParameter = {
   parameterPath: "triggerName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"),
+      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?\\/]*$"),
       MaxLength: 260,
       MinLength: 1
     },
@@ -445,7 +445,7 @@ export const dataFlowName: OperationURLParameter = {
   parameterPath: "dataFlowName",
   mapper: {
     constraints: {
-      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?/]*$"),
+      Pattern: new RegExp("^[A-Za-z0-9_][^<>*#.%&:\\\\+?\\/]*$"),
       MaxLength: 260,
       MinLength: 1
     },
