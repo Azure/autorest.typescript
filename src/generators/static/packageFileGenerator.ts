@@ -246,7 +246,7 @@ function regularAutorestPackage(
   };
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "2.0.0-beta.6";
+    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
