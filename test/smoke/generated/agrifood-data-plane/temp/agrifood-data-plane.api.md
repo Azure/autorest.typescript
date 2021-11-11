@@ -69,12 +69,7 @@ export interface ApplicationDataCreateOrUpdatedefaultResponse extends HttpRespon
 }
 
 // @public (undocumented)
-export interface ApplicationDataCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateMediaTypesParam & ApplicationDataCreateOrUpdateBodyParam & RequestParameters;
+export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface ApplicationDataDelete204Response extends HttpResponse {
@@ -338,12 +333,7 @@ export interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface AttachmentsCreateOrUpdateMediaTypesParam {
-    contentType?: "multipart/form-data";
-}
-
-// @public (undocumented)
-export type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateMediaTypesParam & AttachmentsCreateOrUpdateBodyParam & RequestParameters;
+export type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface AttachmentsDelete204Response extends HttpResponse {
@@ -530,12 +520,7 @@ export interface BoundariesCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface BoundariesCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateMediaTypesParam & BoundariesCreateOrUpdateBodyParam & RequestParameters;
+export type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface BoundariesDelete204Response extends HttpResponse {
@@ -778,12 +763,7 @@ export interface BoundariesSearchByFarmerIddefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface BoundariesSearchByFarmerIdMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdMediaTypesParam & BoundariesSearchByFarmerIdBodyParam & RequestParameters;
+export type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdBodyParam & RequestParameters;
 
 // @public
 export interface BoundariesSearchdefaultResponse extends HttpResponse {
@@ -794,12 +774,7 @@ export interface BoundariesSearchdefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface BoundariesSearchMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type BoundariesSearchParameters = BoundariesSearchMediaTypesParam & BoundariesSearchBodyParam & RequestParameters;
+export type BoundariesSearchParameters = BoundariesSearchBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface Boundary {
@@ -932,12 +907,7 @@ export interface CropsCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface CropsCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateMediaTypesParam & CropsCreateOrUpdateBodyParam & RequestParameters;
+export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface CropsDelete204Response extends HttpResponse {
@@ -1059,12 +1029,7 @@ export interface CropVarietiesCreateOrUpdatedefaultResponse extends HttpResponse
 }
 
 // @public (undocumented)
-export interface CropVarietiesCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateMediaTypesParam & CropVarietiesCreateOrUpdateBodyParam & RequestParameters;
+export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface CropVarietiesDelete204Response extends HttpResponse {
@@ -1361,12 +1326,7 @@ export interface FarmersCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface FarmersCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateMediaTypesParam & FarmersCreateOrUpdateBodyParam & RequestParameters;
+export type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface FarmersDelete204Response extends HttpResponse {
@@ -1555,12 +1515,7 @@ export interface FarmOperationsCreateDataIngestionJobdefaultResponse extends Htt
 }
 
 // @public (undocumented)
-export interface FarmOperationsCreateDataIngestionJobMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobMediaTypesParam & FarmOperationsCreateDataIngestionJobBodyParam & RequestParameters;
+export type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobBodyParam & RequestParameters;
 
 // @public
 export interface FarmOperationsGetDataIngestionJobDetails200Response extends HttpResponse {
@@ -1655,12 +1610,7 @@ export interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface FarmsCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateMediaTypesParam & FarmsCreateOrUpdateBodyParam & RequestParameters;
+export type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface FarmsDelete204Response extends HttpResponse {
@@ -1920,12 +1870,7 @@ export interface FieldsCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface FieldsCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateMediaTypesParam & FieldsCreateOrUpdateBodyParam & RequestParameters;
+export type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface FieldsDelete204Response extends HttpResponse {
@@ -2175,12 +2120,7 @@ export interface HarvestDataCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface HarvestDataCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateMediaTypesParam & HarvestDataCreateOrUpdateBodyParam & RequestParameters;
+export type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface HarvestDataDelete204Response extends HttpResponse {
@@ -2454,12 +2394,7 @@ export interface ImageProcessingCreateRasterizeJobdefaultResponse extends HttpRe
 }
 
 // @public (undocumented)
-export interface ImageProcessingCreateRasterizeJobMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobMediaTypesParam & ImageProcessingCreateRasterizeJobBodyParam & RequestParameters;
+export type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobBodyParam & RequestParameters;
 
 // @public
 export interface ImageProcessingGetRasterizeJob200Response extends HttpResponse {
@@ -2629,12 +2564,7 @@ export interface OAuthProvidersCreateOrUpdatedefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export interface OAuthProvidersCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateMediaTypesParam & OAuthProvidersCreateOrUpdateBodyParam & RequestParameters;
+export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface OAuthProvidersDelete204Response extends HttpResponse {
@@ -2825,12 +2755,7 @@ export interface OAuthTokensGetOAuthConnectionLinkdefaultResponse extends HttpRe
 }
 
 // @public (undocumented)
-export interface OAuthTokensGetOAuthConnectionLinkMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkMediaTypesParam & OAuthTokensGetOAuthConnectionLinkBodyParam & RequestParameters;
+export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface OAuthTokensList {
@@ -2945,12 +2870,7 @@ export interface PlantingDataCreateOrUpdatedefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface PlantingDataCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateMediaTypesParam & PlantingDataCreateOrUpdateBodyParam & RequestParameters;
+export type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface PlantingDataDelete204Response extends HttpResponse {
@@ -3379,12 +3299,7 @@ export interface ScenesCreateSatelliteDataIngestionJobdefaultResponse extends Ht
 }
 
 // @public (undocumented)
-export interface ScenesCreateSatelliteDataIngestionJobMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobMediaTypesParam & ScenesCreateSatelliteDataIngestionJobBodyParam & RequestParameters;
+export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface ScenesDownload {
@@ -3640,12 +3555,7 @@ export interface SeasonalFieldsCreateOrUpdatedefaultResponse extends HttpRespons
 }
 
 // @public (undocumented)
-export interface SeasonalFieldsCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateMediaTypesParam & SeasonalFieldsCreateOrUpdateBodyParam & RequestParameters;
+export type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface SeasonalFieldsDelete204Response extends HttpResponse {
@@ -3883,12 +3793,7 @@ export interface SeasonsCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface SeasonsCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateMediaTypesParam & SeasonsCreateOrUpdateBodyParam & RequestParameters;
+export type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface SeasonsDelete204Response extends HttpResponse {
@@ -4037,12 +3942,7 @@ export interface TillageDataCreateOrUpdatedefaultResponse extends HttpResponse {
 }
 
 // @public (undocumented)
-export interface TillageDataCreateOrUpdateMediaTypesParam {
-    contentType?: "application/merge-patch+json";
-}
-
-// @public (undocumented)
-export type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateMediaTypesParam & TillageDataCreateOrUpdateBodyParam & RequestParameters;
+export type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateBodyParam & RequestParameters;
 
 // @public
 export interface TillageDataDelete204Response extends HttpResponse {
@@ -4259,12 +4159,7 @@ export interface WeatherCreateDataDeleteJobdefaultResponse extends HttpResponse 
 }
 
 // @public (undocumented)
-export interface WeatherCreateDataDeleteJobMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobMediaTypesParam & WeatherCreateDataDeleteJobBodyParam & RequestParameters;
+export type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobBodyParam & RequestParameters;
 
 // @public
 export interface WeatherCreateDataIngestionJob202Response extends HttpResponse {
@@ -4288,12 +4183,7 @@ export interface WeatherCreateDataIngestionJobdefaultResponse extends HttpRespon
 }
 
 // @public (undocumented)
-export interface WeatherCreateDataIngestionJobMediaTypesParam {
-    contentType?: "application/json";
-}
-
-// @public (undocumented)
-export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobMediaTypesParam & WeatherCreateDataIngestionJobBodyParam & RequestParameters;
+export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobBodyParam & RequestParameters;
 
 // @public (undocumented)
 export interface WeatherDataDeleteJob {
