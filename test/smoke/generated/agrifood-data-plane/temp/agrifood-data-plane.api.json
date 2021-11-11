@@ -1054,6 +1054,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!ApplicationDataCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ApplicationDataCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ApplicationDataCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ApplicationDataCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!ApplicationDataCreateOrUpdateParameters:type",
           "docComment": "",
@@ -1061,6 +1103,15 @@
             {
               "kind": "Content",
               "text": "export declare type ApplicationDataCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ApplicationDataCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ApplicationDataCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -1085,7 +1136,7 @@
           "name": "ApplicationDataCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -5484,6 +5535,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface AttachmentsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "AttachmentsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"multipart/form-data\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -5491,6 +5584,15 @@
             {
               "kind": "Content",
               "text": "export declare type AttachmentsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "AttachmentsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -5515,7 +5617,7 @@
           "name": "AttachmentsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -7841,6 +7943,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface BoundariesCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "BoundariesCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesCreateOrUpdateParameters:type",
           "docComment": "",
@@ -7848,6 +7992,15 @@
             {
               "kind": "Content",
               "text": "export declare type BoundariesCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "BoundariesCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -7872,7 +8025,7 @@
           "name": "BoundariesCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -11262,6 +11415,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchByFarmerIdMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface BoundariesSearchByFarmerIdMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "BoundariesSearchByFarmerIdMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchByFarmerIdMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchByFarmerIdParameters:type",
           "docComment": "",
@@ -11269,6 +11464,15 @@
             {
               "kind": "Content",
               "text": "export declare type BoundariesSearchByFarmerIdParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "BoundariesSearchByFarmerIdMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchByFarmerIdMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -11293,7 +11497,7 @@
           "name": "BoundariesSearchByFarmerIdParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -11380,6 +11584,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface BoundariesSearchMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "BoundariesSearchMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchParameters:type",
           "docComment": "",
@@ -11387,6 +11633,15 @@
             {
               "kind": "Content",
               "text": "export declare type BoundariesSearchParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "BoundariesSearchMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!BoundariesSearchMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -11411,7 +11666,7 @@
           "name": "BoundariesSearchParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -13749,6 +14004,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!CropsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CropsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CropsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!CropsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!CropsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -13756,6 +14053,15 @@
             {
               "kind": "Content",
               "text": "export declare type CropsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "CropsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!CropsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -13780,7 +14086,7 @@
           "name": "CropsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -15368,6 +15674,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!CropVarietiesCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface CropVarietiesCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "CropVarietiesCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!CropVarietiesCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!CropVarietiesCreateOrUpdateParameters:type",
           "docComment": "",
@@ -15375,6 +15723,15 @@
             {
               "kind": "Content",
               "text": "export declare type CropVarietiesCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "CropVarietiesCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!CropVarietiesCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -15399,7 +15756,7 @@
           "name": "CropVarietiesCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -19920,6 +20277,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!FarmersCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FarmersCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FarmersCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmersCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!FarmersCreateOrUpdateParameters:type",
           "docComment": "",
@@ -19927,6 +20326,15 @@
             {
               "kind": "Content",
               "text": "export declare type FarmersCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FarmersCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmersCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -19951,7 +20359,7 @@
           "name": "FarmersCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -22899,6 +23307,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!FarmOperationsCreateDataIngestionJobMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FarmOperationsCreateDataIngestionJobMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FarmOperationsCreateDataIngestionJobMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmOperationsCreateDataIngestionJobMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!FarmOperationsCreateDataIngestionJobParameters:type",
           "docComment": "",
@@ -22906,6 +23356,15 @@
             {
               "kind": "Content",
               "text": "export declare type FarmOperationsCreateDataIngestionJobParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FarmOperationsCreateDataIngestionJobMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmOperationsCreateDataIngestionJobMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -22930,7 +23389,7 @@
           "name": "FarmOperationsCreateDataIngestionJobParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -23994,6 +24453,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!FarmsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FarmsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FarmsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!FarmsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -24001,6 +24502,15 @@
             {
               "kind": "Content",
               "text": "export declare type FarmsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FarmsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FarmsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -24025,7 +24535,7 @@
           "name": "FarmsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -27694,6 +28204,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!FieldsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface FieldsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "FieldsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FieldsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!FieldsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -27701,6 +28253,15 @@
             {
               "kind": "Content",
               "text": "export declare type FieldsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "FieldsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!FieldsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -27725,7 +28286,7 @@
           "name": "FieldsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -31422,6 +31983,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!HarvestDataCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface HarvestDataCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "HarvestDataCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!HarvestDataCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!HarvestDataCreateOrUpdateParameters:type",
           "docComment": "",
@@ -31429,6 +32032,15 @@
             {
               "kind": "Content",
               "text": "export declare type HarvestDataCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "HarvestDataCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!HarvestDataCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -31453,7 +32065,7 @@
           "name": "HarvestDataCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -36315,6 +36927,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!ImageProcessingCreateRasterizeJobMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ImageProcessingCreateRasterizeJobMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ImageProcessingCreateRasterizeJobMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ImageProcessingCreateRasterizeJobMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!ImageProcessingCreateRasterizeJobParameters:type",
           "docComment": "",
@@ -36322,6 +36976,15 @@
             {
               "kind": "Content",
               "text": "export declare type ImageProcessingCreateRasterizeJobParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ImageProcessingCreateRasterizeJobMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ImageProcessingCreateRasterizeJobMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -36346,7 +37009,7 @@
           "name": "ImageProcessingCreateRasterizeJobParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -39012,6 +39675,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!OAuthProvidersCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OAuthProvidersCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OAuthProvidersCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!OAuthProvidersCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!OAuthProvidersCreateOrUpdateParameters:type",
           "docComment": "",
@@ -39019,6 +39724,15 @@
             {
               "kind": "Content",
               "text": "export declare type OAuthProvidersCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OAuthProvidersCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!OAuthProvidersCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -39043,7 +39757,7 @@
           "name": "OAuthProvidersCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -41536,6 +42250,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!OAuthTokensGetOAuthConnectionLinkMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface OAuthTokensGetOAuthConnectionLinkMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "OAuthTokensGetOAuthConnectionLinkMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!OAuthTokensGetOAuthConnectionLinkMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!OAuthTokensGetOAuthConnectionLinkParameters:type",
           "docComment": "",
@@ -41543,6 +42299,15 @@
             {
               "kind": "Content",
               "text": "export declare type OAuthTokensGetOAuthConnectionLinkParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "OAuthTokensGetOAuthConnectionLinkMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!OAuthTokensGetOAuthConnectionLinkMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -41567,7 +42332,7 @@
           "name": "OAuthTokensGetOAuthConnectionLinkParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -43330,6 +44095,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!PlantingDataCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface PlantingDataCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "PlantingDataCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!PlantingDataCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!PlantingDataCreateOrUpdateParameters:type",
           "docComment": "",
@@ -43337,6 +44144,15 @@
             {
               "kind": "Content",
               "text": "export declare type PlantingDataCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "PlantingDataCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!PlantingDataCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -43361,7 +44177,7 @@
           "name": "PlantingDataCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -52865,6 +53681,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!ScenesCreateSatelliteDataIngestionJobMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface ScenesCreateSatelliteDataIngestionJobMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "ScenesCreateSatelliteDataIngestionJobMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ScenesCreateSatelliteDataIngestionJobMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!ScenesCreateSatelliteDataIngestionJobParameters:type",
           "docComment": "",
@@ -52872,6 +53730,15 @@
             {
               "kind": "Content",
               "text": "export declare type ScenesCreateSatelliteDataIngestionJobParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "ScenesCreateSatelliteDataIngestionJobMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!ScenesCreateSatelliteDataIngestionJobMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -52896,7 +53763,7 @@
           "name": "ScenesCreateSatelliteDataIngestionJobParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -56886,6 +57753,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!SeasonalFieldsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SeasonalFieldsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SeasonalFieldsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!SeasonalFieldsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!SeasonalFieldsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -56893,6 +57802,15 @@
             {
               "kind": "Content",
               "text": "export declare type SeasonalFieldsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SeasonalFieldsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!SeasonalFieldsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -56917,7 +57835,7 @@
           "name": "SeasonalFieldsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -60632,6 +61550,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!SeasonsCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface SeasonsCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "SeasonsCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!SeasonsCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!SeasonsCreateOrUpdateParameters:type",
           "docComment": "",
@@ -60639,6 +61599,15 @@
             {
               "kind": "Content",
               "text": "export declare type SeasonsCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "SeasonsCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!SeasonsCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -60663,7 +61632,7 @@
           "name": "SeasonsCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -62927,6 +63896,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!TillageDataCreateOrUpdateMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface TillageDataCreateOrUpdateMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "TillageDataCreateOrUpdateMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!TillageDataCreateOrUpdateMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/merge-patch+json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!TillageDataCreateOrUpdateParameters:type",
           "docComment": "",
@@ -62934,6 +63945,15 @@
             {
               "kind": "Content",
               "text": "export declare type TillageDataCreateOrUpdateParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "TillageDataCreateOrUpdateMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!TillageDataCreateOrUpdateMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -62958,7 +63978,7 @@
           "name": "TillageDataCreateOrUpdateParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -66581,6 +67601,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataDeleteJobMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface WeatherCreateDataDeleteJobMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "WeatherCreateDataDeleteJobMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataDeleteJobMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataDeleteJobParameters:type",
           "docComment": "",
@@ -66588,6 +67650,15 @@
             {
               "kind": "Content",
               "text": "export declare type WeatherCreateDataDeleteJobParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "WeatherCreateDataDeleteJobMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataDeleteJobMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -66612,7 +67683,7 @@
           "name": "WeatherCreateDataDeleteJobParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {
@@ -66825,6 +67896,48 @@
           ]
         },
         {
+          "kind": "Interface",
+          "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataIngestionJobMediaTypesParam:interface",
+          "docComment": "",
+          "excerptTokens": [
+            {
+              "kind": "Content",
+              "text": "export interface WeatherCreateDataIngestionJobMediaTypesParam "
+            }
+          ],
+          "releaseTag": "Public",
+          "name": "WeatherCreateDataIngestionJobMediaTypesParam",
+          "members": [
+            {
+              "kind": "PropertySignature",
+              "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataIngestionJobMediaTypesParam#contentType:member",
+              "docComment": "/**\n * Request content type\n */\n",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "contentType?: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "\"application/json\""
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": true,
+              "releaseTag": "Public",
+              "name": "contentType",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              }
+            }
+          ],
+          "extendsTokenRanges": []
+        },
+        {
           "kind": "TypeAlias",
           "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataIngestionJobParameters:type",
           "docComment": "",
@@ -66832,6 +67945,15 @@
             {
               "kind": "Content",
               "text": "export declare type WeatherCreateDataIngestionJobParameters = "
+            },
+            {
+              "kind": "Reference",
+              "text": "WeatherCreateDataIngestionJobMediaTypesParam",
+              "canonicalReference": "@msinternal/agrifood-data-plane!WeatherCreateDataIngestionJobMediaTypesParam:interface"
+            },
+            {
+              "kind": "Content",
+              "text": " & "
             },
             {
               "kind": "Reference",
@@ -66856,7 +67978,7 @@
           "name": "WeatherCreateDataIngestionJobParameters",
           "typeTokenRange": {
             "startIndex": 1,
-            "endIndex": 4
+            "endIndex": 6
           }
         },
         {

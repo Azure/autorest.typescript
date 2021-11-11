@@ -7,7 +7,10 @@ import {
 /**
  * Given an operation, extract all its parameters
  */
-export function getOperationParameters(operation: Operation): Parameter[] {
+export function getOperationParameters(
+  operation: Operation,
+  requestIndex = 0
+): Parameter[] {
   const operationParams = [
     ...(operation.parameters ?? []),
     ...(operation.signatureParameters ?? [])
@@ -17,8 +20,8 @@ export function getOperationParameters(operation: Operation): Parameter[] {
 
   if (operation.requests) {
     [
-      ...(operation.requests[0].parameters ?? []),
-      ...(operation.requests[0].signatureParameters ?? [])
+      ...(operation.requests[requestIndex].parameters ?? []),
+      ...(operation.requests[requestIndex].signatureParameters ?? [])
     ].forEach(p => distinctParams.add(p));
   }
 

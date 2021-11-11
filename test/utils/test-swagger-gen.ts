@@ -294,16 +294,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  headerRest: {
-    swaggerOrConfig: "header.json",
-    clientName: "HeaderRestClient",
-    packageName: "header-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   httpInfrastructure: {
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureClient",
@@ -907,7 +897,28 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     isTestPackage: true
-  }
+  },
+  mediaTypesRest: {
+    swaggerOrConfig: "media_types.json",
+    clientName: "MediaTypes",
+    packageName: "media-types-service-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
+  headerRest: {
+    swaggerOrConfig: "header.json",
+    clientName: "HeaderRestClient",
+    packageName: "header-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
 };
 
 const generateSwaggers = async (
