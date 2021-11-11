@@ -838,6 +838,12 @@ export interface WeatherDataDeleteJob {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+export interface MultiPolygon
+  extends GeoJsonObjectBase,
+    MultiPolygonCoordinates {
+  type: "MultiPolygon";
+}
+
 export interface MultiPolygonCoordinates {
   /**
    * Gets or sets Coordinates of GeoJSON Object.
@@ -848,10 +854,8 @@ export interface MultiPolygonCoordinates {
   coordinates: Array<Array<Array<Array<number>>>>;
 }
 
-export interface MultiPolygon
-  extends GeoJsonObjectBase,
-    MultiPolygonCoordinates {
-  type: "MultiPolygon";
+export interface Point extends GeoJsonObjectBase, PointCoordinates {
+  type: "Point";
 }
 
 export interface PointCoordinates {
@@ -862,8 +866,8 @@ export interface PointCoordinates {
   coordinates: Array<number>;
 }
 
-export interface Point extends GeoJsonObjectBase, PointCoordinates {
-  type: "Point";
+export interface Polygon extends GeoJsonObjectBase, PolygonCoordinates {
+  type: "Polygon";
 }
 
 export interface PolygonCoordinates {
@@ -874,10 +878,6 @@ export interface PolygonCoordinates {
    * and any others MUST be interior rings.
    */
   coordinates: Array<Array<Array<number>>>;
-}
-
-export interface Polygon extends GeoJsonObjectBase, PolygonCoordinates {
-  type: "Polygon";
 }
 
 export type GeoJsonObject = MultiPolygon | Point | Polygon;

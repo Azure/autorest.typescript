@@ -91,7 +91,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       node: ">=12.0.0"
     },
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.7",
+      "@azure-rest/core-client": "1.0.0-beta.8",
       "@azure/core-auth": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.3.0",
       ...(hasPaging && {
@@ -246,7 +246,7 @@ function regularAutorestPackage(
   };
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "2.0.0-beta.6";
+    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";

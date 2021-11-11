@@ -1,50 +1,5 @@
 import * as coreClient from "@azure/core-client";
 
-/** The common properties of a service. */
-export interface ServicesResource {
-  /**
-   * The resource identifier.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * The resource name.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * The resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** The kind of the service. */
-  kind: Kind;
-  /** The resource location. */
-  location: string;
-  /** The resource tags. */
-  tags?: { [propertyName: string]: string };
-  /** An etag associated with the resource, used for optimistic concurrency when editing it. */
-  etag?: string;
-  /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: ServicesResourceIdentity;
-}
-
-/** Setting indicating whether the service has a managed identity associated with it. */
-export interface ServicesResourceIdentity {
-  /**
-   * The principal ID of the resource identity.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly principalId?: string;
-  /**
-   * The tenant ID of the resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly tenantId?: string;
-  /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: ManagedServiceIdentityType;
-}
-
 /** The properties of a service instance. */
 export interface ServicesProperties {
   /**
@@ -114,25 +69,6 @@ export interface ServiceExportConfigurationInfo {
   storageAccountName?: string;
 }
 
-/** Common fields that are returned in the response for all Azure Resource Manager resources */
-export interface Resource {
-  /**
-   * Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * The name of the resource
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-}
-
 /** The Private Endpoint resource. */
 export interface PrivateEndpoint {
   /**
@@ -150,6 +86,25 @@ export interface PrivateLinkServiceConnectionState {
   description?: string;
   /** A message indicating if changes on the service provider require any updates on the consumer. */
   actionsRequired?: string;
+}
+
+/** Common fields that are returned in the response for all Azure Resource Manager resources */
+export interface Resource {
+  /**
+   * Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * The name of the resource
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
 }
 
 /** Azure container registry configuration information */
@@ -172,6 +127,51 @@ export interface SystemData {
   lastModifiedByType?: CreatedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: Date;
+}
+
+/** The common properties of a service. */
+export interface ServicesResource {
+  /**
+   * The resource identifier.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * The resource name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The kind of the service. */
+  kind: Kind;
+  /** The resource location. */
+  location: string;
+  /** The resource tags. */
+  tags?: { [propertyName: string]: string };
+  /** An etag associated with the resource, used for optimistic concurrency when editing it. */
+  etag?: string;
+  /** Setting indicating whether the service has a managed identity associated with it. */
+  identity?: ServicesResourceIdentity;
+}
+
+/** Setting indicating whether the service has a managed identity associated with it. */
+export interface ServicesResourceIdentity {
+  /**
+   * The principal ID of the resource identity.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly principalId?: string;
+  /**
+   * The tenant ID of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly tenantId?: string;
+  /** Type of identity being specified, currently SystemAssigned and None are allowed. */
+  type?: ManagedServiceIdentityType;
 }
 
 /** Error details. */
@@ -259,6 +259,12 @@ export interface WorkspaceList {
   value?: Workspace[];
 }
 
+/** Workspaces resource specific properties. */
+export interface WorkspaceProperties {
+  /** The provisioning state. */
+  provisioningState?: ProvisioningState;
+}
+
 /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
 export interface ResourceTags {
   /** Resource tags. */
@@ -284,12 +290,6 @@ export interface ResourceCore {
   readonly type?: string;
   /** An etag associated with the resource, used for optimistic concurrency when editing it. */
   etag?: string;
-}
-
-/** Workspaces resource specific properties. */
-export interface WorkspaceProperties {
-  /** The provisioning state. */
-  provisioningState?: ProvisioningState;
 }
 
 /** Error details. */
@@ -328,18 +328,6 @@ export interface IotConnectorCollection {
   value?: IotConnector[];
 }
 
-/** The managed identity of a service. */
-export interface ServiceManagedIdentity {
-  /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: ServiceManagedIdentityIdentity;
-}
-
-/** Setting indicating whether the service has a managed identity associated with it. */
-export interface ServiceManagedIdentityIdentity {
-  /** Type of identity being specified, currently SystemAssigned and None are allowed. */
-  type?: ManagedServiceIdentityType;
-}
-
 /** Event Hub ingestion endpoint configuration */
 export interface IotEventHubIngestionEndpointConfiguration {
   /** Event Hub name to connect to. */
@@ -354,6 +342,18 @@ export interface IotEventHubIngestionEndpointConfiguration {
 export interface IotMappingProperties {
   /** The mapping. */
   content?: Record<string, unknown>;
+}
+
+/** The managed identity of a service. */
+export interface ServiceManagedIdentity {
+  /** Setting indicating whether the service has a managed identity associated with it. */
+  identity?: ServiceManagedIdentityIdentity;
+}
+
+/** Setting indicating whether the service has a managed identity associated with it. */
+export interface ServiceManagedIdentityIdentity {
+  /** Type of identity being specified, currently SystemAssigned and None are allowed. */
+  type?: ManagedServiceIdentityType;
 }
 
 /** A collection of IoT Connector FHIR destinations. */
@@ -510,17 +510,6 @@ export interface OperationResultsDescription {
   properties?: Record<string, unknown>;
 }
 
-/** The description of the service. */
-export type ServicesDescription = ServicesResource & {
-  /** The common properties of a service. */
-  properties?: ServicesProperties;
-  /**
-   * Metadata pertaining to creation and last modification of the resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly systemData?: SystemData;
-};
-
 /** The Private Endpoint Connection resource. */
 export type PrivateEndpointConnection = Resource & {
   /** The resource of private end point. */
@@ -548,6 +537,17 @@ export type PrivateLinkResource = Resource & {
   readonly requiredMembers?: string[];
   /** The private link resource Private link DNS zone name. */
   requiredZoneNames?: string[];
+};
+
+/** The description of the service. */
+export type ServicesDescription = ServicesResource & {
+  /** The common properties of a service. */
+  properties?: ServicesProperties;
+  /**
+   * Metadata pertaining to creation and last modification of the resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly systemData?: SystemData;
 };
 
 /** The common properties of tracked resources in the service. */
@@ -687,22 +687,6 @@ export type IotFhirDestination = LocationBasedResource & {
   fhirMapping: IotMappingProperties;
 };
 
-/** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
-export enum KnownManagedServiceIdentityType {
-  SystemAssigned = "SystemAssigned",
-  None = "None"
-}
-
-/**
- * Defines values for ManagedServiceIdentityType. \
- * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
- *  this enum contains the known values that the service supports.
- * ### Known values supported by the service
- * **SystemAssigned** \
- * **None**
- */
-export type ManagedServiceIdentityType = string;
-
 /** Known values of {@link ProvisioningState} that the service accepts. */
 export enum KnownProvisioningState {
   Deleting = "Deleting",
@@ -814,6 +798,22 @@ export enum KnownCreatedByType {
  * **Key**
  */
 export type CreatedByType = string;
+
+/** Known values of {@link ManagedServiceIdentityType} that the service accepts. */
+export enum KnownManagedServiceIdentityType {
+  SystemAssigned = "SystemAssigned",
+  None = "None"
+}
+
+/**
+ * Defines values for ManagedServiceIdentityType. \
+ * {@link KnownManagedServiceIdentityType} can be used interchangeably with ManagedServiceIdentityType,
+ *  this enum contains the known values that the service supports.
+ * ### Known values supported by the service
+ * **SystemAssigned** \
+ * **None**
+ */
+export type ManagedServiceIdentityType = string;
 
 /** Known values of {@link IotIdentityResolutionType} that the service accepts. */
 export enum KnownIotIdentityResolutionType {

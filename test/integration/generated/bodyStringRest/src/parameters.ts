@@ -11,7 +11,13 @@ export interface StringPutNullBodyParam {
   body?: string;
 }
 
-export type StringPutNullParameters = StringPutNullBodyParam &
+export interface StringPutNullMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type StringPutNullParameters = StringPutNullMediaTypesParam &
+  StringPutNullBodyParam &
   RequestParameters;
 export type StringGetEmptyParameters = RequestParameters;
 
@@ -20,7 +26,13 @@ export interface StringPutEmptyBodyParam {
   body: "";
 }
 
-export type StringPutEmptyParameters = StringPutEmptyBodyParam &
+export interface StringPutEmptyMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type StringPutEmptyParameters = StringPutEmptyMediaTypesParam &
+  StringPutEmptyBodyParam &
   RequestParameters;
 export type StringGetMbcsParameters = RequestParameters;
 
@@ -29,7 +41,13 @@ export interface StringPutMbcsBodyParam {
   body: "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€";
 }
 
-export type StringPutMbcsParameters = StringPutMbcsBodyParam &
+export interface StringPutMbcsMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type StringPutMbcsParameters = StringPutMbcsMediaTypesParam &
+  StringPutMbcsBodyParam &
   RequestParameters;
 export type StringGetWhitespaceParameters = RequestParameters;
 
@@ -38,7 +56,13 @@ export interface StringPutWhitespaceBodyParam {
   body: "    Now is the time for all good men to come to the aid of their country    ";
 }
 
-export type StringPutWhitespaceParameters = StringPutWhitespaceBodyParam &
+export interface StringPutWhitespaceMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type StringPutWhitespaceParameters = StringPutWhitespaceMediaTypesParam &
+  StringPutWhitespaceBodyParam &
   RequestParameters;
 export type StringGetNotProvidedParameters = RequestParameters;
 export type StringGetBase64EncodedParameters = RequestParameters;
@@ -53,7 +77,13 @@ export interface StringPutBase64UrlEncodedBodyParam {
   body: string;
 }
 
-export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedBodyParam &
+export interface StringPutBase64UrlEncodedMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedMediaTypesParam &
+  StringPutBase64UrlEncodedBodyParam &
   RequestParameters;
 export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
 export type EnumGetNotExpandableParameters = RequestParameters;
@@ -63,7 +93,13 @@ export interface EnumPutNotExpandableBodyParam {
   body: "red color" | "green-color" | "blue_color";
 }
 
-export type EnumPutNotExpandableParameters = EnumPutNotExpandableBodyParam &
+export interface EnumPutNotExpandableMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type EnumPutNotExpandableParameters = EnumPutNotExpandableMediaTypesParam &
+  EnumPutNotExpandableBodyParam &
   RequestParameters;
 export type EnumGetReferencedParameters = RequestParameters;
 
@@ -72,7 +108,13 @@ export interface EnumPutReferencedBodyParam {
   body: "red color" | "green-color" | "blue_color";
 }
 
-export type EnumPutReferencedParameters = EnumPutReferencedBodyParam &
+export interface EnumPutReferencedMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type EnumPutReferencedParameters = EnumPutReferencedMediaTypesParam &
+  EnumPutReferencedBodyParam &
   RequestParameters;
 export type EnumGetReferencedConstantParameters = RequestParameters;
 
@@ -81,5 +123,11 @@ export interface EnumPutReferencedConstantBodyParam {
   body: RefColorConstant;
 }
 
-export type EnumPutReferencedConstantParameters = EnumPutReferencedConstantBodyParam &
+export interface EnumPutReferencedConstantMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type EnumPutReferencedConstantParameters = EnumPutReferencedConstantMediaTypesParam &
+  EnumPutReferencedConstantBodyParam &
   RequestParameters;

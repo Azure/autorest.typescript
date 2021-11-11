@@ -163,7 +163,13 @@ export interface ApplicationDataCreateOrUpdateBodyParam {
   body?: ApplicationData;
 }
 
-export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateBodyParam &
+export interface ApplicationDataCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateMediaTypesParam &
+  ApplicationDataCreateOrUpdateBodyParam &
   RequestParameters;
 export type ApplicationDataDeleteParameters = RequestParameters;
 
@@ -217,7 +223,13 @@ export interface AttachmentsCreateOrUpdateBodyParam {
   body?: string;
 }
 
-export type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateBodyParam &
+export interface AttachmentsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "multipart/form-data";
+}
+
+export type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateMediaTypesParam &
+  AttachmentsCreateOrUpdateBodyParam &
   RequestParameters;
 export type AttachmentsDeleteParameters = RequestParameters;
 export type AttachmentsDownloadParameters = RequestParameters;
@@ -273,7 +285,13 @@ export interface BoundariesSearchByFarmerIdBodyParam {
   body?: SearchBoundaryQuery;
 }
 
-export type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdBodyParam &
+export interface BoundariesSearchByFarmerIdMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdMediaTypesParam &
+  BoundariesSearchByFarmerIdBodyParam &
   RequestParameters;
 
 export interface BoundariesListQueryParamProperties {
@@ -327,7 +345,13 @@ export interface BoundariesSearchBodyParam {
   body?: SearchBoundaryQuery;
 }
 
-export type BoundariesSearchParameters = BoundariesSearchBodyParam &
+export interface BoundariesSearchMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type BoundariesSearchParameters = BoundariesSearchMediaTypesParam &
+  BoundariesSearchBodyParam &
   RequestParameters;
 export type BoundariesGetCascadeDeleteJobDetailsParameters = RequestParameters;
 
@@ -351,7 +375,13 @@ export interface BoundariesCreateOrUpdateBodyParam {
   body?: Boundary;
 }
 
-export type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateBodyParam &
+export interface BoundariesCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateMediaTypesParam &
+  BoundariesCreateOrUpdateBodyParam &
   RequestParameters;
 export type BoundariesDeleteParameters = RequestParameters;
 
@@ -412,7 +442,13 @@ export interface CropsCreateOrUpdateBodyParam {
   body?: Crop;
 }
 
-export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateBodyParam &
+export interface CropsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type CropsCreateOrUpdateParameters = CropsCreateOrUpdateMediaTypesParam &
+  CropsCreateOrUpdateBodyParam &
   RequestParameters;
 export type CropsDeleteParameters = RequestParameters;
 
@@ -506,7 +542,13 @@ export interface CropVarietiesCreateOrUpdateBodyParam {
   body?: CropVariety;
 }
 
-export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateBodyParam &
+export interface CropVarietiesCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateMediaTypesParam &
+  CropVarietiesCreateOrUpdateBodyParam &
   RequestParameters;
 export type CropVarietiesDeleteParameters = RequestParameters;
 
@@ -551,7 +593,13 @@ export interface FarmersCreateOrUpdateBodyParam {
   body?: Farmer;
 }
 
-export type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateBodyParam &
+export interface FarmersCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateMediaTypesParam &
+  FarmersCreateOrUpdateBodyParam &
   RequestParameters;
 export type FarmersDeleteParameters = RequestParameters;
 export type FarmersGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -573,7 +621,13 @@ export interface FarmOperationsCreateDataIngestionJobBodyParam {
   body?: FarmOperationDataIngestionJob;
 }
 
-export type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobBodyParam &
+export interface FarmOperationsCreateDataIngestionJobMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobMediaTypesParam &
+  FarmOperationsCreateDataIngestionJobBodyParam &
   RequestParameters;
 export type FarmOperationsGetDataIngestionJobDetailsParameters = RequestParameters;
 
@@ -654,7 +708,13 @@ export interface FarmsCreateOrUpdateBodyParam {
   body?: Farm;
 }
 
-export type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateBodyParam &
+export interface FarmsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateMediaTypesParam &
+  FarmsCreateOrUpdateBodyParam &
   RequestParameters;
 export type FarmsDeleteParameters = RequestParameters;
 export type FarmsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -754,7 +814,13 @@ export interface FieldsCreateOrUpdateBodyParam {
   body?: Field;
 }
 
-export type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateBodyParam &
+export interface FieldsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateMediaTypesParam &
+  FieldsCreateOrUpdateBodyParam &
   RequestParameters;
 export type FieldsDeleteParameters = RequestParameters;
 export type FieldsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -943,7 +1009,13 @@ export interface HarvestDataCreateOrUpdateBodyParam {
   body?: HarvestData;
 }
 
-export type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateBodyParam &
+export interface HarvestDataCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateMediaTypesParam &
+  HarvestDataCreateOrUpdateBodyParam &
   RequestParameters;
 export type HarvestDataDeleteParameters = RequestParameters;
 
@@ -952,7 +1024,13 @@ export interface ImageProcessingCreateRasterizeJobBodyParam {
   body?: ImageProcessingRasterizeJob;
 }
 
-export type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobBodyParam &
+export interface ImageProcessingCreateRasterizeJobMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobMediaTypesParam &
+  ImageProcessingCreateRasterizeJobBodyParam &
   RequestParameters;
 export type ImageProcessingGetRasterizeJobParameters = RequestParameters;
 
@@ -998,7 +1076,13 @@ export interface OAuthProvidersCreateOrUpdateBodyParam {
   body?: OAuthProvider;
 }
 
-export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateBodyParam &
+export interface OAuthProvidersCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateMediaTypesParam &
+  OAuthProvidersCreateOrUpdateBodyParam &
   RequestParameters;
 export type OAuthProvidersDeleteParameters = RequestParameters;
 
@@ -1038,7 +1122,13 @@ export interface OAuthTokensGetOAuthConnectionLinkBodyParam {
   body?: OAuthConnectRequest;
 }
 
-export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkBodyParam &
+export interface OAuthTokensGetOAuthConnectionLinkMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkMediaTypesParam &
+  OAuthTokensGetOAuthConnectionLinkBodyParam &
   RequestParameters;
 export type OAuthTokensGetCascadeDeleteJobDetailsParameters = RequestParameters;
 
@@ -1202,7 +1292,13 @@ export interface PlantingDataCreateOrUpdateBodyParam {
   body?: PlantingData;
 }
 
-export type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateBodyParam &
+export interface PlantingDataCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateMediaTypesParam &
+  PlantingDataCreateOrUpdateBodyParam &
   RequestParameters;
 export type PlantingDataDeleteParameters = RequestParameters;
 
@@ -1249,7 +1345,13 @@ export interface ScenesCreateSatelliteDataIngestionJobBodyParam {
   body?: SatelliteDataIngestionJob;
 }
 
-export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobBodyParam &
+export interface ScenesCreateSatelliteDataIngestionJobMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobMediaTypesParam &
+  ScenesCreateSatelliteDataIngestionJobBodyParam &
   RequestParameters;
 export type ScenesGetSatelliteDataIngestionJobDetailsParameters = RequestParameters;
 
@@ -1395,7 +1497,13 @@ export interface SeasonalFieldsCreateOrUpdateBodyParam {
   body?: SeasonalField;
 }
 
-export type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateBodyParam &
+export interface SeasonalFieldsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateMediaTypesParam &
+  SeasonalFieldsCreateOrUpdateBodyParam &
   RequestParameters;
 export type SeasonalFieldsDeleteParameters = RequestParameters;
 export type SeasonalFieldsGetCascadeDeleteJobDetailsParameters = RequestParameters;
@@ -1465,7 +1573,13 @@ export interface SeasonsCreateOrUpdateBodyParam {
   body?: Season;
 }
 
-export type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateBodyParam &
+export interface SeasonsCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateMediaTypesParam &
+  SeasonsCreateOrUpdateBodyParam &
   RequestParameters;
 export type SeasonsDeleteParameters = RequestParameters;
 
@@ -1607,7 +1721,13 @@ export interface TillageDataCreateOrUpdateBodyParam {
   body?: TillageData;
 }
 
-export type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateBodyParam &
+export interface TillageDataCreateOrUpdateMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/merge-patch+json";
+}
+
+export type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateMediaTypesParam &
+  TillageDataCreateOrUpdateBodyParam &
   RequestParameters;
 export type TillageDataDeleteParameters = RequestParameters;
 
@@ -1647,7 +1767,13 @@ export interface WeatherCreateDataIngestionJobBodyParam {
   body?: WeatherDataIngestionJob;
 }
 
-export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobBodyParam &
+export interface WeatherCreateDataIngestionJobMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobMediaTypesParam &
+  WeatherCreateDataIngestionJobBodyParam &
   RequestParameters;
 export type WeatherGetDataDeleteJobDetailsParameters = RequestParameters;
 
@@ -1656,5 +1782,11 @@ export interface WeatherCreateDataDeleteJobBodyParam {
   body?: WeatherDataDeleteJob;
 }
 
-export type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobBodyParam &
+export interface WeatherCreateDataDeleteJobMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobMediaTypesParam &
+  WeatherCreateDataDeleteJobBodyParam &
   RequestParameters;

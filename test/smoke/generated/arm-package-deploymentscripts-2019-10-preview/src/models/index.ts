@@ -13,25 +13,6 @@ export type DeploymentScriptUnion =
   | AzurePowerShellScript
   | AzureCliScript;
 
-/** Common properties for all Azure resources. */
-export interface AzureResourceBase {
-  /**
-   * String Id used to locate any resource on Azure.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Name of this resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Type of this resource.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-}
-
 /** Managed identity generic object. */
 export interface ManagedServiceIdentity {
   /** Type of the managed identity. */
@@ -62,6 +43,25 @@ export interface SystemData {
   lastModifiedByType?: CreatedByType;
   /** The type of identity that last modified the resource. */
   lastModifiedAt?: Date;
+}
+
+/** Common properties for all Azure resources. */
+export interface AzureResourceBase {
+  /**
+   * String Id used to locate any resource on Azure.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Name of this resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Type of this resource.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
 }
 
 /** Deployment scripts error response. */

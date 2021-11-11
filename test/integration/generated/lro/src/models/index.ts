@@ -73,6 +73,12 @@ export type SubProduct = SubResource & {
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
 };
 
+/** Defines headers for LROs_patch200SucceededIgnoreHeaders operation. */
+export interface LROsPatch200SucceededIgnoreHeadersHeaders {
+  /** This header should be ignored in this case */
+  azureAsyncOperation?: string;
+}
+
 /** Defines headers for LROs_post202List operation. */
 export interface LROsPost202ListHeaders {
   /** Location to poll for result status: will be set to /lro/list/pollingGet */
@@ -659,6 +665,21 @@ export interface LROsPut200SucceededOptionalParams
 
 /** Contains response data for the put200Succeeded operation. */
 export type LROsPut200SucceededResponse = Product;
+
+/** Optional parameters. */
+export interface LROsPatch200SucceededIgnoreHeadersOptionalParams
+  extends coreClient.OperationOptions {
+  /** Product to patch */
+  product?: Product;
+  /** Delay to wait until next poll, in milliseconds. */
+  updateIntervalInMs?: number;
+  /** A serialized poller which can be used to resume an existing paused Long-Running-Operation. */
+  resumeFrom?: string;
+}
+
+/** Contains response data for the patch200SucceededIgnoreHeaders operation. */
+export type LROsPatch200SucceededIgnoreHeadersResponse = LROsPatch200SucceededIgnoreHeadersHeaders &
+  Product;
 
 /** Optional parameters. */
 export interface LROsPut201SucceededOptionalParams

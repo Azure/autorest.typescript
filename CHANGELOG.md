@@ -1,3 +1,7 @@
+## 6.0.0-beta.15 (2021-11-10)
+
+- [Feature] Bumped the modeler m4 version to 4.21.4
+
 ## 6.0.0-beta.14 (2021-11-01)
 
 - [BugFix] Several name conflicts with operation group names, parameter names, ordering of mappers have been fixed. Please refer [#1227](https://github.com/Azure/autorest.typescript/pull/1227) for further details.

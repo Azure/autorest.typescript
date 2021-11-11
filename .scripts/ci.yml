@@ -53,11 +53,6 @@ stages:
         dependsOn: Build
         strategy:
           matrix:
-            Linux_Node10:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "10.x"
-              TestType: "node"
             macOS_Node12:
               Pool:
               OSVmImage: "macOS-10.15"

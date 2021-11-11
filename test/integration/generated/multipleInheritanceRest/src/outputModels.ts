@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface PetOutput {
-  name: string;
-}
-
 export interface HorseOutput extends PetOutput {
   isAShowHorse?: boolean;
+}
+
+export interface PetOutput {
+  name: string;
 }
 
 export interface ErrorModelOutput {

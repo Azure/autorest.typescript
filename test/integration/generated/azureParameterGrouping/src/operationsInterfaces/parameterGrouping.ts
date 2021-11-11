@@ -10,6 +10,7 @@ import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
   ParameterGroupingPostOptionalOptionalParams,
+  ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 } from "../models";
@@ -31,6 +32,13 @@ export interface ParameterGrouping {
    */
   postOptional(
     options?: ParameterGroupingPostOptionalOptionalParams
+  ): Promise<void>;
+  /**
+   * Post a grouped parameters with reserved words
+   * @param options The options parameters.
+   */
+  postReservedWords(
+    options?: ParameterGroupingPostReservedWordsOptionalParams
   ): Promise<void>;
   /**
    * Post parameters from multiple different parameter groups

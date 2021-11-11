@@ -56,18 +56,18 @@ export interface ResourceCollection {
   dictionaryofresources?: { [propertyName: string]: FlattenedProduct };
 }
 
+/** The Generic URL. */
+export interface GenericUrl {
+  /** Generic URL value. */
+  genericValue?: string;
+}
+
 /** The product documentation. */
 export interface BaseProduct {
   /** Unique identifier representing a specific product for a given latitude & longitude. For example, uberX in San Francisco will have a different product_id than uberX in Los Angeles. */
   productId: string;
   /** Description of product. */
   description?: string;
-}
-
-/** The Generic URL. */
-export interface GenericUrl {
-  /** Generic URL value. */
-  genericValue?: string;
 }
 
 /** Flattened product. */
@@ -79,6 +79,12 @@ export type FlattenedProduct = Resource & {
   provisioningState?: string;
 };
 
+/** The product URL. */
+export type ProductUrl = GenericUrl & {
+  /** URL value. */
+  odataValue?: string;
+};
+
 /** The product documentation. */
 export type SimpleProduct = BaseProduct & {
   /** Display name of product. */
@@ -87,12 +93,6 @@ export type SimpleProduct = BaseProduct & {
   capacity?: "Large";
   /** Generic URL value. */
   genericValue?: string;
-  /** URL value. */
-  odataValue?: string;
-};
-
-/** The product URL. */
-export type ProductUrl = GenericUrl & {
   /** URL value. */
   odataValue?: string;
 };
