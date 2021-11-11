@@ -1098,7 +1098,7 @@ namespace AutoRest.TypeScript.Model
                 builder.Line("In browser applications, we recommend using the `InteractiveBrowserCredential` that interactively authenticates using the default system browser.");
                 builder.Line("  - See [Single-page application: App registration guide](https://docs.microsoft.com/azure/active-directory/develop/scenario-spa-app-registration) to configure your app registration for the browser.");
                 builder.Line("  - Note down the client Id from the previous step and use it in the browser sample below.");
-                builder.Line("  - To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our bundling documentation.");
+                builder.Line("  - To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://github.com/Azure/azure-sdk-for-js/blob/master/documentation/Bundling.md).");
                 builder.Line();
                 builder.Section("Sample code", () =>
                 {
