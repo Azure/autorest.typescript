@@ -8,27 +8,18 @@
 
 import * as coreClient from "@azure/core-client";
 
-/** Resource information. */
-export interface Resource {
-  /**
-   * Resource ID
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
+/** Plan for the managed application. */
+export interface Plan {
+  /** The plan name. */
+  name: string;
+  /** The publisher ID. */
+  publisher: string;
+  /** The product code. */
+  product: string;
+  /** The promotion code. */
+  promotionCode?: string;
+  /** The plan's version. */
+  version: string;
 }
 
 /** SKU for the resource. */
@@ -63,18 +54,27 @@ export interface Identity {
   type?: "SystemAssigned";
 }
 
-/** Plan for the managed application. */
-export interface Plan {
-  /** The plan name. */
-  name: string;
-  /** The publisher ID. */
-  publisher: string;
-  /** The product code. */
-  product: string;
-  /** The promotion code. */
-  promotionCode?: string;
-  /** The plan's version. */
-  version: string;
+/** Resource information. */
+export interface Resource {
+  /**
+   * Resource ID
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
 }
 
 /** Error response indicates managed application is not able to process the incoming request. The reason is provided in the error message. */

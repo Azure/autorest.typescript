@@ -8,6 +8,28 @@
 
 import * as coreClient from "@azure/core-client";
 
+export const SignInName: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "SignInName",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      type: {
+        serializedName: "type",
+        type: {
+          name: "String"
+        }
+      },
+      value: {
+        serializedName: "value",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
 export const DirectoryObject: coreClient.CompositeMapper = {
   serializedName: "DirectoryObject",
   type: {
@@ -39,28 +61,6 @@ export const DirectoryObject: coreClient.CompositeMapper = {
         readOnly: true,
         type: {
           name: "DateTime"
-        }
-      }
-    }
-  }
-};
-
-export const SignInName: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "SignInName",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      type: {
-        serializedName: "type",
-        type: {
-          name: "String"
-        }
-      },
-      value: {
-        serializedName: "value",
-        type: {
-          name: "String"
         }
       }
     }
@@ -1205,6 +1205,29 @@ export const ServicePrincipalObjectResult: coreClient.CompositeMapper = {
   }
 };
 
+export const PasswordProfile: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "PasswordProfile",
+    additionalProperties: { type: { name: "Object" } },
+    modelProperties: {
+      password: {
+        serializedName: "password",
+        required: true,
+        type: {
+          name: "String"
+        }
+      },
+      forceChangePasswordNextLogin: {
+        serializedName: "forceChangePasswordNextLogin",
+        type: {
+          name: "Boolean"
+        }
+      }
+    }
+  }
+};
+
 export const UserBase: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
@@ -1239,29 +1262,6 @@ export const UserBase: coreClient.CompositeMapper = {
         serializedName: "userType",
         type: {
           name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const PasswordProfile: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "PasswordProfile",
-    additionalProperties: { type: { name: "Object" } },
-    modelProperties: {
-      password: {
-        serializedName: "password",
-        required: true,
-        type: {
-          name: "String"
-        }
-      },
-      forceChangePasswordNextLogin: {
-        serializedName: "forceChangePasswordNextLogin",
-        type: {
-          name: "Boolean"
         }
       }
     }

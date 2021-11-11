@@ -8,6 +8,22 @@
 
 import * as coreClient from "@azure/core-client";
 
+/** Contains a set of input documents to be analyzed by the service. */
+export interface MultiLanguageBatchInput {
+  /** The set of documents to process as part of this batch. */
+  documents: TextDocumentInput[];
+}
+
+/** An object representing an individual text document to be analyzed by the Text Analytics service. The document contains a unique document ID, the full text of the document, and the language of the document's text. */
+export interface TextDocumentInput {
+  /** A unique, non-empty document identifier. */
+  id: string;
+  /** The input text to process. */
+  text: string;
+  /** (Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use "en" for English; "es" for Spanish etc. If not set, use "en" for English as default. */
+  language?: string;
+}
+
 export interface JobDescriptor {
   /** Optional display name for the analysis job. */
   displayName?: string;
@@ -64,22 +80,6 @@ export interface EntityLinkingTaskParameters {
   stringIndexType?: StringIndexType;
 }
 
-/** Contains a set of input documents to be analyzed by the service. */
-export interface MultiLanguageBatchInput {
-  /** The set of documents to process as part of this batch. */
-  documents: TextDocumentInput[];
-}
-
-/** An object representing an individual text document to be analyzed by the Text Analytics service. The document contains a unique document ID, the full text of the document, and the language of the document's text. */
-export interface TextDocumentInput {
-  /** A unique, non-empty document identifier. */
-  id: string;
-  /** The input text to process. */
-  text: string;
-  /** (Optional) This is the 2 letter ISO 639-1 representation of a language. For example, use "en" for English; "es" for Spanish etc. If not set, use "en" for English as default. */
-  language?: string;
-}
-
 export interface ErrorResponse {
   /** Document Error. */
   error: TextAnalyticsError;
@@ -109,6 +109,18 @@ export interface InnerError {
   target?: string;
   /** Inner error contains more specific information. */
   innererror?: InnerError;
+}
+
+/** if includeStatistics=true was specified in the request this field will contain information about the request payload. */
+export interface TextDocumentBatchStatistics {
+  /** Number of documents submitted in the request. */
+  documentCount: number;
+  /** Number of valid documents. This excludes empty, over-size limit or non-supported languages documents. */
+  validDocumentCount: number;
+  /** Number of invalid documents. This includes empty, over-size limit or non-supported languages documents. */
+  erroneousDocumentCount: number;
+  /** Number of transactions for the request. */
+  transactionCount: number;
 }
 
 export interface JobMetadata {
@@ -204,18 +216,6 @@ export interface DocumentError {
   id: string;
   /** Document Error. */
   error: TextAnalyticsError;
-}
-
-/** if includeStatistics=true was specified in the request this field will contain information about the request payload. */
-export interface TextDocumentBatchStatistics {
-  /** Number of documents submitted in the request. */
-  documentCount: number;
-  /** Number of valid documents. This excludes empty, over-size limit or non-supported languages documents. */
-  validDocumentCount: number;
-  /** Number of invalid documents. This includes empty, over-size limit or non-supported languages documents. */
-  erroneousDocumentCount: number;
-  /** Number of transactions for the request. */
-  transactionCount: number;
 }
 
 export interface Components15X8E9LSchemasTasksstatePropertiesTasksPropertiesEntityrecognitionpiitasksItemsAllof1 {

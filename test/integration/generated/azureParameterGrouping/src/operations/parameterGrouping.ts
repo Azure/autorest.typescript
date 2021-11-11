@@ -15,6 +15,7 @@ import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
   ParameterGroupingPostOptionalOptionalParams,
+  ParameterGroupingPostReservedWordsOptionalParams,
   ParameterGroupingPostMultiParamGroupsOptionalParams,
   ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 } from "../models";
@@ -56,6 +57,19 @@ export class ParameterGroupingImpl implements ParameterGrouping {
     return this.client.sendOperationRequest(
       { options },
       postOptionalOperationSpec
+    );
+  }
+
+  /**
+   * Post a grouped parameters with reserved words
+   * @param options The options parameters.
+   */
+  postReservedWords(
+    options?: ParameterGroupingPostReservedWordsOptionalParams
+  ): Promise<void> {
+    return this.client.sendOperationRequest(
+      { options },
+      postReservedWordsOperationSpec
     );
   }
 
@@ -120,6 +134,20 @@ const postOptionalOperationSpec: coreClient.OperationSpec = {
   queryParameters: [Parameters.query1],
   urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.customHeader1],
+  serializer
+};
+const postReservedWordsOperationSpec: coreClient.OperationSpec = {
+  path: "/parameterGrouping/postReservedWords",
+  httpMethod: "POST",
+  responses: {
+    200: {},
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  queryParameters: [Parameters.fromParam, Parameters.accept1],
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
   serializer
 };
 const postMultiParamGroupsOperationSpec: coreClient.OperationSpec = {

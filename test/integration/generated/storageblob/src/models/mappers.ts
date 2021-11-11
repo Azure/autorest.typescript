@@ -253,7 +253,7 @@ export const BlobItemInternal: coreClient.CompositeMapper = {
       },
       objectReplicationMetadata: {
         serializedName: "ObjectReplicationMetadata",
-        xmlName: "ObjectReplicationMetadata",
+        xmlName: "OrMetadata",
         type: {
           name: "Dictionary",
           value: { type: { name: "String" } }

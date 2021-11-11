@@ -122,3 +122,107 @@ export const accept2: OperationParameter = {
     }
   }
 };
+
+export const contentType3: OperationParameter = {
+  parameterPath: ["options", "contentType"],
+  mapper: {
+    serializedName: "Content-Type",
+    type: {
+      name: "Enum",
+      allowedValues: ["application/json", "application/octet-stream"]
+    }
+  }
+};
+
+export const message: OperationParameter = {
+  parameterPath: "message",
+  mapper: {
+    serializedName: "message",
+    required: true,
+    type: {
+      name: "Stream"
+    }
+  }
+};
+
+export const accept3: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const contentType4: OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    serializedName: "Content-Type",
+    required: true,
+    type: {
+      name: "Enum",
+      allowedValues: ["application/json", "application/octet-stream"]
+    }
+  }
+};
+
+export const contentType5: OperationParameter = {
+  parameterPath: "contentType",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Content-Type",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const message1: OperationParameter = {
+  parameterPath: "message",
+  mapper: {
+    serializedName: "message",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept4: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const message2: OperationParameter = {
+  parameterPath: "message",
+  mapper: {
+    serializedName: "message",
+    required: true,
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept5: OperationParameter = {
+  parameterPath: "accept",
+  mapper: {
+    defaultValue: "text/plain",
+    isConstant: true,
+    serializedName: "Accept",
+    type: {
+      name: "String"
+    }
+  }
+};

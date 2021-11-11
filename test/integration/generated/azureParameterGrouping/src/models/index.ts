@@ -31,6 +31,14 @@ export interface ParameterGroupingPostOptionalParameters {
 }
 
 /** Parameter group */
+export interface ParameterGroupingPostReservedWordsParameters {
+  /** 'from' is a reserved word. Pass in 'bob' to pass. */
+  from?: string;
+  /** 'accept' is a reserved word. Pass in 'yes' to pass. */
+  accept?: string;
+}
+
+/** Parameter group */
 export interface FirstParameterGroup {
   headerOne?: string;
   /** Query parameter with default */
@@ -57,6 +65,13 @@ export interface ParameterGroupingPostOptionalOptionalParams
   extends coreClient.OperationOptions {
   /** Parameter group */
   parameterGroupingPostOptionalParameters?: ParameterGroupingPostOptionalParameters;
+}
+
+/** Optional parameters. */
+export interface ParameterGroupingPostReservedWordsOptionalParams
+  extends coreClient.OperationOptions {
+  /** Parameter group */
+  parameterGroupingPostReservedWordsParameters?: ParameterGroupingPostReservedWordsParameters;
 }
 
 /** Optional parameters. */

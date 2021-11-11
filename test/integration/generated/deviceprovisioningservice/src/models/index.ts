@@ -141,29 +141,6 @@ export interface CertificateBodyDescription {
   isVerified?: boolean;
 }
 
-/** The common properties of an Azure resource. */
-export interface Resource {
-  /**
-   * The resource identifier.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * The resource name.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * The resource type.
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** The resource location. */
-  location: string;
-  /** The resource tags. */
-  tags?: { [propertyName: string]: string };
-}
-
 /** the service specific properties of a provisioning service, including keys, linked iot hubs, current state, and system generated properties such as hostname and idScope */
 export interface IotDpsPropertiesDescription {
   /** Current state of the provisioning service. */
@@ -299,6 +276,29 @@ export interface IotDpsSkuInfo {
   readonly tier?: string;
   /** The number of units to provision */
   capacity?: number;
+}
+
+/** The common properties of an Azure resource. */
+export interface Resource {
+  /**
+   * The resource identifier.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * The resource name.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * The resource type.
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** The resource location. */
+  location: string;
+  /** The resource tags. */
+  tags?: { [propertyName: string]: string };
 }
 
 /** A container holding only the Tags for a resource, allowing the user to update the tags on a Provisioning Service instance. */

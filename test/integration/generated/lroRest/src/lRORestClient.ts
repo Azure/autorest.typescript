@@ -3,6 +3,7 @@
 
 import {
   LROsPut200SucceededParameters,
+  LROsPatch200SucceededIgnoreHeadersParameters,
   LROsPut201SucceededParameters,
   LROsPost202ListParameters,
   LROsPut200SucceededNoStateParameters,
@@ -85,6 +86,8 @@ import {
   LROsPut200Succeeded200Response,
   LROsPut200Succeeded204Response,
   LROsPut200SucceededdefaultResponse,
+  LROsPatch200SucceededIgnoreHeaders200Response,
+  LROsPatch200SucceededIgnoreHeadersdefaultResponse,
   LROsPut201Succeeded201Response,
   LROsPut201SucceededdefaultResponse,
   LROsPost202List200Response,
@@ -272,6 +275,16 @@ export interface LROsPut200Succeeded {
     | LROsPut200Succeeded200Response
     | LROsPut200Succeeded204Response
     | LROsPut200SucceededdefaultResponse
+  >;
+}
+
+export interface LROsPatch200SucceededIgnoreHeaders {
+  /** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
+  patch(
+    options?: LROsPatch200SucceededIgnoreHeadersParameters
+  ): Promise<
+    | LROsPatch200SucceededIgnoreHeaders200Response
+    | LROsPatch200SucceededIgnoreHeadersdefaultResponse
   >;
 }
 
@@ -1051,6 +1064,10 @@ export interface LROsCustomHeaderPostAsyncRetrySucceeded {
 export interface Routes {
   /** Resource for '/lro/put/200/succeeded' has methods for the following verbs: put */
   (path: "/lro/put/200/succeeded"): LROsPut200Succeeded;
+  /** Resource for '/lro/patch/200/succeeded/ignoreheaders' has methods for the following verbs: patch */
+  (
+    path: "/lro/patch/200/succeeded/ignoreheaders"
+  ): LROsPatch200SucceededIgnoreHeaders;
   /** Resource for '/lro/put/201/succeeded' has methods for the following verbs: put */
   (path: "/lro/put/201/succeeded"): LROsPut201Succeeded;
   /** Resource for '/lro/list' has methods for the following verbs: post */
