@@ -241,7 +241,10 @@ describe("Integration tests for Paging Rest Client", () => {
                   tenant,
                   pageLink
                 )
-                .get({ queryParameters: { api_version: "1.6" } });
+                .get({
+                  queryParameters: { api_version: "1.6" },
+                  skipUrlEncoding: true
+                });
           firstRun = false;
           if (result.status !== "200") {
             throw new Error("Unexpected status code");

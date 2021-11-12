@@ -1060,7 +1060,6 @@ describe("LRO Rest Client", () => {
         await poller.pollUntilDone();
         assert.fail("Scenario should throw");
       } catch (error) {
-        console.log(error);
         assert.equal(error.statusCode, 400);
       }
     });
@@ -1209,17 +1208,19 @@ describe("LRO Rest Client", () => {
     });
 
     it("should handle put200InvalidJson", async () => {
-      const initialResponse = await client
-        .path("/lro/error/put/200/invalidjson")
-        .put();
+      try {
+        const initialResponse = await client
+          .path("/lro/error/put/200/invalidjson")
+          .put();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
-      });
+        const poller = getLongRunningPoller(client, initialResponse, {
+          intervalInMs: 0
+        });
 
-      const result = await poller.pollUntilDone();
-      assert.equal(result.status, "200");
-      assert.isUndefined(result.body);
+        await poller.pollUntilDone();
+      } catch (error) {
+        assert.equal(error.code, "PARSE_ERROR");
+      }
     });
 
     it("should handle putAsyncRelativeRetryInvalidHeader", async () => {
@@ -1274,17 +1275,19 @@ describe("LRO Rest Client", () => {
     });
 
     it("should handle DeleteAsyncRelativeRetryInvalidJsonPolling ", async () => {
-      const initialResponse = await client
-        .path("/lro/error/deleteasync/retry/invalidjsonpolling")
-        .delete();
+      try {
+        const initialResponse = await client
+          .path("/lro/error/deleteasync/retry/invalidjsonpolling")
+          .delete();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
-      });
+        const poller = getLongRunningPoller(client, initialResponse, {
+          intervalInMs: 0
+        });
 
-      const result = await poller.pollUntilDone();
-      assert.equal(result.status, "200");
-      assert.isUndefined(result.body);
+        await poller.pollUntilDone();
+      } catch (error) {
+        assert.equal(error.code, "PARSE_ERROR");
+      }
     });
 
     it("should handle post202RetryInvalidHeader ", async () => {
@@ -1322,17 +1325,19 @@ describe("LRO Rest Client", () => {
     });
 
     it("should handle postAsyncRelativeRetryInvalidJsonPolling ", async () => {
-      const initialResponse = await client
-        .path("/lro/error/postasync/retry/invalidjsonpolling")
-        .post();
+      try {
+        const initialResponse = await client
+          .path("/lro/error/postasync/retry/invalidjsonpolling")
+          .post();
 
-      const poller = getLongRunningPoller(client, initialResponse, {
-        intervalInMs: 0
-      });
+        const poller = getLongRunningPoller(client, initialResponse, {
+          intervalInMs: 0
+        });
 
-      const result = await poller.pollUntilDone();
-      assert.equal(result.status, "200");
-      assert.isUndefined(result.body);
+        await poller.pollUntilDone();
+      } catch (error) {
+        assert.equal(error.code, "PARSE_ERROR");
+      }
     });
   });
 
@@ -1469,7 +1474,6 @@ describe("LRO Rest Client", () => {
 
       const result = await poller.pollUntilDone();
 
-      console.log(initialResponse.headers);
       if (result.status === "500") {
         const error = `Unexpected status code ${result.status}`;
         assert.fail(error);
