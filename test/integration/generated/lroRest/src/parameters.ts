@@ -23,7 +23,13 @@ export interface LROsPatch200SucceededIgnoreHeadersBodyParam {
   body?: Product;
 }
 
-export type LROsPatch200SucceededIgnoreHeadersParameters = LROsPatch200SucceededIgnoreHeadersBodyParam &
+export interface LROsPatch200SucceededIgnoreHeadersMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type LROsPatch200SucceededIgnoreHeadersParameters = LROsPatch200SucceededIgnoreHeadersMediaTypesParam &
+  LROsPatch200SucceededIgnoreHeadersBodyParam &
   RequestParameters;
 
 export interface LROsPut201SucceededBodyParam {
