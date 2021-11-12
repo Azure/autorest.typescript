@@ -83,7 +83,12 @@ export declare interface ApplicationDataCreateOrUpdatedefaultResponse extends Ht
     body: ErrorResponseOutput;
 }
 
-export declare type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateBodyParam & RequestParameters;
+export declare interface ApplicationDataCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type ApplicationDataCreateOrUpdateParameters = ApplicationDataCreateOrUpdateMediaTypesParam & ApplicationDataCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified application data resource under a particular farmer. */
 export declare interface ApplicationDataDelete204Response extends HttpResponse {
@@ -432,7 +437,12 @@ export declare interface AttachmentsCreateOrUpdatedefaultResponse extends HttpRe
     body: ErrorResponseOutput;
 }
 
-export declare type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface AttachmentsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "multipart/form-data";
+}
+
+export declare type AttachmentsCreateOrUpdateParameters = AttachmentsCreateOrUpdateMediaTypesParam & AttachmentsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified attachment resource under a particular farmer. */
 export declare interface AttachmentsDelete204Response extends HttpResponse {
@@ -601,7 +611,12 @@ export declare interface BoundariesCreateOrUpdatedefaultResponse extends HttpRes
     body: ErrorResponseOutput;
 }
 
-export declare type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateBodyParam & RequestParameters;
+export declare interface BoundariesCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type BoundariesCreateOrUpdateParameters = BoundariesCreateOrUpdateMediaTypesParam & BoundariesCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified boundary resource under a particular farmer. */
 export declare interface BoundariesDelete204Response extends HttpResponse {
@@ -847,7 +862,12 @@ export declare interface BoundariesSearchByFarmerIddefaultResponse extends HttpR
     body: ErrorResponseOutput;
 }
 
-export declare type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdBodyParam & RequestParameters;
+export declare interface BoundariesSearchByFarmerIdMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type BoundariesSearchByFarmerIdParameters = BoundariesSearchByFarmerIdMediaTypesParam & BoundariesSearchByFarmerIdBodyParam & RequestParameters;
 
 /** Search for boundaries across all farmers by fields and intersecting geometry. */
 export declare interface BoundariesSearchdefaultResponse extends HttpResponse {
@@ -855,7 +875,12 @@ export declare interface BoundariesSearchdefaultResponse extends HttpResponse {
     body: ErrorResponseOutput;
 }
 
-export declare type BoundariesSearchParameters = BoundariesSearchBodyParam & RequestParameters;
+export declare interface BoundariesSearchMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type BoundariesSearchParameters = BoundariesSearchMediaTypesParam & BoundariesSearchBodyParam & RequestParameters;
 
 export declare interface Boundary {
     /** Farmer ID. */
@@ -1070,7 +1095,12 @@ export declare interface CropsCreateOrUpdatedefaultResponse extends HttpResponse
     body: ErrorResponseOutput;
 }
 
-export declare type CropsCreateOrUpdateParameters = CropsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface CropsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type CropsCreateOrUpdateParameters = CropsCreateOrUpdateMediaTypesParam & CropsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes Crop for given crop id. */
 export declare interface CropsDelete204Response extends HttpResponse {
@@ -1186,7 +1216,12 @@ export declare interface CropVarietiesCreateOrUpdatedefaultResponse extends Http
     body: ErrorResponseOutput;
 }
 
-export declare type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateBodyParam & RequestParameters;
+export declare interface CropVarietiesCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type CropVarietiesCreateOrUpdateParameters = CropVarietiesCreateOrUpdateMediaTypesParam & CropVarietiesCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified crop variety resource under a particular crop. */
 export declare interface CropVarietiesDelete204Response extends HttpResponse {
@@ -1562,7 +1597,12 @@ export declare interface FarmersCreateOrUpdatedefaultResponse extends HttpRespon
     body: ErrorResponseOutput;
 }
 
-export declare type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateBodyParam & RequestParameters;
+export declare interface FarmersCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type FarmersCreateOrUpdateParameters = FarmersCreateOrUpdateMediaTypesParam & FarmersCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified farmer resource. */
 export declare interface FarmersDelete204Response extends HttpResponse {
@@ -1789,7 +1829,12 @@ export declare interface FarmOperationsCreateDataIngestionJobdefaultResponse ext
     body: ErrorResponseOutput;
 }
 
-export declare type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobBodyParam & RequestParameters;
+export declare interface FarmOperationsCreateDataIngestionJobMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type FarmOperationsCreateDataIngestionJobParameters = FarmOperationsCreateDataIngestionJobMediaTypesParam & FarmOperationsCreateDataIngestionJobBodyParam & RequestParameters;
 
 /** Get a farm operation data ingestion job. */
 export declare interface FarmOperationsGetDataIngestionJobDetails200Response extends HttpResponse {
@@ -1879,7 +1924,12 @@ export declare interface FarmsCreateOrUpdatedefaultResponse extends HttpResponse
     body: ErrorResponseOutput;
 }
 
-export declare type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface FarmsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type FarmsCreateOrUpdateParameters = FarmsCreateOrUpdateMediaTypesParam & FarmsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified farm resource under a particular farmer. */
 export declare interface FarmsDelete204Response extends HttpResponse {
@@ -2164,7 +2214,12 @@ export declare interface FieldsCreateOrUpdatedefaultResponse extends HttpRespons
     body: ErrorResponseOutput;
 }
 
-export declare type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface FieldsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type FieldsCreateOrUpdateParameters = FieldsCreateOrUpdateMediaTypesParam & FieldsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified field resource under a particular farmer. */
 export declare interface FieldsDelete204Response extends HttpResponse {
@@ -2448,7 +2503,12 @@ export declare interface HarvestDataCreateOrUpdatedefaultResponse extends HttpRe
     body: ErrorResponseOutput;
 }
 
-export declare type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateBodyParam & RequestParameters;
+export declare interface HarvestDataCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type HarvestDataCreateOrUpdateParameters = HarvestDataCreateOrUpdateMediaTypesParam & HarvestDataCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified harvest data resource under a particular farmer. */
 export declare interface HarvestDataDelete204Response extends HttpResponse {
@@ -2820,7 +2880,12 @@ export declare interface ImageProcessingCreateRasterizeJobdefaultResponse extend
     body: Record<string, unknown>;
 }
 
-export declare type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobBodyParam & RequestParameters;
+export declare interface ImageProcessingCreateRasterizeJobMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type ImageProcessingCreateRasterizeJobParameters = ImageProcessingCreateRasterizeJobMediaTypesParam & ImageProcessingCreateRasterizeJobBodyParam & RequestParameters;
 
 /** Get ImageProcessing Rasterize job's details. */
 export declare interface ImageProcessingGetRasterizeJob200Response extends HttpResponse {
@@ -3091,7 +3156,12 @@ export declare interface OAuthProvidersCreateOrUpdatedefaultResponse extends Htt
     body: ErrorResponseOutput;
 }
 
-export declare type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateBodyParam & RequestParameters;
+export declare interface OAuthProvidersCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type OAuthProvidersCreateOrUpdateParameters = OAuthProvidersCreateOrUpdateMediaTypesParam & OAuthProvidersCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes an specified oauthProvider resource. */
 export declare interface OAuthProvidersDelete204Response extends HttpResponse {
@@ -3274,7 +3344,12 @@ export declare interface OAuthTokensGetOAuthConnectionLinkdefaultResponse extend
     body: ErrorResponseOutput;
 }
 
-export declare type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkBodyParam & RequestParameters;
+export declare interface OAuthTokensGetOAuthConnectionLinkMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type OAuthTokensGetOAuthConnectionLinkParameters = OAuthTokensGetOAuthConnectionLinkMediaTypesParam & OAuthTokensGetOAuthConnectionLinkBodyParam & RequestParameters;
 
 export declare interface OAuthTokensList {
     /** Returns a list of OAuthToken documents. */
@@ -3431,7 +3506,12 @@ export declare interface PlantingDataCreateOrUpdatedefaultResponse extends HttpR
     body: ErrorResponseOutput;
 }
 
-export declare type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateBodyParam & RequestParameters;
+export declare interface PlantingDataCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type PlantingDataCreateOrUpdateParameters = PlantingDataCreateOrUpdateMediaTypesParam & PlantingDataCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified planting data resource under a particular farmer. */
 export declare interface PlantingDataDelete204Response extends HttpResponse {
@@ -4063,7 +4143,12 @@ export declare interface ScenesCreateSatelliteDataIngestionJobdefaultResponse ex
     body: ErrorResponseOutput;
 }
 
-export declare type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobBodyParam & RequestParameters;
+export declare interface ScenesCreateSatelliteDataIngestionJobMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type ScenesCreateSatelliteDataIngestionJobParameters = ScenesCreateSatelliteDataIngestionJobMediaTypesParam & ScenesCreateSatelliteDataIngestionJobBodyParam & RequestParameters;
 
 export declare interface ScenesDownload {
     /** Downloads and returns file stream as response for the given input filePath. */
@@ -4390,7 +4475,12 @@ export declare interface SeasonalFieldsCreateOrUpdatedefaultResponse extends Htt
     body: ErrorResponseOutput;
 }
 
-export declare type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface SeasonalFieldsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type SeasonalFieldsCreateOrUpdateParameters = SeasonalFieldsCreateOrUpdateMediaTypesParam & SeasonalFieldsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified seasonal-field resource under a particular farmer. */
 export declare interface SeasonalFieldsDelete204Response extends HttpResponse {
@@ -4668,7 +4758,12 @@ export declare interface SeasonsCreateOrUpdatedefaultResponse extends HttpRespon
     body: ErrorResponseOutput;
 }
 
-export declare type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateBodyParam & RequestParameters;
+export declare interface SeasonsCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type SeasonsCreateOrUpdateParameters = SeasonsCreateOrUpdateMediaTypesParam & SeasonsCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified season resource. */
 export declare interface SeasonsDelete204Response extends HttpResponse {
@@ -4841,7 +4936,12 @@ export declare interface TillageDataCreateOrUpdatedefaultResponse extends HttpRe
     body: ErrorResponseOutput;
 }
 
-export declare type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateBodyParam & RequestParameters;
+export declare interface TillageDataCreateOrUpdateMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/merge-patch+json";
+}
+
+export declare type TillageDataCreateOrUpdateParameters = TillageDataCreateOrUpdateMediaTypesParam & TillageDataCreateOrUpdateBodyParam & RequestParameters;
 
 /** Deletes a specified tillage data resource under a particular farmer. */
 export declare interface TillageDataDelete204Response extends HttpResponse {
@@ -5119,7 +5219,12 @@ export declare interface WeatherCreateDataDeleteJobdefaultResponse extends HttpR
     body: ErrorResponseOutput;
 }
 
-export declare type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobBodyParam & RequestParameters;
+export declare interface WeatherCreateDataDeleteJobMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type WeatherCreateDataDeleteJobParameters = WeatherCreateDataDeleteJobMediaTypesParam & WeatherCreateDataDeleteJobBodyParam & RequestParameters;
 
 /** Create a weather data ingestion job. */
 export declare interface WeatherCreateDataIngestionJob202Response extends HttpResponse {
@@ -5138,7 +5243,12 @@ export declare interface WeatherCreateDataIngestionJobdefaultResponse extends Ht
     body: ErrorResponseOutput;
 }
 
-export declare type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobBodyParam & RequestParameters;
+export declare interface WeatherCreateDataIngestionJobMediaTypesParam {
+    /** Request content type */
+    contentType?: "application/json";
+}
+
+export declare type WeatherCreateDataIngestionJobParameters = WeatherCreateDataIngestionJobMediaTypesParam & WeatherCreateDataIngestionJobBodyParam & RequestParameters;
 
 export declare interface WeatherDataDeleteJob {
     /** ID of the extension to be used for the providerInput. eg. DTN.ClearAg. */
