@@ -1,0 +1,40 @@
+parameters:
+  - name: DependsOn
+    type: string
+    default: Build
+
+  - name: LinuxPool
+    type: string
+    default: azsdk-pool-mms-ubuntu-1804-general
+
+  - name: OSVmImage
+    type: string
+    default: ubuntu-18.04
+
+stages:
+  - ? ${{if and(eq(variables['Build.Reason'], 'Manual'), eq(variables['System.TeamProject'], 'internal'))}}
+    : - stage: Release
+        displayName: "Release: @microsoft.azure/autorest.typescript"
+        dependsOn: ${{parameters.DependsOn}}
+        jobs:
+          - deployment: PublishToNpm
+            environment: npm
+            displayName: Publish NPM
+            pool:
+              name: ${{ parameters.LinuxPool }}
+              vmImage: ${{ parameters.OSVmImage }}
+            strategy:
+              runOnce:
+                deploy:
+                  steps:
+                    - task: NodeTool@0
+                      inputs:
+                        versionSpec: "10.x"
+                      displayName: "Install Node.js"
+                    - script: |
+                        npm pack
+                        npm config set //registry.npmjs.org/:_authToken=$(azure-sdk-npm-token)
+                        npm publish --access public --tag latest
+                        npm config delete //registry.npmjs.org/:_authToken
+                      displayName: "Publish to NPM"
+ 
