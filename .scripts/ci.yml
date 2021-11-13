@@ -50,9 +50,7 @@ stages:
             inputs:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
-      - job: Test
-        dependsOn: Build
-        steps:
+          
           - task: gulp@0
             displayName: 'gulp testci'
             inputs:
@@ -67,6 +65,7 @@ stages:
               codeCoverageTool: Cobertura
               summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*coverage.xml'
               reportDirectory: '$(System.DefaultWorkingDirectory)/**/coverage'
+
       - job: Check
         steps:
         - task: NodeTool@0
