@@ -50,6 +50,12 @@ stages:
             inputs:
               artifactName: packages
               path: $(Build.ArtifactStagingDirectory)
+
+          - task: gulp@0
+            displayName: 'Run gulp regenerate'
+            inputs:
+              targets: regenerate
+              verbose: false
           
           - task: gulp@0
             displayName: 'gulp testci'
