@@ -37,7 +37,7 @@ stages:
               export TAR_NAME=$(npm pack -q)
               echo "##vso[task.setvariable variable=TAR_NAME;isOutput=true;]$TAR_NAME"
             name: PackArtifacts
-           - task: CopyFiles@2
+          - task: CopyFiles@2
             inputs:
               contents: "*.tgz"
               targetFolder: $(Build.ArtifactStagingDirectory)
