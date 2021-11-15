@@ -183,7 +183,8 @@ function regularAutorestPackage(
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
       typescript: "~4.2.0",
-      "uglify-js": "^3.4.9"
+      "uglify-js": "^3.4.9",
+      rimraf: "^3.0.0"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
