@@ -3,6 +3,7 @@
 import { Operation, OperationGroup } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
+import { pascalCase, camelCase } from "@azure-tools/codegen";
 
 interface ReservedName {
   name: string;
@@ -90,7 +91,8 @@ const ReservedModelNames: ReservedName[] = [
 
 export enum CasingConvention {
   Pascal,
-  Camel
+  Camel,
+  None
 }
 
 export function guardReservedNames(name: string, nameType: NameType): string {
@@ -180,15 +182,10 @@ export function getMappersName(title: string): string {
 
 function getCasingConvention(nameType: NameType) {
   switch (nameType) {
-    case NameType.Class:
-    case NameType.Interface:
-    case NameType.OperationGroup:
-      return CasingConvention.Pascal;
     case NameType.File:
-    case NameType.Property:
-    case NameType.Operation:
-    case NameType.Parameter:
       return CasingConvention.Camel;
+    default:
+      return CasingConvention.None;
   }
 }
 
@@ -198,16 +195,14 @@ function getCasingConvention(nameType: NameType) {
  * on Modeler four namer for this once it is stable
  */
 function toCasing(str: string, casing: CasingConvention): string {
-  let value = str;
-  if (value === value.toUpperCase()) {
-    value = str.toLowerCase();
+  if (casing === CasingConvention.Camel) {
+    return camelCase(str);
+  }
+  if (casing === CasingConvention.Pascal) {
+    return pascalCase(str);
   }
 
-  const firstChar =
-    casing === CasingConvention.Pascal
-      ? value.charAt(0).toUpperCase()
-      : value.charAt(0).toLocaleLowerCase();
-  return `${firstChar}${value.substring(1)}`;
+  return str;
 }
 
 function getNameParts(name: string) {
