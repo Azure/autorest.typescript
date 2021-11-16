@@ -183,7 +183,8 @@ function regularAutorestPackage(
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
       typescript: "~4.2.0",
-      "uglify-js": "^3.4.9"
+      "uglify-js": "^3.4.9",
+      rimraf: "^3.0.0"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
@@ -258,7 +259,7 @@ function regularAutorestPackage(
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     packageInfo.scripts["integration-test:node"] =
-      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts";
+      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
   }
   return packageInfo;
 }
