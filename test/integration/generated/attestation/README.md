@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Describes the interface for the per-tenant enclave service.
 
-[Package (NPM)](https://www.npmjs.com/package/attestation) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/attestation) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Describes the interface for the per-tenant enclave service.
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

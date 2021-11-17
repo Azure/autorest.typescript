@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Compute Client
 
-[Package (NPM)](https://www.npmjs.com/package/compute-resource-manager) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/compute-resource-manager) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Compute Client
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

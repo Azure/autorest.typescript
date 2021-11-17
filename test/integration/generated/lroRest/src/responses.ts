@@ -28,6 +28,26 @@ export interface LROsPut200SucceededdefaultResponse extends HttpResponse {
   body: CloudErrorOutput;
 }
 
+export interface LROsPatch200SucceededIgnoreHeaders200Headers {
+  /** This header should be ignored in this case */
+  "azure-asyncoperation"?: string;
+}
+
+/** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
+export interface LROsPatch200SucceededIgnoreHeaders200Response
+  extends HttpResponse {
+  status: "200";
+  body: ProductOutput;
+  headers: RawHttpHeaders & LROsPatch200SucceededIgnoreHeaders200Headers;
+}
+
+/** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
+export interface LROsPatch200SucceededIgnoreHeadersdefaultResponse
+  extends HttpResponse {
+  status: "500";
+  body: CloudErrorOutput;
+}
+
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
 export interface LROsPut201Succeeded201Response extends HttpResponse {
   status: "201";

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "toolPackage": "@microsoft/api-extractor",
-    "toolVersion": "7.18.16",
+    "toolVersion": "7.18.19",
     "schemaVersion": 1004,
     "oldestForwardsCompatibleVersion": 1001,
     "tsdocConfig": {
@@ -160,18 +160,18 @@
     }
   },
   "kind": "Package",
-  "canonicalReference": "arm-package-locks-2016-09!",
+  "canonicalReference": "@msinternal/arm-package-locks-2016-09!",
   "docComment": "",
-  "name": "arm-package-locks-2016-09",
+  "name": "@msinternal/arm-package-locks-2016-09",
   "members": [
     {
       "kind": "EntryPoint",
-      "canonicalReference": "arm-package-locks-2016-09!",
+      "canonicalReference": "@msinternal/arm-package-locks-2016-09!",
       "name": "",
       "members": [
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperations:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperations:interface",
           "docComment": "/**\n * Interface representing a AuthorizationOperations.\n */\n",
           "excerptTokens": [
             {
@@ -184,7 +184,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperations#list:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperations#list:member(1)",
               "docComment": "/**\n * Lists all of the available Microsoft.Authorization REST API operations.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -194,7 +194,7 @@
                 {
                   "kind": "Reference",
                   "text": "AuthorizationOperationsListOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperationsListOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -212,7 +212,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-locks-2016-09!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!Operation:interface"
                 },
                 {
                   "kind": "Content",
@@ -246,7 +246,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperationsListNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -279,7 +279,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperationsListNextResponse:type",
           "docComment": "/**\n * Contains response data for the listNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -289,7 +289,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -305,7 +305,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperationsListOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -338,7 +338,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperationsListResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperationsListResponse:type",
           "docComment": "/**\n * Contains response data for the list operation.\n */\n",
           "excerptTokens": [
             {
@@ -348,7 +348,7 @@
             {
               "kind": "Reference",
               "text": "OperationListResult",
-              "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationListResult:interface"
             },
             {
               "kind": "Content",
@@ -364,7 +364,7 @@
         },
         {
           "kind": "Enum",
-          "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel:enum",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!KnownLockLevel:enum",
           "docComment": "/**\n * Known values of {@link LockLevel} that the service accepts.\n */\n",
           "excerptTokens": [
             {
@@ -377,7 +377,7 @@
           "members": [
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.CanNotDelete:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!KnownLockLevel.CanNotDelete:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -398,7 +398,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.NotSpecified:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!KnownLockLevel.NotSpecified:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -419,7 +419,7 @@
             },
             {
               "kind": "EnumMember",
-              "canonicalReference": "arm-package-locks-2016-09!KnownLockLevel.ReadOnly:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!KnownLockLevel.ReadOnly:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -442,7 +442,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!LockLevel:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!LockLevel:type",
           "docComment": "/**\n * Defines values for LockLevel. \\ {@link KnownLockLevel} can be used interchangeably with LockLevel, this enum contains the known values that the service supports. ### Known values supported by the service **NotSpecified** \\ **CanNotDelete** \\ **ReadOnly**\n */\n",
           "excerptTokens": [
             {
@@ -467,7 +467,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient:class",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -477,7 +477,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockClientContext",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:class"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:class"
             },
             {
               "kind": "Content",
@@ -489,7 +489,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagementLockClient class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -520,7 +520,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockClientOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -555,7 +555,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient#authorizationOperations:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#authorizationOperations:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -565,7 +565,7 @@
                 {
                   "kind": "Reference",
                   "text": "AuthorizationOperations",
-                  "canonicalReference": "arm-package-locks-2016-09!AuthorizationOperations:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!AuthorizationOperations:interface"
                 },
                 {
                   "kind": "Content",
@@ -583,7 +583,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClient#managementLocks:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#managementLocks:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -593,7 +593,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocks",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocks:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks:interface"
                 },
                 {
                   "kind": "Content",
@@ -618,7 +618,7 @@
         },
         {
           "kind": "Class",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:class",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:class",
           "docComment": "",
           "excerptTokens": [
             {
@@ -644,7 +644,7 @@
           "members": [
             {
               "kind": "Constructor",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext:constructor(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:constructor(1)",
               "docComment": "/**\n * Initializes a new instance of the ManagementLockClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
               "excerptTokens": [
                 {
@@ -675,7 +675,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockClientOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -710,7 +710,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -737,7 +737,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -764,7 +764,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -798,7 +798,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -824,7 +824,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#$host:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams#$host:member",
               "docComment": "/**\n * server parameter\n */\n",
               "excerptTokens": [
                 {
@@ -850,7 +850,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams#apiVersion:member",
               "docComment": "/**\n * Api Version\n */\n",
               "excerptTokens": [
                 {
@@ -876,7 +876,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockClientOptionalParams#endpoint:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams#endpoint:member",
               "docComment": "/**\n * Overrides client endpoint.\n */\n",
               "excerptTokens": [
                 {
@@ -910,7 +910,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface",
           "docComment": "/**\n * The list of locks.\n */\n",
           "excerptTokens": [
             {
@@ -923,7 +923,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult#nextLink:member",
               "docComment": "/**\n * The URL to use for getting the next set of results.\n */\n",
               "excerptTokens": [
                 {
@@ -949,7 +949,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult#value:member",
               "docComment": "/**\n * The list of locks.\n */\n",
               "excerptTokens": [
                 {
@@ -959,7 +959,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -983,7 +983,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface",
           "docComment": "/**\n * The lock information.\n */\n",
           "excerptTokens": [
             {
@@ -996,7 +996,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#id:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#id:member",
               "docComment": "/**\n * The resource ID of the lock. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1022,7 +1022,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#level:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#level:member",
               "docComment": "/**\n * The level of the lock. Possible values are: NotSpecified, CanNotDelete, ReadOnly. CanNotDelete means authorized users are able to read and modify the resources, but not delete. ReadOnly means authorized users can only read from a resource, but they can't modify or delete it.\n */\n",
               "excerptTokens": [
                 {
@@ -1032,7 +1032,7 @@
                 {
                   "kind": "Reference",
                   "text": "LockLevel",
-                  "canonicalReference": "arm-package-locks-2016-09!LockLevel:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!LockLevel:type"
                 },
                 {
                   "kind": "Content",
@@ -1049,7 +1049,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#name:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#name:member",
               "docComment": "/**\n * The name of the lock. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1075,7 +1075,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#notes:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#notes:member",
               "docComment": "/**\n * Notes about the lock. Maximum of 512 characters.\n */\n",
               "excerptTokens": [
                 {
@@ -1101,7 +1101,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#owners:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#owners:member",
               "docComment": "/**\n * The owners of the lock.\n */\n",
               "excerptTokens": [
                 {
@@ -1111,7 +1111,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockOwner",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockOwner:interface"
                 },
                 {
                   "kind": "Content",
@@ -1132,7 +1132,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject#type:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject#type:member",
               "docComment": "/**\n * The resource type of the lock - Microsoft.Authorization/locks. NOTE: This property will not be serialized. It can only be populated by the server.\n */\n",
               "excerptTokens": [
                 {
@@ -1161,7 +1161,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockOwner:interface",
           "docComment": "/**\n * Lock owner properties.\n */\n",
           "excerptTokens": [
             {
@@ -1174,7 +1174,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockOwner#applicationId:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockOwner#applicationId:member",
               "docComment": "/**\n * The application ID of the lock owner.\n */\n",
               "excerptTokens": [
                 {
@@ -1203,7 +1203,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocks:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks:interface",
           "docComment": "/**\n * Interface representing a ManagementLocks.\n */\n",
           "excerptTokens": [
             {
@@ -1216,7 +1216,7 @@
           "members": [
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtResourceGroupLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtResourceGroupLevel:member(1)",
               "docComment": "/**\n * When you apply a lock at a parent scope, all child resources inherit the same lock. To create management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param resourceGroupName - The name of the resource group to lock.\n *\n * @param lockName - The lock name. The lock name can be a maximum of 260 characters. It cannot contain <, > %, &, :, \\, ?, /, or any control characters.\n *\n * @param parameters - The management lock parameters.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1242,7 +1242,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -1251,7 +1251,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1269,7 +1269,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1321,7 +1321,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtResourceLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtResourceLevel:member(1)",
               "docComment": "/**\n * When you apply a lock at a parent scope, all child resources inherit the same lock. To create management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param resourceGroupName - The name of the resource group containing the resource to lock.\n *\n * @param resourceProviderNamespace - The resource provider namespace of the resource to lock.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type of the resource to lock.\n *\n * @param resourceName - The name of the resource to lock.\n *\n * @param lockName - The name of lock. The lock name can be a maximum of 260 characters. It cannot contain <, > %, &, :, \\, ?, /, or any control characters.\n *\n * @param parameters - Parameters for creating or updating a management lock.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1379,7 +1379,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -1388,7 +1388,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1406,7 +1406,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtResourceLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1486,7 +1486,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtSubscriptionLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#createOrUpdateAtSubscriptionLevel:member(1)",
               "docComment": "/**\n * When you apply a lock at a parent scope, all child resources inherit the same lock. To create management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param lockName - The name of lock. The lock name can be a maximum of 260 characters. It cannot contain <, > %, &, :, \\, ?, /, or any control characters.\n *\n * @param parameters - The management lock parameters.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1504,7 +1504,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -1513,7 +1513,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1531,7 +1531,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1576,7 +1576,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#createOrUpdateByScope:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#createOrUpdateByScope:member(1)",
               "docComment": "/**\n * Create or update a management lock by scope.\n *\n * @param scope - The scope for the lock. When providing a scope for the assignment, use '/subscriptions/{subscriptionId}' for subscriptions, '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}' for resources.\n *\n * @param lockName - The name of lock.\n *\n * @param parameters - Create or update management lock parameters.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1602,7 +1602,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -1611,7 +1611,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateByScopeOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1629,7 +1629,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksCreateOrUpdateByScopeResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -1681,7 +1681,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#deleteAtResourceGroupLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#deleteAtResourceGroupLevel:member(1)",
               "docComment": "/**\n * To delete management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param resourceGroupName - The name of the resource group containing the lock.\n *\n * @param lockName - The name of lock to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1707,7 +1707,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksDeleteAtResourceGroupLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtResourceGroupLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtResourceGroupLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1761,7 +1761,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#deleteAtResourceLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#deleteAtResourceLevel:member(1)",
               "docComment": "/**\n * To delete management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param resourceGroupName - The name of the resource group containing the resource with the lock to delete.\n *\n * @param resourceProviderNamespace - The resource provider namespace of the resource with the lock to delete.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type of the resource with the lock to delete.\n *\n * @param resourceName - The name of the resource with the lock to delete.\n *\n * @param lockName - The name of the lock to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1819,7 +1819,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksDeleteAtResourceLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtResourceLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtResourceLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1901,7 +1901,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#deleteAtSubscriptionLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#deleteAtSubscriptionLevel:member(1)",
               "docComment": "/**\n * To delete management locks, you must have access to Microsoft.Authorization/* or Microsoft.Authorization/locks/* actions. Of the built-in roles, only Owner and User Access Administrator are granted those actions.\n *\n * @param lockName - The name of lock to delete.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1919,7 +1919,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksDeleteAtSubscriptionLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtSubscriptionLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtSubscriptionLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -1966,7 +1966,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#deleteByScope:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#deleteByScope:member(1)",
               "docComment": "/**\n * Delete a management lock by scope.\n *\n * @param scope - The scope for the lock.\n *\n * @param lockName - The name of lock.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -1992,7 +1992,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksDeleteByScopeOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteByScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteByScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2046,7 +2046,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#getAtResourceGroupLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#getAtResourceGroupLevel:member(1)",
               "docComment": "/**\n * Gets a management lock at the resource group level.\n *\n * @param resourceGroupName - The name of the locked resource group.\n *\n * @param lockName - The name of the lock to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2072,7 +2072,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtResourceGroupLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2090,7 +2090,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtResourceGroupLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2135,7 +2135,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#getAtResourceLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#getAtResourceLevel:member(1)",
               "docComment": "/**\n * Get the management lock of a resource or any level below resource.\n *\n * @param resourceGroupName - The name of the resource group.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param parentResourcePath - An extra path parameter needed in some services, like SQL Databases.\n *\n * @param resourceType - The type of the resource.\n *\n * @param resourceName - The name of the resource.\n *\n * @param lockName - The name of lock.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2193,7 +2193,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtResourceLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2211,7 +2211,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtResourceLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2284,7 +2284,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#getAtSubscriptionLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#getAtSubscriptionLevel:member(1)",
               "docComment": "/**\n * Gets a management lock at the subscription level.\n *\n * @param lockName - The name of the lock to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2302,7 +2302,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtSubscriptionLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2320,7 +2320,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetAtSubscriptionLevelResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2358,7 +2358,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#getByScope:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#getByScope:member(1)",
               "docComment": "/**\n * Get a management lock by scope.\n *\n * @param scope - The scope for the lock.\n *\n * @param lockName - The name of lock.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2384,7 +2384,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetByScopeOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetByScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetByScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2402,7 +2402,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksGetByScopeResponse",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetByScopeResponse:type"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetByScopeResponse:type"
                 },
                 {
                   "kind": "Content",
@@ -2447,7 +2447,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#listAtResourceGroupLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#listAtResourceGroupLevel:member(1)",
               "docComment": "/**\n * Gets all the management locks for a resource group.\n *\n * @param resourceGroupName - The name of the resource group containing the locks to get.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2465,7 +2465,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksListAtResourceGroupLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2483,7 +2483,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -2521,7 +2521,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#listAtResourceLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#listAtResourceLevel:member(1)",
               "docComment": "/**\n * Gets all the management locks for a resource or any level below resource.\n *\n * @param resourceGroupName - The name of the resource group containing the locked resource. The name is case insensitive.\n *\n * @param resourceProviderNamespace - The namespace of the resource provider.\n *\n * @param parentResourcePath - The parent resource identity.\n *\n * @param resourceType - The resource type of the locked resource.\n *\n * @param resourceName - The name of the locked resource.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2571,7 +2571,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksListAtResourceLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2589,7 +2589,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -2655,7 +2655,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#listAtSubscriptionLevel:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#listAtSubscriptionLevel:member(1)",
               "docComment": "/**\n * Gets all the management locks for a subscription.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2665,7 +2665,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksListAtSubscriptionLevelOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2683,7 +2683,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -2714,7 +2714,7 @@
             },
             {
               "kind": "MethodSignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocks#listByScope:member(1)",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocks#listByScope:member(1)",
               "docComment": "/**\n * Gets all the management locks for a scope.\n *\n * @param scope - The scope for the lock. When providing a scope for the assignment, use '/subscriptions/{subscriptionId}' for subscriptions, '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}' for resource groups, and '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePathIfPresent}/{resourceType}/{resourceName}' for resources.\n *\n * @param options - The options parameters.\n */\n",
               "excerptTokens": [
                 {
@@ -2732,7 +2732,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLocksListByScopeOptionalParams",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams:interface"
                 },
                 {
                   "kind": "Content",
@@ -2750,7 +2750,7 @@
                 {
                   "kind": "Reference",
                   "text": "ManagementLockObject",
-                  "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
                 },
                 {
                   "kind": "Content",
@@ -2791,7 +2791,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2824,7 +2824,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceGroupLevelResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateAtResourceGroupLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -2834,7 +2834,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -2850,7 +2850,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2883,7 +2883,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtResourceLevelResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateAtResourceLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -2893,7 +2893,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -2909,7 +2909,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -2942,7 +2942,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateAtSubscriptionLevelResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateAtSubscriptionLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -2952,7 +2952,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -2968,7 +2968,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3001,7 +3001,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksCreateOrUpdateByScopeResponse:type",
           "docComment": "/**\n * Contains response data for the createOrUpdateByScope operation.\n */\n",
           "excerptTokens": [
             {
@@ -3011,7 +3011,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -3027,7 +3027,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtResourceGroupLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtResourceGroupLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3060,7 +3060,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtResourceLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtResourceLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3093,7 +3093,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteAtSubscriptionLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteAtSubscriptionLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3126,7 +3126,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksDeleteByScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksDeleteByScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3159,7 +3159,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3192,7 +3192,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceGroupLevelResponse:type",
           "docComment": "/**\n * Contains response data for the getAtResourceGroupLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3202,7 +3202,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -3218,7 +3218,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3251,7 +3251,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtResourceLevelResponse:type",
           "docComment": "/**\n * Contains response data for the getAtResourceLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3261,7 +3261,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -3277,7 +3277,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3310,7 +3310,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetAtSubscriptionLevelResponse:type",
           "docComment": "/**\n * Contains response data for the getAtSubscriptionLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3320,7 +3320,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -3336,7 +3336,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetByScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetByScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3369,7 +3369,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksGetByScopeResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksGetByScopeResponse:type",
           "docComment": "/**\n * Contains response data for the getByScope operation.\n */\n",
           "excerptTokens": [
             {
@@ -3379,7 +3379,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockObject",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockObject:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockObject:interface"
             },
             {
               "kind": "Content",
@@ -3395,7 +3395,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3421,7 +3421,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3455,7 +3455,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAtResourceGroupLevelNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3465,7 +3465,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3481,7 +3481,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3507,7 +3507,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3541,7 +3541,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceGroupLevelResponse:type",
           "docComment": "/**\n * Contains response data for the listAtResourceGroupLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3551,7 +3551,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3567,7 +3567,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3593,7 +3593,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3627,7 +3627,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAtResourceLevelNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3637,7 +3637,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3653,7 +3653,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3679,7 +3679,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3713,7 +3713,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtResourceLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtResourceLevelResponse:type",
           "docComment": "/**\n * Contains response data for the listAtResourceLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3723,7 +3723,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3739,7 +3739,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3765,7 +3765,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3799,7 +3799,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelNextResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSubscriptionLevelNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3809,7 +3809,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3825,7 +3825,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3851,7 +3851,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3885,7 +3885,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListAtSubscriptionLevelResponse:type",
           "docComment": "/**\n * Contains response data for the listAtSubscriptionLevel operation.\n */\n",
           "excerptTokens": [
             {
@@ -3895,7 +3895,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3911,7 +3911,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -3937,7 +3937,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeNextOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -3971,7 +3971,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeNextResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeNextResponse:type",
           "docComment": "/**\n * Contains response data for the listByScopeNext operation.\n */\n",
           "excerptTokens": [
             {
@@ -3981,7 +3981,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -3997,7 +3997,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams:interface",
           "docComment": "/**\n * Optional parameters.\n */\n",
           "excerptTokens": [
             {
@@ -4023,7 +4023,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams#filter:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeOptionalParams#filter:member",
               "docComment": "/**\n * The filter to apply on the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -4057,7 +4057,7 @@
         },
         {
           "kind": "TypeAlias",
-          "canonicalReference": "arm-package-locks-2016-09!ManagementLocksListByScopeResponse:type",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLocksListByScopeResponse:type",
           "docComment": "/**\n * Contains response data for the listByScope operation.\n */\n",
           "excerptTokens": [
             {
@@ -4067,7 +4067,7 @@
             {
               "kind": "Reference",
               "text": "ManagementLockListResult",
-              "canonicalReference": "arm-package-locks-2016-09!ManagementLockListResult:interface"
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockListResult:interface"
             },
             {
               "kind": "Content",
@@ -4083,7 +4083,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!Operation:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!Operation:interface",
           "docComment": "/**\n * Microsoft.Authorization operation\n */\n",
           "excerptTokens": [
             {
@@ -4096,7 +4096,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!Operation#display:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!Operation#display:member",
               "docComment": "/**\n * The object that represents the operation.\n */\n",
               "excerptTokens": [
                 {
@@ -4106,7 +4106,7 @@
                 {
                   "kind": "Reference",
                   "text": "OperationDisplay",
-                  "canonicalReference": "arm-package-locks-2016-09!OperationDisplay:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationDisplay:interface"
                 },
                 {
                   "kind": "Content",
@@ -4123,7 +4123,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!Operation#name:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!Operation#name:member",
               "docComment": "/**\n * Operation name: {provider}/{resource}/{operation}\n */\n",
               "excerptTokens": [
                 {
@@ -4152,7 +4152,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!OperationDisplay:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationDisplay:interface",
           "docComment": "/**\n * The object that represents the operation.\n */\n",
           "excerptTokens": [
             {
@@ -4165,7 +4165,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#operation:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationDisplay#operation:member",
               "docComment": "/**\n * Operation type: Read, write, delete, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -4191,7 +4191,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#provider:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationDisplay#provider:member",
               "docComment": "/**\n * Service provider: Microsoft.Authorization\n */\n",
               "excerptTokens": [
                 {
@@ -4217,7 +4217,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!OperationDisplay#resource:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationDisplay#resource:member",
               "docComment": "/**\n * Resource on which the operation is performed: Profile, endpoint, etc.\n */\n",
               "excerptTokens": [
                 {
@@ -4246,7 +4246,7 @@
         },
         {
           "kind": "Interface",
-          "canonicalReference": "arm-package-locks-2016-09!OperationListResult:interface",
+          "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationListResult:interface",
           "docComment": "/**\n * Result of the request to list Microsoft.Authorization operations. It contains a list of operations and a URL link to get the next set of results.\n */\n",
           "excerptTokens": [
             {
@@ -4259,7 +4259,7 @@
           "members": [
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!OperationListResult#nextLink:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationListResult#nextLink:member",
               "docComment": "/**\n * URL to get the next set of operation list results if there are any.\n */\n",
               "excerptTokens": [
                 {
@@ -4285,7 +4285,7 @@
             },
             {
               "kind": "PropertySignature",
-              "canonicalReference": "arm-package-locks-2016-09!OperationListResult#value:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!OperationListResult#value:member",
               "docComment": "/**\n * List of Microsoft.Authorization operations.\n */\n",
               "excerptTokens": [
                 {
@@ -4295,7 +4295,7 @@
                 {
                   "kind": "Reference",
                   "text": "Operation",
-                  "canonicalReference": "arm-package-locks-2016-09!Operation:interface"
+                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!Operation:interface"
                 },
                 {
                   "kind": "Content",

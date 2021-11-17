@@ -241,7 +241,10 @@ describe("Integration tests for Paging Rest Client", () => {
                   tenant,
                   pageLink
                 )
-                .get({ queryParameters: { api_version: "1.6" } });
+                .get({
+                  queryParameters: { api_version: "1.6" },
+                  skipUrlEncoding: true
+                });
           firstRun = false;
           if (result.status !== "200") {
             throw new Error("Unexpected status code");
@@ -322,7 +325,7 @@ describe("Integration tests for Paging Rest Client", () => {
   describe("#getMultiplePagesWithOffset", () => {
     it("succeeds", async () => {
       let response = await client
-        .path("/paging/multiple/withpath/{offset}", "100")
+        .path("/paging/multiple/withpath/{offset}", 100)
         .get();
 
       const iter = paginate(client, response);

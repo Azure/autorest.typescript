@@ -294,16 +294,6 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
-  headerRest: {
-    swaggerOrConfig: "header.json",
-    clientName: "HeaderRestClient",
-    packageName: "header-rest",
-    licenseHeader: true,
-    restLevelClient: true,
-    allowInsecureConnection: true,
-    addCredentials: false,
-    isTestPackage: true
-  },
   httpInfrastructure: {
     swaggerOrConfig: "httpInfrastructure.json",
     clientName: "HttpInfrastructureClient",
@@ -510,6 +500,16 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  urlRest: {
+    swaggerOrConfig: "url.json",
+    clientName: "UrlRestClient",
+    packageName: "url-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   urlMulti: {
     swaggerOrConfig: "url-multi-collectionFormat.json",
     clientName: "UrlMultiClient",
@@ -652,7 +652,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   readmeFileChecker: {
     swaggerOrConfig: "test/integration/swaggers/keyvaults-secrets.md",
     clientName: "KeyVaultClient",
-    packageName: "@azure/keyvault-secrets",
+    packageName: "keyvault-secrets",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -661,7 +661,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   nameChecker: {
     swaggerOrConfig: "test/integration/swaggers/Data.md",
     clientName: "SearchClient",
-    packageName: "@azure/search-documents",
+    packageName: "search-documents",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -671,7 +671,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     swaggerOrConfig:
       "test/integration/swaggers/MediaServices_polymorphic_skipNormalize.md",
     clientName: "MediaServicesClient",
-    packageName: "@azure/media-services",
+    packageName: "media-services",
     useCoreV2: true,
     allowInsecureConnection: true,
     addCredentials: false,
@@ -750,6 +750,42 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     isTestPackage: true
   },
+  domainservices: {
+    swaggerOrConfig: "test/integration/swaggers/domainservices.md",
+    clientName: "DomainServicesClient",
+    packageName: "domainservices",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  deviceprovisioningservice: {
+    swaggerOrConfig: "test/integration/swaggers/deviceprovisioningservices.md",
+    clientName: "DeviceProvisioningClient",
+    packageName: "deviceprovisioning",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  datafactory: {
+    swaggerOrConfig: "test/integration/swaggers/datafactory.md",
+    clientName: "DataFactoryClient",
+    packageName: "datafactory",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
+  healthcareapis: {
+    swaggerOrConfig: "test/integration/swaggers/healthcareapis.md",
+    clientName: "HealthCareApisClient",
+    packageName: "healthcareapis",
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
   useragentcorev1: {
     swaggerOrConfig: "subscriptionId-apiVersion.json",
     clientName: "UserAgentCoreV1Client",
@@ -773,7 +809,7 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
   iotspaces: {
     swaggerOrConfig: "test/integration/swaggers/iotspaces.json",
     clientName: "IoTSpacesClient",
-    packageName: "@azure/iotspaces",
+    packageName: "iotspaces",
     licenseHeader: true,
     useCoreV2: true,
     allowInsecureConnection: true,
@@ -861,7 +897,28 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     addCredentials: false,
     restLevelClient: true,
     isTestPackage: true
-  }
+  },
+  mediaTypesRest: {
+    swaggerOrConfig: "media_types.json",
+    clientName: "MediaTypes",
+    packageName: "media-types-service-rest",
+    licenseHeader: true,
+    useCoreV2: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
+  },
+  headerRest: {
+    swaggerOrConfig: "header.json",
+    clientName: "HeaderRestClient",
+    packageName: "header-rest",
+    licenseHeader: true,
+    restLevelClient: true,
+    allowInsecureConnection: true,
+    addCredentials: false,
+    isTestPackage: true
+  },
 };
 
 const generateSwaggers = async (
@@ -917,7 +974,10 @@ const generateSwaggers = async (
         outputPath: `./test/integration/generated/${name}`,
         title: clientName,
         packageDetails: {
-          name: packageName,
+          name:
+            packageName.split("/").length === 1
+              ? `@msinternal/${packageName}`
+              : packageName,
           version: package_version,
           nameWithoutScope: ""
         },

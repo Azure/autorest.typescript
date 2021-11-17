@@ -43,3 +43,16 @@ export const host: OperationURLParameter = {
   },
   skipEncoding: true
 };
+
+export const constantParameter: OperationURLParameter = {
+  parameterPath: "constantParameter",
+  mapper: {
+    defaultValue: "iAmConstant",
+    isConstant: true,
+    serializedName: "constantParameter",
+    type: {
+      name: "String"
+    }
+  },
+  skipEncoding: true
+};

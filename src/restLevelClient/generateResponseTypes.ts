@@ -21,6 +21,7 @@ import {
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getElementType, getFormatDocs, primitiveSchemaToType } from "./schemaHelpers";
 import { getLanguageMetadata } from "../utils/languageHelpers";
+import { hasOutputModels } from "./helpers/modelHelpers";
 
 export function generateResponseInterfaces(model: CodeModel, project: Project) {
   const responsesFile = project.createSourceFile(
@@ -118,12 +119,14 @@ export function generateResponseInterfaces(model: CodeModel, project: Project) {
 
 
 
-  responsesFile.addImportDeclarations([
-    {
-      namedImports: [...importedModels],
-      moduleSpecifier: "./outputModels"
-    }
-  ]);
+  if (hasOutputModels(model)) {
+    responsesFile.addImportDeclarations([
+      {
+        namedImports: [...importedModels],
+        moduleSpecifier: "./outputModels"
+      }
+    ]);
+  }
 }
 
 /**

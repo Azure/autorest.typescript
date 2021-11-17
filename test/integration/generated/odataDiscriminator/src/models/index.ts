@@ -80,11 +80,11 @@ export enum KnownEnum0 {
 export type Enum0 = string;
 
 /** Optional parameters. */
-export interface ODataDiscriminatorClientApiV1ValueGetOptionalParams
+export interface ApiV1ValueGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the apiV1ValueGet operation. */
-export type ODataDiscriminatorClientApiV1ValueGetResponse = {
+export type ApiV1ValueGetResponse = {
   /** The parsed response body. */
   body: string;
 };

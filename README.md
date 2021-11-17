@@ -53,9 +53,9 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ## Autorest Typescript Plugin Configuration
 
 ```yaml
-version: 3.4.5
+version: 3.6.6
 use-extension:
-  "@autorest/modelerfour": "4.21.3"
+  "@autorest/modelerfour": "4.21.4"
 
 modelerfour:
   # this runs a pre-namer step to clean up names
@@ -68,6 +68,8 @@ modelerfour:
   always-create-content-type-parameter: true
   # enables parameter grouping via x-ms-parameter-grouping
   group-parameters: true
+  # Enable older inconsistent behavior that an enum with a single value would become a constant by default.
+  seal-single-value-enum-by-default: true
 
 typescript-scope/emitter:
   input-artifact: typescript-files

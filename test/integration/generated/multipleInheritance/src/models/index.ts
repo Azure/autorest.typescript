@@ -36,86 +36,76 @@ export type Kitten = Cat & {
 };
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientGetHorseOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetHorseOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHorse operation. */
-export type MultipleInheritanceClientGetHorseResponse = Horse;
+export type GetHorseResponse = Horse;
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientPutHorseOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutHorseOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the putHorse operation. */
-export type MultipleInheritanceClientPutHorseResponse = {
+export type PutHorseResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientGetPetOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetPetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getPet operation. */
-export type MultipleInheritanceClientGetPetResponse = Pet;
+export type GetPetResponse = Pet;
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientPutPetOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutPetOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the putPet operation. */
-export type MultipleInheritanceClientPutPetResponse = {
+export type PutPetResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientGetFelineOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetFelineOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getFeline operation. */
-export type MultipleInheritanceClientGetFelineResponse = Feline;
+export type GetFelineResponse = Feline;
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientPutFelineOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutFelineOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the putFeline operation. */
-export type MultipleInheritanceClientPutFelineResponse = {
+export type PutFelineResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientGetCatOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetCatOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getCat operation. */
-export type MultipleInheritanceClientGetCatResponse = Cat;
+export type GetCatResponse = Cat;
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientPutCatOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutCatOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the putCat operation. */
-export type MultipleInheritanceClientPutCatResponse = {
+export type PutCatResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientGetKittenOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetKittenOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getKitten operation. */
-export type MultipleInheritanceClientGetKittenResponse = Kitten;
+export type GetKittenResponse = Kitten;
 
 /** Optional parameters. */
-export interface MultipleInheritanceClientPutKittenOptionalParams
-  extends coreClient.OperationOptions {}
+export interface PutKittenOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the putKitten operation. */
-export type MultipleInheritanceClientPutKittenResponse = {
+export type PutKittenResponse = {
   /** The parsed response body. */
   body: string;
 };

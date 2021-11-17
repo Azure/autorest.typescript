@@ -31,16 +31,12 @@ const generateFromReadme = async ({
   params,
   outputFolderName
 }: SpecDefinition) => {
-  const regex = new RegExp(
-    "^[^#].*?specification/([\\w-]+(/[\\w-]+)+)/readme.md"
-  );
-  const matches = path.match(regex);
+  const matches = path.match(/^[^#].*?specification[\/\\]([\w-]+[\/\\][\w-]+)[\/\\]readme.md/);
   if (!matches?.length) {
     return;
   }
 
-  const projectName =
-    outputFolderName || matches[1].replace(new RegExp("/", "g"), "-");
+  const projectName = outputFolderName || matches[1].replace(/[\/\\]/g, "-");
 
   const output = joinPath(SMOKE_PATH, projectName);
   await runAutorest(
@@ -50,7 +46,7 @@ const generateFromReadme = async ({
       licenseHeader: true,
       outputPath: output,
       packageDetails: {
-        name: projectName,
+        name: `@msinternal/${projectName}`,
         version: "",
         nameWithoutScope: ""
       },

@@ -15,14 +15,14 @@ export interface CertificateIssuerUpdateParameters {
 }
 
 /** Optional parameters. */
-export interface MapperRequiredClientUpdateCertificateIssuerOptionalParams
+export interface UpdateCertificateIssuerOptionalParams
   extends coreClient.OperationOptions {
   /** The issuer provider. */
   provider?: string;
 }
 
 /** Contains response data for the updateCertificateIssuer operation. */
-export type MapperRequiredClientUpdateCertificateIssuerResponse = {
+export type UpdateCertificateIssuerResponse = {
   /** The parsed response body. */
   body: string;
 };

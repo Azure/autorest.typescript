@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Testing non-string enums.
 
-[Package (NPM)](https://www.npmjs.com/package/non-string-num) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/non-string-num) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Testing non-string enums.
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

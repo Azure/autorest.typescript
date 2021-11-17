@@ -255,8 +255,7 @@ export enum KnownDeletionRecoveryLevel {
 export type DeletionRecoveryLevel = string;
 
 /** Optional parameters. */
-export interface KeyVaultClientSetSecretOptionalParams
-  extends coreClient.OperationOptions {
+export interface SetSecretOptionalParams extends coreClient.OperationOptions {
   /** Application specific metadata in the form of key-value pairs. */
   tags?: { [propertyName: string]: string };
   /** Type of the secret value such as a password. */
@@ -266,17 +265,17 @@ export interface KeyVaultClientSetSecretOptionalParams
 }
 
 /** Contains response data for the setSecret operation. */
-export type KeyVaultClientSetSecretResponse = SecretBundle;
+export type SetSecretResponse = SecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientDeleteSecretOptionalParams
+export interface DeleteSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the deleteSecret operation. */
-export type KeyVaultClientDeleteSecretResponse = DeletedSecretBundle;
+export type DeleteSecretResponse = DeletedSecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientUpdateSecretOptionalParams
+export interface UpdateSecretOptionalParams
   extends coreClient.OperationOptions {
   /** Type of the secret value such as a password. */
   contentType?: string;
@@ -287,106 +286,104 @@ export interface KeyVaultClientUpdateSecretOptionalParams
 }
 
 /** Contains response data for the updateSecret operation. */
-export type KeyVaultClientUpdateSecretResponse = SecretBundle;
+export type UpdateSecretResponse = SecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetSecretOptionalParams
-  extends coreClient.OperationOptions {}
+export interface GetSecretOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the getSecret operation. */
-export type KeyVaultClientGetSecretResponse = SecretBundle;
+export type GetSecretResponse = SecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetSecretsOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetSecretsOptionalParams extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getSecrets operation. */
-export type KeyVaultClientGetSecretsResponse = SecretListResult;
+export type GetSecretsResponse = SecretListResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetSecretVersionsOptionalParams
+export interface GetSecretVersionsOptionalParams
   extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getSecretVersions operation. */
-export type KeyVaultClientGetSecretVersionsResponse = SecretListResult;
+export type GetSecretVersionsResponse = SecretListResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetDeletedSecretsOptionalParams
+export interface GetDeletedSecretsOptionalParams
   extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getDeletedSecrets operation. */
-export type KeyVaultClientGetDeletedSecretsResponse = DeletedSecretListResult;
+export type GetDeletedSecretsResponse = DeletedSecretListResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetDeletedSecretOptionalParams
+export interface GetDeletedSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getDeletedSecret operation. */
-export type KeyVaultClientGetDeletedSecretResponse = DeletedSecretBundle;
+export type GetDeletedSecretResponse = DeletedSecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientPurgeDeletedSecretOptionalParams
+export interface PurgeDeletedSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface KeyVaultClientRecoverDeletedSecretOptionalParams
+export interface RecoverDeletedSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the recoverDeletedSecret operation. */
-export type KeyVaultClientRecoverDeletedSecretResponse = SecretBundle;
+export type RecoverDeletedSecretResponse = SecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientBackupSecretOptionalParams
+export interface BackupSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the backupSecret operation. */
-export type KeyVaultClientBackupSecretResponse = BackupSecretResult;
+export type BackupSecretResponse = BackupSecretResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientRestoreSecretOptionalParams
+export interface RestoreSecretOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the restoreSecret operation. */
-export type KeyVaultClientRestoreSecretResponse = SecretBundle;
+export type RestoreSecretResponse = SecretBundle;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetSecretsNextOptionalParams
+export interface GetSecretsNextOptionalParams
   extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getSecretsNext operation. */
-export type KeyVaultClientGetSecretsNextResponse = SecretListResult;
+export type GetSecretsNextResponse = SecretListResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetSecretVersionsNextOptionalParams
+export interface GetSecretVersionsNextOptionalParams
   extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified, the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getSecretVersionsNext operation. */
-export type KeyVaultClientGetSecretVersionsNextResponse = SecretListResult;
+export type GetSecretVersionsNextResponse = SecretListResult;
 
 /** Optional parameters. */
-export interface KeyVaultClientGetDeletedSecretsNextOptionalParams
+export interface GetDeletedSecretsNextOptionalParams
   extends coreClient.OperationOptions {
   /** Maximum number of results to return in a page. If not specified the service will return up to 25 results. */
   maxresults?: number;
 }
 
 /** Contains response data for the getDeletedSecretsNext operation. */
-export type KeyVaultClientGetDeletedSecretsNextResponse = DeletedSecretListResult;
+export type GetDeletedSecretsNextResponse = DeletedSecretListResult;
 
 /** Optional parameters. */
 export interface KeyVaultClientOptionalParams

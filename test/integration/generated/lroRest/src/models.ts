@@ -1,19 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-export interface Resource {
-  /** Resource Id */
-  id?: string;
-  /** Resource Type */
-  type?: string;
-  /** Dictionary of <string> */
-  tags?: Record<string, string>;
-  /** Resource Location */
-  location?: string;
-  /** Resource Name */
-  name?: string;
-}
-
 export interface Product extends Resource {
   properties?: ProductProperties;
 }
@@ -34,13 +21,21 @@ export interface ProductProperties {
     | "OK";
 }
 
-export interface Sku {
-  name?: string;
+export interface Resource {
+  /** Resource Id */
   id?: string;
+  /** Resource Type */
+  type?: string;
+  /** Dictionary of <string> */
+  tags?: Record<string, string>;
+  /** Resource Location */
+  location?: string;
+  /** Resource Name */
+  name?: string;
 }
 
-export interface SubResource {
-  /** Sub Resource Id */
+export interface Sku {
+  name?: string;
   id?: string;
 }
 
@@ -62,4 +57,9 @@ export interface SubProductProperties {
     | "Deleting"
     | "Deleted"
     | "OK";
+}
+
+export interface SubResource {
+  /** Sub Resource Id */
+  id?: string;
 }

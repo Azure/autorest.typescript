@@ -53,11 +53,6 @@ stages:
         dependsOn: Build
         strategy:
           matrix:
-            Linux_Node10:
-              Pool: ${{ parameters.LinuxPool }}
-              OSVmImage: "ubuntu-18.04"
-              NodeTestVersion: "10.x"
-              TestType: "node"
             macOS_Node12:
               Pool:
               OSVmImage: "macOS-10.15"
@@ -93,7 +88,7 @@ stages:
           - script: npm run check:tree
             displayName: "Check git Tree"
           - script: |
-              npm run coverage-push -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
+              npm run coverage -- $(Build.Repository.Name) $(Build.SourceBranch) $(github-token) $(storage-coverage-user) $(storage-coverage-pass)
             workingDirectory: node_modules/@microsoft.azure/autorest.testserver
             displayName: "Upload Coverage Report"
             condition: and(ne(variables['Build.Reason'], 'PullRequest'), eq(variables['System.TeamProject'], 'internal'))

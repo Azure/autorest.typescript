@@ -1,5 +1,5 @@
 {
-  "name": "paging-service",
+  "name": "@msinternal/paging-service",
   "sdk-type": "mgmt",
   "version": "1.0.0-preview1",
   "description": "",
@@ -35,7 +35,7 @@
   "license": "ISC",
   "engines": { "node": ">=12.0.0" },
   "dependencies": {
-    "@azure-rest/core-client": "1.0.0-beta.7",
+    "@azure-rest/core-client": "1.0.0-beta.8",
     "@azure/core-auth": "^1.3.0",
     "@azure/core-rest-pipeline": "^1.3.0",
     "@azure/core-paging": "^1.2.0",
@@ -49,7 +49,8 @@
     "prettier": "^2.2.1",
     "ts-node": "^9.1.1",
     "typescript": "~4.2.4",
-    "mkdirp": "^1.0.4"
+    "mkdirp": "^1.0.4",
+    "rimraf": "^3.0.0"
   },
   "sideEffects": false,
   "autoPublish": true

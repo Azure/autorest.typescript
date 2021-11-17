@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Service client for testing basic type: object swaggers
 
-[Package (NPM)](https://www.npmjs.com/package/object-type) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/object-type) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Service client for testing basic type: object swaggers
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

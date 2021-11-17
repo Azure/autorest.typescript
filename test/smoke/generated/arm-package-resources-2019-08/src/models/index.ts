@@ -408,29 +408,6 @@ export interface ResourceListResult {
   readonly nextLink?: string;
 }
 
-/** Specified resource. */
-export interface Resource {
-  /**
-   * Resource ID
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly id?: string;
-  /**
-   * Resource name
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly name?: string;
-  /**
-   * Resource type
-   * NOTE: This property will not be serialized. It can only be populated by the server.
-   */
-  readonly type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: { [propertyName: string]: string };
-}
-
 /** Plan for the resource. */
 export interface Plan {
   /** The plan ID. */
@@ -492,6 +469,29 @@ export interface ComponentsSgqdofSchemasIdentityPropertiesUserassignedidentities
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
   readonly clientId?: string;
+}
+
+/** Specified resource. */
+export interface Resource {
+  /**
+   * Resource ID
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly id?: string;
+  /**
+   * Resource name
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly name?: string;
+  /**
+   * Resource type
+   * NOTE: This property will not be serialized. It can only be populated by the server.
+   */
+  readonly type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: { [propertyName: string]: string };
 }
 
 /** Resource group information. */

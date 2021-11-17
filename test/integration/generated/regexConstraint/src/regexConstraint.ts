@@ -11,8 +11,8 @@ import * as Parameters from "./models/parameters";
 import { RegexConstraintContext } from "./regexConstraintContext";
 import {
   RegexConstraintOptionalParams,
-  RegexConstraintApiV1ValueGetOptionalParams,
-  RegexConstraintApiV1ValueGetResponse
+  ApiV1ValueGetOptionalParams,
+  ApiV1ValueGetResponse
 } from "./models";
 
 export class RegexConstraint extends RegexConstraintContext {
@@ -32,8 +32,8 @@ export class RegexConstraint extends RegexConstraintContext {
    */
   apiV1ValueGet(
     serverName: string,
-    options?: RegexConstraintApiV1ValueGetOptionalParams
-  ): Promise<RegexConstraintApiV1ValueGetResponse> {
+    options?: ApiV1ValueGetOptionalParams
+  ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest(
       { serverName, options },
       apiV1ValueGetOperationSpec

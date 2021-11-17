@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 The key vault client performs cryptographic key operations and vault operations against the Key Vault service.
 
-[Package (NPM)](https://www.npmjs.com/package/mapperrequired) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/mapperrequired) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ The key vault client performs cryptographic key operations and vault operations 
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

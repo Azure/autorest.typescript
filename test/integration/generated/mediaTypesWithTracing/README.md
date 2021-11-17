@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Play with produces/consumes and media-types in general.
 
-[Package (NPM)](https://www.npmjs.com/package/media-types-service-tracing) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/media-types-service-tracing) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Play with produces/consumes and media-types in general.
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

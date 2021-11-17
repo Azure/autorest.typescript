@@ -21,36 +21,93 @@ export type ContentType =
   | "image/jpeg"
   | "image/png"
   | "image/tiff";
+/** Defines values for ContentType1. */
+export type ContentType1 = "application/json" | "application/octet-stream";
 
 /** Optional parameters. */
-export interface MediaTypesClientAnalyzeBody$binaryOptionalParams
+export interface AnalyzeBody$binaryOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: coreRestPipeline.RequestBodyType;
 }
 
 /** Optional parameters. */
-export interface MediaTypesClientAnalyzeBody$jsonOptionalParams
+export interface AnalyzeBody$jsonOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: SourcePath;
 }
 
 /** Contains response data for the analyzeBody operation. */
-export type MediaTypesClientAnalyzeBodyResponse = {
+export type AnalyzeBodyResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MediaTypesClientContentTypeWithEncodingOptionalParams
+export interface AnalyzeBodyNoAcceptHeader$binaryOptionalParams
+  extends coreClient.OperationOptions {
+  /** Input parameter. */
+  input?: coreRestPipeline.RequestBodyType;
+}
+
+/** Optional parameters. */
+export interface AnalyzeBodyNoAcceptHeader$jsonOptionalParams
+  extends coreClient.OperationOptions {
+  /** Input parameter. */
+  input?: SourcePath;
+}
+
+/** Optional parameters. */
+export interface ContentTypeWithEncodingOptionalParams
   extends coreClient.OperationOptions {
   /** Input parameter. */
   input?: string;
 }
 
 /** Contains response data for the contentTypeWithEncoding operation. */
-export type MediaTypesClientContentTypeWithEncodingResponse = {
+export type ContentTypeWithEncodingResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface BinaryBodyWithTwoContentTypesOptionalParams
+  extends coreClient.OperationOptions {
+  /** Upload file type */
+  contentType?: ContentType1;
+}
+
+/** Contains response data for the binaryBodyWithTwoContentTypes operation. */
+export type BinaryBodyWithTwoContentTypesResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface BinaryBodyWithThreeContentTypes$binaryOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Optional parameters. */
+export interface BinaryBodyWithThreeContentTypes$textOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the binaryBodyWithThreeContentTypes operation. */
+export type BinaryBodyWithThreeContentTypesResponse = {
+  /** The parsed response body. */
+  body: string;
+};
+
+/** Optional parameters. */
+export interface PutTextAndJsonBody$textOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Optional parameters. */
+export interface PutTextAndJsonBody$jsonOptionalParams
+  extends coreClient.OperationOptions {}
+
+/** Contains response data for the putTextAndJsonBody operation. */
+export type PutTextAndJsonBodyResponse = {
   /** The parsed response body. */
   body: string;
 };

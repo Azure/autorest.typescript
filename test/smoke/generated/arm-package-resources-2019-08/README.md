@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Provides operations for working with resources and resource groups.
 
-[Package (NPM)](https://www.npmjs.com/package/arm-package-resources-2019-08) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/arm-package-resources-2019-08) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Provides operations for working with resources and resource groups.
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

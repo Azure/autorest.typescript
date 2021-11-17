@@ -14,8 +14,10 @@ import * as Mappers from "./models/mappers";
 import { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";
 import {
   LroParametrizedEndpointsClientOptionalParams,
-  LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams,
-  LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+  PollWithParameterizedEndpointsOptionalParams,
+  PollWithParameterizedEndpointsResponse,
+  PollWithConstantParameterizedEndpointsOptionalParams,
+  PollWithConstantParameterizedEndpointsResponse
 } from "./models";
 
 export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClientContext {
@@ -34,19 +36,17 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    */
   async beginPollWithParameterizedEndpoints(
     accountName: string,
-    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
+    options?: PollWithParameterizedEndpointsOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<
-        LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
-      >,
-      LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
+      PollOperationState<PollWithParameterizedEndpointsResponse>,
+      PollWithParameterizedEndpointsResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse> => {
+    ): Promise<PollWithParameterizedEndpointsResponse> => {
       return this.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -101,11 +101,89 @@ export class LroParametrizedEndpointsClient extends LroParametrizedEndpointsClie
    */
   async beginPollWithParameterizedEndpointsAndWait(
     accountName: string,
-    options?: LroParametrizedEndpointsClientPollWithParameterizedEndpointsOptionalParams
-  ): Promise<
-    LroParametrizedEndpointsClientPollWithParameterizedEndpointsResponse
-  > {
+    options?: PollWithParameterizedEndpointsOptionalParams
+  ): Promise<PollWithParameterizedEndpointsResponse> {
     const poller = await this.beginPollWithParameterizedEndpoints(
+      accountName,
+      options
+    );
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Poll with method and client level parameters in endpoint, with a constant value
+   * @param accountName Account Name. Pass in 'local' to pass test.
+   * @param options The options parameters.
+   */
+  async beginPollWithConstantParameterizedEndpoints(
+    accountName: string,
+    options?: PollWithConstantParameterizedEndpointsOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<PollWithConstantParameterizedEndpointsResponse>,
+      PollWithConstantParameterizedEndpointsResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<PollWithConstantParameterizedEndpointsResponse> => {
+      return this.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { accountName, options },
+      pollWithConstantParameterizedEndpointsOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Poll with method and client level parameters in endpoint, with a constant value
+   * @param accountName Account Name. Pass in 'local' to pass test.
+   * @param options The options parameters.
+   */
+  async beginPollWithConstantParameterizedEndpointsAndWait(
+    accountName: string,
+    options?: PollWithConstantParameterizedEndpointsOptionalParams
+  ): Promise<PollWithConstantParameterizedEndpointsResponse> {
+    const poller = await this.beginPollWithConstantParameterizedEndpoints(
       accountName,
       options
     );
@@ -136,6 +214,34 @@ const pollWithParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
     }
   },
   urlParameters: [Parameters.accountName, Parameters.host],
+  headerParameters: [Parameters.accept],
+  serializer
+};
+const pollWithConstantParameterizedEndpointsOperationSpec: coreClient.OperationSpec = {
+  path: "/lroConstantParameterizedEndpoints/{constantParameter}",
+  httpMethod: "POST",
+  responses: {
+    200: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    201: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    202: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    204: {
+      bodyMapper: { type: { name: "String" } }
+    },
+    default: {
+      bodyMapper: Mappers.ErrorModel
+    }
+  },
+  urlParameters: [
+    Parameters.accountName,
+    Parameters.host,
+    Parameters.constantParameter
+  ],
   headerParameters: [Parameters.accept],
   serializer
 };

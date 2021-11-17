@@ -12,8 +12,8 @@ import { NoMappersClientContext } from "./noMappersClientContext";
 import {
   NoMappersClientOptionalParams,
   Enum0,
-  NoMappersClientApiV1ValueGetOptionalParams,
-  NoMappersClientApiV1ValueGetResponse
+  ApiV1ValueGetOptionalParams,
+  ApiV1ValueGetResponse
 } from "./models";
 
 export class NoMappersClient extends NoMappersClientContext {
@@ -33,8 +33,8 @@ export class NoMappersClient extends NoMappersClientContext {
 
   /** @param options The options parameters. */
   apiV1ValueGet(
-    options?: NoMappersClientApiV1ValueGetOptionalParams
-  ): Promise<NoMappersClientApiV1ValueGetResponse> {
+    options?: ApiV1ValueGetOptionalParams
+  ): Promise<ApiV1ValueGetResponse> {
     return this.sendOperationRequest({ options }, apiV1ValueGetOperationSpec);
   }
 }

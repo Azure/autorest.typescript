@@ -16,6 +16,8 @@ import { LroImpl } from "../lroImpl";
 import {
   LROsPut200SucceededOptionalParams,
   LROsPut200SucceededResponse,
+  LROsPatch200SucceededIgnoreHeadersOptionalParams,
+  LROsPatch200SucceededIgnoreHeadersResponse,
   LROsPut201SucceededOptionalParams,
   LROsPut201SucceededResponse,
   LROsPost202ListOptionalParams,
@@ -181,6 +183,81 @@ export class LROsImpl implements LROs {
     options?: LROsPut200SucceededOptionalParams
   ): Promise<LROsPut200SucceededResponse> {
     const poller = await this.beginPut200Succeeded(options);
+    return poller.pollUntilDone();
+  }
+
+  /**
+   * Long running put request, service returns a 200 to the initial request with location header. We
+   * should not have any subsequent calls after receiving this first response.
+   * @param options The options parameters.
+   */
+  async beginPatch200SucceededIgnoreHeaders(
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
+  ): Promise<
+    PollerLike<
+      PollOperationState<LROsPatch200SucceededIgnoreHeadersResponse>,
+      LROsPatch200SucceededIgnoreHeadersResponse
+    >
+  > {
+    const directSendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> => {
+      return this.client.sendOperationRequest(args, spec);
+    };
+    const sendOperation = async (
+      args: coreClient.OperationArguments,
+      spec: coreClient.OperationSpec
+    ) => {
+      let currentRawResponse:
+        | coreClient.FullOperationResponse
+        | undefined = undefined;
+      const providedCallback = args.options?.onResponse;
+      const callback: coreClient.RawResponseCallback = (
+        rawResponse: coreClient.FullOperationResponse,
+        flatResponse: unknown
+      ) => {
+        currentRawResponse = rawResponse;
+        providedCallback?.(rawResponse, flatResponse);
+      };
+      const updatedArgs = {
+        ...args,
+        options: {
+          ...args.options,
+          onResponse: callback
+        }
+      };
+      const flatResponse = await directSendOperation(updatedArgs, spec);
+      return {
+        flatResponse,
+        rawResponse: {
+          statusCode: currentRawResponse!.status,
+          body: currentRawResponse!.parsedBody,
+          headers: currentRawResponse!.headers.toJSON()
+        }
+      };
+    };
+
+    const lro = new LroImpl(
+      sendOperation,
+      { options },
+      patch200SucceededIgnoreHeadersOperationSpec
+    );
+    return new LroEngine(lro, {
+      resumeFrom: options?.resumeFrom,
+      intervalInMs: options?.updateIntervalInMs
+    });
+  }
+
+  /**
+   * Long running put request, service returns a 200 to the initial request with location header. We
+   * should not have any subsequent calls after receiving this first response.
+   * @param options The options parameters.
+   */
+  async beginPatch200SucceededIgnoreHeadersAndWait(
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
+  ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> {
+    const poller = await this.beginPatch200SucceededIgnoreHeaders(options);
     return poller.pollUntilDone();
   }
 
@@ -3235,6 +3312,36 @@ const put200SucceededOperationSpec: coreClient.OperationSpec = {
     },
     204: {
       bodyMapper: Mappers.Product
+    },
+    default: {
+      bodyMapper: Mappers.CloudError
+    }
+  },
+  requestBody: Parameters.product,
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.contentType, Parameters.accept],
+  mediaType: "json",
+  serializer
+};
+const patch200SucceededIgnoreHeadersOperationSpec: coreClient.OperationSpec = {
+  path: "/lro/patch/200/succeeded/ignoreheaders",
+  httpMethod: "PATCH",
+  responses: {
+    200: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
+    },
+    201: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
+    },
+    202: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
+    },
+    204: {
+      bodyMapper: Mappers.Product,
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeadersHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError

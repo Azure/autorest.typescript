@@ -11,7 +11,14 @@ export interface PutHorseBodyParam {
   body: Horse;
 }
 
-export type PutHorseParameters = PutHorseBodyParam & RequestParameters;
+export interface PutHorseMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PutHorseParameters = PutHorseMediaTypesParam &
+  PutHorseBodyParam &
+  RequestParameters;
 export type GetPetParameters = RequestParameters;
 
 export interface PutPetBodyParam {
@@ -19,7 +26,14 @@ export interface PutPetBodyParam {
   body: Pet;
 }
 
-export type PutPetParameters = PutPetBodyParam & RequestParameters;
+export interface PutPetMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PutPetParameters = PutPetMediaTypesParam &
+  PutPetBodyParam &
+  RequestParameters;
 export type GetFelineParameters = RequestParameters;
 
 export interface PutFelineBodyParam {
@@ -27,7 +41,14 @@ export interface PutFelineBodyParam {
   body: Feline;
 }
 
-export type PutFelineParameters = PutFelineBodyParam & RequestParameters;
+export interface PutFelineMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PutFelineParameters = PutFelineMediaTypesParam &
+  PutFelineBodyParam &
+  RequestParameters;
 export type GetCatParameters = RequestParameters;
 
 export interface PutCatBodyParam {
@@ -35,7 +56,14 @@ export interface PutCatBodyParam {
   body: Cat;
 }
 
-export type PutCatParameters = PutCatBodyParam & RequestParameters;
+export interface PutCatMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PutCatParameters = PutCatMediaTypesParam &
+  PutCatBodyParam &
+  RequestParameters;
 export type GetKittenParameters = RequestParameters;
 
 export interface PutKittenBodyParam {
@@ -43,4 +71,11 @@ export interface PutKittenBodyParam {
   body: Kitten;
 }
 
-export type PutKittenParameters = PutKittenBodyParam & RequestParameters;
+export interface PutKittenMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/json";
+}
+
+export type PutKittenParameters = PutKittenMediaTypesParam &
+  PutKittenBodyParam &
+  RequestParameters;

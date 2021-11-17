@@ -120,6 +120,34 @@ export const query1: OperationQueryParameter = {
   }
 };
 
+export const fromParam: OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "parameterGroupingPostReservedWordsParameters",
+    "fromParam"
+  ],
+  mapper: {
+    serializedName: "from",
+    type: {
+      name: "String"
+    }
+  }
+};
+
+export const accept1: OperationQueryParameter = {
+  parameterPath: [
+    "options",
+    "parameterGroupingPostReservedWordsParameters",
+    "accept"
+  ],
+  mapper: {
+    serializedName: "accept",
+    type: {
+      name: "String"
+    }
+  }
+};
+
 export const headerOne: OperationParameter = {
   parameterPath: ["options", "firstParameterGroup", "headerOne"],
   mapper: {

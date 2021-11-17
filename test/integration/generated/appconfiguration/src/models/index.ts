@@ -361,8 +361,7 @@ export enum KnownEnum5 {
 export type Enum5 = string;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetKeysOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetKeysOptionalParams extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -372,12 +371,11 @@ export interface AppConfigurationClientGetKeysOptionalParams
 }
 
 /** Contains response data for the getKeys operation. */
-export type AppConfigurationClientGetKeysResponse = AppConfigurationClientGetKeysHeaders &
+export type GetKeysResponse = AppConfigurationClientGetKeysHeaders &
   KeyListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientCheckKeysOptionalParams
-  extends coreClient.OperationOptions {
+export interface CheckKeysOptionalParams extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -387,10 +385,10 @@ export interface AppConfigurationClientCheckKeysOptionalParams
 }
 
 /** Contains response data for the checkKeys operation. */
-export type AppConfigurationClientCheckKeysResponse = AppConfigurationClientCheckKeysHeaders;
+export type CheckKeysResponse = AppConfigurationClientCheckKeysHeaders;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetKeyValuesOptionalParams
+export interface GetKeyValuesOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -405,11 +403,11 @@ export interface AppConfigurationClientGetKeyValuesOptionalParams
 }
 
 /** Contains response data for the getKeyValues operation. */
-export type AppConfigurationClientGetKeyValuesResponse = AppConfigurationClientGetKeyValuesHeaders &
+export type GetKeyValuesResponse = AppConfigurationClientGetKeyValuesHeaders &
   KeyValueListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientCheckKeyValuesOptionalParams
+export interface CheckKeyValuesOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -424,11 +422,10 @@ export interface AppConfigurationClientCheckKeyValuesOptionalParams
 }
 
 /** Contains response data for the checkKeyValues operation. */
-export type AppConfigurationClientCheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders;
+export type CheckKeyValuesResponse = AppConfigurationClientCheckKeyValuesHeaders;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetKeyValueOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetKeyValueOptionalParams extends coreClient.OperationOptions {
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
   /** The label of the key-value to retrieve. */
@@ -442,12 +439,11 @@ export interface AppConfigurationClientGetKeyValueOptionalParams
 }
 
 /** Contains response data for the getKeyValue operation. */
-export type AppConfigurationClientGetKeyValueResponse = AppConfigurationClientGetKeyValueHeaders &
+export type GetKeyValueResponse = AppConfigurationClientGetKeyValueHeaders &
   KeyValue;
 
 /** Optional parameters. */
-export interface AppConfigurationClientPutKeyValueOptionalParams
-  extends coreClient.OperationOptions {
+export interface PutKeyValueOptionalParams extends coreClient.OperationOptions {
   /** The label of the key-value to create. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -459,11 +455,11 @@ export interface AppConfigurationClientPutKeyValueOptionalParams
 }
 
 /** Contains response data for the putKeyValue operation. */
-export type AppConfigurationClientPutKeyValueResponse = AppConfigurationClientPutKeyValueHeaders &
+export type PutKeyValueResponse = AppConfigurationClientPutKeyValueHeaders &
   KeyValue;
 
 /** Optional parameters. */
-export interface AppConfigurationClientDeleteKeyValueOptionalParams
+export interface DeleteKeyValueOptionalParams
   extends coreClient.OperationOptions {
   /** The label of the key-value to delete. */
   label?: string;
@@ -472,11 +468,11 @@ export interface AppConfigurationClientDeleteKeyValueOptionalParams
 }
 
 /** Contains response data for the deleteKeyValue operation. */
-export type AppConfigurationClientDeleteKeyValueResponse = AppConfigurationClientDeleteKeyValueHeaders &
+export type DeleteKeyValueResponse = AppConfigurationClientDeleteKeyValueHeaders &
   KeyValue;
 
 /** Optional parameters. */
-export interface AppConfigurationClientCheckKeyValueOptionalParams
+export interface CheckKeyValueOptionalParams
   extends coreClient.OperationOptions {
   /** Requests the server to respond with the state of the resource at the specified time. */
   acceptDatetime?: string;
@@ -491,11 +487,10 @@ export interface AppConfigurationClientCheckKeyValueOptionalParams
 }
 
 /** Contains response data for the checkKeyValue operation. */
-export type AppConfigurationClientCheckKeyValueResponse = AppConfigurationClientCheckKeyValueHeaders;
+export type CheckKeyValueResponse = AppConfigurationClientCheckKeyValueHeaders;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetLabelsOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetLabelsOptionalParams extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -507,12 +502,11 @@ export interface AppConfigurationClientGetLabelsOptionalParams
 }
 
 /** Contains response data for the getLabels operation. */
-export type AppConfigurationClientGetLabelsResponse = AppConfigurationClientGetLabelsHeaders &
+export type GetLabelsResponse = AppConfigurationClientGetLabelsHeaders &
   LabelListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientCheckLabelsOptionalParams
-  extends coreClient.OperationOptions {
+export interface CheckLabelsOptionalParams extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -524,11 +518,10 @@ export interface AppConfigurationClientCheckLabelsOptionalParams
 }
 
 /** Contains response data for the checkLabels operation. */
-export type AppConfigurationClientCheckLabelsResponse = AppConfigurationClientCheckLabelsHeaders;
+export type CheckLabelsResponse = AppConfigurationClientCheckLabelsHeaders;
 
 /** Optional parameters. */
-export interface AppConfigurationClientPutLockOptionalParams
-  extends coreClient.OperationOptions {
+export interface PutLockOptionalParams extends coreClient.OperationOptions {
   /** The label, if any, of the key-value to lock. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -538,12 +531,10 @@ export interface AppConfigurationClientPutLockOptionalParams
 }
 
 /** Contains response data for the putLock operation. */
-export type AppConfigurationClientPutLockResponse = AppConfigurationClientPutLockHeaders &
-  KeyValue;
+export type PutLockResponse = AppConfigurationClientPutLockHeaders & KeyValue;
 
 /** Optional parameters. */
-export interface AppConfigurationClientDeleteLockOptionalParams
-  extends coreClient.OperationOptions {
+export interface DeleteLockOptionalParams extends coreClient.OperationOptions {
   /** The label, if any, of the key-value to unlock. */
   label?: string;
   /** Used to perform an operation only if the targeted resource's etag matches the value provided. */
@@ -553,11 +544,11 @@ export interface AppConfigurationClientDeleteLockOptionalParams
 }
 
 /** Contains response data for the deleteLock operation. */
-export type AppConfigurationClientDeleteLockResponse = AppConfigurationClientDeleteLockHeaders &
+export type DeleteLockResponse = AppConfigurationClientDeleteLockHeaders &
   KeyValue;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetRevisionsOptionalParams
+export interface GetRevisionsOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -572,11 +563,11 @@ export interface AppConfigurationClientGetRevisionsOptionalParams
 }
 
 /** Contains response data for the getRevisions operation. */
-export type AppConfigurationClientGetRevisionsResponse = AppConfigurationClientGetRevisionsHeaders &
+export type GetRevisionsResponse = AppConfigurationClientGetRevisionsHeaders &
   KeyValueListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientCheckRevisionsOptionalParams
+export interface CheckRevisionsOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -591,11 +582,10 @@ export interface AppConfigurationClientCheckRevisionsOptionalParams
 }
 
 /** Contains response data for the checkRevisions operation. */
-export type AppConfigurationClientCheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders;
+export type CheckRevisionsResponse = AppConfigurationClientCheckRevisionsHeaders;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetKeysNextOptionalParams
-  extends coreClient.OperationOptions {
+export interface GetKeysNextOptionalParams extends coreClient.OperationOptions {
   /** A filter for the name of the returned keys. */
   name?: string;
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
@@ -605,11 +595,11 @@ export interface AppConfigurationClientGetKeysNextOptionalParams
 }
 
 /** Contains response data for the getKeysNext operation. */
-export type AppConfigurationClientGetKeysNextResponse = AppConfigurationClientGetKeysNextHeaders &
+export type GetKeysNextResponse = AppConfigurationClientGetKeysNextHeaders &
   KeyListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetKeyValuesNextOptionalParams
+export interface GetKeyValuesNextOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -624,11 +614,11 @@ export interface AppConfigurationClientGetKeyValuesNextOptionalParams
 }
 
 /** Contains response data for the getKeyValuesNext operation. */
-export type AppConfigurationClientGetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHeaders &
+export type GetKeyValuesNextResponse = AppConfigurationClientGetKeyValuesNextHeaders &
   KeyValueListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetLabelsNextOptionalParams
+export interface GetLabelsNextOptionalParams
   extends coreClient.OperationOptions {
   /** A filter for the name of the returned labels. */
   name?: string;
@@ -641,11 +631,11 @@ export interface AppConfigurationClientGetLabelsNextOptionalParams
 }
 
 /** Contains response data for the getLabelsNext operation. */
-export type AppConfigurationClientGetLabelsNextResponse = AppConfigurationClientGetLabelsNextHeaders &
+export type GetLabelsNextResponse = AppConfigurationClientGetLabelsNextHeaders &
   LabelListResult;
 
 /** Optional parameters. */
-export interface AppConfigurationClientGetRevisionsNextOptionalParams
+export interface GetRevisionsNextOptionalParams
   extends coreClient.OperationOptions {
   /** Instructs the server to return elements that appear after the element referred to by the specified token. */
   after?: string;
@@ -660,7 +650,7 @@ export interface AppConfigurationClientGetRevisionsNextOptionalParams
 }
 
 /** Contains response data for the getRevisionsNext operation. */
-export type AppConfigurationClientGetRevisionsNextResponse = AppConfigurationClientGetRevisionsNextHeaders &
+export type GetRevisionsNextResponse = AppConfigurationClientGetRevisionsNextHeaders &
   KeyValueListResult;
 
 /** Optional parameters. */

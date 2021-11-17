@@ -1177,6 +1177,12 @@ export interface WeatherDataDeleteJobOutput {
   properties?: Record<string, Record<string, unknown>>;
 }
 
+export interface MultiPolygonOutput
+  extends GeoJsonObjectOutputBase,
+    MultiPolygonCoordinatesOutput {
+  type: "MultiPolygon";
+}
+
 export interface MultiPolygonCoordinatesOutput {
   /**
    * Gets or sets Coordinates of GeoJSON Object.
@@ -1187,10 +1193,10 @@ export interface MultiPolygonCoordinatesOutput {
   coordinates: Array<Array<Array<Array<number>>>>;
 }
 
-export interface MultiPolygonOutput
+export interface PointOutput
   extends GeoJsonObjectOutputBase,
-    MultiPolygonCoordinatesOutput {
-  type: "MultiPolygon";
+    PointCoordinatesOutput {
+  type: "Point";
 }
 
 export interface PointCoordinatesOutput {
@@ -1201,10 +1207,10 @@ export interface PointCoordinatesOutput {
   coordinates: Array<number>;
 }
 
-export interface PointOutput
+export interface PolygonOutput
   extends GeoJsonObjectOutputBase,
-    PointCoordinatesOutput {
-  type: "Point";
+    PolygonCoordinatesOutput {
+  type: "Polygon";
 }
 
 export interface PolygonCoordinatesOutput {
@@ -1215,12 +1221,6 @@ export interface PolygonCoordinatesOutput {
    * and any others MUST be interior rings.
    */
   coordinates: Array<Array<Array<number>>>;
-}
-
-export interface PolygonOutput
-  extends GeoJsonObjectOutputBase,
-    PolygonCoordinatesOutput {
-  type: "Polygon";
 }
 
 export type GeoJsonObjectOutput =

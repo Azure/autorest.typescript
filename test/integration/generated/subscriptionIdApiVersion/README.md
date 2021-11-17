@@ -4,7 +4,7 @@ This package contains an isomorphic SDK (runs both in Node.js and in browsers) f
 
 Some cool documentation.
 
-[Package (NPM)](https://www.npmjs.com/package/subscriptionid-apiversion) |
+[Package (NPM)](https://www.npmjs.com/package/@msinternal/subscriptionid-apiversion) |
 [Samples](https://github.com/Azure-Samples/azure-samples-js-management)
 
 ## Getting started
@@ -16,6 +16,10 @@ Some cool documentation.
 
 
 
+
+
+### JavaScript Bundle
+To use this client library in the browser, first you need to use a bundler. For details on how to do this, please refer to our [bundling documentation](https://aka.ms/AzureSDKBundling).
 
 ## Key concepts
 

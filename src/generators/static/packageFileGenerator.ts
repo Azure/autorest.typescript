@@ -91,7 +91,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
       node: ">=12.0.0"
     },
     dependencies: {
-      "@azure-rest/core-client": "1.0.0-beta.7",
+      "@azure-rest/core-client": "1.0.0-beta.8",
       "@azure/core-auth": "^1.3.0",
       "@azure/core-rest-pipeline": "^1.3.0",
       ...(hasPaging && {
@@ -109,7 +109,8 @@ function restLevelPackage(packageDetails: PackageDetails) {
       prettier: "^2.2.1",
       "ts-node": "^9.1.1",
       typescript: "~4.2.4",
-      mkdirp: "^1.0.4"
+      mkdirp: "^1.0.4",
+      rimraf: "^3.0.0"
     },
     sideEffects: false,
     autoPublish: true
@@ -182,7 +183,8 @@ function regularAutorestPackage(
       rollup: "^1.16.3",
       "rollup-plugin-sourcemaps": "^0.4.2",
       typescript: "~4.2.0",
-      "uglify-js": "^3.4.9"
+      "uglify-js": "^3.4.9",
+      rimraf: "^3.0.0"
     },
     // TODO: Calculate the SDK path for the package
     homepage: `https://github.com/Azure/azure-sdk-for-js/tree/main/${azureOutputDirectory}`,
@@ -220,7 +222,8 @@ function regularAutorestPackage(
       "extract-api": "api-extractor run --local",
       lint: "echo skipped",
       audit: "echo skipped",
-      clean: "echo skipped",
+      clean:
+        "rimraf dist dist-browser dist-esm test-dist temp types *.tgz *.log",
       "build:node": "echo skipped",
       "build:browser": "echo skipped",
       "build:test": "echo skipped",
@@ -244,7 +247,7 @@ function regularAutorestPackage(
   };
   if (generateTest) {
     packageInfo.module = `./dist-esm/src/index.js`;
-    packageInfo.devDependencies["@azure/identity"] = "2.0.0-beta.6";
+    packageInfo.devDependencies["@azure/identity"] = "^2.0.1";
     packageInfo.devDependencies["@azure-tools/test-recorder"] = "^1.0.0";
     packageInfo.devDependencies["mocha"] = "^7.1.1";
     packageInfo.devDependencies["cross-env"] = "^7.0.2";
@@ -256,7 +259,7 @@ function regularAutorestPackage(
     packageInfo.scripts["integration-test"] =
       "npm run integration-test:node && npm run integration-test:browser";
     packageInfo.scripts["integration-test:node"] =
-      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts";
+      "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
   }
   return packageInfo;
 }
