@@ -940,7 +940,7 @@ describe("LRO Rest Client", () => {
 
       assert.equal(result.status, "200");
     });
-  });
+  }).timeout(5000);
 
   describe("LRO Sad scenarios", () => {
     it("should handle PutNonRetry400 ", async () => {

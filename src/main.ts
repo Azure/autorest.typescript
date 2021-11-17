@@ -14,7 +14,6 @@ import { serialize } from "@azure-tools/codegen";
 export async function processRequest(host: Host) {
   await initializeSession(host);
   const session = getSession();
-  host.WriteFile("code-model-before.yaml", serialize(session.model));
   const { restLevelClient } = getAutorestOptions();
   try {
     const start = Date.now();
@@ -22,7 +21,6 @@ export async function processRequest(host: Host) {
       ? await generateRestLevelClient()
       : await generateTypeScriptLibrary(session.model, host);
     session.log(`Autorest.Typescript took ${Date.now() - start}ms`, "");
-    host.WriteFile("code-model-after.yaml", serialize(session.model));
   } catch (err) {
     session.error("An error was encountered while handling a request:", err);
     throw err;

@@ -91,11 +91,13 @@ export async function generateTypeScriptLibrary(
   generateMappers(clientDetails, project);
   generateOperations(clientDetails, project);
   generateOperationsInterfaces(clientDetails, project);
-  generateSamples(clientDetails, project);
-  generateSamplePackageJson(packageDetails, project);
-  generateSampleReadme(clientDetails, project);
-  generateSampleTsConfig(project);
-  generateSampleEnv(project);
+  if (clientDetails.samples.length > 0) {
+    generateSamples(clientDetails, project);
+    generateSamplePackageJson(packageDetails, project);
+    generateSampleReadme(clientDetails, project);
+    generateSampleTsConfig(project);
+    generateSampleEnv(project);
+  }
   generateParameters(clientDetails, project);
   generateIndexFile(project, clientDetails);
   await generateLroFiles(clientDetails, project);
