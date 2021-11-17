@@ -37,14 +37,14 @@ async function deploymentScriptsCreateUsingCustomACIName() {
     },
     kind: "AzurePowerShell",
     location: "westus",
-    retentionInterval: PT7D,
+    retentionInterval: "PT7D",
     scriptContent:
       "Param([string]$Location,[string]$Name) $deploymentScriptOutputs['test'] = 'value' Get-AzResourceGroup -Location $Location -Name $Name",
     supportingScriptUris: [
       "https://uri1.to.supporting.script",
       "https://uri2.to.supporting.script"
     ],
-    timeout: PT1H
+    timeout: "PT1H"
   };
   await client.deploymentScripts
     .beginCreateAndWait(resourceGroupName, scriptName, deploymentScript)

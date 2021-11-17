@@ -114,6 +114,7 @@ function getParameterAssignment(exampleValue: ExampleValue) {
         case SchemaType.Uuid:
         case SchemaType.Uri:
         case SchemaType.Credential:
+        case SchemaType.Duration:
             retValue = `"${rawValue?.replace(/"/g, '\\"')}"`;
             break;
         case SchemaType.Boolean:

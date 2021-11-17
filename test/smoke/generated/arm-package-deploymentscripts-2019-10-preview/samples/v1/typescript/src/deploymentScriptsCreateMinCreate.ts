@@ -35,7 +35,7 @@ async function deploymentScriptsCreateMinCreate() {
     },
     kind: "AzurePowerShell",
     location: "westus",
-    retentionInterval: P7D,
+    retentionInterval: "P7D",
     scriptContent:
       "Param([string]$Location,[string]$Name) $deploymentScriptOutputs['test'] = 'value' Get-AzResourceGroup -Location $Location -Name $Name"
   };
