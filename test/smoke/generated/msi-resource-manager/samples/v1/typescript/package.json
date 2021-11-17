@@ -1,0 +1,24 @@
+{
+  "name": "azure-msi-resource-manager-samples-ts",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A generated TypeScript SDK samples for @msinternal/msi-resource-manager",
+  "engines": { "node": ">=12.0.0" },
+  "scripts": { "build": "tsc", "prebuild": "rimraf dist/" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Azure/azure-sdk-for-js.git",
+    "directory": "undefined"
+  },
+  "keywords": ["node", "azure", "cloud", "typescript", "browser", "isomorphic"],
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "bugs": { "url": "https://github.com/Azure/azure-sdk-for-js/issues" },
+  "homepage": "https://github.com/Azure/azure-sdk-for-js/tree/main/undefined",
+  "dependencies": {
+    "dotenv": "latest",
+    "@azure/identity": "^2.0.0",
+    "@msinternal/msi-resource-manager": "next"
+  },
+  "devDependencies": { "typescript": "~4.4.0", "rimraf": "latest" }
+}

@@ -8,7 +8,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import * as hbs from "handlebars";
-import { getAutorestOptions } from "../../autorestSession";
+import { getAutorestOptions, getSession } from "../../autorestSession";
 import { ClientDetails } from "../../models/clientDetails";
   
 /**
@@ -26,6 +26,7 @@ export function generateSamples(
 ): void {
   // Toplevel operations are inlined in the client
   const samples = clientDetails.samples;
+  const session = getSession();
   for(const sample of samples) {
     try {
       const file = fs.readFileSync(path.join(__dirname, "../static/samples.ts.hbs"), {
@@ -37,7 +38,8 @@ export function generateSamples(
         overwrite: true
       });
     } catch (error) {
-      sample.sampleFunctionName;
+      session.error("An error was encountered while handling sample generation", [sample.sampleFunctionName]);
+      throw error;
     }
   }
 }
