@@ -2,26 +2,26 @@
 // Licensed under the MIT license.
 
 import {
-  getNoItemNamePagesParameters,
-  getNullNextLinkNamePagesParameters,
-  getSinglePagesParameters,
-  firstResponseEmptyParameters,
-  getMultiplePagesParameters,
-  getWithQueryParamsParameters,
-  nextOperationWithQueryParamsParameters,
-  getOdataMultiplePagesParameters,
-  getMultiplePagesWithOffsetParameters,
-  getMultiplePagesRetryFirstParameters,
-  getMultiplePagesRetrySecondParameters,
-  getSinglePagesFailureParameters,
-  getMultiplePagesFailureParameters,
-  getMultiplePagesFailureUriParameters,
-  getMultiplePagesFragmentNextLinkParameters,
-  getMultiplePagesFragmentWithGroupingNextLinkParameters,
-  getMultiplePagesLROParameters,
-  nextFragmentParameters,
-  nextFragmentWithGroupingParameters,
-  getPagingModelWithItemNameWithXMSClientNameParameters
+  GetNoItemNamePagesParameters,
+  GetNullNextLinkNamePagesParameters,
+  GetSinglePagesParameters,
+  FirstResponseEmptyParameters,
+  GetMultiplePagesParameters,
+  GetWithQueryParamsParameters,
+  NextOperationWithQueryParamsParameters,
+  GetOdataMultiplePagesParameters,
+  GetMultiplePagesWithOffsetParameters,
+  GetMultiplePagesRetryFirstParameters,
+  GetMultiplePagesRetrySecondParameters,
+  GetSinglePagesFailureParameters,
+  GetMultiplePagesFailureParameters,
+  GetMultiplePagesFailureUriParameters,
+  GetMultiplePagesFragmentNextLinkParameters,
+  GetMultiplePagesFragmentWithGroupingNextLinkParameters,
+  GetMultiplePagesLROParameters,
+  NextFragmentParameters,
+  NextFragmentWithGroupingParameters,
+  GetPagingModelWithItemNameWithXMSClientNameParameters
 } from "./parameters";
 import {
   GetNoItemNamePages200Response,
@@ -71,14 +71,14 @@ import "@azure/core-auth";
 export interface getNoItemNamePages {
   /** A paging operation that must return result of the default 'value' node. */
   get(
-    options?: getNoItemNamePagesParameters
+    options?: GetNoItemNamePagesParameters
   ): Promise<GetNoItemNamePages200Response | GetNoItemNamePagesdefaultResponse>;
 }
 
 export interface getNullNextLinkNamePages {
   /** A paging operation that must ignore any kind of nextLink, and stop after page 1. */
   get(
-    options?: getNullNextLinkNamePagesParameters
+    options?: GetNullNextLinkNamePagesParameters
   ): Promise<
     | GetNullNextLinkNamePages200Response
     | GetNullNextLinkNamePagesdefaultResponse
@@ -88,35 +88,35 @@ export interface getNullNextLinkNamePages {
 export interface getSinglePages {
   /** A paging operation that finishes on the first call without a nextlink */
   get(
-    options?: getSinglePagesParameters
+    options?: GetSinglePagesParameters
   ): Promise<GetSinglePages200Response | GetSinglePagesdefaultResponse>;
 }
 
 export interface firstResponseEmpty {
   /** A paging operation whose first response's items list is empty, but still returns a next link. Second (and final) call, will give you an items list of 1. */
   get(
-    options?: firstResponseEmptyParameters
+    options?: FirstResponseEmptyParameters
   ): Promise<FirstResponseEmpty200Response | FirstResponseEmptydefaultResponse>;
 }
 
 export interface getMultiplePages {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
-    options?: getMultiplePagesParameters
+    options?: GetMultiplePagesParameters
   ): Promise<GetMultiplePages200Response | GetMultiplePagesdefaultResponse>;
 }
 
 export interface getWithQueryParams {
   /** A paging operation that includes a next operation. It has a different query parameter from it's next operation nextOperationWithQueryParams. Returns a ProductResult */
   get(
-    options: getWithQueryParamsParameters
+    options: GetWithQueryParamsParameters
   ): Promise<GetWithQueryParams200Response | GetWithQueryParamsdefaultResponse>;
 }
 
 export interface nextOperationWithQueryParams {
   /** Next operation for getWithQueryParams. Pass in next=True to pass test. Returns a ProductResult */
   get(
-    options: nextOperationWithQueryParamsParameters
+    options: NextOperationWithQueryParamsParameters
   ): Promise<
     | NextOperationWithQueryParams200Response
     | NextOperationWithQueryParamsdefaultResponse
@@ -126,7 +126,7 @@ export interface nextOperationWithQueryParams {
 export interface getOdataMultiplePages {
   /** A paging operation that includes a nextLink in odata format that has 10 pages */
   get(
-    options?: getOdataMultiplePagesParameters
+    options?: GetOdataMultiplePagesParameters
   ): Promise<
     GetOdataMultiplePages200Response | GetOdataMultiplePagesdefaultResponse
   >;
@@ -135,7 +135,7 @@ export interface getOdataMultiplePages {
 export interface getMultiplePagesWithOffset {
   /** A paging operation that includes a nextLink that has 10 pages */
   get(
-    options?: getMultiplePagesWithOffsetParameters
+    options?: GetMultiplePagesWithOffsetParameters
   ): Promise<
     | GetMultiplePagesWithOffset200Response
     | GetMultiplePagesWithOffsetdefaultResponse
@@ -145,7 +145,7 @@ export interface getMultiplePagesWithOffset {
 export interface getMultiplePagesRetryFirst {
   /** A paging operation that fails on the first call with 500 and then retries and then get a response including a nextLink that has 10 pages */
   get(
-    options?: getMultiplePagesRetryFirstParameters
+    options?: GetMultiplePagesRetryFirstParameters
   ): Promise<
     | GetMultiplePagesRetryFirst200Response
     | GetMultiplePagesRetryFirstdefaultResponse
@@ -155,7 +155,7 @@ export interface getMultiplePagesRetryFirst {
 export interface getMultiplePagesRetrySecond {
   /** A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails first with 500. The client should retry and finish all 10 pages eventually. */
   get(
-    options?: getMultiplePagesRetrySecondParameters
+    options?: GetMultiplePagesRetrySecondParameters
   ): Promise<
     | GetMultiplePagesRetrySecond200Response
     | GetMultiplePagesRetrySeconddefaultResponse
@@ -165,7 +165,7 @@ export interface getMultiplePagesRetrySecond {
 export interface getSinglePagesFailure {
   /** A paging operation that receives a 400 on the first call */
   get(
-    options?: getSinglePagesFailureParameters
+    options?: GetSinglePagesFailureParameters
   ): Promise<
     GetSinglePagesFailure200Response | GetSinglePagesFailuredefaultResponse
   >;
@@ -174,7 +174,7 @@ export interface getSinglePagesFailure {
 export interface getMultiplePagesFailure {
   /** A paging operation that receives a 400 on the second call */
   get(
-    options?: getMultiplePagesFailureParameters
+    options?: GetMultiplePagesFailureParameters
   ): Promise<
     GetMultiplePagesFailure200Response | GetMultiplePagesFailuredefaultResponse
   >;
@@ -183,7 +183,7 @@ export interface getMultiplePagesFailure {
 export interface getMultiplePagesFailureUri {
   /** A paging operation that receives an invalid nextLink */
   get(
-    options?: getMultiplePagesFailureUriParameters
+    options?: GetMultiplePagesFailureUriParameters
   ): Promise<
     | GetMultiplePagesFailureUri200Response
     | GetMultiplePagesFailureUridefaultResponse
@@ -193,7 +193,7 @@ export interface getMultiplePagesFailureUri {
 export interface getMultiplePagesFragmentNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: getMultiplePagesFragmentNextLinkParameters
+    options: GetMultiplePagesFragmentNextLinkParameters
   ): Promise<
     | GetMultiplePagesFragmentNextLink200Response
     | GetMultiplePagesFragmentNextLinkdefaultResponse
@@ -203,7 +203,7 @@ export interface getMultiplePagesFragmentNextLink {
 export interface getMultiplePagesFragmentWithGroupingNextLink {
   /** A paging operation that doesn't return a full URL, just a fragment with parameters grouped */
   get(
-    options: getMultiplePagesFragmentWithGroupingNextLinkParameters
+    options: GetMultiplePagesFragmentWithGroupingNextLinkParameters
   ): Promise<
     | GetMultiplePagesFragmentWithGroupingNextLink200Response
     | GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
@@ -213,7 +213,7 @@ export interface getMultiplePagesFragmentWithGroupingNextLink {
 export interface getMultiplePagesLRO {
   /** A long-running paging operation that includes a nextLink that has 10 pages */
   post(
-    options?: getMultiplePagesLROParameters
+    options?: GetMultiplePagesLROParameters
   ): Promise<
     GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
   >;
@@ -222,14 +222,14 @@ export interface getMultiplePagesLRO {
 export interface nextFragment {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: nextFragmentParameters
+    options: NextFragmentParameters
   ): Promise<NextFragment200Response | NextFragmentdefaultResponse>;
 }
 
 export interface nextFragmentWithGrouping {
   /** A paging operation that doesn't return a full URL, just a fragment */
   get(
-    options: nextFragmentWithGroupingParameters
+    options: NextFragmentWithGroupingParameters
   ): Promise<
     | NextFragmentWithGrouping200Response
     | NextFragmentWithGroupingdefaultResponse
@@ -239,7 +239,7 @@ export interface nextFragmentWithGrouping {
 export interface getPagingModelWithItemNameWithXMSClientName {
   /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
   get(
-    options?: getPagingModelWithItemNameWithXMSClientNameParameters
+    options?: GetPagingModelWithItemNameWithXMSClientNameParameters
   ): Promise<
     | GetPagingModelWithItemNameWithXMSClientName200Response
     | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse

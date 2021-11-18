@@ -2,35 +2,35 @@
 // Licensed under the MIT license.
 
 import {
-  paramExistingKeyParameters,
-  responseExistingKeyParameters,
-  paramProtectedKeyParameters,
-  responseProtectedKeyParameters,
-  paramIntegerParameters,
-  responseIntegerParameters,
-  paramLongParameters,
-  responseLongParameters,
-  paramFloatParameters,
-  responseFloatParameters,
-  paramDoubleParameters,
-  responseDoubleParameters,
-  paramBoolParameters,
-  responseBoolParameters,
-  paramStringParameters,
-  responseStringParameters,
-  paramDateParameters,
-  responseDateParameters,
-  paramDatetimeParameters,
-  responseDatetimeParameters,
-  paramDatetimeRfc1123Parameters,
-  responseDatetimeRfc1123Parameters,
-  paramDurationParameters,
-  responseDurationParameters,
-  paramByteParameters,
-  responseByteParameters,
-  paramEnumParameters,
-  responseEnumParameters,
-  customRequestIdParameters
+  ParamExistingKeyParameters,
+  ResponseExistingKeyParameters,
+  ParamProtectedKeyParameters,
+  ResponseProtectedKeyParameters,
+  ParamIntegerParameters,
+  ResponseIntegerParameters,
+  ParamLongParameters,
+  ResponseLongParameters,
+  ParamFloatParameters,
+  ResponseFloatParameters,
+  ParamDoubleParameters,
+  ResponseDoubleParameters,
+  ParamBoolParameters,
+  ResponseBoolParameters,
+  ParamStringParameters,
+  ResponseStringParameters,
+  ParamDateParameters,
+  ResponseDateParameters,
+  ParamDatetimeParameters,
+  ResponseDatetimeParameters,
+  ParamDatetimeRfc1123Parameters,
+  ResponseDatetimeRfc1123Parameters,
+  ParamDurationParameters,
+  ResponseDurationParameters,
+  ParamByteParameters,
+  ResponseByteParameters,
+  ParamEnumParameters,
+  ResponseEnumParameters,
+  CustomRequestIdParameters
 } from "./parameters";
 import {
   ParamExistingKey200Response,
@@ -98,14 +98,14 @@ import "@azure/core-auth";
 export interface paramExistingKey {
   /** Send a post request with header value "User-Agent": "overwrite" */
   post(
-    options?: paramExistingKeyParameters
+    options?: ParamExistingKeyParameters
   ): Promise<ParamExistingKey200Response | ParamExistingKeydefaultResponse>;
 }
 
 export interface responseExistingKey {
   /** Get a response with header value "User-Agent": "overwrite" */
   post(
-    options?: responseExistingKeyParameters
+    options?: ResponseExistingKeyParameters
   ): Promise<
     ResponseExistingKey200Response | ResponseExistingKeydefaultResponse
   >;
@@ -114,14 +114,14 @@ export interface responseExistingKey {
 export interface paramProtectedKey {
   /** Send a post request with header value "Content-Type": "text/html" */
   post(
-    options?: paramProtectedKeyParameters
+    options?: ParamProtectedKeyParameters
   ): Promise<ParamProtectedKey200Response | ParamProtectedKeydefaultResponse>;
 }
 
 export interface responseProtectedKey {
   /** Get a response with header value "Content-Type": "text/html" */
   post(
-    options?: responseProtectedKeyParameters
+    options?: ResponseProtectedKeyParameters
   ): Promise<
     ResponseProtectedKey200Response | ResponseProtectedKeydefaultResponse
   >;
@@ -130,119 +130,119 @@ export interface responseProtectedKey {
 export interface paramInteger {
   /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
   post(
-    options?: paramIntegerParameters
+    options?: ParamIntegerParameters
   ): Promise<ParamInteger200Response | ParamIntegerdefaultResponse>;
 }
 
 export interface responseInteger {
   /** Get a response with header value "value": 1 or -2 */
   post(
-    options?: responseIntegerParameters
+    options?: ResponseIntegerParameters
   ): Promise<ResponseInteger200Response | ResponseIntegerdefaultResponse>;
 }
 
 export interface paramLong {
   /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
   post(
-    options?: paramLongParameters
+    options?: ParamLongParameters
   ): Promise<ParamLong200Response | ParamLongdefaultResponse>;
 }
 
 export interface responseLong {
   /** Get a response with header value "value": 105 or -2 */
   post(
-    options?: responseLongParameters
+    options?: ResponseLongParameters
   ): Promise<ResponseLong200Response | ResponseLongdefaultResponse>;
 }
 
 export interface paramFloat {
   /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
   post(
-    options?: paramFloatParameters
+    options?: ParamFloatParameters
   ): Promise<ParamFloat200Response | ParamFloatdefaultResponse>;
 }
 
 export interface responseFloat {
   /** Get a response with header value "value": 0.07 or -3.0 */
   post(
-    options?: responseFloatParameters
+    options?: ResponseFloatParameters
   ): Promise<ResponseFloat200Response | ResponseFloatdefaultResponse>;
 }
 
 export interface paramDouble {
   /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
   post(
-    options?: paramDoubleParameters
+    options?: ParamDoubleParameters
   ): Promise<ParamDouble200Response | ParamDoubledefaultResponse>;
 }
 
 export interface responseDouble {
   /** Get a response with header value "value": 7e120 or -3.0 */
   post(
-    options?: responseDoubleParameters
+    options?: ResponseDoubleParameters
   ): Promise<ResponseDouble200Response | ResponseDoubledefaultResponse>;
 }
 
 export interface paramBool {
   /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
   post(
-    options?: paramBoolParameters
+    options?: ParamBoolParameters
   ): Promise<ParamBool200Response | ParamBooldefaultResponse>;
 }
 
 export interface responseBool {
   /** Get a response with header value "value": true or false */
   post(
-    options?: responseBoolParameters
+    options?: ResponseBoolParameters
   ): Promise<ResponseBool200Response | ResponseBooldefaultResponse>;
 }
 
 export interface paramString {
   /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
   post(
-    options?: paramStringParameters
+    options?: ParamStringParameters
   ): Promise<ParamString200Response | ParamStringdefaultResponse>;
 }
 
 export interface responseString {
   /** Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   post(
-    options?: responseStringParameters
+    options?: ResponseStringParameters
   ): Promise<ResponseString200Response | ResponseStringdefaultResponse>;
 }
 
 export interface paramDate {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
   post(
-    options?: paramDateParameters
+    options?: ParamDateParameters
   ): Promise<ParamDate200Response | ParamDatedefaultResponse>;
 }
 
 export interface responseDate {
   /** Get a response with header values "2010-01-01" or "0001-01-01" */
   post(
-    options?: responseDateParameters
+    options?: ResponseDateParameters
   ): Promise<ResponseDate200Response | ResponseDatedefaultResponse>;
 }
 
 export interface paramDatetime {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
   post(
-    options?: paramDatetimeParameters
+    options?: ParamDatetimeParameters
   ): Promise<ParamDatetime200Response | ParamDatetimedefaultResponse>;
 }
 
 export interface responseDatetime {
   /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
   post(
-    options?: responseDatetimeParameters
+    options?: ResponseDatetimeParameters
   ): Promise<ResponseDatetime200Response | ResponseDatetimedefaultResponse>;
 }
 
 export interface paramDatetimeRfc1123 {
   /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
-    options?: paramDatetimeRfc1123Parameters
+    options?: ParamDatetimeRfc1123Parameters
   ): Promise<
     ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123defaultResponse
   >;
@@ -251,7 +251,7 @@ export interface paramDatetimeRfc1123 {
 export interface responseDatetimeRfc1123 {
   /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
-    options?: responseDatetimeRfc1123Parameters
+    options?: ResponseDatetimeRfc1123Parameters
   ): Promise<
     ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123defaultResponse
   >;
@@ -260,49 +260,49 @@ export interface responseDatetimeRfc1123 {
 export interface paramDuration {
   /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
   post(
-    options?: paramDurationParameters
+    options?: ParamDurationParameters
   ): Promise<ParamDuration200Response | ParamDurationdefaultResponse>;
 }
 
 export interface responseDuration {
   /** Get a response with header values "P123DT22H14M12.011S" */
   post(
-    options?: responseDurationParameters
+    options?: ResponseDurationParameters
   ): Promise<ResponseDuration200Response | ResponseDurationdefaultResponse>;
 }
 
 export interface paramByte {
   /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
   post(
-    options?: paramByteParameters
+    options?: ParamByteParameters
   ): Promise<ParamByte200Response | ParamBytedefaultResponse>;
 }
 
 export interface responseByte {
   /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
   post(
-    options?: responseByteParameters
+    options?: ResponseByteParameters
   ): Promise<ResponseByte200Response | ResponseBytedefaultResponse>;
 }
 
 export interface paramEnum {
   /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
   post(
-    options?: paramEnumParameters
+    options?: ParamEnumParameters
   ): Promise<ParamEnum200Response | ParamEnumdefaultResponse>;
 }
 
 export interface responseEnum {
   /** Get a response with header values "GREY" or null */
   post(
-    options?: responseEnumParameters
+    options?: ResponseEnumParameters
   ): Promise<ResponseEnum200Response | ResponseEnumdefaultResponse>;
 }
 
 export interface customRequestId {
   /** Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request */
   post(
-    options?: customRequestIdParameters
+    options?: CustomRequestIdParameters
   ): Promise<CustomRequestId200Response | CustomRequestIddefaultResponse>;
 }
 

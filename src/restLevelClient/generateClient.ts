@@ -208,7 +208,7 @@ function getOperationOptionsType(
   importedParameters = new Set<string>()
 ) {
   const paramsName = `${
-    getLanguageMetadata(operation.language).name
+    normalizeName(getLanguageMetadata(operation.language).name, NameType.Interface)
   }Parameters`;
   importedParameters.add(paramsName);
 

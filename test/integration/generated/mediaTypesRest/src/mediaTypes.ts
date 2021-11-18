@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
-  analyzeBodyParameters,
-  analyzeBodyNoAcceptHeaderParameters,
-  contentTypeWithEncodingParameters,
-  binaryBodyWithTwoContentTypesParameters,
-  binaryBodyWithThreeContentTypesParameters,
-  putTextAndJsonBodyParameters
+  AnalyzeBodyParameters,
+  AnalyzeBodyNoAcceptHeaderParameters,
+  ContentTypeWithEncodingParameters,
+  BinaryBodyWithTwoContentTypesParameters,
+  BinaryBodyWithThreeContentTypesParameters,
+  PutTextAndJsonBodyParameters
 } from "./parameters";
 import {
   AnalyzeBody200Response,
@@ -24,7 +24,7 @@ import "@azure/core-auth";
 export interface analyzeBody {
   /** Analyze body, that could be different media types. */
   post(
-    options?: analyzeBodyParameters | analyzeBodyParameters
+    options?: AnalyzeBodyParameters | AnalyzeBodyParameters
   ): Promise<AnalyzeBody200Response> | Promise<AnalyzeBody200Response>;
 }
 
@@ -32,8 +32,8 @@ export interface analyzeBodyNoAcceptHeader {
   /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
   post(
     options?:
-      | analyzeBodyNoAcceptHeaderParameters
-      | analyzeBodyNoAcceptHeaderParameters
+      | AnalyzeBodyNoAcceptHeaderParameters
+      | AnalyzeBodyNoAcceptHeaderParameters
   ):
     | Promise<
         | AnalyzeBodyNoAcceptHeader202Response
@@ -48,14 +48,14 @@ export interface analyzeBodyNoAcceptHeader {
 export interface contentTypeWithEncoding {
   /** Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter */
   post(
-    options?: contentTypeWithEncodingParameters
+    options?: ContentTypeWithEncodingParameters
   ): Promise<ContentTypeWithEncoding200Response>;
 }
 
 export interface binaryBodyWithTwoContentTypes {
   /** Binary body with two content types. Pass in of {'hello': 'world'} for the application/json content type, and a byte stream of 'hello, world!' for application/octet-stream. */
   post(
-    options: binaryBodyWithTwoContentTypesParameters
+    options: BinaryBodyWithTwoContentTypesParameters
   ): Promise<BinaryBodyWithTwoContentTypes200Response>;
 }
 
@@ -63,8 +63,8 @@ export interface binaryBodyWithThreeContentTypes {
   /** Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
   post(
     options:
-      | binaryBodyWithThreeContentTypesParameters
-      | binaryBodyWithThreeContentTypesParameters
+      | BinaryBodyWithThreeContentTypesParameters
+      | BinaryBodyWithThreeContentTypesParameters
   ):
     | Promise<BinaryBodyWithThreeContentTypes200Response>
     | Promise<BinaryBodyWithThreeContentTypes200Response>;
@@ -73,7 +73,7 @@ export interface binaryBodyWithThreeContentTypes {
 export interface putTextAndJsonBody {
   /** Body that's either text/plain or application/json */
   post(
-    options: putTextAndJsonBodyParameters | putTextAndJsonBodyParameters
+    options: PutTextAndJsonBodyParameters | PutTextAndJsonBodyParameters
   ):
     | Promise<PutTextAndJsonBody200Response>
     | Promise<PutTextAndJsonBody200Response>;
