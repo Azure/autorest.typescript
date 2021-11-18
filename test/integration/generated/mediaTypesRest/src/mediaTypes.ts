@@ -2,12 +2,12 @@
 // Licensed under the MIT license.
 
 import {
-  AnalyzeBodyParameters,
-  AnalyzeBodyNoAcceptHeaderParameters,
-  ContentTypeWithEncodingParameters,
-  BinaryBodyWithTwoContentTypesParameters,
-  BinaryBodyWithThreeContentTypesParameters,
-  PutTextAndJsonBodyParameters
+  analyzeBodyParameters,
+  analyzeBodyNoAcceptHeaderParameters,
+  contentTypeWithEncodingParameters,
+  binaryBodyWithTwoContentTypesParameters,
+  binaryBodyWithThreeContentTypesParameters,
+  putTextAndJsonBodyParameters
 } from "./parameters";
 import {
   AnalyzeBody200Response,
@@ -21,19 +21,19 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface AnalyzeBody {
+export interface analyzeBody {
   /** Analyze body, that could be different media types. */
   post(
-    options?: AnalyzeBodyParameters | AnalyzeBodyParameters
+    options?: analyzeBodyParameters | analyzeBodyParameters
   ): Promise<AnalyzeBody200Response> | Promise<AnalyzeBody200Response>;
 }
 
-export interface AnalyzeBodyNoAcceptHeader {
+export interface analyzeBodyNoAcceptHeader {
   /** Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept type. */
   post(
     options?:
-      | AnalyzeBodyNoAcceptHeaderParameters
-      | AnalyzeBodyNoAcceptHeaderParameters
+      | analyzeBodyNoAcceptHeaderParameters
+      | analyzeBodyNoAcceptHeaderParameters
   ):
     | Promise<
         | AnalyzeBodyNoAcceptHeader202Response
@@ -45,35 +45,35 @@ export interface AnalyzeBodyNoAcceptHeader {
       >;
 }
 
-export interface ContentTypeWithEncoding {
+export interface contentTypeWithEncoding {
   /** Pass in contentType 'text/plain; encoding=UTF-8' to pass test. Value for input does not matter */
   post(
-    options?: ContentTypeWithEncodingParameters
+    options?: contentTypeWithEncodingParameters
   ): Promise<ContentTypeWithEncoding200Response>;
 }
 
-export interface BinaryBodyWithTwoContentTypes {
+export interface binaryBodyWithTwoContentTypes {
   /** Binary body with two content types. Pass in of {'hello': 'world'} for the application/json content type, and a byte stream of 'hello, world!' for application/octet-stream. */
   post(
-    options: BinaryBodyWithTwoContentTypesParameters
+    options: binaryBodyWithTwoContentTypesParameters
   ): Promise<BinaryBodyWithTwoContentTypes200Response>;
 }
 
-export interface BinaryBodyWithThreeContentTypes {
+export interface binaryBodyWithThreeContentTypes {
   /** Binary body with three content types. Pass in string 'hello, world' with content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte string for 'application/octet-stream'. */
   post(
     options:
-      | BinaryBodyWithThreeContentTypesParameters
-      | BinaryBodyWithThreeContentTypesParameters
+      | binaryBodyWithThreeContentTypesParameters
+      | binaryBodyWithThreeContentTypesParameters
   ):
     | Promise<BinaryBodyWithThreeContentTypes200Response>
     | Promise<BinaryBodyWithThreeContentTypes200Response>;
 }
 
-export interface PutTextAndJsonBody {
+export interface putTextAndJsonBody {
   /** Body that's either text/plain or application/json */
   post(
-    options: PutTextAndJsonBodyParameters | PutTextAndJsonBodyParameters
+    options: putTextAndJsonBodyParameters | putTextAndJsonBodyParameters
   ):
     | Promise<PutTextAndJsonBody200Response>
     | Promise<PutTextAndJsonBody200Response>;
@@ -81,21 +81,21 @@ export interface PutTextAndJsonBody {
 
 export interface Routes {
   /** Resource for '/mediatypes/analyze' has methods for the following verbs: post */
-  (path: "/mediatypes/analyze"): AnalyzeBody;
+  (path: "/mediatypes/analyze"): analyzeBody;
   /** Resource for '/mediatypes/analyzeNoAccept' has methods for the following verbs: post */
-  (path: "/mediatypes/analyzeNoAccept"): AnalyzeBodyNoAcceptHeader;
+  (path: "/mediatypes/analyzeNoAccept"): analyzeBodyNoAcceptHeader;
   /** Resource for '/mediatypes/contentTypeWithEncoding' has methods for the following verbs: post */
-  (path: "/mediatypes/contentTypeWithEncoding"): ContentTypeWithEncoding;
+  (path: "/mediatypes/contentTypeWithEncoding"): contentTypeWithEncoding;
   /** Resource for '/mediatypes/binaryBodyTwoContentTypes' has methods for the following verbs: post */
   (
     path: "/mediatypes/binaryBodyTwoContentTypes"
-  ): BinaryBodyWithTwoContentTypes;
+  ): binaryBodyWithTwoContentTypes;
   /** Resource for '/mediatypes/binaryBodyThreeContentTypes' has methods for the following verbs: post */
   (
     path: "/mediatypes/binaryBodyThreeContentTypes"
-  ): BinaryBodyWithThreeContentTypes;
+  ): binaryBodyWithThreeContentTypes;
   /** Resource for '/mediatypes/textAndJson' has methods for the following verbs: post */
-  (path: "/mediatypes/textAndJson"): PutTextAndJsonBody;
+  (path: "/mediatypes/textAndJson"): putTextAndJsonBody;
 }
 
 export type MediaTypesRestClient = Client & {

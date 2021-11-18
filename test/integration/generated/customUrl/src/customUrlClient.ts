@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PathsImpl } from "./operations";
 import { Paths } from "./operationsInterfaces";
 import { CustomUrlClientOptionalParams } from "./models";

@@ -44,7 +44,7 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.pageRange],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
   serializer
 };

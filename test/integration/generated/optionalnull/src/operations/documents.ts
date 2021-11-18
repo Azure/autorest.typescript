@@ -36,6 +36,6 @@ const searchGetOperationSpec: coreClient.OperationSpec = {
   httpMethod: "GET",
   responses: { 200: {} },
   queryParameters: [Parameters.searchText, Parameters.includeTotalResultCount],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   serializer
 };

@@ -178,10 +178,10 @@ export class DataFlowsImpl implements DataFlows {
   }
 
   /**
-   * ListByFactoryNext
+   * listByFactoryNext
    * @param resourceGroupName The resource group name.
    * @param factoryName The factory name.
-   * @param nextLink The nextLink from the previous successful call to the ListByFactory method.
+   * @param nextLink The nextLink from the previous successful call to the listByFactory method.
    * @param options The options parameters.
    */
   private _listByFactoryNext(
@@ -214,7 +214,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.dataFlow,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -242,7 +242,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -264,7 +264,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -287,7 +287,7 @@ const listByFactoryOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -308,7 +308,7 @@ const listByFactoryNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

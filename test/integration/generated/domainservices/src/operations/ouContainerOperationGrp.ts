@@ -441,11 +441,11 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   }
 
   /**
-   * ListNext
+   * listNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
    * @param domainServiceName The name of the domain service.
-   * @param nextLink The nextLink from the previous successful call to the List method.
+   * @param nextLink The nextLink from the previous successful call to the list method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -477,7 +477,7 @@ const listOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -499,7 +499,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
@@ -532,7 +532,7 @@ const createOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.containerAccount,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
@@ -557,7 +557,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
@@ -590,7 +590,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.containerAccount,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName,
@@ -613,7 +613,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

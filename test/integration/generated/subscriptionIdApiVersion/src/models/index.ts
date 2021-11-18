@@ -31,7 +31,7 @@ export type GroupGetSampleResourceGroupResponse = SampleResourceGroup;
 export interface SubscriptionIdApiVersionClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

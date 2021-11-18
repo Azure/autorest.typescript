@@ -18,7 +18,7 @@ import {
 } from "./models";
 
 export class ReportClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the ReportClient class.
@@ -50,7 +50,7 @@ export class ReportClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
   }
 
   /**
@@ -91,7 +91,7 @@ const getReportOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.qualifier],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -109,7 +109,7 @@ const getOptionalReportOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.qualifier],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

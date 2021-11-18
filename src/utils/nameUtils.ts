@@ -3,7 +3,7 @@
 import { Operation, OperationGroup } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
-import { pascalCase, camelCase } from "@azure-tools/codegen";
+import { pascalCase, camelCase, capitalize, uncapitalize } from "@azure-tools/codegen";
 
 interface ReservedName {
   name: string;
@@ -92,6 +92,8 @@ const ReservedModelNames: ReservedName[] = [
 export enum CasingConvention {
   Pascal,
   Camel,
+  Capitalize,
+  UnCapitalize,
   None
 }
 
@@ -184,8 +186,10 @@ function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.File:
     case NameType.Property:
-    case NameType.Parameter:
-      return CasingConvention.Camel;
+      return CasingConvention.UnCapitalize
+    case NameType.Class:
+    case NameType.Interface:
+      return CasingConvention.Capitalize;
     default:
       return CasingConvention.None;
   }
@@ -205,6 +209,13 @@ function toCasing(str: string, casing: CasingConvention): string {
   }
   if (casing === CasingConvention.Pascal) {
     return pascalCase(str);
+  }
+  if (casing === CasingConvention.Capitalize) {
+    return capitalize(str);
+  }
+
+  if (casing === CasingConvention.UnCapitalize) {
+    return uncapitalize(str);
   }
 
   return str;

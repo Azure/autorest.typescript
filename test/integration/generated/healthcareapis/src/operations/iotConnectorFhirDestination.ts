@@ -276,7 +276,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -310,7 +310,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.iotFhirDestination,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -336,7 +336,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,

@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PathsImpl, QueriesImpl, PathItemsImpl } from "./operations";
 import { Paths, Queries, PathItems } from "./operationsInterfaces";
 import { UrlClientOptionalParams } from "./models";
 
 export class UrlClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   globalStringPath: string;
   globalStringQuery?: string;
 
@@ -52,7 +53,7 @@ export class UrlClient extends coreClient.ServiceClient {
     this.globalStringPath = globalStringPath;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.paths = new PathsImpl(this);
     this.queries = new QueriesImpl(this);
     this.pathItems = new PathItemsImpl(this);

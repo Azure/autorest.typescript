@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import {
   ServicesImpl,
   PrivateEndpointConnectionsImpl,
@@ -27,7 +28,7 @@ import {
 import { HealthCareApisClientOptionalParams } from "./models";
 
 export class HealthCareApisClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
   subscriptionId: string;
 
@@ -74,7 +75,7 @@ export class HealthCareApisClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "https://management.azure.com";
+    this.$host = options.$host || "https://management.azure.com";
     this.apiVersion = options.apiVersion || "2021-06-01-preview";
     this.services = new ServicesImpl(this);
     this.privateEndpointConnections = new PrivateEndpointConnectionsImpl(this);

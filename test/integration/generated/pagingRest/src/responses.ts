@@ -6,7 +6,7 @@ import {
   ProductResultValueOutput,
   ProductResultOutput,
   OdataProductResultOutput,
-  ProductResultValueWithXmsClientNameOutput
+  ProductResultValueWithXMSClientNameOutput
 } from "./outputModels";
 
 /** A paging operation that must return result of the default 'value' node. */
@@ -211,13 +211,13 @@ export interface GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse
 }
 
 /** A long-running paging operation that includes a nextLink that has 10 pages */
-export interface GetMultiplePagesLro202Response extends HttpResponse {
+export interface GetMultiplePagesLRO202Response extends HttpResponse {
   status: "202";
   body: ProductResultOutput;
 }
 
 /** A long-running paging operation that includes a nextLink that has 10 pages */
-export interface GetMultiplePagesLrOdefaultResponse extends HttpResponse {
+export interface GetMultiplePagesLROdefaultResponse extends HttpResponse {
   status: "500";
   body: Record<string, unknown>;
 }
@@ -247,14 +247,14 @@ export interface NextFragmentWithGroupingdefaultResponse extends HttpResponse {
 }
 
 /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
-export interface GetPagingModelWithItemNameWithXmsClientName200Response
+export interface GetPagingModelWithItemNameWithXMSClientName200Response
   extends HttpResponse {
   status: "200";
-  body: ProductResultValueWithXmsClientNameOutput;
+  body: ProductResultValueWithXMSClientNameOutput;
 }
 
 /** A paging operation that returns a paging model whose item name is is overriden by x-ms-client-name 'indexes'. */
-export interface GetPagingModelWithItemNameWithXmsClientNamedefaultResponse
+export interface GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
   extends HttpResponse {
   status: "500";
   body: Record<string, unknown>;

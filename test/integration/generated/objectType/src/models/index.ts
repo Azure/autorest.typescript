@@ -21,7 +21,7 @@ export interface PutOptionalParams extends coreClient.OperationOptions {}
 export interface ObjectTypeClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

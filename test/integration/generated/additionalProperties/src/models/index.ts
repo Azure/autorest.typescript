@@ -69,42 +69,42 @@ export type CatAPTrue = PetAPTrue & {
 export interface PetsCreateAPTrueOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateAPTrue operation. */
+/** Contains response data for the createAPTrue operation. */
 export type PetsCreateAPTrueResponse = PetAPTrue;
 
 /** Optional parameters. */
 export interface PetsCreateCatAPTrueOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateCatAPTrue operation. */
+/** Contains response data for the createCatAPTrue operation. */
 export type PetsCreateCatAPTrueResponse = CatAPTrue;
 
 /** Optional parameters. */
 export interface PetsCreateAPObjectOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateAPObject operation. */
+/** Contains response data for the createAPObject operation. */
 export type PetsCreateAPObjectResponse = PetAPObject;
 
 /** Optional parameters. */
 export interface PetsCreateAPStringOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateAPString operation. */
+/** Contains response data for the createAPString operation. */
 export type PetsCreateAPStringResponse = PetAPString;
 
 /** Optional parameters. */
 export interface PetsCreateAPInPropertiesOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateAPInProperties operation. */
+/** Contains response data for the createAPInProperties operation. */
 export type PetsCreateAPInPropertiesResponse = PetAPInProperties;
 
 /** Optional parameters. */
 export interface PetsCreateAPInPropertiesWithAPStringOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the CreateAPInPropertiesWithAPString operation. */
+/** Contains response data for the createAPInPropertiesWithAPString operation. */
 export type PetsCreateAPInPropertiesWithAPStringResponse = PetAPInPropertiesWithAPString;
 
 /** Optional parameters. */

@@ -56,7 +56,7 @@ const postSendOnDefaultOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "text",
   serializer

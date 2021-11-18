@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import { FileImpl } from "./operations";
 import { File } from "./operationsInterfaces";
 import { StorageFileShareClientOptionalParams } from "./models";

@@ -6,21 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { BarApiImpl, FooApiImpl } from "./operations";
 import { BarApi, FooApi } from "./operationsInterfaces";
 import { MediaTypesV3ClientOptionalParams } from "./models";
 
 export class MediaTypesV3Client extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the MediaTypesV3Client class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: MediaTypesV3ClientOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: MediaTypesV3ClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -47,7 +48,7 @@ export class MediaTypesV3Client extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
     this.barApi = new BarApiImpl(this);
     this.fooApi = new FooApiImpl(this);
   }

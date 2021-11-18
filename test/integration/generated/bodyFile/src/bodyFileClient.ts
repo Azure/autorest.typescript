@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { FilesImpl } from "./operations";
 import { Files } from "./operationsInterfaces";
 import { BodyFileClientOptionalParams } from "./models";
 
 export class BodyFileClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyFileClient class.
@@ -43,7 +44,7 @@ export class BodyFileClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.files = new FilesImpl(this);
   }
 

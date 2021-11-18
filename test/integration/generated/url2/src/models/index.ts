@@ -9,10 +9,10 @@
 import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface GetUrlOptionalParams extends coreClient.OperationOptions {}
+export interface GETUrlOptionalParams extends coreClient.OperationOptions {}
 
 /** Contains response data for the url operation. */
-export type GetUrlResponse = {
+export type GETUrlResponse = {
   /** The parsed response body. */
   body: string;
 };

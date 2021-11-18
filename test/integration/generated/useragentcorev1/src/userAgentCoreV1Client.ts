@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreHttp from "@azure/core-http";
 import { GroupImpl } from "./operations";
 import { Group } from "./operationsInterfaces";
 import { UserAgentCoreV1ClientOptionalParams } from "./models";
@@ -14,7 +15,7 @@ const packageName = "@msinternal/useragent-corev1";
 const packageVersion = "1.0.0-preview1";
 
 export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
-  Host: string;
+  $host: string;
   subscriptionId: string;
   apiVersion: string;
 
@@ -54,7 +55,7 @@ export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "2014-04-01-preview";
     this.group = new GroupImpl(this);
   }

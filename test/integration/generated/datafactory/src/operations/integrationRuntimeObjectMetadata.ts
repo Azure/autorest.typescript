@@ -161,7 +161,7 @@ const refreshOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -185,7 +185,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.getMetadataRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

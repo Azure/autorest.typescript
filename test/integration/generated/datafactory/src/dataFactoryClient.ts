@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import {
   OperationsImpl,
   FactoriesImpl,
@@ -45,7 +46,7 @@ import {
 import { DataFactoryClientOptionalParams } from "./models";
 
 export class DataFactoryClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
   subscriptionId: string;
 
@@ -89,7 +90,7 @@ export class DataFactoryClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "https://management.azure.com";
+    this.$host = options.$host || "https://management.azure.com";
     this.apiVersion = options.apiVersion || "2018-06-01";
     this.operations = new OperationsImpl(this);
     this.factories = new FactoriesImpl(this);

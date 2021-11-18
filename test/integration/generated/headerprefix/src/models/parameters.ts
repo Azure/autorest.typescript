@@ -12,8 +12,8 @@ export const accept: OperationParameter = {
   }
 };
 
-export const Host: OperationURLParameter = {
-  parameterPath: "Host",
+export const $host: OperationURLParameter = {
+  parameterPath: "$host",
   mapper: {
     serializedName: "$host",
     required: true,

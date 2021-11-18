@@ -13,7 +13,7 @@ import { ResourceGroups } from "./operationsInterfaces";
 import { ResourcesClientOptionalParams } from "./models";
 
 export class ResourcesClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
   subscriptionId: string;
 
@@ -63,7 +63,7 @@ export class ResourcesClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "https://management.azure.com";
+    this.$host = options.$host || "https://management.azure.com";
     this.apiVersion = options.apiVersion || "2020-10-01";
     this.resourceGroups = new ResourceGroupsImpl(this);
   }

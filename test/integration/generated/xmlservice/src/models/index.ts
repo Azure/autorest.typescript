@@ -19,7 +19,7 @@ export interface RootWithRefAndNoMeta {
 /** I am a complex type with no XML node */
 export interface ComplexTypeNoMeta {
   /** The id of the res */
-  id?: string;
+  iD?: string;
 }
 
 /** I am root, and I ref a model WITH meta */
@@ -33,7 +33,7 @@ export interface RootWithRefAndMeta {
 /** I am a complex type with XML node */
 export interface ComplexTypeWithMeta {
   /** The id of the res */
-  id?: string;
+  iD?: string;
 }
 
 /** Data about a slideshow */
@@ -143,7 +143,7 @@ export interface Metrics {
   /** Indicates whether metrics are enabled for the Blob service. */
   enabled: boolean;
   /** Indicates whether metrics should generate summary statistics for called API operations. */
-  includeApIs?: boolean;
+  includeAPIs?: boolean;
   /** the retention policy */
   retentionPolicy?: RetentionPolicy;
 }
@@ -221,7 +221,7 @@ export interface BlobProperties {
   contentType?: string;
   contentEncoding?: string;
   contentLanguage?: string;
-  contentMd5?: string;
+  contentMD5?: string;
   contentDisposition?: string;
   cacheControl?: string;
   blobSequenceNumber?: number;
@@ -254,7 +254,7 @@ export interface JsonOutput {
 }
 
 /** Contans property */
-export interface ObjectWithXMSTextProperty {
+export interface ObjectWithXMsTextProperty {
   /** Returned value should be 'english' */
   language?: string;
   /** Returned value should be 'I am text' */
@@ -517,11 +517,11 @@ export interface XmlJsonOutputOptionalParams
 export type XmlJsonOutputResponse = JsonOutput;
 
 /** Optional parameters. */
-export interface XmlGetXMSTextOptionalParams
+export interface XmlGetXMsTextOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the getXMSText operation. */
-export type XmlGetXmsTextResponse = ObjectWithXMSTextProperty;
+/** Contains response data for the getXMsText operation. */
+export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty;
 
 /** Optional parameters. */
 export interface XmlGetBytesOptionalParams
@@ -547,7 +547,7 @@ export interface XmlPutUriOptionalParams extends coreClient.OperationOptions {}
 export interface XmlServiceClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

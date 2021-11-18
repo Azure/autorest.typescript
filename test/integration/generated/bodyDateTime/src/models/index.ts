@@ -195,7 +195,7 @@ export type DatetimeGetLocalNoOffsetMinDateTimeResponse = {
 export interface BodyDateTimeClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

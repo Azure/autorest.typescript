@@ -46,7 +46,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyBaseType
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

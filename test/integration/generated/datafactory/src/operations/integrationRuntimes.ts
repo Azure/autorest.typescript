@@ -637,10 +637,10 @@ export class IntegrationRuntimesImpl implements IntegrationRuntimes {
   }
 
   /**
-   * ListByFactoryNext
+   * listByFactoryNext
    * @param resourceGroupName The resource group name.
    * @param factoryName The factory name.
-   * @param nextLink The nextLink from the previous successful call to the ListByFactory method.
+   * @param nextLink The nextLink from the previous successful call to the listByFactory method.
    * @param options The options parameters.
    */
   private _listByFactoryNext(
@@ -672,7 +672,7 @@ const listByFactoryOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -695,7 +695,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.integrationRuntime,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -724,7 +724,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -748,7 +748,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.updateIntegrationRuntimeRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -771,7 +771,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -794,7 +794,7 @@ const getStatusOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -818,7 +818,7 @@ const listOutboundNetworkDependenciesEndpointsOperationSpec: coreClient.Operatio
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -841,7 +841,7 @@ const getConnectionInfoOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -865,7 +865,7 @@ const regenerateAuthKeyOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.regenerateKeyParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -889,7 +889,7 @@ const listAuthKeysOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -921,7 +921,7 @@ const startOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -945,7 +945,7 @@ const stopOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -966,7 +966,7 @@ const syncCredentialsOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -989,7 +989,7 @@ const getMonitoringDataOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -1010,7 +1010,7 @@ const upgradeOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -1032,7 +1032,7 @@ const removeLinksOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.linkedIntegrationRuntimeRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -1057,7 +1057,7 @@ const createLinkedIntegrationRuntimeOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.createLinkedIntegrationRuntimeRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -1080,7 +1080,7 @@ const listByFactoryNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

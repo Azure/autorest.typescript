@@ -58,7 +58,7 @@ const checkExistenceOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],

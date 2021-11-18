@@ -49,7 +49,7 @@ const getPropertiesOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.QueueGetPropertiesExceptionHeaders
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.requestId,

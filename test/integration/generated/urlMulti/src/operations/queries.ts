@@ -82,7 +82,7 @@ const arrayStringMultiNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -96,7 +96,7 @@ const arrayStringMultiEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -110,7 +110,7 @@ const arrayStringMultiValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

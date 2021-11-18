@@ -440,8 +440,8 @@ export class WorkspacesImpl implements Workspaces {
   }
 
   /**
-   * ListBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+   * listBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the listBySubscription method.
    * @param options The options parameters.
    */
   private _listBySubscriptionNext(
@@ -455,9 +455,9 @@ export class WorkspacesImpl implements Workspaces {
   }
 
   /**
-   * ListByResourceGroupNext
+   * listByResourceGroupNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
@@ -487,7 +487,7 @@ const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -505,7 +505,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -526,7 +526,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName
@@ -558,7 +558,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.workspace,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName
@@ -591,7 +591,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.workspacePatchResource,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName
@@ -615,7 +615,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName
@@ -636,7 +636,7 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.nextLink
   ],
@@ -656,7 +656,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.nextLink

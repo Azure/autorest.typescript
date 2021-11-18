@@ -197,7 +197,7 @@ export type NumberGetSmallDecimalResponse = {
 export interface BodyNumberClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

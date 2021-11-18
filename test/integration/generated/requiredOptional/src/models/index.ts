@@ -217,7 +217,7 @@ export interface ExplicitPostOptionalArrayHeaderOptionalParams
 export interface RequiredOptionalClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** number of items to skip */
   optionalGlobalQuery?: number;
   /** Overrides client endpoint. */

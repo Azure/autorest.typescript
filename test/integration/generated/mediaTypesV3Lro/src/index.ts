@@ -7,4 +7,4 @@
  */
 
 export * from "./models";
-export { MediaTypesV3LroClient } from "./mediaTypesV3LroClient";
+export { MediaTypesV3LROClient } from "./mediaTypesV3LROClient";

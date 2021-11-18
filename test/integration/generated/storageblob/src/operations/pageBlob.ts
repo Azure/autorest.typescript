@@ -61,7 +61,7 @@ const uploadPagesOperationSpec: coreClient.OperationSpec = {
     Parameters.accept,
     Parameters.pageWrite,
     Parameters.contentLength,
-    Parameters.transactionalContentMd5,
+    Parameters.transactionalContentMD5,
     Parameters.transactionalContentCrc64,
     Parameters.range,
     Parameters.leaseId,

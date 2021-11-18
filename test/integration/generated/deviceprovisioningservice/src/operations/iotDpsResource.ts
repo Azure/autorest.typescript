@@ -1009,8 +1009,8 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * ListBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
+   * listBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the listBySubscription method.
    * @param options The options parameters.
    */
   private _listBySubscriptionNext(
@@ -1024,9 +1024,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * ListByResourceGroupNext
+   * listByResourceGroupNext
    * @param resourceGroupName Resource group identifier.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
@@ -1041,10 +1041,10 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * ListValidSkusNext
+   * listValidSkusNext
    * @param provisioningServiceName Name of provisioning service.
    * @param resourceGroupName Name of resource group.
-   * @param nextLink The nextLink from the previous successful call to the ListValidSkus method.
+   * @param nextLink The nextLink from the previous successful call to the listValidSkus method.
    * @param options The options parameters.
    */
   private _listValidSkusNext(
@@ -1060,10 +1060,10 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * ListKeysNext
+   * listKeysNext
    * @param provisioningServiceName The provisioning service name to get the shared access keys for.
    * @param resourceGroupName resource group name
-   * @param nextLink The nextLink from the previous successful call to the ListKeys method.
+   * @param nextLink The nextLink from the previous successful call to the listKeys method.
    * @param options The options parameters.
    */
   private _listKeysNext(
@@ -1095,7 +1095,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1127,7 +1127,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.iotDpsDescription,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1157,7 +1157,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.provisioningServiceTags,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1181,7 +1181,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1202,7 +1202,7 @@ const listBySubscriptionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -1220,7 +1220,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -1241,7 +1241,7 @@ const getOperationResultOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion, Parameters.asyncinfo],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName,
@@ -1264,7 +1264,7 @@ const listValidSkusOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1286,7 +1286,7 @@ const checkProvisioningServiceNameAvailabilityOperationSpec: coreClient.Operatio
   },
   requestBody: Parameters.argumentsParam,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -1305,7 +1305,7 @@ const listKeysOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -1328,7 +1328,7 @@ const listKeysForKeyNameOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName,
@@ -1351,7 +1351,7 @@ const listPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName
@@ -1373,7 +1373,7 @@ const getPrivateLinkResourcesOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -1403,7 +1403,7 @@ const listPrivateEndpointConnectionsOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName
@@ -1425,7 +1425,7 @@ const getPrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -1458,7 +1458,7 @@ const createOrUpdatePrivateEndpointConnectionOperationSpec: coreClient.Operation
   requestBody: Parameters.privateEndpointConnection,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -1491,7 +1491,7 @@ const deletePrivateEndpointConnectionOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -1513,7 +1513,7 @@ const listBySubscriptionNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
@@ -1533,7 +1533,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
@@ -1554,7 +1554,7 @@ const listValidSkusNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
@@ -1576,7 +1576,7 @@ const listKeysNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

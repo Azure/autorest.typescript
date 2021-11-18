@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { Datetimerfc1123Impl } from "./operations";
 import { Datetimerfc1123 } from "./operationsInterfaces";
 import { BodyDateTimeRfc1123ClientOptionalParams } from "./models";
 
 export class BodyDateTimeRfc1123Client extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyDateTimeRfc1123Client class.
@@ -43,7 +44,7 @@ export class BodyDateTimeRfc1123Client extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.datetimerfc1123 = new Datetimerfc1123Impl(this);
   }
 

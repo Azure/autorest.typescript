@@ -361,7 +361,7 @@ export interface PathItemsGetLocalPathItemQueryNullOptionalParams
 export interface UrlClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** should contain value null */
   globalStringQuery?: string;
   /** Overrides client endpoint. */

@@ -49,7 +49,7 @@ const getWithFilterOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.filter, Parameters.top, Parameters.orderby],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

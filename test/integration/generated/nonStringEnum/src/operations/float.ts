@@ -57,7 +57,7 @@ const putOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.input1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -70,7 +70,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Number" } }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

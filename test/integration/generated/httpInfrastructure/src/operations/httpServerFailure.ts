@@ -76,7 +76,7 @@ const head501OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -88,7 +88,7 @@ const get501OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -101,7 +101,7 @@ const post505OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -115,7 +115,7 @@ const delete505OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

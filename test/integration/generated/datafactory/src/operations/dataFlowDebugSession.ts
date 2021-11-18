@@ -345,10 +345,10 @@ export class DataFlowDebugSessionImpl implements DataFlowDebugSession {
   }
 
   /**
-   * QueryByFactoryNext
+   * queryByFactoryNext
    * @param resourceGroupName The resource group name.
    * @param factoryName The factory name.
-   * @param nextLink The nextLink from the previous successful call to the QueryByFactory method.
+   * @param nextLink The nextLink from the previous successful call to the queryByFactory method.
    * @param options The options parameters.
    */
   private _queryByFactoryNext(
@@ -390,7 +390,7 @@ const createOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.request,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -413,7 +413,7 @@ const queryByFactoryOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -436,7 +436,7 @@ const addDataFlowOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.request1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -458,7 +458,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.request2,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -491,7 +491,7 @@ const executeCommandOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.request3,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -513,7 +513,7 @@ const queryByFactoryNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

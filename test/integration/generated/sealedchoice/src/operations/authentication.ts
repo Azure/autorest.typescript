@@ -51,7 +51,7 @@ const exchangeAcrRefreshTokenForAcrAccessTokenOperationSpec: coreClient.Operatio
   httpMethod: "POST",
   responses: { 200: {}, default: {} },
   formDataParameters: [Parameters.grantType],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   serializer
 };

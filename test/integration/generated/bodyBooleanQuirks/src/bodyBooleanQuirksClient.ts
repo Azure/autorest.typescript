@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { BoolImpl } from "./operations";
 import { Bool } from "./operationsInterfaces";
 import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
 export class BodyBooleanQuirksClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyBooleanQuirksClient class.
@@ -43,7 +44,7 @@ export class BodyBooleanQuirksClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.bool = new BoolImpl(this);
   }
 

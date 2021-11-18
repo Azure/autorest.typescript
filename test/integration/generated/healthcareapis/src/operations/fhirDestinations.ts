@@ -125,11 +125,11 @@ export class FhirDestinationsImpl implements FhirDestinations {
   }
 
   /**
-   * ListByIotConnectorNext
+   * listByIotConnectorNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
    * @param workspaceName The name of workspace resource.
    * @param iotConnectorName The name of IoT Connector resource.
-   * @param nextLink The nextLink from the previous successful call to the ListByIotConnector method.
+   * @param nextLink The nextLink from the previous successful call to the listByIotConnector method.
    * @param options The options parameters.
    */
   private _listByIotConnectorNext(
@@ -162,7 +162,7 @@ const listByIotConnectorOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -184,7 +184,7 @@ const listByIotConnectorNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.nextLink,

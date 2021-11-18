@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PetImpl } from "./operations";
 import { Pet } from "./operationsInterfaces";
 import { XmsErrorResponsesClientOptionalParams } from "./models";
 
 export class XmsErrorResponsesClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the XmsErrorResponsesClient class.
@@ -43,7 +44,7 @@ export class XmsErrorResponsesClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost";
+    this.$host = options.$host || "http://localhost";
     this.pet = new PetImpl(this);
   }
 

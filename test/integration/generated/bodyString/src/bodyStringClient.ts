@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { StringOperationsImpl, EnumImpl } from "./operations";
 import { StringOperations, Enum } from "./operationsInterfaces";
 import { BodyStringClientOptionalParams } from "./models";
 
 export class BodyStringClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyStringClient class.
@@ -43,7 +44,7 @@ export class BodyStringClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.string = new StringOperationsImpl(this);
     this.enum = new EnumImpl(this);
   }

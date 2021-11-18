@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { ArrayImpl } from "./operations";
 import { Array } from "./operationsInterfaces";
 import { BodyArrayClientOptionalParams } from "./models";
 
 export class BodyArrayClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyArrayClient class.
@@ -43,7 +44,7 @@ export class BodyArrayClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.array = new ArrayImpl(this);
   }
 

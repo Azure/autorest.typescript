@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { NumberOperationsImpl } from "./operations";
 import { NumberOperations } from "./operationsInterfaces";
 import { BodyNumberClientOptionalParams } from "./models";
 
 export class BodyNumberClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyNumberClient class.
@@ -43,7 +44,7 @@ export class BodyNumberClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.number = new NumberOperationsImpl(this);
   }
 

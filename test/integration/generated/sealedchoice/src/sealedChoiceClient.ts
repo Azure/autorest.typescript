@@ -6,21 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { AuthenticationImpl } from "./operations";
 import { Authentication } from "./operationsInterfaces";
 import { SealedChoiceClientOptionalParams } from "./models";
 
 export class SealedChoiceClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the SealedChoiceClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: SealedChoiceClientOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: SealedChoiceClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -47,7 +48,7 @@ export class SealedChoiceClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
     this.authentication = new AuthenticationImpl(this);
   }
 

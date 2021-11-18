@@ -16,7 +16,7 @@ import {
 } from "./models";
 
 export class ObjectTypeClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the ObjectTypeClient class.
@@ -48,7 +48,7 @@ export class ObjectTypeClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
   }
 
   /**
@@ -91,7 +91,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -107,7 +107,7 @@ const putOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.putObject,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

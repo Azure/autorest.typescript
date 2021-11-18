@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 
 /** Optional parameters. */
-export interface MediaTypesV3LroClientSendOnDefault$binaryOptionalParams
+export interface SendOnDefault$binaryOptionalParams
   extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
@@ -20,7 +20,7 @@ export interface MediaTypesV3LroClientSendOnDefault$binaryOptionalParams
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LroClientSendOnDefault$textOptionalParams
+export interface SendOnDefault$textOptionalParams
   extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
@@ -31,27 +31,25 @@ export interface MediaTypesV3LroClientSendOnDefault$textOptionalParams
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LroClientSend$binaryOptionalParams
-  extends coreClient.OperationOptions {
+export interface Send$binaryOptionalParams extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Optional parameters. */
-export interface MediaTypesV3LroClientSend$textOptionalParams
-  extends coreClient.OperationOptions {
+export interface Send$textOptionalParams extends coreClient.OperationOptions {
   /** Excluded Ids */
   excluded?: string[];
 }
 
 /** Contains response data for the send operation. */
-export type MediaTypesV3LroClientSendResponse = {
+export type SendResponse = {
   /** The parsed response body. */
   body: string;
 };
 
 /** Optional parameters. */
-export interface MediaTypesV3LroClientOptionalParams
+export interface MediaTypesV3LROClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** Overrides client endpoint. */
   endpoint?: string;

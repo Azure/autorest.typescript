@@ -109,7 +109,7 @@ export interface GetMultiplePagesFragmentWithGroupingNextLinkQueryParam {
 export type GetMultiplePagesFragmentWithGroupingNextLinkParameters = GetMultiplePagesFragmentWithGroupingNextLinkQueryParam &
   RequestParameters;
 
-export interface GetMultiplePagesLroHeaders {
+export interface GetMultiplePagesLROHeaders {
   "client-request-id"?: string;
   /** Sets the maximum number of items to return in the response. */
   maxresults?: number;
@@ -117,11 +117,11 @@ export interface GetMultiplePagesLroHeaders {
   timeout?: number;
 }
 
-export interface GetMultiplePagesLroHeaderParam {
-  headers: RawHttpHeadersInput & GetMultiplePagesLroHeaders;
+export interface GetMultiplePagesLROHeaderParam {
+  headers: RawHttpHeadersInput & GetMultiplePagesLROHeaders;
 }
 
-export type GetMultiplePagesLroParameters = GetMultiplePagesLroHeaderParam &
+export type GetMultiplePagesLROParameters = GetMultiplePagesLROHeaderParam &
   RequestParameters;
 
 export interface NextFragmentQueryParamProperties {
@@ -146,4 +146,4 @@ export interface NextFragmentWithGroupingQueryParam {
 
 export type NextFragmentWithGroupingParameters = NextFragmentWithGroupingQueryParam &
   RequestParameters;
-export type GetPagingModelWithItemNameWithXmsClientNameParameters = RequestParameters;
+export type GetPagingModelWithItemNameWithXMSClientNameParameters = RequestParameters;

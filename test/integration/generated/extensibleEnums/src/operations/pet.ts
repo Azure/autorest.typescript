@@ -64,7 +64,7 @@ const getByPetIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PetDef
     }
   },
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -77,7 +77,7 @@ const addPetOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.petParam,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

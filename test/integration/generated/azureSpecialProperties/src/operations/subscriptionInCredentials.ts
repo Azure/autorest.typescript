@@ -115,7 +115,7 @@ const postMethodGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -129,7 +129,7 @@ const postMethodGlobalNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -144,7 +144,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec = 
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -158,7 +158,7 @@ const postPathGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -172,7 +172,7 @@ const postSwaggerGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };

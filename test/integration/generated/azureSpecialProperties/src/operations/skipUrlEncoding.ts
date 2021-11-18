@@ -144,7 +144,7 @@ const getMethodPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.unencodedPathParam],
+  urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -157,7 +157,7 @@ const getPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.unencodedPathParam],
+  urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -171,7 +171,7 @@ const getSwaggerPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.unencodedPathParam1],
+  urlParameters: [Parameters.$host, Parameters.unencodedPathParam1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -185,7 +185,7 @@ const getMethodQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -199,7 +199,7 @@ const getMethodQueryNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q11],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -213,7 +213,7 @@ const getPathQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -227,7 +227,7 @@ const getSwaggerQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q12],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

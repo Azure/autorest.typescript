@@ -1,24 +1,25 @@
+import * as coreClient from "@azure/core-client";
 import { ProductOperationsImpl, PipelineOperationsImpl } from "./operations";
 import { ProductOperations, PipelineOperations } from "./operationsInterfaces";
 import { Enum0, OperationGroupClashClientOptionalParams } from "./models";
 
 export class OperationGroupClashClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: Enum0;
 
   /**
    * Initializes a new instance of the OperationGroupClashClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param apiVersion
    * @param options The parameter options
    */
   constructor(
-    Host: string,
+    $host: string,
     apiVersion: Enum0,
     options?: OperationGroupClashClientOptionalParams
   ) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
     if (apiVersion === undefined) {
       throw new Error("'apiVersion' cannot be null");
@@ -48,7 +49,7 @@ export class OperationGroupClashClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
     this.apiVersion = apiVersion;
     this.productOperations = new ProductOperationsImpl(this);
     this.pipelineOperations = new PipelineOperationsImpl(this);

@@ -424,7 +424,7 @@ const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.boolPath],
+  urlParameters: [Parameters.$host, Parameters.boolPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -437,7 +437,7 @@ const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.boolPath1],
+  urlParameters: [Parameters.$host, Parameters.boolPath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -450,7 +450,7 @@ const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.intPath],
+  urlParameters: [Parameters.$host, Parameters.intPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -463,7 +463,7 @@ const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.intPath1],
+  urlParameters: [Parameters.$host, Parameters.intPath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -476,7 +476,7 @@ const getTenBillionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.longPath],
+  urlParameters: [Parameters.$host, Parameters.longPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -489,7 +489,7 @@ const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.longPath1],
+  urlParameters: [Parameters.$host, Parameters.longPath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -502,7 +502,7 @@ const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.floatPath],
+  urlParameters: [Parameters.$host, Parameters.floatPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -515,7 +515,7 @@ const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.floatPath1],
+  urlParameters: [Parameters.$host, Parameters.floatPath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -528,7 +528,7 @@ const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.doublePath],
+  urlParameters: [Parameters.$host, Parameters.doublePath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -541,7 +541,7 @@ const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.doublePath1],
+  urlParameters: [Parameters.$host, Parameters.doublePath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -554,7 +554,7 @@ const stringUnicodeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.stringPath],
+  urlParameters: [Parameters.$host, Parameters.stringPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -568,7 +568,7 @@ const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.stringPath1],
+  urlParameters: [Parameters.$host, Parameters.stringPath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -581,7 +581,7 @@ const stringUrlNonEncodedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.stringPath2],
+  urlParameters: [Parameters.$host, Parameters.stringPath2],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -594,7 +594,7 @@ const stringEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.stringPath3],
+  urlParameters: [Parameters.$host, Parameters.stringPath3],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -607,7 +607,7 @@ const stringNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.stringPath4],
+  urlParameters: [Parameters.$host, Parameters.stringPath4],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -620,7 +620,7 @@ const enumValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.enumPath],
+  urlParameters: [Parameters.$host, Parameters.enumPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -633,7 +633,7 @@ const enumNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.enumPath],
+  urlParameters: [Parameters.$host, Parameters.enumPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -646,7 +646,7 @@ const byteMultiByteOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.bytePath],
+  urlParameters: [Parameters.$host, Parameters.bytePath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -659,7 +659,7 @@ const byteEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.bytePath1],
+  urlParameters: [Parameters.$host, Parameters.bytePath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -672,7 +672,7 @@ const byteNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.bytePath],
+  urlParameters: [Parameters.$host, Parameters.bytePath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -685,7 +685,7 @@ const dateValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.datePath],
+  urlParameters: [Parameters.$host, Parameters.datePath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -698,7 +698,7 @@ const dateNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.datePath1],
+  urlParameters: [Parameters.$host, Parameters.datePath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -711,7 +711,7 @@ const dateTimeValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.dateTimePath],
+  urlParameters: [Parameters.$host, Parameters.dateTimePath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -724,7 +724,7 @@ const dateTimeNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.dateTimePath1],
+  urlParameters: [Parameters.$host, Parameters.dateTimePath1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -737,7 +737,7 @@ const base64UrlOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.base64UrlPath],
+  urlParameters: [Parameters.$host, Parameters.base64UrlPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -751,7 +751,7 @@ const arrayCsvInPathOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.arrayPath],
+  urlParameters: [Parameters.$host, Parameters.arrayPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -764,7 +764,7 @@ const unixTimeUrlOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.unixTimeUrlPath],
+  urlParameters: [Parameters.$host, Parameters.unixTimeUrlPath],
   headerParameters: [Parameters.accept],
   serializer
 };

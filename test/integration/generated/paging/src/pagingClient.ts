@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PagingImpl } from "./operations";
 import { Paging } from "./operationsInterfaces";
 import { PagingClientOptionalParams } from "./models";
 
 export class PagingClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the PagingClient class.
@@ -43,7 +44,7 @@ export class PagingClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.paging = new PagingImpl(this);
   }
 

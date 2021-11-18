@@ -35,7 +35,7 @@ export type TimePutResponse = {
 export interface BodyTimeClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

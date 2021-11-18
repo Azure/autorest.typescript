@@ -125,7 +125,7 @@ const getAllWithValuesOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -149,7 +149,7 @@ const getGlobalQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -173,7 +173,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -197,7 +197,7 @@ const getLocalPathItemQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath

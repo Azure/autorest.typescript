@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { IntImpl, FloatImpl } from "./operations";
 import { Int, Float } from "./operationsInterfaces";
 import { NonStringEnumClientOptionalParams } from "./models";
 
 export class NonStringEnumClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the NonStringEnumClient class.
@@ -43,7 +44,7 @@ export class NonStringEnumClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.int = new IntImpl(this);
     this.float = new FloatImpl(this);
   }

@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { GroupImpl } from "./operations";
 import { Group } from "./operationsInterfaces";
 import { SubscriptionIdApiVersionClientOptionalParams } from "./models";
 
 export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   subscriptionId: string;
   apiVersion: string;
 
@@ -55,7 +56,7 @@ export class SubscriptionIdApiVersionClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "2014-04-01-preview";
     this.group = new GroupImpl(this);
   }

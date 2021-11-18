@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import {
   DomainServiceOperationsImpl,
   DomainServicesImpl,
@@ -13,7 +14,7 @@ import {
 import { DomainServicesClientOptionalParams } from "./models";
 
 export class DomainServicesClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
   subscriptionId: string;
 
@@ -58,7 +59,7 @@ export class DomainServicesClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "https://management.azure.com";
+    this.$host = options.$host || "https://management.azure.com";
     this.apiVersion = options.apiVersion || "2021-05-01";
     this.domainServiceOperations = new DomainServiceOperationsImpl(this);
     this.domainServices = new DomainServicesImpl(this);

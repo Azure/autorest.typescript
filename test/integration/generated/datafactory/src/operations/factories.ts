@@ -294,8 +294,8 @@ export class FactoriesImpl implements Factories {
   }
 
   /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
+   * listNext
+   * @param nextLink The nextLink from the previous successful call to the list method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -309,9 +309,9 @@ export class FactoriesImpl implements Factories {
   }
 
   /**
-   * ListByResourceGroupNext
+   * listByResourceGroupNext
    * @param resourceGroupName The resource group name.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
@@ -341,7 +341,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -360,7 +360,7 @@ const configureFactoryRepoOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factoryRepoUpdate,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.locationId
   ],
@@ -382,7 +382,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -404,7 +404,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factory,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -432,7 +432,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factoryUpdateParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -456,7 +456,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -477,7 +477,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -500,7 +500,7 @@ const getGitHubAccessTokenOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.gitHubAccessTokenRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -524,7 +524,7 @@ const getDataPlaneAccessOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.policy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -546,7 +546,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
@@ -566,7 +566,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName

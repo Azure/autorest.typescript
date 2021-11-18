@@ -6,108 +6,108 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { LrOS } from "../operationsInterfaces";
+import { LROs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LroClient } from "../lroClient";
+import { LROClient } from "../lROClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  LrOSPut200SucceededOptionalParams,
-  LrOSPut200SucceededResponse,
-  LrOSPatch200SucceededIgnoreHeadersOptionalParams,
-  LrOSPatch200SucceededIgnoreHeadersResponse,
-  LrOSPut201SucceededOptionalParams,
-  LrOSPut201SucceededResponse,
-  LrOSPost202ListOptionalParams,
-  LrOSPost202ListResponse,
-  LrOSPut200SucceededNoStateOptionalParams,
-  LrOSPut200SucceededNoStateResponse,
-  LrOSPut202Retry200OptionalParams,
-  LrOSPut202Retry200Response,
-  LrOSPut201CreatingSucceeded200OptionalParams,
-  LrOSPut201CreatingSucceeded200Response,
-  LrOSPut200UpdatingSucceeded204OptionalParams,
-  LrOSPut200UpdatingSucceeded204Response,
-  LrOSPut201CreatingFailed200OptionalParams,
-  LrOSPut201CreatingFailed200Response,
-  LrOSPut200Acceptedcanceled200OptionalParams,
-  LrOSPut200Acceptedcanceled200Response,
-  LrOSPutNoHeaderInRetryOptionalParams,
-  LrOSPutNoHeaderInRetryResponse,
-  LrOSPutAsyncRetrySucceededOptionalParams,
-  LrOSPutAsyncRetrySucceededResponse,
-  LrOSPutAsyncNoRetrySucceededOptionalParams,
-  LrOSPutAsyncNoRetrySucceededResponse,
-  LrOSPutAsyncRetryFailedOptionalParams,
-  LrOSPutAsyncRetryFailedResponse,
-  LrOSPutAsyncNoRetrycanceledOptionalParams,
-  LrOSPutAsyncNoRetrycanceledResponse,
-  LrOSPutAsyncNoHeaderInRetryOptionalParams,
-  LrOSPutAsyncNoHeaderInRetryResponse,
-  LrOSPutNonResourceOptionalParams,
-  LrOSPutNonResourceResponse,
-  LrOSPutAsyncNonResourceOptionalParams,
-  LrOSPutAsyncNonResourceResponse,
-  LrOSPutSubResourceOptionalParams,
-  LrOSPutSubResourceResponse,
-  LrOSPutAsyncSubResourceOptionalParams,
-  LrOSPutAsyncSubResourceResponse,
-  LrOSDeleteProvisioning202Accepted200SucceededOptionalParams,
-  LrOSDeleteProvisioning202Accepted200SucceededResponse,
-  LrOSDeleteProvisioning202DeletingFailed200OptionalParams,
-  LrOSDeleteProvisioning202DeletingFailed200Response,
-  LrOSDeleteProvisioning202Deletingcanceled200OptionalParams,
-  LrOSDeleteProvisioning202Deletingcanceled200Response,
-  LrOSDelete204SucceededOptionalParams,
-  LrOSDelete202Retry200OptionalParams,
-  LrOSDelete202Retry200Response,
-  LrOSDelete202NoRetry204OptionalParams,
-  LrOSDelete202NoRetry204Response,
-  LrOSDeleteNoHeaderInRetryOptionalParams,
-  LrOSDeleteNoHeaderInRetryResponse,
-  LrOSDeleteAsyncNoHeaderInRetryOptionalParams,
-  LrOSDeleteAsyncNoHeaderInRetryResponse,
-  LrOSDeleteAsyncRetrySucceededOptionalParams,
-  LrOSDeleteAsyncRetrySucceededResponse,
-  LrOSDeleteAsyncNoRetrySucceededOptionalParams,
-  LrOSDeleteAsyncNoRetrySucceededResponse,
-  LrOSDeleteAsyncRetryFailedOptionalParams,
-  LrOSDeleteAsyncRetryFailedResponse,
-  LrOSDeleteAsyncRetrycanceledOptionalParams,
-  LrOSDeleteAsyncRetrycanceledResponse,
-  LrOSPost200WithPayloadOptionalParams,
-  LrOSPost200WithPayloadResponse,
-  LrOSPost202Retry200OptionalParams,
-  LrOSPost202Retry200Response,
-  LrOSPost202NoRetry204OptionalParams,
-  LrOSPost202NoRetry204Response,
-  LrOSPostDoubleHeadersFinalLocationGetOptionalParams,
-  LrOSPostDoubleHeadersFinalLocationGetResponse,
-  LrOSPostDoubleHeadersFinalAzureHeaderGetOptionalParams,
-  LrOSPostDoubleHeadersFinalAzureHeaderGetResponse,
-  LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams,
-  LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
-  LrOSPostAsyncRetrySucceededOptionalParams,
-  LrOSPostAsyncRetrySucceededResponse,
-  LrOSPostAsyncNoRetrySucceededOptionalParams,
-  LrOSPostAsyncNoRetrySucceededResponse,
-  LrOSPostAsyncRetryFailedOptionalParams,
-  LrOSPostAsyncRetryFailedResponse,
-  LrOSPostAsyncRetrycanceledOptionalParams,
-  LrOSPostAsyncRetrycanceledResponse
+  LROsPut200SucceededOptionalParams,
+  LROsPut200SucceededResponse,
+  LROsPatch200SucceededIgnoreHeadersOptionalParams,
+  LROsPatch200SucceededIgnoreHeadersResponse,
+  LROsPut201SucceededOptionalParams,
+  LROsPut201SucceededResponse,
+  LROsPost202ListOptionalParams,
+  LROsPost202ListResponse,
+  LROsPut200SucceededNoStateOptionalParams,
+  LROsPut200SucceededNoStateResponse,
+  LROsPut202Retry200OptionalParams,
+  LROsPut202Retry200Response,
+  LROsPut201CreatingSucceeded200OptionalParams,
+  LROsPut201CreatingSucceeded200Response,
+  LROsPut200UpdatingSucceeded204OptionalParams,
+  LROsPut200UpdatingSucceeded204Response,
+  LROsPut201CreatingFailed200OptionalParams,
+  LROsPut201CreatingFailed200Response,
+  LROsPut200Acceptedcanceled200OptionalParams,
+  LROsPut200Acceptedcanceled200Response,
+  LROsPutNoHeaderInRetryOptionalParams,
+  LROsPutNoHeaderInRetryResponse,
+  LROsPutAsyncRetrySucceededOptionalParams,
+  LROsPutAsyncRetrySucceededResponse,
+  LROsPutAsyncNoRetrySucceededOptionalParams,
+  LROsPutAsyncNoRetrySucceededResponse,
+  LROsPutAsyncRetryFailedOptionalParams,
+  LROsPutAsyncRetryFailedResponse,
+  LROsPutAsyncNoRetrycanceledOptionalParams,
+  LROsPutAsyncNoRetrycanceledResponse,
+  LROsPutAsyncNoHeaderInRetryOptionalParams,
+  LROsPutAsyncNoHeaderInRetryResponse,
+  LROsPutNonResourceOptionalParams,
+  LROsPutNonResourceResponse,
+  LROsPutAsyncNonResourceOptionalParams,
+  LROsPutAsyncNonResourceResponse,
+  LROsPutSubResourceOptionalParams,
+  LROsPutSubResourceResponse,
+  LROsPutAsyncSubResourceOptionalParams,
+  LROsPutAsyncSubResourceResponse,
+  LROsDeleteProvisioning202Accepted200SucceededOptionalParams,
+  LROsDeleteProvisioning202Accepted200SucceededResponse,
+  LROsDeleteProvisioning202DeletingFailed200OptionalParams,
+  LROsDeleteProvisioning202DeletingFailed200Response,
+  LROsDeleteProvisioning202Deletingcanceled200OptionalParams,
+  LROsDeleteProvisioning202Deletingcanceled200Response,
+  LROsDelete204SucceededOptionalParams,
+  LROsDelete202Retry200OptionalParams,
+  LROsDelete202Retry200Response,
+  LROsDelete202NoRetry204OptionalParams,
+  LROsDelete202NoRetry204Response,
+  LROsDeleteNoHeaderInRetryOptionalParams,
+  LROsDeleteNoHeaderInRetryResponse,
+  LROsDeleteAsyncNoHeaderInRetryOptionalParams,
+  LROsDeleteAsyncNoHeaderInRetryResponse,
+  LROsDeleteAsyncRetrySucceededOptionalParams,
+  LROsDeleteAsyncRetrySucceededResponse,
+  LROsDeleteAsyncNoRetrySucceededOptionalParams,
+  LROsDeleteAsyncNoRetrySucceededResponse,
+  LROsDeleteAsyncRetryFailedOptionalParams,
+  LROsDeleteAsyncRetryFailedResponse,
+  LROsDeleteAsyncRetrycanceledOptionalParams,
+  LROsDeleteAsyncRetrycanceledResponse,
+  LROsPost200WithPayloadOptionalParams,
+  LROsPost200WithPayloadResponse,
+  LROsPost202Retry200OptionalParams,
+  LROsPost202Retry200Response,
+  LROsPost202NoRetry204OptionalParams,
+  LROsPost202NoRetry204Response,
+  LROsPostDoubleHeadersFinalLocationGetOptionalParams,
+  LROsPostDoubleHeadersFinalLocationGetResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams,
+  LROsPostDoubleHeadersFinalAzureHeaderGetResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse,
+  LROsPostAsyncRetrySucceededOptionalParams,
+  LROsPostAsyncRetrySucceededResponse,
+  LROsPostAsyncNoRetrySucceededOptionalParams,
+  LROsPostAsyncNoRetrySucceededResponse,
+  LROsPostAsyncRetryFailedOptionalParams,
+  LROsPostAsyncRetryFailedResponse,
+  LROsPostAsyncRetrycanceledOptionalParams,
+  LROsPostAsyncRetrycanceledResponse
 } from "../models";
 
-/** Class containing LrOS operations. */
-export class LrOSImpl implements LrOS {
-  private readonly client: LroClient;
+/** Class containing LROs operations. */
+export class LROsImpl implements LROs {
+  private readonly client: LROClient;
 
   /**
-   * Initialize a new instance of the class LrOS class.
+   * Initialize a new instance of the class LROs class.
    * @param client Reference to the service client
    */
-  constructor(client: LroClient) {
+  constructor(client: LROClient) {
     this.client = client;
   }
 
@@ -117,17 +117,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200Succeeded(
-    options?: LrOSPut200SucceededOptionalParams
+    options?: LROsPut200SucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut200SucceededResponse>,
-      LrOSPut200SucceededResponse
+      PollOperationState<LROsPut200SucceededResponse>,
+      LROsPut200SucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut200SucceededResponse> => {
+    ): Promise<LROsPut200SucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -180,8 +180,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200SucceededAndWait(
-    options?: LrOSPut200SucceededOptionalParams
-  ): Promise<LrOSPut200SucceededResponse> {
+    options?: LROsPut200SucceededOptionalParams
+  ): Promise<LROsPut200SucceededResponse> {
     const poller = await this.beginPut200Succeeded(options);
     return poller.pollUntilDone();
   }
@@ -192,17 +192,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPatch200SucceededIgnoreHeaders(
-    options?: LrOSPatch200SucceededIgnoreHeadersOptionalParams
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPatch200SucceededIgnoreHeadersResponse>,
-      LrOSPatch200SucceededIgnoreHeadersResponse
+      PollOperationState<LROsPatch200SucceededIgnoreHeadersResponse>,
+      LROsPatch200SucceededIgnoreHeadersResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPatch200SucceededIgnoreHeadersResponse> => {
+    ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -255,8 +255,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPatch200SucceededIgnoreHeadersAndWait(
-    options?: LrOSPatch200SucceededIgnoreHeadersOptionalParams
-  ): Promise<LrOSPatch200SucceededIgnoreHeadersResponse> {
+    options?: LROsPatch200SucceededIgnoreHeadersOptionalParams
+  ): Promise<LROsPatch200SucceededIgnoreHeadersResponse> {
     const poller = await this.beginPatch200SucceededIgnoreHeaders(options);
     return poller.pollUntilDone();
   }
@@ -267,17 +267,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201Succeeded(
-    options?: LrOSPut201SucceededOptionalParams
+    options?: LROsPut201SucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut201SucceededResponse>,
-      LrOSPut201SucceededResponse
+      PollOperationState<LROsPut201SucceededResponse>,
+      LROsPut201SucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut201SucceededResponse> => {
+    ): Promise<LROsPut201SucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -330,8 +330,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201SucceededAndWait(
-    options?: LrOSPut201SucceededOptionalParams
-  ): Promise<LrOSPut201SucceededResponse> {
+    options?: LROsPut201SucceededOptionalParams
+  ): Promise<LROsPut201SucceededResponse> {
     const poller = await this.beginPut201Succeeded(options);
     return poller.pollUntilDone();
   }
@@ -342,17 +342,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202List(
-    options?: LrOSPost202ListOptionalParams
+    options?: LROsPost202ListOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPost202ListResponse>,
-      LrOSPost202ListResponse
+      PollOperationState<LROsPost202ListResponse>,
+      LROsPost202ListResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPost202ListResponse> => {
+    ): Promise<LROsPost202ListResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -405,8 +405,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202ListAndWait(
-    options?: LrOSPost202ListOptionalParams
-  ): Promise<LrOSPost202ListResponse> {
+    options?: LROsPost202ListOptionalParams
+  ): Promise<LROsPost202ListResponse> {
     const poller = await this.beginPost202List(options);
     return poller.pollUntilDone();
   }
@@ -417,17 +417,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200SucceededNoState(
-    options?: LrOSPut200SucceededNoStateOptionalParams
+    options?: LROsPut200SucceededNoStateOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut200SucceededNoStateResponse>,
-      LrOSPut200SucceededNoStateResponse
+      PollOperationState<LROsPut200SucceededNoStateResponse>,
+      LROsPut200SucceededNoStateResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut200SucceededNoStateResponse> => {
+    ): Promise<LROsPut200SucceededNoStateResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -480,8 +480,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200SucceededNoStateAndWait(
-    options?: LrOSPut200SucceededNoStateOptionalParams
-  ): Promise<LrOSPut200SucceededNoStateResponse> {
+    options?: LROsPut200SucceededNoStateOptionalParams
+  ): Promise<LROsPut200SucceededNoStateResponse> {
     const poller = await this.beginPut200SucceededNoState(options);
     return poller.pollUntilDone();
   }
@@ -492,17 +492,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut202Retry200(
-    options?: LrOSPut202Retry200OptionalParams
+    options?: LROsPut202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut202Retry200Response>,
-      LrOSPut202Retry200Response
+      PollOperationState<LROsPut202Retry200Response>,
+      LROsPut202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut202Retry200Response> => {
+    ): Promise<LROsPut202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -555,8 +555,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut202Retry200AndWait(
-    options?: LrOSPut202Retry200OptionalParams
-  ): Promise<LrOSPut202Retry200Response> {
+    options?: LROsPut202Retry200OptionalParams
+  ): Promise<LROsPut202Retry200Response> {
     const poller = await this.beginPut202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -568,17 +568,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200(
-    options?: LrOSPut201CreatingSucceeded200OptionalParams
+    options?: LROsPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut201CreatingSucceeded200Response>,
-      LrOSPut201CreatingSucceeded200Response
+      PollOperationState<LROsPut201CreatingSucceeded200Response>,
+      LROsPut201CreatingSucceeded200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut201CreatingSucceeded200Response> => {
+    ): Promise<LROsPut201CreatingSucceeded200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -632,8 +632,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200AndWait(
-    options?: LrOSPut201CreatingSucceeded200OptionalParams
-  ): Promise<LrOSPut201CreatingSucceeded200Response> {
+    options?: LROsPut201CreatingSucceeded200OptionalParams
+  ): Promise<LROsPut201CreatingSucceeded200Response> {
     const poller = await this.beginPut201CreatingSucceeded200(options);
     return poller.pollUntilDone();
   }
@@ -645,17 +645,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200UpdatingSucceeded204(
-    options?: LrOSPut200UpdatingSucceeded204OptionalParams
+    options?: LROsPut200UpdatingSucceeded204OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut200UpdatingSucceeded204Response>,
-      LrOSPut200UpdatingSucceeded204Response
+      PollOperationState<LROsPut200UpdatingSucceeded204Response>,
+      LROsPut200UpdatingSucceeded204Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut200UpdatingSucceeded204Response> => {
+    ): Promise<LROsPut200UpdatingSucceeded204Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -709,8 +709,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200UpdatingSucceeded204AndWait(
-    options?: LrOSPut200UpdatingSucceeded204OptionalParams
-  ): Promise<LrOSPut200UpdatingSucceeded204Response> {
+    options?: LROsPut200UpdatingSucceeded204OptionalParams
+  ): Promise<LROsPut200UpdatingSucceeded204Response> {
     const poller = await this.beginPut200UpdatingSucceeded204(options);
     return poller.pollUntilDone();
   }
@@ -722,17 +722,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201CreatingFailed200(
-    options?: LrOSPut201CreatingFailed200OptionalParams
+    options?: LROsPut201CreatingFailed200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut201CreatingFailed200Response>,
-      LrOSPut201CreatingFailed200Response
+      PollOperationState<LROsPut201CreatingFailed200Response>,
+      LROsPut201CreatingFailed200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut201CreatingFailed200Response> => {
+    ): Promise<LROsPut201CreatingFailed200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -786,8 +786,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut201CreatingFailed200AndWait(
-    options?: LrOSPut201CreatingFailed200OptionalParams
-  ): Promise<LrOSPut201CreatingFailed200Response> {
+    options?: LROsPut201CreatingFailed200OptionalParams
+  ): Promise<LROsPut201CreatingFailed200Response> {
     const poller = await this.beginPut201CreatingFailed200(options);
     return poller.pollUntilDone();
   }
@@ -799,17 +799,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200Acceptedcanceled200(
-    options?: LrOSPut200Acceptedcanceled200OptionalParams
+    options?: LROsPut200Acceptedcanceled200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPut200Acceptedcanceled200Response>,
-      LrOSPut200Acceptedcanceled200Response
+      PollOperationState<LROsPut200Acceptedcanceled200Response>,
+      LROsPut200Acceptedcanceled200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPut200Acceptedcanceled200Response> => {
+    ): Promise<LROsPut200Acceptedcanceled200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -863,8 +863,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPut200Acceptedcanceled200AndWait(
-    options?: LrOSPut200Acceptedcanceled200OptionalParams
-  ): Promise<LrOSPut200Acceptedcanceled200Response> {
+    options?: LROsPut200Acceptedcanceled200OptionalParams
+  ): Promise<LROsPut200Acceptedcanceled200Response> {
     const poller = await this.beginPut200Acceptedcanceled200(options);
     return poller.pollUntilDone();
   }
@@ -875,17 +875,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutNoHeaderInRetry(
-    options?: LrOSPutNoHeaderInRetryOptionalParams
+    options?: LROsPutNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutNoHeaderInRetryResponse>,
-      LrOSPutNoHeaderInRetryResponse
+      PollOperationState<LROsPutNoHeaderInRetryResponse>,
+      LROsPutNoHeaderInRetryResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutNoHeaderInRetryResponse> => {
+    ): Promise<LROsPutNoHeaderInRetryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -938,8 +938,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutNoHeaderInRetryAndWait(
-    options?: LrOSPutNoHeaderInRetryOptionalParams
-  ): Promise<LrOSPutNoHeaderInRetryResponse> {
+    options?: LROsPutNoHeaderInRetryOptionalParams
+  ): Promise<LROsPutNoHeaderInRetryResponse> {
     const poller = await this.beginPutNoHeaderInRetry(options);
     return poller.pollUntilDone();
   }
@@ -951,17 +951,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncRetrySucceeded(
-    options?: LrOSPutAsyncRetrySucceededOptionalParams
+    options?: LROsPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncRetrySucceededResponse>,
-      LrOSPutAsyncRetrySucceededResponse
+      PollOperationState<LROsPutAsyncRetrySucceededResponse>,
+      LROsPutAsyncRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncRetrySucceededResponse> => {
+    ): Promise<LROsPutAsyncRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1015,8 +1015,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncRetrySucceededAndWait(
-    options?: LrOSPutAsyncRetrySucceededOptionalParams
-  ): Promise<LrOSPutAsyncRetrySucceededResponse> {
+    options?: LROsPutAsyncRetrySucceededOptionalParams
+  ): Promise<LROsPutAsyncRetrySucceededResponse> {
     const poller = await this.beginPutAsyncRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -1028,17 +1028,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoRetrySucceeded(
-    options?: LrOSPutAsyncNoRetrySucceededOptionalParams
+    options?: LROsPutAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncNoRetrySucceededResponse>,
-      LrOSPutAsyncNoRetrySucceededResponse
+      PollOperationState<LROsPutAsyncNoRetrySucceededResponse>,
+      LROsPutAsyncNoRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncNoRetrySucceededResponse> => {
+    ): Promise<LROsPutAsyncNoRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1092,8 +1092,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoRetrySucceededAndWait(
-    options?: LrOSPutAsyncNoRetrySucceededOptionalParams
-  ): Promise<LrOSPutAsyncNoRetrySucceededResponse> {
+    options?: LROsPutAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsPutAsyncNoRetrySucceededResponse> {
     const poller = await this.beginPutAsyncNoRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -1105,17 +1105,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncRetryFailed(
-    options?: LrOSPutAsyncRetryFailedOptionalParams
+    options?: LROsPutAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncRetryFailedResponse>,
-      LrOSPutAsyncRetryFailedResponse
+      PollOperationState<LROsPutAsyncRetryFailedResponse>,
+      LROsPutAsyncRetryFailedResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncRetryFailedResponse> => {
+    ): Promise<LROsPutAsyncRetryFailedResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1169,8 +1169,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncRetryFailedAndWait(
-    options?: LrOSPutAsyncRetryFailedOptionalParams
-  ): Promise<LrOSPutAsyncRetryFailedResponse> {
+    options?: LROsPutAsyncRetryFailedOptionalParams
+  ): Promise<LROsPutAsyncRetryFailedResponse> {
     const poller = await this.beginPutAsyncRetryFailed(options);
     return poller.pollUntilDone();
   }
@@ -1182,17 +1182,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoRetrycanceled(
-    options?: LrOSPutAsyncNoRetrycanceledOptionalParams
+    options?: LROsPutAsyncNoRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncNoRetrycanceledResponse>,
-      LrOSPutAsyncNoRetrycanceledResponse
+      PollOperationState<LROsPutAsyncNoRetrycanceledResponse>,
+      LROsPutAsyncNoRetrycanceledResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncNoRetrycanceledResponse> => {
+    ): Promise<LROsPutAsyncNoRetrycanceledResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1246,8 +1246,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoRetrycanceledAndWait(
-    options?: LrOSPutAsyncNoRetrycanceledOptionalParams
-  ): Promise<LrOSPutAsyncNoRetrycanceledResponse> {
+    options?: LROsPutAsyncNoRetrycanceledOptionalParams
+  ): Promise<LROsPutAsyncNoRetrycanceledResponse> {
     const poller = await this.beginPutAsyncNoRetrycanceled(options);
     return poller.pollUntilDone();
   }
@@ -1258,17 +1258,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoHeaderInRetry(
-    options?: LrOSPutAsyncNoHeaderInRetryOptionalParams
+    options?: LROsPutAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncNoHeaderInRetryResponse>,
-      LrOSPutAsyncNoHeaderInRetryResponse
+      PollOperationState<LROsPutAsyncNoHeaderInRetryResponse>,
+      LROsPutAsyncNoHeaderInRetryResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncNoHeaderInRetryResponse> => {
+    ): Promise<LROsPutAsyncNoHeaderInRetryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1321,8 +1321,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNoHeaderInRetryAndWait(
-    options?: LrOSPutAsyncNoHeaderInRetryOptionalParams
-  ): Promise<LrOSPutAsyncNoHeaderInRetryResponse> {
+    options?: LROsPutAsyncNoHeaderInRetryOptionalParams
+  ): Promise<LROsPutAsyncNoHeaderInRetryResponse> {
     const poller = await this.beginPutAsyncNoHeaderInRetry(options);
     return poller.pollUntilDone();
   }
@@ -1332,17 +1332,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutNonResource(
-    options?: LrOSPutNonResourceOptionalParams
+    options?: LROsPutNonResourceOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutNonResourceResponse>,
-      LrOSPutNonResourceResponse
+      PollOperationState<LROsPutNonResourceResponse>,
+      LROsPutNonResourceResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutNonResourceResponse> => {
+    ): Promise<LROsPutNonResourceResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1394,8 +1394,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutNonResourceAndWait(
-    options?: LrOSPutNonResourceOptionalParams
-  ): Promise<LrOSPutNonResourceResponse> {
+    options?: LROsPutNonResourceOptionalParams
+  ): Promise<LROsPutNonResourceResponse> {
     const poller = await this.beginPutNonResource(options);
     return poller.pollUntilDone();
   }
@@ -1405,17 +1405,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNonResource(
-    options?: LrOSPutAsyncNonResourceOptionalParams
+    options?: LROsPutAsyncNonResourceOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncNonResourceResponse>,
-      LrOSPutAsyncNonResourceResponse
+      PollOperationState<LROsPutAsyncNonResourceResponse>,
+      LROsPutAsyncNonResourceResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncNonResourceResponse> => {
+    ): Promise<LROsPutAsyncNonResourceResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1467,8 +1467,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncNonResourceAndWait(
-    options?: LrOSPutAsyncNonResourceOptionalParams
-  ): Promise<LrOSPutAsyncNonResourceResponse> {
+    options?: LROsPutAsyncNonResourceOptionalParams
+  ): Promise<LROsPutAsyncNonResourceResponse> {
     const poller = await this.beginPutAsyncNonResource(options);
     return poller.pollUntilDone();
   }
@@ -1478,17 +1478,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutSubResource(
-    options?: LrOSPutSubResourceOptionalParams
+    options?: LROsPutSubResourceOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutSubResourceResponse>,
-      LrOSPutSubResourceResponse
+      PollOperationState<LROsPutSubResourceResponse>,
+      LROsPutSubResourceResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutSubResourceResponse> => {
+    ): Promise<LROsPutSubResourceResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1540,8 +1540,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutSubResourceAndWait(
-    options?: LrOSPutSubResourceOptionalParams
-  ): Promise<LrOSPutSubResourceResponse> {
+    options?: LROsPutSubResourceOptionalParams
+  ): Promise<LROsPutSubResourceResponse> {
     const poller = await this.beginPutSubResource(options);
     return poller.pollUntilDone();
   }
@@ -1551,17 +1551,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncSubResource(
-    options?: LrOSPutAsyncSubResourceOptionalParams
+    options?: LROsPutAsyncSubResourceOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPutAsyncSubResourceResponse>,
-      LrOSPutAsyncSubResourceResponse
+      PollOperationState<LROsPutAsyncSubResourceResponse>,
+      LROsPutAsyncSubResourceResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPutAsyncSubResourceResponse> => {
+    ): Promise<LROsPutAsyncSubResourceResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1613,8 +1613,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPutAsyncSubResourceAndWait(
-    options?: LrOSPutAsyncSubResourceOptionalParams
-  ): Promise<LrOSPutAsyncSubResourceResponse> {
+    options?: LROsPutAsyncSubResourceOptionalParams
+  ): Promise<LROsPutAsyncSubResourceResponse> {
     const poller = await this.beginPutAsyncSubResource(options);
     return poller.pollUntilDone();
   }
@@ -1626,17 +1626,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Accepted200Succeeded(
-    options?: LrOSDeleteProvisioning202Accepted200SucceededOptionalParams
+    options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteProvisioning202Accepted200SucceededResponse>,
-      LrOSDeleteProvisioning202Accepted200SucceededResponse
+      PollOperationState<LROsDeleteProvisioning202Accepted200SucceededResponse>,
+      LROsDeleteProvisioning202Accepted200SucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteProvisioning202Accepted200SucceededResponse> => {
+    ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1690,8 +1690,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Accepted200SucceededAndWait(
-    options?: LrOSDeleteProvisioning202Accepted200SucceededOptionalParams
-  ): Promise<LrOSDeleteProvisioning202Accepted200SucceededResponse> {
+    options?: LROsDeleteProvisioning202Accepted200SucceededOptionalParams
+  ): Promise<LROsDeleteProvisioning202Accepted200SucceededResponse> {
     const poller = await this.beginDeleteProvisioning202Accepted200Succeeded(
       options
     );
@@ -1705,17 +1705,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202DeletingFailed200(
-    options?: LrOSDeleteProvisioning202DeletingFailed200OptionalParams
+    options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteProvisioning202DeletingFailed200Response>,
-      LrOSDeleteProvisioning202DeletingFailed200Response
+      PollOperationState<LROsDeleteProvisioning202DeletingFailed200Response>,
+      LROsDeleteProvisioning202DeletingFailed200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteProvisioning202DeletingFailed200Response> => {
+    ): Promise<LROsDeleteProvisioning202DeletingFailed200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1769,8 +1769,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202DeletingFailed200AndWait(
-    options?: LrOSDeleteProvisioning202DeletingFailed200OptionalParams
-  ): Promise<LrOSDeleteProvisioning202DeletingFailed200Response> {
+    options?: LROsDeleteProvisioning202DeletingFailed200OptionalParams
+  ): Promise<LROsDeleteProvisioning202DeletingFailed200Response> {
     const poller = await this.beginDeleteProvisioning202DeletingFailed200(
       options
     );
@@ -1784,17 +1784,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Deletingcanceled200(
-    options?: LrOSDeleteProvisioning202Deletingcanceled200OptionalParams
+    options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteProvisioning202Deletingcanceled200Response>,
-      LrOSDeleteProvisioning202Deletingcanceled200Response
+      PollOperationState<LROsDeleteProvisioning202Deletingcanceled200Response>,
+      LROsDeleteProvisioning202Deletingcanceled200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteProvisioning202Deletingcanceled200Response> => {
+    ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1848,8 +1848,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Deletingcanceled200AndWait(
-    options?: LrOSDeleteProvisioning202Deletingcanceled200OptionalParams
-  ): Promise<LrOSDeleteProvisioning202Deletingcanceled200Response> {
+    options?: LROsDeleteProvisioning202Deletingcanceled200OptionalParams
+  ): Promise<LROsDeleteProvisioning202Deletingcanceled200Response> {
     const poller = await this.beginDeleteProvisioning202Deletingcanceled200(
       options
     );
@@ -1861,7 +1861,7 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete204Succeeded(
-    options?: LrOSDelete204SucceededOptionalParams
+    options?: LROsDelete204SucceededOptionalParams
   ): Promise<PollerLike<PollOperationState<void>, void>> {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
@@ -1918,7 +1918,7 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete204SucceededAndWait(
-    options?: LrOSDelete204SucceededOptionalParams
+    options?: LROsDelete204SucceededOptionalParams
   ): Promise<void> {
     const poller = await this.beginDelete204Succeeded(options);
     return poller.pollUntilDone();
@@ -1930,17 +1930,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete202Retry200(
-    options?: LrOSDelete202Retry200OptionalParams
+    options?: LROsDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDelete202Retry200Response>,
-      LrOSDelete202Retry200Response
+      PollOperationState<LROsDelete202Retry200Response>,
+      LROsDelete202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDelete202Retry200Response> => {
+    ): Promise<LROsDelete202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -1993,8 +1993,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete202Retry200AndWait(
-    options?: LrOSDelete202Retry200OptionalParams
-  ): Promise<LrOSDelete202Retry200Response> {
+    options?: LROsDelete202Retry200OptionalParams
+  ): Promise<LROsDelete202Retry200Response> {
     const poller = await this.beginDelete202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -2005,17 +2005,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete202NoRetry204(
-    options?: LrOSDelete202NoRetry204OptionalParams
+    options?: LROsDelete202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDelete202NoRetry204Response>,
-      LrOSDelete202NoRetry204Response
+      PollOperationState<LROsDelete202NoRetry204Response>,
+      LROsDelete202NoRetry204Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDelete202NoRetry204Response> => {
+    ): Promise<LROsDelete202NoRetry204Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2068,8 +2068,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDelete202NoRetry204AndWait(
-    options?: LrOSDelete202NoRetry204OptionalParams
-  ): Promise<LrOSDelete202NoRetry204Response> {
+    options?: LROsDelete202NoRetry204OptionalParams
+  ): Promise<LROsDelete202NoRetry204Response> {
     const poller = await this.beginDelete202NoRetry204(options);
     return poller.pollUntilDone();
   }
@@ -2080,17 +2080,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteNoHeaderInRetry(
-    options?: LrOSDeleteNoHeaderInRetryOptionalParams
+    options?: LROsDeleteNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteNoHeaderInRetryResponse>,
-      LrOSDeleteNoHeaderInRetryResponse
+      PollOperationState<LROsDeleteNoHeaderInRetryResponse>,
+      LROsDeleteNoHeaderInRetryResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteNoHeaderInRetryResponse> => {
+    ): Promise<LROsDeleteNoHeaderInRetryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2143,8 +2143,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteNoHeaderInRetryAndWait(
-    options?: LrOSDeleteNoHeaderInRetryOptionalParams
-  ): Promise<LrOSDeleteNoHeaderInRetryResponse> {
+    options?: LROsDeleteNoHeaderInRetryOptionalParams
+  ): Promise<LROsDeleteNoHeaderInRetryResponse> {
     const poller = await this.beginDeleteNoHeaderInRetry(options);
     return poller.pollUntilDone();
   }
@@ -2155,17 +2155,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncNoHeaderInRetry(
-    options?: LrOSDeleteAsyncNoHeaderInRetryOptionalParams
+    options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteAsyncNoHeaderInRetryResponse>,
-      LrOSDeleteAsyncNoHeaderInRetryResponse
+      PollOperationState<LROsDeleteAsyncNoHeaderInRetryResponse>,
+      LROsDeleteAsyncNoHeaderInRetryResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteAsyncNoHeaderInRetryResponse> => {
+    ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2218,8 +2218,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncNoHeaderInRetryAndWait(
-    options?: LrOSDeleteAsyncNoHeaderInRetryOptionalParams
-  ): Promise<LrOSDeleteAsyncNoHeaderInRetryResponse> {
+    options?: LROsDeleteAsyncNoHeaderInRetryOptionalParams
+  ): Promise<LROsDeleteAsyncNoHeaderInRetryResponse> {
     const poller = await this.beginDeleteAsyncNoHeaderInRetry(options);
     return poller.pollUntilDone();
   }
@@ -2230,17 +2230,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetrySucceeded(
-    options?: LrOSDeleteAsyncRetrySucceededOptionalParams
+    options?: LROsDeleteAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteAsyncRetrySucceededResponse>,
-      LrOSDeleteAsyncRetrySucceededResponse
+      PollOperationState<LROsDeleteAsyncRetrySucceededResponse>,
+      LROsDeleteAsyncRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteAsyncRetrySucceededResponse> => {
+    ): Promise<LROsDeleteAsyncRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2293,8 +2293,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetrySucceededAndWait(
-    options?: LrOSDeleteAsyncRetrySucceededOptionalParams
-  ): Promise<LrOSDeleteAsyncRetrySucceededResponse> {
+    options?: LROsDeleteAsyncRetrySucceededOptionalParams
+  ): Promise<LROsDeleteAsyncRetrySucceededResponse> {
     const poller = await this.beginDeleteAsyncRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -2305,17 +2305,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncNoRetrySucceeded(
-    options?: LrOSDeleteAsyncNoRetrySucceededOptionalParams
+    options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteAsyncNoRetrySucceededResponse>,
-      LrOSDeleteAsyncNoRetrySucceededResponse
+      PollOperationState<LROsDeleteAsyncNoRetrySucceededResponse>,
+      LROsDeleteAsyncNoRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteAsyncNoRetrySucceededResponse> => {
+    ): Promise<LROsDeleteAsyncNoRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2368,8 +2368,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncNoRetrySucceededAndWait(
-    options?: LrOSDeleteAsyncNoRetrySucceededOptionalParams
-  ): Promise<LrOSDeleteAsyncNoRetrySucceededResponse> {
+    options?: LROsDeleteAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsDeleteAsyncNoRetrySucceededResponse> {
     const poller = await this.beginDeleteAsyncNoRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -2380,17 +2380,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetryFailed(
-    options?: LrOSDeleteAsyncRetryFailedOptionalParams
+    options?: LROsDeleteAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteAsyncRetryFailedResponse>,
-      LrOSDeleteAsyncRetryFailedResponse
+      PollOperationState<LROsDeleteAsyncRetryFailedResponse>,
+      LROsDeleteAsyncRetryFailedResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteAsyncRetryFailedResponse> => {
+    ): Promise<LROsDeleteAsyncRetryFailedResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2443,8 +2443,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetryFailedAndWait(
-    options?: LrOSDeleteAsyncRetryFailedOptionalParams
-  ): Promise<LrOSDeleteAsyncRetryFailedResponse> {
+    options?: LROsDeleteAsyncRetryFailedOptionalParams
+  ): Promise<LROsDeleteAsyncRetryFailedResponse> {
     const poller = await this.beginDeleteAsyncRetryFailed(options);
     return poller.pollUntilDone();
   }
@@ -2455,17 +2455,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetrycanceled(
-    options?: LrOSDeleteAsyncRetrycanceledOptionalParams
+    options?: LROsDeleteAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSDeleteAsyncRetrycanceledResponse>,
-      LrOSDeleteAsyncRetrycanceledResponse
+      PollOperationState<LROsDeleteAsyncRetrycanceledResponse>,
+      LROsDeleteAsyncRetrycanceledResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSDeleteAsyncRetrycanceledResponse> => {
+    ): Promise<LROsDeleteAsyncRetrycanceledResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2518,8 +2518,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRetrycanceledAndWait(
-    options?: LrOSDeleteAsyncRetrycanceledOptionalParams
-  ): Promise<LrOSDeleteAsyncRetrycanceledResponse> {
+    options?: LROsDeleteAsyncRetrycanceledOptionalParams
+  ): Promise<LROsDeleteAsyncRetrycanceledResponse> {
     const poller = await this.beginDeleteAsyncRetrycanceled(options);
     return poller.pollUntilDone();
   }
@@ -2530,17 +2530,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost200WithPayload(
-    options?: LrOSPost200WithPayloadOptionalParams
+    options?: LROsPost200WithPayloadOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPost200WithPayloadResponse>,
-      LrOSPost200WithPayloadResponse
+      PollOperationState<LROsPost200WithPayloadResponse>,
+      LROsPost200WithPayloadResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPost200WithPayloadResponse> => {
+    ): Promise<LROsPost200WithPayloadResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2593,8 +2593,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost200WithPayloadAndWait(
-    options?: LrOSPost200WithPayloadOptionalParams
-  ): Promise<LrOSPost200WithPayloadResponse> {
+    options?: LROsPost200WithPayloadOptionalParams
+  ): Promise<LROsPost200WithPayloadResponse> {
     const poller = await this.beginPost200WithPayload(options);
     return poller.pollUntilDone();
   }
@@ -2605,17 +2605,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202Retry200(
-    options?: LrOSPost202Retry200OptionalParams
+    options?: LROsPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPost202Retry200Response>,
-      LrOSPost202Retry200Response
+      PollOperationState<LROsPost202Retry200Response>,
+      LROsPost202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPost202Retry200Response> => {
+    ): Promise<LROsPost202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2668,8 +2668,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202Retry200AndWait(
-    options?: LrOSPost202Retry200OptionalParams
-  ): Promise<LrOSPost202Retry200Response> {
+    options?: LROsPost202Retry200OptionalParams
+  ): Promise<LROsPost202Retry200Response> {
     const poller = await this.beginPost202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -2680,17 +2680,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202NoRetry204(
-    options?: LrOSPost202NoRetry204OptionalParams
+    options?: LROsPost202NoRetry204OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPost202NoRetry204Response>,
-      LrOSPost202NoRetry204Response
+      PollOperationState<LROsPost202NoRetry204Response>,
+      LROsPost202NoRetry204Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPost202NoRetry204Response> => {
+    ): Promise<LROsPost202NoRetry204Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2743,8 +2743,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPost202NoRetry204AndWait(
-    options?: LrOSPost202NoRetry204OptionalParams
-  ): Promise<LrOSPost202NoRetry204Response> {
+    options?: LROsPost202NoRetry204OptionalParams
+  ): Promise<LROsPost202NoRetry204Response> {
     const poller = await this.beginPost202NoRetry204(options);
     return poller.pollUntilDone();
   }
@@ -2755,17 +2755,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalLocationGet(
-    options?: LrOSPostDoubleHeadersFinalLocationGetOptionalParams
+    options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostDoubleHeadersFinalLocationGetResponse>,
-      LrOSPostDoubleHeadersFinalLocationGetResponse
+      PollOperationState<LROsPostDoubleHeadersFinalLocationGetResponse>,
+      LROsPostDoubleHeadersFinalLocationGetResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostDoubleHeadersFinalLocationGetResponse> => {
+    ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2819,8 +2819,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalLocationGetAndWait(
-    options?: LrOSPostDoubleHeadersFinalLocationGetOptionalParams
-  ): Promise<LrOSPostDoubleHeadersFinalLocationGetResponse> {
+    options?: LROsPostDoubleHeadersFinalLocationGetOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalLocationGetResponse> {
     const poller = await this.beginPostDoubleHeadersFinalLocationGet(options);
     return poller.pollUntilDone();
   }
@@ -2832,17 +2832,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalAzureHeaderGet(
-    options?: LrOSPostDoubleHeadersFinalAzureHeaderGetOptionalParams
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostDoubleHeadersFinalAzureHeaderGetResponse>,
-      LrOSPostDoubleHeadersFinalAzureHeaderGetResponse
+      PollOperationState<LROsPostDoubleHeadersFinalAzureHeaderGetResponse>,
+      LROsPostDoubleHeadersFinalAzureHeaderGetResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostDoubleHeadersFinalAzureHeaderGetResponse> => {
+    ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2897,8 +2897,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalAzureHeaderGetAndWait(
-    options?: LrOSPostDoubleHeadersFinalAzureHeaderGetOptionalParams
-  ): Promise<LrOSPostDoubleHeadersFinalAzureHeaderGetResponse> {
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetResponse> {
     const poller = await this.beginPostDoubleHeadersFinalAzureHeaderGet(
       options
     );
@@ -2912,19 +2912,19 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalAzureHeaderGetDefault(
-    options?: LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
-        LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+        LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
       >,
-      LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
+      LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> => {
+    ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -2978,8 +2978,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostDoubleHeadersFinalAzureHeaderGetDefaultAndWait(
-    options?: LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
-  ): Promise<LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
+  ): Promise<LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse> {
     const poller = await this.beginPostDoubleHeadersFinalAzureHeaderGetDefault(
       options
     );
@@ -2993,17 +2993,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrySucceeded(
-    options?: LrOSPostAsyncRetrySucceededOptionalParams
+    options?: LROsPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostAsyncRetrySucceededResponse>,
-      LrOSPostAsyncRetrySucceededResponse
+      PollOperationState<LROsPostAsyncRetrySucceededResponse>,
+      LROsPostAsyncRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostAsyncRetrySucceededResponse> => {
+    ): Promise<LROsPostAsyncRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -3057,8 +3057,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrySucceededAndWait(
-    options?: LrOSPostAsyncRetrySucceededOptionalParams
-  ): Promise<LrOSPostAsyncRetrySucceededResponse> {
+    options?: LROsPostAsyncRetrySucceededOptionalParams
+  ): Promise<LROsPostAsyncRetrySucceededResponse> {
     const poller = await this.beginPostAsyncRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -3070,17 +3070,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncNoRetrySucceeded(
-    options?: LrOSPostAsyncNoRetrySucceededOptionalParams
+    options?: LROsPostAsyncNoRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostAsyncNoRetrySucceededResponse>,
-      LrOSPostAsyncNoRetrySucceededResponse
+      PollOperationState<LROsPostAsyncNoRetrySucceededResponse>,
+      LROsPostAsyncNoRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostAsyncNoRetrySucceededResponse> => {
+    ): Promise<LROsPostAsyncNoRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -3134,8 +3134,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncNoRetrySucceededAndWait(
-    options?: LrOSPostAsyncNoRetrySucceededOptionalParams
-  ): Promise<LrOSPostAsyncNoRetrySucceededResponse> {
+    options?: LROsPostAsyncNoRetrySucceededOptionalParams
+  ): Promise<LROsPostAsyncNoRetrySucceededResponse> {
     const poller = await this.beginPostAsyncNoRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -3147,17 +3147,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetryFailed(
-    options?: LrOSPostAsyncRetryFailedOptionalParams
+    options?: LROsPostAsyncRetryFailedOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostAsyncRetryFailedResponse>,
-      LrOSPostAsyncRetryFailedResponse
+      PollOperationState<LROsPostAsyncRetryFailedResponse>,
+      LROsPostAsyncRetryFailedResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostAsyncRetryFailedResponse> => {
+    ): Promise<LROsPostAsyncRetryFailedResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -3211,8 +3211,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetryFailedAndWait(
-    options?: LrOSPostAsyncRetryFailedOptionalParams
-  ): Promise<LrOSPostAsyncRetryFailedResponse> {
+    options?: LROsPostAsyncRetryFailedOptionalParams
+  ): Promise<LROsPostAsyncRetryFailedResponse> {
     const poller = await this.beginPostAsyncRetryFailed(options);
     return poller.pollUntilDone();
   }
@@ -3224,17 +3224,17 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrycanceled(
-    options?: LrOSPostAsyncRetrycanceledOptionalParams
+    options?: LROsPostAsyncRetrycanceledOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSPostAsyncRetrycanceledResponse>,
-      LrOSPostAsyncRetrycanceledResponse
+      PollOperationState<LROsPostAsyncRetrycanceledResponse>,
+      LROsPostAsyncRetrycanceledResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LrOSPostAsyncRetrycanceledResponse> => {
+    ): Promise<LROsPostAsyncRetrycanceledResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -3288,8 +3288,8 @@ export class LrOSImpl implements LrOS {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrycanceledAndWait(
-    options?: LrOSPostAsyncRetrycanceledOptionalParams
-  ): Promise<LrOSPostAsyncRetrycanceledResponse> {
+    options?: LROsPostAsyncRetrycanceledOptionalParams
+  ): Promise<LROsPostAsyncRetrycanceledResponse> {
     const poller = await this.beginPostAsyncRetrycanceled(options);
     return poller.pollUntilDone();
   }
@@ -3318,7 +3318,7 @@ const put200SucceededOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3329,26 +3329,26 @@ const patch200SucceededIgnoreHeadersOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPatch200SucceededIgnoreHeaders
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPatch200SucceededIgnoreHeaders
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPatch200SucceededIgnoreHeaders
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPatch200SucceededIgnoreHeaders
+      headersMapper: Mappers.LROsPatch200SucceededIgnoreHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3374,7 +3374,7 @@ const put201SucceededOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3419,7 +3419,7 @@ const post202ListOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3444,7 +3444,7 @@ const put200SucceededNoStateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3470,7 +3470,7 @@ const put202Retry200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3496,7 +3496,7 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3522,7 +3522,7 @@ const put200UpdatingSucceeded204OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3548,7 +3548,7 @@ const put201CreatingFailed200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3574,7 +3574,7 @@ const put200Acceptedcanceled200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3585,26 +3585,26 @@ const putNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutNoHeaderInRetryHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3615,26 +3615,26 @@ const putAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3645,26 +3645,26 @@ const putAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3675,26 +3675,26 @@ const putAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPutAsyncRetryFailedHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3705,26 +3705,26 @@ const putAsyncNoRetrycanceledOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrycanceledHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrycanceledHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrycanceledHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoRetrycanceledHeaders
+      headersMapper: Mappers.LROsPutAsyncNoRetrycanceledHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3735,26 +3735,26 @@ const putAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPutAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsPutAsyncNoHeaderInRetryHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3780,7 +3780,7 @@ const putNonResourceOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.sku,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3806,7 +3806,7 @@ const putAsyncNonResourceOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.sku,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3832,7 +3832,7 @@ const putSubResourceOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3858,7 +3858,7 @@ const putAsyncSubResourceOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -3883,7 +3883,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3907,7 +3907,7 @@ const deleteProvisioning202DeletingFailed200OperationSpec: coreClient.OperationS
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3931,7 +3931,7 @@ const deleteProvisioning202Deletingcanceled200OperationSpec: coreClient.Operatio
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3947,7 +3947,7 @@ const delete204SucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3971,7 +3971,7 @@ const delete202Retry200OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -3995,7 +3995,7 @@ const delete202NoRetry204OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4004,22 +4004,22 @@ const deleteNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteNoHeaderInRetryHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4028,22 +4028,22 @@ const deleteAsyncNoHeaderInRetryOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoHeaderInRetryHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoHeaderInRetryHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4052,22 +4052,22 @@ const deleteAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4076,22 +4076,22 @@ const deleteAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteAsyncNoRetrySucceededHeaders
+      headersMapper: Mappers.LROsDeleteAsyncNoRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4100,22 +4100,22 @@ const deleteAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetryFailedHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4124,22 +4124,22 @@ const deleteAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSDeleteAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsDeleteAsyncRetrycanceledHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4163,7 +4163,7 @@ const post200WithPayloadOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4172,23 +4172,23 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSPost202Retry200Headers
+      headersMapper: Mappers.LROsPost202Retry200Headers
     },
     201: {
-      headersMapper: Mappers.LrOSPost202Retry200Headers
+      headersMapper: Mappers.LROsPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LrOSPost202Retry200Headers
+      headersMapper: Mappers.LROsPost202Retry200Headers
     },
     204: {
-      headersMapper: Mappers.LrOSPost202Retry200Headers
+      headersMapper: Mappers.LROsPost202Retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -4199,26 +4199,26 @@ const post202NoRetry204OperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPost202NoRetry204Headers
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPost202NoRetry204Headers
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPost202NoRetry204Headers
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LrOSPost202NoRetry204Headers
+      headersMapper: Mappers.LROsPost202NoRetry204Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -4243,7 +4243,7 @@ const postDoubleHeadersFinalLocationGetOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4267,7 +4267,7 @@ const postDoubleHeadersFinalAzureHeaderGetOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4291,7 +4291,7 @@ const postDoubleHeadersFinalAzureHeaderGetDefaultOperationSpec: coreClient.Opera
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -4316,7 +4316,7 @@ const postAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -4342,7 +4342,7 @@ const postAsyncNoRetrySucceededOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -4352,23 +4352,23 @@ const postAsyncRetryFailedOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSPostAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSPostAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSPostAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSPostAsyncRetryFailedHeaders
+      headersMapper: Mappers.LROsPostAsyncRetryFailedHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -4378,23 +4378,23 @@ const postAsyncRetrycanceledOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LrOSPostAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     201: {
-      headersMapper: Mappers.LrOSPostAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     202: {
-      headersMapper: Mappers.LrOSPostAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     204: {
-      headersMapper: Mappers.LrOSPostAsyncRetrycanceledHeaders
+      headersMapper: Mappers.LROsPostAsyncRetrycanceledHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

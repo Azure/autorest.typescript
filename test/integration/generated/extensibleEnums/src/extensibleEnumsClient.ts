@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PetImpl } from "./operations";
 import { Pet } from "./operationsInterfaces";
 import { ExtensibleEnumsClientOptionalParams } from "./models";
 
 export class ExtensibleEnumsClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the ExtensibleEnumsClient class.
@@ -43,7 +44,7 @@ export class ExtensibleEnumsClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.pet = new PetImpl(this);
   }
 

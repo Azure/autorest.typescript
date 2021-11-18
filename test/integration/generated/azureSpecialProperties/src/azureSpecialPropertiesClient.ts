@@ -9,7 +9,7 @@
 import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import {
-  XmsClientRequestIdImpl,
+  XMsClientRequestIdImpl,
   SubscriptionInCredentialsImpl,
   SubscriptionInMethodImpl,
   ApiVersionDefaultImpl,
@@ -19,7 +19,7 @@ import {
   HeaderImpl
 } from "./operations";
 import {
-  XmsClientRequestId,
+  XMsClientRequestId,
   SubscriptionInCredentials,
   SubscriptionInMethod,
   ApiVersionDefault,
@@ -31,7 +31,7 @@ import {
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
 export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   subscriptionId: string;
   apiVersion: string;
 
@@ -88,9 +88,9 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "2015-07-01-preview";
-    this.xmsClientRequestId = new XmsClientRequestIdImpl(this);
+    this.xMsClientRequestId = new XMsClientRequestIdImpl(this);
     this.subscriptionInCredentials = new SubscriptionInCredentialsImpl(this);
     this.subscriptionInMethod = new SubscriptionInMethodImpl(this);
     this.apiVersionDefault = new ApiVersionDefaultImpl(this);
@@ -100,7 +100,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     this.header = new HeaderImpl(this);
   }
 
-  xmsClientRequestId: XmsClientRequestId;
+  xMsClientRequestId: XMsClientRequestId;
   subscriptionInCredentials: SubscriptionInCredentials;
   subscriptionInMethod: SubscriptionInMethod;
   apiVersionDefault: ApiVersionDefault;

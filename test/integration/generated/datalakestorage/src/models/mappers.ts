@@ -13,6 +13,22 @@ export const StorageError: coreClient.CompositeMapper = {
     name: "Composite",
     className: "StorageError",
     modelProperties: {
+      error: {
+        serializedName: "error",
+        type: {
+          name: "Composite",
+          className: "StorageErrorError"
+        }
+      }
+    }
+  }
+};
+
+export const StorageErrorError: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "StorageErrorError",
+    modelProperties: {
       code: {
         serializedName: "Code",
         type: {
@@ -415,7 +431,7 @@ export const BlobPropertiesInternal: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMd5: {
+      contentMD5: {
         serializedName: "Content-MD5",
         type: {
           name: "ByteArray"
@@ -720,7 +736,7 @@ export const PathUpdateHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMd5: {
+      contentMD5: {
         serializedName: "content-md5",
         type: {
           name: "String"
@@ -732,7 +748,7 @@ export const PathUpdateHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      xMSContinuation: {
+      xMsContinuation: {
         serializedName: "x-ms-continuation",
         type: {
           name: "String"
@@ -897,7 +913,7 @@ export const PathReadHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMd5: {
+      contentMD5: {
         serializedName: "content-md5",
         type: {
           name: "String"
@@ -1040,7 +1056,7 @@ export const PathGetPropertiesHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMd5: {
+      contentMD5: {
         serializedName: "content-md5",
         type: {
           name: "String"
@@ -1111,7 +1127,7 @@ export const PathGetPropertiesHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      acl: {
+      aCL: {
         serializedName: "x-ms-acl",
         type: {
           name: "String"

@@ -65,8 +65,8 @@ import {
   XmlJsonInputOptionalParams,
   XmlJsonOutputOptionalParams,
   XmlJsonOutputResponse,
-  XmlGetXMSTextOptionalParams,
-  XmlGetXmsTextResponse,
+  XmlGetXMsTextOptionalParams,
+  XmlGetXMsTextResponse,
   XmlGetBytesOptionalParams,
   XmlGetBytesResponse,
   ModelWithByteProperty,
@@ -289,7 +289,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   putRootList(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutRootListOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -317,7 +317,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   putRootListSingleItem(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutRootListSingleItemOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -345,7 +345,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   putEmptyRootList(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutEmptyRootListOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -437,7 +437,7 @@ export class XmlImpl implements Xml {
    * @param options The options parameters.
    */
   putAcls(
-    properties: SignedIdentifier,
+    properties: SignedIdentifier[],
     options?: XmlPutAclsOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
@@ -493,12 +493,12 @@ export class XmlImpl implements Xml {
    * 'language' property being 'english' and its 'content' property being 'I am text'
    * @param options The options parameters.
    */
-  getXmsText(
-    options?: XmlGetXMSTextOptionalParams
-  ): Promise<XmlGetXmsTextResponse> {
+  getXMsText(
+    options?: XmlGetXMsTextOptionalParams
+  ): Promise<XmlGetXMsTextResponse> {
     return this.client.sendOperationRequest(
       { options },
-      getXMSTextOperationSpec
+      getXMsTextOperationSpec
     );
   }
 
@@ -561,7 +561,7 @@ const getComplexTypeRefNoMetaOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.RootWithRefAndNoMeta
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -571,7 +571,7 @@ const putComplexTypeRefNoMetaOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.model,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -586,7 +586,7 @@ const getComplexTypeRefWithMetaOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.RootWithRefAndMeta
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -596,7 +596,7 @@ const putComplexTypeRefWithMetaOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.model1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -614,7 +614,7 @@ const getSimpleOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -629,7 +629,7 @@ const putSimpleOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.slideshow,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -644,7 +644,7 @@ const getWrappedListsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.AppleBarrel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -659,7 +659,7 @@ const putWrappedListsOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.wrappedLists,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -674,7 +674,7 @@ const getHeadersOperationSpec: coreClient.OperationSpec = {
       headersMapper: Mappers.XmlGetHeaders
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getEmptyListOperationSpec: coreClient.OperationSpec = {
@@ -685,7 +685,7 @@ const getEmptyListOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Slideshow
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -695,7 +695,7 @@ const putEmptyListOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.slideshow,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -710,7 +710,7 @@ const getEmptyWrappedListsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.AppleBarrel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -720,7 +720,7 @@ const putEmptyWrappedListsOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.appleBarrel,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -743,7 +743,7 @@ const getRootListOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -753,7 +753,7 @@ const putRootListOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.bananas,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -776,7 +776,7 @@ const getRootListSingleItemOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -786,7 +786,7 @@ const putRootListSingleItemOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.bananas,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -809,7 +809,7 @@ const getEmptyRootListOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -819,7 +819,7 @@ const putEmptyRootListOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.bananas,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -834,7 +834,7 @@ const getEmptyChildElementOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.Banana
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -844,7 +844,7 @@ const putEmptyChildElementOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 201: {} },
   requestBody: Parameters.banana,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -860,7 +860,7 @@ const listContainersOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.comp],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -874,7 +874,7 @@ const getServicePropertiesOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.comp1, Parameters.restype],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -885,7 +885,7 @@ const putServicePropertiesOperationSpec: coreClient.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.properties,
   queryParameters: [Parameters.comp1, Parameters.restype],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -912,7 +912,7 @@ const getAclsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.comp2, Parameters.restype1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -923,7 +923,7 @@ const putAclsOperationSpec: coreClient.OperationSpec = {
   responses: { 201: {} },
   requestBody: Parameters.properties1,
   queryParameters: [Parameters.comp2, Parameters.restype1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -939,7 +939,7 @@ const listBlobsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.comp, Parameters.restype1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -949,7 +949,7 @@ const jsonInputOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 200: {} },
   requestBody: Parameters.properties2,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
   mediaType: "json",
   serializer
@@ -962,9 +962,22 @@ const jsonOutputOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.JsonOutput
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept2],
   serializer
+};
+const getXMsTextOperationSpec: coreClient.OperationSpec = {
+  path: "/xml/x-ms-text",
+  httpMethod: "GET",
+  responses: {
+    200: {
+      bodyMapper: Mappers.ObjectWithXMsTextProperty
+    }
+  },
+  urlParameters: [Parameters.$host],
+  headerParameters: [Parameters.accept],
+  isXML: true,
+  serializer: xmlSerializer
 };
 const getBytesOperationSpec: coreClient.OperationSpec = {
   path: "/xml/bytes",
@@ -977,7 +990,7 @@ const getBytesOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -992,7 +1005,7 @@ const putBinaryOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.slideshow1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -1010,7 +1023,7 @@ const getUriOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -1025,7 +1038,7 @@ const putUriOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.model2,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",

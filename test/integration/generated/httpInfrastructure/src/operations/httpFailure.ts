@@ -85,7 +85,7 @@ const getEmptyErrorOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -97,7 +97,7 @@ const getNoModelErrorOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Boolean" } }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -109,7 +109,7 @@ const getNoModelEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Boolean" } }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

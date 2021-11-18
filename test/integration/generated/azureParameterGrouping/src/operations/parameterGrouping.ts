@@ -113,7 +113,7 @@ const postRequiredOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.query],
-  urlParameters: [Parameters.Host, Parameters.path],
+  urlParameters: [Parameters.$host, Parameters.path],
   headerParameters: [
     Parameters.contentType,
     Parameters.accept,
@@ -132,7 +132,7 @@ const postOptionalOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.query1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.customHeader1],
   serializer
 };
@@ -146,7 +146,7 @@ const postReservedWordsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.fromParam, Parameters.accept1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -160,7 +160,7 @@ const postMultiParamGroupsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryOne, Parameters.queryTwo],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [
     Parameters.accept,
     Parameters.headerOne,
@@ -178,7 +178,7 @@ const postSharedParameterGroupObjectOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryOne],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.headerOne],
   serializer
 };

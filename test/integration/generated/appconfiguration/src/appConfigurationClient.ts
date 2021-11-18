@@ -128,10 +128,10 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   ): AsyncIterableIterator<Key[]> {
     let result = await this._getKeys(options);
     yield result.items || [];
-    let continuationToken = result.NextLink;
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getKeysNext(continuationToken, options);
-      continuationToken = result.NextLink;
+      continuationToken = result.nextLink;
       yield result.items || [];
     }
   }
@@ -170,10 +170,10 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getKeyValues(options);
     yield result.items || [];
-    let continuationToken = result.NextLink;
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getKeyValuesNext(continuationToken, options);
-      continuationToken = result.NextLink;
+      continuationToken = result.nextLink;
       yield result.items || [];
     }
   }
@@ -212,10 +212,10 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   ): AsyncIterableIterator<Label[]> {
     let result = await this._getLabels(options);
     yield result.items || [];
-    let continuationToken = result.NextLink;
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getLabelsNext(continuationToken, options);
-      continuationToken = result.NextLink;
+      continuationToken = result.nextLink;
       yield result.items || [];
     }
   }
@@ -254,10 +254,10 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getRevisions(options);
     yield result.items || [];
-    let continuationToken = result.NextLink;
+    let continuationToken = result.nextLink;
     while (continuationToken) {
       result = await this._getRevisionsNext(continuationToken, options);
-      continuationToken = result.NextLink;
+      continuationToken = result.nextLink;
       yield result.items || [];
     }
   }
@@ -431,8 +431,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * GetKeysNext
-   * @param nextLink The nextLink from the previous successful call to the GetKeys method.
+   * getKeysNext
+   * @param nextLink The nextLink from the previous successful call to the getKeys method.
    * @param options The options parameters.
    */
   private _getKeysNext(
@@ -446,8 +446,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * GetKeyValuesNext
-   * @param nextLink The nextLink from the previous successful call to the GetKeyValues method.
+   * getKeyValuesNext
+   * @param nextLink The nextLink from the previous successful call to the getKeyValues method.
    * @param options The options parameters.
    */
   private _getKeyValuesNext(
@@ -461,8 +461,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * GetLabelsNext
-   * @param nextLink The nextLink from the previous successful call to the GetLabels method.
+   * getLabelsNext
+   * @param nextLink The nextLink from the previous successful call to the getLabels method.
    * @param options The options parameters.
    */
   private _getLabelsNext(
@@ -476,8 +476,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * GetRevisionsNext
-   * @param nextLink The nextLink from the previous successful call to the GetRevisions method.
+   * getRevisionsNext
+   * @param nextLink The nextLink from the previous successful call to the getRevisions method.
    * @param options The options parameters.
    */
   private _getRevisionsNext(

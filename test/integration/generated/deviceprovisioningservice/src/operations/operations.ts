@@ -78,8 +78,8 @@ export class OperationsImpl implements Operations {
   }
 
   /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
+   * listNext
+   * @param nextLink The nextLink from the previous successful call to the list method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -107,7 +107,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -123,7 +123,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.nextLink],
+  urlParameters: [Parameters.$host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };

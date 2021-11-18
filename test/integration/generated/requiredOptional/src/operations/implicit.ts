@@ -152,7 +152,7 @@ const getRequiredPathOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.pathParameter],
+  urlParameters: [Parameters.$host, Parameters.pathParameter],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -166,7 +166,7 @@ const putOptionalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryParameter],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -179,7 +179,7 @@ const putOptionalHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.queryParameter1],
   serializer
 };
@@ -193,7 +193,7 @@ const putOptionalBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -208,7 +208,7 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -222,7 +222,7 @@ const getRequiredGlobalPathOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host, Parameters.requiredGlobalPath],
+  urlParameters: [Parameters.$host, Parameters.requiredGlobalPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -236,7 +236,7 @@ const getRequiredGlobalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.requiredGlobalQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -250,7 +250,7 @@ const getOptionalGlobalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.optionalGlobalQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

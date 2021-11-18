@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { TimeImpl } from "./operations";
 import { Time } from "./operationsInterfaces";
 import { BodyTimeClientOptionalParams } from "./models";
 
 export class BodyTimeClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the BodyTimeClient class.
@@ -43,7 +44,7 @@ export class BodyTimeClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.time = new TimeImpl(this);
   }
 

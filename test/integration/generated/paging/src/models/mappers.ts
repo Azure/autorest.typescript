@@ -126,10 +126,10 @@ export const OdataProductResult: coreClient.CompositeMapper = {
   }
 };
 
-export const ProductResultValueWithXmsClientName: coreClient.CompositeMapper = {
+export const ProductResultValueWithXMSClientName: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "ProductResultValueWithXmsClientName",
+    className: "ProductResultValueWithXMSClientName",
     modelProperties: {
       indexes: {
         serializedName: "values",

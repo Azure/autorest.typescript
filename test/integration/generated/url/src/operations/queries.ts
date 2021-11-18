@@ -487,7 +487,7 @@ const getBooleanTrueOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.boolQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -501,7 +501,7 @@ const getBooleanFalseOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.boolQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -515,7 +515,7 @@ const getBooleanNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.boolQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -529,7 +529,7 @@ const getIntOneMillionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.intQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -543,7 +543,7 @@ const getIntNegativeOneMillionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.intQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -557,7 +557,7 @@ const getIntNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.intQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -571,7 +571,7 @@ const getTenBillionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.longQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -585,7 +585,7 @@ const getNegativeTenBillionOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.longQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -599,7 +599,7 @@ const getLongNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.longQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -613,7 +613,7 @@ const floatScientificPositiveOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.floatQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -627,7 +627,7 @@ const floatScientificNegativeOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.floatQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -641,7 +641,7 @@ const floatNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.floatQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -655,7 +655,7 @@ const doubleDecimalPositiveOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.doubleQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -669,7 +669,7 @@ const doubleDecimalNegativeOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.doubleQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -683,7 +683,7 @@ const doubleNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.doubleQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -697,7 +697,7 @@ const stringUnicodeOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.stringQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -712,7 +712,7 @@ const stringUrlEncodedOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.stringQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -726,7 +726,7 @@ const stringEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.stringQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -740,7 +740,7 @@ const stringNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.stringQuery3],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -754,7 +754,7 @@ const enumValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.enumQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -768,7 +768,7 @@ const enumNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.enumQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -782,7 +782,7 @@ const byteMultiByteOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.byteQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -796,7 +796,7 @@ const byteEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.byteQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -810,7 +810,7 @@ const byteNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.byteQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -824,7 +824,7 @@ const dateValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.dateQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -838,7 +838,7 @@ const dateNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.dateQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -852,7 +852,7 @@ const dateTimeValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.dateTimeQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -866,7 +866,7 @@ const dateTimeNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.dateTimeQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -880,7 +880,7 @@ const arrayStringCsvValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -894,7 +894,7 @@ const arrayStringCsvNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -908,7 +908,7 @@ const arrayStringCsvEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -922,7 +922,7 @@ const arrayStringNoCollectionFormatEmptyOperationSpec: coreClient.OperationSpec 
     }
   },
   queryParameters: [Parameters.arrayQuery],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -936,7 +936,7 @@ const arrayStringSsvValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery1],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -950,7 +950,7 @@ const arrayStringTsvValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -964,7 +964,7 @@ const arrayStringPipesValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.arrayQuery3],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

@@ -60,8 +60,8 @@ import {
   XmlJsonInputOptionalParams,
   XmlJsonOutputOptionalParams,
   XmlJsonOutputResponse,
-  XmlGetXMSTextOptionalParams,
-  XmlGetXmsTextResponse,
+  XmlGetXMsTextOptionalParams,
+  XmlGetXMsTextResponse,
   XmlGetBytesOptionalParams,
   XmlGetBytesResponse,
   ModelWithByteProperty,
@@ -190,7 +190,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putRootList(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutRootListOptionalParams
   ): Promise<void>;
   /**
@@ -206,7 +206,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putRootListSingleItem(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutRootListSingleItemOptionalParams
   ): Promise<void>;
   /**
@@ -222,7 +222,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putEmptyRootList(
-    bananas: Banana,
+    bananas: Banana[],
     options?: XmlPutEmptyRootListOptionalParams
   ): Promise<void>;
   /**
@@ -275,7 +275,7 @@ export interface Xml {
    * @param options The options parameters.
    */
   putAcls(
-    properties: SignedIdentifier,
+    properties: SignedIdentifier[],
     options?: XmlPutAclsOptionalParams
   ): Promise<void>;
   /**
@@ -307,9 +307,9 @@ export interface Xml {
    * 'language' property being 'english' and its 'content' property being 'I am text'
    * @param options The options parameters.
    */
-  getXmsText(
-    options?: XmlGetXMSTextOptionalParams
-  ): Promise<XmlGetXmsTextResponse>;
+  getXMsText(
+    options?: XmlGetXMsTextOptionalParams
+  ): Promise<XmlGetXMsTextResponse>;
   /**
    * Get an XML document with binary property
    * @param options The options parameters.

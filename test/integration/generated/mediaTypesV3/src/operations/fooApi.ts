@@ -179,7 +179,7 @@ const postSendOnDefault$binaryOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -195,7 +195,7 @@ const postSendOnDefault$textOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer
@@ -211,7 +211,7 @@ const postSend$binaryOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.Host, Parameters.thing],
+  urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -227,7 +227,7 @@ const postSend$textOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.Host, Parameters.thing],
+  urlParameters: [Parameters.$host, Parameters.thing],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer

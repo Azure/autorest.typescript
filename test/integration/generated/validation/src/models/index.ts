@@ -85,7 +85,7 @@ export type PostWithConstantInBodyResponse = Product;
 export interface ValidationClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

@@ -2,16 +2,16 @@
 // Licensed under the MIT license.
 
 import {
-  GetHorseParameters,
-  PutHorseParameters,
-  GetPetParameters,
-  PutPetParameters,
-  GetFelineParameters,
-  PutFelineParameters,
-  GetCatParameters,
-  PutCatParameters,
-  GetKittenParameters,
-  PutKittenParameters
+  getHorseParameters,
+  putHorseParameters,
+  getPetParameters,
+  putPetParameters,
+  getFelineParameters,
+  putFelineParameters,
+  getCatParameters,
+  putCatParameters,
+  getKittenParameters,
+  putKittenParameters
 } from "./parameters";
 import {
   GetHorse200Response,
@@ -33,62 +33,62 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface GetHorse {
+export interface getHorse {
   /** Get a horse with name 'Fred' and isAShowHorse true */
   get(
-    options?: GetHorseParameters
+    options?: getHorseParameters
   ): Promise<GetHorse200Response | GetHorsedefaultResponse>;
   /** Put a horse with name 'General' and isAShowHorse false */
-  put(options: PutHorseParameters): Promise<PutHorse200Response>;
+  put(options: putHorseParameters): Promise<PutHorse200Response>;
 }
 
-export interface GetPet {
+export interface getPet {
   /** Get a pet with name 'Peanut' */
   get(
-    options?: GetPetParameters
+    options?: getPetParameters
   ): Promise<GetPet200Response | GetPetdefaultResponse>;
   /** Put a pet with name 'Butter' */
-  put(options: PutPetParameters): Promise<PutPet200Response>;
+  put(options: putPetParameters): Promise<PutPet200Response>;
 }
 
-export interface GetFeline {
+export interface getFeline {
   /** Get a feline where meows and hisses are true */
   get(
-    options?: GetFelineParameters
+    options?: getFelineParameters
   ): Promise<GetFeline200Response | GetFelinedefaultResponse>;
   /** Put a feline who hisses and doesn't meow */
-  put(options: PutFelineParameters): Promise<PutFeline200Response>;
+  put(options: putFelineParameters): Promise<PutFeline200Response>;
 }
 
-export interface GetCat {
+export interface getCat {
   /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
   get(
-    options?: GetCatParameters
+    options?: getCatParameters
   ): Promise<GetCat200Response | GetCatdefaultResponse>;
   /** Put a cat with name 'Boots' where likesMilk and hisses is false, meows is true */
-  put(options: PutCatParameters): Promise<PutCat200Response>;
+  put(options: putCatParameters): Promise<PutCat200Response>;
 }
 
-export interface GetKitten {
+export interface getKitten {
   /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
   get(
-    options?: GetKittenParameters
+    options?: getKittenParameters
   ): Promise<GetKitten200Response | GetKittendefaultResponse>;
   /** Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is true */
-  put(options: PutKittenParameters): Promise<PutKitten200Response>;
+  put(options: putKittenParameters): Promise<PutKitten200Response>;
 }
 
 export interface Routes {
   /** Resource for '/multipleInheritance/horse' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/horse"): GetHorse;
+  (path: "/multipleInheritance/horse"): getHorse;
   /** Resource for '/multipleInheritance/pet' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/pet"): GetPet;
+  (path: "/multipleInheritance/pet"): getPet;
   /** Resource for '/multipleInheritance/feline' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/feline"): GetFeline;
+  (path: "/multipleInheritance/feline"): getFeline;
   /** Resource for '/multipleInheritance/cat' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/cat"): GetCat;
+  (path: "/multipleInheritance/cat"): getCat;
   /** Resource for '/multipleInheritance/kitten' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/kitten"): GetKitten;
+  (path: "/multipleInheritance/kitten"): getKitten;
 }
 
 export type MultipleInheritanceRestClientRestClient = Client & {

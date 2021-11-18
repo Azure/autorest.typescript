@@ -2,228 +2,228 @@
 // Licensed under the MIT license.
 
 import {
-  StringGetNullParameters,
-  StringPutNullParameters,
-  StringGetEmptyParameters,
-  StringPutEmptyParameters,
-  StringGetMbcsParameters,
-  StringPutMbcsParameters,
-  StringGetWhitespaceParameters,
-  StringPutWhitespaceParameters,
-  StringGetNotProvidedParameters,
-  StringGetBase64EncodedParameters,
-  StringGetBase64UrlEncodedParameters,
-  StringPutBase64UrlEncodedParameters,
-  StringGetNullBase64UrlEncodedParameters,
-  EnumGetNotExpandableParameters,
-  EnumPutNotExpandableParameters,
-  EnumGetReferencedParameters,
-  EnumPutReferencedParameters,
-  EnumGetReferencedConstantParameters,
-  EnumPutReferencedConstantParameters
+  StringgetNullParameters,
+  StringputNullParameters,
+  StringgetEmptyParameters,
+  StringputEmptyParameters,
+  StringgetMbcsParameters,
+  StringputMbcsParameters,
+  StringgetWhitespaceParameters,
+  StringputWhitespaceParameters,
+  StringgetNotProvidedParameters,
+  StringgetBase64EncodedParameters,
+  StringgetBase64UrlEncodedParameters,
+  StringputBase64UrlEncodedParameters,
+  StringgetNullBase64UrlEncodedParameters,
+  EnumgetNotExpandableParameters,
+  EnumputNotExpandableParameters,
+  EnumgetReferencedParameters,
+  EnumputReferencedParameters,
+  EnumgetReferencedConstantParameters,
+  EnumputReferencedConstantParameters
 } from "./parameters";
 import {
-  StringGetNull200Response,
-  StringGetNulldefaultResponse,
-  StringPutNull200Response,
-  StringPutNulldefaultResponse,
-  StringGetEmpty200Response,
-  StringGetEmptydefaultResponse,
-  StringPutEmpty200Response,
-  StringPutEmptydefaultResponse,
-  StringGetMbcs200Response,
-  StringGetMbcsdefaultResponse,
-  StringPutMbcs200Response,
-  StringPutMbcsdefaultResponse,
-  StringGetWhitespace200Response,
-  StringGetWhitespacedefaultResponse,
-  StringPutWhitespace200Response,
-  StringPutWhitespacedefaultResponse,
-  StringGetNotProvided200Response,
-  StringGetNotProvideddefaultResponse,
-  StringGetBase64Encoded200Response,
-  StringGetBase64EncodeddefaultResponse,
-  StringGetBase64UrlEncoded200Response,
-  StringGetBase64UrlEncodeddefaultResponse,
-  StringPutBase64UrlEncoded200Response,
-  StringPutBase64UrlEncodeddefaultResponse,
-  StringGetNullBase64UrlEncoded200Response,
-  StringGetNullBase64UrlEncodeddefaultResponse,
-  EnumGetNotExpandable200Response,
-  EnumGetNotExpandabledefaultResponse,
-  EnumPutNotExpandable200Response,
-  EnumPutNotExpandabledefaultResponse,
-  EnumGetReferenced200Response,
-  EnumGetReferenceddefaultResponse,
-  EnumPutReferenced200Response,
-  EnumPutReferenceddefaultResponse,
-  EnumGetReferencedConstant200Response,
-  EnumGetReferencedConstantdefaultResponse,
-  EnumPutReferencedConstant200Response,
-  EnumPutReferencedConstantdefaultResponse
+  StringgetNull200Response,
+  StringgetNulldefaultResponse,
+  StringputNull200Response,
+  StringputNulldefaultResponse,
+  StringgetEmpty200Response,
+  StringgetEmptydefaultResponse,
+  StringputEmpty200Response,
+  StringputEmptydefaultResponse,
+  StringgetMbcs200Response,
+  StringgetMbcsdefaultResponse,
+  StringputMbcs200Response,
+  StringputMbcsdefaultResponse,
+  StringgetWhitespace200Response,
+  StringgetWhitespacedefaultResponse,
+  StringputWhitespace200Response,
+  StringputWhitespacedefaultResponse,
+  StringgetNotProvided200Response,
+  StringgetNotProvideddefaultResponse,
+  StringgetBase64Encoded200Response,
+  StringgetBase64EncodeddefaultResponse,
+  StringgetBase64UrlEncoded200Response,
+  StringgetBase64UrlEncodeddefaultResponse,
+  StringputBase64UrlEncoded200Response,
+  StringputBase64UrlEncodeddefaultResponse,
+  StringgetNullBase64UrlEncoded200Response,
+  StringgetNullBase64UrlEncodeddefaultResponse,
+  EnumgetNotExpandable200Response,
+  EnumgetNotExpandabledefaultResponse,
+  EnumputNotExpandable200Response,
+  EnumputNotExpandabledefaultResponse,
+  EnumgetReferenced200Response,
+  EnumgetReferenceddefaultResponse,
+  EnumputReferenced200Response,
+  EnumputReferenceddefaultResponse,
+  EnumgetReferencedConstant200Response,
+  EnumgetReferencedConstantdefaultResponse,
+  EnumputReferencedConstant200Response,
+  EnumputReferencedConstantdefaultResponse
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface StringGetNull {
+export interface StringgetNull {
   /** Get null string value value */
   get(
-    options?: StringGetNullParameters
-  ): Promise<StringGetNull200Response | StringGetNulldefaultResponse>;
+    options?: StringgetNullParameters
+  ): Promise<StringgetNull200Response | StringgetNulldefaultResponse>;
   /** Set string value null */
   put(
-    options?: StringPutNullParameters
-  ): Promise<StringPutNull200Response | StringPutNulldefaultResponse>;
+    options?: StringputNullParameters
+  ): Promise<StringputNull200Response | StringputNulldefaultResponse>;
 }
 
-export interface StringGetEmpty {
+export interface StringgetEmpty {
   /** Get empty string value value '' */
   get(
-    options?: StringGetEmptyParameters
-  ): Promise<StringGetEmpty200Response | StringGetEmptydefaultResponse>;
+    options?: StringgetEmptyParameters
+  ): Promise<StringgetEmpty200Response | StringgetEmptydefaultResponse>;
   /** Set string value empty '' */
   put(
-    options: StringPutEmptyParameters
-  ): Promise<StringPutEmpty200Response | StringPutEmptydefaultResponse>;
+    options: StringputEmptyParameters
+  ): Promise<StringputEmpty200Response | StringputEmptydefaultResponse>;
 }
 
-export interface StringGetMbcs {
+export interface StringgetMbcs {
   /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   get(
-    options?: StringGetMbcsParameters
-  ): Promise<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
+    options?: StringgetMbcsParameters
+  ): Promise<StringgetMbcs200Response | StringgetMbcsdefaultResponse>;
   /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
   put(
-    options: StringPutMbcsParameters
-  ): Promise<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
+    options: StringputMbcsParameters
+  ): Promise<StringputMbcs200Response | StringputMbcsdefaultResponse>;
 }
 
-export interface StringGetWhitespace {
+export interface StringgetWhitespace {
   /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   get(
-    options?: StringGetWhitespaceParameters
+    options?: StringgetWhitespaceParameters
   ): Promise<
-    StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
+    StringgetWhitespace200Response | StringgetWhitespacedefaultResponse
   >;
   /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
   put(
-    options: StringPutWhitespaceParameters
+    options: StringputWhitespaceParameters
   ): Promise<
-    StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
+    StringputWhitespace200Response | StringputWhitespacedefaultResponse
   >;
 }
 
-export interface StringGetNotProvided {
+export interface StringgetNotProvided {
   /** Get String value when no string value is sent in response payload */
   get(
-    options?: StringGetNotProvidedParameters
+    options?: StringgetNotProvidedParameters
   ): Promise<
-    StringGetNotProvided200Response | StringGetNotProvideddefaultResponse
+    StringgetNotProvided200Response | StringgetNotProvideddefaultResponse
   >;
 }
 
-export interface StringGetBase64Encoded {
+export interface StringgetBase64Encoded {
   /** Get value that is base64 encoded */
   get(
-    options?: StringGetBase64EncodedParameters
+    options?: StringgetBase64EncodedParameters
   ): Promise<
-    StringGetBase64Encoded200Response | StringGetBase64EncodeddefaultResponse
+    StringgetBase64Encoded200Response | StringgetBase64EncodeddefaultResponse
   >;
 }
 
-export interface StringGetBase64UrlEncoded {
+export interface StringgetBase64UrlEncoded {
   /** Get value that is base64url encoded */
   get(
-    options?: StringGetBase64UrlEncodedParameters
+    options?: StringgetBase64UrlEncodedParameters
   ): Promise<
-    | StringGetBase64UrlEncoded200Response
-    | StringGetBase64UrlEncodeddefaultResponse
+    | StringgetBase64UrlEncoded200Response
+    | StringgetBase64UrlEncodeddefaultResponse
   >;
   /** Put value that is base64url encoded */
   put(
-    options: StringPutBase64UrlEncodedParameters
+    options: StringputBase64UrlEncodedParameters
   ): Promise<
-    | StringPutBase64UrlEncoded200Response
-    | StringPutBase64UrlEncodeddefaultResponse
+    | StringputBase64UrlEncoded200Response
+    | StringputBase64UrlEncodeddefaultResponse
   >;
 }
 
-export interface StringGetNullBase64UrlEncoded {
+export interface StringgetNullBase64UrlEncoded {
   /** Get null value that is expected to be base64url encoded */
   get(
-    options?: StringGetNullBase64UrlEncodedParameters
+    options?: StringgetNullBase64UrlEncodedParameters
   ): Promise<
-    | StringGetNullBase64UrlEncoded200Response
-    | StringGetNullBase64UrlEncodeddefaultResponse
+    | StringgetNullBase64UrlEncoded200Response
+    | StringgetNullBase64UrlEncodeddefaultResponse
   >;
 }
 
-export interface EnumGetNotExpandable {
+export interface EnumgetNotExpandable {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
-    options?: EnumGetNotExpandableParameters
+    options?: EnumgetNotExpandableParameters
   ): Promise<
-    EnumGetNotExpandable200Response | EnumGetNotExpandabledefaultResponse
+    EnumgetNotExpandable200Response | EnumgetNotExpandabledefaultResponse
   >;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
-    options: EnumPutNotExpandableParameters
+    options: EnumputNotExpandableParameters
   ): Promise<
-    EnumPutNotExpandable200Response | EnumPutNotExpandabledefaultResponse
+    EnumputNotExpandable200Response | EnumputNotExpandabledefaultResponse
   >;
 }
 
-export interface EnumGetReferenced {
+export interface EnumgetReferenced {
   /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
   get(
-    options?: EnumGetReferencedParameters
-  ): Promise<EnumGetReferenced200Response | EnumGetReferenceddefaultResponse>;
+    options?: EnumgetReferencedParameters
+  ): Promise<EnumgetReferenced200Response | EnumgetReferenceddefaultResponse>;
   /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
   put(
-    options: EnumPutReferencedParameters
-  ): Promise<EnumPutReferenced200Response | EnumPutReferenceddefaultResponse>;
+    options: EnumputReferencedParameters
+  ): Promise<EnumputReferenced200Response | EnumputReferenceddefaultResponse>;
 }
 
-export interface EnumGetReferencedConstant {
+export interface EnumgetReferencedConstant {
   /** Get value 'green-color' from the constant. */
   get(
-    options?: EnumGetReferencedConstantParameters
+    options?: EnumgetReferencedConstantParameters
   ): Promise<
-    | EnumGetReferencedConstant200Response
-    | EnumGetReferencedConstantdefaultResponse
+    | EnumgetReferencedConstant200Response
+    | EnumgetReferencedConstantdefaultResponse
   >;
   /** Sends value 'green-color' from a constant */
   put(
-    options: EnumPutReferencedConstantParameters
+    options: EnumputReferencedConstantParameters
   ): Promise<
-    | EnumPutReferencedConstant200Response
-    | EnumPutReferencedConstantdefaultResponse
+    | EnumputReferencedConstant200Response
+    | EnumputReferencedConstantdefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/string/null' has methods for the following verbs: get, put */
-  (path: "/string/null"): StringGetNull;
+  (path: "/string/null"): StringgetNull;
   /** Resource for '/string/empty' has methods for the following verbs: get, put */
-  (path: "/string/empty"): StringGetEmpty;
+  (path: "/string/empty"): StringgetEmpty;
   /** Resource for '/string/mbcs' has methods for the following verbs: get, put */
-  (path: "/string/mbcs"): StringGetMbcs;
+  (path: "/string/mbcs"): StringgetMbcs;
   /** Resource for '/string/whitespace' has methods for the following verbs: get, put */
-  (path: "/string/whitespace"): StringGetWhitespace;
+  (path: "/string/whitespace"): StringgetWhitespace;
   /** Resource for '/string/notProvided' has methods for the following verbs: get */
-  (path: "/string/notProvided"): StringGetNotProvided;
+  (path: "/string/notProvided"): StringgetNotProvided;
   /** Resource for '/string/base64Encoding' has methods for the following verbs: get */
-  (path: "/string/base64Encoding"): StringGetBase64Encoded;
+  (path: "/string/base64Encoding"): StringgetBase64Encoded;
   /** Resource for '/string/base64UrlEncoding' has methods for the following verbs: get, put */
-  (path: "/string/base64UrlEncoding"): StringGetBase64UrlEncoded;
+  (path: "/string/base64UrlEncoding"): StringgetBase64UrlEncoded;
   /** Resource for '/string/nullBase64UrlEncoding' has methods for the following verbs: get */
-  (path: "/string/nullBase64UrlEncoding"): StringGetNullBase64UrlEncoded;
+  (path: "/string/nullBase64UrlEncoding"): StringgetNullBase64UrlEncoded;
   /** Resource for '/string/enum/notExpandable' has methods for the following verbs: get, put */
-  (path: "/string/enum/notExpandable"): EnumGetNotExpandable;
+  (path: "/string/enum/notExpandable"): EnumgetNotExpandable;
   /** Resource for '/string/enum/Referenced' has methods for the following verbs: get, put */
-  (path: "/string/enum/Referenced"): EnumGetReferenced;
+  (path: "/string/enum/Referenced"): EnumgetReferenced;
   /** Resource for '/string/enum/ReferencedConstant' has methods for the following verbs: get, put */
-  (path: "/string/enum/ReferencedConstant"): EnumGetReferencedConstant;
+  (path: "/string/enum/ReferencedConstant"): EnumgetReferencedConstant;
 }
 
 export type BodyStringRestRestClient = Client & {

@@ -148,7 +148,7 @@ export interface IotDpsPropertiesDescription {
   /** Whether requests from Public Network are allowed */
   publicNetworkAccess?: PublicNetworkAccess;
   /** The IP filter rules. */
-  ipFilterRules?: IPFilterRule[];
+  ipFilterRules?: IpFilterRule[];
   /** Private endpoint connections created on this IotHub */
   privateEndpointConnections?: PrivateEndpointConnection[];
   /** The ARM provisioning state of the provisioning service. */
@@ -177,7 +177,7 @@ export interface IotDpsPropertiesDescription {
 }
 
 /** The IP filter rules for a provisioning Service. */
-export interface IPFilterRule {
+export interface IpFilterRule {
   /** The name of the IP filter rule. */
   filterName: string;
   /** The desired action for requests captured by this rule. */
@@ -642,10 +642,10 @@ export enum KnownNameUnavailabilityReason {
  * **AlreadyExists**
  */
 export type NameUnavailabilityReason = string;
-/** Defines values for IPFilterActionType. */
-export type IPFilterActionType = "Accept" | "Reject";
-/** Defines values for IPFilterTargetType. */
-export type IPFilterTargetType = "all" | "serviceApi" | "deviceApi";
+/** Defines values for IpFilterActionType. */
+export type IpFilterActionType = "Accept" | "Reject";
+/** Defines values for IpFilterTargetType. */
+export type IpFilterTargetType = "all" | "serviceApi" | "deviceApi";
 
 /** Optional parameters. */
 export interface OperationsListOptionalParams
@@ -930,7 +930,7 @@ export type IotDpsResourceListKeysNextResponse = SharedAccessSignatureAuthorizat
 export interface DeviceProvisioningClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

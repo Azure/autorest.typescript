@@ -36,7 +36,7 @@ export type GetOptionalReportResponse = { [propertyName: string]: number };
 export interface ReportClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -16,16 +16,16 @@ import {
 } from "./models";
 
 export class MapperRequiredClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the MapperRequiredClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: MapperRequiredClientOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: MapperRequiredClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -52,7 +52,7 @@ export class MapperRequiredClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
   }
 
   /**
@@ -86,7 +86,7 @@ const updateCertificateIssuerOperationSpec: coreClient.OperationSpec = {
     parameterPath: { provider: ["options", "provider"] },
     mapper: { ...Mappers.CertificateIssuerUpdateParameters, required: true }
   },
-  urlParameters: [Parameters.Host, Parameters.issuerName],
+  urlParameters: [Parameters.$host, Parameters.issuerName],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

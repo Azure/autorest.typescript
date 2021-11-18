@@ -128,7 +128,7 @@ const head408OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -142,7 +142,7 @@ const put500OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -157,7 +157,7 @@ const patch500OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -171,7 +171,7 @@ const get502OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -186,7 +186,7 @@ const options502OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -200,7 +200,7 @@ const post503OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -215,7 +215,7 @@ const delete503OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -230,7 +230,7 @@ const put504OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -245,7 +245,7 @@ const patch504OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.booleanValue,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

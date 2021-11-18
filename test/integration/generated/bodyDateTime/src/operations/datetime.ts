@@ -376,7 +376,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -391,7 +391,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -406,7 +406,7 @@ const getOverflowOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -421,7 +421,7 @@ const getUnderflowOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -435,7 +435,7 @@ const putUtcMaxDateTimeOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -450,7 +450,7 @@ const putUtcMaxDateTime7DigitsOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -466,7 +466,7 @@ const getUtcLowercaseMaxDateTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -481,7 +481,7 @@ const getUtcUppercaseMaxDateTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -496,7 +496,7 @@ const getUtcUppercaseMaxDateTime7DigitsOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -510,7 +510,7 @@ const putLocalPositiveOffsetMaxDateTimeOperationSpec: coreClient.OperationSpec =
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -526,7 +526,7 @@ const getLocalPositiveOffsetLowercaseMaxDateTimeOperationSpec: coreClient.Operat
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -541,7 +541,7 @@ const getLocalPositiveOffsetUppercaseMaxDateTimeOperationSpec: coreClient.Operat
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -555,7 +555,7 @@ const putLocalNegativeOffsetMaxDateTimeOperationSpec: coreClient.OperationSpec =
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -571,7 +571,7 @@ const getLocalNegativeOffsetUppercaseMaxDateTimeOperationSpec: coreClient.Operat
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -586,7 +586,7 @@ const getLocalNegativeOffsetLowercaseMaxDateTimeOperationSpec: coreClient.Operat
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -600,7 +600,7 @@ const putUtcMinDateTimeOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -616,7 +616,7 @@ const getUtcMinDateTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -630,7 +630,7 @@ const putLocalPositiveOffsetMinDateTimeOperationSpec: coreClient.OperationSpec =
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -646,7 +646,7 @@ const getLocalPositiveOffsetMinDateTimeOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -660,7 +660,7 @@ const putLocalNegativeOffsetMinDateTimeOperationSpec: coreClient.OperationSpec =
     }
   },
   requestBody: Parameters.datetimeBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -676,7 +676,7 @@ const getLocalNegativeOffsetMinDateTimeOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -691,7 +691,7 @@ const getLocalNoOffsetMinDateTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

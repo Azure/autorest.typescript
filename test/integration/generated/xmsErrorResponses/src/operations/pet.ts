@@ -98,7 +98,7 @@ const getPetByIdOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -117,7 +117,7 @@ const doSomethingOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PetActionError
     }
   },
-  urlParameters: [Parameters.Host, Parameters.whatAction],
+  urlParameters: [Parameters.$host, Parameters.whatAction],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -135,7 +135,7 @@ const hasModelsParamOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.models],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };

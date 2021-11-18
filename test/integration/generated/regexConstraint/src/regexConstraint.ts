@@ -15,16 +15,16 @@ import {
 } from "./models";
 
 export class RegexConstraint extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the RegexConstraint class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: RegexConstraintOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: RegexConstraintOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -51,7 +51,7 @@ export class RegexConstraint extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
   }
 
   /**
@@ -80,7 +80,7 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  urlParameters: [Parameters.Host, Parameters.serverName],
+  urlParameters: [Parameters.$host, Parameters.serverName],
   headerParameters: [Parameters.accept],
   serializer
 };

@@ -5,819 +5,819 @@ import { HttpResponse } from "@azure-rest/core-client";
 import { ErrorModelOutput } from "./outputModels";
 
 /** Get true Boolean value on path */
-export interface PathsGetBooleanTrue200Response extends HttpResponse {
+export interface PathsgetBooleanTrue200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get true Boolean value on path */
-export interface PathsGetBooleanTruedefaultResponse extends HttpResponse {
+export interface PathsgetBooleanTruedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get false Boolean value on path */
-export interface PathsGetBooleanFalse200Response extends HttpResponse {
+export interface PathsgetBooleanFalse200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get false Boolean value on path */
-export interface PathsGetBooleanFalsedefaultResponse extends HttpResponse {
+export interface PathsgetBooleanFalsedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '1000000' integer value */
-export interface PathsGetIntOneMillion200Response extends HttpResponse {
+export interface PathsgetIntOneMillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '1000000' integer value */
-export interface PathsGetIntOneMilliondefaultResponse extends HttpResponse {
+export interface PathsgetIntOneMilliondefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-1000000' integer value */
-export interface PathsGetIntNegativeOneMillion200Response extends HttpResponse {
+export interface PathsgetIntNegativeOneMillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-1000000' integer value */
-export interface PathsGetIntNegativeOneMilliondefaultResponse
+export interface PathsgetIntNegativeOneMilliondefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '10000000000' 64 bit integer value */
-export interface PathsGetTenBillion200Response extends HttpResponse {
+export interface PathsgetTenBillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '10000000000' 64 bit integer value */
-export interface PathsGetTenBilliondefaultResponse extends HttpResponse {
+export interface PathsgetTenBilliondefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface PathsGetNegativeTenBillion200Response extends HttpResponse {
+export interface PathsgetNegativeTenBillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface PathsGetNegativeTenBilliondefaultResponse
+export interface PathsgetNegativeTenBilliondefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '1.034E+20' numeric value */
-export interface PathsFloatScientificPositive200Response extends HttpResponse {
+export interface PathsfloatScientificPositive200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '1.034E+20' numeric value */
-export interface PathsFloatScientificPositivedefaultResponse
+export interface PathsfloatScientificPositivedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface PathsFloatScientificNegative200Response extends HttpResponse {
+export interface PathsfloatScientificNegative200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface PathsFloatScientificNegativedefaultResponse
+export interface PathsfloatScientificNegativedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '9999999.999' numeric value */
-export interface PathsDoubleDecimalPositive200Response extends HttpResponse {
+export interface PathsdoubleDecimalPositive200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '9999999.999' numeric value */
-export interface PathsDoubleDecimalPositivedefaultResponse
+export interface PathsdoubleDecimalPositivedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-9999999.999' numeric value */
-export interface PathsDoubleDecimalNegative200Response extends HttpResponse {
+export interface PathsdoubleDecimalNegative200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-9999999.999' numeric value */
-export interface PathsDoubleDecimalNegativedefaultResponse
+export interface PathsdoubleDecimalNegativedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
-export interface PathsStringUnicode200Response extends HttpResponse {
+export interface PathsstringUnicode200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
-export interface PathsStringUnicodedefaultResponse extends HttpResponse {
+export interface PathsstringUnicodedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get 'begin!*'();:@ &=+$,/?#[]end */
-export interface PathsStringUrlEncoded200Response extends HttpResponse {
+export interface PathsstringUrlEncoded200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get 'begin!*'();:@ &=+$,/?#[]end */
-export interface PathsStringUrlEncodeddefaultResponse extends HttpResponse {
+export interface PathsstringUrlEncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded */
-export interface PathsStringUrlNonEncoded200Response extends HttpResponse {
+export interface PathsstringUrlNonEncoded200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded */
-export interface PathsStringUrlNonEncodeddefaultResponse extends HttpResponse {
+export interface PathsstringUrlNonEncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '' */
-export interface PathsStringEmpty200Response extends HttpResponse {
+export interface PathsstringEmpty200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '' */
-export interface PathsStringEmptydefaultResponse extends HttpResponse {
+export interface PathsstringEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null (should throw) */
-export interface PathsStringNull400Response extends HttpResponse {
+export interface PathsstringNull400Response extends HttpResponse {
   status: "400";
   body: Record<string, unknown>;
 }
 
 /** Get null (should throw) */
-export interface PathsStringNulldefaultResponse extends HttpResponse {
+export interface PathsstringNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get using uri with 'green color' in path parameter */
-export interface PathsEnumValid200Response extends HttpResponse {
+export interface PathsenumValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get using uri with 'green color' in path parameter */
-export interface PathsEnumValiddefaultResponse extends HttpResponse {
+export interface PathsenumValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null (should throw on the client before the request is sent on wire) */
-export interface PathsEnumNull400Response extends HttpResponse {
+export interface PathsenumNull400Response extends HttpResponse {
   status: "400";
   body: Record<string, unknown>;
 }
 
 /** Get null (should throw on the client before the request is sent on wire) */
-export interface PathsEnumNulldefaultResponse extends HttpResponse {
+export interface PathsenumNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
-export interface PathsByteMultiByte200Response extends HttpResponse {
+export interface PathsbyteMultiByte200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
-export interface PathsByteMultiBytedefaultResponse extends HttpResponse {
+export interface PathsbyteMultiBytedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '' as byte array */
-export interface PathsByteEmpty200Response extends HttpResponse {
+export interface PathsbyteEmpty200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '' as byte array */
-export interface PathsByteEmptydefaultResponse extends HttpResponse {
+export interface PathsbyteEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as byte array (should throw) */
-export interface PathsByteNull400Response extends HttpResponse {
+export interface PathsbyteNull400Response extends HttpResponse {
   status: "400";
   body: Record<string, unknown>;
 }
 
 /** Get null as byte array (should throw) */
-export interface PathsByteNulldefaultResponse extends HttpResponse {
+export interface PathsbyteNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '2012-01-01' as date */
-export interface PathsDateValid200Response extends HttpResponse {
+export interface PathsdateValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '2012-01-01' as date */
-export interface PathsDateValiddefaultResponse extends HttpResponse {
+export interface PathsdateValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
-export interface PathsDateNull400Response extends HttpResponse {
+export interface PathsdateNull400Response extends HttpResponse {
   status: "400";
   body: Record<string, unknown>;
 }
 
 /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
-export interface PathsDateNulldefaultResponse extends HttpResponse {
+export interface PathsdateNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '2012-01-01T01:01:01Z' as date-time */
-export interface PathsDateTimeValid200Response extends HttpResponse {
+export interface PathsdateTimeValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '2012-01-01T01:01:01Z' as date-time */
-export interface PathsDateTimeValiddefaultResponse extends HttpResponse {
+export interface PathsdateTimeValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
-export interface PathsDateTimeNull400Response extends HttpResponse {
+export interface PathsdateTimeNull400Response extends HttpResponse {
   status: "400";
   body: Record<string, unknown>;
 }
 
 /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
-export interface PathsDateTimeNulldefaultResponse extends HttpResponse {
+export interface PathsdateTimeNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
-export interface PathsBase64Url200Response extends HttpResponse {
+export interface Pathsbase64Url200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
-export interface PathsBase64UrldefaultResponse extends HttpResponse {
+export interface Pathsbase64UrldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
-export interface PathsArrayCsvInPath200Response extends HttpResponse {
+export interface PathsarrayCsvInPath200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
-export interface PathsArrayCsvInPathdefaultResponse extends HttpResponse {
+export interface PathsarrayCsvInPathdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get the date 2016-04-13 encoded value as '1460505600' (Unix time) */
-export interface PathsUnixTimeUrl200Response extends HttpResponse {
+export interface PathsunixTimeUrl200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get the date 2016-04-13 encoded value as '1460505600' (Unix time) */
-export interface PathsUnixTimeUrldefaultResponse extends HttpResponse {
+export interface PathsunixTimeUrldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get true Boolean value on path */
-export interface QueriesGetBooleanTrue200Response extends HttpResponse {
+export interface QueriesgetBooleanTrue200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get true Boolean value on path */
-export interface QueriesGetBooleanTruedefaultResponse extends HttpResponse {
+export interface QueriesgetBooleanTruedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get false Boolean value on path */
-export interface QueriesGetBooleanFalse200Response extends HttpResponse {
+export interface QueriesgetBooleanFalse200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get false Boolean value on path */
-export interface QueriesGetBooleanFalsedefaultResponse extends HttpResponse {
+export interface QueriesgetBooleanFalsedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null Boolean value on query (query string should be absent) */
-export interface QueriesGetBooleanNull200Response extends HttpResponse {
+export interface QueriesgetBooleanNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null Boolean value on query (query string should be absent) */
-export interface QueriesGetBooleanNulldefaultResponse extends HttpResponse {
+export interface QueriesgetBooleanNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '1000000' integer value */
-export interface QueriesGetIntOneMillion200Response extends HttpResponse {
+export interface QueriesgetIntOneMillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '1000000' integer value */
-export interface QueriesGetIntOneMilliondefaultResponse extends HttpResponse {
+export interface QueriesgetIntOneMilliondefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-1000000' integer value */
-export interface QueriesGetIntNegativeOneMillion200Response
+export interface QueriesgetIntNegativeOneMillion200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-1000000' integer value */
-export interface QueriesGetIntNegativeOneMilliondefaultResponse
+export interface QueriesgetIntNegativeOneMilliondefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null integer value (no query parameter) */
-export interface QueriesGetIntNull200Response extends HttpResponse {
+export interface QueriesgetIntNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null integer value (no query parameter) */
-export interface QueriesGetIntNulldefaultResponse extends HttpResponse {
+export interface QueriesgetIntNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '10000000000' 64 bit integer value */
-export interface QueriesGetTenBillion200Response extends HttpResponse {
+export interface QueriesgetTenBillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '10000000000' 64 bit integer value */
-export interface QueriesGetTenBilliondefaultResponse extends HttpResponse {
+export interface QueriesgetTenBilliondefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface QueriesGetNegativeTenBillion200Response extends HttpResponse {
+export interface QueriesgetNegativeTenBillion200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-10000000000' 64 bit integer value */
-export interface QueriesGetNegativeTenBilliondefaultResponse
+export interface QueriesgetNegativeTenBilliondefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get 'null 64 bit integer value (no query param in uri) */
-export interface QueriesGetLongNull200Response extends HttpResponse {
+export interface QueriesgetLongNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get 'null 64 bit integer value (no query param in uri) */
-export interface QueriesGetLongNulldefaultResponse extends HttpResponse {
+export interface QueriesgetLongNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '1.034E+20' numeric value */
-export interface QueriesFloatScientificPositive200Response
+export interface QueriesfloatScientificPositive200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '1.034E+20' numeric value */
-export interface QueriesFloatScientificPositivedefaultResponse
+export interface QueriesfloatScientificPositivedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface QueriesFloatScientificNegative200Response
+export interface QueriesfloatScientificNegative200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-1.034E-20' numeric value */
-export interface QueriesFloatScientificNegativedefaultResponse
+export interface QueriesfloatScientificNegativedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesFloatNull200Response extends HttpResponse {
+export interface QueriesfloatNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesFloatNulldefaultResponse extends HttpResponse {
+export interface QueriesfloatNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '9999999.999' numeric value */
-export interface QueriesDoubleDecimalPositive200Response extends HttpResponse {
+export interface QueriesdoubleDecimalPositive200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '9999999.999' numeric value */
-export interface QueriesDoubleDecimalPositivedefaultResponse
+export interface QueriesdoubleDecimalPositivedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '-9999999.999' numeric value */
-export interface QueriesDoubleDecimalNegative200Response extends HttpResponse {
+export interface QueriesdoubleDecimalNegative200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '-9999999.999' numeric value */
-export interface QueriesDoubleDecimalNegativedefaultResponse
+export interface QueriesdoubleDecimalNegativedefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesDoubleNull200Response extends HttpResponse {
+export interface QueriesdoubleNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null numeric value (no query parameter) */
-export interface QueriesDoubleNulldefaultResponse extends HttpResponse {
+export interface QueriesdoubleNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
-export interface QueriesStringUnicode200Response extends HttpResponse {
+export interface QueriesstringUnicode200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
-export interface QueriesStringUnicodedefaultResponse extends HttpResponse {
+export interface QueriesstringUnicodedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get 'begin!*'();:@ &=+$,/?#[]end */
-export interface QueriesStringUrlEncoded200Response extends HttpResponse {
+export interface QueriesstringUrlEncoded200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get 'begin!*'();:@ &=+$,/?#[]end */
-export interface QueriesStringUrlEncodeddefaultResponse extends HttpResponse {
+export interface QueriesstringUrlEncodeddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '' */
-export interface QueriesStringEmpty200Response extends HttpResponse {
+export interface QueriesstringEmpty200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '' */
-export interface QueriesStringEmptydefaultResponse extends HttpResponse {
+export interface QueriesstringEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesStringNull200Response extends HttpResponse {
+export interface QueriesstringNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesStringNulldefaultResponse extends HttpResponse {
+export interface QueriesstringNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get using uri with query parameter 'green color' */
-export interface QueriesEnumValid200Response extends HttpResponse {
+export interface QueriesenumValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get using uri with query parameter 'green color' */
-export interface QueriesEnumValiddefaultResponse extends HttpResponse {
+export interface QueriesenumValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesEnumNull200Response extends HttpResponse {
+export interface QueriesenumNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null (no query parameter in url) */
-export interface QueriesEnumNulldefaultResponse extends HttpResponse {
+export interface QueriesenumNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
-export interface QueriesByteMultiByte200Response extends HttpResponse {
+export interface QueriesbyteMultiByte200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
-export interface QueriesByteMultiBytedefaultResponse extends HttpResponse {
+export interface QueriesbyteMultiBytedefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '' as byte array */
-export interface QueriesByteEmpty200Response extends HttpResponse {
+export interface QueriesbyteEmpty200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '' as byte array */
-export interface QueriesByteEmptydefaultResponse extends HttpResponse {
+export interface QueriesbyteEmptydefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as byte array (no query parameters in uri) */
-export interface QueriesByteNull200Response extends HttpResponse {
+export interface QueriesbyteNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null as byte array (no query parameters in uri) */
-export interface QueriesByteNulldefaultResponse extends HttpResponse {
+export interface QueriesbyteNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '2012-01-01' as date */
-export interface QueriesDateValid200Response extends HttpResponse {
+export interface QueriesdateValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '2012-01-01' as date */
-export interface QueriesDateValiddefaultResponse extends HttpResponse {
+export interface QueriesdateValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as date - this should result in no query parameters in uri */
-export interface QueriesDateNull200Response extends HttpResponse {
+export interface QueriesdateNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null as date - this should result in no query parameters in uri */
-export interface QueriesDateNulldefaultResponse extends HttpResponse {
+export interface QueriesdateNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get '2012-01-01T01:01:01Z' as date-time */
-export interface QueriesDateTimeValid200Response extends HttpResponse {
+export interface QueriesdateTimeValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get '2012-01-01T01:01:01Z' as date-time */
-export interface QueriesDateTimeValiddefaultResponse extends HttpResponse {
+export interface QueriesdateTimeValiddefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get null as date-time, should result in no query parameters in uri */
-export interface QueriesDateTimeNull200Response extends HttpResponse {
+export interface QueriesdateTimeNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get null as date-time, should result in no query parameters in uri */
-export interface QueriesDateTimeNulldefaultResponse extends HttpResponse {
+export interface QueriesdateTimeNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
-export interface QueriesArrayStringCsvValid200Response extends HttpResponse {
+export interface QueriesarrayStringCsvValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
-export interface QueriesArrayStringCsvValiddefaultResponse
+export interface QueriesarrayStringCsvValiddefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get a null array of string using the csv-array format */
-export interface QueriesArrayStringCsvNull200Response extends HttpResponse {
+export interface QueriesarrayStringCsvNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get a null array of string using the csv-array format */
-export interface QueriesArrayStringCsvNulldefaultResponse extends HttpResponse {
+export interface QueriesarrayStringCsvNulldefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an empty array [] of string using the csv-array format */
-export interface QueriesArrayStringCsvEmpty200Response extends HttpResponse {
+export interface QueriesarrayStringCsvEmpty200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an empty array [] of string using the csv-array format */
-export interface QueriesArrayStringCsvEmptydefaultResponse
+export interface QueriesarrayStringCsvEmptydefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
-export interface QueriesArrayStringNoCollectionFormatEmpty200Response
+export interface QueriesarrayStringNoCollectionFormatEmpty200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
-export interface QueriesArrayStringNoCollectionFormatEmptydefaultResponse
+export interface QueriesarrayStringNoCollectionFormatEmptydefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
-export interface QueriesArrayStringSsvValid200Response extends HttpResponse {
+export interface QueriesarrayStringSsvValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
-export interface QueriesArrayStringSsvValiddefaultResponse
+export interface QueriesarrayStringSsvValiddefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
-export interface QueriesArrayStringTsvValid200Response extends HttpResponse {
+export interface QueriesarrayStringTsvValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
-export interface QueriesArrayStringTsvValiddefaultResponse
+export interface QueriesarrayStringTsvValiddefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
-export interface QueriesArrayStringPipesValid200Response extends HttpResponse {
+export interface QueriesarrayStringPipesValid200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
-export interface QueriesArrayStringPipesValiddefaultResponse
+export interface QueriesarrayStringPipesValiddefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetAllWithValues200Response extends HttpResponse {
+export interface PathItemsgetAllWithValues200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetAllWithValuesdefaultResponse extends HttpResponse {
+export interface PathItemsgetAllWithValuesdefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetGlobalQueryNull200Response extends HttpResponse {
+export interface PathItemsgetGlobalQueryNull200Response extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
-export interface PathItemsGetGlobalQueryNulldefaultResponse
+export interface PathItemsgetGlobalQueryNulldefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNull200Response
+export interface PathItemsgetGlobalAndLocalQueryNull200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
-export interface PathItemsGetGlobalAndLocalQueryNulldefaultResponse
+export interface PathItemsgetGlobalAndLocalQueryNulldefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNull200Response
+export interface PathItemsgetLocalPathItemQueryNull200Response
   extends HttpResponse {
   status: "200";
   body: Record<string, unknown>;
 }
 
 /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
-export interface PathItemsGetLocalPathItemQueryNulldefaultResponse
+export interface PathItemsgetLocalPathItemQueryNulldefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;

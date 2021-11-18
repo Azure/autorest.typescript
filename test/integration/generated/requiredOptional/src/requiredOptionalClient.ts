@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { ImplicitImpl, ExplicitImpl } from "./operations";
 import { Implicit, Explicit } from "./operationsInterfaces";
 import { RequiredOptionalClientOptionalParams } from "./models";
 
 export class RequiredOptionalClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   requiredGlobalPath: string;
   requiredGlobalQuery: string;
   optionalGlobalQuery?: number;
@@ -62,7 +63,7 @@ export class RequiredOptionalClient extends coreClient.ServiceClient {
     this.requiredGlobalQuery = requiredGlobalQuery;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.implicit = new ImplicitImpl(this);
     this.explicit = new ExplicitImpl(this);
   }

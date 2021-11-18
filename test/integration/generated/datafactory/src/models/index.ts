@@ -23,18 +23,18 @@ export type LinkedServiceUnion =
   | AzureStorageLinkedService
   | AzureBlobStorageLinkedService
   | AzureTableStorageLinkedService
-  | AzureSqlDwLinkedService
+  | AzureSqlDWLinkedService
   | SqlServerLinkedService
   | AmazonRdsForSqlServerLinkedService
   | AzureSqlDatabaseLinkedService
-  | AzureSqlMiLinkedService
+  | AzureSqlMILinkedService
   | AzureBatchLinkedService
   | AzureKeyVaultLinkedService
   | CosmosDbLinkedService
   | DynamicsLinkedService
   | DynamicsCrmLinkedService
   | CommonDataServiceForAppsLinkedService
-  | HdInsightLinkedService
+  | HDInsightLinkedService
   | FileServerLinkedService
   | AzureFileStorageLinkedService
   | AmazonS3CompatibleLinkedService
@@ -48,8 +48,8 @@ export type LinkedServiceUnion =
   | SybaseLinkedService
   | Db2LinkedService
   | TeradataLinkedService
-  | AzureMlLinkedService
-  | AzureMlServiceLinkedService
+  | AzureMLLinkedService
+  | AzureMLServiceLinkedService
   | OdbcLinkedService
   | InformixLinkedService
   | MicrosoftAccessLinkedService
@@ -62,7 +62,7 @@ export type LinkedServiceUnion =
   | MongoDbV2LinkedService
   | CosmosDbMongoDbApiLinkedService
   | AzureDataLakeStoreLinkedService
-  | AzureBlobFsLinkedService
+  | AzureBlobFSLinkedService
   | Office365LinkedService
   | SalesforceLinkedService
   | SalesforceServiceCloudLinkedService
@@ -77,9 +77,9 @@ export type LinkedServiceUnion =
   | HttpLinkedService
   | FtpServerLinkedService
   | SftpServerLinkedService
-  | SapBwLinkedService
+  | SapBWLinkedService
   | SapHanaLinkedService
-  | AmazonMwsLinkedService
+  | AmazonMWSLinkedService
   | AzurePostgreSqlLinkedService
   | ConcurLinkedService
   | CouchbaseLinkedService
@@ -93,8 +93,8 @@ export type LinkedServiceUnion =
   | ImpalaLinkedService
   | JiraLinkedService
   | MagentoLinkedService
-  | MariaDbLinkedService
-  | AzureMariaDbLinkedService
+  | MariaDBLinkedService
+  | AzureMariaDBLinkedService
   | MarketoLinkedService
   | PaypalLinkedService
   | PhoenixLinkedService
@@ -109,12 +109,12 @@ export type LinkedServiceUnion =
   | VerticaLinkedService
   | NetezzaLinkedService
   | SalesforceMarketingCloudLinkedService
-  | HdInsightOnDemandLinkedService
+  | HDInsightOnDemandLinkedService
   | AzureDataLakeAnalyticsLinkedService
   | AzureDatabricksLinkedService
   | AzureDatabricksDeltaLakeLinkedService
   | ResponsysLinkedService
-  | DynamicsAxLinkedService
+  | DynamicsAXLinkedService
   | OracleServiceCloudLinkedService
   | GoogleAdWordsLinkedService
   | SapTableLinkedService
@@ -136,8 +136,8 @@ export type DatasetUnion =
   | AzureBlobDataset
   | AzureTableDataset
   | AzureSqlTableDataset
-  | AzureSqlMiTableDataset
-  | AzureSqlDwTableDataset
+  | AzureSqlMITableDataset
+  | AzureSqlDWTableDataset
   | CassandraTableDataset
   | CustomDataset
   | CosmosDbSqlApiCollectionDataset
@@ -146,7 +146,7 @@ export type DatasetUnion =
   | DynamicsCrmEntityDataset
   | CommonDataServiceForAppsEntityDataset
   | AzureDataLakeStoreDataset
-  | AzureBlobFsDataset
+  | AzureBlobFSDataset
   | Office365Dataset
   | FileShareDataset
   | MongoDbCollectionDataset
@@ -181,7 +181,7 @@ export type DatasetUnion =
   | WebTableDataset
   | AzureSearchIndexDataset
   | HttpDataset
-  | AmazonMwsObjectDataset
+  | AmazonMWSObjectDataset
   | AzurePostgreSqlTableDataset
   | ConcurObjectDataset
   | CouchbaseTableDataset
@@ -195,8 +195,8 @@ export type DatasetUnion =
   | ImpalaObjectDataset
   | JiraObjectDataset
   | MagentoObjectDataset
-  | MariaDbTableDataset
-  | AzureMariaDbTableDataset
+  | MariaDBTableDataset
+  | AzureMariaDBTableDataset
   | MarketoObjectDataset
   | PaypalObjectDataset
   | PhoenixObjectDataset
@@ -212,7 +212,7 @@ export type DatasetUnion =
   | VerticaTableDataset
   | SalesforceMarketingCloudObjectDataset
   | ResponsysObjectDataset
-  | DynamicsAxResourceDataset
+  | DynamicsAXResourceDataset
   | OracleServiceCloudObjectDataset
   | AzureDataExplorerTableDataset
   | GoogleAdWordsObjectDataset
@@ -246,7 +246,7 @@ export type CredentialUnion =
 export type DatasetLocationUnion =
   | DatasetLocation
   | AzureBlobStorageLocation
-  | AzureBlobFsLocation
+  | AzureBlobFSLocation
   | AzureDataLakeStoreLocation
   | AmazonS3Location
   | FileServerLocation
@@ -291,7 +291,7 @@ export type WebLinkedServiceTypePropertiesUnion =
 export type StoreReadSettingsUnion =
   | StoreReadSettings
   | AzureBlobStorageReadSettings
-  | AzureBlobFsReadSettings
+  | AzureBlobFSReadSettings
   | AzureDataLakeStoreReadSettings
   | AmazonS3ReadSettings
   | FileServerReadSettings
@@ -307,7 +307,7 @@ export type StoreWriteSettingsUnion =
   | StoreWriteSettings
   | SftpWriteSettings
   | AzureBlobStorageWriteSettings
-  | AzureBlobFsWriteSettings
+  | AzureBlobFSWriteSettings
   | AzureDataLakeStoreWriteSettings
   | FileServerWriteSettings
   | AzureFileStorageWriteSettings;
@@ -363,7 +363,7 @@ export type CopySourceUnion =
   | CosmosDbMongoDbApiSource
   | Office365Source
   | AzureDataLakeStoreSource
-  | AzureBlobFsSource
+  | AzureBlobFSSource
   | HttpSource
   | SnowflakeSource
   | AzureDatabricksDeltaLakeSource
@@ -390,12 +390,12 @@ export type CopySinkUnion =
   | SqlSink
   | SqlServerSink
   | AzureSqlSink
-  | SqlMiSink
-  | SqlDwSink
+  | SqlMISink
+  | SqlDWSink
   | SnowflakeSink
   | OracleSink
   | AzureDataLakeStoreSink
-  | AzureBlobFsSink
+  | AzureBlobFSSink
   | AzureSearchIndexSink
   | OdbcSink
   | InformixSink
@@ -438,11 +438,11 @@ export type ControlActivityUnion =
 export type ExecutionActivityUnion =
   | ExecutionActivity
   | CopyActivity
-  | HdInsightHiveActivity
-  | HdInsightPigActivity
-  | HdInsightMapReduceActivity
-  | HdInsightStreamingActivity
-  | HdInsightSparkActivity
+  | HDInsightHiveActivity
+  | HDInsightPigActivity
+  | HDInsightMapReduceActivity
+  | HDInsightStreamingActivity
+  | HDInsightSparkActivity
   | ExecuteSsisPackageActivity
   | CustomActivity
   | SqlServerStoredProcedureActivity
@@ -451,9 +451,9 @@ export type ExecutionActivityUnion =
   | LookupActivity
   | WebActivity
   | GetMetadataActivity
-  | AzureMlBatchExecutionActivity
-  | AzureMlUpdateResourceActivity
-  | AzureMlExecutePipelineActivity
+  | AzureMLBatchExecutionActivity
+  | AzureMLUpdateResourceActivity
+  | AzureMLExecutePipelineActivity
   | DataLakeAnalyticsUsqlActivity
   | DatabricksNotebookActivity
   | DatabricksSparkJarActivity
@@ -486,12 +486,12 @@ export type TabularSourceUnion =
   | SqlServerSource
   | AmazonRdsForSqlServerSource
   | AzureSqlSource
-  | SqlMiSource
-  | SqlDwSource
+  | SqlMISource
+  | SqlDWSource
   | AzureMySqlSource
   | TeradataSource
   | CassandraSource
-  | AmazonMwsSource
+  | AmazonMWSSource
   | AzurePostgreSqlSource
   | ConcurSource
   | CouchbaseSource
@@ -505,8 +505,8 @@ export type TabularSourceUnion =
   | ImpalaSource
   | JiraSource
   | MagentoSource
-  | MariaDbSource
-  | AzureMariaDbSource
+  | MariaDBSource
+  | AzureMariaDBSource
   | MarketoSource
   | PaypalSource
   | PhoenixSource
@@ -522,7 +522,7 @@ export type TabularSourceUnion =
   | VerticaSource
   | SalesforceMarketingCloudSource
   | ResponsysSource
-  | DynamicsAxSource
+  | DynamicsAXSource
   | OracleServiceCloudSource
   | GoogleAdWordsSource
   | AmazonRedshiftSource;
@@ -693,11 +693,11 @@ export interface EncryptionConfiguration {
   /** The version of the key used for CMK. If not provided, latest version will be used. */
   keyVersion?: string;
   /** User assigned identity to use to authenticate to customer's key vault. If not provided Managed Service Identity will be used. */
-  identity?: CmkIdentityDefinition;
+  identity?: CMKIdentityDefinition;
 }
 
 /** Managed Identity used for CMK. */
-export interface CmkIdentityDefinition {
+export interface CMKIdentityDefinition {
   /** The resource id of the user assigned identity to authenticate to customer's key vault. */
   userAssignedIdentity?: string;
 }
@@ -1010,7 +1010,7 @@ export interface IntegrationRuntimeNodeMonitoringData {
    * Available memory (MB) on the integration runtime node.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly availableMemoryInMb?: number;
+  readonly availableMemoryInMB?: number;
   /**
    * CPU percentage on the integration runtime node.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1202,7 +1202,7 @@ export interface UpdateIntegrationRuntimeNodeRequest {
 }
 
 /** The IP address of self-hosted integration runtime node. */
-export interface IntegrationRuntimeNodeIPAddress {
+export interface IntegrationRuntimeNodeIpAddress {
   /**
    * The IP address of self-hosted integration runtime node.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1704,7 +1704,7 @@ export interface PipelineRun {
    * The duration of a pipeline run.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly durationInMS?: number;
+  readonly durationInMs?: number;
   /**
    * The status of a pipeline run.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -1807,7 +1807,7 @@ export interface ActivityRun {
    * The duration of the activity run.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly durationInMS?: number;
+  readonly durationInMs?: number;
   /**
    * The input for the activity.
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -3257,7 +3257,7 @@ export interface MetadataItem {
 /** Sql upsert option settings */
 export interface SqlUpsertSettings {
   /** Specifies whether to use temp db for upsert interim table. Type: boolean (or Expression with resultType boolean). */
-  useTempDb?: Record<string, unknown>;
+  useTempDB?: Record<string, unknown>;
   /** Schema name for interim table. Type: string (or Expression with resultType string). */
   interimSchemaName?: Record<string, unknown>;
   /** Key column names for unique row identification. Type: array of strings (or Expression with resultType array of strings). */
@@ -3279,15 +3279,15 @@ export interface PolybaseSettings {
 }
 
 /** DW Copy Command settings. */
-export interface DwCopyCommandSettings {
+export interface DWCopyCommandSettings {
   /** Specifies the default values for each target column in SQL DW. The default values in the property overwrite the DEFAULT constraint set in the DB, and identity column cannot have a default value. Type: array of objects (or Expression with resultType array of objects). */
-  defaultValues?: DwCopyCommandDefaultValue[];
+  defaultValues?: DWCopyCommandDefaultValue[];
   /** Additional options directly passed to SQL DW in Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalOptions": { "MAXERRORS": "1000", "DATEFORMAT": "'ymd'" } */
   additionalOptions?: { [propertyName: string]: string };
 }
 
 /** Default value. */
-export interface DwCopyCommandDefaultValue {
+export interface DWCopyCommandDefaultValue {
   /** Column name. Type: object (or Expression with resultType string). */
   columnName?: Record<string, unknown>;
   /** The default value of the column. Type: object (or Expression with resultType string). */
@@ -3295,7 +3295,7 @@ export interface DwCopyCommandDefaultValue {
 }
 
 /** Sql DW upsert option settings */
-export interface SqlDwUpsertSettings {
+export interface SqlDWUpsertSettings {
   /** Schema name for interim table. Type: string (or Expression with resultType string). */
   interimSchemaName?: Record<string, unknown>;
   /** Key column names for unique row identification. Type: array of strings (or Expression with resultType array of strings). */
@@ -3451,7 +3451,7 @@ export interface SwitchCase {
 }
 
 /** Azure ML WebService Input/Output file */
-export interface AzureMlWebServiceFile {
+export interface AzureMLWebServiceFile {
   /** The relative file path, including container name, in the Azure Blob Storage specified by the LinkedService. Type: string (or Expression with resultType string). */
   filePath: Record<string, unknown>;
   /** Reference to an Azure Storage LinkedService, where Azure ML WebService Input/Output file located. */
@@ -3834,7 +3834,7 @@ export type SelfHostedIntegrationRuntimeStatus = IntegrationRuntimeStatus & {
    * The estimated time when the self-hosted integration runtime will be updated.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly autoUpdateEta?: Date;
+  readonly autoUpdateETA?: Date;
 };
 
 /** Ssis folder. */
@@ -3944,7 +3944,7 @@ export type AzureTableStorageLinkedService = LinkedService & {
 };
 
 /** Azure SQL Data Warehouse linked service. */
-export type AzureSqlDwLinkedService = LinkedService & {
+export type AzureSqlDWLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureSqlDW";
   /** The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference. */
@@ -4022,7 +4022,7 @@ export type AzureSqlDatabaseLinkedService = LinkedService & {
 };
 
 /** Azure SQL Managed Instance linked service. */
-export type AzureSqlMiLinkedService = LinkedService & {
+export type AzureSqlMILinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureSqlMI";
   /** The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. */
@@ -4194,7 +4194,7 @@ export type CommonDataServiceForAppsLinkedService = LinkedService & {
 };
 
 /** HDInsight linked service. */
-export type HdInsightLinkedService = LinkedService & {
+export type HDInsightLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsight";
   /** HDInsight cluster URI. Type: string (or Expression with resultType string). */
@@ -4422,7 +4422,7 @@ export type TeradataLinkedService = LinkedService & {
 };
 
 /** Azure ML Studio Web Service linked service. */
-export type AzureMlLinkedService = LinkedService & {
+export type AzureMLLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureML";
   /** The Batch Execution REST URL for an Azure ML Studio Web Service endpoint. Type: string (or Expression with resultType string). */
@@ -4444,7 +4444,7 @@ export type AzureMlLinkedService = LinkedService & {
 };
 
 /** Azure ML Service linked service. */
-export type AzureMlServiceLinkedService = LinkedService & {
+export type AzureMLServiceLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMLService";
   /** Azure ML Service workspace subscription ID. Type: string (or Expression with resultType string). */
@@ -4678,7 +4678,7 @@ export type AzureDataLakeStoreLinkedService = LinkedService & {
 };
 
 /** Azure Data Lake Storage Gen2 linked service. */
-export type AzureBlobFsLinkedService = LinkedService & {
+export type AzureBlobFSLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFS";
   /** Endpoint for the Azure Data Lake Storage Gen2 service. Type: string (or Expression with resultType string). */
@@ -4972,7 +4972,7 @@ export type SftpServerLinkedService = LinkedService & {
 };
 
 /** SAP Business Warehouse Linked Service. */
-export type SapBwLinkedService = LinkedService & {
+export type SapBWLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SapBW";
   /** Host name of the SAP BW instance. Type: string (or Expression with resultType string). */
@@ -5008,15 +5008,15 @@ export type SapHanaLinkedService = LinkedService & {
 };
 
 /** Amazon Marketplace Web Service linked service. */
-export type AmazonMwsLinkedService = LinkedService & {
+export type AmazonMWSLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AmazonMWS";
   /** The endpoint of the Amazon MWS server, (i.e. mws.amazonservices.com) */
   endpoint: Record<string, unknown>;
   /** The Amazon Marketplace ID you want to retrieve data from. To retrieve data from multiple Marketplace IDs, separate them with a comma (,). (i.e. A2EUQ1WTGCTBG2) */
-  marketplaceId: Record<string, unknown>;
+  marketplaceID: Record<string, unknown>;
   /** The Amazon seller ID. */
-  sellerId: Record<string, unknown>;
+  sellerID: Record<string, unknown>;
   /** The Amazon MWS authentication token. */
   mwsAuthToken?: SecretBaseUnion;
   /** The access key id used to access data. */
@@ -5174,7 +5174,7 @@ export type HBaseLinkedService = LinkedService & {
   /** The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR. */
   trustedCertPath?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
@@ -5214,7 +5214,7 @@ export type HiveLinkedService = LinkedService & {
   /** Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. */
   useSystemTrustStore?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
@@ -5264,7 +5264,7 @@ export type ImpalaLinkedService = LinkedService & {
   /** Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. */
   useSystemTrustStore?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
@@ -5312,7 +5312,7 @@ export type MagentoLinkedService = LinkedService & {
 };
 
 /** MariaDB server linked service. */
-export type MariaDbLinkedService = LinkedService & {
+export type MariaDBLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "MariaDB";
   /** An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference. */
@@ -5324,7 +5324,7 @@ export type MariaDbLinkedService = LinkedService & {
 };
 
 /** Azure Database for MariaDB linked service. */
-export type AzureMariaDbLinkedService = LinkedService & {
+export type AzureMariaDBLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMariaDB";
   /** An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference. */
@@ -5398,7 +5398,7 @@ export type PhoenixLinkedService = LinkedService & {
   /** Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. */
   useSystemTrustStore?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
@@ -5430,11 +5430,11 @@ export type PrestoLinkedService = LinkedService & {
   /** Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. */
   useSystemTrustStore?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The local time zone used by the connection. Valid values for this option are specified in the IANA Time Zone Database. The default value is the system time zone. */
-  timeZoneId?: Record<string, unknown>;
+  timeZoneID?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
   encryptedCredential?: Record<string, unknown>;
 };
@@ -5534,7 +5534,7 @@ export type SparkLinkedService = LinkedService & {
   /** Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. */
   useSystemTrustStore?: Record<string, unknown>;
   /** Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. */
-  allowHostNameCnMismatch?: Record<string, unknown>;
+  allowHostNameCNMismatch?: Record<string, unknown>;
   /** Specifies whether to allow self-signed certificates from the server. The default value is false. */
   allowSelfSignedServerCert?: Record<string, unknown>;
   /** The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string (or Expression with resultType string). */
@@ -5655,7 +5655,7 @@ export type SalesforceMarketingCloudLinkedService = LinkedService & {
 };
 
 /** HDInsight ondemand linked service. */
-export type HdInsightOnDemandLinkedService = LinkedService & {
+export type HDInsightOnDemandLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightOnDemand";
   /** Number of worker/data nodes in the cluster. Suggestion value: 4. Type: string (or Expression with resultType string). */
@@ -5829,7 +5829,7 @@ export type ResponsysLinkedService = LinkedService & {
 };
 
 /** Dynamics AX linked service. */
-export type DynamicsAxLinkedService = LinkedService & {
+export type DynamicsAXLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "DynamicsAX";
   /** The Dynamics AX (or Dynamics 365 Finance and Operations) instance OData endpoint. */
@@ -5871,7 +5871,7 @@ export type GoogleAdWordsLinkedService = LinkedService & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "GoogleAdWords";
   /** The Client customer ID of the AdWords account that you want to fetch report data for. */
-  clientCustomerId: Record<string, unknown>;
+  clientCustomerID: Record<string, unknown>;
   /** The developer token associated with the manager account that you use to grant access to the AdWords API. */
   developerToken: SecretBaseUnion;
   /** The OAuth 2.0 authentication mechanism used for authentication. ServiceAuthentication can only be used on self-hosted IR. */
@@ -6172,7 +6172,7 @@ export type AzureSqlTableDataset = Dataset & {
 };
 
 /** The Azure SQL Managed Instance dataset. */
-export type AzureSqlMiTableDataset = Dataset & {
+export type AzureSqlMITableDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureSqlMITable";
   /** This property will be retired. Please consider using schema + table properties instead. */
@@ -6184,7 +6184,7 @@ export type AzureSqlMiTableDataset = Dataset & {
 };
 
 /** The Azure SQL Data Warehouse dataset. */
-export type AzureSqlDwTableDataset = Dataset & {
+export type AzureSqlDWTableDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureSqlDWTable";
   /** This property will be retired. Please consider using schema + table properties instead. */
@@ -6268,7 +6268,7 @@ export type AzureDataLakeStoreDataset = Dataset & {
 };
 
 /** The Azure Data Lake Storage Gen2 storage. */
-export type AzureBlobFsDataset = Dataset & {
+export type AzureBlobFSDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSFile";
   /** The path of the Azure Data Lake Storage Gen2 storage. Type: string (or Expression with resultType string). */
@@ -6624,7 +6624,7 @@ export type HttpDataset = Dataset & {
 };
 
 /** Amazon Marketplace Web Service dataset. */
-export type AmazonMwsObjectDataset = Dataset & {
+export type AmazonMWSObjectDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AmazonMWSObject";
   /** The table name. Type: string (or Expression with resultType string). */
@@ -6760,7 +6760,7 @@ export type MagentoObjectDataset = Dataset & {
 };
 
 /** MariaDB server dataset. */
-export type MariaDbTableDataset = Dataset & {
+export type MariaDBTableDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "MariaDBTable";
   /** The table name. Type: string (or Expression with resultType string). */
@@ -6768,7 +6768,7 @@ export type MariaDbTableDataset = Dataset & {
 };
 
 /** Azure Database for MariaDB dataset. */
-export type AzureMariaDbTableDataset = Dataset & {
+export type AzureMariaDBTableDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMariaDBTable";
   /** The table name. Type: string (or Expression with resultType string). */
@@ -6916,7 +6916,7 @@ export type ResponsysObjectDataset = Dataset & {
 };
 
 /** The path of the Dynamics AX OData entity. */
-export type DynamicsAxResourceDataset = Dataset & {
+export type DynamicsAXResourceDataset = Dataset & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "DynamicsAXResource";
   /** The path of the Dynamics AX OData entity. Type: string (or Expression with resultType string). */
@@ -7257,7 +7257,7 @@ export type AzureBlobStorageLocation = DatasetLocation & {
 };
 
 /** The location of azure blobFS dataset. */
-export type AzureBlobFsLocation = DatasetLocation & {
+export type AzureBlobFSLocation = DatasetLocation & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSLocation";
   /** Specify the fileSystem of azure blobFS. Type: string (or Expression with resultType string). */
@@ -7559,7 +7559,7 @@ export type AzureBlobStorageReadSettings = StoreReadSettings & {
 };
 
 /** Azure blobFS read settings. */
-export type AzureBlobFsReadSettings = StoreReadSettings & {
+export type AzureBlobFSReadSettings = StoreReadSettings & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSReadSettings";
   /** If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean). */
@@ -7871,15 +7871,15 @@ export type AzureBlobStorageWriteSettings = StoreWriteSettings & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobStorageWriteSettings";
   /** Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer). */
-  blockSizeInMb?: Record<string, unknown>;
+  blockSizeInMB?: Record<string, unknown>;
 };
 
 /** Azure blobFS write settings. */
-export type AzureBlobFsWriteSettings = StoreWriteSettings & {
+export type AzureBlobFSWriteSettings = StoreWriteSettings & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSWriteSettings";
   /** Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer). */
-  blockSizeInMb?: Record<string, unknown>;
+  blockSizeInMB?: Record<string, unknown>;
 };
 
 /** Azure data lake store write settings. */
@@ -8474,7 +8474,7 @@ export type AzureDataLakeStoreSource = CopySource & {
 };
 
 /** A copy activity Azure BlobFS source. */
-export type AzureBlobFsSource = CopySource & {
+export type AzureBlobFSSource = CopySource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSSource";
   /** Treat empty as null. Type: boolean (or Expression with resultType boolean). */
@@ -8774,7 +8774,7 @@ export type AzureSqlSink = CopySink & {
 };
 
 /** A copy activity Azure SQL Managed Instance sink. */
-export type SqlMiSink = CopySink & {
+export type SqlMISink = CopySink & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SqlMISink";
   /** SQL writer stored procedure name. Type: string (or Expression with resultType string). */
@@ -8800,7 +8800,7 @@ export type SqlMiSink = CopySink & {
 };
 
 /** A copy activity SQL Data Warehouse sink. */
-export type SqlDwSink = CopySink & {
+export type SqlDWSink = CopySink & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SqlDWSink";
   /** SQL pre-copy script. Type: string (or Expression with resultType string). */
@@ -8812,7 +8812,7 @@ export type SqlDwSink = CopySink & {
   /** Indicates to use Copy Command to copy data into SQL Data Warehouse. Type: boolean (or Expression with resultType boolean). */
   allowCopyCommand?: Record<string, unknown>;
   /** Specifies Copy Command related settings when allowCopyCommand is true. */
-  copyCommandSettings?: DwCopyCommandSettings;
+  copyCommandSettings?: DWCopyCommandSettings;
   /** The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string). */
   tableOption?: Record<string, unknown>;
   /** Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean). */
@@ -8820,7 +8820,7 @@ export type SqlDwSink = CopySink & {
   /** Write behavior when copying data into azure SQL DW. Type: SqlDWWriteBehaviorEnum (or Expression with resultType SqlDWWriteBehaviorEnum) */
   writeBehavior?: Record<string, unknown>;
   /** SQL DW upsert settings. */
-  upsertSettings?: SqlDwUpsertSettings;
+  upsertSettings?: SqlDWUpsertSettings;
 };
 
 /** A copy activity snowflake sink. */
@@ -8852,7 +8852,7 @@ export type AzureDataLakeStoreSink = CopySink & {
 };
 
 /** A copy activity Azure Data Lake Storage Gen2 sink. */
-export type AzureBlobFsSink = CopySink & {
+export type AzureBlobFSSink = CopySink & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureBlobFSSink";
   /** The type of copy behavior for copy sink. */
@@ -9254,7 +9254,7 @@ export type CopyActivity = ExecutionActivity & {
 };
 
 /** HDInsight Hive activity type. */
-export type HdInsightHiveActivity = ExecutionActivity & {
+export type HDInsightHiveActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightHive";
   /** Storage linked service references. */
@@ -9276,7 +9276,7 @@ export type HdInsightHiveActivity = ExecutionActivity & {
 };
 
 /** HDInsight Pig activity type. */
-export type HdInsightPigActivity = ExecutionActivity & {
+export type HDInsightPigActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightPig";
   /** Storage linked service references. */
@@ -9294,7 +9294,7 @@ export type HdInsightPigActivity = ExecutionActivity & {
 };
 
 /** HDInsight MapReduce activity type. */
-export type HdInsightMapReduceActivity = ExecutionActivity & {
+export type HDInsightMapReduceActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightMapReduce";
   /** Storage linked service references. */
@@ -9316,7 +9316,7 @@ export type HdInsightMapReduceActivity = ExecutionActivity & {
 };
 
 /** HDInsight streaming activity type. */
-export type HdInsightStreamingActivity = ExecutionActivity & {
+export type HDInsightStreamingActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightStreaming";
   /** Storage linked service references. */
@@ -9346,7 +9346,7 @@ export type HdInsightStreamingActivity = ExecutionActivity & {
 };
 
 /** HDInsight Spark activity. */
-export type HdInsightSparkActivity = ExecutionActivity & {
+export type HDInsightSparkActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "HDInsightSpark";
   /** The root path in 'sparkJobLinkedService' for all the job’s files. Type: string (or Expression with resultType string). */
@@ -9510,19 +9510,19 @@ export type GetMetadataActivity = ExecutionActivity & {
 };
 
 /** Azure ML Batch Execution activity. */
-export type AzureMlBatchExecutionActivity = ExecutionActivity & {
+export type AzureMLBatchExecutionActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMLBatchExecution";
   /** Key,Value pairs to be passed to the Azure ML Batch Execution Service endpoint. Keys must match the names of web service parameters defined in the published Azure ML web service. Values will be passed in the GlobalParameters property of the Azure ML batch execution request. */
   globalParameters?: { [propertyName: string]: Record<string, unknown> };
   /** Key,Value pairs, mapping the names of Azure ML endpoint's Web Service Outputs to AzureMLWebServiceFile objects specifying the output Blob locations. This information will be passed in the WebServiceOutputs property of the Azure ML batch execution request. */
-  webServiceOutputs?: { [propertyName: string]: AzureMlWebServiceFile };
+  webServiceOutputs?: { [propertyName: string]: AzureMLWebServiceFile };
   /** Key,Value pairs, mapping the names of Azure ML endpoint's Web Service Inputs to AzureMLWebServiceFile objects specifying the input Blob locations.. This information will be passed in the WebServiceInputs property of the Azure ML batch execution request. */
-  webServiceInputs?: { [propertyName: string]: AzureMlWebServiceFile };
+  webServiceInputs?: { [propertyName: string]: AzureMLWebServiceFile };
 };
 
 /** Azure ML Update Resource management activity. */
-export type AzureMlUpdateResourceActivity = ExecutionActivity & {
+export type AzureMLUpdateResourceActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMLUpdateResource";
   /** Name of the Trained Model module in the Web Service experiment to be updated. Type: string (or Expression with resultType string). */
@@ -9534,7 +9534,7 @@ export type AzureMlUpdateResourceActivity = ExecutionActivity & {
 };
 
 /** Azure ML Execute Pipeline activity. */
-export type AzureMlExecutePipelineActivity = ExecutionActivity & {
+export type AzureMLExecutePipelineActivity = ExecutionActivity & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMLExecutePipeline";
   /** ID of the published Azure ML pipeline. Type: string (or Expression with resultType string). */
@@ -9936,7 +9936,7 @@ export type AzureSqlSource = TabularSource & {
 };
 
 /** A copy activity Azure SQL Managed Instance source. */
-export type SqlMiSource = TabularSource & {
+export type SqlMISource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SqlMISource";
   /** SQL reader query. Type: string (or Expression with resultType string). */
@@ -9956,7 +9956,7 @@ export type SqlMiSource = TabularSource & {
 };
 
 /** A copy activity SQL Data Warehouse source. */
-export type SqlDwSource = TabularSource & {
+export type SqlDWSource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "SqlDWSource";
   /** SQL Data Warehouse reader query. Type: string (or Expression with resultType string). */
@@ -10002,7 +10002,7 @@ export type CassandraSource = TabularSource & {
 };
 
 /** A copy activity Amazon Marketplace Web Service source. */
-export type AmazonMwsSource = TabularSource & {
+export type AmazonMWSSource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AmazonMWSSource";
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
@@ -10114,7 +10114,7 @@ export type MagentoSource = TabularSource & {
 };
 
 /** A copy activity MariaDB server source. */
-export type MariaDbSource = TabularSource & {
+export type MariaDBSource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "MariaDBSource";
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
@@ -10122,7 +10122,7 @@ export type MariaDbSource = TabularSource & {
 };
 
 /** A copy activity Azure MariaDB source. */
-export type AzureMariaDbSource = TabularSource & {
+export type AzureMariaDBSource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "AzureMariaDBSource";
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
@@ -10254,7 +10254,7 @@ export type ResponsysSource = TabularSource & {
 };
 
 /** A copy activity Dynamics AX source. */
-export type DynamicsAxSource = TabularSource & {
+export type DynamicsAXSource = TabularSource & {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   type: "DynamicsAXSource";
   /** A query to retrieve data from source. Type: string (or Expression with resultType string). */
@@ -11519,23 +11519,23 @@ export enum KnownSalesforceSinkWriteBehavior {
  */
 export type SalesforceSinkWriteBehavior = string;
 
-/** Known values of {@link HdInsightActivityDebugInfoOption} that the service accepts. */
-export enum KnownHdInsightActivityDebugInfoOption {
+/** Known values of {@link HDInsightActivityDebugInfoOption} that the service accepts. */
+export enum KnownHDInsightActivityDebugInfoOption {
   None = "None",
   Always = "Always",
   Failure = "Failure"
 }
 
 /**
- * Defines values for HdInsightActivityDebugInfoOption. \
- * {@link KnownHdInsightActivityDebugInfoOption} can be used interchangeably with HdInsightActivityDebugInfoOption,
+ * Defines values for HDInsightActivityDebugInfoOption. \
+ * {@link KnownHDInsightActivityDebugInfoOption} can be used interchangeably with HDInsightActivityDebugInfoOption,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **None** \
  * **Always** \
  * **Failure**
  */
-export type HdInsightActivityDebugInfoOption = string;
+export type HDInsightActivityDebugInfoOption = string;
 
 /** Known values of {@link SsisPackageLocationType} that the service accepts. */
 export enum KnownSsisPackageLocationType {
@@ -11935,21 +11935,21 @@ export enum KnownSqlWriteBehaviorEnum {
  */
 export type SqlWriteBehaviorEnum = string;
 
-/** Known values of {@link SqlDwWriteBehaviorEnum} that the service accepts. */
-export enum KnownSqlDwWriteBehaviorEnum {
+/** Known values of {@link SqlDWWriteBehaviorEnum} that the service accepts. */
+export enum KnownSqlDWWriteBehaviorEnum {
   Insert = "Insert",
   Upsert = "Upsert"
 }
 
 /**
- * Defines values for SqlDwWriteBehaviorEnum. \
- * {@link KnownSqlDwWriteBehaviorEnum} can be used interchangeably with SqlDwWriteBehaviorEnum,
+ * Defines values for SqlDWWriteBehaviorEnum. \
+ * {@link KnownSqlDWWriteBehaviorEnum} can be used interchangeably with SqlDWWriteBehaviorEnum,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **Insert** \
  * **Upsert**
  */
-export type SqlDwWriteBehaviorEnum = string;
+export type SqlDWWriteBehaviorEnum = string;
 
 /** Known values of {@link SqlPartitionOption} that the service accepts. */
 export enum KnownSqlPartitionOption {
@@ -12366,11 +12366,11 @@ export interface IntegrationRuntimeNodesUpdateOptionalParams
 export type IntegrationRuntimeNodesUpdateResponse = SelfHostedIntegrationRuntimeNode;
 
 /** Optional parameters. */
-export interface IntegrationRuntimeNodesGetIPAddressOptionalParams
+export interface IntegrationRuntimeNodesGetIpAddressOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the getIPAddress operation. */
-export type IntegrationRuntimeNodesGetIPAddressResponse = IntegrationRuntimeNodeIPAddress;
+/** Contains response data for the getIpAddress operation. */
+export type IntegrationRuntimeNodesGetIpAddressResponse = IntegrationRuntimeNodeIpAddress;
 
 /** Optional parameters. */
 export interface LinkedServicesListByFactoryOptionalParams
@@ -12847,7 +12847,7 @@ export type PrivateLinkResourcesGetResponse = PrivateLinkResourcesWrapper;
 export interface DataFactoryClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

@@ -16,22 +16,22 @@ import {
 } from "./models";
 
 export class LicenseHeaderClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: Enum0;
 
   /**
    * Initializes a new instance of the LicenseHeaderClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param apiVersion
    * @param options The parameter options
    */
   constructor(
-    Host: string,
+    $host: string,
     apiVersion: Enum0,
     options?: LicenseHeaderClientOptionalParams
   ) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
     if (apiVersion === undefined) {
       throw new Error("'apiVersion' cannot be null");
@@ -61,7 +61,7 @@ export class LicenseHeaderClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
     this.apiVersion = apiVersion;
   }
 
@@ -83,7 +83,7 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
   serializer
 };

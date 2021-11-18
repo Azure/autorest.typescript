@@ -2,636 +2,636 @@
 // Licensed under the MIT license.
 
 import {
-  BasicGetValidParameters,
-  BasicPutValidParameters,
-  BasicGetInvalidParameters,
-  BasicGetEmptyParameters,
-  BasicGetNullParameters,
-  BasicGetNotProvidedParameters,
-  PrimitiveGetIntParameters,
-  PrimitivePutIntParameters,
-  PrimitiveGetLongParameters,
-  PrimitivePutLongParameters,
-  PrimitiveGetFloatParameters,
-  PrimitivePutFloatParameters,
-  PrimitiveGetDoubleParameters,
-  PrimitivePutDoubleParameters,
-  PrimitiveGetBoolParameters,
-  PrimitivePutBoolParameters,
-  PrimitiveGetStringParameters,
-  PrimitivePutStringParameters,
-  PrimitiveGetDateParameters,
-  PrimitivePutDateParameters,
-  PrimitiveGetDateTimeParameters,
-  PrimitivePutDateTimeParameters,
-  PrimitiveGetDateTimeRfc1123Parameters,
-  PrimitivePutDateTimeRfc1123Parameters,
-  PrimitiveGetDurationParameters,
-  PrimitivePutDurationParameters,
-  PrimitiveGetByteParameters,
-  PrimitivePutByteParameters,
-  ArrayGetValidParameters,
-  ArrayPutValidParameters,
-  ArrayGetEmptyParameters,
-  ArrayPutEmptyParameters,
-  ArrayGetNotProvidedParameters,
-  DictionaryGetValidParameters,
-  DictionaryPutValidParameters,
-  DictionaryGetEmptyParameters,
-  DictionaryPutEmptyParameters,
-  DictionaryGetNullParameters,
-  DictionaryGetNotProvidedParameters,
-  InheritanceGetValidParameters,
-  InheritancePutValidParameters,
-  PolymorphismGetValidParameters,
-  PolymorphismPutValidParameters,
-  PolymorphismGetDotSyntaxParameters,
-  PolymorphismGetComposedWithDiscriminatorParameters,
-  PolymorphismGetComposedWithoutDiscriminatorParameters,
-  PolymorphismGetComplicatedParameters,
-  PolymorphismPutComplicatedParameters,
-  PolymorphismPutMissingDiscriminatorParameters,
-  PolymorphismPutValidMissingRequiredParameters,
-  PolymorphicrecursiveGetValidParameters,
-  PolymorphicrecursivePutValidParameters,
-  ReadonlypropertyGetValidParameters,
-  ReadonlypropertyPutValidParameters,
-  FlattencomplexGetValidParameters
+  BasicgetValidParameters,
+  BasicputValidParameters,
+  BasicgetInvalidParameters,
+  BasicgetEmptyParameters,
+  BasicgetNullParameters,
+  BasicgetNotProvidedParameters,
+  PrimitivegetIntParameters,
+  PrimitiveputIntParameters,
+  PrimitivegetLongParameters,
+  PrimitiveputLongParameters,
+  PrimitivegetFloatParameters,
+  PrimitiveputFloatParameters,
+  PrimitivegetDoubleParameters,
+  PrimitiveputDoubleParameters,
+  PrimitivegetBoolParameters,
+  PrimitiveputBoolParameters,
+  PrimitivegetStringParameters,
+  PrimitiveputStringParameters,
+  PrimitivegetDateParameters,
+  PrimitiveputDateParameters,
+  PrimitivegetDateTimeParameters,
+  PrimitiveputDateTimeParameters,
+  PrimitivegetDateTimeRfc1123Parameters,
+  PrimitiveputDateTimeRfc1123Parameters,
+  PrimitivegetDurationParameters,
+  PrimitiveputDurationParameters,
+  PrimitivegetByteParameters,
+  PrimitiveputByteParameters,
+  ArraygetValidParameters,
+  ArrayputValidParameters,
+  ArraygetEmptyParameters,
+  ArrayputEmptyParameters,
+  ArraygetNotProvidedParameters,
+  DictionarygetValidParameters,
+  DictionaryputValidParameters,
+  DictionarygetEmptyParameters,
+  DictionaryputEmptyParameters,
+  DictionarygetNullParameters,
+  DictionarygetNotProvidedParameters,
+  InheritancegetValidParameters,
+  InheritanceputValidParameters,
+  PolymorphismgetValidParameters,
+  PolymorphismputValidParameters,
+  PolymorphismgetDotSyntaxParameters,
+  PolymorphismgetComposedWithDiscriminatorParameters,
+  PolymorphismgetComposedWithoutDiscriminatorParameters,
+  PolymorphismgetComplicatedParameters,
+  PolymorphismputComplicatedParameters,
+  PolymorphismputMissingDiscriminatorParameters,
+  PolymorphismputValidMissingRequiredParameters,
+  PolymorphicrecursivegetValidParameters,
+  PolymorphicrecursiveputValidParameters,
+  ReadonlypropertygetValidParameters,
+  ReadonlypropertyputValidParameters,
+  FlattencomplexgetValidParameters
 } from "./parameters";
 import {
-  BasicGetValid200Response,
-  BasicGetValiddefaultResponse,
-  BasicPutValid200Response,
-  BasicPutValiddefaultResponse,
-  BasicGetInvalid200Response,
-  BasicGetInvaliddefaultResponse,
-  BasicGetEmpty200Response,
-  BasicGetEmptydefaultResponse,
-  BasicGetNull200Response,
-  BasicGetNulldefaultResponse,
-  BasicGetNotProvided200Response,
-  BasicGetNotProvideddefaultResponse,
-  PrimitiveGetInt200Response,
-  PrimitiveGetIntdefaultResponse,
-  PrimitivePutInt200Response,
-  PrimitivePutIntdefaultResponse,
-  PrimitiveGetLong200Response,
-  PrimitiveGetLongdefaultResponse,
-  PrimitivePutLong200Response,
-  PrimitivePutLongdefaultResponse,
-  PrimitiveGetFloat200Response,
-  PrimitiveGetFloatdefaultResponse,
-  PrimitivePutFloat200Response,
-  PrimitivePutFloatdefaultResponse,
-  PrimitiveGetDouble200Response,
-  PrimitiveGetDoubledefaultResponse,
-  PrimitivePutDouble200Response,
-  PrimitivePutDoubledefaultResponse,
-  PrimitiveGetBool200Response,
-  PrimitiveGetBooldefaultResponse,
-  PrimitivePutBool200Response,
-  PrimitivePutBooldefaultResponse,
-  PrimitiveGetString200Response,
-  PrimitiveGetStringdefaultResponse,
-  PrimitivePutString200Response,
-  PrimitivePutStringdefaultResponse,
-  PrimitiveGetDate200Response,
-  PrimitiveGetDatedefaultResponse,
-  PrimitivePutDate200Response,
-  PrimitivePutDatedefaultResponse,
-  PrimitiveGetDateTime200Response,
-  PrimitiveGetDateTimedefaultResponse,
-  PrimitivePutDateTime200Response,
-  PrimitivePutDateTimedefaultResponse,
-  PrimitiveGetDateTimeRfc1123200Response,
-  PrimitiveGetDateTimeRfc1123DefaultResponse,
-  PrimitivePutDateTimeRfc1123200Response,
-  PrimitivePutDateTimeRfc1123DefaultResponse,
-  PrimitiveGetDuration200Response,
-  PrimitiveGetDurationdefaultResponse,
-  PrimitivePutDuration200Response,
-  PrimitivePutDurationdefaultResponse,
-  PrimitiveGetByte200Response,
-  PrimitiveGetBytedefaultResponse,
-  PrimitivePutByte200Response,
-  PrimitivePutBytedefaultResponse,
-  ArrayGetValid200Response,
-  ArrayGetValiddefaultResponse,
-  ArrayPutValid200Response,
-  ArrayPutValiddefaultResponse,
-  ArrayGetEmpty200Response,
-  ArrayGetEmptydefaultResponse,
-  ArrayPutEmpty200Response,
-  ArrayPutEmptydefaultResponse,
-  ArrayGetNotProvided200Response,
-  ArrayGetNotProvideddefaultResponse,
-  DictionaryGetValid200Response,
-  DictionaryGetValiddefaultResponse,
-  DictionaryPutValid200Response,
-  DictionaryPutValiddefaultResponse,
-  DictionaryGetEmpty200Response,
-  DictionaryGetEmptydefaultResponse,
-  DictionaryPutEmpty200Response,
-  DictionaryPutEmptydefaultResponse,
-  DictionaryGetNull200Response,
-  DictionaryGetNulldefaultResponse,
-  DictionaryGetNotProvided200Response,
-  DictionaryGetNotProvideddefaultResponse,
-  InheritanceGetValid200Response,
-  InheritanceGetValiddefaultResponse,
-  InheritancePutValid200Response,
-  InheritancePutValiddefaultResponse,
-  PolymorphismGetValid200Response,
-  PolymorphismGetValiddefaultResponse,
-  PolymorphismPutValid200Response,
-  PolymorphismPutValiddefaultResponse,
-  PolymorphismGetDotSyntax200Response,
-  PolymorphismGetDotSyntaxdefaultResponse,
-  PolymorphismGetComposedWithDiscriminator200Response,
-  PolymorphismGetComposedWithDiscriminatordefaultResponse,
-  PolymorphismGetComposedWithoutDiscriminator200Response,
-  PolymorphismGetComposedWithoutDiscriminatordefaultResponse,
-  PolymorphismGetComplicated200Response,
-  PolymorphismGetComplicateddefaultResponse,
-  PolymorphismPutComplicated200Response,
-  PolymorphismPutComplicateddefaultResponse,
-  PolymorphismPutMissingDiscriminator200Response,
-  PolymorphismPutMissingDiscriminatordefaultResponse,
-  PolymorphismPutValidMissingRequired200Response,
-  PolymorphismPutValidMissingRequireddefaultResponse,
-  PolymorphicrecursiveGetValid200Response,
-  PolymorphicrecursiveGetValiddefaultResponse,
-  PolymorphicrecursivePutValid200Response,
-  PolymorphicrecursivePutValiddefaultResponse,
-  ReadonlypropertyGetValid200Response,
-  ReadonlypropertyGetValiddefaultResponse,
-  ReadonlypropertyPutValid200Response,
-  ReadonlypropertyPutValiddefaultResponse,
-  FlattencomplexGetValid200Response
+  BasicgetValid200Response,
+  BasicgetValiddefaultResponse,
+  BasicputValid200Response,
+  BasicputValiddefaultResponse,
+  BasicgetInvalid200Response,
+  BasicgetInvaliddefaultResponse,
+  BasicgetEmpty200Response,
+  BasicgetEmptydefaultResponse,
+  BasicgetNull200Response,
+  BasicgetNulldefaultResponse,
+  BasicgetNotProvided200Response,
+  BasicgetNotProvideddefaultResponse,
+  PrimitivegetInt200Response,
+  PrimitivegetIntdefaultResponse,
+  PrimitiveputInt200Response,
+  PrimitiveputIntdefaultResponse,
+  PrimitivegetLong200Response,
+  PrimitivegetLongdefaultResponse,
+  PrimitiveputLong200Response,
+  PrimitiveputLongdefaultResponse,
+  PrimitivegetFloat200Response,
+  PrimitivegetFloatdefaultResponse,
+  PrimitiveputFloat200Response,
+  PrimitiveputFloatdefaultResponse,
+  PrimitivegetDouble200Response,
+  PrimitivegetDoubledefaultResponse,
+  PrimitiveputDouble200Response,
+  PrimitiveputDoubledefaultResponse,
+  PrimitivegetBool200Response,
+  PrimitivegetBooldefaultResponse,
+  PrimitiveputBool200Response,
+  PrimitiveputBooldefaultResponse,
+  PrimitivegetString200Response,
+  PrimitivegetStringdefaultResponse,
+  PrimitiveputString200Response,
+  PrimitiveputStringdefaultResponse,
+  PrimitivegetDate200Response,
+  PrimitivegetDatedefaultResponse,
+  PrimitiveputDate200Response,
+  PrimitiveputDatedefaultResponse,
+  PrimitivegetDateTime200Response,
+  PrimitivegetDateTimedefaultResponse,
+  PrimitiveputDateTime200Response,
+  PrimitiveputDateTimedefaultResponse,
+  PrimitivegetDateTimeRfc1123200Response,
+  PrimitivegetDateTimeRfc1123defaultResponse,
+  PrimitiveputDateTimeRfc1123200Response,
+  PrimitiveputDateTimeRfc1123defaultResponse,
+  PrimitivegetDuration200Response,
+  PrimitivegetDurationdefaultResponse,
+  PrimitiveputDuration200Response,
+  PrimitiveputDurationdefaultResponse,
+  PrimitivegetByte200Response,
+  PrimitivegetBytedefaultResponse,
+  PrimitiveputByte200Response,
+  PrimitiveputBytedefaultResponse,
+  ArraygetValid200Response,
+  ArraygetValiddefaultResponse,
+  ArrayputValid200Response,
+  ArrayputValiddefaultResponse,
+  ArraygetEmpty200Response,
+  ArraygetEmptydefaultResponse,
+  ArrayputEmpty200Response,
+  ArrayputEmptydefaultResponse,
+  ArraygetNotProvided200Response,
+  ArraygetNotProvideddefaultResponse,
+  DictionarygetValid200Response,
+  DictionarygetValiddefaultResponse,
+  DictionaryputValid200Response,
+  DictionaryputValiddefaultResponse,
+  DictionarygetEmpty200Response,
+  DictionarygetEmptydefaultResponse,
+  DictionaryputEmpty200Response,
+  DictionaryputEmptydefaultResponse,
+  DictionarygetNull200Response,
+  DictionarygetNulldefaultResponse,
+  DictionarygetNotProvided200Response,
+  DictionarygetNotProvideddefaultResponse,
+  InheritancegetValid200Response,
+  InheritancegetValiddefaultResponse,
+  InheritanceputValid200Response,
+  InheritanceputValiddefaultResponse,
+  PolymorphismgetValid200Response,
+  PolymorphismgetValiddefaultResponse,
+  PolymorphismputValid200Response,
+  PolymorphismputValiddefaultResponse,
+  PolymorphismgetDotSyntax200Response,
+  PolymorphismgetDotSyntaxdefaultResponse,
+  PolymorphismgetComposedWithDiscriminator200Response,
+  PolymorphismgetComposedWithDiscriminatordefaultResponse,
+  PolymorphismgetComposedWithoutDiscriminator200Response,
+  PolymorphismgetComposedWithoutDiscriminatordefaultResponse,
+  PolymorphismgetComplicated200Response,
+  PolymorphismgetComplicateddefaultResponse,
+  PolymorphismputComplicated200Response,
+  PolymorphismputComplicateddefaultResponse,
+  PolymorphismputMissingDiscriminator200Response,
+  PolymorphismputMissingDiscriminatordefaultResponse,
+  PolymorphismputValidMissingRequired200Response,
+  PolymorphismputValidMissingRequireddefaultResponse,
+  PolymorphicrecursivegetValid200Response,
+  PolymorphicrecursivegetValiddefaultResponse,
+  PolymorphicrecursiveputValid200Response,
+  PolymorphicrecursiveputValiddefaultResponse,
+  ReadonlypropertygetValid200Response,
+  ReadonlypropertygetValiddefaultResponse,
+  ReadonlypropertyputValid200Response,
+  ReadonlypropertyputValiddefaultResponse,
+  FlattencomplexgetValid200Response
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface BasicGetValid {
+export interface BasicgetValid {
   /** Get complex type {id: 2, name: 'abc', color: 'YELLOW'} */
   get(
-    options?: BasicGetValidParameters
-  ): Promise<BasicGetValid200Response | BasicGetValiddefaultResponse>;
+    options?: BasicgetValidParameters
+  ): Promise<BasicgetValid200Response | BasicgetValiddefaultResponse>;
   /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
   put(
-    options: BasicPutValidParameters
-  ): Promise<BasicPutValid200Response | BasicPutValiddefaultResponse>;
+    options: BasicputValidParameters
+  ): Promise<BasicputValid200Response | BasicputValiddefaultResponse>;
 }
 
-export interface BasicGetInvalid {
+export interface BasicgetInvalid {
   /** Get a basic complex type that is invalid for the local strong type */
   get(
-    options?: BasicGetInvalidParameters
-  ): Promise<BasicGetInvalid200Response | BasicGetInvaliddefaultResponse>;
+    options?: BasicgetInvalidParameters
+  ): Promise<BasicgetInvalid200Response | BasicgetInvaliddefaultResponse>;
 }
 
-export interface BasicGetEmpty {
+export interface BasicgetEmpty {
   /** Get a basic complex type that is empty */
   get(
-    options?: BasicGetEmptyParameters
-  ): Promise<BasicGetEmpty200Response | BasicGetEmptydefaultResponse>;
+    options?: BasicgetEmptyParameters
+  ): Promise<BasicgetEmpty200Response | BasicgetEmptydefaultResponse>;
 }
 
-export interface BasicGetNull {
+export interface BasicgetNull {
   /** Get a basic complex type whose properties are null */
   get(
-    options?: BasicGetNullParameters
-  ): Promise<BasicGetNull200Response | BasicGetNulldefaultResponse>;
+    options?: BasicgetNullParameters
+  ): Promise<BasicgetNull200Response | BasicgetNulldefaultResponse>;
 }
 
-export interface BasicGetNotProvided {
+export interface BasicgetNotProvided {
   /** Get a basic complex type while the server doesn't provide a response payload */
   get(
-    options?: BasicGetNotProvidedParameters
+    options?: BasicgetNotProvidedParameters
   ): Promise<
-    BasicGetNotProvided200Response | BasicGetNotProvideddefaultResponse
+    BasicgetNotProvided200Response | BasicgetNotProvideddefaultResponse
   >;
 }
 
-export interface PrimitiveGetInt {
+export interface PrimitivegetInt {
   /** Get complex types with integer properties */
   get(
-    options?: PrimitiveGetIntParameters
-  ): Promise<PrimitiveGetInt200Response | PrimitiveGetIntdefaultResponse>;
+    options?: PrimitivegetIntParameters
+  ): Promise<PrimitivegetInt200Response | PrimitivegetIntdefaultResponse>;
   /** Put complex types with integer properties */
   put(
-    options: PrimitivePutIntParameters
-  ): Promise<PrimitivePutInt200Response | PrimitivePutIntdefaultResponse>;
+    options: PrimitiveputIntParameters
+  ): Promise<PrimitiveputInt200Response | PrimitiveputIntdefaultResponse>;
 }
 
-export interface PrimitiveGetLong {
+export interface PrimitivegetLong {
   /** Get complex types with long properties */
   get(
-    options?: PrimitiveGetLongParameters
-  ): Promise<PrimitiveGetLong200Response | PrimitiveGetLongdefaultResponse>;
+    options?: PrimitivegetLongParameters
+  ): Promise<PrimitivegetLong200Response | PrimitivegetLongdefaultResponse>;
   /** Put complex types with long properties */
   put(
-    options: PrimitivePutLongParameters
-  ): Promise<PrimitivePutLong200Response | PrimitivePutLongdefaultResponse>;
+    options: PrimitiveputLongParameters
+  ): Promise<PrimitiveputLong200Response | PrimitiveputLongdefaultResponse>;
 }
 
-export interface PrimitiveGetFloat {
+export interface PrimitivegetFloat {
   /** Get complex types with float properties */
   get(
-    options?: PrimitiveGetFloatParameters
-  ): Promise<PrimitiveGetFloat200Response | PrimitiveGetFloatdefaultResponse>;
+    options?: PrimitivegetFloatParameters
+  ): Promise<PrimitivegetFloat200Response | PrimitivegetFloatdefaultResponse>;
   /** Put complex types with float properties */
   put(
-    options: PrimitivePutFloatParameters
-  ): Promise<PrimitivePutFloat200Response | PrimitivePutFloatdefaultResponse>;
+    options: PrimitiveputFloatParameters
+  ): Promise<PrimitiveputFloat200Response | PrimitiveputFloatdefaultResponse>;
 }
 
-export interface PrimitiveGetDouble {
+export interface PrimitivegetDouble {
   /** Get complex types with double properties */
   get(
-    options?: PrimitiveGetDoubleParameters
-  ): Promise<PrimitiveGetDouble200Response | PrimitiveGetDoubledefaultResponse>;
+    options?: PrimitivegetDoubleParameters
+  ): Promise<PrimitivegetDouble200Response | PrimitivegetDoubledefaultResponse>;
   /** Put complex types with double properties */
   put(
-    options: PrimitivePutDoubleParameters
-  ): Promise<PrimitivePutDouble200Response | PrimitivePutDoubledefaultResponse>;
+    options: PrimitiveputDoubleParameters
+  ): Promise<PrimitiveputDouble200Response | PrimitiveputDoubledefaultResponse>;
 }
 
-export interface PrimitiveGetBool {
+export interface PrimitivegetBool {
   /** Get complex types with bool properties */
   get(
-    options?: PrimitiveGetBoolParameters
-  ): Promise<PrimitiveGetBool200Response | PrimitiveGetBooldefaultResponse>;
+    options?: PrimitivegetBoolParameters
+  ): Promise<PrimitivegetBool200Response | PrimitivegetBooldefaultResponse>;
   /** Put complex types with bool properties */
   put(
-    options: PrimitivePutBoolParameters
-  ): Promise<PrimitivePutBool200Response | PrimitivePutBooldefaultResponse>;
+    options: PrimitiveputBoolParameters
+  ): Promise<PrimitiveputBool200Response | PrimitiveputBooldefaultResponse>;
 }
 
-export interface PrimitiveGetString {
+export interface PrimitivegetString {
   /** Get complex types with string properties */
   get(
-    options?: PrimitiveGetStringParameters
-  ): Promise<PrimitiveGetString200Response | PrimitiveGetStringdefaultResponse>;
+    options?: PrimitivegetStringParameters
+  ): Promise<PrimitivegetString200Response | PrimitivegetStringdefaultResponse>;
   /** Put complex types with string properties */
   put(
-    options: PrimitivePutStringParameters
-  ): Promise<PrimitivePutString200Response | PrimitivePutStringdefaultResponse>;
+    options: PrimitiveputStringParameters
+  ): Promise<PrimitiveputString200Response | PrimitiveputStringdefaultResponse>;
 }
 
-export interface PrimitiveGetDate {
+export interface PrimitivegetDate {
   /** Get complex types with date properties */
   get(
-    options?: PrimitiveGetDateParameters
-  ): Promise<PrimitiveGetDate200Response | PrimitiveGetDatedefaultResponse>;
+    options?: PrimitivegetDateParameters
+  ): Promise<PrimitivegetDate200Response | PrimitivegetDatedefaultResponse>;
   /** Put complex types with date properties */
   put(
-    options: PrimitivePutDateParameters
-  ): Promise<PrimitivePutDate200Response | PrimitivePutDatedefaultResponse>;
+    options: PrimitiveputDateParameters
+  ): Promise<PrimitiveputDate200Response | PrimitiveputDatedefaultResponse>;
 }
 
-export interface PrimitiveGetDateTime {
+export interface PrimitivegetDateTime {
   /** Get complex types with datetime properties */
   get(
-    options?: PrimitiveGetDateTimeParameters
+    options?: PrimitivegetDateTimeParameters
   ): Promise<
-    PrimitiveGetDateTime200Response | PrimitiveGetDateTimedefaultResponse
+    PrimitivegetDateTime200Response | PrimitivegetDateTimedefaultResponse
   >;
   /** Put complex types with datetime properties */
   put(
-    options: PrimitivePutDateTimeParameters
+    options: PrimitiveputDateTimeParameters
   ): Promise<
-    PrimitivePutDateTime200Response | PrimitivePutDateTimedefaultResponse
+    PrimitiveputDateTime200Response | PrimitiveputDateTimedefaultResponse
   >;
 }
 
-export interface PrimitiveGetDateTimeRfc1123 {
+export interface PrimitivegetDateTimeRfc1123 {
   /** Get complex types with datetimeRfc1123 properties */
   get(
-    options?: PrimitiveGetDateTimeRfc1123Parameters
+    options?: PrimitivegetDateTimeRfc1123Parameters
   ): Promise<
-    | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123DefaultResponse
+    | PrimitivegetDateTimeRfc1123200Response
+    | PrimitivegetDateTimeRfc1123defaultResponse
   >;
   /** Put complex types with datetimeRfc1123 properties */
   put(
-    options: PrimitivePutDateTimeRfc1123Parameters
+    options: PrimitiveputDateTimeRfc1123Parameters
   ): Promise<
-    | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123DefaultResponse
+    | PrimitiveputDateTimeRfc1123200Response
+    | PrimitiveputDateTimeRfc1123defaultResponse
   >;
 }
 
-export interface PrimitiveGetDuration {
+export interface PrimitivegetDuration {
   /** Get complex types with duration properties */
   get(
-    options?: PrimitiveGetDurationParameters
+    options?: PrimitivegetDurationParameters
   ): Promise<
-    PrimitiveGetDuration200Response | PrimitiveGetDurationdefaultResponse
+    PrimitivegetDuration200Response | PrimitivegetDurationdefaultResponse
   >;
   /** Put complex types with duration properties */
   put(
-    options: PrimitivePutDurationParameters
+    options: PrimitiveputDurationParameters
   ): Promise<
-    PrimitivePutDuration200Response | PrimitivePutDurationdefaultResponse
+    PrimitiveputDuration200Response | PrimitiveputDurationdefaultResponse
   >;
 }
 
-export interface PrimitiveGetByte {
+export interface PrimitivegetByte {
   /** Get complex types with byte properties */
   get(
-    options?: PrimitiveGetByteParameters
-  ): Promise<PrimitiveGetByte200Response | PrimitiveGetBytedefaultResponse>;
+    options?: PrimitivegetByteParameters
+  ): Promise<PrimitivegetByte200Response | PrimitivegetBytedefaultResponse>;
   /** Put complex types with byte properties */
   put(
-    options: PrimitivePutByteParameters
-  ): Promise<PrimitivePutByte200Response | PrimitivePutBytedefaultResponse>;
+    options: PrimitiveputByteParameters
+  ): Promise<PrimitiveputByte200Response | PrimitiveputBytedefaultResponse>;
 }
 
-export interface ArrayGetValid {
+export interface ArraygetValid {
   /** Get complex types with array property */
   get(
-    options?: ArrayGetValidParameters
-  ): Promise<ArrayGetValid200Response | ArrayGetValiddefaultResponse>;
+    options?: ArraygetValidParameters
+  ): Promise<ArraygetValid200Response | ArraygetValiddefaultResponse>;
   /** Put complex types with array property */
   put(
-    options: ArrayPutValidParameters
-  ): Promise<ArrayPutValid200Response | ArrayPutValiddefaultResponse>;
+    options: ArrayputValidParameters
+  ): Promise<ArrayputValid200Response | ArrayputValiddefaultResponse>;
 }
 
-export interface ArrayGetEmpty {
+export interface ArraygetEmpty {
   /** Get complex types with array property which is empty */
   get(
-    options?: ArrayGetEmptyParameters
-  ): Promise<ArrayGetEmpty200Response | ArrayGetEmptydefaultResponse>;
+    options?: ArraygetEmptyParameters
+  ): Promise<ArraygetEmpty200Response | ArraygetEmptydefaultResponse>;
   /** Put complex types with array property which is empty */
   put(
-    options: ArrayPutEmptyParameters
-  ): Promise<ArrayPutEmpty200Response | ArrayPutEmptydefaultResponse>;
+    options: ArrayputEmptyParameters
+  ): Promise<ArrayputEmpty200Response | ArrayputEmptydefaultResponse>;
 }
 
-export interface ArrayGetNotProvided {
+export interface ArraygetNotProvided {
   /** Get complex types with array property while server doesn't provide a response payload */
   get(
-    options?: ArrayGetNotProvidedParameters
+    options?: ArraygetNotProvidedParameters
   ): Promise<
-    ArrayGetNotProvided200Response | ArrayGetNotProvideddefaultResponse
+    ArraygetNotProvided200Response | ArraygetNotProvideddefaultResponse
   >;
 }
 
-export interface DictionaryGetValid {
+export interface DictionarygetValid {
   /** Get complex types with dictionary property */
   get(
-    options?: DictionaryGetValidParameters
-  ): Promise<DictionaryGetValid200Response | DictionaryGetValiddefaultResponse>;
+    options?: DictionarygetValidParameters
+  ): Promise<DictionarygetValid200Response | DictionarygetValiddefaultResponse>;
   /** Put complex types with dictionary property */
   put(
-    options: DictionaryPutValidParameters
-  ): Promise<DictionaryPutValid200Response | DictionaryPutValiddefaultResponse>;
+    options: DictionaryputValidParameters
+  ): Promise<DictionaryputValid200Response | DictionaryputValiddefaultResponse>;
 }
 
-export interface DictionaryGetEmpty {
+export interface DictionarygetEmpty {
   /** Get complex types with dictionary property which is empty */
   get(
-    options?: DictionaryGetEmptyParameters
-  ): Promise<DictionaryGetEmpty200Response | DictionaryGetEmptydefaultResponse>;
+    options?: DictionarygetEmptyParameters
+  ): Promise<DictionarygetEmpty200Response | DictionarygetEmptydefaultResponse>;
   /** Put complex types with dictionary property which is empty */
   put(
-    options: DictionaryPutEmptyParameters
-  ): Promise<DictionaryPutEmpty200Response | DictionaryPutEmptydefaultResponse>;
+    options: DictionaryputEmptyParameters
+  ): Promise<DictionaryputEmpty200Response | DictionaryputEmptydefaultResponse>;
 }
 
-export interface DictionaryGetNull {
+export interface DictionarygetNull {
   /** Get complex types with dictionary property which is null */
   get(
-    options?: DictionaryGetNullParameters
-  ): Promise<DictionaryGetNull200Response | DictionaryGetNulldefaultResponse>;
+    options?: DictionarygetNullParameters
+  ): Promise<DictionarygetNull200Response | DictionarygetNulldefaultResponse>;
 }
 
-export interface DictionaryGetNotProvided {
+export interface DictionarygetNotProvided {
   /** Get complex types with dictionary property while server doesn't provide a response payload */
   get(
-    options?: DictionaryGetNotProvidedParameters
+    options?: DictionarygetNotProvidedParameters
   ): Promise<
-    | DictionaryGetNotProvided200Response
-    | DictionaryGetNotProvideddefaultResponse
+    | DictionarygetNotProvided200Response
+    | DictionarygetNotProvideddefaultResponse
   >;
 }
 
-export interface InheritanceGetValid {
+export interface InheritancegetValid {
   /** Get complex types that extend others */
   get(
-    options?: InheritanceGetValidParameters
+    options?: InheritancegetValidParameters
   ): Promise<
-    InheritanceGetValid200Response | InheritanceGetValiddefaultResponse
+    InheritancegetValid200Response | InheritancegetValiddefaultResponse
   >;
   /** Put complex types that extend others */
   put(
-    options: InheritancePutValidParameters
+    options: InheritanceputValidParameters
   ): Promise<
-    InheritancePutValid200Response | InheritancePutValiddefaultResponse
+    InheritanceputValid200Response | InheritanceputValiddefaultResponse
   >;
 }
 
-export interface PolymorphismGetValid {
+export interface PolymorphismgetValid {
   /** Get complex types that are polymorphic */
   get(
-    options?: PolymorphismGetValidParameters
+    options?: PolymorphismgetValidParameters
   ): Promise<
-    PolymorphismGetValid200Response | PolymorphismGetValiddefaultResponse
+    PolymorphismgetValid200Response | PolymorphismgetValiddefaultResponse
   >;
   /** Put complex types that are polymorphic */
   put(
-    options: PolymorphismPutValidParameters
+    options: PolymorphismputValidParameters
   ): Promise<
-    PolymorphismPutValid200Response | PolymorphismPutValiddefaultResponse
+    PolymorphismputValid200Response | PolymorphismputValiddefaultResponse
   >;
 }
 
-export interface PolymorphismGetDotSyntax {
+export interface PolymorphismgetDotSyntax {
   /** Get complex types that are polymorphic, JSON key contains a dot */
   get(
-    options?: PolymorphismGetDotSyntaxParameters
+    options?: PolymorphismgetDotSyntaxParameters
   ): Promise<
-    | PolymorphismGetDotSyntax200Response
-    | PolymorphismGetDotSyntaxdefaultResponse
+    | PolymorphismgetDotSyntax200Response
+    | PolymorphismgetDotSyntaxdefaultResponse
   >;
 }
 
-export interface PolymorphismGetComposedWithDiscriminator {
+export interface PolymorphismgetComposedWithDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, with discriminator specified. Deserialization must NOT fail and use the discriminator type specified on the wire. */
   get(
-    options?: PolymorphismGetComposedWithDiscriminatorParameters
+    options?: PolymorphismgetComposedWithDiscriminatorParameters
   ): Promise<
-    | PolymorphismGetComposedWithDiscriminator200Response
-    | PolymorphismGetComposedWithDiscriminatordefaultResponse
+    | PolymorphismgetComposedWithDiscriminator200Response
+    | PolymorphismgetComposedWithDiscriminatordefaultResponse
   >;
 }
 
-export interface PolymorphismGetComposedWithoutDiscriminator {
+export interface PolymorphismgetComposedWithoutDiscriminator {
   /** Get complex object composing a polymorphic scalar property and array property with polymorphic element type, without discriminator specified on wire. Deserialization must NOT fail and use the explicit type of the property. */
   get(
-    options?: PolymorphismGetComposedWithoutDiscriminatorParameters
+    options?: PolymorphismgetComposedWithoutDiscriminatorParameters
   ): Promise<
-    | PolymorphismGetComposedWithoutDiscriminator200Response
-    | PolymorphismGetComposedWithoutDiscriminatordefaultResponse
+    | PolymorphismgetComposedWithoutDiscriminator200Response
+    | PolymorphismgetComposedWithoutDiscriminatordefaultResponse
   >;
 }
 
-export interface PolymorphismGetComplicated {
+export interface PolymorphismgetComplicated {
   /** Get complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   get(
-    options?: PolymorphismGetComplicatedParameters
+    options?: PolymorphismgetComplicatedParameters
   ): Promise<
-    | PolymorphismGetComplicated200Response
-    | PolymorphismGetComplicateddefaultResponse
+    | PolymorphismgetComplicated200Response
+    | PolymorphismgetComplicateddefaultResponse
   >;
   /** Put complex types that are polymorphic, but not at the root of the hierarchy; also have additional properties */
   put(
-    options: PolymorphismPutComplicatedParameters
+    options: PolymorphismputComplicatedParameters
   ): Promise<
-    | PolymorphismPutComplicated200Response
-    | PolymorphismPutComplicateddefaultResponse
+    | PolymorphismputComplicated200Response
+    | PolymorphismputComplicateddefaultResponse
   >;
 }
 
-export interface PolymorphismPutMissingDiscriminator {
+export interface PolymorphismputMissingDiscriminator {
   /** Put complex types that are polymorphic, omitting the discriminator */
   put(
-    options: PolymorphismPutMissingDiscriminatorParameters
+    options: PolymorphismputMissingDiscriminatorParameters
   ): Promise<
-    | PolymorphismPutMissingDiscriminator200Response
-    | PolymorphismPutMissingDiscriminatordefaultResponse
+    | PolymorphismputMissingDiscriminator200Response
+    | PolymorphismputMissingDiscriminatordefaultResponse
   >;
 }
 
-export interface PolymorphismPutValidMissingRequired {
+export interface PolymorphismputValidMissingRequired {
   /** Put complex types that are polymorphic, attempting to omit required 'birthday' field - the request should not be allowed from the client */
   put(
-    options: PolymorphismPutValidMissingRequiredParameters
+    options: PolymorphismputValidMissingRequiredParameters
   ): Promise<
-    | PolymorphismPutValidMissingRequired200Response
-    | PolymorphismPutValidMissingRequireddefaultResponse
+    | PolymorphismputValidMissingRequired200Response
+    | PolymorphismputValidMissingRequireddefaultResponse
   >;
 }
 
-export interface PolymorphicrecursiveGetValid {
+export interface PolymorphicrecursivegetValid {
   /** Get complex types that are polymorphic and have recursive references */
   get(
-    options?: PolymorphicrecursiveGetValidParameters
+    options?: PolymorphicrecursivegetValidParameters
   ): Promise<
-    | PolymorphicrecursiveGetValid200Response
-    | PolymorphicrecursiveGetValiddefaultResponse
+    | PolymorphicrecursivegetValid200Response
+    | PolymorphicrecursivegetValiddefaultResponse
   >;
   /** Put complex types that are polymorphic and have recursive references */
   put(
-    options: PolymorphicrecursivePutValidParameters
+    options: PolymorphicrecursiveputValidParameters
   ): Promise<
-    | PolymorphicrecursivePutValid200Response
-    | PolymorphicrecursivePutValiddefaultResponse
+    | PolymorphicrecursiveputValid200Response
+    | PolymorphicrecursiveputValiddefaultResponse
   >;
 }
 
-export interface ReadonlypropertyGetValid {
+export interface ReadonlypropertygetValid {
   /** Get complex types that have readonly properties */
   get(
-    options?: ReadonlypropertyGetValidParameters
+    options?: ReadonlypropertygetValidParameters
   ): Promise<
-    | ReadonlypropertyGetValid200Response
-    | ReadonlypropertyGetValiddefaultResponse
+    | ReadonlypropertygetValid200Response
+    | ReadonlypropertygetValiddefaultResponse
   >;
   /** Put complex types that have readonly properties */
   put(
-    options: ReadonlypropertyPutValidParameters
+    options: ReadonlypropertyputValidParameters
   ): Promise<
-    | ReadonlypropertyPutValid200Response
-    | ReadonlypropertyPutValiddefaultResponse
+    | ReadonlypropertyputValid200Response
+    | ReadonlypropertyputValiddefaultResponse
   >;
 }
 
-export interface FlattencomplexGetValid {
+export interface FlattencomplexgetValid {
   get(
-    options?: FlattencomplexGetValidParameters
-  ): Promise<FlattencomplexGetValid200Response>;
+    options?: FlattencomplexgetValidParameters
+  ): Promise<FlattencomplexgetValid200Response>;
 }
 
 export interface Routes {
   /** Resource for '/complex/basic/valid' has methods for the following verbs: get, put */
-  (path: "/complex/basic/valid"): BasicGetValid;
+  (path: "/complex/basic/valid"): BasicgetValid;
   /** Resource for '/complex/basic/invalid' has methods for the following verbs: get */
-  (path: "/complex/basic/invalid"): BasicGetInvalid;
+  (path: "/complex/basic/invalid"): BasicgetInvalid;
   /** Resource for '/complex/basic/empty' has methods for the following verbs: get */
-  (path: "/complex/basic/empty"): BasicGetEmpty;
+  (path: "/complex/basic/empty"): BasicgetEmpty;
   /** Resource for '/complex/basic/null' has methods for the following verbs: get */
-  (path: "/complex/basic/null"): BasicGetNull;
+  (path: "/complex/basic/null"): BasicgetNull;
   /** Resource for '/complex/basic/notprovided' has methods for the following verbs: get */
-  (path: "/complex/basic/notprovided"): BasicGetNotProvided;
+  (path: "/complex/basic/notprovided"): BasicgetNotProvided;
   /** Resource for '/complex/primitive/integer' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/integer"): PrimitiveGetInt;
+  (path: "/complex/primitive/integer"): PrimitivegetInt;
   /** Resource for '/complex/primitive/long' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/long"): PrimitiveGetLong;
+  (path: "/complex/primitive/long"): PrimitivegetLong;
   /** Resource for '/complex/primitive/float' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/float"): PrimitiveGetFloat;
+  (path: "/complex/primitive/float"): PrimitivegetFloat;
   /** Resource for '/complex/primitive/double' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/double"): PrimitiveGetDouble;
+  (path: "/complex/primitive/double"): PrimitivegetDouble;
   /** Resource for '/complex/primitive/bool' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/bool"): PrimitiveGetBool;
+  (path: "/complex/primitive/bool"): PrimitivegetBool;
   /** Resource for '/complex/primitive/string' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/string"): PrimitiveGetString;
+  (path: "/complex/primitive/string"): PrimitivegetString;
   /** Resource for '/complex/primitive/date' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/date"): PrimitiveGetDate;
+  (path: "/complex/primitive/date"): PrimitivegetDate;
   /** Resource for '/complex/primitive/datetime' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/datetime"): PrimitiveGetDateTime;
+  (path: "/complex/primitive/datetime"): PrimitivegetDateTime;
   /** Resource for '/complex/primitive/datetimerfc1123' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/datetimerfc1123"): PrimitiveGetDateTimeRfc1123;
+  (path: "/complex/primitive/datetimerfc1123"): PrimitivegetDateTimeRfc1123;
   /** Resource for '/complex/primitive/duration' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/duration"): PrimitiveGetDuration;
+  (path: "/complex/primitive/duration"): PrimitivegetDuration;
   /** Resource for '/complex/primitive/byte' has methods for the following verbs: get, put */
-  (path: "/complex/primitive/byte"): PrimitiveGetByte;
+  (path: "/complex/primitive/byte"): PrimitivegetByte;
   /** Resource for '/complex/array/valid' has methods for the following verbs: get, put */
-  (path: "/complex/array/valid"): ArrayGetValid;
+  (path: "/complex/array/valid"): ArraygetValid;
   /** Resource for '/complex/array/empty' has methods for the following verbs: get, put */
-  (path: "/complex/array/empty"): ArrayGetEmpty;
+  (path: "/complex/array/empty"): ArraygetEmpty;
   /** Resource for '/complex/array/notprovided' has methods for the following verbs: get */
-  (path: "/complex/array/notprovided"): ArrayGetNotProvided;
+  (path: "/complex/array/notprovided"): ArraygetNotProvided;
   /** Resource for '/complex/dictionary/typed/valid' has methods for the following verbs: get, put */
-  (path: "/complex/dictionary/typed/valid"): DictionaryGetValid;
+  (path: "/complex/dictionary/typed/valid"): DictionarygetValid;
   /** Resource for '/complex/dictionary/typed/empty' has methods for the following verbs: get, put */
-  (path: "/complex/dictionary/typed/empty"): DictionaryGetEmpty;
+  (path: "/complex/dictionary/typed/empty"): DictionarygetEmpty;
   /** Resource for '/complex/dictionary/typed/null' has methods for the following verbs: get */
-  (path: "/complex/dictionary/typed/null"): DictionaryGetNull;
+  (path: "/complex/dictionary/typed/null"): DictionarygetNull;
   /** Resource for '/complex/dictionary/typed/notprovided' has methods for the following verbs: get */
-  (path: "/complex/dictionary/typed/notprovided"): DictionaryGetNotProvided;
+  (path: "/complex/dictionary/typed/notprovided"): DictionarygetNotProvided;
   /** Resource for '/complex/inheritance/valid' has methods for the following verbs: get, put */
-  (path: "/complex/inheritance/valid"): InheritanceGetValid;
+  (path: "/complex/inheritance/valid"): InheritancegetValid;
   /** Resource for '/complex/polymorphism/valid' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphism/valid"): PolymorphismGetValid;
+  (path: "/complex/polymorphism/valid"): PolymorphismgetValid;
   /** Resource for '/complex/polymorphism/dotsyntax' has methods for the following verbs: get */
-  (path: "/complex/polymorphism/dotsyntax"): PolymorphismGetDotSyntax;
+  (path: "/complex/polymorphism/dotsyntax"): PolymorphismgetDotSyntax;
   /** Resource for '/complex/polymorphism/composedWithDiscriminator' has methods for the following verbs: get */
   (
     path: "/complex/polymorphism/composedWithDiscriminator"
-  ): PolymorphismGetComposedWithDiscriminator;
+  ): PolymorphismgetComposedWithDiscriminator;
   /** Resource for '/complex/polymorphism/composedWithoutDiscriminator' has methods for the following verbs: get */
   (
     path: "/complex/polymorphism/composedWithoutDiscriminator"
-  ): PolymorphismGetComposedWithoutDiscriminator;
+  ): PolymorphismgetComposedWithoutDiscriminator;
   /** Resource for '/complex/polymorphism/complicated' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphism/complicated"): PolymorphismGetComplicated;
+  (path: "/complex/polymorphism/complicated"): PolymorphismgetComplicated;
   /** Resource for '/complex/polymorphism/missingdiscriminator' has methods for the following verbs: put */
   (
     path: "/complex/polymorphism/missingdiscriminator"
-  ): PolymorphismPutMissingDiscriminator;
+  ): PolymorphismputMissingDiscriminator;
   /** Resource for '/complex/polymorphism/missingrequired/invalid' has methods for the following verbs: put */
   (
     path: "/complex/polymorphism/missingrequired/invalid"
-  ): PolymorphismPutValidMissingRequired;
+  ): PolymorphismputValidMissingRequired;
   /** Resource for '/complex/polymorphicrecursive/valid' has methods for the following verbs: get, put */
-  (path: "/complex/polymorphicrecursive/valid"): PolymorphicrecursiveGetValid;
+  (path: "/complex/polymorphicrecursive/valid"): PolymorphicrecursivegetValid;
   /** Resource for '/complex/readonlyproperty/valid' has methods for the following verbs: get, put */
-  (path: "/complex/readonlyproperty/valid"): ReadonlypropertyGetValid;
+  (path: "/complex/readonlyproperty/valid"): ReadonlypropertygetValid;
   /** Resource for '/complex/flatten/valid' has methods for the following verbs: get */
-  (path: "/complex/flatten/valid"): FlattencomplexGetValid;
+  (path: "/complex/flatten/valid"): FlattencomplexgetValid;
 }
 
 export type BodyComplexRestClientRestClient = Client & {

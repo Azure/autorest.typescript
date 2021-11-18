@@ -6,33 +6,34 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import {
-  LrOSImpl,
-  LroRetrysImpl,
+  LROsImpl,
+  LRORetrysImpl,
   LrosaDsImpl,
-  LrOSCustomHeaderImpl
+  LROsCustomHeaderImpl
 } from "./operations";
 import {
-  LrOS,
-  LroRetrys,
+  LROs,
+  LRORetrys,
   LrosaDs,
-  LrOSCustomHeader
+  LROsCustomHeader
 } from "./operationsInterfaces";
-import { LroClientOptionalParams } from "./models";
+import { LROClientOptionalParams } from "./models";
 
-export class LroClient extends coreClient.ServiceClient {
-  Host: string;
+export class LROClient extends coreClient.ServiceClient {
+  $host: string;
 
   /**
-   * Initializes a new instance of the LroClient class.
+   * Initializes a new instance of the LROClient class.
    * @param options The parameter options
    */
-  constructor(options?: LroClientOptionalParams) {
+  constructor(options?: LROClientOptionalParams) {
     // Initializing default values for options
     if (!options) {
       options = {};
     }
-    const defaults: LroClientOptionalParams = {
+    const defaults: LROClientOptionalParams = {
       requestContentType: "application/json; charset=utf-8"
     };
 
@@ -53,15 +54,15 @@ export class LroClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
-    this.lrOS = new LrOSImpl(this);
-    this.lroRetrys = new LroRetrysImpl(this);
+    this.$host = options.$host || "http://localhost:3000";
+    this.lROs = new LROsImpl(this);
+    this.lRORetrys = new LRORetrysImpl(this);
     this.lrosaDs = new LrosaDsImpl(this);
-    this.lrOSCustomHeader = new LrOSCustomHeaderImpl(this);
+    this.lROsCustomHeader = new LROsCustomHeaderImpl(this);
   }
 
-  lrOS: LrOS;
-  lroRetrys: LroRetrys;
+  lROs: LROs;
+  lRORetrys: LRORetrys;
   lrosaDs: LrosaDs;
-  lrOSCustomHeader: LrOSCustomHeader;
+  lROsCustomHeader: LROsCustomHeader;
 }

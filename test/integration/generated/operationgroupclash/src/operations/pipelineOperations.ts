@@ -43,7 +43,7 @@ const apiV1ValueGetOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.apiVersion],
   serializer
 };

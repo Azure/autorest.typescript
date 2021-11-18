@@ -140,7 +140,7 @@ const getNotExpandableOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -154,7 +154,7 @@ const putNotExpandableOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody5,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -175,7 +175,7 @@ const getReferencedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -189,7 +189,7 @@ const putReferencedOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.enumStringBody,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -205,7 +205,7 @@ const getReferencedConstantOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -219,7 +219,7 @@ const putReferencedConstantOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.enumStringBody1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

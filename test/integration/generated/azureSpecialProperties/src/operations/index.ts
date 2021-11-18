@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./xmsClientRequestId";
+export * from "./xMsClientRequestId";
 export * from "./subscriptionInCredentials";
 export * from "./subscriptionInMethod";
 export * from "./apiVersionDefault";

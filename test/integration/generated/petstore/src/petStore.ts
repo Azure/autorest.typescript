@@ -38,7 +38,7 @@ import {
 } from "./models";
 
 export class PetStore extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the PetStore class.
@@ -70,7 +70,7 @@ export class PetStore extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://petstore.swagger.io/v2";
+    this.$host = options.$host || "http://petstore.swagger.io/v2";
   }
 
   /**
@@ -382,7 +382,7 @@ const addPetUsingByteArray$binaryOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 405: {} },
   requestBody: Parameters.body,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -394,7 +394,7 @@ const addPetUsingByteArray$xmlOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 405: {} },
   requestBody: Parameters.body1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1],
   isXML: true,
   contentType: "application/xml; charset=utf-8",
@@ -406,7 +406,7 @@ const addPetOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 405: {} },
   requestBody: Parameters.body2,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -416,7 +416,7 @@ const updatePetOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 400: {}, 404: {}, 405: {} },
   requestBody: Parameters.body2,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -438,7 +438,7 @@ const findPetsByStatusOperationSpec: coreClient.OperationSpec = {
     400: {}
   },
   queryParameters: [Parameters.status],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -460,7 +460,7 @@ const findPetsByTagsOperationSpec: coreClient.OperationSpec = {
     400: {}
   },
   queryParameters: [Parameters.tags],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -475,7 +475,7 @@ const findPetsWithByteArrayOperationSpec: coreClient.OperationSpec = {
     400: {},
     404: {}
   },
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -489,7 +489,7 @@ const getPetByIdOperationSpec: coreClient.OperationSpec = {
     400: {},
     404: {}
   },
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -499,7 +499,7 @@ const updatePetWithFormOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 405: {} },
   formDataParameters: [Parameters.name, Parameters.status1],
-  urlParameters: [Parameters.Host, Parameters.petId1],
+  urlParameters: [Parameters.$host, Parameters.petId1],
   headerParameters: [Parameters.contentType3],
   serializer
 };
@@ -507,7 +507,7 @@ const deletePetOperationSpec: coreClient.OperationSpec = {
   path: "/pet/{petId}",
   httpMethod: "DELETE",
   responses: { 400: {} },
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.apiKey],
   serializer
 };
@@ -516,7 +516,7 @@ const uploadFileOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { default: {} },
   formDataParameters: [Parameters.additionalMetadata, Parameters.file],
-  urlParameters: [Parameters.Host, Parameters.petId],
+  urlParameters: [Parameters.$host, Parameters.petId],
   headerParameters: [Parameters.contentType4],
   serializer
 };
@@ -531,7 +531,7 @@ const getInventoryOperationSpec: coreClient.OperationSpec = {
       }
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -546,7 +546,7 @@ const placeOrderOperationSpec: coreClient.OperationSpec = {
     400: {}
   },
   requestBody: Parameters.body3,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2, Parameters.accept],
   mediaType: "json",
   serializer
@@ -561,7 +561,7 @@ const getOrderByIdOperationSpec: coreClient.OperationSpec = {
     400: {},
     404: {}
   },
-  urlParameters: [Parameters.Host, Parameters.orderId],
+  urlParameters: [Parameters.$host, Parameters.orderId],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -570,7 +570,7 @@ const deleteOrderOperationSpec: coreClient.OperationSpec = {
   path: "/store/order/{orderId}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },
-  urlParameters: [Parameters.Host, Parameters.orderId],
+  urlParameters: [Parameters.$host, Parameters.orderId],
   serializer
 };
 const createUserOperationSpec: coreClient.OperationSpec = {
@@ -578,7 +578,7 @@ const createUserOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { default: {} },
   requestBody: Parameters.body4,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -588,7 +588,7 @@ const createUsersWithArrayInputOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { default: {} },
   requestBody: Parameters.body5,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -598,7 +598,7 @@ const createUsersWithListInputOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { default: {} },
   requestBody: Parameters.body5,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -613,7 +613,7 @@ const loginUserOperationSpec: coreClient.OperationSpec = {
     400: {}
   },
   queryParameters: [Parameters.username, Parameters.password],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -622,7 +622,7 @@ const logoutUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/logout",
   httpMethod: "GET",
   responses: { default: {} },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   serializer
 };
 const getUserByNameOperationSpec: coreClient.OperationSpec = {
@@ -635,7 +635,7 @@ const getUserByNameOperationSpec: coreClient.OperationSpec = {
     400: {},
     404: {}
   },
-  urlParameters: [Parameters.Host, Parameters.username1],
+  urlParameters: [Parameters.$host, Parameters.username1],
   headerParameters: [Parameters.accept],
   isXML: true,
   serializer: xmlSerializer
@@ -645,7 +645,7 @@ const updateUserOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: { 400: {}, 404: {} },
   requestBody: Parameters.body4,
-  urlParameters: [Parameters.Host, Parameters.username1],
+  urlParameters: [Parameters.$host, Parameters.username1],
   headerParameters: [Parameters.contentType2],
   mediaType: "json",
   serializer
@@ -654,6 +654,6 @@ const deleteUserOperationSpec: coreClient.OperationSpec = {
   path: "/user/{username}",
   httpMethod: "DELETE",
   responses: { 400: {}, 404: {} },
-  urlParameters: [Parameters.Host, Parameters.username1],
+  urlParameters: [Parameters.$host, Parameters.username1],
   serializer
 };

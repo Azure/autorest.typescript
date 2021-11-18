@@ -7,27 +7,27 @@
  */
 
 import {
-  XmsClientRequestIdGetOptionalParams,
-  XmsClientRequestIdParamGetOptionalParams
+  XMsClientRequestIdGetOptionalParams,
+  XMsClientRequestIdParamGetOptionalParams
 } from "../models";
 
-/** Interface representing a XmsClientRequestId. */
-export interface XmsClientRequestId {
+/** Interface representing a XMsClientRequestId. */
+export interface XMsClientRequestId {
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(options?: XmsClientRequestIdGetOptionalParams): Promise<void>;
+  get(options?: XMsClientRequestIdGetOptionalParams): Promise<void>;
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   * @param xMSClientRequestId This should appear as a method parameter, use value
+   * @param xMsClientRequestId This should appear as a method parameter, use value
    *                           '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    * @param options The options parameters.
    */
   paramGet(
-    xMSClientRequestId: string,
-    options?: XmsClientRequestIdParamGetOptionalParams
+    xMsClientRequestId: string,
+    options?: XMsClientRequestIdParamGetOptionalParams
   ): Promise<void>;
 }

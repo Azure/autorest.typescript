@@ -12,8 +12,8 @@ import {
   OperationQueryParameter
 } from "@azure/core-client";
 
-export const Host: OperationURLParameter = {
-  parameterPath: "Host",
+export const $host: OperationURLParameter = {
+  parameterPath: "$host",
   mapper: {
     serializedName: "$host",
     required: true,
@@ -36,8 +36,8 @@ export const accept: OperationParameter = {
   }
 };
 
-export const xMSClientRequestId: OperationParameter = {
-  parameterPath: "xMSClientRequestId",
+export const xMsClientRequestId: OperationParameter = {
+  parameterPath: "xMsClientRequestId",
   mapper: {
     serializedName: "x-ms-client-request-id",
     required: true,

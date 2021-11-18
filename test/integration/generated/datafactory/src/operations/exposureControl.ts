@@ -99,7 +99,7 @@ const getFeatureValueOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.locationId
   ],
@@ -122,7 +122,7 @@ const getFeatureValueByFactoryOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -146,7 +146,7 @@ const queryFeatureValuesByFactoryOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlBatchRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName

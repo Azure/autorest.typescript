@@ -95,7 +95,7 @@ export type Datetimerfc1123GetUtcMinDateTimeResponse = {
 export interface BodyDateTimeRfc1123ClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

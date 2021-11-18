@@ -94,7 +94,7 @@ export interface ParameterGroupingPostSharedParameterGroupObjectOptionalParams
 export interface AzureParameterGroupingClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

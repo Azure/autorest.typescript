@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import { DocumentsImpl } from "./operations";
 import { Documents } from "./operationsInterfaces";
 import { SearchClientOptionalParams } from "./models";

@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import {
   OperationsImpl,
   DpsCertificateImpl,
@@ -11,7 +12,7 @@ import {
 import { DeviceProvisioningClientOptionalParams } from "./models";
 
 export class DeviceProvisioningClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
   subscriptionId: string;
 
@@ -55,7 +56,7 @@ export class DeviceProvisioningClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "https://management.azure.com";
+    this.$host = options.$host || "https://management.azure.com";
     this.apiVersion = options.apiVersion || "2020-03-01";
     this.operations = new OperationsImpl(this);
     this.dpsCertificate = new DpsCertificateImpl(this);

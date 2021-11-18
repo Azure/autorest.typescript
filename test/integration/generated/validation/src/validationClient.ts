@@ -21,7 +21,7 @@ import {
 } from "./models";
 
 export class ValidationClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   subscriptionId: string;
   apiVersion: string;
 
@@ -65,7 +65,7 @@ export class ValidationClient extends coreClient.ServiceClient {
     this.subscriptionId = subscriptionId;
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "1.0.0";
   }
 
@@ -139,7 +139,7 @@ const validationOfMethodParametersOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.id
@@ -161,7 +161,7 @@ const validationOfBodyOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.id,
     Parameters.resourceGroupName1
@@ -174,7 +174,7 @@ const getWithConstantInPathOperationSpec: coreClient.OperationSpec = {
   path: "/validation/constantsInPath/{constantParam}/value",
   httpMethod: "GET",
   responses: { 200: {} },
-  urlParameters: [Parameters.Host, Parameters.constantParam],
+  urlParameters: [Parameters.$host, Parameters.constantParam],
   serializer
 };
 const postWithConstantInBodyOperationSpec: coreClient.OperationSpec = {
@@ -186,7 +186,7 @@ const postWithConstantInBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.body,
-  urlParameters: [Parameters.Host, Parameters.constantParam],
+  urlParameters: [Parameters.$host, Parameters.constantParam],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

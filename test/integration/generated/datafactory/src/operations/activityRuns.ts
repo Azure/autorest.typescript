@@ -60,7 +60,7 @@ const queryByPipelineRunOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.filterParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

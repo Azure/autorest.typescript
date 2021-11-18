@@ -95,7 +95,7 @@ const uploadFileOperationSpec: coreClient.OperationSpec = {
     }
   },
   formDataParameters: [Parameters.fileContent, Parameters.fileName],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };
@@ -111,7 +111,7 @@ const uploadFileViaBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.fileContent1,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -128,7 +128,7 @@ const uploadFilesOperationSpec: coreClient.OperationSpec = {
     }
   },
   formDataParameters: [Parameters.fileContent2],
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };

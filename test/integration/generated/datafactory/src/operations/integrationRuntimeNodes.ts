@@ -10,8 +10,8 @@ import {
   UpdateIntegrationRuntimeNodeRequest,
   IntegrationRuntimeNodesUpdateOptionalParams,
   IntegrationRuntimeNodesUpdateResponse,
-  IntegrationRuntimeNodesGetIPAddressOptionalParams,
-  IntegrationRuntimeNodesGetIPAddressResponse
+  IntegrationRuntimeNodesGetIpAddressOptionalParams,
+  IntegrationRuntimeNodesGetIpAddressResponse
 } from "../models";
 
 /** Class containing IntegrationRuntimeNodes operations. */
@@ -118,13 +118,13 @@ export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {
    * @param nodeName The integration runtime node name.
    * @param options The options parameters.
    */
-  getIPAddress(
+  getIpAddress(
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
     nodeName: string,
-    options?: IntegrationRuntimeNodesGetIPAddressOptionalParams
-  ): Promise<IntegrationRuntimeNodesGetIPAddressResponse> {
+    options?: IntegrationRuntimeNodesGetIpAddressOptionalParams
+  ): Promise<IntegrationRuntimeNodesGetIpAddressResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -133,7 +133,7 @@ export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {
         nodeName,
         options
       },
-      getIPAddressOperationSpec
+      getIpAddressOperationSpec
     );
   }
 }
@@ -154,7 +154,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -177,7 +177,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -202,7 +202,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.updateIntegrationRuntimeNodeRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -213,13 +213,13 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getIPAddressOperationSpec: coreClient.OperationSpec = {
+const getIpAddressOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}/ipAddress",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.IntegrationRuntimeNodeIPAddress
+      bodyMapper: Mappers.IntegrationRuntimeNodeIpAddress
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -227,7 +227,7 @@ const getIPAddressOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

@@ -200,7 +200,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
@@ -224,7 +224,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.certificateDescription,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName,
@@ -261,7 +261,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateNonce
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
@@ -284,7 +284,7 @@ const listOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.provisioningServiceName
@@ -316,7 +316,7 @@ const generateVerificationCodeOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateNonce
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
@@ -350,7 +350,7 @@ const verifyCertificateOperationSpec: coreClient.OperationSpec = {
     Parameters.certificateNonce
   ],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.certificateName,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,

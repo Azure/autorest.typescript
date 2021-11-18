@@ -6,39 +6,39 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { LroRetrys } from "../operationsInterfaces";
+import { LRORetrys } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LroClient } from "../lroClient";
+import { LROClient } from "../lROClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  LroRetrysPut201CreatingSucceeded200OptionalParams,
-  LroRetrysPut201CreatingSucceeded200Response,
-  LroRetrysPutAsyncRelativeRetrySucceededOptionalParams,
-  LroRetrysPutAsyncRelativeRetrySucceededResponse,
-  LroRetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
-  LroRetrysDeleteProvisioning202Accepted200SucceededResponse,
-  LroRetrysDelete202Retry200OptionalParams,
-  LroRetrysDelete202Retry200Response,
-  LroRetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
-  LroRetrysDeleteAsyncRelativeRetrySucceededResponse,
-  LroRetrysPost202Retry200OptionalParams,
-  LroRetrysPost202Retry200Response,
-  LroRetrysPostAsyncRelativeRetrySucceededOptionalParams,
-  LroRetrysPostAsyncRelativeRetrySucceededResponse
+  LRORetrysPut201CreatingSucceeded200OptionalParams,
+  LRORetrysPut201CreatingSucceeded200Response,
+  LRORetrysPutAsyncRelativeRetrySucceededOptionalParams,
+  LRORetrysPutAsyncRelativeRetrySucceededResponse,
+  LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams,
+  LRORetrysDeleteProvisioning202Accepted200SucceededResponse,
+  LRORetrysDelete202Retry200OptionalParams,
+  LRORetrysDelete202Retry200Response,
+  LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams,
+  LRORetrysDeleteAsyncRelativeRetrySucceededResponse,
+  LRORetrysPost202Retry200OptionalParams,
+  LRORetrysPost202Retry200Response,
+  LRORetrysPostAsyncRelativeRetrySucceededOptionalParams,
+  LRORetrysPostAsyncRelativeRetrySucceededResponse
 } from "../models";
 
-/** Class containing LroRetrys operations. */
-export class LroRetrysImpl implements LroRetrys {
-  private readonly client: LroClient;
+/** Class containing LRORetrys operations. */
+export class LRORetrysImpl implements LRORetrys {
+  private readonly client: LROClient;
 
   /**
-   * Initialize a new instance of the class LroRetrys class.
+   * Initialize a new instance of the class LRORetrys class.
    * @param client Reference to the service client
    */
-  constructor(client: LroClient) {
+  constructor(client: LROClient) {
     this.client = client;
   }
 
@@ -49,17 +49,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200(
-    options?: LroRetrysPut201CreatingSucceeded200OptionalParams
+    options?: LRORetrysPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysPut201CreatingSucceeded200Response>,
-      LroRetrysPut201CreatingSucceeded200Response
+      PollOperationState<LRORetrysPut201CreatingSucceeded200Response>,
+      LRORetrysPut201CreatingSucceeded200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysPut201CreatingSucceeded200Response> => {
+    ): Promise<LRORetrysPut201CreatingSucceeded200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -113,8 +113,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200AndWait(
-    options?: LroRetrysPut201CreatingSucceeded200OptionalParams
-  ): Promise<LroRetrysPut201CreatingSucceeded200Response> {
+    options?: LRORetrysPut201CreatingSucceeded200OptionalParams
+  ): Promise<LRORetrysPut201CreatingSucceeded200Response> {
     const poller = await this.beginPut201CreatingSucceeded200(options);
     return poller.pollUntilDone();
   }
@@ -126,17 +126,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPutAsyncRelativeRetrySucceeded(
-    options?: LroRetrysPutAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysPutAsyncRelativeRetrySucceededResponse>,
-      LroRetrysPutAsyncRelativeRetrySucceededResponse
+      PollOperationState<LRORetrysPutAsyncRelativeRetrySucceededResponse>,
+      LRORetrysPutAsyncRelativeRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysPutAsyncRelativeRetrySucceededResponse> => {
+    ): Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -190,8 +190,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPutAsyncRelativeRetrySucceededAndWait(
-    options?: LroRetrysPutAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LroRetrysPutAsyncRelativeRetrySucceededResponse> {
+    options?: LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
+  ): Promise<LRORetrysPutAsyncRelativeRetrySucceededResponse> {
     const poller = await this.beginPutAsyncRelativeRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -203,19 +203,19 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Accepted200Succeeded(
-    options?: LroRetrysDeleteProvisioning202Accepted200SucceededOptionalParams
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   ): Promise<
     PollerLike<
       PollOperationState<
-        LroRetrysDeleteProvisioning202Accepted200SucceededResponse
+        LRORetrysDeleteProvisioning202Accepted200SucceededResponse
       >,
-      LroRetrysDeleteProvisioning202Accepted200SucceededResponse
+      LRORetrysDeleteProvisioning202Accepted200SucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysDeleteProvisioning202Accepted200SucceededResponse> => {
+    ): Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -269,8 +269,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDeleteProvisioning202Accepted200SucceededAndWait(
-    options?: LroRetrysDeleteProvisioning202Accepted200SucceededOptionalParams
-  ): Promise<LroRetrysDeleteProvisioning202Accepted200SucceededResponse> {
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
+  ): Promise<LRORetrysDeleteProvisioning202Accepted200SucceededResponse> {
     const poller = await this.beginDeleteProvisioning202Accepted200Succeeded(
       options
     );
@@ -283,17 +283,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDelete202Retry200(
-    options?: LroRetrysDelete202Retry200OptionalParams
+    options?: LRORetrysDelete202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysDelete202Retry200Response>,
-      LroRetrysDelete202Retry200Response
+      PollOperationState<LRORetrysDelete202Retry200Response>,
+      LRORetrysDelete202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysDelete202Retry200Response> => {
+    ): Promise<LRORetrysDelete202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -346,8 +346,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDelete202Retry200AndWait(
-    options?: LroRetrysDelete202Retry200OptionalParams
-  ): Promise<LroRetrysDelete202Retry200Response> {
+    options?: LRORetrysDelete202Retry200OptionalParams
+  ): Promise<LRORetrysDelete202Retry200Response> {
     const poller = await this.beginDelete202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -358,17 +358,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRelativeRetrySucceeded(
-    options?: LroRetrysDeleteAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysDeleteAsyncRelativeRetrySucceededResponse>,
-      LroRetrysDeleteAsyncRelativeRetrySucceededResponse
+      PollOperationState<LRORetrysDeleteAsyncRelativeRetrySucceededResponse>,
+      LRORetrysDeleteAsyncRelativeRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysDeleteAsyncRelativeRetrySucceededResponse> => {
+    ): Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -421,8 +421,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginDeleteAsyncRelativeRetrySucceededAndWait(
-    options?: LroRetrysDeleteAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LroRetrysDeleteAsyncRelativeRetrySucceededResponse> {
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
+  ): Promise<LRORetrysDeleteAsyncRelativeRetrySucceededResponse> {
     const poller = await this.beginDeleteAsyncRelativeRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -433,17 +433,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPost202Retry200(
-    options?: LroRetrysPost202Retry200OptionalParams
+    options?: LRORetrysPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysPost202Retry200Response>,
-      LroRetrysPost202Retry200Response
+      PollOperationState<LRORetrysPost202Retry200Response>,
+      LRORetrysPost202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysPost202Retry200Response> => {
+    ): Promise<LRORetrysPost202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -496,8 +496,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPost202Retry200AndWait(
-    options?: LroRetrysPost202Retry200OptionalParams
-  ): Promise<LroRetrysPost202Retry200Response> {
+    options?: LRORetrysPost202Retry200OptionalParams
+  ): Promise<LRORetrysPost202Retry200Response> {
     const poller = await this.beginPost202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -509,17 +509,17 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPostAsyncRelativeRetrySucceeded(
-    options?: LroRetrysPostAsyncRelativeRetrySucceededOptionalParams
+    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LroRetrysPostAsyncRelativeRetrySucceededResponse>,
-      LroRetrysPostAsyncRelativeRetrySucceededResponse
+      PollOperationState<LRORetrysPostAsyncRelativeRetrySucceededResponse>,
+      LRORetrysPostAsyncRelativeRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LroRetrysPostAsyncRelativeRetrySucceededResponse> => {
+    ): Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -573,8 +573,8 @@ export class LroRetrysImpl implements LroRetrys {
    * @param options The options parameters.
    */
   async beginPostAsyncRelativeRetrySucceededAndWait(
-    options?: LroRetrysPostAsyncRelativeRetrySucceededOptionalParams
-  ): Promise<LroRetrysPostAsyncRelativeRetrySucceededResponse> {
+    options?: LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
+  ): Promise<LRORetrysPostAsyncRelativeRetrySucceededResponse> {
     const poller = await this.beginPostAsyncRelativeRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -603,7 +603,7 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -614,26 +614,26 @@ const putAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroRetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroRetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroRetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LroRetrysPutAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPutAsyncRelativeRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -658,7 +658,7 @@ const deleteProvisioning202Accepted200SucceededOperationSpec: coreClient.Operati
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -667,22 +667,22 @@ const delete202Retry200OperationSpec: coreClient.OperationSpec = {
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LroRetrysDelete202Retry200Headers
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     201: {
-      headersMapper: Mappers.LroRetrysDelete202Retry200Headers
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LroRetrysDelete202Retry200Headers
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     204: {
-      headersMapper: Mappers.LroRetrysDelete202Retry200Headers
+      headersMapper: Mappers.LRORetrysDelete202Retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -691,22 +691,22 @@ const deleteAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec =
   httpMethod: "DELETE",
   responses: {
     200: {
-      headersMapper: Mappers.LroRetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LroRetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LroRetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LroRetrysDeleteAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysDeleteAsyncRelativeRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -715,23 +715,23 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LroRetrysPost202Retry200Headers
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     201: {
-      headersMapper: Mappers.LroRetrysPost202Retry200Headers
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LroRetrysPost202Retry200Headers
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     204: {
-      headersMapper: Mappers.LroRetrysPost202Retry200Headers
+      headersMapper: Mappers.LRORetrysPost202Retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -741,23 +741,23 @@ const postAsyncRelativeRetrySucceededOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LroRetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LroRetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LroRetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LroRetrysPostAsyncRelativeRetrySucceededHeaders
+      headersMapper: Mappers.LRORetrysPostAsyncRelativeRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

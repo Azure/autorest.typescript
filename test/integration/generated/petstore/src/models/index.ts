@@ -276,7 +276,7 @@ export interface DeleteUserOptionalParams extends coreClient.OperationOptions {}
 export interface PetStoreOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

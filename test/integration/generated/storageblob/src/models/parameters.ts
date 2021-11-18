@@ -89,8 +89,8 @@ export const contentLength: OperationParameter = {
   }
 };
 
-export const transactionalContentMd5: OperationParameter = {
-  parameterPath: ["options", "transactionalContentMd5"],
+export const transactionalContentMD5: OperationParameter = {
+  parameterPath: ["options", "transactionalContentMD5"],
   mapper: {
     serializedName: "Content-MD5",
     xmlName: "Content-MD5",
@@ -384,8 +384,8 @@ export const blobContentLanguage: OperationParameter = {
   }
 };
 
-export const blobContentMd5: OperationParameter = {
-  parameterPath: ["options", "blobHttpHeaders", "blobContentMd5"],
+export const blobContentMD5: OperationParameter = {
+  parameterPath: ["options", "blobHttpHeaders", "blobContentMD5"],
   mapper: {
     serializedName: "x-ms-blob-content-md5",
     xmlName: "x-ms-blob-content-md5",
@@ -531,8 +531,8 @@ export const sourceIfTags: OperationParameter = {
   }
 };
 
-export const sourceContentMd5: OperationParameter = {
-  parameterPath: ["options", "sourceContentMd5"],
+export const sourceContentMD5: OperationParameter = {
+  parameterPath: ["options", "sourceContentMD5"],
   mapper: {
     serializedName: "x-ms-source-content-md5",
     xmlName: "x-ms-source-content-md5",

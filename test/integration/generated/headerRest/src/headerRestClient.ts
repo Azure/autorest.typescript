@@ -2,35 +2,35 @@
 // Licensed under the MIT license.
 
 import {
-  ParamExistingKeyParameters,
-  ResponseExistingKeyParameters,
-  ParamProtectedKeyParameters,
-  ResponseProtectedKeyParameters,
-  ParamIntegerParameters,
-  ResponseIntegerParameters,
-  ParamLongParameters,
-  ResponseLongParameters,
-  ParamFloatParameters,
-  ResponseFloatParameters,
-  ParamDoubleParameters,
-  ResponseDoubleParameters,
-  ParamBoolParameters,
-  ResponseBoolParameters,
-  ParamStringParameters,
-  ResponseStringParameters,
-  ParamDateParameters,
-  ResponseDateParameters,
-  ParamDatetimeParameters,
-  ResponseDatetimeParameters,
-  ParamDatetimeRfc1123Parameters,
-  ResponseDatetimeRfc1123Parameters,
-  ParamDurationParameters,
-  ResponseDurationParameters,
-  ParamByteParameters,
-  ResponseByteParameters,
-  ParamEnumParameters,
-  ResponseEnumParameters,
-  CustomRequestIdParameters
+  paramExistingKeyParameters,
+  responseExistingKeyParameters,
+  paramProtectedKeyParameters,
+  responseProtectedKeyParameters,
+  paramIntegerParameters,
+  responseIntegerParameters,
+  paramLongParameters,
+  responseLongParameters,
+  paramFloatParameters,
+  responseFloatParameters,
+  paramDoubleParameters,
+  responseDoubleParameters,
+  paramBoolParameters,
+  responseBoolParameters,
+  paramStringParameters,
+  responseStringParameters,
+  paramDateParameters,
+  responseDateParameters,
+  paramDatetimeParameters,
+  responseDatetimeParameters,
+  paramDatetimeRfc1123Parameters,
+  responseDatetimeRfc1123Parameters,
+  paramDurationParameters,
+  responseDurationParameters,
+  paramByteParameters,
+  responseByteParameters,
+  paramEnumParameters,
+  responseEnumParameters,
+  customRequestIdParameters
 } from "./parameters";
 import {
   ParamExistingKey200Response,
@@ -74,9 +74,9 @@ import {
   ResponseDatetime200Response,
   ResponseDatetimedefaultResponse,
   ParamDatetimeRfc1123200Response,
-  ParamDatetimeRfc1123DefaultResponse,
+  ParamDatetimeRfc1123defaultResponse,
   ResponseDatetimeRfc1123200Response,
-  ResponseDatetimeRfc1123DefaultResponse,
+  ResponseDatetimeRfc1123defaultResponse,
   ParamDuration200Response,
   ParamDurationdefaultResponse,
   ResponseDuration200Response,
@@ -95,278 +95,278 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface ParamExistingKey {
+export interface paramExistingKey {
   /** Send a post request with header value "User-Agent": "overwrite" */
   post(
-    options?: ParamExistingKeyParameters
+    options?: paramExistingKeyParameters
   ): Promise<ParamExistingKey200Response | ParamExistingKeydefaultResponse>;
 }
 
-export interface ResponseExistingKey {
+export interface responseExistingKey {
   /** Get a response with header value "User-Agent": "overwrite" */
   post(
-    options?: ResponseExistingKeyParameters
+    options?: responseExistingKeyParameters
   ): Promise<
     ResponseExistingKey200Response | ResponseExistingKeydefaultResponse
   >;
 }
 
-export interface ParamProtectedKey {
+export interface paramProtectedKey {
   /** Send a post request with header value "Content-Type": "text/html" */
   post(
-    options?: ParamProtectedKeyParameters
+    options?: paramProtectedKeyParameters
   ): Promise<ParamProtectedKey200Response | ParamProtectedKeydefaultResponse>;
 }
 
-export interface ResponseProtectedKey {
+export interface responseProtectedKey {
   /** Get a response with header value "Content-Type": "text/html" */
   post(
-    options?: ResponseProtectedKeyParameters
+    options?: responseProtectedKeyParameters
   ): Promise<
     ResponseProtectedKey200Response | ResponseProtectedKeydefaultResponse
   >;
 }
 
-export interface ParamInteger {
+export interface paramInteger {
   /** Send a post request with header values "scenario": "positive", "value": 1 or "scenario": "negative", "value": -2 */
   post(
-    options?: ParamIntegerParameters
+    options?: paramIntegerParameters
   ): Promise<ParamInteger200Response | ParamIntegerdefaultResponse>;
 }
 
-export interface ResponseInteger {
+export interface responseInteger {
   /** Get a response with header value "value": 1 or -2 */
   post(
-    options?: ResponseIntegerParameters
+    options?: responseIntegerParameters
   ): Promise<ResponseInteger200Response | ResponseIntegerdefaultResponse>;
 }
 
-export interface ParamLong {
+export interface paramLong {
   /** Send a post request with header values "scenario": "positive", "value": 105 or "scenario": "negative", "value": -2 */
   post(
-    options?: ParamLongParameters
+    options?: paramLongParameters
   ): Promise<ParamLong200Response | ParamLongdefaultResponse>;
 }
 
-export interface ResponseLong {
+export interface responseLong {
   /** Get a response with header value "value": 105 or -2 */
   post(
-    options?: ResponseLongParameters
+    options?: responseLongParameters
   ): Promise<ResponseLong200Response | ResponseLongdefaultResponse>;
 }
 
-export interface ParamFloat {
+export interface paramFloat {
   /** Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario": "negative", "value": -3.0 */
   post(
-    options?: ParamFloatParameters
+    options?: paramFloatParameters
   ): Promise<ParamFloat200Response | ParamFloatdefaultResponse>;
 }
 
-export interface ResponseFloat {
+export interface responseFloat {
   /** Get a response with header value "value": 0.07 or -3.0 */
   post(
-    options?: ResponseFloatParameters
+    options?: responseFloatParameters
   ): Promise<ResponseFloat200Response | ResponseFloatdefaultResponse>;
 }
 
-export interface ParamDouble {
+export interface paramDouble {
   /** Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario": "negative", "value": -3.0 */
   post(
-    options?: ParamDoubleParameters
+    options?: paramDoubleParameters
   ): Promise<ParamDouble200Response | ParamDoubledefaultResponse>;
 }
 
-export interface ResponseDouble {
+export interface responseDouble {
   /** Get a response with header value "value": 7e120 or -3.0 */
   post(
-    options?: ResponseDoubleParameters
+    options?: responseDoubleParameters
   ): Promise<ResponseDouble200Response | ResponseDoubledefaultResponse>;
 }
 
-export interface ParamBool {
+export interface paramBool {
   /** Send a post request with header values "scenario": "true", "value": true or "scenario": "false", "value": false */
   post(
-    options?: ParamBoolParameters
+    options?: paramBoolParameters
   ): Promise<ParamBool200Response | ParamBooldefaultResponse>;
 }
 
-export interface ResponseBool {
+export interface responseBool {
   /** Get a response with header value "value": true or false */
   post(
-    options?: ResponseBoolParameters
+    options?: responseBoolParameters
   ): Promise<ResponseBool200Response | ResponseBooldefaultResponse>;
 }
 
-export interface ParamString {
+export interface paramString {
   /** Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "" */
   post(
-    options?: ParamStringParameters
+    options?: paramStringParameters
   ): Promise<ParamString200Response | ParamStringdefaultResponse>;
 }
 
-export interface ResponseString {
+export interface responseString {
   /** Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "" */
   post(
-    options?: ResponseStringParameters
+    options?: responseStringParameters
   ): Promise<ResponseString200Response | ResponseStringdefaultResponse>;
 }
 
-export interface ParamDate {
+export interface paramDate {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01" or "scenario": "min", "value": "0001-01-01" */
   post(
-    options?: ParamDateParameters
+    options?: paramDateParameters
   ): Promise<ParamDate200Response | ParamDatedefaultResponse>;
 }
 
-export interface ResponseDate {
+export interface responseDate {
   /** Get a response with header values "2010-01-01" or "0001-01-01" */
   post(
-    options?: ResponseDateParameters
+    options?: responseDateParameters
   ): Promise<ResponseDate200Response | ResponseDatedefaultResponse>;
 }
 
-export interface ParamDatetime {
+export interface paramDatetime {
   /** Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or "scenario": "min", "value": "0001-01-01T00:00:00Z" */
   post(
-    options?: ParamDatetimeParameters
+    options?: paramDatetimeParameters
   ): Promise<ParamDatetime200Response | ParamDatetimedefaultResponse>;
 }
 
-export interface ResponseDatetime {
+export interface responseDatetime {
   /** Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z" */
   post(
-    options?: ResponseDatetimeParameters
+    options?: responseDatetimeParameters
   ): Promise<ResponseDatetime200Response | ResponseDatetimedefaultResponse>;
 }
 
-export interface ParamDatetimeRfc1123 {
+export interface paramDatetimeRfc1123 {
   /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
-    options?: ParamDatetimeRfc1123Parameters
+    options?: paramDatetimeRfc1123Parameters
   ): Promise<
-    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123DefaultResponse
+    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123defaultResponse
   >;
 }
 
-export interface ResponseDatetimeRfc1123 {
+export interface responseDatetimeRfc1123 {
   /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
   post(
-    options?: ResponseDatetimeRfc1123Parameters
+    options?: responseDatetimeRfc1123Parameters
   ): Promise<
-    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123DefaultResponse
+    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123defaultResponse
   >;
 }
 
-export interface ParamDuration {
+export interface paramDuration {
   /** Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S" */
   post(
-    options?: ParamDurationParameters
+    options?: paramDurationParameters
   ): Promise<ParamDuration200Response | ParamDurationdefaultResponse>;
 }
 
-export interface ResponseDuration {
+export interface responseDuration {
   /** Get a response with header values "P123DT22H14M12.011S" */
   post(
-    options?: ResponseDurationParameters
+    options?: responseDurationParameters
   ): Promise<ResponseDuration200Response | ResponseDurationdefaultResponse>;
 }
 
-export interface ParamByte {
+export interface paramByte {
   /** Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩" */
   post(
-    options?: ParamByteParameters
+    options?: paramByteParameters
   ): Promise<ParamByte200Response | ParamBytedefaultResponse>;
 }
 
-export interface ResponseByte {
+export interface responseByte {
   /** Get a response with header values "啊齄丂狛狜隣郎隣兀﨩" */
   post(
-    options?: ResponseByteParameters
+    options?: responseByteParameters
   ): Promise<ResponseByte200Response | ResponseBytedefaultResponse>;
 }
 
-export interface ParamEnum {
+export interface paramEnum {
   /** Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario": "null", "value": null */
   post(
-    options?: ParamEnumParameters
+    options?: paramEnumParameters
   ): Promise<ParamEnum200Response | ParamEnumdefaultResponse>;
 }
 
-export interface ResponseEnum {
+export interface responseEnum {
   /** Get a response with header values "GREY" or null */
   post(
-    options?: ResponseEnumParameters
+    options?: responseEnumParameters
   ): Promise<ResponseEnum200Response | ResponseEnumdefaultResponse>;
 }
 
-export interface CustomRequestId {
+export interface customRequestId {
   /** Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request */
   post(
-    options?: CustomRequestIdParameters
+    options?: customRequestIdParameters
   ): Promise<CustomRequestId200Response | CustomRequestIddefaultResponse>;
 }
 
 export interface Routes {
   /** Resource for '/header/param/existingkey' has methods for the following verbs: post */
-  (path: "/header/param/existingkey"): ParamExistingKey;
+  (path: "/header/param/existingkey"): paramExistingKey;
   /** Resource for '/header/response/existingkey' has methods for the following verbs: post */
-  (path: "/header/response/existingkey"): ResponseExistingKey;
+  (path: "/header/response/existingkey"): responseExistingKey;
   /** Resource for '/header/param/protectedkey' has methods for the following verbs: post */
-  (path: "/header/param/protectedkey"): ParamProtectedKey;
+  (path: "/header/param/protectedkey"): paramProtectedKey;
   /** Resource for '/header/response/protectedkey' has methods for the following verbs: post */
-  (path: "/header/response/protectedkey"): ResponseProtectedKey;
+  (path: "/header/response/protectedkey"): responseProtectedKey;
   /** Resource for '/header/param/prim/integer' has methods for the following verbs: post */
-  (path: "/header/param/prim/integer"): ParamInteger;
+  (path: "/header/param/prim/integer"): paramInteger;
   /** Resource for '/header/response/prim/integer' has methods for the following verbs: post */
-  (path: "/header/response/prim/integer"): ResponseInteger;
+  (path: "/header/response/prim/integer"): responseInteger;
   /** Resource for '/header/param/prim/long' has methods for the following verbs: post */
-  (path: "/header/param/prim/long"): ParamLong;
+  (path: "/header/param/prim/long"): paramLong;
   /** Resource for '/header/response/prim/long' has methods for the following verbs: post */
-  (path: "/header/response/prim/long"): ResponseLong;
+  (path: "/header/response/prim/long"): responseLong;
   /** Resource for '/header/param/prim/float' has methods for the following verbs: post */
-  (path: "/header/param/prim/float"): ParamFloat;
+  (path: "/header/param/prim/float"): paramFloat;
   /** Resource for '/header/response/prim/float' has methods for the following verbs: post */
-  (path: "/header/response/prim/float"): ResponseFloat;
+  (path: "/header/response/prim/float"): responseFloat;
   /** Resource for '/header/param/prim/double' has methods for the following verbs: post */
-  (path: "/header/param/prim/double"): ParamDouble;
+  (path: "/header/param/prim/double"): paramDouble;
   /** Resource for '/header/response/prim/double' has methods for the following verbs: post */
-  (path: "/header/response/prim/double"): ResponseDouble;
+  (path: "/header/response/prim/double"): responseDouble;
   /** Resource for '/header/param/prim/bool' has methods for the following verbs: post */
-  (path: "/header/param/prim/bool"): ParamBool;
+  (path: "/header/param/prim/bool"): paramBool;
   /** Resource for '/header/response/prim/bool' has methods for the following verbs: post */
-  (path: "/header/response/prim/bool"): ResponseBool;
+  (path: "/header/response/prim/bool"): responseBool;
   /** Resource for '/header/param/prim/string' has methods for the following verbs: post */
-  (path: "/header/param/prim/string"): ParamString;
+  (path: "/header/param/prim/string"): paramString;
   /** Resource for '/header/response/prim/string' has methods for the following verbs: post */
-  (path: "/header/response/prim/string"): ResponseString;
+  (path: "/header/response/prim/string"): responseString;
   /** Resource for '/header/param/prim/date' has methods for the following verbs: post */
-  (path: "/header/param/prim/date"): ParamDate;
+  (path: "/header/param/prim/date"): paramDate;
   /** Resource for '/header/response/prim/date' has methods for the following verbs: post */
-  (path: "/header/response/prim/date"): ResponseDate;
+  (path: "/header/response/prim/date"): responseDate;
   /** Resource for '/header/param/prim/datetime' has methods for the following verbs: post */
-  (path: "/header/param/prim/datetime"): ParamDatetime;
+  (path: "/header/param/prim/datetime"): paramDatetime;
   /** Resource for '/header/response/prim/datetime' has methods for the following verbs: post */
-  (path: "/header/response/prim/datetime"): ResponseDatetime;
+  (path: "/header/response/prim/datetime"): responseDatetime;
   /** Resource for '/header/param/prim/datetimerfc1123' has methods for the following verbs: post */
-  (path: "/header/param/prim/datetimerfc1123"): ParamDatetimeRfc1123;
+  (path: "/header/param/prim/datetimerfc1123"): paramDatetimeRfc1123;
   /** Resource for '/header/response/prim/datetimerfc1123' has methods for the following verbs: post */
-  (path: "/header/response/prim/datetimerfc1123"): ResponseDatetimeRfc1123;
+  (path: "/header/response/prim/datetimerfc1123"): responseDatetimeRfc1123;
   /** Resource for '/header/param/prim/duration' has methods for the following verbs: post */
-  (path: "/header/param/prim/duration"): ParamDuration;
+  (path: "/header/param/prim/duration"): paramDuration;
   /** Resource for '/header/response/prim/duration' has methods for the following verbs: post */
-  (path: "/header/response/prim/duration"): ResponseDuration;
+  (path: "/header/response/prim/duration"): responseDuration;
   /** Resource for '/header/param/prim/byte' has methods for the following verbs: post */
-  (path: "/header/param/prim/byte"): ParamByte;
+  (path: "/header/param/prim/byte"): paramByte;
   /** Resource for '/header/response/prim/byte' has methods for the following verbs: post */
-  (path: "/header/response/prim/byte"): ResponseByte;
+  (path: "/header/response/prim/byte"): responseByte;
   /** Resource for '/header/param/prim/enum' has methods for the following verbs: post */
-  (path: "/header/param/prim/enum"): ParamEnum;
+  (path: "/header/param/prim/enum"): paramEnum;
   /** Resource for '/header/response/prim/enum' has methods for the following verbs: post */
-  (path: "/header/response/prim/enum"): ResponseEnum;
+  (path: "/header/response/prim/enum"): responseEnum;
   /** Resource for '/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0' has methods for the following verbs: post */
   (
     path: "/header/custom/x-ms-client-request-id/9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
-  ): CustomRequestId;
+  ): customRequestId;
 }
 
 export type HeaderRestClientRestClient = Client & {

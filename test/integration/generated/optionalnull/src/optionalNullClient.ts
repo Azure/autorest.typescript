@@ -1,18 +1,19 @@
+import * as coreClient from "@azure/core-client";
 import { DocumentsImpl } from "./operations";
 import { Documents } from "./operationsInterfaces";
 import { OptionalNullClientOptionalParams } from "./models";
 
 export class OptionalNullClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the OptionalNullClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: OptionalNullClientOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: OptionalNullClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -39,7 +40,7 @@ export class OptionalNullClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
+    this.$host = $host;
     this.documents = new DocumentsImpl(this);
   }
 

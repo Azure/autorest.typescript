@@ -4,71 +4,71 @@
 import { RequestParameters } from "@azure-rest/core-client";
 import { RefColorConstant } from "./models";
 
-export type StringGetNullParameters = RequestParameters;
+export type StringgetNullParameters = RequestParameters;
 
-export interface StringPutNullBodyParam {
+export interface StringputNullBodyParam {
   /** string body */
   body?: string;
 }
 
-export interface StringPutNullMediaTypesParam {
+export interface StringputNullMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutNullParameters = StringPutNullMediaTypesParam &
-  StringPutNullBodyParam &
+export type StringputNullParameters = StringputNullMediaTypesParam &
+  StringputNullBodyParam &
   RequestParameters;
-export type StringGetEmptyParameters = RequestParameters;
+export type StringgetEmptyParameters = RequestParameters;
 
-export interface StringPutEmptyBodyParam {
+export interface StringputEmptyBodyParam {
   /** string body */
   body: "";
 }
 
-export interface StringPutEmptyMediaTypesParam {
+export interface StringputEmptyMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutEmptyParameters = StringPutEmptyMediaTypesParam &
-  StringPutEmptyBodyParam &
+export type StringputEmptyParameters = StringputEmptyMediaTypesParam &
+  StringputEmptyBodyParam &
   RequestParameters;
-export type StringGetMbcsParameters = RequestParameters;
+export type StringgetMbcsParameters = RequestParameters;
 
-export interface StringPutMbcsBodyParam {
+export interface StringputMbcsBodyParam {
   /** string body */
   body: "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€";
 }
 
-export interface StringPutMbcsMediaTypesParam {
+export interface StringputMbcsMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutMbcsParameters = StringPutMbcsMediaTypesParam &
-  StringPutMbcsBodyParam &
+export type StringputMbcsParameters = StringputMbcsMediaTypesParam &
+  StringputMbcsBodyParam &
   RequestParameters;
-export type StringGetWhitespaceParameters = RequestParameters;
+export type StringgetWhitespaceParameters = RequestParameters;
 
-export interface StringPutWhitespaceBodyParam {
+export interface StringputWhitespaceBodyParam {
   /** string body */
   body: "    Now is the time for all good men to come to the aid of their country    ";
 }
 
-export interface StringPutWhitespaceMediaTypesParam {
+export interface StringputWhitespaceMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutWhitespaceParameters = StringPutWhitespaceMediaTypesParam &
-  StringPutWhitespaceBodyParam &
+export type StringputWhitespaceParameters = StringputWhitespaceMediaTypesParam &
+  StringputWhitespaceBodyParam &
   RequestParameters;
-export type StringGetNotProvidedParameters = RequestParameters;
-export type StringGetBase64EncodedParameters = RequestParameters;
-export type StringGetBase64UrlEncodedParameters = RequestParameters;
+export type StringgetNotProvidedParameters = RequestParameters;
+export type StringgetBase64EncodedParameters = RequestParameters;
+export type StringgetBase64UrlEncodedParameters = RequestParameters;
 
-export interface StringPutBase64UrlEncodedBodyParam {
+export interface StringputBase64UrlEncodedBodyParam {
   /**
    * string body
    *
@@ -77,57 +77,57 @@ export interface StringPutBase64UrlEncodedBodyParam {
   body: string;
 }
 
-export interface StringPutBase64UrlEncodedMediaTypesParam {
+export interface StringputBase64UrlEncodedMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type StringPutBase64UrlEncodedParameters = StringPutBase64UrlEncodedMediaTypesParam &
-  StringPutBase64UrlEncodedBodyParam &
+export type StringputBase64UrlEncodedParameters = StringputBase64UrlEncodedMediaTypesParam &
+  StringputBase64UrlEncodedBodyParam &
   RequestParameters;
-export type StringGetNullBase64UrlEncodedParameters = RequestParameters;
-export type EnumGetNotExpandableParameters = RequestParameters;
+export type StringgetNullBase64UrlEncodedParameters = RequestParameters;
+export type EnumgetNotExpandableParameters = RequestParameters;
 
-export interface EnumPutNotExpandableBodyParam {
+export interface EnumputNotExpandableBodyParam {
   /** string body */
   body: "red color" | "green-color" | "blue_color";
 }
 
-export interface EnumPutNotExpandableMediaTypesParam {
+export interface EnumputNotExpandableMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type EnumPutNotExpandableParameters = EnumPutNotExpandableMediaTypesParam &
-  EnumPutNotExpandableBodyParam &
+export type EnumputNotExpandableParameters = EnumputNotExpandableMediaTypesParam &
+  EnumputNotExpandableBodyParam &
   RequestParameters;
-export type EnumGetReferencedParameters = RequestParameters;
+export type EnumgetReferencedParameters = RequestParameters;
 
-export interface EnumPutReferencedBodyParam {
+export interface EnumputReferencedBodyParam {
   /** enum string body */
   body: "red color" | "green-color" | "blue_color";
 }
 
-export interface EnumPutReferencedMediaTypesParam {
+export interface EnumputReferencedMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type EnumPutReferencedParameters = EnumPutReferencedMediaTypesParam &
-  EnumPutReferencedBodyParam &
+export type EnumputReferencedParameters = EnumputReferencedMediaTypesParam &
+  EnumputReferencedBodyParam &
   RequestParameters;
-export type EnumGetReferencedConstantParameters = RequestParameters;
+export type EnumgetReferencedConstantParameters = RequestParameters;
 
-export interface EnumPutReferencedConstantBodyParam {
+export interface EnumputReferencedConstantBodyParam {
   /** enum string body */
   body: RefColorConstant;
 }
 
-export interface EnumPutReferencedConstantMediaTypesParam {
+export interface EnumputReferencedConstantMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type EnumPutReferencedConstantParameters = EnumPutReferencedConstantMediaTypesParam &
-  EnumPutReferencedConstantBodyParam &
+export type EnumputReferencedConstantParameters = EnumputReferencedConstantMediaTypesParam &
+  EnumputReferencedConstantBodyParam &
   RequestParameters;

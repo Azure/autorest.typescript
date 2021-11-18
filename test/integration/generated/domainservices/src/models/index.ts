@@ -82,12 +82,12 @@ export interface ReplicaSet {
    * List of Domain Controller IP Address
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly domainControllerIPAddress?: string[];
+  readonly domainControllerIpAddress?: string[];
   /**
    * External access ip address.
    * NOTE: This property will not be serialized. It can only be populated by the server.
    */
-  readonly externalAccessIPAddress?: string;
+  readonly externalAccessIpAddress?: string;
   /**
    * Status of Domain Service instance
    * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -852,7 +852,7 @@ export type OuContainerListNextResponse = OuContainerListResult;
 export interface DomainServicesClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

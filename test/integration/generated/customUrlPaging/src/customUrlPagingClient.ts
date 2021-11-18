@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PagingImpl } from "./operations";
 import { Paging } from "./operationsInterfaces";
 import { CustomUrlPagingClientOptionalParams } from "./models";

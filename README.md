@@ -75,7 +75,7 @@ modelerfour:
     preserve-uppercase-max-length: 3
     parameter: camel
     property: camel
-    operation: pascal
+    operation: camel
     operationGroup: pascal
     choice: pascal
     choiceValue: pascal

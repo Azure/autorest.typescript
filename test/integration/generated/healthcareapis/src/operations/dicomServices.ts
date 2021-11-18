@@ -430,10 +430,10 @@ export class DicomServicesImpl implements DicomServices {
   }
 
   /**
-   * ListByWorkspaceNext
+   * listByWorkspaceNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
    * @param workspaceName The name of workspace resource.
-   * @param nextLink The nextLink from the previous successful call to the ListByWorkspace method.
+   * @param nextLink The nextLink from the previous successful call to the listByWorkspace method.
    * @param options The options parameters.
    */
   private _listByWorkspaceNext(
@@ -465,7 +465,7 @@ const listByWorkspaceOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName
@@ -487,7 +487,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -520,7 +520,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.dicomservice,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -554,7 +554,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.dicomservicePatchResource,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -579,7 +579,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.workspaceName,
@@ -601,7 +601,7 @@ const listByWorkspaceNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.nextLink,

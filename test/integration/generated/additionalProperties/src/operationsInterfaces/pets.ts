@@ -34,7 +34,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createApTrue(
+  createAPTrue(
     createParameters: PetAPTrue,
     options?: PetsCreateAPTrueOptionalParams
   ): Promise<PetsCreateAPTrueResponse>;
@@ -43,7 +43,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createCatApTrue(
+  createCatAPTrue(
     createParameters: CatAPTrue,
     options?: PetsCreateCatAPTrueOptionalParams
   ): Promise<PetsCreateCatAPTrueResponse>;
@@ -52,7 +52,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createApObject(
+  createAPObject(
     createParameters: PetAPObject,
     options?: PetsCreateAPObjectOptionalParams
   ): Promise<PetsCreateAPObjectResponse>;
@@ -61,7 +61,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createApString(
+  createAPString(
     createParameters: PetAPString,
     options?: PetsCreateAPStringOptionalParams
   ): Promise<PetsCreateAPStringResponse>;
@@ -70,7 +70,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createApInProperties(
+  createAPInProperties(
     createParameters: PetAPInProperties,
     options?: PetsCreateAPInPropertiesOptionalParams
   ): Promise<PetsCreateAPInPropertiesResponse>;
@@ -79,7 +79,7 @@ export interface Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createApInPropertiesWithApstring(
+  createAPInPropertiesWithAPString(
     createParameters: PetAPInPropertiesWithAPString,
     options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse>;

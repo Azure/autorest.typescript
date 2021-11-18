@@ -1,6 +1,6 @@
 import {
-  FileUploadRangeFromUrlOptionalParams,
-  FileUploadRangeFromUrlResponse
+  FileUploadRangeFromURLOptionalParams,
+  FileUploadRangeFromURLResponse
 } from "../models";
 
 /** Interface representing a File. */
@@ -18,10 +18,10 @@ export interface File {
    *                      x-ms-write header is set to clear, the value of this header must be set to zero.
    * @param options The options parameters.
    */
-  uploadRangeFromUrl(
+  uploadRangeFromURL(
     range: string,
     copySource: string,
     contentLength: number,
-    options?: FileUploadRangeFromUrlOptionalParams
-  ): Promise<FileUploadRangeFromUrlResponse>;
+    options?: FileUploadRangeFromURLOptionalParams
+  ): Promise<FileUploadRangeFromURLResponse>;
 }

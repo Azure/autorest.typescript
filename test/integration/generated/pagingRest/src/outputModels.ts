@@ -25,7 +25,7 @@ export interface OdataProductResultOutput {
   "odata.nextLink"?: string;
 }
 
-export interface ProductResultValueWithXmsClientNameOutput {
+export interface ProductResultValueWithXMSClientNameOutput {
   values?: Array<ProductOutput>;
   nextLink?: string;
 }

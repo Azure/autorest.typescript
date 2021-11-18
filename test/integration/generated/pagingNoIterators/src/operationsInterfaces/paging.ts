@@ -42,14 +42,14 @@ import {
   CustomParameterGroup,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
-  PagingGetMultiplePagesLroOptionalParams,
-  PagingGetMultiplePagesLroResponse,
+  PagingGetMultiplePagesLROOptionalParams,
+  PagingGetMultiplePagesLROResponse,
   PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingNextFragmentWithGroupingResponse,
-  PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams,
-  PagingGetPagingModelWithItemNameWithXmsClientNameResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
+  PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextOptionalParams,
@@ -72,10 +72,10 @@ import {
   PagingGetMultiplePagesFailureNextResponse,
   PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriNextResponse,
-  PagingGetMultiplePagesLroNextOptionalParams,
-  PagingGetMultiplePagesLroNextResponse,
-  PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams,
-  PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse
+  PagingGetMultiplePagesLRONextOptionalParams,
+  PagingGetMultiplePagesLRONextResponse,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
+  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
 } from "../models";
 
 /** Interface representing a Paging. */
@@ -210,12 +210,12 @@ export interface Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePagesLro(
-    options?: PagingGetMultiplePagesLroOptionalParams
+  getMultiplePagesLRO(
+    options?: PagingGetMultiplePagesLROOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<PagingGetMultiplePagesLroResponse>,
-      PagingGetMultiplePagesLroResponse
+      PollOperationState<PagingGetMultiplePagesLROResponse>,
+      PagingGetMultiplePagesLROResponse
     >
   >;
   /**
@@ -247,12 +247,12 @@ export interface Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  getPagingModelWithItemNameWithXmsClientName(
-    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameResponse>;
+  getPagingModelWithItemNameWithXMSClientName(
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
   /**
-   * GetNoItemNamePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
+   * getNoItemNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the getNoItemNamePages method.
    * @param options The options parameters.
    */
   getNoItemNamePagesNext(
@@ -260,8 +260,8 @@ export interface Paging {
     options?: PagingGetNoItemNamePagesNextOptionalParams
   ): Promise<PagingGetNoItemNamePagesNextResponse>;
   /**
-   * GetSinglePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
+   * getSinglePagesNext
+   * @param nextLink The nextLink from the previous successful call to the getSinglePages method.
    * @param options The options parameters.
    */
   getSinglePagesNext(
@@ -269,8 +269,8 @@ export interface Paging {
     options?: PagingGetSinglePagesNextOptionalParams
   ): Promise<PagingGetSinglePagesNextResponse>;
   /**
-   * FirstResponseEmptyNext
-   * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.
+   * firstResponseEmptyNext
+   * @param nextLink The nextLink from the previous successful call to the firstResponseEmpty method.
    * @param options The options parameters.
    */
   firstResponseEmptyNext(
@@ -278,8 +278,8 @@ export interface Paging {
     options?: PagingFirstResponseEmptyNextOptionalParams
   ): Promise<PagingFirstResponseEmptyNextResponse>;
   /**
-   * GetMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
+   * getMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePages method.
    * @param options The options parameters.
    */
   getMultiplePagesNext(
@@ -287,8 +287,8 @@ export interface Paging {
     options?: PagingGetMultiplePagesNextOptionalParams
   ): Promise<PagingGetMultiplePagesNextResponse>;
   /**
-   * GetOdataMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
+   * getOdataMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the getOdataMultiplePages method.
    * @param options The options parameters.
    */
   getOdataMultiplePagesNext(
@@ -296,9 +296,9 @@ export interface Paging {
     options?: PagingGetOdataMultiplePagesNextOptionalParams
   ): Promise<PagingGetOdataMultiplePagesNextResponse>;
   /**
-   * GetMultiplePagesWithOffsetNext
+   * getMultiplePagesWithOffsetNext
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesWithOffset
    *                 method.
    * @param options The options parameters.
    */
@@ -308,8 +308,8 @@ export interface Paging {
     options?: PagingGetMultiplePagesWithOffsetNextOptionalParams
   ): Promise<PagingGetMultiplePagesWithOffsetNextResponse>;
   /**
-   * GetMultiplePagesRetryFirstNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetryFirst
+   * getMultiplePagesRetryFirstNext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesRetryFirst
    *                 method.
    * @param options The options parameters.
    */
@@ -318,8 +318,8 @@ export interface Paging {
     options?: PagingGetMultiplePagesRetryFirstNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetryFirstNextResponse>;
   /**
-   * GetMultiplePagesRetrySecondNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetrySecond
+   * getMultiplePagesRetrySecondNext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesRetrySecond
    *                 method.
    * @param options The options parameters.
    */
@@ -328,8 +328,8 @@ export interface Paging {
     options?: PagingGetMultiplePagesRetrySecondNextOptionalParams
   ): Promise<PagingGetMultiplePagesRetrySecondNextResponse>;
   /**
-   * GetSinglePagesFailureNext
-   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesFailure method.
+   * getSinglePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the getSinglePagesFailure method.
    * @param options The options parameters.
    */
   getSinglePagesFailureNext(
@@ -337,8 +337,8 @@ export interface Paging {
     options?: PagingGetSinglePagesFailureNextOptionalParams
   ): Promise<PagingGetSinglePagesFailureNextResponse>;
   /**
-   * GetMultiplePagesFailureNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailure
+   * getMultiplePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesFailure
    *                 method.
    * @param options The options parameters.
    */
@@ -347,8 +347,8 @@ export interface Paging {
     options?: PagingGetMultiplePagesFailureNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureNextResponse>;
   /**
-   * GetMultiplePagesFailureUriNext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailureUri
+   * getMultiplePagesFailureUriNext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesFailureUri
    *                 method.
    * @param options The options parameters.
    */
@@ -357,22 +357,22 @@ export interface Paging {
     options?: PagingGetMultiplePagesFailureUriNextOptionalParams
   ): Promise<PagingGetMultiplePagesFailureUriNextResponse>;
   /**
-   * GetMultiplePagesLRONext
-   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
+   * getMultiplePagesLRONext
+   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  getMultiplePagesLroNext(
+  getMultiplePagesLRONext(
     nextLink: string,
-    options?: PagingGetMultiplePagesLroNextOptionalParams
-  ): Promise<PagingGetMultiplePagesLroNextResponse>;
+    options?: PagingGetMultiplePagesLRONextOptionalParams
+  ): Promise<PagingGetMultiplePagesLRONextResponse>;
   /**
-   * GetPagingModelWithItemNameWithXMSClientNameNext
+   * getPagingModelWithItemNameWithXMSClientNameNext
    * @param nextLink The nextLink from the previous successful call to the
-   *                 GetPagingModelWithItemNameWithXMSClientName method.
+   *                 getPagingModelWithItemNameWithXMSClientName method.
    * @param options The options parameters.
    */
-  getPagingModelWithItemNameWithXmsClientNameNext(
+  getPagingModelWithItemNameWithXMSClientNameNext(
     nextLink: string,
-    options?: PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse>;
+    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
 }

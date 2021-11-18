@@ -4,8 +4,8 @@ import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { StorageFileShareClient } from "../storageFileShareClient";
 import {
-  FileUploadRangeFromUrlOptionalParams,
-  FileUploadRangeFromUrlResponse
+  FileUploadRangeFromURLOptionalParams,
+  FileUploadRangeFromURLResponse
 } from "../models";
 
 /** Class containing File operations. */
@@ -33,22 +33,22 @@ export class FileImpl implements File {
    *                      x-ms-write header is set to clear, the value of this header must be set to zero.
    * @param options The options parameters.
    */
-  uploadRangeFromUrl(
+  uploadRangeFromURL(
     range: string,
     copySource: string,
     contentLength: number,
-    options?: FileUploadRangeFromUrlOptionalParams
-  ): Promise<FileUploadRangeFromUrlResponse> {
+    options?: FileUploadRangeFromURLOptionalParams
+  ): Promise<FileUploadRangeFromURLResponse> {
     return this.client.sendOperationRequest(
       { range, copySource, contentLength, options },
-      uploadRangeFromUrlOperationSpec
+      uploadRangeFromURLOperationSpec
     );
   }
 }
 // Operation Specifications
 const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
 
-const uploadRangeFromUrlOperationSpec: coreClient.OperationSpec = {
+const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
   path: "/{shareName}/{directory}/{fileName}",
   httpMethod: "PUT",
   responses: {

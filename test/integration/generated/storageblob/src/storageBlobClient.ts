@@ -1,3 +1,4 @@
+import * as coreClient from "@azure/core-client";
 import { PageBlobImpl, BlockBlobImpl, AppendBlobImpl } from "./operations";
 import { PageBlob, BlockBlob, AppendBlob } from "./operationsInterfaces";
 import { StorageBlobClientOptionalParams } from "./models";

@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import {
   BasicImpl,
   PrimitiveImpl,
@@ -31,7 +32,7 @@ import {
 import { BodyComplexWithTracingOptionalParams } from "./models";
 
 export class BodyComplexWithTracing extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
   apiVersion: string;
 
   /**
@@ -64,7 +65,7 @@ export class BodyComplexWithTracing extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "2016-02-29";
     this.basic = new BasicImpl(this);
     this.primitive = new PrimitiveImpl(this);

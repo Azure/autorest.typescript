@@ -39,7 +39,7 @@ export const ComplexTypeNoMeta: coreClient.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeNoMeta",
     modelProperties: {
-      id: {
+      iD: {
         serializedName: "ID",
         xmlName: "ID",
         type: {
@@ -82,7 +82,7 @@ export const ComplexTypeWithMeta: coreClient.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeWithMeta",
     modelProperties: {
-      id: {
+      iD: {
         serializedName: "ID",
         xmlName: "ID",
         type: {
@@ -601,7 +601,7 @@ export const Metrics: coreClient.CompositeMapper = {
           name: "Boolean"
         }
       },
-      includeApIs: {
+      includeAPIs: {
         serializedName: "IncludeAPIs",
         xmlName: "IncludeAPIs",
         type: {
@@ -968,7 +968,7 @@ export const BlobProperties: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMd5: {
+      contentMD5: {
         serializedName: "Content-MD5",
         xmlName: "Content-MD5",
         type: {
@@ -1171,12 +1171,12 @@ export const JsonOutput: coreClient.CompositeMapper = {
   }
 };
 
-export const ObjectWithXmsTextProperty: coreClient.CompositeMapper = {
+export const ObjectWithXMsTextProperty: coreClient.CompositeMapper = {
   serializedName: "ObjectWithXMsTextProperty",
   xmlName: "Data",
   type: {
     name: "Composite",
-    className: "ObjectWithXMSTextProperty",
+    className: "ObjectWithXMsTextProperty",
     modelProperties: {
       language: {
         serializedName: "language",

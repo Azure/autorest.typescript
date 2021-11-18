@@ -93,7 +93,7 @@ const customNamedRequestIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };
@@ -108,7 +108,7 @@ const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
   serializer
 };
@@ -124,7 +124,7 @@ const customNamedRequestIdHeadOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };

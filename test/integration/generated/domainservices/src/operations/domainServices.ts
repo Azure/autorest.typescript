@@ -455,8 +455,8 @@ export class DomainServicesImpl implements DomainServices {
   }
 
   /**
-   * ListNext
-   * @param nextLink The nextLink from the previous successful call to the List method.
+   * listNext
+   * @param nextLink The nextLink from the previous successful call to the list method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -470,10 +470,10 @@ export class DomainServicesImpl implements DomainServices {
   }
 
   /**
-   * ListByResourceGroupNext
+   * listByResourceGroupNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
@@ -503,7 +503,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.Host, Parameters.subscriptionId],
+  urlParameters: [Parameters.$host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -521,7 +521,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -552,7 +552,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.domainService,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -575,7 +575,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -598,7 +598,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -630,7 +630,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.domainService,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -652,7 +652,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
@@ -672,7 +672,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.Host,
+    Parameters.$host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName

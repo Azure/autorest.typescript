@@ -6,21 +6,22 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { GetImpl } from "./operations";
-import { Get } from "./operationsInterfaces";
+import * as coreClient from "@azure/core-client";
+import { GETImpl } from "./operations";
+import { GET } from "./operationsInterfaces";
 import { UuidClientOptionalParams } from "./models";
 
 export class UuidClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the UuidClient class.
-   * @param Host server parameter
+   * @param $host server parameter
    * @param options The parameter options
    */
-  constructor(Host: string, options?: UuidClientOptionalParams) {
-    if (Host === undefined) {
-      throw new Error("'Host' cannot be null");
+  constructor($host: string, options?: UuidClientOptionalParams) {
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
     }
 
     // Initializing default values for options
@@ -47,9 +48,9 @@ export class UuidClient extends coreClient.ServiceClient {
     };
     super(optionsWithDefaults);
     // Parameter assignments
-    this.Host = Host;
-    this.get = new GetImpl(this);
+    this.$host = $host;
+    this.gET = new GETImpl(this);
   }
 
-  get: Get;
+  gET: GET;
 }

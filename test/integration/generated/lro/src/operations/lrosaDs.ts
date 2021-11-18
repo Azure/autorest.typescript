@@ -10,7 +10,7 @@ import { LrosaDs } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LroClient } from "../lroClient";
+import { LROClient } from "../lROClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -69,13 +69,13 @@ import {
 
 /** Class containing LrosaDs operations. */
 export class LrosaDsImpl implements LrosaDs {
-  private readonly client: LroClient;
+  private readonly client: LROClient;
 
   /**
    * Initialize a new instance of the class LrosaDs class.
    * @param client Reference to the service client
    */
-  constructor(client: LroClient) {
+  constructor(client: LROClient) {
     this.client = client;
   }
 
@@ -2064,7 +2064,7 @@ const putNonRetry400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2090,7 +2090,7 @@ const putNonRetry201Creating400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2116,7 +2116,7 @@ const putNonRetry201Creating400InvalidJsonOperationSpec: coreClient.OperationSpe
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2146,7 +2146,7 @@ const putAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2171,7 +2171,7 @@ const deleteNonRetry400OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2195,7 +2195,7 @@ const delete202NonRetry400OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2219,7 +2219,7 @@ const deleteAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2244,7 +2244,7 @@ const postNonRetry400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2270,7 +2270,7 @@ const post202NonRetry400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2296,7 +2296,7 @@ const postAsyncRelativeRetry400OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2322,7 +2322,7 @@ const putError201NoProvisioningStatePayloadOperationSpec: coreClient.OperationSp
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2352,7 +2352,7 @@ const putAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2382,7 +2382,7 @@ const putAsyncRelativeRetryNoStatusPayloadOperationSpec: coreClient.OperationSpe
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2399,7 +2399,7 @@ const delete204SucceededOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2423,7 +2423,7 @@ const deleteAsyncRelativeRetryNoStatusOperationSpec: coreClient.OperationSpec = 
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2448,7 +2448,7 @@ const post202NoLocationOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2474,7 +2474,7 @@ const postAsyncRelativeRetryNoPayloadOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2500,7 +2500,7 @@ const put200InvalidJsonOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2530,7 +2530,7 @@ const putAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec 
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2564,7 +2564,7 @@ const putAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operation
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2589,7 +2589,7 @@ const delete202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2613,7 +2613,7 @@ const deleteAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2641,7 +2641,7 @@ const deleteAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operat
       bodyMapper: Mappers.CloudError
     }
   },
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2666,7 +2666,7 @@ const post202RetryInvalidHeaderOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2692,7 +2692,7 @@ const postAsyncRelativeRetryInvalidHeaderOperationSpec: coreClient.OperationSpec
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -2722,7 +2722,7 @@ const postAsyncRelativeRetryInvalidJsonPollingOperationSpec: coreClient.Operatio
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.Host],
+  urlParameters: [Parameters.$host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

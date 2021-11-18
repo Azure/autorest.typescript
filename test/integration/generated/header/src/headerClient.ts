@@ -6,12 +6,13 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { HeaderImpl } from "./operations";
 import { Header } from "./operationsInterfaces";
 import { HeaderClientOptionalParams } from "./models";
 
 export class HeaderClient extends coreClient.ServiceClient {
-  Host: string;
+  $host: string;
 
   /**
    * Initializes a new instance of the HeaderClient class.
@@ -43,7 +44,7 @@ export class HeaderClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
 
     // Assigning values to Constant parameters
-    this.Host = options.Host || "http://localhost:3000";
+    this.$host = options.$host || "http://localhost:3000";
     this.header = new HeaderImpl(this);
   }
 

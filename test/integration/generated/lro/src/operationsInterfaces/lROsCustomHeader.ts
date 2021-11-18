@@ -8,18 +8,18 @@
 
 import { PollerLike, PollOperationState } from "@azure/core-lro";
 import {
-  LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams,
-  LrOSCustomHeaderPutAsyncRetrySucceededResponse,
-  LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams,
-  LrOSCustomHeaderPut201CreatingSucceeded200Response,
-  LrOSCustomHeaderPost202Retry200OptionalParams,
-  LrOSCustomHeaderPost202Retry200Response,
-  LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams,
-  LrOSCustomHeaderPostAsyncRetrySucceededResponse
+  LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
+  LROsCustomHeaderPutAsyncRetrySucceededResponse,
+  LROsCustomHeaderPut201CreatingSucceeded200OptionalParams,
+  LROsCustomHeaderPut201CreatingSucceeded200Response,
+  LROsCustomHeaderPost202Retry200OptionalParams,
+  LROsCustomHeaderPost202Retry200Response,
+  LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
+  LROsCustomHeaderPostAsyncRetrySucceededResponse
 } from "../models";
 
-/** Interface representing a LrOSCustomHeader. */
-export interface LrOSCustomHeader {
+/** Interface representing a LROsCustomHeader. */
+export interface LROsCustomHeader {
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running put request, service returns a 200 to the initial request, with an entity
@@ -28,11 +28,11 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPutAsyncRetrySucceeded(
-    options?: LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSCustomHeaderPutAsyncRetrySucceededResponse>,
-      LrOSCustomHeaderPutAsyncRetrySucceededResponse
+      PollOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPutAsyncRetrySucceededResponse
     >
   >;
   /**
@@ -43,8 +43,8 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPutAsyncRetrySucceededAndWait(
-    options?: LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams
-  ): Promise<LrOSCustomHeaderPutAsyncRetrySucceededResponse>;
+    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+  ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running put request, service returns a 201 to the initial request, with an entity
@@ -53,11 +53,11 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200(
-    options?: LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams
+    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSCustomHeaderPut201CreatingSucceeded200Response>,
-      LrOSCustomHeaderPut201CreatingSucceeded200Response
+      PollOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
+      LROsCustomHeaderPut201CreatingSucceeded200Response
     >
   >;
   /**
@@ -68,8 +68,8 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPut201CreatingSucceeded200AndWait(
-    options?: LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams
-  ): Promise<LrOSCustomHeaderPut201CreatingSucceeded200Response>;
+    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+  ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with 'Location'
@@ -77,11 +77,11 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPost202Retry200(
-    options?: LrOSCustomHeaderPost202Retry200OptionalParams
+    options?: LROsCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSCustomHeaderPost202Retry200Response>,
-      LrOSCustomHeaderPost202Retry200Response
+      PollOperationState<LROsCustomHeaderPost202Retry200Response>,
+      LROsCustomHeaderPost202Retry200Response
     >
   >;
   /**
@@ -91,8 +91,8 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPost202Retry200AndWait(
-    options?: LrOSCustomHeaderPost202Retry200OptionalParams
-  ): Promise<LrOSCustomHeaderPost202Retry200Response>;
+    options?: LROsCustomHeaderPost202Retry200OptionalParams
+  ): Promise<LROsCustomHeaderPost202Retry200Response>;
   /**
    * x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all
    * requests. Long running post request, service returns a 202 to the initial request, with an entity
@@ -101,11 +101,11 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPostAsyncRetrySucceeded(
-    options?: LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams
+    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LrOSCustomHeaderPostAsyncRetrySucceededResponse>,
-      LrOSCustomHeaderPostAsyncRetrySucceededResponse
+      PollOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
+      LROsCustomHeaderPostAsyncRetrySucceededResponse
     >
   >;
   /**
@@ -116,6 +116,6 @@ export interface LrOSCustomHeader {
    * @param options The options parameters.
    */
   beginPostAsyncRetrySucceededAndWait(
-    options?: LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams
-  ): Promise<LrOSCustomHeaderPostAsyncRetrySucceededResponse>;
+    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+  ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse>;
 }

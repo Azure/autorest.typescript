@@ -347,11 +347,11 @@ export interface IotMappingProperties {
 /** The managed identity of a service. */
 export interface ServiceManagedIdentity {
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: ServiceManagedIdentity;
+  identity?: ServiceManagedIdentityIdentity;
 }
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface ServiceManagedIdentity {
+export interface ServiceManagedIdentityIdentity {
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
   type?: ManagedServiceIdentityType;
 }
@@ -1308,7 +1308,7 @@ export type OperationResultsGetResponse = OperationResultsDescription;
 export interface HealthCareApisClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

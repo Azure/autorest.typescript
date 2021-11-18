@@ -622,7 +622,7 @@ export interface ArrayPutDictionaryValidOptionalParams
 export interface BodyArrayClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  Host?: string;
+  $host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }
