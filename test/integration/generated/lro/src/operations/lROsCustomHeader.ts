@@ -6,33 +6,33 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { LROsCustomHeader } from "../operationsInterfaces";
+import { LrOSCustomHeader } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LROClientContext } from "../lROClientContext";
+import { LroClient } from "../lroClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
-  LROsCustomHeaderPutAsyncRetrySucceededOptionalParams,
-  LROsCustomHeaderPutAsyncRetrySucceededResponse,
-  LROsCustomHeaderPut201CreatingSucceeded200OptionalParams,
-  LROsCustomHeaderPut201CreatingSucceeded200Response,
-  LROsCustomHeaderPost202Retry200OptionalParams,
-  LROsCustomHeaderPost202Retry200Response,
-  LROsCustomHeaderPostAsyncRetrySucceededOptionalParams,
-  LROsCustomHeaderPostAsyncRetrySucceededResponse
+  LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams,
+  LrOSCustomHeaderPutAsyncRetrySucceededResponse,
+  LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams,
+  LrOSCustomHeaderPut201CreatingSucceeded200Response,
+  LrOSCustomHeaderPost202Retry200OptionalParams,
+  LrOSCustomHeaderPost202Retry200Response,
+  LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams,
+  LrOSCustomHeaderPostAsyncRetrySucceededResponse
 } from "../models";
 
-/** Class containing LROsCustomHeader operations. */
-export class LROsCustomHeaderImpl implements LROsCustomHeader {
-  private readonly client: LROClientContext;
+/** Class containing LrOSCustomHeader operations. */
+export class LrOSCustomHeaderImpl implements LrOSCustomHeader {
+  private readonly client: LroClient;
 
   /**
-   * Initialize a new instance of the class LROsCustomHeader class.
+   * Initialize a new instance of the class LrOSCustomHeader class.
    * @param client Reference to the service client
    */
-  constructor(client: LROClientContext) {
+  constructor(client: LroClient) {
     this.client = client;
   }
 
@@ -44,17 +44,17 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPutAsyncRetrySucceeded(
-    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+    options?: LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LROsCustomHeaderPutAsyncRetrySucceededResponse>,
-      LROsCustomHeaderPutAsyncRetrySucceededResponse
+      PollOperationState<LrOSCustomHeaderPutAsyncRetrySucceededResponse>,
+      LrOSCustomHeaderPutAsyncRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse> => {
+    ): Promise<LrOSCustomHeaderPutAsyncRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -109,8 +109,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPutAsyncRetrySucceededAndWait(
-    options?: LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
-  ): Promise<LROsCustomHeaderPutAsyncRetrySucceededResponse> {
+    options?: LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams
+  ): Promise<LrOSCustomHeaderPutAsyncRetrySucceededResponse> {
     const poller = await this.beginPutAsyncRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -123,17 +123,17 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200(
-    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+    options?: LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LROsCustomHeaderPut201CreatingSucceeded200Response>,
-      LROsCustomHeaderPut201CreatingSucceeded200Response
+      PollOperationState<LrOSCustomHeaderPut201CreatingSucceeded200Response>,
+      LrOSCustomHeaderPut201CreatingSucceeded200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response> => {
+    ): Promise<LrOSCustomHeaderPut201CreatingSucceeded200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -188,8 +188,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPut201CreatingSucceeded200AndWait(
-    options?: LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
-  ): Promise<LROsCustomHeaderPut201CreatingSucceeded200Response> {
+    options?: LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams
+  ): Promise<LrOSCustomHeaderPut201CreatingSucceeded200Response> {
     const poller = await this.beginPut201CreatingSucceeded200(options);
     return poller.pollUntilDone();
   }
@@ -201,17 +201,17 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPost202Retry200(
-    options?: LROsCustomHeaderPost202Retry200OptionalParams
+    options?: LrOSCustomHeaderPost202Retry200OptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LROsCustomHeaderPost202Retry200Response>,
-      LROsCustomHeaderPost202Retry200Response
+      PollOperationState<LrOSCustomHeaderPost202Retry200Response>,
+      LrOSCustomHeaderPost202Retry200Response
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LROsCustomHeaderPost202Retry200Response> => {
+    ): Promise<LrOSCustomHeaderPost202Retry200Response> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -265,8 +265,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPost202Retry200AndWait(
-    options?: LROsCustomHeaderPost202Retry200OptionalParams
-  ): Promise<LROsCustomHeaderPost202Retry200Response> {
+    options?: LrOSCustomHeaderPost202Retry200OptionalParams
+  ): Promise<LrOSCustomHeaderPost202Retry200Response> {
     const poller = await this.beginPost202Retry200(options);
     return poller.pollUntilDone();
   }
@@ -279,17 +279,17 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrySucceeded(
-    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+    options?: LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<LROsCustomHeaderPostAsyncRetrySucceededResponse>,
-      LROsCustomHeaderPostAsyncRetrySucceededResponse
+      PollOperationState<LrOSCustomHeaderPostAsyncRetrySucceededResponse>,
+      LrOSCustomHeaderPostAsyncRetrySucceededResponse
     >
   > {
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse> => {
+    ): Promise<LrOSCustomHeaderPostAsyncRetrySucceededResponse> => {
       return this.client.sendOperationRequest(args, spec);
     };
     const sendOperation = async (
@@ -344,8 +344,8 @@ export class LROsCustomHeaderImpl implements LROsCustomHeader {
    * @param options The options parameters.
    */
   async beginPostAsyncRetrySucceededAndWait(
-    options?: LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
-  ): Promise<LROsCustomHeaderPostAsyncRetrySucceededResponse> {
+    options?: LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams
+  ): Promise<LrOSCustomHeaderPostAsyncRetrySucceededResponse> {
     const poller = await this.beginPostAsyncRetrySucceeded(options);
     return poller.pollUntilDone();
   }
@@ -359,26 +359,26 @@ const putAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   responses: {
     200: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPutAsyncRetrySucceededHeaders
     },
     201: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPutAsyncRetrySucceededHeaders
     },
     202: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPutAsyncRetrySucceededHeaders
     },
     204: {
       bodyMapper: Mappers.Product,
-      headersMapper: Mappers.LROsCustomHeaderPutAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPutAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -404,7 +404,7 @@ const put201CreatingSucceeded200OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -414,23 +414,23 @@ const post202Retry200OperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+      headersMapper: Mappers.LrOSCustomHeaderPost202Retry200Headers
     },
     201: {
-      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+      headersMapper: Mappers.LrOSCustomHeaderPost202Retry200Headers
     },
     202: {
-      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+      headersMapper: Mappers.LrOSCustomHeaderPost202Retry200Headers
     },
     204: {
-      headersMapper: Mappers.LROsCustomHeaderPost202Retry200Headers
+      headersMapper: Mappers.LrOSCustomHeaderPost202Retry200Headers
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -440,23 +440,23 @@ const postAsyncRetrySucceededOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: {
     200: {
-      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPostAsyncRetrySucceededHeaders
     },
     201: {
-      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPostAsyncRetrySucceededHeaders
     },
     202: {
-      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPostAsyncRetrySucceededHeaders
     },
     204: {
-      headersMapper: Mappers.LROsCustomHeaderPostAsyncRetrySucceededHeaders
+      headersMapper: Mappers.LrOSCustomHeaderPostAsyncRetrySucceededHeaders
     },
     default: {
       bodyMapper: Mappers.CloudError
     }
   },
   requestBody: Parameters.product,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

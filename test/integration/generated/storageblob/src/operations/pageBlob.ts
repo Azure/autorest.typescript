@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageBlobClientContext } from "../storageBlobClientContext";
+import { StorageBlobClient } from "../storageBlobClient";
 import {
   PageBlobUploadPagesOptionalParams,
   PageBlobUploadPagesResponse
@@ -11,13 +11,13 @@ import {
 
 /** Class containing PageBlob operations. */
 export class PageBlobImpl implements PageBlob {
-  private readonly client: StorageBlobClientContext;
+  private readonly client: StorageBlobClient;
 
   /**
    * Initialize a new instance of the class PageBlob class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageBlobClientContext) {
+  constructor(client: StorageBlobClient) {
     this.client = client;
   }
 
@@ -61,7 +61,7 @@ const uploadPagesOperationSpec: coreClient.OperationSpec = {
     Parameters.accept,
     Parameters.pageWrite,
     Parameters.contentLength,
-    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentMd5,
     Parameters.transactionalContentCrc64,
     Parameters.range,
     Parameters.leaseId,

@@ -203,7 +203,7 @@ export const ReplicaSet: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      domainControllerIpAddress: {
+      domainControllerIPAddress: {
         serializedName: "domainControllerIpAddress",
         readOnly: true,
         type: {
@@ -215,7 +215,7 @@ export const ReplicaSet: coreClient.CompositeMapper = {
           }
         }
       },
-      externalAccessIpAddress: {
+      externalAccessIPAddress: {
         serializedName: "externalAccessIpAddress",
         readOnly: true,
         type: {

@@ -8,16 +8,42 @@
 
 import { TimeImpl } from "./operations";
 import { Time } from "./operationsInterfaces";
-import { BodyTimeClientContext } from "./bodyTimeClientContext";
 import { BodyTimeClientOptionalParams } from "./models";
 
-export class BodyTimeClient extends BodyTimeClientContext {
+export class BodyTimeClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the BodyTimeClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyTimeClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: BodyTimeClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-body-time/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.time = new TimeImpl(this);
   }
 

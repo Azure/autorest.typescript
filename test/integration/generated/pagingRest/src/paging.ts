@@ -56,14 +56,14 @@ import {
   GetMultiplePagesFragmentNextLinkdefaultResponse,
   GetMultiplePagesFragmentWithGroupingNextLink200Response,
   GetMultiplePagesFragmentWithGroupingNextLinkdefaultResponse,
-  GetMultiplePagesLRO202Response,
-  GetMultiplePagesLROdefaultResponse,
+  GetMultiplePagesLro202Response,
+  GetMultiplePagesLrOdefaultResponse,
   NextFragment200Response,
   NextFragmentdefaultResponse,
   NextFragmentWithGrouping200Response,
   NextFragmentWithGroupingdefaultResponse,
-  GetPagingModelWithItemNameWithXMSClientName200Response,
-  GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+  GetPagingModelWithItemNameWithXmsClientName200Response,
+  GetPagingModelWithItemNameWithXmsClientNamedefaultResponse
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
@@ -215,7 +215,7 @@ export interface GetMultiplePagesLRO {
   post(
     options?: GetMultiplePagesLROParameters
   ): Promise<
-    GetMultiplePagesLRO202Response | GetMultiplePagesLROdefaultResponse
+    GetMultiplePagesLro202Response | GetMultiplePagesLrOdefaultResponse
   >;
 }
 
@@ -241,8 +241,8 @@ export interface GetPagingModelWithItemNameWithXMSClientName {
   get(
     options?: GetPagingModelWithItemNameWithXMSClientNameParameters
   ): Promise<
-    | GetPagingModelWithItemNameWithXMSClientName200Response
-    | GetPagingModelWithItemNameWithXMSClientNamedefaultResponse
+    | GetPagingModelWithItemNameWithXmsClientName200Response
+    | GetPagingModelWithItemNameWithXmsClientNamedefaultResponse
   >;
 }
 

@@ -42,14 +42,14 @@ import {
   CustomParameterGroup,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
-  PagingGetMultiplePagesLROOptionalParams,
-  PagingGetMultiplePagesLROResponse,
+  PagingGetMultiplePagesLroOptionalParams,
+  PagingGetMultiplePagesLroResponse,
   PagingNextFragmentOptionalParams,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingNextFragmentWithGroupingResponse,
-  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams,
+  PagingGetPagingModelWithItemNameWithXmsClientNameResponse,
   PagingGetNoItemNamePagesNextOptionalParams,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextOptionalParams,
@@ -72,10 +72,10 @@ import {
   PagingGetMultiplePagesFailureNextResponse,
   PagingGetMultiplePagesFailureUriNextOptionalParams,
   PagingGetMultiplePagesFailureUriNextResponse,
-  PagingGetMultiplePagesLRONextOptionalParams,
-  PagingGetMultiplePagesLRONextResponse,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
+  PagingGetMultiplePagesLroNextOptionalParams,
+  PagingGetMultiplePagesLroNextResponse,
+  PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams,
+  PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse
 } from "../models";
 
 /** Interface representing a Paging. */
@@ -210,12 +210,12 @@ export interface Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  getMultiplePagesLRO(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  getMultiplePagesLro(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<PagingGetMultiplePagesLROResponse>,
-      PagingGetMultiplePagesLROResponse
+      PollOperationState<PagingGetMultiplePagesLroResponse>,
+      PagingGetMultiplePagesLroResponse
     >
   >;
   /**
@@ -247,9 +247,9 @@ export interface Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  getPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse>;
+  getPagingModelWithItemNameWithXmsClientName(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameResponse>;
   /**
    * GetNoItemNamePagesNext
    * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
@@ -361,18 +361,18 @@ export interface Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  getMultiplePagesLRONext(
+  getMultiplePagesLroNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesLRONextOptionalParams
-  ): Promise<PagingGetMultiplePagesLRONextResponse>;
+    options?: PagingGetMultiplePagesLroNextOptionalParams
+  ): Promise<PagingGetMultiplePagesLroNextResponse>;
   /**
    * GetPagingModelWithItemNameWithXMSClientNameNext
    * @param nextLink The nextLink from the previous successful call to the
    *                 GetPagingModelWithItemNameWithXMSClientName method.
    * @param options The options parameters.
    */
-  getPagingModelWithItemNameWithXMSClientNameNext(
+  getPagingModelWithItemNameWithXmsClientNameNext(
     nextLink: string,
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse>;
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse>;
 }

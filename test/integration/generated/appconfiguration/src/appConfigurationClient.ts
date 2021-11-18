@@ -10,7 +10,6 @@ import * as coreClient from "@azure/core-client";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { AppConfigurationClientContext } from "./appConfigurationClientContext";
 import {
   AppConfigurationClientOptionalParams,
   Key,
@@ -55,7 +54,11 @@ import {
 } from "./models";
 
 /// <reference lib="esnext.asynciterable" />
-export class AppConfigurationClient extends AppConfigurationClientContext {
+export class AppConfigurationClient extends coreClient.ServiceClient {
+  endpoint: string;
+  syncToken?: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the AppConfigurationClient class.
    * @param endpoint The endpoint of the App Configuration instance to send requests to.
@@ -65,7 +68,38 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
     endpoint: string,
     options?: AppConfigurationClientOptionalParams
   ) {
-    super(endpoint, options);
+    if (endpoint === undefined) {
+      throw new Error("'endpoint' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: AppConfigurationClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-appconfiguration/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{endpoint}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.endpoint = endpoint;
+
+    // Assigning values to Constant parameters
+    this.apiVersion = options.apiVersion || "1.0";
   }
 
   /**
@@ -94,10 +128,10 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   ): AsyncIterableIterator<Key[]> {
     let result = await this._getKeys(options);
     yield result.items || [];
-    let continuationToken = result.nextLink;
+    let continuationToken = result.NextLink;
     while (continuationToken) {
       result = await this._getKeysNext(continuationToken, options);
-      continuationToken = result.nextLink;
+      continuationToken = result.NextLink;
       yield result.items || [];
     }
   }
@@ -136,10 +170,10 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getKeyValues(options);
     yield result.items || [];
-    let continuationToken = result.nextLink;
+    let continuationToken = result.NextLink;
     while (continuationToken) {
       result = await this._getKeyValuesNext(continuationToken, options);
-      continuationToken = result.nextLink;
+      continuationToken = result.NextLink;
       yield result.items || [];
     }
   }
@@ -178,10 +212,10 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   ): AsyncIterableIterator<Label[]> {
     let result = await this._getLabels(options);
     yield result.items || [];
-    let continuationToken = result.nextLink;
+    let continuationToken = result.NextLink;
     while (continuationToken) {
       result = await this._getLabelsNext(continuationToken, options);
-      continuationToken = result.nextLink;
+      continuationToken = result.NextLink;
       yield result.items || [];
     }
   }
@@ -220,10 +254,10 @@ export class AppConfigurationClient extends AppConfigurationClientContext {
   ): AsyncIterableIterator<KeyValue[]> {
     let result = await this._getRevisions(options);
     yield result.items || [];
-    let continuationToken = result.nextLink;
+    let continuationToken = result.NextLink;
     while (continuationToken) {
       result = await this._getRevisionsNext(continuationToken, options);
-      continuationToken = result.nextLink;
+      continuationToken = result.NextLink;
       yield result.items || [];
     }
   }

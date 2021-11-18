@@ -116,7 +116,7 @@ export type PutTextAndJsonBodyResponse = {
 export interface MediaTypesClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

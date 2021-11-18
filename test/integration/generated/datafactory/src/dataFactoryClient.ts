@@ -42,10 +42,13 @@ import {
   PrivateEndpointConnection,
   PrivateLinkResources
 } from "./operationsInterfaces";
-import { DataFactoryClientContext } from "./dataFactoryClientContext";
 import { DataFactoryClientOptionalParams } from "./models";
 
-export class DataFactoryClient extends DataFactoryClientContext {
+export class DataFactoryClient extends coreClient.ServiceClient {
+  Host: string;
+  apiVersion: string;
+  subscriptionId: string;
+
   /**
    * Initializes a new instance of the DataFactoryClient class.
    * @param subscriptionId The subscription identifier.
@@ -55,7 +58,39 @@ export class DataFactoryClient extends DataFactoryClientContext {
     subscriptionId: string,
     options?: DataFactoryClientOptionalParams
   ) {
-    super(subscriptionId, options);
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: DataFactoryClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-datafactory/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "https://management.azure.com"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "https://management.azure.com";
+    this.apiVersion = options.apiVersion || "2018-06-01";
     this.operations = new OperationsImpl(this);
     this.factories = new FactoriesImpl(this);
     this.exposureControl = new ExposureControlImpl(this);

@@ -6,25 +6,25 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-import { XMsClientRequestId } from "../operationsInterfaces";
+import { XmsClientRequestId } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
-  XMsClientRequestIdGetOptionalParams,
-  XMsClientRequestIdParamGetOptionalParams
+  XmsClientRequestIdGetOptionalParams,
+  XmsClientRequestIdParamGetOptionalParams
 } from "../models";
 
-/** Class containing XMsClientRequestId operations. */
-export class XMsClientRequestIdImpl implements XMsClientRequestId {
-  private readonly client: AzureSpecialPropertiesClientContext;
+/** Class containing XmsClientRequestId operations. */
+export class XmsClientRequestIdImpl implements XmsClientRequestId {
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
-   * Initialize a new instance of the class XMsClientRequestId class.
+   * Initialize a new instance of the class XmsClientRequestId class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -33,23 +33,23 @@ export class XMsClientRequestIdImpl implements XMsClientRequestId {
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
    * @param options The options parameters.
    */
-  get(options?: XMsClientRequestIdGetOptionalParams): Promise<void> {
+  get(options?: XmsClientRequestIdGetOptionalParams): Promise<void> {
     return this.client.sendOperationRequest({ options }, getOperationSpec);
   }
 
   /**
    * Get method that overwrites x-ms-client-request header with value
    * 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
-   * @param xMsClientRequestId This should appear as a method parameter, use value
+   * @param xMSClientRequestId This should appear as a method parameter, use value
    *                           '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'
    * @param options The options parameters.
    */
   paramGet(
-    xMsClientRequestId: string,
-    options?: XMsClientRequestIdParamGetOptionalParams
+    xMSClientRequestId: string,
+    options?: XmsClientRequestIdParamGetOptionalParams
   ): Promise<void> {
     return this.client.sendOperationRequest(
-      { xMsClientRequestId, options },
+      { xMSClientRequestId, options },
       paramGetOperationSpec
     );
   }
@@ -61,7 +61,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   path: "/azurespecials/overwrite/x-ms-client-request-id/method/",
   httpMethod: "GET",
   responses: { 200: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const paramGetOperationSpec: coreClient.OperationSpec = {
@@ -73,7 +73,7 @@ const paramGetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
-  headerParameters: [Parameters.accept, Parameters.xMsClientRequestId],
+  urlParameters: [Parameters.Host],
+  headerParameters: [Parameters.accept, Parameters.xMSClientRequestId],
   serializer
 };

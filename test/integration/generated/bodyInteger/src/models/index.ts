@@ -126,7 +126,7 @@ export type IntGetNullUnixTimeResponse = {
 export interface BodyIntegerClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

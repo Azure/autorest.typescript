@@ -10,7 +10,7 @@ import { Implicit } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
+import { RequiredOptionalClient } from "../requiredOptionalClient";
 import {
   ImplicitGetRequiredPathOptionalParams,
   ImplicitPutOptionalQueryOptionalParams,
@@ -24,13 +24,13 @@ import {
 
 /** Class containing Implicit operations. */
 export class ImplicitImpl implements Implicit {
-  private readonly client: RequiredOptionalClientContext;
+  private readonly client: RequiredOptionalClient;
 
   /**
    * Initialize a new instance of the class Implicit class.
    * @param client Reference to the service client
    */
-  constructor(client: RequiredOptionalClientContext) {
+  constructor(client: RequiredOptionalClient) {
     this.client = client;
   }
 
@@ -152,7 +152,7 @@ const getRequiredPathOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.pathParameter],
+  urlParameters: [Parameters.Host, Parameters.pathParameter],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -166,7 +166,7 @@ const putOptionalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryParameter],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -179,7 +179,7 @@ const putOptionalHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.queryParameter1],
   serializer
 };
@@ -193,7 +193,7 @@ const putOptionalBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -208,7 +208,7 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -222,7 +222,7 @@ const getRequiredGlobalPathOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.requiredGlobalPath],
+  urlParameters: [Parameters.Host, Parameters.requiredGlobalPath],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -236,7 +236,7 @@ const getRequiredGlobalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.requiredGlobalQuery],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -250,7 +250,7 @@ const getOptionalGlobalQueryOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.optionalGlobalQuery],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

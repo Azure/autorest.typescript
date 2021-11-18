@@ -10,7 +10,7 @@ import { ParameterGrouping } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureParameterGroupingClientContext } from "../azureParameterGroupingClientContext";
+import { AzureParameterGroupingClient } from "../azureParameterGroupingClient";
 import {
   ParameterGroupingPostRequiredParameters,
   ParameterGroupingPostRequiredOptionalParams,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing ParameterGrouping operations. */
 export class ParameterGroupingImpl implements ParameterGrouping {
-  private readonly client: AzureParameterGroupingClientContext;
+  private readonly client: AzureParameterGroupingClient;
 
   /**
    * Initialize a new instance of the class ParameterGrouping class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureParameterGroupingClientContext) {
+  constructor(client: AzureParameterGroupingClient) {
     this.client = client;
   }
 
@@ -113,7 +113,7 @@ const postRequiredOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.body,
   queryParameters: [Parameters.query],
-  urlParameters: [Parameters.$host, Parameters.path],
+  urlParameters: [Parameters.Host, Parameters.path],
   headerParameters: [
     Parameters.contentType,
     Parameters.accept,
@@ -132,7 +132,7 @@ const postOptionalOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.query1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.customHeader1],
   serializer
 };
@@ -146,7 +146,7 @@ const postReservedWordsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.fromParam, Parameters.accept1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -160,7 +160,7 @@ const postMultiParamGroupsOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryOne, Parameters.queryTwo],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [
     Parameters.accept,
     Parameters.headerOne,
@@ -178,7 +178,7 @@ const postSharedParameterGroupObjectOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.queryOne],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerOne],
   serializer
 };

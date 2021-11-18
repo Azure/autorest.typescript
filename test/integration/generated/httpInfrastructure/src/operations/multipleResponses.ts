@@ -10,7 +10,7 @@ import { MultipleResponses } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
+import { HttpInfrastructureClient } from "../httpInfrastructureClient";
 import {
   MultipleResponsesGet200Model204NoModelDefaultError200ValidOptionalParams,
   MultipleResponsesGet200Model204NoModelDefaultError200ValidResponse,
@@ -71,13 +71,13 @@ import {
 
 /** Class containing MultipleResponses operations. */
 export class MultipleResponsesImpl implements MultipleResponses {
-  private readonly client: HttpInfrastructureClientContext;
+  private readonly client: HttpInfrastructureClient;
 
   /**
    * Initialize a new instance of the class MultipleResponses class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClientContext) {
+  constructor(client: HttpInfrastructureClient) {
     this.client = client;
   }
 
@@ -557,7 +557,7 @@ const get200Model204NoModelDefaultError200ValidOperationSpec: coreClient.Operati
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -573,7 +573,7 @@ const get200Model204NoModelDefaultError204ValidOperationSpec: coreClient.Operati
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -589,7 +589,7 @@ const get200Model204NoModelDefaultError201InvalidOperationSpec: coreClient.Opera
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -605,7 +605,7 @@ const get200Model204NoModelDefaultError202NoneOperationSpec: coreClient.Operatio
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -621,7 +621,7 @@ const get200Model204NoModelDefaultError400ValidOperationSpec: coreClient.Operati
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -639,7 +639,7 @@ const get200Model201ModelDefaultError200ValidOperationSpec: coreClient.Operation
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -657,7 +657,7 @@ const get200Model201ModelDefaultError201ValidOperationSpec: coreClient.Operation
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -675,7 +675,7 @@ const get200Model201ModelDefaultError400ValidOperationSpec: coreClient.Operation
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -696,7 +696,7 @@ const get200ModelA201ModelC404ModelDDefaultError200ValidOperationSpec: coreClien
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -717,7 +717,7 @@ const get200ModelA201ModelC404ModelDDefaultError201ValidOperationSpec: coreClien
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -738,7 +738,7 @@ const get200ModelA201ModelC404ModelDDefaultError404ValidOperationSpec: coreClien
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -759,7 +759,7 @@ const get200ModelA201ModelC404ModelDDefaultError400ValidOperationSpec: coreClien
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -773,7 +773,7 @@ const get202None204NoneDefaultError202NoneOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -787,7 +787,7 @@ const get202None204NoneDefaultError204NoneOperationSpec: coreClient.OperationSpe
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -801,7 +801,7 @@ const get202None204NoneDefaultError400ValidOperationSpec: coreClient.OperationSp
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -809,28 +809,28 @@ const get202None204NoneDefaultNone202InvalidOperationSpec: coreClient.OperationS
   path: "/http/payloads/202/none/204/none/default/none/response/202/invalid",
   httpMethod: "GET",
   responses: { 202: {}, 204: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const get202None204NoneDefaultNone204NoneOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/202/none/204/none/default/none/response/204/none",
   httpMethod: "GET",
   responses: { 202: {}, 204: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const get202None204NoneDefaultNone400NoneOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/202/none/204/none/default/none/response/400/none",
   httpMethod: "GET",
   responses: { 202: {}, 204: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const get202None204NoneDefaultNone400InvalidOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/202/none/204/none/default/none/response/400/invalid",
   httpMethod: "GET",
   responses: { 202: {}, 204: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const getDefaultModelA200ValidOperationSpec: coreClient.OperationSpec = {
@@ -841,7 +841,7 @@ const getDefaultModelA200ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -853,7 +853,7 @@ const getDefaultModelA200NoneOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -866,7 +866,7 @@ const getDefaultModelA400ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -879,7 +879,7 @@ const getDefaultModelA400NoneOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -887,28 +887,28 @@ const getDefaultNone200InvalidOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/default/none/response/200/invalid",
   httpMethod: "GET",
   responses: { 200: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const getDefaultNone200NoneOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/default/none/response/200/none",
   httpMethod: "GET",
   responses: { 200: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const getDefaultNone400InvalidOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/default/none/response/400/invalid",
   httpMethod: "GET",
   responses: { 200: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const getDefaultNone400NoneOperationSpec: coreClient.OperationSpec = {
   path: "/http/payloads/default/none/response/400/none",
   httpMethod: "GET",
   responses: { 200: {}, default: {} },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   serializer
 };
 const get200ModelA200NoneOperationSpec: coreClient.OperationSpec = {
@@ -919,7 +919,7 @@ const get200ModelA200NoneOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -931,7 +931,7 @@ const get200ModelA200ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -943,7 +943,7 @@ const get200ModelA200InvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -955,7 +955,7 @@ const get200ModelA400NoneOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -967,7 +967,7 @@ const get200ModelA400ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -979,7 +979,7 @@ const get200ModelA400InvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -991,7 +991,7 @@ const get200ModelA202ValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyException
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

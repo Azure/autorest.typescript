@@ -2,7 +2,7 @@ import { ActivityRuns } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   RunFilterParameters,
   ActivityRunsQueryByPipelineRunOptionalParams,
@@ -11,13 +11,13 @@ import {
 
 /** Class containing ActivityRuns operations. */
 export class ActivityRunsImpl implements ActivityRuns {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class ActivityRuns class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 
@@ -60,7 +60,7 @@ const queryByPipelineRunOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.filterParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

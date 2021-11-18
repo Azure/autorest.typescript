@@ -8,16 +8,42 @@
 
 import { XmlImpl } from "./operations";
 import { Xml } from "./operationsInterfaces";
-import { XmlServiceClientContext } from "./xmlServiceClientContext";
 import { XmlServiceClientOptionalParams } from "./models";
 
-export class XmlServiceClient extends XmlServiceClientContext {
+export class XmlServiceClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the XmlServiceClient class.
    * @param options The parameter options
    */
   constructor(options?: XmlServiceClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: XmlServiceClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-xml-service/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.xml = new XmlImpl(this);
   }
 

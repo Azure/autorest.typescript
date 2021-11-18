@@ -3,7 +3,7 @@ import { DomainServices } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DomainServicesClientContext } from "../domainServicesClientContext";
+import { DomainServicesClient } from "../domainServicesClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -28,13 +28,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing DomainServices operations. */
 export class DomainServicesImpl implements DomainServices {
-  private readonly client: DomainServicesClientContext;
+  private readonly client: DomainServicesClient;
 
   /**
    * Initialize a new instance of the class DomainServices class.
    * @param client Reference to the service client
    */
-  constructor(client: DomainServicesClientContext) {
+  constructor(client: DomainServicesClient) {
     this.client = client;
   }
 
@@ -503,7 +503,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -521,7 +521,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -552,7 +552,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.domainService,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -575,7 +575,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -598,7 +598,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -630,7 +630,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.domainService,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.domainServiceName
@@ -652,7 +652,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
@@ -672,7 +672,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName

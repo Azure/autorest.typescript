@@ -3,7 +3,7 @@ import { PrivateEndpointConnections } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClientContext } from "../healthCareApisClientContext";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -22,13 +22,13 @@ import {
 /** Class containing PrivateEndpointConnections operations. */
 export class PrivateEndpointConnectionsImpl
   implements PrivateEndpointConnections {
-  private readonly client: HealthCareApisClientContext;
+  private readonly client: HealthCareApisClient;
 
   /**
    * Initialize a new instance of the class PrivateEndpointConnections class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClientContext) {
+  constructor(client: HealthCareApisClient) {
     this.client = client;
   }
 
@@ -346,7 +346,7 @@ const listByServiceOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName
@@ -368,7 +368,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -401,7 +401,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.properties,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,
@@ -426,7 +426,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.resourceName,

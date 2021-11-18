@@ -3,7 +3,7 @@ import { Factories } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   Factory,
   FactoriesListNextOptionalParams,
@@ -36,13 +36,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Factories operations. */
 export class FactoriesImpl implements Factories {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class Factories class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 
@@ -341,7 +341,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -360,7 +360,7 @@ const configureFactoryRepoOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factoryRepoUpdate,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.locationId
   ],
@@ -382,7 +382,7 @@ const listByResourceGroupOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName
   ],
@@ -404,7 +404,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factory,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -432,7 +432,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.factoryUpdateParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -456,7 +456,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -477,7 +477,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -500,7 +500,7 @@ const getGitHubAccessTokenOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.gitHubAccessTokenRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -524,7 +524,7 @@ const getDataPlaneAccessOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.policy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -546,7 +546,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.nextLink,
     Parameters.subscriptionId
   ],
@@ -566,7 +566,7 @@ const listByResourceGroupNextOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.nextLink,
     Parameters.subscriptionId,
     Parameters.resourceGroupName

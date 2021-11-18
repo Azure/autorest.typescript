@@ -463,8 +463,8 @@ export const contentLength: OperationParameter = {
   }
 };
 
-export const contentMD5: OperationParameter = {
-  parameterPath: ["options", "pathHttpHeaders", "contentMD5"],
+export const contentMd5: OperationParameter = {
+  parameterPath: ["options", "pathHttpHeaders", "contentMd5"],
   mapper: {
     serializedName: "x-ms-content-md5",
     type: {
@@ -503,8 +503,8 @@ export const acl: OperationParameter = {
   }
 };
 
-export const xMsLeaseAction: OperationParameter = {
-  parameterPath: "xMsLeaseAction",
+export const xMSLeaseAction: OperationParameter = {
+  parameterPath: "xMSLeaseAction",
   mapper: {
     serializedName: "x-ms-lease-action",
     required: true,
@@ -515,8 +515,8 @@ export const xMsLeaseAction: OperationParameter = {
   }
 };
 
-export const xMsLeaseDuration: OperationParameter = {
-  parameterPath: ["options", "xMsLeaseDuration"],
+export const xMSLeaseDuration: OperationParameter = {
+  parameterPath: ["options", "xMSLeaseDuration"],
   mapper: {
     serializedName: "x-ms-lease-duration",
     type: {
@@ -525,8 +525,8 @@ export const xMsLeaseDuration: OperationParameter = {
   }
 };
 
-export const xMsLeaseBreakPeriod: OperationParameter = {
-  parameterPath: ["options", "xMsLeaseBreakPeriod"],
+export const xMSLeaseBreakPeriod: OperationParameter = {
+  parameterPath: ["options", "xMSLeaseBreakPeriod"],
   mapper: {
     serializedName: "x-ms-lease-break-period",
     type: {
@@ -555,8 +555,8 @@ export const range: OperationParameter = {
   }
 };
 
-export const xMsRangeGetContentMd5: OperationParameter = {
-  parameterPath: ["options", "xMsRangeGetContentMd5"],
+export const xMSRangeGetContentMd5: OperationParameter = {
+  parameterPath: ["options", "xMSRangeGetContentMd5"],
   mapper: {
     serializedName: "x-ms-range-get-content-md5",
     type: {

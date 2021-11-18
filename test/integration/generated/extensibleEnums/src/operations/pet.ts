@@ -10,7 +10,7 @@ import { Pet } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ExtensibleEnumsClientContext } from "../extensibleEnumsClientContext";
+import { ExtensibleEnumsClient } from "../extensibleEnumsClient";
 import {
   PetGetByPetIdOptionalParams,
   PetGetByPetIdResponse,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing Pet operations. */
 export class PetImpl implements Pet {
-  private readonly client: ExtensibleEnumsClientContext;
+  private readonly client: ExtensibleEnumsClient;
 
   /**
    * Initialize a new instance of the class Pet class.
    * @param client Reference to the service client
    */
-  constructor(client: ExtensibleEnumsClientContext) {
+  constructor(client: ExtensibleEnumsClient) {
     this.client = client;
   }
 
@@ -64,7 +64,7 @@ const getByPetIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.PetDef
     }
   },
-  urlParameters: [Parameters.$host, Parameters.petId],
+  urlParameters: [Parameters.Host, Parameters.petId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -77,7 +77,7 @@ const addPetOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.petParam,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
   InheritanceGetValidOptionalParams,
   InheritanceGetValidResponse,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing Inheritance operations. */
 export class InheritanceImpl implements Inheritance {
-  private readonly client: BodyComplexWithTracingContext;
+  private readonly client: BodyComplexWithTracing;
 
   /**
    * Initialize a new instance of the class Inheritance class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracingContext) {
+  constructor(client: BodyComplexWithTracing) {
     this.client = client;
   }
 
@@ -106,7 +106,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -120,7 +120,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody14,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

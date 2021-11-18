@@ -10,7 +10,7 @@ import { Basic } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClientContext } from "../bodyComplexClientContext";
+import { BodyComplexClient } from "../bodyComplexClient";
 import {
   BasicGetValidOptionalParams,
   BasicGetValidResponse,
@@ -28,13 +28,13 @@ import {
 
 /** Class containing Basic operations. */
 export class BasicImpl implements Basic {
-  private readonly client: BodyComplexClientContext;
+  private readonly client: BodyComplexClient;
 
   /**
    * Initialize a new instance of the class Basic class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClientContext) {
+  constructor(client: BodyComplexClient) {
     this.client = client;
   }
 
@@ -121,7 +121,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -136,7 +136,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.complexBody,
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -152,7 +152,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -167,7 +167,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -182,7 +182,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -197,7 +197,7 @@ const getNotProvidedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

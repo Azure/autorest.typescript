@@ -32,7 +32,7 @@ export interface OdataProductResult {
   odataNextLink?: string;
 }
 
-export interface ProductResultValueWithXMSClientName {
+export interface ProductResultValueWithXmsClientName {
   indexes?: Product[];
   nextLink?: string;
 }
@@ -245,7 +245,7 @@ export interface PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParam
 export type PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse = OdataProductResult;
 
 /** Optional parameters. */
-export interface PagingGetMultiplePagesLROOptionalParams
+export interface PagingGetMultiplePagesLroOptionalParams
   extends coreClient.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
@@ -256,8 +256,8 @@ export interface PagingGetMultiplePagesLROOptionalParams
   resumeFrom?: string;
 }
 
-/** Contains response data for the getMultiplePagesLRO operation. */
-export type PagingGetMultiplePagesLROResponse = ProductResult;
+/** Contains response data for the getMultiplePagesLro operation. */
+export type PagingGetMultiplePagesLroResponse = ProductResult;
 
 /** Optional parameters. */
 export interface PagingNextFragmentOptionalParams
@@ -274,11 +274,11 @@ export interface PagingNextFragmentWithGroupingOptionalParams
 export type PagingNextFragmentWithGroupingResponse = OdataProductResult;
 
 /** Optional parameters. */
-export interface PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+export interface PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the getPagingModelWithItemNameWithXMSClientName operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameResponse = ProductResultValueWithXMSClientName;
+/** Contains response data for the getPagingModelWithItemNameWithXmsClientName operation. */
+export type PagingGetPagingModelWithItemNameWithXmsClientNameResponse = ProductResultValueWithXmsClientName;
 
 /** Optional parameters. */
 export interface PagingGetNoItemNamePagesNextOptionalParams
@@ -372,28 +372,28 @@ export interface PagingGetMultiplePagesFailureUriNextOptionalParams
 export type PagingGetMultiplePagesFailureUriNextResponse = ProductResult;
 
 /** Optional parameters. */
-export interface PagingGetMultiplePagesLRONextOptionalParams
+export interface PagingGetMultiplePagesLroNextOptionalParams
   extends coreClient.OperationOptions {
   /** Parameter group */
   pagingGetMultiplePagesLroOptions?: PagingGetMultiplePagesLroOptions;
   clientRequestId?: string;
 }
 
-/** Contains response data for the getMultiplePagesLRONext operation. */
-export type PagingGetMultiplePagesLRONextResponse = ProductResult;
+/** Contains response data for the getMultiplePagesLroNext operation. */
+export type PagingGetMultiplePagesLroNextResponse = ProductResult;
 
 /** Optional parameters. */
-export interface PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
+export interface PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the getPagingModelWithItemNameWithXMSClientNameNext operation. */
-export type PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse = ProductResultValueWithXMSClientName;
+/** Contains response data for the getPagingModelWithItemNameWithXmsClientNameNext operation. */
+export type PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse = ProductResultValueWithXmsClientName;
 
 /** Optional parameters. */
 export interface PagingNoIteratorsClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

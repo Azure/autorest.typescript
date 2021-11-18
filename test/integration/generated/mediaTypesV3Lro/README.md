@@ -23,7 +23,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### MediaTypesV3LROClient
+### MediaTypesV3LroClient
 
-`MediaTypesV3LROClient` is the primary interface for developers using the MediaTypesV3LRO client library. Explore the methods on this client object to understand the different features of the MediaTypesV3LRO service that you can access.
+`MediaTypesV3LroClient` is the primary interface for developers using the MediaTypesV3LRO client library. Explore the methods on this client object to understand the different features of the MediaTypesV3LRO service that you can access.
 

@@ -9,7 +9,7 @@
 import { Float } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import { NonStringEnumClientContext } from "../nonStringEnumClientContext";
+import { NonStringEnumClient } from "../nonStringEnumClient";
 import {
   FloatPutOptionalParams,
   FloatPutResponse,
@@ -19,13 +19,13 @@ import {
 
 /** Class containing Float operations. */
 export class FloatImpl implements Float {
-  private readonly client: NonStringEnumClientContext;
+  private readonly client: NonStringEnumClient;
 
   /**
    * Initialize a new instance of the class Float class.
    * @param client Reference to the service client
    */
-  constructor(client: NonStringEnumClientContext) {
+  constructor(client: NonStringEnumClient) {
     this.client = client;
   }
 
@@ -57,7 +57,7 @@ const putOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.input1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -70,7 +70,7 @@ const getOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Number" } }
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

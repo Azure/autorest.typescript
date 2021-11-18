@@ -73,28 +73,28 @@ export type SubProduct = SubResource & {
   readonly provisioningStateValues?: SubProductPropertiesProvisioningStateValues;
 };
 
-/** Defines headers for LROs_patch200SucceededIgnoreHeaders operation. */
-export interface LROsPatch200SucceededIgnoreHeadersHeaders {
+/** Defines headers for LrOS_patch200SucceededIgnoreHeaders operation. */
+export interface LrOSPatch200SucceededIgnoreHeaders {
   /** This header should be ignored in this case */
   azureAsyncOperation?: string;
 }
 
-/** Defines headers for LROs_post202List operation. */
-export interface LROsPost202ListHeaders {
+/** Defines headers for LrOS_post202List operation. */
+export interface LrOSPost202ListHeaders {
   /** Location to poll for result status: will be set to /lro/list/pollingGet */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/list/finalGet */
   location?: string;
 }
 
-/** Defines headers for LROs_putNoHeaderInRetry operation. */
-export interface LROsPutNoHeaderInRetryHeaders {
+/** Defines headers for LrOS_putNoHeaderInRetry operation. */
+export interface LrOSPutNoHeaderInRetryHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults */
   location?: string;
 }
 
-/** Defines headers for LROs_putAsyncRetrySucceeded operation. */
-export interface LROsPutAsyncRetrySucceededHeaders {
+/** Defines headers for LrOS_putAsyncRetrySucceeded operation. */
+export interface LrOSPutAsyncRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -103,16 +103,16 @@ export interface LROsPutAsyncRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_putAsyncNoRetrySucceeded operation. */
-export interface LROsPutAsyncNoRetrySucceededHeaders {
+/** Defines headers for LrOS_putAsyncNoRetrySucceeded operation. */
+export interface LrOSPutAsyncNoRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
   location?: string;
 }
 
-/** Defines headers for LROs_putAsyncRetryFailed operation. */
-export interface LROsPutAsyncRetryFailedHeaders {
+/** Defines headers for LrOS_putAsyncRetryFailed operation. */
+export interface LrOSPutAsyncRetryFailedHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
@@ -121,73 +121,73 @@ export interface LROsPutAsyncRetryFailedHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_putAsyncNoRetrycanceled operation. */
-export interface LROsPutAsyncNoRetrycanceledHeaders {
+/** Defines headers for LrOS_putAsyncNoRetrycanceled operation. */
+export interface LrOSPutAsyncNoRetrycanceledHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
   location?: string;
 }
 
-/** Defines headers for LROs_putAsyncNoHeaderInRetry operation. */
-export interface LROsPutAsyncNoHeaderInRetryHeaders {
+/** Defines headers for LrOS_putAsyncNoHeaderInRetry operation. */
+export interface LrOSPutAsyncNoHeaderInRetryHeaders {
   azureAsyncOperation?: string;
 }
 
-/** Defines headers for LROs_deleteProvisioning202Accepted200Succeeded operation. */
-export interface LROsDeleteProvisioning202Accepted200SucceededHeaders {
+/** Defines headers for LrOS_deleteProvisioning202Accepted200Succeeded operation. */
+export interface LrOSDeleteProvisioning202Accepted200SucceededHeaders {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteProvisioning202DeletingFailed200 operation. */
-export interface LROsDeleteProvisioning202DeletingFailed200Headers {
+/** Defines headers for LrOS_deleteProvisioning202DeletingFailed200 operation. */
+export interface LrOSDeleteProvisioning202DeletingFailed200Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/failed */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteProvisioning202Deletingcanceled200 operation. */
-export interface LROsDeleteProvisioning202Deletingcanceled200Headers {
+/** Defines headers for LrOS_deleteProvisioning202Deletingcanceled200 operation. */
+export interface LrOSDeleteProvisioning202Deletingcanceled200Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/canceled */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_delete202Retry200 operation. */
-export interface LROsDelete202Retry200Headers {
+/** Defines headers for LrOS_delete202Retry200 operation. */
+export interface LrOSDelete202Retry200Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_delete202NoRetry204 operation. */
-export interface LROsDelete202NoRetry204Headers {
+/** Defines headers for LrOS_delete202NoRetry204 operation. */
+export interface LrOSDelete202NoRetry204Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteNoHeaderInRetry operation. */
-export interface LROsDeleteNoHeaderInRetryHeaders {
+/** Defines headers for LrOS_deleteNoHeaderInRetry operation. */
+export interface LrOSDeleteNoHeaderInRetryHeaders {
   /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
-/** Defines headers for LROs_deleteAsyncNoHeaderInRetry operation. */
-export interface LROsDeleteAsyncNoHeaderInRetryHeaders {
+/** Defines headers for LrOS_deleteAsyncNoHeaderInRetry operation. */
+export interface LrOSDeleteAsyncNoHeaderInRetryHeaders {
   /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
-/** Defines headers for LROs_deleteAsyncRetrySucceeded operation. */
-export interface LROsDeleteAsyncRetrySucceededHeaders {
+/** Defines headers for LrOS_deleteAsyncRetrySucceeded operation. */
+export interface LrOSDeleteAsyncRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
@@ -196,8 +196,8 @@ export interface LROsDeleteAsyncRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteAsyncNoRetrySucceeded operation. */
-export interface LROsDeleteAsyncNoRetrySucceededHeaders {
+/** Defines headers for LrOS_deleteAsyncNoRetrySucceeded operation. */
+export interface LrOSDeleteAsyncNoRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
@@ -206,8 +206,8 @@ export interface LROsDeleteAsyncNoRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteAsyncRetryFailed operation. */
-export interface LROsDeleteAsyncRetryFailedHeaders {
+/** Defines headers for LrOS_deleteAsyncRetryFailed operation. */
+export interface LrOSDeleteAsyncRetryFailedHeaders {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
@@ -216,8 +216,8 @@ export interface LROsDeleteAsyncRetryFailedHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_deleteAsyncRetrycanceled operation. */
-export interface LROsDeleteAsyncRetrycanceledHeaders {
+/** Defines headers for LrOS_deleteAsyncRetrycanceled operation. */
+export interface LrOSDeleteAsyncRetrycanceledHeaders {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
@@ -226,24 +226,24 @@ export interface LROsDeleteAsyncRetrycanceledHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_post202Retry200 operation. */
-export interface LROsPost202Retry200Headers {
+/** Defines headers for LrOS_post202Retry200 operation. */
+export interface LrOSPost202Retry200Headers {
   /** Location to poll for result status: will be set to /lro/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_post202NoRetry204 operation. */
-export interface LROsPost202NoRetry204Headers {
+/** Defines headers for LrOS_post202NoRetry204 operation. */
+export interface LrOSPost202NoRetry204Headers {
   /** Location to poll for result status: will be set to /lro/post/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_postAsyncRetrySucceeded operation. */
-export interface LROsPostAsyncRetrySucceededHeaders {
+/** Defines headers for LrOS_postAsyncRetrySucceeded operation. */
+export interface LrOSPostAsyncRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -252,8 +252,8 @@ export interface LROsPostAsyncRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_postAsyncNoRetrySucceeded operation. */
-export interface LROsPostAsyncNoRetrySucceededHeaders {
+/** Defines headers for LrOS_postAsyncNoRetrySucceeded operation. */
+export interface LrOSPostAsyncNoRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -262,8 +262,8 @@ export interface LROsPostAsyncNoRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_postAsyncRetryFailed operation. */
-export interface LROsPostAsyncRetryFailedHeaders {
+/** Defines headers for LrOS_postAsyncRetryFailed operation. */
+export interface LrOSPostAsyncRetryFailedHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
@@ -272,8 +272,8 @@ export interface LROsPostAsyncRetryFailedHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROs_postAsyncRetrycanceled operation. */
-export interface LROsPostAsyncRetrycanceledHeaders {
+/** Defines headers for LrOS_postAsyncRetrycanceled operation. */
+export interface LrOSPostAsyncRetrycanceledHeaders {
   /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
@@ -282,8 +282,8 @@ export interface LROsPostAsyncRetrycanceledHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_putAsyncRelativeRetrySucceeded operation. */
-export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
+/** Defines headers for LroRetrys_putAsyncRelativeRetrySucceeded operation. */
+export interface LroRetrysPutAsyncRelativeRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
@@ -292,24 +292,24 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_deleteProvisioning202Accepted200Succeeded operation. */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededHeaders {
+/** Defines headers for LroRetrys_deleteProvisioning202Accepted200Succeeded operation. */
+export interface LroRetrysDeleteProvisioning202Accepted200SucceededHeaders {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_delete202Retry200 operation. */
-export interface LRORetrysDelete202Retry200Headers {
+/** Defines headers for LroRetrys_delete202Retry200 operation. */
+export interface LroRetrysDelete202Retry200Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_deleteAsyncRelativeRetrySucceeded operation. */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededHeaders {
+/** Defines headers for LroRetrys_deleteAsyncRelativeRetrySucceeded operation. */
+export interface LroRetrysDeleteAsyncRelativeRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
@@ -318,16 +318,16 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_post202Retry200 operation. */
-export interface LRORetrysPost202Retry200Headers {
+/** Defines headers for LroRetrys_post202Retry200 operation. */
+export interface LroRetrysPost202Retry200Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LRORetrys_postAsyncRelativeRetrySucceeded operation. */
-export interface LRORetrysPostAsyncRelativeRetrySucceededHeaders {
+/** Defines headers for LroRetrys_postAsyncRelativeRetrySucceeded operation. */
+export interface LroRetrysPostAsyncRelativeRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
@@ -522,8 +522,8 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROsCustomHeader_putAsyncRetrySucceeded operation. */
-export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
+/** Defines headers for LrOSCustomHeader_putAsyncRetrySucceeded operation. */
+export interface LrOSCustomHeaderPutAsyncRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
@@ -532,16 +532,16 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededHeaders {
   retryAfter?: number;
 }
 
-/** Defines headers for LROsCustomHeader_post202Retry200 operation. */
-export interface LROsCustomHeaderPost202Retry200Headers {
+/** Defines headers for LrOSCustomHeader_post202Retry200 operation. */
+export interface LrOSCustomHeaderPost202Retry200Headers {
   /** Location to poll for result status: will be set to /lro/customheader/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
   retryAfter?: number;
 }
 
-/** Defines headers for LROsCustomHeader_postAsyncRetrySucceeded operation. */
-export interface LROsCustomHeaderPostAsyncRetrySucceededHeaders {
+/** Defines headers for LrOSCustomHeader_postAsyncRetrySucceeded operation. */
+export interface LrOSCustomHeaderPostAsyncRetrySucceededHeaders {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   azureAsyncOperation?: string;
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
@@ -653,7 +653,7 @@ export enum KnownOperationResultStatus {
 export type OperationResultStatus = string;
 
 /** Optional parameters. */
-export interface LROsPut200SucceededOptionalParams
+export interface LrOSPut200SucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -664,10 +664,10 @@ export interface LROsPut200SucceededOptionalParams
 }
 
 /** Contains response data for the put200Succeeded operation. */
-export type LROsPut200SucceededResponse = Product;
+export type LrOSPut200SucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPatch200SucceededIgnoreHeadersOptionalParams
+export interface LrOSPatch200SucceededIgnoreHeadersOptionalParams
   extends coreClient.OperationOptions {
   /** Product to patch */
   product?: Product;
@@ -678,11 +678,11 @@ export interface LROsPatch200SucceededIgnoreHeadersOptionalParams
 }
 
 /** Contains response data for the patch200SucceededIgnoreHeaders operation. */
-export type LROsPatch200SucceededIgnoreHeadersResponse = LROsPatch200SucceededIgnoreHeadersHeaders &
+export type LrOSPatch200SucceededIgnoreHeadersResponse = LrOSPatch200SucceededIgnoreHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPut201SucceededOptionalParams
+export interface LrOSPut201SucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -693,10 +693,10 @@ export interface LROsPut201SucceededOptionalParams
 }
 
 /** Contains response data for the put201Succeeded operation. */
-export type LROsPut201SucceededResponse = Product;
+export type LrOSPut201SucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPost202ListOptionalParams
+export interface LrOSPost202ListOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -705,10 +705,10 @@ export interface LROsPost202ListOptionalParams
 }
 
 /** Contains response data for the post202List operation. */
-export type LROsPost202ListResponse = Product[];
+export type LrOSPost202ListResponse = Product[];
 
 /** Optional parameters. */
-export interface LROsPut200SucceededNoStateOptionalParams
+export interface LrOSPut200SucceededNoStateOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -719,10 +719,10 @@ export interface LROsPut200SucceededNoStateOptionalParams
 }
 
 /** Contains response data for the put200SucceededNoState operation. */
-export type LROsPut200SucceededNoStateResponse = Product;
+export type LrOSPut200SucceededNoStateResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPut202Retry200OptionalParams
+export interface LrOSPut202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -733,10 +733,10 @@ export interface LROsPut202Retry200OptionalParams
 }
 
 /** Contains response data for the put202Retry200 operation. */
-export type LROsPut202Retry200Response = Product;
+export type LrOSPut202Retry200Response = Product;
 
 /** Optional parameters. */
-export interface LROsPut201CreatingSucceeded200OptionalParams
+export interface LrOSPut201CreatingSucceeded200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -747,10 +747,10 @@ export interface LROsPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LROsPut201CreatingSucceeded200Response = Product;
+export type LrOSPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
-export interface LROsPut200UpdatingSucceeded204OptionalParams
+export interface LrOSPut200UpdatingSucceeded204OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -761,10 +761,10 @@ export interface LROsPut200UpdatingSucceeded204OptionalParams
 }
 
 /** Contains response data for the put200UpdatingSucceeded204 operation. */
-export type LROsPut200UpdatingSucceeded204Response = Product;
+export type LrOSPut200UpdatingSucceeded204Response = Product;
 
 /** Optional parameters. */
-export interface LROsPut201CreatingFailed200OptionalParams
+export interface LrOSPut201CreatingFailed200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -775,10 +775,10 @@ export interface LROsPut201CreatingFailed200OptionalParams
 }
 
 /** Contains response data for the put201CreatingFailed200 operation. */
-export type LROsPut201CreatingFailed200Response = Product;
+export type LrOSPut201CreatingFailed200Response = Product;
 
 /** Optional parameters. */
-export interface LROsPut200Acceptedcanceled200OptionalParams
+export interface LrOSPut200Acceptedcanceled200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -789,10 +789,10 @@ export interface LROsPut200Acceptedcanceled200OptionalParams
 }
 
 /** Contains response data for the put200Acceptedcanceled200 operation. */
-export type LROsPut200Acceptedcanceled200Response = Product;
+export type LrOSPut200Acceptedcanceled200Response = Product;
 
 /** Optional parameters. */
-export interface LROsPutNoHeaderInRetryOptionalParams
+export interface LrOSPutNoHeaderInRetryOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -803,11 +803,11 @@ export interface LROsPutNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the putNoHeaderInRetry operation. */
-export type LROsPutNoHeaderInRetryResponse = LROsPutNoHeaderInRetryHeaders &
+export type LrOSPutNoHeaderInRetryResponse = LrOSPutNoHeaderInRetryHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutAsyncRetrySucceededOptionalParams
+export interface LrOSPutAsyncRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -818,11 +818,11 @@ export interface LROsPutAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the putAsyncRetrySucceeded operation. */
-export type LROsPutAsyncRetrySucceededResponse = LROsPutAsyncRetrySucceededHeaders &
+export type LrOSPutAsyncRetrySucceededResponse = LrOSPutAsyncRetrySucceededHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutAsyncNoRetrySucceededOptionalParams
+export interface LrOSPutAsyncNoRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -833,11 +833,11 @@ export interface LROsPutAsyncNoRetrySucceededOptionalParams
 }
 
 /** Contains response data for the putAsyncNoRetrySucceeded operation. */
-export type LROsPutAsyncNoRetrySucceededResponse = LROsPutAsyncNoRetrySucceededHeaders &
+export type LrOSPutAsyncNoRetrySucceededResponse = LrOSPutAsyncNoRetrySucceededHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutAsyncRetryFailedOptionalParams
+export interface LrOSPutAsyncRetryFailedOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -848,11 +848,11 @@ export interface LROsPutAsyncRetryFailedOptionalParams
 }
 
 /** Contains response data for the putAsyncRetryFailed operation. */
-export type LROsPutAsyncRetryFailedResponse = LROsPutAsyncRetryFailedHeaders &
+export type LrOSPutAsyncRetryFailedResponse = LrOSPutAsyncRetryFailedHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutAsyncNoRetrycanceledOptionalParams
+export interface LrOSPutAsyncNoRetrycanceledOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -863,11 +863,11 @@ export interface LROsPutAsyncNoRetrycanceledOptionalParams
 }
 
 /** Contains response data for the putAsyncNoRetrycanceled operation. */
-export type LROsPutAsyncNoRetrycanceledResponse = LROsPutAsyncNoRetrycanceledHeaders &
+export type LrOSPutAsyncNoRetrycanceledResponse = LrOSPutAsyncNoRetrycanceledHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutAsyncNoHeaderInRetryOptionalParams
+export interface LrOSPutAsyncNoHeaderInRetryOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -878,11 +878,11 @@ export interface LROsPutAsyncNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the putAsyncNoHeaderInRetry operation. */
-export type LROsPutAsyncNoHeaderInRetryResponse = LROsPutAsyncNoHeaderInRetryHeaders &
+export type LrOSPutAsyncNoHeaderInRetryResponse = LrOSPutAsyncNoHeaderInRetryHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsPutNonResourceOptionalParams
+export interface LrOSPutNonResourceOptionalParams
   extends coreClient.OperationOptions {
   /** sku to put */
   sku?: Sku;
@@ -893,10 +893,10 @@ export interface LROsPutNonResourceOptionalParams
 }
 
 /** Contains response data for the putNonResource operation. */
-export type LROsPutNonResourceResponse = Sku;
+export type LrOSPutNonResourceResponse = Sku;
 
 /** Optional parameters. */
-export interface LROsPutAsyncNonResourceOptionalParams
+export interface LrOSPutAsyncNonResourceOptionalParams
   extends coreClient.OperationOptions {
   /** Sku to put */
   sku?: Sku;
@@ -907,10 +907,10 @@ export interface LROsPutAsyncNonResourceOptionalParams
 }
 
 /** Contains response data for the putAsyncNonResource operation. */
-export type LROsPutAsyncNonResourceResponse = Sku;
+export type LrOSPutAsyncNonResourceResponse = Sku;
 
 /** Optional parameters. */
-export interface LROsPutSubResourceOptionalParams
+export interface LrOSPutSubResourceOptionalParams
   extends coreClient.OperationOptions {
   /** Sub Product to put */
   product?: SubProduct;
@@ -921,10 +921,10 @@ export interface LROsPutSubResourceOptionalParams
 }
 
 /** Contains response data for the putSubResource operation. */
-export type LROsPutSubResourceResponse = SubProduct;
+export type LrOSPutSubResourceResponse = SubProduct;
 
 /** Optional parameters. */
-export interface LROsPutAsyncSubResourceOptionalParams
+export interface LrOSPutAsyncSubResourceOptionalParams
   extends coreClient.OperationOptions {
   /** Sub Product to put */
   product?: SubProduct;
@@ -935,10 +935,10 @@ export interface LROsPutAsyncSubResourceOptionalParams
 }
 
 /** Contains response data for the putAsyncSubResource operation. */
-export type LROsPutAsyncSubResourceResponse = SubProduct;
+export type LrOSPutAsyncSubResourceResponse = SubProduct;
 
 /** Optional parameters. */
-export interface LROsDeleteProvisioning202Accepted200SucceededOptionalParams
+export interface LrOSDeleteProvisioning202Accepted200SucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -947,10 +947,10 @@ export interface LROsDeleteProvisioning202Accepted200SucceededOptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
-export type LROsDeleteProvisioning202Accepted200SucceededResponse = Product;
+export type LrOSDeleteProvisioning202Accepted200SucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LROsDeleteProvisioning202DeletingFailed200OptionalParams
+export interface LrOSDeleteProvisioning202DeletingFailed200OptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -959,10 +959,10 @@ export interface LROsDeleteProvisioning202DeletingFailed200OptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202DeletingFailed200 operation. */
-export type LROsDeleteProvisioning202DeletingFailed200Response = Product;
+export type LrOSDeleteProvisioning202DeletingFailed200Response = Product;
 
 /** Optional parameters. */
-export interface LROsDeleteProvisioning202Deletingcanceled200OptionalParams
+export interface LrOSDeleteProvisioning202Deletingcanceled200OptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -971,10 +971,10 @@ export interface LROsDeleteProvisioning202Deletingcanceled200OptionalParams
 }
 
 /** Contains response data for the deleteProvisioning202Deletingcanceled200 operation. */
-export type LROsDeleteProvisioning202Deletingcanceled200Response = Product;
+export type LrOSDeleteProvisioning202Deletingcanceled200Response = Product;
 
 /** Optional parameters. */
-export interface LROsDelete204SucceededOptionalParams
+export interface LrOSDelete204SucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -983,7 +983,7 @@ export interface LROsDelete204SucceededOptionalParams
 }
 
 /** Optional parameters. */
-export interface LROsDelete202Retry200OptionalParams
+export interface LrOSDelete202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -992,10 +992,10 @@ export interface LROsDelete202Retry200OptionalParams
 }
 
 /** Contains response data for the delete202Retry200 operation. */
-export type LROsDelete202Retry200Response = Product;
+export type LrOSDelete202Retry200Response = Product;
 
 /** Optional parameters. */
-export interface LROsDelete202NoRetry204OptionalParams
+export interface LrOSDelete202NoRetry204OptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1004,10 +1004,10 @@ export interface LROsDelete202NoRetry204OptionalParams
 }
 
 /** Contains response data for the delete202NoRetry204 operation. */
-export type LROsDelete202NoRetry204Response = Product;
+export type LrOSDelete202NoRetry204Response = Product;
 
 /** Optional parameters. */
-export interface LROsDeleteNoHeaderInRetryOptionalParams
+export interface LrOSDeleteNoHeaderInRetryOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1016,10 +1016,10 @@ export interface LROsDeleteNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the deleteNoHeaderInRetry operation. */
-export type LROsDeleteNoHeaderInRetryResponse = LROsDeleteNoHeaderInRetryHeaders;
+export type LrOSDeleteNoHeaderInRetryResponse = LrOSDeleteNoHeaderInRetryHeaders;
 
 /** Optional parameters. */
-export interface LROsDeleteAsyncNoHeaderInRetryOptionalParams
+export interface LrOSDeleteAsyncNoHeaderInRetryOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1028,10 +1028,10 @@ export interface LROsDeleteAsyncNoHeaderInRetryOptionalParams
 }
 
 /** Contains response data for the deleteAsyncNoHeaderInRetry operation. */
-export type LROsDeleteAsyncNoHeaderInRetryResponse = LROsDeleteAsyncNoHeaderInRetryHeaders;
+export type LrOSDeleteAsyncNoHeaderInRetryResponse = LrOSDeleteAsyncNoHeaderInRetryHeaders;
 
 /** Optional parameters. */
-export interface LROsDeleteAsyncRetrySucceededOptionalParams
+export interface LrOSDeleteAsyncRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1040,10 +1040,10 @@ export interface LROsDeleteAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetrySucceeded operation. */
-export type LROsDeleteAsyncRetrySucceededResponse = LROsDeleteAsyncRetrySucceededHeaders;
+export type LrOSDeleteAsyncRetrySucceededResponse = LrOSDeleteAsyncRetrySucceededHeaders;
 
 /** Optional parameters. */
-export interface LROsDeleteAsyncNoRetrySucceededOptionalParams
+export interface LrOSDeleteAsyncNoRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1052,10 +1052,10 @@ export interface LROsDeleteAsyncNoRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncNoRetrySucceeded operation. */
-export type LROsDeleteAsyncNoRetrySucceededResponse = LROsDeleteAsyncNoRetrySucceededHeaders;
+export type LrOSDeleteAsyncNoRetrySucceededResponse = LrOSDeleteAsyncNoRetrySucceededHeaders;
 
 /** Optional parameters. */
-export interface LROsDeleteAsyncRetryFailedOptionalParams
+export interface LrOSDeleteAsyncRetryFailedOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1064,10 +1064,10 @@ export interface LROsDeleteAsyncRetryFailedOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetryFailed operation. */
-export type LROsDeleteAsyncRetryFailedResponse = LROsDeleteAsyncRetryFailedHeaders;
+export type LrOSDeleteAsyncRetryFailedResponse = LrOSDeleteAsyncRetryFailedHeaders;
 
 /** Optional parameters. */
-export interface LROsDeleteAsyncRetrycanceledOptionalParams
+export interface LrOSDeleteAsyncRetrycanceledOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1076,10 +1076,10 @@ export interface LROsDeleteAsyncRetrycanceledOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRetrycanceled operation. */
-export type LROsDeleteAsyncRetrycanceledResponse = LROsDeleteAsyncRetrycanceledHeaders;
+export type LrOSDeleteAsyncRetrycanceledResponse = LrOSDeleteAsyncRetrycanceledHeaders;
 
 /** Optional parameters. */
-export interface LROsPost200WithPayloadOptionalParams
+export interface LrOSPost200WithPayloadOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1088,10 +1088,10 @@ export interface LROsPost200WithPayloadOptionalParams
 }
 
 /** Contains response data for the post200WithPayload operation. */
-export type LROsPost200WithPayloadResponse = Sku;
+export type LrOSPost200WithPayloadResponse = Sku;
 
 /** Optional parameters. */
-export interface LROsPost202Retry200OptionalParams
+export interface LrOSPost202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1102,10 +1102,10 @@ export interface LROsPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LROsPost202Retry200Response = LROsPost202Retry200Headers;
+export type LrOSPost202Retry200Response = LrOSPost202Retry200Headers;
 
 /** Optional parameters. */
-export interface LROsPost202NoRetry204OptionalParams
+export interface LrOSPost202NoRetry204OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1116,11 +1116,11 @@ export interface LROsPost202NoRetry204OptionalParams
 }
 
 /** Contains response data for the post202NoRetry204 operation. */
-export type LROsPost202NoRetry204Response = LROsPost202NoRetry204Headers &
+export type LrOSPost202NoRetry204Response = LrOSPost202NoRetry204Headers &
   Product;
 
 /** Optional parameters. */
-export interface LROsPostDoubleHeadersFinalLocationGetOptionalParams
+export interface LrOSPostDoubleHeadersFinalLocationGetOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1129,10 +1129,10 @@ export interface LROsPostDoubleHeadersFinalLocationGetOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalLocationGet operation. */
-export type LROsPostDoubleHeadersFinalLocationGetResponse = Product;
+export type LrOSPostDoubleHeadersFinalLocationGetResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
+export interface LrOSPostDoubleHeadersFinalAzureHeaderGetOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1141,10 +1141,10 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalAzureHeaderGet operation. */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetResponse = Product;
+export type LrOSPostDoubleHeadersFinalAzureHeaderGetResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
+export interface LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1153,10 +1153,10 @@ export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultOptionalParams
 }
 
 /** Contains response data for the postDoubleHeadersFinalAzureHeaderGetDefault operation. */
-export type LROsPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product;
+export type LrOSPostDoubleHeadersFinalAzureHeaderGetDefaultResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPostAsyncRetrySucceededOptionalParams
+export interface LrOSPostAsyncRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1167,10 +1167,10 @@ export interface LROsPostAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrySucceeded operation. */
-export type LROsPostAsyncRetrySucceededResponse = Product;
+export type LrOSPostAsyncRetrySucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPostAsyncNoRetrySucceededOptionalParams
+export interface LrOSPostAsyncNoRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1181,10 +1181,10 @@ export interface LROsPostAsyncNoRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncNoRetrySucceeded operation. */
-export type LROsPostAsyncNoRetrySucceededResponse = Product;
+export type LrOSPostAsyncNoRetrySucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LROsPostAsyncRetryFailedOptionalParams
+export interface LrOSPostAsyncRetryFailedOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1195,10 +1195,10 @@ export interface LROsPostAsyncRetryFailedOptionalParams
 }
 
 /** Contains response data for the postAsyncRetryFailed operation. */
-export type LROsPostAsyncRetryFailedResponse = LROsPostAsyncRetryFailedHeaders;
+export type LrOSPostAsyncRetryFailedResponse = LrOSPostAsyncRetryFailedHeaders;
 
 /** Optional parameters. */
-export interface LROsPostAsyncRetrycanceledOptionalParams
+export interface LrOSPostAsyncRetrycanceledOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1209,10 +1209,10 @@ export interface LROsPostAsyncRetrycanceledOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrycanceled operation. */
-export type LROsPostAsyncRetrycanceledResponse = LROsPostAsyncRetrycanceledHeaders;
+export type LrOSPostAsyncRetrycanceledResponse = LrOSPostAsyncRetrycanceledHeaders;
 
 /** Optional parameters. */
-export interface LRORetrysPut201CreatingSucceeded200OptionalParams
+export interface LroRetrysPut201CreatingSucceeded200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1223,10 +1223,10 @@ export interface LRORetrysPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LRORetrysPut201CreatingSucceeded200Response = Product;
+export type LroRetrysPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
-export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
+export interface LroRetrysPutAsyncRelativeRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1237,11 +1237,11 @@ export interface LRORetrysPutAsyncRelativeRetrySucceededOptionalParams
 }
 
 /** Contains response data for the putAsyncRelativeRetrySucceeded operation. */
-export type LRORetrysPutAsyncRelativeRetrySucceededResponse = LRORetrysPutAsyncRelativeRetrySucceededHeaders &
+export type LroRetrysPutAsyncRelativeRetrySucceededResponse = LroRetrysPutAsyncRelativeRetrySucceededHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParams
+export interface LroRetrysDeleteProvisioning202Accepted200SucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1250,10 +1250,10 @@ export interface LRORetrysDeleteProvisioning202Accepted200SucceededOptionalParam
 }
 
 /** Contains response data for the deleteProvisioning202Accepted200Succeeded operation. */
-export type LRORetrysDeleteProvisioning202Accepted200SucceededResponse = Product;
+export type LroRetrysDeleteProvisioning202Accepted200SucceededResponse = Product;
 
 /** Optional parameters. */
-export interface LRORetrysDelete202Retry200OptionalParams
+export interface LroRetrysDelete202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1262,10 +1262,10 @@ export interface LRORetrysDelete202Retry200OptionalParams
 }
 
 /** Contains response data for the delete202Retry200 operation. */
-export type LRORetrysDelete202Retry200Response = LRORetrysDelete202Retry200Headers;
+export type LroRetrysDelete202Retry200Response = LroRetrysDelete202Retry200Headers;
 
 /** Optional parameters. */
-export interface LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
+export interface LroRetrysDeleteAsyncRelativeRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Delay to wait until next poll, in milliseconds. */
   updateIntervalInMs?: number;
@@ -1274,10 +1274,10 @@ export interface LRORetrysDeleteAsyncRelativeRetrySucceededOptionalParams
 }
 
 /** Contains response data for the deleteAsyncRelativeRetrySucceeded operation. */
-export type LRORetrysDeleteAsyncRelativeRetrySucceededResponse = LRORetrysDeleteAsyncRelativeRetrySucceededHeaders;
+export type LroRetrysDeleteAsyncRelativeRetrySucceededResponse = LroRetrysDeleteAsyncRelativeRetrySucceededHeaders;
 
 /** Optional parameters. */
-export interface LRORetrysPost202Retry200OptionalParams
+export interface LroRetrysPost202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1288,10 +1288,10 @@ export interface LRORetrysPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LRORetrysPost202Retry200Response = LRORetrysPost202Retry200Headers;
+export type LroRetrysPost202Retry200Response = LroRetrysPost202Retry200Headers;
 
 /** Optional parameters. */
-export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
+export interface LroRetrysPostAsyncRelativeRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1302,7 +1302,7 @@ export interface LRORetrysPostAsyncRelativeRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRelativeRetrySucceeded operation. */
-export type LRORetrysPostAsyncRelativeRetrySucceededResponse = LRORetrysPostAsyncRelativeRetrySucceededHeaders;
+export type LroRetrysPostAsyncRelativeRetrySucceededResponse = LroRetrysPostAsyncRelativeRetrySucceededHeaders;
 
 /** Optional parameters. */
 export interface LrosaDsPutNonRetry400OptionalParams
@@ -1655,7 +1655,7 @@ export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingOptionalParams
 export type LrosaDsPostAsyncRelativeRetryInvalidJsonPollingResponse = LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders;
 
 /** Optional parameters. */
-export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
+export interface LrOSCustomHeaderPutAsyncRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1666,11 +1666,11 @@ export interface LROsCustomHeaderPutAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the putAsyncRetrySucceeded operation. */
-export type LROsCustomHeaderPutAsyncRetrySucceededResponse = LROsCustomHeaderPutAsyncRetrySucceededHeaders &
+export type LrOSCustomHeaderPutAsyncRetrySucceededResponse = LrOSCustomHeaderPutAsyncRetrySucceededHeaders &
   Product;
 
 /** Optional parameters. */
-export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
+export interface LrOSCustomHeaderPut201CreatingSucceeded200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1681,10 +1681,10 @@ export interface LROsCustomHeaderPut201CreatingSucceeded200OptionalParams
 }
 
 /** Contains response data for the put201CreatingSucceeded200 operation. */
-export type LROsCustomHeaderPut201CreatingSucceeded200Response = Product;
+export type LrOSCustomHeaderPut201CreatingSucceeded200Response = Product;
 
 /** Optional parameters. */
-export interface LROsCustomHeaderPost202Retry200OptionalParams
+export interface LrOSCustomHeaderPost202Retry200OptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1695,10 +1695,10 @@ export interface LROsCustomHeaderPost202Retry200OptionalParams
 }
 
 /** Contains response data for the post202Retry200 operation. */
-export type LROsCustomHeaderPost202Retry200Response = LROsCustomHeaderPost202Retry200Headers;
+export type LrOSCustomHeaderPost202Retry200Response = LrOSCustomHeaderPost202Retry200Headers;
 
 /** Optional parameters. */
-export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
+export interface LrOSCustomHeaderPostAsyncRetrySucceededOptionalParams
   extends coreClient.OperationOptions {
   /** Product to put */
   product?: Product;
@@ -1709,13 +1709,13 @@ export interface LROsCustomHeaderPostAsyncRetrySucceededOptionalParams
 }
 
 /** Contains response data for the postAsyncRetrySucceeded operation. */
-export type LROsCustomHeaderPostAsyncRetrySucceededResponse = LROsCustomHeaderPostAsyncRetrySucceededHeaders;
+export type LrOSCustomHeaderPostAsyncRetrySucceededResponse = LrOSCustomHeaderPostAsyncRetrySucceededHeaders;
 
 /** Optional parameters. */
-export interface LROClientOptionalParams
+export interface LroClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

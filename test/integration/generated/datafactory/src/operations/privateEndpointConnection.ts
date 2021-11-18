@@ -2,7 +2,7 @@ import { PrivateEndpointConnection } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   PrivateLinkConnectionApprovalRequestResource,
   PrivateEndpointConnectionCreateOrUpdateOptionalParams,
@@ -15,13 +15,13 @@ import {
 /** Class containing PrivateEndpointConnection operations. */
 export class PrivateEndpointConnectionImpl
   implements PrivateEndpointConnection {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class PrivateEndpointConnection class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 
@@ -118,7 +118,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.privateEndpointWrapper,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -146,7 +146,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -168,7 +168,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

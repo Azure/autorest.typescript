@@ -2,7 +2,7 @@ import { IntegrationRuntimeNodes } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   IntegrationRuntimeNodesGetOptionalParams,
   IntegrationRuntimeNodesGetResponse,
@@ -10,19 +10,19 @@ import {
   UpdateIntegrationRuntimeNodeRequest,
   IntegrationRuntimeNodesUpdateOptionalParams,
   IntegrationRuntimeNodesUpdateResponse,
-  IntegrationRuntimeNodesGetIpAddressOptionalParams,
-  IntegrationRuntimeNodesGetIpAddressResponse
+  IntegrationRuntimeNodesGetIPAddressOptionalParams,
+  IntegrationRuntimeNodesGetIPAddressResponse
 } from "../models";
 
 /** Class containing IntegrationRuntimeNodes operations. */
 export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class IntegrationRuntimeNodes class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 
@@ -118,13 +118,13 @@ export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {
    * @param nodeName The integration runtime node name.
    * @param options The options parameters.
    */
-  getIpAddress(
+  getIPAddress(
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
     nodeName: string,
-    options?: IntegrationRuntimeNodesGetIpAddressOptionalParams
-  ): Promise<IntegrationRuntimeNodesGetIpAddressResponse> {
+    options?: IntegrationRuntimeNodesGetIPAddressOptionalParams
+  ): Promise<IntegrationRuntimeNodesGetIPAddressResponse> {
     return this.client.sendOperationRequest(
       {
         resourceGroupName,
@@ -133,7 +133,7 @@ export class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNodes {
         nodeName,
         options
       },
-      getIpAddressOperationSpec
+      getIPAddressOperationSpec
     );
   }
 }
@@ -154,7 +154,7 @@ const getOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -177,7 +177,7 @@ const deleteOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -202,7 +202,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.updateIntegrationRuntimeNodeRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,
@@ -213,13 +213,13 @@ const updateOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const getIpAddressOperationSpec: coreClient.OperationSpec = {
+const getIPAddressOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories/{factoryName}/integrationRuntimes/{integrationRuntimeName}/nodes/{nodeName}/ipAddress",
   httpMethod: "POST",
   responses: {
     200: {
-      bodyMapper: Mappers.IntegrationRuntimeNodeIpAddress
+      bodyMapper: Mappers.IntegrationRuntimeNodeIPAddress
     },
     default: {
       bodyMapper: Mappers.CloudError
@@ -227,7 +227,7 @@ const getIpAddressOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName,

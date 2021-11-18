@@ -10,7 +10,7 @@ import { Header } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   HeaderCustomNamedRequestIdOptionalParams,
   HeaderCustomNamedRequestIdResponse,
@@ -23,13 +23,13 @@ import {
 
 /** Class containing Header operations. */
 export class HeaderImpl implements Header {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class Header class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -93,7 +93,7 @@ const customNamedRequestIdOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };
@@ -108,7 +108,7 @@ const customNamedRequestIdParamGroupingOperationSpec: coreClient.OperationSpec =
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId1],
   serializer
 };
@@ -124,7 +124,7 @@ const customNamedRequestIdHeadOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.fooClientRequestId],
   serializer
 };

@@ -9,7 +9,7 @@
 import { BarApi } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import { MediaTypesV3ClientContext } from "../mediaTypesV3ClientContext";
+import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   BarApiPostSendOnDefaultOptionalParams,
   BarApiPostSendOnDefaultResponse
@@ -17,13 +17,13 @@ import {
 
 /** Class containing BarApi operations. */
 export class BarApiImpl implements BarApi {
-  private readonly client: MediaTypesV3ClientContext;
+  private readonly client: MediaTypesV3Client;
 
   /**
    * Initialize a new instance of the class BarApi class.
    * @param client Reference to the service client
    */
-  constructor(client: MediaTypesV3ClientContext) {
+  constructor(client: MediaTypesV3Client) {
     this.client = client;
   }
 
@@ -56,7 +56,7 @@ const postSendOnDefaultOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "text",
   serializer

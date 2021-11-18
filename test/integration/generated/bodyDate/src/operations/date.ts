@@ -10,7 +10,7 @@ import { DateOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDateClientContext } from "../bodyDateClientContext";
+import { BodyDateClient } from "../bodyDateClient";
 import {
   DateGetNullOptionalParams,
   DateGetNullResponse,
@@ -30,13 +30,13 @@ import {
 
 /** Class containing DateOperations operations. */
 export class DateOperationsImpl implements DateOperations {
-  private readonly client: BodyDateClientContext;
+  private readonly client: BodyDateClient;
 
   /**
    * Initialize a new instance of the class DateOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDateClientContext) {
+  constructor(client: BodyDateClient) {
     this.client = client;
   }
 
@@ -157,7 +157,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -172,7 +172,7 @@ const getInvalidDateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -187,7 +187,7 @@ const getOverflowDateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -202,7 +202,7 @@ const getUnderflowDateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -216,7 +216,7 @@ const putMaxDateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.dateBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -232,7 +232,7 @@ const getMaxDateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -246,7 +246,7 @@ const putMinDateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.dateBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -262,7 +262,7 @@ const getMinDateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

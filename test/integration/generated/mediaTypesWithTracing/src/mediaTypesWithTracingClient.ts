@@ -12,7 +12,6 @@ import * as coreTracing from "@azure/core-tracing";
 import { createSpan } from "./tracing";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { MediaTypesWithTracingClientContext } from "./mediaTypesWithTracingClientContext";
 import {
   MediaTypesWithTracingClientOptionalParams,
   ContentType,
@@ -34,13 +33,40 @@ import {
   PutTextAndJsonBodyResponse
 } from "./models";
 
-export class MediaTypesWithTracingClient extends MediaTypesWithTracingClientContext {
+export class MediaTypesWithTracingClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the MediaTypesWithTracingClient class.
    * @param options The parameter options
    */
   constructor(options?: MediaTypesWithTracingClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: MediaTypesWithTracingClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-media-types-service-tracing/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
   }
 
   /**
@@ -425,7 +451,7 @@ const analyzeBody$binaryOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.input,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "binary",
   serializer
@@ -439,7 +465,7 @@ const analyzeBody$jsonOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.input1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "json",
   serializer
@@ -449,7 +475,7 @@ const analyzeBodyNoAcceptHeader$binaryOperationSpec: coreClient.OperationSpec = 
   httpMethod: "POST",
   responses: { 202: {}, default: {} },
   requestBody: Parameters.input,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType],
   mediaType: "binary",
   serializer
@@ -459,7 +485,7 @@ const analyzeBodyNoAcceptHeader$jsonOperationSpec: coreClient.OperationSpec = {
   httpMethod: "POST",
   responses: { 202: {}, default: {} },
   requestBody: Parameters.input1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1],
   mediaType: "json",
   serializer
@@ -473,7 +499,7 @@ const contentTypeWithEncodingOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.input2,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType2, Parameters.accept2],
   mediaType: "text",
   serializer
@@ -487,7 +513,7 @@ const binaryBodyWithTwoContentTypesOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.message,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType3, Parameters.accept3],
   mediaType: "binary",
   serializer
@@ -501,7 +527,7 @@ const binaryBodyWithThreeContentTypes$binaryOperationSpec: coreClient.OperationS
     }
   },
   requestBody: Parameters.message,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept3, Parameters.contentType4],
   mediaType: "binary",
   serializer
@@ -515,7 +541,7 @@ const binaryBodyWithThreeContentTypes$textOperationSpec: coreClient.OperationSpe
     }
   },
   requestBody: Parameters.message1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType5, Parameters.accept4],
   mediaType: "text",
   serializer
@@ -529,7 +555,7 @@ const putTextAndJsonBody$textOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.message1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType5, Parameters.accept4],
   mediaType: "text",
   serializer
@@ -543,7 +569,7 @@ const putTextAndJsonBody$jsonOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.message2,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept5],
   mediaType: "json",
   serializer

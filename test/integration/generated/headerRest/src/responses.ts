@@ -312,7 +312,7 @@ export interface ParamDatetimeRfc1123200Response extends HttpResponse {
 }
 
 /** Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56 GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT" */
-export interface ParamDatetimeRfc1123defaultResponse extends HttpResponse {
+export interface ParamDatetimeRfc1123DefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }
@@ -330,7 +330,7 @@ export interface ResponseDatetimeRfc1123200Response extends HttpResponse {
 }
 
 /** Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00 GMT" */
-export interface ResponseDatetimeRfc1123defaultResponse extends HttpResponse {
+export interface ResponseDatetimeRfc1123DefaultResponse extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
 }

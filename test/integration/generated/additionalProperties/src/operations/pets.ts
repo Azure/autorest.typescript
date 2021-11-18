@@ -10,7 +10,7 @@ import { Pets } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AdditionalPropertiesClientContext } from "../additionalPropertiesClientContext";
+import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
 import {
   PetAPTrue,
   PetsCreateAPTrueOptionalParams,
@@ -34,13 +34,13 @@ import {
 
 /** Class containing Pets operations. */
 export class PetsImpl implements Pets {
-  private readonly client: AdditionalPropertiesClientContext;
+  private readonly client: AdditionalPropertiesClient;
 
   /**
    * Initialize a new instance of the class Pets class.
    * @param client Reference to the service client
    */
-  constructor(client: AdditionalPropertiesClientContext) {
+  constructor(client: AdditionalPropertiesClient) {
     this.client = client;
   }
 
@@ -49,13 +49,13 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createAPTrue(
+  createApTrue(
     createParameters: PetAPTrue,
     options?: PetsCreateAPTrueOptionalParams
   ): Promise<PetsCreateAPTrueResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPTrueOperationSpec
+      CreateAPTrueOperationSpec
     );
   }
 
@@ -64,13 +64,13 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createCatAPTrue(
+  createCatApTrue(
     createParameters: CatAPTrue,
     options?: PetsCreateCatAPTrueOptionalParams
   ): Promise<PetsCreateCatAPTrueResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createCatAPTrueOperationSpec
+      CreateCatAPTrueOperationSpec
     );
   }
 
@@ -79,13 +79,13 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createAPObject(
+  createApObject(
     createParameters: PetAPObject,
     options?: PetsCreateAPObjectOptionalParams
   ): Promise<PetsCreateAPObjectResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPObjectOperationSpec
+      CreateAPObjectOperationSpec
     );
   }
 
@@ -94,13 +94,13 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createAPString(
+  createApString(
     createParameters: PetAPString,
     options?: PetsCreateAPStringOptionalParams
   ): Promise<PetsCreateAPStringResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPStringOperationSpec
+      CreateAPStringOperationSpec
     );
   }
 
@@ -109,13 +109,13 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createAPInProperties(
+  createApInProperties(
     createParameters: PetAPInProperties,
     options?: PetsCreateAPInPropertiesOptionalParams
   ): Promise<PetsCreateAPInPropertiesResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPInPropertiesOperationSpec
+      CreateAPInPropertiesOperationSpec
     );
   }
 
@@ -124,20 +124,20 @@ export class PetsImpl implements Pets {
    * @param createParameters
    * @param options The options parameters.
    */
-  createAPInPropertiesWithAPString(
+  createApInPropertiesWithApstring(
     createParameters: PetAPInPropertiesWithAPString,
     options?: PetsCreateAPInPropertiesWithAPStringOptionalParams
   ): Promise<PetsCreateAPInPropertiesWithAPStringResponse> {
     return this.client.sendOperationRequest(
       { createParameters, options },
-      createAPInPropertiesWithAPStringOperationSpec
+      CreateAPInPropertiesWithAPStringOperationSpec
     );
   }
 }
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const createAPTrueOperationSpec: coreClient.OperationSpec = {
+const CreateAPTrueOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/true",
   httpMethod: "PUT",
   responses: {
@@ -154,7 +154,7 @@ const createAPTrueOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createCatAPTrueOperationSpec: coreClient.OperationSpec = {
+const CreateCatAPTrueOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/true-subclass",
   httpMethod: "PUT",
   responses: {
@@ -171,7 +171,7 @@ const createCatAPTrueOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createAPObjectOperationSpec: coreClient.OperationSpec = {
+const CreateAPObjectOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/type/object",
   httpMethod: "PUT",
   responses: {
@@ -188,7 +188,7 @@ const createAPObjectOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createAPStringOperationSpec: coreClient.OperationSpec = {
+const CreateAPStringOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/type/string",
   httpMethod: "PUT",
   responses: {
@@ -205,7 +205,7 @@ const createAPStringOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createAPInPropertiesOperationSpec: coreClient.OperationSpec = {
+const CreateAPInPropertiesOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/in/properties",
   httpMethod: "PUT",
   responses: {
@@ -222,7 +222,7 @@ const createAPInPropertiesOperationSpec: coreClient.OperationSpec = {
   mediaType: "json",
   serializer
 };
-const createAPInPropertiesWithAPStringOperationSpec: coreClient.OperationSpec = {
+const CreateAPInPropertiesWithAPStringOperationSpec: coreClient.OperationSpec = {
   path: "/additionalProperties/in/properties/with/additionalProperties/string",
   httpMethod: "PUT",
   responses: {

@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
+import { RequiredOptionalClient } from "../requiredOptionalClient";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
@@ -46,13 +46,13 @@ import {
 
 /** Class containing Explicit operations. */
 export class ExplicitImpl implements Explicit {
-  private readonly client: RequiredOptionalClientContext;
+  private readonly client: RequiredOptionalClient;
 
   /**
    * Initialize a new instance of the class Explicit class.
    * @param client Reference to the service client
    */
-  constructor(client: RequiredOptionalClientContext) {
+  constructor(client: RequiredOptionalClient) {
     this.client = client;
   }
 
@@ -416,7 +416,7 @@ const putOptionalBinaryBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter2,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -431,7 +431,7 @@ const putRequiredBinaryBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter3,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -446,7 +446,7 @@ const postRequiredIntegerParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter4,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -461,7 +461,7 @@ const postOptionalIntegerParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter5,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -476,7 +476,7 @@ const postRequiredIntegerPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter6,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -491,7 +491,7 @@ const postOptionalIntegerPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter7,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -505,7 +505,7 @@ const postRequiredIntegerHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerParameter],
   serializer
 };
@@ -518,7 +518,7 @@ const postOptionalIntegerHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerParameter1],
   serializer
 };
@@ -532,7 +532,7 @@ const postRequiredStringParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter8,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -547,7 +547,7 @@ const postOptionalStringParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -562,7 +562,7 @@ const postRequiredStringPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter9,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -577,7 +577,7 @@ const postOptionalStringPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter10,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -591,7 +591,7 @@ const postRequiredStringHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerParameter2],
   serializer
 };
@@ -604,7 +604,7 @@ const postOptionalStringHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.bodyParameter11],
   serializer
 };
@@ -618,7 +618,7 @@ const postRequiredClassParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter12,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -633,7 +633,7 @@ const postOptionalClassParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter13,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -648,7 +648,7 @@ const postRequiredClassPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter14,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -663,7 +663,7 @@ const postOptionalClassPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter15,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -678,7 +678,7 @@ const postRequiredArrayParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter16,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -693,7 +693,7 @@ const postOptionalArrayParameterOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter17,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -708,7 +708,7 @@ const postRequiredArrayPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter18,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -723,7 +723,7 @@ const postOptionalArrayPropertyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.bodyParameter19,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -737,7 +737,7 @@ const postRequiredArrayHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerParameter3],
   serializer
 };
@@ -750,7 +750,7 @@ const postOptionalArrayHeaderOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.headerParameter4],
   serializer
 };

@@ -10,7 +10,7 @@ import { Flattencomplex } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexClientContext } from "../bodyComplexClientContext";
+import { BodyComplexClient } from "../bodyComplexClient";
 import {
   FlattencomplexGetValidOptionalParams,
   FlattencomplexGetValidResponse
@@ -18,13 +18,13 @@ import {
 
 /** Class containing Flattencomplex operations. */
 export class FlattencomplexImpl implements Flattencomplex {
-  private readonly client: BodyComplexClientContext;
+  private readonly client: BodyComplexClient;
 
   /**
    * Initialize a new instance of the class Flattencomplex class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexClientContext) {
+  constructor(client: BodyComplexClient) {
     this.client = client;
   }
 
@@ -46,7 +46,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.MyBaseType
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

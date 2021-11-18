@@ -10,7 +10,7 @@ import { StringOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyStringClientContext } from "../bodyStringClientContext";
+import { BodyStringClient } from "../bodyStringClient";
 import {
   StringGetNullOptionalParams,
   StringGetNullResponse,
@@ -37,13 +37,13 @@ import {
 
 /** Class containing StringOperations operations. */
 export class StringOperationsImpl implements StringOperations {
-  private readonly client: BodyStringClientContext;
+  private readonly client: BodyStringClient;
 
   /**
    * Initialize a new instance of the class StringOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyStringClientContext) {
+  constructor(client: BodyStringClient) {
     this.client = client;
   }
 
@@ -208,7 +208,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -222,7 +222,7 @@ const putNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -238,7 +238,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -252,7 +252,7 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -268,7 +268,7 @@ const getMbcsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -282,7 +282,7 @@ const putMbcsOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody2,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -298,7 +298,7 @@ const getWhitespaceOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -312,7 +312,7 @@ const putWhitespaceOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody3,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -328,7 +328,7 @@ const getNotProvidedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -343,7 +343,7 @@ const getBase64EncodedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -358,7 +358,7 @@ const getBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -372,7 +372,7 @@ const putBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.stringBody4,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -388,7 +388,7 @@ const getNullBase64UrlEncodedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

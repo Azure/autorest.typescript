@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageBlobClientContext } from "../storageBlobClientContext";
+import { StorageBlobClient } from "../storageBlobClient";
 import {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
@@ -15,13 +15,13 @@ import {
 
 /** Class containing BlockBlob operations. */
 export class BlockBlobImpl implements BlockBlob {
-  private readonly client: StorageBlobClientContext;
+  private readonly client: StorageBlobClient;
 
   /**
    * Initialize a new instance of the class BlockBlob class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageBlobClientContext) {
+  constructor(client: StorageBlobClient) {
     this.client = client;
   }
 
@@ -112,7 +112,7 @@ const stageBlockOperationSpec: coreClient.OperationSpec = {
     Parameters.contentType,
     Parameters.accept,
     Parameters.contentLength,
-    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentMd5,
     Parameters.transactionalContentCrc64,
     Parameters.leaseId,
     Parameters.encryptionKey,
@@ -146,7 +146,7 @@ const uploadOperationSpec: coreClient.OperationSpec = {
     Parameters.contentType,
     Parameters.accept,
     Parameters.contentLength,
-    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentMd5,
     Parameters.leaseId,
     Parameters.encryptionKey,
     Parameters.encryptionKeySha256,
@@ -163,7 +163,7 @@ const uploadOperationSpec: coreClient.OperationSpec = {
     Parameters.blobContentType,
     Parameters.blobContentEncoding,
     Parameters.blobContentLanguage,
-    Parameters.blobContentMD5,
+    Parameters.blobContentMd5,
     Parameters.blobCacheControl,
     Parameters.metadata,
     Parameters.blobContentDisposition,
@@ -191,7 +191,7 @@ const putBlobFromUrlOperationSpec: coreClient.OperationSpec = {
   urlParameters: [Parameters.url],
   headerParameters: [
     Parameters.contentLength,
-    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentMd5,
     Parameters.leaseId,
     Parameters.encryptionKey,
     Parameters.encryptionKeySha256,
@@ -208,7 +208,7 @@ const putBlobFromUrlOperationSpec: coreClient.OperationSpec = {
     Parameters.blobContentType,
     Parameters.blobContentEncoding,
     Parameters.blobContentLanguage,
-    Parameters.blobContentMD5,
+    Parameters.blobContentMd5,
     Parameters.blobCacheControl,
     Parameters.metadata,
     Parameters.blobContentDisposition,
@@ -220,7 +220,7 @@ const putBlobFromUrlOperationSpec: coreClient.OperationSpec = {
     Parameters.sourceIfMatch,
     Parameters.sourceIfNoneMatch,
     Parameters.sourceIfTags,
-    Parameters.sourceContentMD5,
+    Parameters.sourceContentMd5,
     Parameters.copySource,
     Parameters.copySourceBlobProperties
   ],

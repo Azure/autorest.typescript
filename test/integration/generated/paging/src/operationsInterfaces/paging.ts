@@ -28,8 +28,8 @@ import {
   CustomParameterGroup,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
-  PagingGetMultiplePagesLROOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  PagingGetMultiplePagesLroOptionalParams,
+  PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
@@ -158,8 +158,8 @@ export interface Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  beginListMultiplePagesLROAndWait(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  beginListMultiplePagesLroAndWait(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): PagedAsyncIterableIterator<Product>;
   /**
    * A paging operation that doesn't return a full URL, just a fragment
@@ -190,7 +190,7 @@ export interface Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  listPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  listPagingModelWithItemNameWithXmsClientName(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
   ): PagedAsyncIterableIterator<Product>;
 }

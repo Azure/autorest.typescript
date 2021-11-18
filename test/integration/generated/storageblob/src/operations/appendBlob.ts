@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageBlobClientContext } from "../storageBlobClientContext";
+import { StorageBlobClient } from "../storageBlobClient";
 import {
   AppendBlobAppendBlockOptionalParams,
   AppendBlobAppendBlockResponse
@@ -11,13 +11,13 @@ import {
 
 /** Class containing AppendBlob operations. */
 export class AppendBlobImpl implements AppendBlob {
-  private readonly client: StorageBlobClientContext;
+  private readonly client: StorageBlobClient;
 
   /**
    * Initialize a new instance of the class AppendBlob class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageBlobClientContext) {
+  constructor(client: StorageBlobClient) {
     this.client = client;
   }
 
@@ -62,7 +62,7 @@ const appendBlockOperationSpec: coreClient.OperationSpec = {
     Parameters.contentType,
     Parameters.accept,
     Parameters.contentLength,
-    Parameters.transactionalContentMD5,
+    Parameters.transactionalContentMd5,
     Parameters.transactionalContentCrc64,
     Parameters.leaseId,
     Parameters.encryptionKey,

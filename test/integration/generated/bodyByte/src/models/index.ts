@@ -61,7 +61,7 @@ export type ByteGetInvalidResponse = {
 export interface BodyByteClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

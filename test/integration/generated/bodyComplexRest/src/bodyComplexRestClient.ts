@@ -104,9 +104,9 @@ import {
   PrimitivePutDateTime200Response,
   PrimitivePutDateTimedefaultResponse,
   PrimitiveGetDateTimeRfc1123200Response,
-  PrimitiveGetDateTimeRfc1123defaultResponse,
+  PrimitiveGetDateTimeRfc1123DefaultResponse,
   PrimitivePutDateTimeRfc1123200Response,
-  PrimitivePutDateTimeRfc1123defaultResponse,
+  PrimitivePutDateTimeRfc1123DefaultResponse,
   PrimitiveGetDuration200Response,
   PrimitiveGetDurationdefaultResponse,
   PrimitivePutDuration200Response,
@@ -311,14 +311,14 @@ export interface PrimitiveGetDateTimeRfc1123 {
     options?: PrimitiveGetDateTimeRfc1123Parameters
   ): Promise<
     | PrimitiveGetDateTimeRfc1123200Response
-    | PrimitiveGetDateTimeRfc1123defaultResponse
+    | PrimitiveGetDateTimeRfc1123DefaultResponse
   >;
   /** Put complex types with datetimeRfc1123 properties */
   put(
     options: PrimitivePutDateTimeRfc1123Parameters
   ): Promise<
     | PrimitivePutDateTimeRfc1123200Response
-    | PrimitivePutDateTimeRfc1123defaultResponse
+    | PrimitivePutDateTimeRfc1123DefaultResponse
   >;
 }
 

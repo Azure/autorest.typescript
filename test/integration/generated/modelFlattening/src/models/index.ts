@@ -253,7 +253,7 @@ export type PutSimpleProductWithGroupingResponse = SimpleProduct;
 export interface ModelFlatteningClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

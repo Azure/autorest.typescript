@@ -9,7 +9,6 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { ModelFlatteningClientContext } from "./modelFlatteningClientContext";
 import {
   ModelFlatteningClientOptionalParams,
   PutArrayOptionalParams,
@@ -33,13 +32,40 @@ import {
   PutSimpleProductWithGroupingResponse
 } from "./models";
 
-export class ModelFlatteningClient extends ModelFlatteningClientContext {
+export class ModelFlatteningClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the ModelFlatteningClient class.
    * @param options The parameter options
    */
   constructor(options?: ModelFlatteningClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: ModelFlatteningClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-model-flattening/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
   }
 
   /**
@@ -179,7 +205,7 @@ const putArrayOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.resourceArray,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -202,7 +228,7 @@ const getArrayOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -216,7 +242,7 @@ const putWrappedArrayOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.resourceArray1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -237,7 +263,7 @@ const getWrappedArrayOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -251,7 +277,7 @@ const putDictionaryOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.resourceDictionary,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -272,7 +298,7 @@ const getDictionaryOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -286,7 +312,7 @@ const putResourceCollectionOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.resourceComplexObject,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -302,7 +328,7 @@ const getResourceCollectionOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -318,7 +344,7 @@ const putSimpleProductOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.simpleBodyProduct,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -345,7 +371,7 @@ const postFlattenedSimpleProductOperationSpec: coreClient.OperationSpec = {
     },
     mapper: { ...Mappers.SimpleProduct, required: true }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer
@@ -372,7 +398,7 @@ const putSimpleProductWithGroupingOperationSpec: coreClient.OperationSpec = {
     },
     mapper: { ...Mappers.SimpleProduct, required: true }
   },
-  urlParameters: [Parameters.$host, Parameters.name],
+  urlParameters: [Parameters.Host, Parameters.name],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

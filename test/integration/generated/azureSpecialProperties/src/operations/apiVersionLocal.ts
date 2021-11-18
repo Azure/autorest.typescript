@@ -10,7 +10,7 @@ import { ApiVersionLocal } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   ApiVersionLocalGetMethodLocalValidOptionalParams,
   ApiVersionLocalGetMethodLocalNullOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing ApiVersionLocal operations. */
 export class ApiVersionLocalImpl implements ApiVersionLocal {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class ApiVersionLocal class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -95,7 +95,7 @@ const getMethodLocalValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -109,7 +109,7 @@ const getMethodLocalNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion2],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -123,7 +123,7 @@ const getPathLocalValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -137,7 +137,7 @@ const getSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

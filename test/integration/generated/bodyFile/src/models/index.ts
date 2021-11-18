@@ -83,7 +83,7 @@ export type FilesGetEmptyFileResponse = {
 export interface BodyFileClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

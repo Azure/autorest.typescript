@@ -8,16 +8,42 @@
 
 import { QueriesImpl } from "./operations";
 import { Queries } from "./operationsInterfaces";
-import { UrlMultiClientContext } from "./urlMultiClientContext";
 import { UrlMultiClientOptionalParams } from "./models";
 
-export class UrlMultiClient extends UrlMultiClientContext {
+export class UrlMultiClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the UrlMultiClient class.
    * @param options The parameter options
    */
   constructor(options?: UrlMultiClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: UrlMultiClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-url-multi/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.queries = new QueriesImpl(this);
   }
 

@@ -506,7 +506,7 @@ export const MyBaseType: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      propBH1: {
+      propBh1: {
         serializedName: "helper.propBH1",
         type: {
           name: "String"

@@ -10,7 +10,7 @@ import { Byte } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyByteClientContext } from "../bodyByteClientContext";
+import { BodyByteClient } from "../bodyByteClient";
 import {
   ByteGetNullOptionalParams,
   ByteGetNullResponse,
@@ -25,13 +25,13 @@ import {
 
 /** Class containing Byte operations. */
 export class ByteImpl implements Byte {
-  private readonly client: BodyByteClientContext;
+  private readonly client: BodyByteClient;
 
   /**
    * Initialize a new instance of the class Byte class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyByteClientContext) {
+  constructor(client: BodyByteClient) {
     this.client = client;
   }
 
@@ -108,7 +108,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -123,7 +123,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -138,7 +138,7 @@ const getNonAsciiOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -152,7 +152,7 @@ const putNonAsciiOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.byteBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -168,7 +168,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

@@ -9,20 +9,46 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { ReportClientContext } from "./reportClientContext";
 import {
   ReportClientOptionalParams,
   GetReportOptionalParams,
   GetReportResponse
 } from "./models";
 
-export class ReportClient extends ReportClientContext {
+export class ReportClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the ReportClient class.
    * @param options The parameter options
    */
   constructor(options?: ReportClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: ReportClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-zzzAzureReport/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
   }
 
   /**
@@ -50,7 +76,7 @@ const getReportOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.qualifier],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

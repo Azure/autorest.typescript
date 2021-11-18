@@ -110,28 +110,10 @@ export const UserDelegationKey: coreClient.CompositeMapper = {
 };
 
 export const DataLakeStorageError: coreClient.CompositeMapper = {
-  serializedName: "DataLakeStorageError",
-  type: {
-    name: "Composite",
-    className: "DataLakeStorageError",
-    modelProperties: {
-      dataLakeStorageErrorDetails: {
-        serializedName: "error",
-        xmlName: "error",
-        type: {
-          name: "Composite",
-          className: "DataLakeStorageErrorError"
-        }
-      }
-    }
-  }
-};
-
-export const DataLakeStorageErrorError: coreClient.CompositeMapper = {
   serializedName: "DataLakeStorageErrorError",
   type: {
     name: "Composite",
-    className: "DataLakeStorageErrorError",
+    className: "DataLakeStorageError",
     modelProperties: {
       code: {
         serializedName: "Code",
@@ -321,7 +303,7 @@ export const BlobPropertiesInternal: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "Content-MD5",
         xmlName: "Content-MD5",
         type: {
@@ -1583,7 +1565,7 @@ export const Metrics: coreClient.CompositeMapper = {
           name: "Boolean"
         }
       },
-      includeAPIs: {
+      includeApIs: {
         serializedName: "IncludeAPIs",
         xmlName: "IncludeAPIs",
         type: {
@@ -1973,14 +1955,14 @@ export const PageBlobUploadPagesHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "content-md5",
         xmlName: "content-md5",
         type: {
           name: "ByteArray"
         }
       },
-      xMsContentCrc64: {
+      xMSContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -2070,7 +2052,7 @@ export const BlockBlobStageBlockHeaders: coreClient.CompositeMapper = {
     name: "Composite",
     className: "BlockBlobStageBlockHeaders",
     modelProperties: {
-      contentMD5: {
+      contentMd5: {
         serializedName: "content-md5",
         xmlName: "content-md5",
         type: {
@@ -2105,7 +2087,7 @@ export const BlockBlobStageBlockHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      xMsContentCrc64: {
+      xMSContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -2174,7 +2156,7 @@ export const BlockBlobUploadHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "content-md5",
         xmlName: "content-md5",
         type: {
@@ -2278,7 +2260,7 @@ export const BlockBlobPutBlobFromUrlHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "content-md5",
         xmlName: "content-md5",
         type: {
@@ -2382,14 +2364,14 @@ export const AppendBlobAppendBlockHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "content-md5",
         xmlName: "content-md5",
         type: {
           name: "ByteArray"
         }
       },
-      xMsContentCrc64: {
+      xMSContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {

@@ -44,11 +44,11 @@ export interface HeaderCustomNamedRequestIdParamGroupingParameters {
 }
 
 /** Optional parameters. */
-export interface XMsClientRequestIdGetOptionalParams
+export interface XmsClientRequestIdGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
-export interface XMsClientRequestIdParamGetOptionalParams
+export interface XmsClientRequestIdParamGetOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Optional parameters. */
@@ -189,7 +189,7 @@ export type HeaderCustomNamedRequestIdHeadResponse = HeaderCustomNamedRequestIdH
 export interface AzureSpecialPropertiesClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

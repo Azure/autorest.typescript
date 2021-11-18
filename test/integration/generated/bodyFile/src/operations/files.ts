@@ -10,7 +10,7 @@ import { Files } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyFileClientContext } from "../bodyFileClientContext";
+import { BodyFileClient } from "../bodyFileClient";
 import {
   FilesGetFileOptionalParams,
   FilesGetFileResponse,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing Files operations. */
 export class FilesImpl implements Files {
-  private readonly client: BodyFileClientContext;
+  private readonly client: BodyFileClient;
 
   /**
    * Initialize a new instance of the class Files class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyFileClientContext) {
+  constructor(client: BodyFileClient) {
     this.client = client;
   }
 
@@ -80,7 +80,7 @@ const getFileOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -95,7 +95,7 @@ const getFileLargeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -110,7 +110,7 @@ const getEmptyFileOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

@@ -51,7 +51,7 @@ export type DurationGetInvalidResponse = {
 export interface BodyDurationClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

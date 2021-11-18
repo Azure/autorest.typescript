@@ -114,7 +114,7 @@ export type PutKittenResponse = {
 export interface MultipleInheritanceClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

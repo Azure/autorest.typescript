@@ -298,7 +298,7 @@ export interface PrimitiveGetDateTimeRfc1123200Response extends HttpResponse {
 }
 
 /** Get complex types with datetimeRfc1123 properties */
-export interface PrimitiveGetDateTimeRfc1123defaultResponse
+export interface PrimitiveGetDateTimeRfc1123DefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;
@@ -311,7 +311,7 @@ export interface PrimitivePutDateTimeRfc1123200Response extends HttpResponse {
 }
 
 /** Put complex types with datetimeRfc1123 properties */
-export interface PrimitivePutDateTimeRfc1123defaultResponse
+export interface PrimitivePutDateTimeRfc1123DefaultResponse
   extends HttpResponse {
   status: "500";
   body: ErrorModelOutput;

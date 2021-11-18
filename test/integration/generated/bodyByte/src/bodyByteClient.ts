@@ -8,16 +8,42 @@
 
 import { ByteImpl } from "./operations";
 import { Byte } from "./operationsInterfaces";
-import { BodyByteClientContext } from "./bodyByteClientContext";
 import { BodyByteClientOptionalParams } from "./models";
 
-export class BodyByteClient extends BodyByteClientContext {
+export class BodyByteClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the BodyByteClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyByteClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: BodyByteClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-body-byte/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.byte = new ByteImpl(this);
   }
 

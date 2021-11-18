@@ -10,7 +10,7 @@ import { SkipUrlEncoding } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   SkipUrlEncodingGetMethodPathValidOptionalParams,
   SkipUrlEncodingGetPathValidOptionalParams,
@@ -23,13 +23,13 @@ import {
 
 /** Class containing SkipUrlEncoding operations. */
 export class SkipUrlEncodingImpl implements SkipUrlEncoding {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class SkipUrlEncoding class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -144,7 +144,7 @@ const getMethodPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
+  urlParameters: [Parameters.Host, Parameters.unencodedPathParam],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -157,7 +157,7 @@ const getPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.unencodedPathParam],
+  urlParameters: [Parameters.Host, Parameters.unencodedPathParam],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -171,7 +171,7 @@ const getSwaggerPathValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.unencodedPathParam1],
+  urlParameters: [Parameters.Host, Parameters.unencodedPathParam1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -185,7 +185,7 @@ const getMethodQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -199,7 +199,7 @@ const getMethodQueryNullOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q11],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -213,7 +213,7 @@ const getPathQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q1],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -227,7 +227,7 @@ const getSwaggerQueryValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.q12],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

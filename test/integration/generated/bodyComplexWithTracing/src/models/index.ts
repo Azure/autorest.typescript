@@ -132,7 +132,7 @@ export interface MyBaseType {
   /** Polymorphic discriminator, which specifies the different types this object can be */
   kind: "Kind1";
   propB1?: string;
-  propBH1?: string;
+  propBh1?: string;
 }
 
 export type Dog = Pet & {
@@ -202,8 +202,8 @@ export type Cookiecuttershark = Shark & {
   fishtype: "cookiecuttershark";
 };
 
-/** Known values of {@link CMYKColors} that the service accepts. */
-export enum KnownCMYKColors {
+/** Known values of {@link CmykColors} that the service accepts. */
+export enum KnownCmykColors {
   Cyan = "cyan",
   Magenta = "Magenta",
   Yellow = "YELLOW",
@@ -211,8 +211,8 @@ export enum KnownCMYKColors {
 }
 
 /**
- * Defines values for CMYKColors. \
- * {@link KnownCMYKColors} can be used interchangeably with CMYKColors,
+ * Defines values for CmykColors. \
+ * {@link KnownCmykColors} can be used interchangeably with CmykColors,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **cyan** \
@@ -220,7 +220,7 @@ export enum KnownCMYKColors {
  * **YELLOW** \
  * **blacK**
  */
-export type CMYKColors = string;
+export type CmykColors = string;
 
 /** Known values of {@link MyKind} that the service accepts. */
 export enum KnownMyKind {
@@ -583,7 +583,7 @@ export type FlattencomplexGetValidResponse = MyBaseTypeUnion;
 export interface BodyComplexWithTracingOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

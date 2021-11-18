@@ -10,7 +10,7 @@ import { FooApi } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Parameters from "../models/parameters";
-import { MediaTypesV3ClientContext } from "../mediaTypesV3ClientContext";
+import { MediaTypesV3Client } from "../mediaTypesV3Client";
 import {
   FooApiPostSendOnDefault$binaryOptionalParams,
   FooApiPostSendOnDefault$textOptionalParams,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing FooApi operations. */
 export class FooApiImpl implements FooApi {
-  private readonly client: MediaTypesV3ClientContext;
+  private readonly client: MediaTypesV3Client;
 
   /**
    * Initialize a new instance of the class FooApi class.
    * @param client Reference to the service client
    */
-  constructor(client: MediaTypesV3ClientContext) {
+  constructor(client: MediaTypesV3Client) {
     this.client = client;
   }
 
@@ -179,7 +179,7 @@ const postSendOnDefault$binaryOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -195,7 +195,7 @@ const postSendOnDefault$textOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer
@@ -211,7 +211,7 @@ const postSend$binaryOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data1,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.$host, Parameters.thing],
+  urlParameters: [Parameters.Host, Parameters.thing],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -227,7 +227,7 @@ const postSend$textOperationSpec: coreClient.OperationSpec = {
   },
   requestBody: Parameters.data,
   queryParameters: [Parameters.excluded],
-  urlParameters: [Parameters.$host, Parameters.thing],
+  urlParameters: [Parameters.Host, Parameters.thing],
   headerParameters: [Parameters.accept, Parameters.contentType2],
   mediaType: "text",
   serializer

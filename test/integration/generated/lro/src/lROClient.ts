@@ -7,35 +7,61 @@
  */
 
 import {
-  LROsImpl,
-  LRORetrysImpl,
+  LrOSImpl,
+  LroRetrysImpl,
   LrosaDsImpl,
-  LROsCustomHeaderImpl
+  LrOSCustomHeaderImpl
 } from "./operations";
 import {
-  LROs,
-  LRORetrys,
+  LrOS,
+  LroRetrys,
   LrosaDs,
-  LROsCustomHeader
+  LrOSCustomHeader
 } from "./operationsInterfaces";
-import { LROClientContext } from "./lROClientContext";
-import { LROClientOptionalParams } from "./models";
+import { LroClientOptionalParams } from "./models";
 
-export class LROClient extends LROClientContext {
+export class LroClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
-   * Initializes a new instance of the LROClient class.
+   * Initializes a new instance of the LroClient class.
    * @param options The parameter options
    */
-  constructor(options?: LROClientOptionalParams) {
-    super(options);
-    this.lROs = new LROsImpl(this);
-    this.lRORetrys = new LRORetrysImpl(this);
+  constructor(options?: LroClientOptionalParams) {
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: LroClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-lro/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
+    this.lrOS = new LrOSImpl(this);
+    this.lroRetrys = new LroRetrysImpl(this);
     this.lrosaDs = new LrosaDsImpl(this);
-    this.lROsCustomHeader = new LROsCustomHeaderImpl(this);
+    this.lrOSCustomHeader = new LrOSCustomHeaderImpl(this);
   }
 
-  lROs: LROs;
-  lRORetrys: LRORetrys;
+  lrOS: LrOS;
+  lroRetrys: LroRetrys;
   lrosaDs: LrosaDs;
-  lROsCustomHeader: LROsCustomHeader;
+  lrOSCustomHeader: LrOSCustomHeader;
 }

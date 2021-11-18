@@ -17,11 +17,11 @@ export const StorageError: coreClient.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
-  serializedName: "File_uploadRangeFromURLHeaders",
+export const FileUploadRangeFromUrlHeaders: coreClient.CompositeMapper = {
+  serializedName: "File_uploadRangeFromUrlHeaders",
   type: {
     name: "Composite",
-    className: "FileUploadRangeFromURLHeaders",
+    className: "FileUploadRangeFromUrlHeaders",
     modelProperties: {
       eTag: {
         serializedName: "etag",
@@ -37,7 +37,7 @@ export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      xMsContentCrc64: {
+      xMSContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -76,11 +76,11 @@ export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromURLExceptionHeaders: coreClient.CompositeMapper = {
-  serializedName: "File_uploadRangeFromURLExceptionHeaders",
+export const FileUploadRangeFromUrlExceptionHeaders: coreClient.CompositeMapper = {
+  serializedName: "File_uploadRangeFromUrlExceptionHeaders",
   type: {
     name: "Composite",
-    className: "FileUploadRangeFromURLExceptionHeaders",
+    className: "FileUploadRangeFromUrlExceptionHeaders",
     modelProperties: {
       errorCode: {
         serializedName: "x-ms-error-code",

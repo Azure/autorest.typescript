@@ -9,18 +9,18 @@
 import { Get } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "../models/parameters";
-import { UuidClientContext } from "../uuidClientContext";
+import { UuidClient } from "../uuidClient";
 import { GetUuidOptionalParams, GetUuidResponse } from "../models";
 
 /** Class containing Get operations. */
 export class GetImpl implements Get {
-  private readonly client: UuidClientContext;
+  private readonly client: UuidClient;
 
   /**
    * Initialize a new instance of the class Get class.
    * @param client Reference to the service client
    */
-  constructor(client: UuidClientContext) {
+  constructor(client: UuidClient) {
     this.client = client;
   }
 
@@ -49,7 +49,7 @@ const uuidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "String" } }
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.testUuid],
   serializer
 };

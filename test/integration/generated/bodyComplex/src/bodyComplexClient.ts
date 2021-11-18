@@ -28,16 +28,44 @@ import {
   Readonlyproperty,
   Flattencomplex
 } from "./operationsInterfaces";
-import { BodyComplexClientContext } from "./bodyComplexClientContext";
 import { BodyComplexClientOptionalParams } from "./models";
 
-export class BodyComplexClient extends BodyComplexClientContext {
+export class BodyComplexClient extends coreClient.ServiceClient {
+  Host: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the BodyComplexClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyComplexClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: BodyComplexClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-body-complex/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
+    this.apiVersion = options.apiVersion || "2016-02-29";
     this.basic = new BasicImpl(this);
     this.primitive = new PrimitiveImpl(this);
     this.array = new ArrayImpl(this);

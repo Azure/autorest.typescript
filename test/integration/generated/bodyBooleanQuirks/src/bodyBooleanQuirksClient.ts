@@ -8,16 +8,42 @@
 
 import { BoolImpl } from "./operations";
 import { Bool } from "./operationsInterfaces";
-import { BodyBooleanQuirksClientContext } from "./bodyBooleanQuirksClientContext";
 import { BodyBooleanQuirksClientOptionalParams } from "./models";
 
-export class BodyBooleanQuirksClient extends BodyBooleanQuirksClientContext {
+export class BodyBooleanQuirksClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the BodyBooleanQuirksClient class.
    * @param options The parameter options
    */
   constructor(options?: BodyBooleanQuirksClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: BodyBooleanQuirksClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-body-boolean-quirks/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.bool = new BoolImpl(this);
   }
 

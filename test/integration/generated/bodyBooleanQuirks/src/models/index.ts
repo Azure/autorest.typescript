@@ -65,7 +65,7 @@ export type BoolGetInvalidResponse = {
 export interface BodyBooleanQuirksClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

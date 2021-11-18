@@ -9,7 +9,6 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";
 import {
   MultipleInheritanceClientOptionalParams,
   GetHorseOptionalParams,
@@ -39,13 +38,40 @@ import {
   PutKittenResponse
 } from "./models";
 
-export class MultipleInheritanceClient extends MultipleInheritanceClientContext {
+export class MultipleInheritanceClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the MultipleInheritanceClient class.
    * @param options The parameter options
    */
   constructor(options?: MultipleInheritanceClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: MultipleInheritanceClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-multiple-inheritance/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
   }
 
   /**
@@ -164,7 +190,7 @@ const getHorseOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -177,7 +203,7 @@ const putHorseOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.horse,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -193,7 +219,7 @@ const getPetOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -206,7 +232,7 @@ const putPetOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.pet,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -222,7 +248,7 @@ const getFelineOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -235,7 +261,7 @@ const putFelineOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.feline,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -251,7 +277,7 @@ const getCatOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -264,7 +290,7 @@ const putCatOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.cat,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -280,7 +306,7 @@ const getKittenOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -293,7 +319,7 @@ const putKittenOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.kitten,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

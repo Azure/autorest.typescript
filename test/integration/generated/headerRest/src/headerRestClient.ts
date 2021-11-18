@@ -74,9 +74,9 @@ import {
   ResponseDatetime200Response,
   ResponseDatetimedefaultResponse,
   ParamDatetimeRfc1123200Response,
-  ParamDatetimeRfc1123defaultResponse,
+  ParamDatetimeRfc1123DefaultResponse,
   ResponseDatetimeRfc1123200Response,
-  ResponseDatetimeRfc1123defaultResponse,
+  ResponseDatetimeRfc1123DefaultResponse,
   ParamDuration200Response,
   ParamDurationdefaultResponse,
   ResponseDuration200Response,
@@ -244,7 +244,7 @@ export interface ParamDatetimeRfc1123 {
   post(
     options?: ParamDatetimeRfc1123Parameters
   ): Promise<
-    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123defaultResponse
+    ParamDatetimeRfc1123200Response | ParamDatetimeRfc1123DefaultResponse
   >;
 }
 
@@ -253,7 +253,7 @@ export interface ResponseDatetimeRfc1123 {
   post(
     options?: ResponseDatetimeRfc1123Parameters
   ): Promise<
-    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123defaultResponse
+    ResponseDatetimeRfc1123200Response | ResponseDatetimeRfc1123DefaultResponse
   >;
 }
 

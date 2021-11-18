@@ -2,21 +2,21 @@ import { File } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageFileShareClientContext } from "../storageFileShareClientContext";
+import { StorageFileShareClient } from "../storageFileShareClient";
 import {
-  FileUploadRangeFromURLOptionalParams,
-  FileUploadRangeFromURLResponse
+  FileUploadRangeFromUrlOptionalParams,
+  FileUploadRangeFromUrlResponse
 } from "../models";
 
 /** Class containing File operations. */
 export class FileImpl implements File {
-  private readonly client: StorageFileShareClientContext;
+  private readonly client: StorageFileShareClient;
 
   /**
    * Initialize a new instance of the class File class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageFileShareClientContext) {
+  constructor(client: StorageFileShareClient) {
     this.client = client;
   }
 
@@ -33,31 +33,31 @@ export class FileImpl implements File {
    *                      x-ms-write header is set to clear, the value of this header must be set to zero.
    * @param options The options parameters.
    */
-  uploadRangeFromURL(
+  uploadRangeFromUrl(
     range: string,
     copySource: string,
     contentLength: number,
-    options?: FileUploadRangeFromURLOptionalParams
-  ): Promise<FileUploadRangeFromURLResponse> {
+    options?: FileUploadRangeFromUrlOptionalParams
+  ): Promise<FileUploadRangeFromUrlResponse> {
     return this.client.sendOperationRequest(
       { range, copySource, contentLength, options },
-      uploadRangeFromURLOperationSpec
+      uploadRangeFromUrlOperationSpec
     );
   }
 }
 // Operation Specifications
 const xmlSerializer = coreClient.createSerializer(Mappers, /* isXml */ true);
 
-const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
+const uploadRangeFromUrlOperationSpec: coreClient.OperationSpec = {
   path: "/{shareName}/{directory}/{fileName}",
   httpMethod: "PUT",
   responses: {
     201: {
-      headersMapper: Mappers.FileUploadRangeFromURLHeaders
+      headersMapper: Mappers.FileUploadRangeFromUrlHeaders
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.FileUploadRangeFromURLExceptionHeaders
+      headersMapper: Mappers.FileUploadRangeFromUrlExceptionHeaders
     }
   },
   queryParameters: [Parameters.comp, Parameters.timeout],

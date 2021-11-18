@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataLakeStorageClientContext } from "../dataLakeStorageClientContext";
+import { DataLakeStorageClient } from "../dataLakeStorageClient";
 import {
   PathCreateOptionalParams,
   PathCreateResponse,
@@ -32,13 +32,13 @@ import {
 
 /** Class containing PathOperations operations. */
 export class PathOperationsImpl implements PathOperations {
-  private readonly client: DataLakeStorageClientContext;
+  private readonly client: DataLakeStorageClient;
 
   /**
    * Initialize a new instance of the class PathOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: DataLakeStorageClientContext) {
+  constructor(client: DataLakeStorageClient) {
     this.client = client;
   }
 
@@ -91,7 +91,7 @@ export class PathOperationsImpl implements PathOperations {
    * conditional HTTP requests.  For more information, see [Specifying Conditional Headers for Blob
    * Service
    * Operations](https://docs.microsoft.com/en-us/rest/api/storageservices/specifying-conditional-headers-for-blob-service-operations).
-   * @param xMsLeaseAction There are five lease actions: "acquire", "break", "change", "renew", and
+   * @param xMSLeaseAction There are five lease actions: "acquire", "break", "change", "renew", and
    *                       "release". Use "acquire" and specify the "x-ms-proposed-lease-id" and "x-ms-lease-duration" to
    *                       acquire a new lease. Use "break" to break an existing lease. When a lease is broken, the lease break
    *                       period is allowed to elapse, during which time no lease operation except break and release can be
@@ -103,11 +103,11 @@ export class PathOperationsImpl implements PathOperations {
    * @param options The options parameters.
    */
   lease(
-    xMsLeaseAction: PathLeaseAction,
+    xMSLeaseAction: PathLeaseAction,
     options?: PathLeaseOptionalParams
   ): Promise<PathLeaseResponse> {
     return this.client.sendOperationRequest(
-      { xMsLeaseAction, options },
+      { xMSLeaseAction, options },
       leaseOperationSpec
     );
   }
@@ -245,7 +245,7 @@ const updateOperationSpec: coreClient.OperationSpec = {
     Parameters.contentType1,
     Parameters.accept1,
     Parameters.contentLength,
-    Parameters.contentMD5,
+    Parameters.contentMd5,
     Parameters.owner,
     Parameters.group,
     Parameters.acl
@@ -282,9 +282,9 @@ const leaseOperationSpec: coreClient.OperationSpec = {
     Parameters.ifNoneMatch,
     Parameters.ifModifiedSince,
     Parameters.ifUnmodifiedSince,
-    Parameters.xMsLeaseAction,
-    Parameters.xMsLeaseDuration,
-    Parameters.xMsLeaseBreakPeriod,
+    Parameters.xMSLeaseAction,
+    Parameters.xMSLeaseDuration,
+    Parameters.xMSLeaseBreakPeriod,
     Parameters.proposedLeaseId
   ],
   serializer
@@ -324,7 +324,7 @@ const readOperationSpec: coreClient.OperationSpec = {
     Parameters.ifModifiedSince,
     Parameters.ifUnmodifiedSince,
     Parameters.range,
-    Parameters.xMsRangeGetContentMd5
+    Parameters.xMSRangeGetContentMd5
   ],
   serializer
 };

@@ -83,7 +83,7 @@ export type PetAddPetResponse = PetDef;
 export interface ExtensibleEnumsClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

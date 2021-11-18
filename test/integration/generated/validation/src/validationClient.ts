@@ -9,7 +9,6 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { ValidationClientContext } from "./validationClientContext";
 import {
   ValidationClientOptionalParams,
   ValidationOfMethodParametersOptionalParams,
@@ -21,7 +20,11 @@ import {
   PostWithConstantInBodyResponse
 } from "./models";
 
-export class ValidationClient extends ValidationClientContext {
+export class ValidationClient extends coreClient.ServiceClient {
+  Host: string;
+  subscriptionId: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the ValidationClient class.
    * @param subscriptionId Subscription ID.
@@ -31,7 +34,39 @@ export class ValidationClient extends ValidationClientContext {
     subscriptionId: string,
     options?: ValidationClientOptionalParams
   ) {
-    super(subscriptionId, options);
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: ValidationClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-validation/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
+    this.apiVersion = options.apiVersion || "1.0.0";
   }
 
   /**
@@ -104,7 +139,7 @@ const validationOfMethodParametersOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.id
@@ -126,7 +161,7 @@ const validationOfBodyOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.body,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.id,
     Parameters.resourceGroupName1
@@ -139,7 +174,7 @@ const getWithConstantInPathOperationSpec: coreClient.OperationSpec = {
   path: "/validation/constantsInPath/{constantParam}/value",
   httpMethod: "GET",
   responses: { 200: {} },
-  urlParameters: [Parameters.$host, Parameters.constantParam],
+  urlParameters: [Parameters.Host, Parameters.constantParam],
   serializer
 };
 const postWithConstantInBodyOperationSpec: coreClient.OperationSpec = {
@@ -151,7 +186,7 @@ const postWithConstantInBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.body,
-  urlParameters: [Parameters.$host, Parameters.constantParam],
+  urlParameters: [Parameters.Host, Parameters.constantParam],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer

@@ -601,7 +601,7 @@ export const Metrics: coreClient.CompositeMapper = {
           name: "Boolean"
         }
       },
-      includeAPIs: {
+      includeApIs: {
         serializedName: "IncludeAPIs",
         xmlName: "IncludeAPIs",
         type: {
@@ -968,7 +968,7 @@ export const BlobProperties: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      contentMD5: {
+      contentMd5: {
         serializedName: "Content-MD5",
         xmlName: "Content-MD5",
         type: {
@@ -1171,12 +1171,12 @@ export const JsonOutput: coreClient.CompositeMapper = {
   }
 };
 
-export const ObjectWithXMsTextProperty: coreClient.CompositeMapper = {
+export const ObjectWithXmsTextProperty: coreClient.CompositeMapper = {
   serializedName: "ObjectWithXMsTextProperty",
   xmlName: "Data",
   type: {
     name: "Composite",
-    className: "ObjectWithXMsTextProperty",
+    className: "ObjectWithXMSTextProperty",
     modelProperties: {
       language: {
         serializedName: "language",
@@ -1231,11 +1231,11 @@ export const ModelWithUrlProperty: coreClient.CompositeMapper = {
   }
 };
 
-export const XmlGetHeadersHeaders: coreClient.CompositeMapper = {
+export const XmlGetHeaders: coreClient.CompositeMapper = {
   serializedName: "Xml_getHeadersHeaders",
   type: {
     name: "Composite",
-    className: "XmlGetHeadersHeaders",
+    className: "XmlGetHeaders",
     modelProperties: {
       customHeader: {
         serializedName: "custom-header",

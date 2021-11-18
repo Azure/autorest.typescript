@@ -70,7 +70,7 @@ export type ResourceGroupsCheckExistenceResponse = {
 export interface ResourcesClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

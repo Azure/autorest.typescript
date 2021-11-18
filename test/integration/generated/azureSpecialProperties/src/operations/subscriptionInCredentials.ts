@@ -10,7 +10,7 @@ import { SubscriptionInCredentials } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   SubscriptionInCredentialsPostMethodGlobalValidOptionalParams,
   SubscriptionInCredentialsPostMethodGlobalNullOptionalParams,
@@ -22,13 +22,13 @@ import {
 /** Class containing SubscriptionInCredentials operations. */
 export class SubscriptionInCredentialsImpl
   implements SubscriptionInCredentials {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class SubscriptionInCredentials class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -115,7 +115,7 @@ const postMethodGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -129,7 +129,7 @@ const postMethodGlobalNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -144,7 +144,7 @@ const postMethodGlobalNotProvidedValidOperationSpec: coreClient.OperationSpec = 
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -158,7 +158,7 @@ const postPathGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -172,7 +172,7 @@ const postSwaggerGlobalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId],
   headerParameters: [Parameters.accept],
   serializer
 };

@@ -10,7 +10,7 @@ import { ResourceGroups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourcesClientContext } from "../resourcesClientContext";
+import { ResourcesClient } from "../resourcesClient";
 import {
   ResourceGroupsCheckExistenceOptionalParams,
   ResourceGroupsCheckExistenceResponse
@@ -18,13 +18,13 @@ import {
 
 /** Class containing ResourceGroups operations. */
 export class ResourceGroupsImpl implements ResourceGroups {
-  private readonly client: ResourcesClientContext;
+  private readonly client: ResourcesClient;
 
   /**
    * Initialize a new instance of the class ResourceGroups class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourcesClientContext) {
+  constructor(client: ResourcesClient) {
     this.client = client;
   }
 
@@ -58,7 +58,7 @@ const checkExistenceOperationSpec: coreClient.OperationSpec = {
   },
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.resourceGroupName,
     Parameters.subscriptionId
   ],

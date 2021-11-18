@@ -23,7 +23,7 @@ To use this client library in the browser, first you need to use a bundler. For 
 
 ## Key concepts
 
-### LROClient
+### LroClient
 
-`LROClient` is the primary interface for developers using the LRO client library. Explore the methods on this client object to understand the different features of the LRO service that you can access.
+`LroClient` is the primary interface for developers using the LRO client library. Explore the methods on this client object to understand the different features of the LRO service that you can access.
 

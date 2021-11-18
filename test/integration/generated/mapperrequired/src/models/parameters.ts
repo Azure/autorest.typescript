@@ -38,8 +38,8 @@ export const provider: OperationParameter = {
   mapper: CertificateIssuerUpdateParametersMapper
 };
 
-export const $host: OperationURLParameter = {
-  parameterPath: "$host",
+export const Host: OperationURLParameter = {
+  parameterPath: "Host",
   mapper: {
     serializedName: "$host",
     required: true,

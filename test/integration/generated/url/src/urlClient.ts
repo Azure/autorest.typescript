@@ -8,17 +8,51 @@
 
 import { PathsImpl, QueriesImpl, PathItemsImpl } from "./operations";
 import { Paths, Queries, PathItems } from "./operationsInterfaces";
-import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
-export class UrlClient extends UrlClientContext {
+export class UrlClient extends coreClient.ServiceClient {
+  Host: string;
+  globalStringPath: string;
+  globalStringQuery?: string;
+
   /**
    * Initializes a new instance of the UrlClient class.
    * @param globalStringPath A string value 'globalItemStringPath' that appears in the path
    * @param options The parameter options
    */
   constructor(globalStringPath: string, options?: UrlClientOptionalParams) {
-    super(globalStringPath, options);
+    if (globalStringPath === undefined) {
+      throw new Error("'globalStringPath' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: UrlClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-url/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.globalStringPath = globalStringPath;
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.paths = new PathsImpl(this);
     this.queries = new QueriesImpl(this);
     this.pathItems = new PathItemsImpl(this);

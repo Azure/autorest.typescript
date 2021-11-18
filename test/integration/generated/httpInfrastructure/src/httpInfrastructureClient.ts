@@ -24,16 +24,42 @@ import {
   HttpRetry,
   MultipleResponses
 } from "./operationsInterfaces";
-import { HttpInfrastructureClientContext } from "./httpInfrastructureClientContext";
 import { HttpInfrastructureClientOptionalParams } from "./models";
 
-export class HttpInfrastructureClient extends HttpInfrastructureClientContext {
+export class HttpInfrastructureClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the HttpInfrastructureClient class.
    * @param options The parameter options
    */
   constructor(options?: HttpInfrastructureClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: HttpInfrastructureClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-httpInfrastructure/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.httpFailure = new HttpFailureImpl(this);
     this.httpSuccess = new HttpSuccessImpl(this);
     this.httpRedirects = new HttpRedirectsImpl(this);

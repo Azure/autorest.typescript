@@ -32,8 +32,8 @@ export const grantType: OperationParameter = {
   }
 };
 
-export const $host: OperationURLParameter = {
-  parameterPath: "$host",
+export const Host: OperationURLParameter = {
+  parameterPath: "Host",
   mapper: {
     serializedName: "$host",
     required: true,

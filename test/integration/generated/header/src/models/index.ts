@@ -271,7 +271,7 @@ export interface HeaderCustomRequestIdOptionalParams
 export interface HeaderClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

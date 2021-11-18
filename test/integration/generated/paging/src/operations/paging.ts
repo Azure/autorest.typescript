@@ -13,7 +13,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { PagingClientContext } from "../pagingClientContext";
+import { PagingClient } from "../pagingClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -49,10 +49,10 @@ import {
   CustomParameterGroup,
   PagingNextFragmentWithGroupingOptionalParams,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkOptionalParams,
-  PagingGetMultiplePagesLRONextOptionalParams,
-  PagingGetMultiplePagesLROOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams,
-  PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams,
+  PagingGetMultiplePagesLroNextOptionalParams,
+  PagingGetMultiplePagesLroOptionalParams,
+  PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams,
+  PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams,
   PagingGetNoItemNamePagesResponse,
   PagingGetNullNextLinkNamePagesResponse,
   PagingGetSinglePagesResponse,
@@ -69,10 +69,10 @@ import {
   PagingGetMultiplePagesFailureUriResponse,
   PagingGetMultiplePagesFragmentNextLinkResponse,
   PagingGetMultiplePagesFragmentWithGroupingNextLinkResponse,
-  PagingGetMultiplePagesLROResponse,
+  PagingGetMultiplePagesLroResponse,
   PagingNextFragmentResponse,
   PagingNextFragmentWithGroupingResponse,
-  PagingGetPagingModelWithItemNameWithXMSClientNameResponse,
+  PagingGetPagingModelWithItemNameWithXmsClientNameResponse,
   PagingGetNoItemNamePagesNextResponse,
   PagingGetSinglePagesNextResponse,
   PagingFirstResponseEmptyNextResponse,
@@ -84,20 +84,20 @@ import {
   PagingGetSinglePagesFailureNextResponse,
   PagingGetMultiplePagesFailureNextResponse,
   PagingGetMultiplePagesFailureUriNextResponse,
-  PagingGetMultiplePagesLRONextResponse,
-  PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse
+  PagingGetMultiplePagesLroNextResponse,
+  PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse
 } from "../models";
 
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Paging operations. */
 export class PagingImpl implements Paging {
-  private readonly client: PagingClientContext;
+  private readonly client: PagingClient;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: PagingClientContext) {
+  constructor(client: PagingClient) {
     this.client = client;
   }
 
@@ -842,10 +842,10 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  public beginListMultiplePagesLROAndWait(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  public beginListMultiplePagesLroAndWait(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): PagedAsyncIterableIterator<Product> {
-    const iter = this.getMultiplePagesLROPagingAll(options);
+    const iter = this.getMultiplePagesLroPagingAll(options);
     return {
       next() {
         return iter.next();
@@ -854,29 +854,29 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: () => {
-        return this.getMultiplePagesLROPagingPage(options);
+        return this.getMultiplePagesLroPagingPage(options);
       }
     };
   }
 
-  private async *getMultiplePagesLROPagingPage(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  private async *getMultiplePagesLroPagingPage(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): AsyncIterableIterator<Product[]> {
-    const poller = await this._getMultiplePagesLRO(options);
+    const poller = await this._getMultiplePagesLro(options);
     let result: any = await poller.pollUntilDone();
     yield result.values || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._getMultiplePagesLRONext(continuationToken, options);
+      result = await this._getMultiplePagesLroNext(continuationToken, options);
       continuationToken = result.nextLink;
       yield result.values || [];
     }
   }
 
-  private async *getMultiplePagesLROPagingAll(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  private async *getMultiplePagesLroPagingAll(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): AsyncIterableIterator<Product> {
-    for await (const page of this.getMultiplePagesLROPagingPage(options)) {
+    for await (const page of this.getMultiplePagesLroPagingPage(options)) {
       yield* page;
     }
   }
@@ -1035,10 +1035,10 @@ export class PagingImpl implements Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  public listPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  public listPagingModelWithItemNameWithXmsClientName(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
   ): PagedAsyncIterableIterator<Product> {
-    const iter = this.getPagingModelWithItemNameWithXMSClientNamePagingAll(
+    const iter = this.getPagingModelWithItemNameWithXmsClientNamePagingAll(
       options
     );
     return {
@@ -1049,23 +1049,23 @@ export class PagingImpl implements Paging {
         return this;
       },
       byPage: () => {
-        return this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
+        return this.getPagingModelWithItemNameWithXmsClientNamePagingPage(
           options
         );
       }
     };
   }
 
-  private async *getPagingModelWithItemNameWithXMSClientNamePagingPage(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  private async *getPagingModelWithItemNameWithXmsClientNamePagingPage(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
   ): AsyncIterableIterator<Product[]> {
-    let result = await this._getPagingModelWithItemNameWithXMSClientName(
+    let result = await this._getPagingModelWithItemNameWithXmsClientName(
       options
     );
     yield result.indexes || [];
     let continuationToken = result.nextLink;
     while (continuationToken) {
-      result = await this._getPagingModelWithItemNameWithXMSClientNameNext(
+      result = await this._getPagingModelWithItemNameWithXmsClientNameNext(
         continuationToken,
         options
       );
@@ -1074,10 +1074,10 @@ export class PagingImpl implements Paging {
     }
   }
 
-  private async *getPagingModelWithItemNameWithXMSClientNamePagingAll(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
+  private async *getPagingModelWithItemNameWithXmsClientNamePagingAll(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
   ): AsyncIterableIterator<Product> {
-    for await (const page of this.getPagingModelWithItemNameWithXMSClientNamePagingPage(
+    for await (const page of this.getPagingModelWithItemNameWithXmsClientNamePagingPage(
       options
     )) {
       yield* page;
@@ -1547,25 +1547,25 @@ export class PagingImpl implements Paging {
    * A long-running paging operation that includes a nextLink that has 10 pages
    * @param options The options parameters.
    */
-  private async _getMultiplePagesLRO(
-    options?: PagingGetMultiplePagesLROOptionalParams
+  private async _getMultiplePagesLro(
+    options?: PagingGetMultiplePagesLroOptionalParams
   ): Promise<
     PollerLike<
-      PollOperationState<PagingGetMultiplePagesLROResponse>,
-      PagingGetMultiplePagesLROResponse
+      PollOperationState<PagingGetMultiplePagesLroResponse>,
+      PagingGetMultiplePagesLroResponse
     >
   > {
     const { span } = createSpan(
-      "PagingClient-_getMultiplePagesLRO",
+      "PagingClient-_getMultiplePagesLro",
       options || {}
     );
     const directSendOperation = async (
       args: coreClient.OperationArguments,
       spec: coreClient.OperationSpec
-    ): Promise<PagingGetMultiplePagesLROResponse> => {
+    ): Promise<PagingGetMultiplePagesLroResponse> => {
       try {
         const result = await this.client.sendOperationRequest(args, spec);
-        return result as PagingGetMultiplePagesLROResponse;
+        return result as PagingGetMultiplePagesLroResponse;
       } catch (error) {
         span.setStatus({
           code: coreTracing.SpanStatusCode.UNSET,
@@ -1612,7 +1612,7 @@ export class PagingImpl implements Paging {
     const lro = new LroImpl(
       sendOperation,
       { options },
-      getMultiplePagesLROOperationSpec
+      getMultiplePagesLroOperationSpec
     );
     return new LroEngine(lro, {
       resumeFrom: options?.resumeFrom,
@@ -1688,19 +1688,19 @@ export class PagingImpl implements Paging {
    * 'indexes'.
    * @param options The options parameters.
    */
-  private async _getPagingModelWithItemNameWithXMSClientName(
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameResponse> {
+  private async _getPagingModelWithItemNameWithXmsClientName(
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameResponse> {
     const { span } = createSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientName",
+      "PagingClient-_getPagingModelWithItemNameWithXmsClientName",
       options || {}
     );
     try {
       const result = await this.client.sendOperationRequest(
         { options },
-        getPagingModelWithItemNameWithXMSClientNameOperationSpec
+        getPagingModelWithItemNameWithXmsClientNameOperationSpec
       );
-      return result as PagingGetPagingModelWithItemNameWithXMSClientNameResponse;
+      return result as PagingGetPagingModelWithItemNameWithXmsClientNameResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -2054,20 +2054,20 @@ export class PagingImpl implements Paging {
    * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
-  private async _getMultiplePagesLRONext(
+  private async _getMultiplePagesLroNext(
     nextLink: string,
-    options?: PagingGetMultiplePagesLRONextOptionalParams
-  ): Promise<PagingGetMultiplePagesLRONextResponse> {
+    options?: PagingGetMultiplePagesLroNextOptionalParams
+  ): Promise<PagingGetMultiplePagesLroNextResponse> {
     const { span } = createSpan(
-      "PagingClient-_getMultiplePagesLRONext",
+      "PagingClient-_getMultiplePagesLroNext",
       options || {}
     );
     try {
       const result = await this.client.sendOperationRequest(
         { nextLink, options },
-        getMultiplePagesLRONextOperationSpec
+        getMultiplePagesLroNextOperationSpec
       );
-      return result as PagingGetMultiplePagesLRONextResponse;
+      return result as PagingGetMultiplePagesLroNextResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -2085,20 +2085,20 @@ export class PagingImpl implements Paging {
    *                 GetPagingModelWithItemNameWithXMSClientName method.
    * @param options The options parameters.
    */
-  private async _getPagingModelWithItemNameWithXMSClientNameNext(
+  private async _getPagingModelWithItemNameWithXmsClientNameNext(
     nextLink: string,
-    options?: PagingGetPagingModelWithItemNameWithXMSClientNameNextOptionalParams
-  ): Promise<PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse> {
+    options?: PagingGetPagingModelWithItemNameWithXmsClientNameNextOptionalParams
+  ): Promise<PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse> {
     const { span } = createSpan(
-      "PagingClient-_getPagingModelWithItemNameWithXMSClientNameNext",
+      "PagingClient-_getPagingModelWithItemNameWithXmsClientNameNext",
       options || {}
     );
     try {
       const result = await this.client.sendOperationRequest(
         { nextLink, options },
-        getPagingModelWithItemNameWithXMSClientNameNextOperationSpec
+        getPagingModelWithItemNameWithXmsClientNameNextOperationSpec
       );
-      return result as PagingGetPagingModelWithItemNameWithXMSClientNameNextResponse;
+      return result as PagingGetPagingModelWithItemNameWithXmsClientNameNextResponse;
     } catch (error) {
       span.setStatus({
         code: coreTracing.SpanStatusCode.UNSET,
@@ -2122,7 +2122,7 @@ const getNoItemNamePagesOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2135,7 +2135,7 @@ const getNullNextLinkNamePagesOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2148,7 +2148,7 @@ const getSinglePagesOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2161,7 +2161,7 @@ const firstResponseEmptyOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2174,7 +2174,7 @@ const getMultiplePagesOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2196,7 +2196,7 @@ const getWithQueryParamsOperationSpec: coreClient.OperationSpec = {
     Parameters.requiredQueryParameter,
     Parameters.queryConstant
   ],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2210,7 +2210,7 @@ const nextOperationWithQueryParamsOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.queryConstant],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2223,7 +2223,7 @@ const getOdataMultiplePagesOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2241,7 +2241,7 @@ const getMultiplePagesWithOffsetOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.offset],
+  urlParameters: [Parameters.Host, Parameters.offset],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2259,7 +2259,7 @@ const getMultiplePagesRetryFirstOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2272,7 +2272,7 @@ const getMultiplePagesRetrySecondOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2285,7 +2285,7 @@ const getSinglePagesFailureOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2298,7 +2298,7 @@ const getMultiplePagesFailureOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2311,7 +2311,7 @@ const getMultiplePagesFailureUriOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2325,7 +2325,7 @@ const getMultiplePagesFragmentNextLinkOperationSpec: coreClient.OperationSpec = 
     default: {}
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant],
+  urlParameters: [Parameters.Host, Parameters.tenant],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2339,11 +2339,11 @@ const getMultiplePagesFragmentWithGroupingNextLinkOperationSpec: coreClient.Oper
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1],
+  urlParameters: [Parameters.Host, Parameters.tenant1],
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
+const getMultiplePagesLroOperationSpec: coreClient.OperationSpec = {
   path: "/paging/multiple/lro",
   httpMethod: "POST",
   responses: {
@@ -2361,7 +2361,7 @@ const getMultiplePagesLROOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2380,7 +2380,7 @@ const nextFragmentOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.tenant, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.tenant, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2394,20 +2394,20 @@ const nextFragmentWithGroupingOperationSpec: coreClient.OperationSpec = {
     default: {}
   },
   queryParameters: [Parameters.apiVersion1],
-  urlParameters: [Parameters.$host, Parameters.tenant1, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.tenant1, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
-const getPagingModelWithItemNameWithXMSClientNameOperationSpec: coreClient.OperationSpec = {
+const getPagingModelWithItemNameWithXmsClientNameOperationSpec: coreClient.OperationSpec = {
   path: "/paging/itemNameWithXMSClientName",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+      bodyMapper: Mappers.ProductResultValueWithXmsClientName
     },
     default: {}
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2420,7 +2420,7 @@ const getNoItemNamePagesNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2433,7 +2433,7 @@ const getSinglePagesNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2446,7 +2446,7 @@ const firstResponseEmptyNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2459,7 +2459,7 @@ const getMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2477,7 +2477,7 @@ const getOdataMultiplePagesNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2495,7 +2495,7 @@ const getMultiplePagesWithOffsetNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.offset, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.offset, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2513,7 +2513,7 @@ const getMultiplePagesRetryFirstNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2526,7 +2526,7 @@ const getMultiplePagesRetrySecondNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2539,7 +2539,7 @@ const getSinglePagesFailureNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2552,7 +2552,7 @@ const getMultiplePagesFailureNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -2565,11 +2565,11 @@ const getMultiplePagesFailureUriNextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };
-const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
+const getMultiplePagesLroNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
@@ -2581,7 +2581,7 @@ const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [
     Parameters.accept,
     Parameters.clientRequestId,
@@ -2590,16 +2590,16 @@ const getMultiplePagesLRONextOperationSpec: coreClient.OperationSpec = {
   ],
   serializer
 };
-const getPagingModelWithItemNameWithXMSClientNameNextOperationSpec: coreClient.OperationSpec = {
+const getPagingModelWithItemNameWithXmsClientNameNextOperationSpec: coreClient.OperationSpec = {
   path: "{nextLink}",
   httpMethod: "GET",
   responses: {
     200: {
-      bodyMapper: Mappers.ProductResultValueWithXMSClientName
+      bodyMapper: Mappers.ProductResultValueWithXmsClientName
     },
     default: {}
   },
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };

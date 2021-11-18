@@ -3,7 +3,7 @@ import { OuContainerOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DomainServicesClientContext } from "../domainServicesClientContext";
+import { DomainServicesClient } from "../domainServicesClient";
 import {
   OperationEntity,
   OuContainerOperationsListNextOptionalParams,
@@ -15,13 +15,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing OuContainerOperations operations. */
 export class OuContainerOperationsImpl implements OuContainerOperations {
-  private readonly client: DomainServicesClientContext;
+  private readonly client: DomainServicesClient;
 
   /**
    * Initialize a new instance of the class OuContainerOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: DomainServicesClientContext) {
+  constructor(client: DomainServicesClient) {
     this.client = client;
   }
 
@@ -107,7 +107,7 @@ const listOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -123,7 +123,7 @@ const listNextOperationSpec: coreClient.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [Parameters.$host, Parameters.nextLink],
+  urlParameters: [Parameters.Host, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };

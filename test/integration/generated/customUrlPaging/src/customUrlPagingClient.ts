@@ -8,16 +8,42 @@
 
 import { PagingImpl } from "./operations";
 import { Paging } from "./operationsInterfaces";
-import { CustomUrlPagingClientContext } from "./customUrlPagingClientContext";
 import { CustomUrlPagingClientOptionalParams } from "./models";
 
-export class CustomUrlPagingClient extends CustomUrlPagingClientContext {
+export class CustomUrlPagingClient extends coreClient.ServiceClient {
+  host: string;
+
   /**
    * Initializes a new instance of the CustomUrlPagingClient class.
    * @param options The parameter options
    */
   constructor(options?: CustomUrlPagingClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: CustomUrlPagingClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-custom-url-paging/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://{accountName}{host}"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.host = options.host || "host";
     this.paging = new PagingImpl(this);
   }
 

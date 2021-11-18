@@ -5,8 +5,8 @@ import {
   UpdateIntegrationRuntimeNodeRequest,
   IntegrationRuntimeNodesUpdateOptionalParams,
   IntegrationRuntimeNodesUpdateResponse,
-  IntegrationRuntimeNodesGetIpAddressOptionalParams,
-  IntegrationRuntimeNodesGetIpAddressResponse
+  IntegrationRuntimeNodesGetIPAddressOptionalParams,
+  IntegrationRuntimeNodesGetIPAddressResponse
 } from "../models";
 
 /** Interface representing a IntegrationRuntimeNodes. */
@@ -66,11 +66,11 @@ export interface IntegrationRuntimeNodes {
    * @param nodeName The integration runtime node name.
    * @param options The options parameters.
    */
-  getIpAddress(
+  getIPAddress(
     resourceGroupName: string,
     factoryName: string,
     integrationRuntimeName: string,
     nodeName: string,
-    options?: IntegrationRuntimeNodesGetIpAddressOptionalParams
-  ): Promise<IntegrationRuntimeNodesGetIpAddressResponse>;
+    options?: IntegrationRuntimeNodesGetIPAddressOptionalParams
+  ): Promise<IntegrationRuntimeNodesGetIPAddressResponse>;
 }

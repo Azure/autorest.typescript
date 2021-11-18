@@ -45,8 +45,8 @@ export const indexName: OperationURLParameter = {
   }
 };
 
-export const xMsClientRequestId: OperationParameter = {
-  parameterPath: ["options", "requestOptionsParam", "xMsClientRequestId"],
+export const xMSClientRequestId: OperationParameter = {
+  parameterPath: ["options", "requestOptionsParam", "xMSClientRequestId"],
   mapper: {
     serializedName: "x-ms-client-request-id",
     type: {
@@ -340,8 +340,8 @@ export const selectedFields: OperationQueryParameter = {
   collectionFormat: "CSV"
 };
 
-export const search$DONotNormalize$Text: OperationQueryParameter = {
-  parameterPath: "search$DONotNormalize$Text",
+export const searchDoNotNormalizeText: OperationQueryParameter = {
+  parameterPath: "searchDoNotNormalizeText",
   mapper: {
     serializedName: "search",
     required: true,

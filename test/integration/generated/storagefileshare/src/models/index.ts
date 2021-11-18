@@ -4,14 +4,14 @@ export interface StorageError {
   message?: string;
 }
 
-/** Defines headers for File_uploadRangeFromURL operation. */
-export interface FileUploadRangeFromURLHeaders {
+/** Defines headers for File_uploadRangeFromUrl operation. */
+export interface FileUploadRangeFromUrlHeaders {
   /** The ETag contains a value which represents the version of the file, in quotes. */
   eTag?: string;
   /** Returns the date and time the directory was last modified. Any operation that modifies the share or its properties or metadata updates the last modified time. Operations on files do not affect the last modified time of the share. */
   lastModified?: Date;
   /** This header is returned so that the client can check for message content integrity. The value of this header is computed by the File service; it is not necessarily the same value as may have been specified in the request headers. */
-  xMsContentCrc64?: Uint8Array;
+  xMSContentCrc64?: Uint8Array;
   /** This header uniquely identifies the request that was made and can be used for troubleshooting the request. */
   requestId?: string;
   /** Indicates the version of the File service used to execute the request. */
@@ -22,8 +22,8 @@ export interface FileUploadRangeFromURLHeaders {
   isServerEncrypted?: boolean;
 }
 
-/** Defines headers for File_uploadRangeFromURL operation. */
-export interface FileUploadRangeFromURLExceptionHeaders {
+/** Defines headers for File_uploadRangeFromUrl operation. */
+export interface FileUploadRangeFromUrlExceptionHeaders {
   errorCode?: string;
 }
 
@@ -42,7 +42,7 @@ export interface LeaseAccessConditions {
 }
 
 /** Optional parameters. */
-export interface FileUploadRangeFromURLOptionalParams
+export interface FileUploadRangeFromUrlOptionalParams
   extends coreClient.OperationOptions {
   /** Parameter group */
   sourceModifiedAccessConditions?: SourceModifiedAccessConditions;
@@ -56,8 +56,8 @@ export interface FileUploadRangeFromURLOptionalParams
   sourceContentCrc64?: Uint8Array;
 }
 
-/** Contains response data for the uploadRangeFromURL operation. */
-export type FileUploadRangeFromURLResponse = FileUploadRangeFromURLHeaders;
+/** Contains response data for the uploadRangeFromUrl operation. */
+export type FileUploadRangeFromUrlResponse = FileUploadRangeFromUrlHeaders;
 
 /** Optional parameters. */
 export interface StorageFileShareClientOptionalParams

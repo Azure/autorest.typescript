@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyFormDataClientContext } from "../bodyFormDataClientContext";
+import { BodyFormDataClient } from "../bodyFormDataClient";
 import {
   FormdataUploadFileOptionalParams,
   FormdataUploadFileResponse,
@@ -23,13 +23,13 @@ import {
 
 /** Class containing Formdata operations. */
 export class FormdataImpl implements Formdata {
-  private readonly client: BodyFormDataClientContext;
+  private readonly client: BodyFormDataClient;
 
   /**
    * Initialize a new instance of the class Formdata class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyFormDataClientContext) {
+  constructor(client: BodyFormDataClient) {
     this.client = client;
   }
 
@@ -95,7 +95,7 @@ const uploadFileOperationSpec: coreClient.OperationSpec = {
     }
   },
   formDataParameters: [Parameters.fileContent, Parameters.fileName],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };
@@ -111,7 +111,7 @@ const uploadFileViaBodyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.fileContent1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType1, Parameters.accept1],
   mediaType: "binary",
   serializer
@@ -128,7 +128,7 @@ const uploadFilesOperationSpec: coreClient.OperationSpec = {
     }
   },
   formDataParameters: [Parameters.fileContent2],
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.contentType, Parameters.accept],
   serializer
 };

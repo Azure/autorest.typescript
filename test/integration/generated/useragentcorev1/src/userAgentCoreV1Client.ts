@@ -8,10 +8,16 @@
 
 import { GroupImpl } from "./operations";
 import { Group } from "./operationsInterfaces";
-import { UserAgentCoreV1ClientContext } from "./userAgentCoreV1ClientContext";
 import { UserAgentCoreV1ClientOptionalParams } from "./models";
 
-export class UserAgentCoreV1Client extends UserAgentCoreV1ClientContext {
+const packageName = "@msinternal/useragent-corev1";
+const packageVersion = "1.0.0-preview1";
+
+export class UserAgentCoreV1Client extends coreHttp.ServiceClient {
+  Host: string;
+  subscriptionId: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the UserAgentCoreV1Client class.
    * @param subscriptionId Subscription Id.
@@ -21,7 +27,35 @@ export class UserAgentCoreV1Client extends UserAgentCoreV1ClientContext {
     subscriptionId: string,
     options?: UserAgentCoreV1ClientOptionalParams
   ) {
-    super(subscriptionId, options);
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+
+    const defaultUserAgent = `azsdk-js-${packageName.replace(
+      /@.*\//,
+      ""
+    )}/${packageVersion} ${coreHttp.getDefaultUserAgentValue()}`;
+
+    super(undefined, {
+      ...options,
+      userAgent: options.userAgent
+        ? `${options.userAgent} ${defaultUserAgent}`
+        : `${defaultUserAgent}`
+    });
+
+    this.requestContentType = "application/json; charset=utf-8";
+    this.baseUri = options.endpoint || "http://localhost:3000";
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
+    this.apiVersion = options.apiVersion || "2014-04-01-preview";
     this.group = new GroupImpl(this);
   }
 

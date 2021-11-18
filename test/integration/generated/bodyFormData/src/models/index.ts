@@ -96,7 +96,7 @@ export type FormdataUploadFilesResponse = {
 export interface BodyFormDataClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

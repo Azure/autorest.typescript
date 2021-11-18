@@ -275,7 +275,7 @@ export interface AutocompleteRequest {
 /** Parameter group */
 export interface RequestOptions {
   /** The tracking ID sent with the request to help with debugging. */
-  xMsClientRequestId?: string;
+  xMSClientRequestId?: string;
 }
 
 /** Parameter group */

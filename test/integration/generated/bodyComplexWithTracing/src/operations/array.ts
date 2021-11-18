@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
   ArrayGetValidOptionalParams,
   ArrayGetValidResponse,
@@ -27,13 +27,13 @@ import {
 
 /** Class containing Array operations. */
 export class ArrayImpl implements Array {
-  private readonly client: BodyComplexWithTracingContext;
+  private readonly client: BodyComplexWithTracing;
 
   /**
    * Initialize a new instance of the class Array class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracingContext) {
+  constructor(client: BodyComplexWithTracing) {
     this.client = client;
   }
 
@@ -196,7 +196,7 @@ const getValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -210,7 +210,7 @@ const putValidOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody12,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -226,7 +226,7 @@ const getEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -240,7 +240,7 @@ const putEmptyOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.complexBody12,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -256,7 +256,7 @@ const getNotProvidedOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

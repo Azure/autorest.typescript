@@ -143,7 +143,7 @@ export interface Metrics {
   /** Indicates whether metrics are enabled for the Blob service. */
   enabled: boolean;
   /** Indicates whether metrics should generate summary statistics for called API operations. */
-  includeAPIs?: boolean;
+  includeApIs?: boolean;
   /** the retention policy */
   retentionPolicy?: RetentionPolicy;
 }
@@ -221,7 +221,7 @@ export interface BlobProperties {
   contentType?: string;
   contentEncoding?: string;
   contentLanguage?: string;
-  contentMD5?: string;
+  contentMd5?: string;
   contentDisposition?: string;
   cacheControl?: string;
   blobSequenceNumber?: number;
@@ -254,7 +254,7 @@ export interface JsonOutput {
 }
 
 /** Contans property */
-export interface ObjectWithXMsTextProperty {
+export interface ObjectWithXMSTextProperty {
   /** Returned value should be 'english' */
   language?: string;
   /** Returned value should be 'I am text' */
@@ -270,7 +270,7 @@ export interface ModelWithUrlProperty {
 }
 
 /** Defines headers for Xml_getHeaders operation. */
-export interface XmlGetHeadersHeaders {
+export interface XmlGetHeaders {
   /** A custom response header. */
   customHeader?: string;
 }
@@ -403,7 +403,7 @@ export interface XmlGetHeadersOptionalParams
   extends coreClient.OperationOptions {}
 
 /** Contains response data for the getHeaders operation. */
-export type XmlGetHeadersResponse = XmlGetHeadersHeaders;
+export type XmlGetHeadersResponse = XmlGetHeaders;
 
 /** Optional parameters. */
 export interface XmlGetEmptyListOptionalParams
@@ -517,11 +517,11 @@ export interface XmlJsonOutputOptionalParams
 export type XmlJsonOutputResponse = JsonOutput;
 
 /** Optional parameters. */
-export interface XmlGetXMsTextOptionalParams
+export interface XmlGetXMSTextOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the getXMsText operation. */
-export type XmlGetXMsTextResponse = ObjectWithXMsTextProperty;
+/** Contains response data for the getXMSText operation. */
+export type XmlGetXmsTextResponse = ObjectWithXMSTextProperty;
 
 /** Optional parameters. */
 export interface XmlGetBytesOptionalParams
@@ -547,7 +547,7 @@ export interface XmlPutUriOptionalParams extends coreClient.OperationOptions {}
 export interface XmlServiceClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

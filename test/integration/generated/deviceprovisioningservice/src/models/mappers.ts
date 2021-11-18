@@ -266,7 +266,7 @@ export const IotDpsPropertiesDescription: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "IpFilterRule"
+              className: "IPFilterRule"
             }
           }
         }
@@ -345,10 +345,10 @@ export const IotDpsPropertiesDescription: coreClient.CompositeMapper = {
   }
 };
 
-export const IpFilterRule: coreClient.CompositeMapper = {
+export const IPFilterRule: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "IpFilterRule",
+    className: "IPFilterRule",
     modelProperties: {
       filterName: {
         serializedName: "filterName",

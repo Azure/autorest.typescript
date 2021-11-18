@@ -90,7 +90,7 @@ export interface PetHasModelsParamOptionalParams
 export interface XmsErrorResponsesClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

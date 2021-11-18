@@ -723,7 +723,7 @@ export type MultipleResponsesGet200ModelA202ValidResponse = MyException;
 export interface HttpInfrastructureClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Overrides client endpoint. */
   endpoint?: string;
 }

@@ -10,7 +10,7 @@ import { Int } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyIntegerClientContext } from "../bodyIntegerClientContext";
+import { BodyIntegerClient } from "../bodyIntegerClient";
 import {
   IntGetNullOptionalParams,
   IntGetNullResponse,
@@ -39,13 +39,13 @@ import {
 
 /** Class containing Int operations. */
 export class IntImpl implements Int {
-  private readonly client: BodyIntegerClientContext;
+  private readonly client: BodyIntegerClient;
 
   /**
    * Initialize a new instance of the class Int class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyIntegerClientContext) {
+  constructor(client: BodyIntegerClient) {
     this.client = client;
   }
 
@@ -250,7 +250,7 @@ const getNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -265,7 +265,7 @@ const getInvalidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -280,7 +280,7 @@ const getOverflowInt32OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -295,7 +295,7 @@ const getUnderflowInt32OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -310,7 +310,7 @@ const getOverflowInt64OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -325,7 +325,7 @@ const getUnderflowInt64OperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -339,7 +339,7 @@ const putMax32OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.intBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -354,7 +354,7 @@ const putMax64OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.intBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -369,7 +369,7 @@ const putMin32OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.intBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -384,7 +384,7 @@ const putMin64OperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.intBody,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -400,7 +400,7 @@ const getUnixTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -414,7 +414,7 @@ const putUnixTimeDateOperationSpec: coreClient.OperationSpec = {
     }
   },
   requestBody: Parameters.intBody1,
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept, Parameters.contentType],
   mediaType: "json",
   serializer
@@ -430,7 +430,7 @@ const getInvalidUnixTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -445,7 +445,7 @@ const getNullUnixTimeOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

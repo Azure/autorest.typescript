@@ -198,10 +198,10 @@ export const SubProduct: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPatch200SucceededIgnoreHeadersHeaders: coreClient.CompositeMapper = {
+export const LrOSPatch200SucceededIgnoreHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPatch200SucceededIgnoreHeadersHeaders",
+    className: "LrOSPatch200SucceededIgnoreHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -213,73 +213,10 @@ export const LROsPatch200SucceededIgnoreHeadersHeaders: coreClient.CompositeMapp
   }
 };
 
-export const LROsPost202ListHeaders: coreClient.CompositeMapper = {
+export const LrOSPost202ListHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPost202ListHeaders",
-    modelProperties: {
-      azureAsyncOperation: {
-        serializedName: "azure-asyncoperation",
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPutNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsPutNoHeaderInRetryHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPutAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsPutAsyncRetrySucceededHeaders",
-    modelProperties: {
-      azureAsyncOperation: {
-        serializedName: "azure-asyncoperation",
-        type: {
-          name: "String"
-        }
-      },
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPutAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsPutAsyncNoRetrySucceededHeaders",
+    className: "LrOSPost202ListHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -297,10 +234,25 @@ export const LROsPutAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPutAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
+export const LrOSPutNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPutAsyncRetryFailedHeaders",
+    className: "LrOSPutNoHeaderInRetryHeaders",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSPutAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSPutAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -324,10 +276,10 @@ export const LROsPutAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPutAsyncNoRetrycanceledHeaders: coreClient.CompositeMapper = {
+export const LrOSPutAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPutAsyncNoRetrycanceledHeaders",
+    className: "LrOSPutAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -345,160 +297,10 @@ export const LROsPutAsyncNoRetrycanceledHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPutAsyncNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
+export const LrOSPutAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPutAsyncNoHeaderInRetryHeaders",
-    modelProperties: {
-      azureAsyncOperation: {
-        serializedName: "azure-asyncoperation",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteProvisioning202Accepted200SucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202Accepted200SucceededHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteProvisioning202DeletingFailed200Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202DeletingFailed200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteProvisioning202Deletingcanceled200Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteProvisioning202Deletingcanceled200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDelete202Retry200Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDelete202Retry200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDelete202NoRetry204Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDelete202NoRetry204Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteNoHeaderInRetryHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteAsyncNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteAsyncNoHeaderInRetryHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      }
-    }
-  }
-};
-
-export const LROsDeleteAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsDeleteAsyncRetrySucceededHeaders",
+    className: "LrOSPutAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -522,10 +324,181 @@ export const LROsDeleteAsyncRetrySucceededHeaders: coreClient.CompositeMapper = 
   }
 };
 
-export const LROsDeleteAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LrOSPutAsyncNoRetrycanceledHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsDeleteAsyncNoRetrySucceededHeaders",
+    className: "LrOSPutAsyncNoRetrycanceledHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSPutAsyncNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSPutAsyncNoHeaderInRetryHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteProvisioning202Accepted200SucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteProvisioning202Accepted200SucceededHeaders",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteProvisioning202DeletingFailed200Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteProvisioning202DeletingFailed200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteProvisioning202Deletingcanceled200Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteProvisioning202Deletingcanceled200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDelete202Retry200Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDelete202Retry200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDelete202NoRetry204Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDelete202NoRetry204Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteNoHeaderInRetryHeaders",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteAsyncNoHeaderInRetryHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteAsyncNoHeaderInRetryHeaders",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSDeleteAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSDeleteAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -549,10 +522,10 @@ export const LROsDeleteAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper 
   }
 };
 
-export const LROsDeleteAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
+export const LrOSDeleteAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsDeleteAsyncRetryFailedHeaders",
+    className: "LrOSDeleteAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -576,10 +549,10 @@ export const LROsDeleteAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsDeleteAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
+export const LrOSDeleteAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsDeleteAsyncRetrycanceledHeaders",
+    className: "LrOSDeleteAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -603,52 +576,10 @@ export const LROsDeleteAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPost202Retry200Headers: coreClient.CompositeMapper = {
+export const LrOSDeleteAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPost202Retry200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPost202NoRetry204Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsPost202NoRetry204Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LROsPostAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LROsPostAsyncRetrySucceededHeaders",
+    className: "LrOSDeleteAsyncRetrycanceledHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -672,10 +603,52 @@ export const LROsPostAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPostAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LrOSPost202Retry200Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPostAsyncNoRetrySucceededHeaders",
+    className: "LrOSPost202Retry200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSPost202NoRetry204Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSPost202NoRetry204Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LrOSPostAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LrOSPostAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -699,10 +672,10 @@ export const LROsPostAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = 
   }
 };
 
-export const LROsPostAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
+export const LrOSPostAsyncNoRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPostAsyncRetryFailedHeaders",
+    className: "LrOSPostAsyncNoRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -726,10 +699,10 @@ export const LROsPostAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LROsPostAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
+export const LrOSPostAsyncRetryFailedHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsPostAsyncRetrycanceledHeaders",
+    className: "LrOSPostAsyncRetryFailedHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -753,10 +726,10 @@ export const LROsPostAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const LRORetrysPutAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LrOSPostAsyncRetrycanceledHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LRORetrysPutAsyncRelativeRetrySucceededHeaders",
+    className: "LrOSPostAsyncRetrycanceledHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -780,52 +753,10 @@ export const LRORetrysPutAsyncRelativeRetrySucceededHeaders: coreClient.Composit
   }
 };
 
-export const LRORetrysDeleteProvisioning202Accepted200SucceededHeaders: coreClient.CompositeMapper = {
+export const LroRetrysPutAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LRORetrysDeleteProvisioning202Accepted200SucceededHeaders",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LRORetrysDelete202Retry200Headers: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LRORetrysDelete202Retry200Headers",
-    modelProperties: {
-      location: {
-        serializedName: "location",
-        type: {
-          name: "String"
-        }
-      },
-      retryAfter: {
-        serializedName: "retry-after",
-        type: {
-          name: "Number"
-        }
-      }
-    }
-  }
-};
-
-export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "LRORetrysDeleteAsyncRelativeRetrySucceededHeaders",
+    className: "LroRetrysPutAsyncRelativeRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -849,10 +780,10 @@ export const LRORetrysDeleteAsyncRelativeRetrySucceededHeaders: coreClient.Compo
   }
 };
 
-export const LRORetrysPost202Retry200Headers: coreClient.CompositeMapper = {
+export const LroRetrysDeleteProvisioning202Accepted200SucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LRORetrysPost202Retry200Headers",
+    className: "LroRetrysDeleteProvisioning202Accepted200SucceededHeaders",
     modelProperties: {
       location: {
         serializedName: "location",
@@ -870,10 +801,79 @@ export const LRORetrysPost202Retry200Headers: coreClient.CompositeMapper = {
   }
 };
 
-export const LRORetrysPostAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LroRetrysDelete202Retry200Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LRORetrysPostAsyncRelativeRetrySucceededHeaders",
+    className: "LroRetrysDelete202Retry200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LroRetrysDeleteAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LroRetrysDeleteAsyncRelativeRetrySucceededHeaders",
+    modelProperties: {
+      azureAsyncOperation: {
+        serializedName: "azure-asyncoperation",
+        type: {
+          name: "String"
+        }
+      },
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LroRetrysPost202Retry200Headers: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LroRetrysPost202Retry200Headers",
+    modelProperties: {
+      location: {
+        serializedName: "location",
+        type: {
+          name: "String"
+        }
+      },
+      retryAfter: {
+        serializedName: "retry-after",
+        type: {
+          name: "Number"
+        }
+      }
+    }
+  }
+};
+
+export const LroRetrysPostAsyncRelativeRetrySucceededHeaders: coreClient.CompositeMapper = {
+  type: {
+    name: "Composite",
+    className: "LroRetrysPostAsyncRelativeRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -1395,10 +1395,10 @@ export const LrosaDsPostAsyncRelativeRetryInvalidJsonPollingHeaders: coreClient.
   }
 };
 
-export const LROsCustomHeaderPutAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LrOSCustomHeaderPutAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsCustomHeaderPutAsyncRetrySucceededHeaders",
+    className: "LrOSCustomHeaderPutAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",
@@ -1422,10 +1422,10 @@ export const LROsCustomHeaderPutAsyncRetrySucceededHeaders: coreClient.Composite
   }
 };
 
-export const LROsCustomHeaderPost202Retry200Headers: coreClient.CompositeMapper = {
+export const LrOSCustomHeaderPost202Retry200Headers: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsCustomHeaderPost202Retry200Headers",
+    className: "LrOSCustomHeaderPost202Retry200Headers",
     modelProperties: {
       location: {
         serializedName: "location",
@@ -1443,10 +1443,10 @@ export const LROsCustomHeaderPost202Retry200Headers: coreClient.CompositeMapper 
   }
 };
 
-export const LROsCustomHeaderPostAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
+export const LrOSCustomHeaderPostAsyncRetrySucceededHeaders: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "LROsCustomHeaderPostAsyncRetrySucceededHeaders",
+    className: "LrOSCustomHeaderPostAsyncRetrySucceededHeaders",
     modelProperties: {
       azureAsyncOperation: {
         serializedName: "azure-asyncoperation",

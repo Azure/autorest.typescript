@@ -10,7 +10,7 @@ import { HttpFailure } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HttpInfrastructureClientContext } from "../httpInfrastructureClientContext";
+import { HttpInfrastructureClient } from "../httpInfrastructureClient";
 import {
   HttpFailureGetEmptyErrorOptionalParams,
   HttpFailureGetEmptyErrorResponse,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing HttpFailure operations. */
 export class HttpFailureImpl implements HttpFailure {
-  private readonly client: HttpInfrastructureClientContext;
+  private readonly client: HttpInfrastructureClient;
 
   /**
    * Initialize a new instance of the class HttpFailure class.
    * @param client Reference to the service client
    */
-  constructor(client: HttpInfrastructureClientContext) {
+  constructor(client: HttpInfrastructureClient) {
     this.client = client;
   }
 
@@ -85,7 +85,7 @@ const getEmptyErrorOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -97,7 +97,7 @@ const getNoModelErrorOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Boolean" } }
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -109,7 +109,7 @@ const getNoModelEmptyOperationSpec: coreClient.OperationSpec = {
       bodyMapper: { type: { name: "Boolean" } }
     }
   },
-  urlParameters: [Parameters.$host],
+  urlParameters: [Parameters.Host],
   headerParameters: [Parameters.accept],
   serializer
 };

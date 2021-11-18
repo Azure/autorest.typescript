@@ -83,31 +83,32 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     []
   );
 
+  if (!useCoreV2) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreHttp",
+      moduleSpecifier: "@azure/core-http"
+    });
+  } else {
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreClient",
+      moduleSpecifier: "@azure/core-client"
+    });
+  }
+
   if (hasCredentials || hasInlineOperations || !hasClientOptionalParams) {
-    if (!useCoreV2) {
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreRestPipeline",
+      moduleSpecifier: "@azure/core-rest-pipeline"
+    });
+    clientFile.addImportDeclaration({
+      namespaceImport: "coreTracing",
+      moduleSpecifier: "@azure/core-tracing"
+    });
+    if (hasCredentials) {
       clientFile.addImportDeclaration({
-        namespaceImport: "coreHttp",
-        moduleSpecifier: "@azure/core-http"
+        namespaceImport: "coreAuth",
+        moduleSpecifier: "@azure/core-auth"
       });
-    } else {
-      clientFile.addImportDeclaration({
-        namespaceImport: "coreClient",
-        moduleSpecifier: "@azure/core-client"
-      });
-      clientFile.addImportDeclaration({
-        namespaceImport: "coreRestPipeline",
-        moduleSpecifier: "@azure/core-rest-pipeline"
-      });
-      clientFile.addImportDeclaration({
-        namespaceImport: "coreTracing",
-        moduleSpecifier: "@azure/core-tracing"
-      });
-      if (hasCredentials) {
-        clientFile.addImportDeclaration({
-          namespaceImport: "coreAuth",
-          moduleSpecifier: "@azure/core-auth"
-        });
-      }
     }
   }
 

@@ -8,16 +8,42 @@
 
 import { PetImpl } from "./operations";
 import { Pet } from "./operationsInterfaces";
-import { ExtensibleEnumsClientContext } from "./extensibleEnumsClientContext";
 import { ExtensibleEnumsClientOptionalParams } from "./models";
 
-export class ExtensibleEnumsClient extends ExtensibleEnumsClientContext {
+export class ExtensibleEnumsClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the ExtensibleEnumsClient class.
    * @param options The parameter options
    */
   constructor(options?: ExtensibleEnumsClientOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: ExtensibleEnumsClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-extensible-enums/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.Host = options.Host || "http://localhost:3000";
     this.pet = new PetImpl(this);
   }
 

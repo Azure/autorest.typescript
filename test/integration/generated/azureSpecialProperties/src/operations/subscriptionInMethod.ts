@@ -10,7 +10,7 @@ import { SubscriptionInMethod } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   SubscriptionInMethodPostMethodLocalValidOptionalParams,
   SubscriptionInMethodPostMethodLocalNullOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing SubscriptionInMethod operations. */
 export class SubscriptionInMethodImpl implements SubscriptionInMethod {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class SubscriptionInMethod class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 
@@ -109,7 +109,7 @@ const postMethodLocalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -123,7 +123,7 @@ const postMethodLocalNullOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -137,7 +137,7 @@ const postPathLocalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
   serializer
 };
@@ -151,7 +151,7 @@ const postSwaggerLocalValidOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.ErrorModel
     }
   },
-  urlParameters: [Parameters.$host, Parameters.subscriptionId1],
+  urlParameters: [Parameters.Host, Parameters.subscriptionId1],
   headerParameters: [Parameters.accept],
   serializer
 };

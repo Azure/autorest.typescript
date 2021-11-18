@@ -31,7 +31,7 @@ export type GroupGetSampleResourceGroupResponse = SampleResourceGroup;
 export interface UserAgentCoreV2ClientOptionalParams
   extends coreClient.ServiceClientOptions {
   /** server parameter */
-  $host?: string;
+  Host?: string;
   /** Api Version */
   apiVersion?: string;
   /** Overrides client endpoint. */

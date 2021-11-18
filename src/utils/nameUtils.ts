@@ -184,7 +184,7 @@ function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.File:
     case NameType.Property:
-    case NameType.Operation:
+    case NameType.Parameter:
       return CasingConvention.Camel;
     default:
       return CasingConvention.None;
@@ -197,6 +197,9 @@ function getCasingConvention(nameType: NameType) {
  * on Modeler four namer for this once it is stable
  */
 function toCasing(str: string, casing: CasingConvention): string {
+  if (str === "$host") {
+    return str;
+  }
   if (casing === CasingConvention.Camel) {
     return camelCase(str);
   }

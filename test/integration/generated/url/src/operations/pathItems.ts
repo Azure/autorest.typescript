@@ -10,7 +10,7 @@ import { PathItems } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UrlClientContext } from "../urlClientContext";
+import { UrlClient } from "../urlClient";
 import {
   PathItemsGetAllWithValuesOptionalParams,
   PathItemsGetGlobalQueryNullOptionalParams,
@@ -20,13 +20,13 @@ import {
 
 /** Class containing PathItems operations. */
 export class PathItemsImpl implements PathItems {
-  private readonly client: UrlClientContext;
+  private readonly client: UrlClient;
 
   /**
    * Initialize a new instance of the class PathItems class.
    * @param client Reference to the service client
    */
-  constructor(client: UrlClientContext) {
+  constructor(client: UrlClient) {
     this.client = client;
   }
 
@@ -125,7 +125,7 @@ const getAllWithValuesOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -149,7 +149,7 @@ const getGlobalQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -173,7 +173,7 @@ const getGlobalAndLocalQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath
@@ -197,7 +197,7 @@ const getLocalPathItemQueryNullOperationSpec: coreClient.OperationSpec = {
     Parameters.localStringQuery
   ],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.pathItemStringPath,
     Parameters.globalStringPath,
     Parameters.localStringPath

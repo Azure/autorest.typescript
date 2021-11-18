@@ -9,21 +9,50 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { MapperRequiredClientContext } from "./mapperRequiredClientContext";
 import {
   MapperRequiredClientOptionalParams,
   UpdateCertificateIssuerOptionalParams,
   UpdateCertificateIssuerResponse
 } from "./models";
 
-export class MapperRequiredClient extends MapperRequiredClientContext {
+export class MapperRequiredClient extends coreClient.ServiceClient {
+  Host: string;
+
   /**
    * Initializes a new instance of the MapperRequiredClient class.
-   * @param $host server parameter
+   * @param Host server parameter
    * @param options The parameter options
    */
-  constructor($host: string, options?: MapperRequiredClientOptionalParams) {
-    super($host, options);
+  constructor(Host: string, options?: MapperRequiredClientOptionalParams) {
+    if (Host === undefined) {
+      throw new Error("'Host' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: MapperRequiredClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-mapperrequired/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{$host}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.Host = Host;
   }
 
   /**
@@ -57,7 +86,7 @@ const updateCertificateIssuerOperationSpec: coreClient.OperationSpec = {
     parameterPath: { provider: ["options", "provider"] },
     mapper: { ...Mappers.CertificateIssuerUpdateParameters, required: true }
   },
-  urlParameters: [Parameters.$host, Parameters.issuerName],
+  urlParameters: [Parameters.Host, Parameters.issuerName],
   headerParameters: [Parameters.contentType, Parameters.accept],
   mediaType: "json",
   serializer

@@ -500,17 +500,17 @@ export const EncryptionConfiguration: coreClient.CompositeMapper = {
         serializedName: "identity",
         type: {
           name: "Composite",
-          className: "CMKIdentityDefinition"
+          className: "CmkIdentityDefinition"
         }
       }
     }
   }
 };
 
-export const CMKIdentityDefinition: coreClient.CompositeMapper = {
+export const CmkIdentityDefinition: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "CMKIdentityDefinition",
+    className: "CmkIdentityDefinition",
     modelProperties: {
       userAssignedIdentity: {
         serializedName: "userAssignedIdentity",
@@ -1245,7 +1245,7 @@ export const IntegrationRuntimeNodeMonitoringData: coreClient.CompositeMapper = 
           name: "String"
         }
       },
-      availableMemoryInMB: {
+      availableMemoryInMb: {
         serializedName: "availableMemoryInMB",
         readOnly: true,
         type: {
@@ -1616,10 +1616,10 @@ export const UpdateIntegrationRuntimeNodeRequest: coreClient.CompositeMapper = {
   }
 };
 
-export const IntegrationRuntimeNodeIpAddress: coreClient.CompositeMapper = {
+export const IntegrationRuntimeNodeIPAddress: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "IntegrationRuntimeNodeIpAddress",
+    className: "IntegrationRuntimeNodeIPAddress",
     modelProperties: {
       ipAddress: {
         serializedName: "ipAddress",
@@ -2371,7 +2371,7 @@ export const PipelineRun: coreClient.CompositeMapper = {
           name: "DateTime"
         }
       },
-      durationInMs: {
+      durationInMS: {
         serializedName: "durationInMs",
         readOnly: true,
         type: {
@@ -2537,7 +2537,7 @@ export const ActivityRun: coreClient.CompositeMapper = {
           name: "DateTime"
         }
       },
-      durationInMs: {
+      durationInMS: {
         serializedName: "durationInMs",
         readOnly: true,
         type: {
@@ -5942,7 +5942,7 @@ export const SqlUpsertSettings: coreClient.CompositeMapper = {
     name: "Composite",
     className: "SqlUpsertSettings",
     modelProperties: {
-      useTempDB: {
+      useTempDb: {
         serializedName: "useTempDB",
         type: {
           name: "Dictionary",
@@ -6004,10 +6004,10 @@ export const PolybaseSettings: coreClient.CompositeMapper = {
   }
 };
 
-export const DWCopyCommandSettings: coreClient.CompositeMapper = {
+export const DwCopyCommandSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "DWCopyCommandSettings",
+    className: "DwCopyCommandSettings",
     modelProperties: {
       defaultValues: {
         serializedName: "defaultValues",
@@ -6016,7 +6016,7 @@ export const DWCopyCommandSettings: coreClient.CompositeMapper = {
           element: {
             type: {
               name: "Composite",
-              className: "DWCopyCommandDefaultValue"
+              className: "DwCopyCommandDefaultValue"
             }
           }
         }
@@ -6032,10 +6032,10 @@ export const DWCopyCommandSettings: coreClient.CompositeMapper = {
   }
 };
 
-export const DWCopyCommandDefaultValue: coreClient.CompositeMapper = {
+export const DwCopyCommandDefaultValue: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "DWCopyCommandDefaultValue",
+    className: "DwCopyCommandDefaultValue",
     modelProperties: {
       columnName: {
         serializedName: "columnName",
@@ -6055,10 +6055,10 @@ export const DWCopyCommandDefaultValue: coreClient.CompositeMapper = {
   }
 };
 
-export const SqlDWUpsertSettings: coreClient.CompositeMapper = {
+export const SqlDwUpsertSettings: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "SqlDWUpsertSettings",
+    className: "SqlDwUpsertSettings",
     modelProperties: {
       interimSchemaName: {
         serializedName: "interimSchemaName",
@@ -6552,10 +6552,10 @@ export const SwitchCase: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLWebServiceFile: coreClient.CompositeMapper = {
+export const AzureMlWebServiceFile: coreClient.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "AzureMLWebServiceFile",
+    className: "AzureMlWebServiceFile",
     modelProperties: {
       filePath: {
         serializedName: "filePath",
@@ -7574,7 +7574,7 @@ export const SelfHostedIntegrationRuntimeStatus: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      autoUpdateETA: {
+      autoUpdateEta: {
         serializedName: "typeProperties.autoUpdateETA",
         readOnly: true,
         type: {
@@ -7912,11 +7912,11 @@ export const AzureTableStorageLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureSqlDWLinkedService: coreClient.CompositeMapper = {
+export const AzureSqlDwLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureSqlDW",
   type: {
     name: "Composite",
-    className: "AzureSqlDWLinkedService",
+    className: "AzureSqlDwLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -8161,11 +8161,11 @@ export const AzureSqlDatabaseLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureSqlMILinkedService: coreClient.CompositeMapper = {
+export const AzureSqlMiLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureSqlMI",
   type: {
     name: "Composite",
-    className: "AzureSqlMILinkedService",
+    className: "AzureSqlMiLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -8723,11 +8723,11 @@ export const CommonDataServiceForAppsLinkedService: coreClient.CompositeMapper =
   }
 };
 
-export const HDInsightLinkedService: coreClient.CompositeMapper = {
+export const HdInsightLinkedService: coreClient.CompositeMapper = {
   serializedName: "HDInsight",
   type: {
     name: "Composite",
-    className: "HDInsightLinkedService",
+    className: "HdInsightLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -9429,11 +9429,11 @@ export const TeradataLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLLinkedService: coreClient.CompositeMapper = {
+export const AzureMlLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureML",
   type: {
     name: "Composite",
-    className: "AzureMLLinkedService",
+    className: "AzureMlLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -9500,11 +9500,11 @@ export const AzureMLLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLServiceLinkedService: coreClient.CompositeMapper = {
+export const AzureMlServiceLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureMLService",
   type: {
     name: "Composite",
-    className: "AzureMLServiceLinkedService",
+    className: "AzureMlServiceLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -10243,11 +10243,11 @@ export const AzureDataLakeStoreLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSLinkedService: coreClient.CompositeMapper = {
+export const AzureBlobFsLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFS",
   type: {
     name: "Composite",
-    className: "AzureBlobFSLinkedService",
+    className: "AzureBlobFsLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -11175,11 +11175,11 @@ export const SftpServerLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const SapBWLinkedService: coreClient.CompositeMapper = {
+export const SapBwLinkedService: coreClient.CompositeMapper = {
   serializedName: "SapBW",
   type: {
     name: "Composite",
-    className: "SapBWLinkedService",
+    className: "SapBwLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -11289,11 +11289,11 @@ export const SapHanaLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
+export const AmazonMwsLinkedService: coreClient.CompositeMapper = {
   serializedName: "AmazonMWS",
   type: {
     name: "Composite",
-    className: "AmazonMWSLinkedService",
+    className: "AmazonMwsLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -11307,7 +11307,7 @@ export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      marketplaceID: {
+      marketplaceId: {
         serializedName: "typeProperties.marketplaceID",
         required: true,
         type: {
@@ -11315,7 +11315,7 @@ export const AmazonMWSLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      sellerID: {
+      sellerId: {
         serializedName: "typeProperties.sellerID",
         required: true,
         type: {
@@ -11820,7 +11820,7 @@ export const HBaseLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -11952,7 +11952,7 @@ export const HiveLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -12115,7 +12115,7 @@ export const ImpalaLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -12269,11 +12269,11 @@ export const MagentoLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const MariaDBLinkedService: coreClient.CompositeMapper = {
+export const MariaDbLinkedService: coreClient.CompositeMapper = {
   serializedName: "MariaDB",
   type: {
     name: "Composite",
-    className: "MariaDBLinkedService",
+    className: "MariaDbLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -12304,11 +12304,11 @@ export const MariaDBLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMariaDBLinkedService: coreClient.CompositeMapper = {
+export const AzureMariaDbLinkedService: coreClient.CompositeMapper = {
   serializedName: "AzureMariaDB",
   type: {
     name: "Composite",
-    className: "AzureMariaDBLinkedService",
+    className: "AzureMariaDbLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -12543,7 +12543,7 @@ export const PhoenixLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -12651,7 +12651,7 @@ export const PrestoLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -12665,7 +12665,7 @@ export const PrestoLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      timeZoneID: {
+      timeZoneId: {
         serializedName: "typeProperties.timeZoneID",
         type: {
           name: "Dictionary",
@@ -12989,7 +12989,7 @@ export const SparkLinkedService: coreClient.CompositeMapper = {
           value: { type: { name: "any" } }
         }
       },
-      allowHostNameCNMismatch: {
+      allowHostNameCnMismatch: {
         serializedName: "typeProperties.allowHostNameCNMismatch",
         type: {
           name: "Dictionary",
@@ -13357,11 +13357,11 @@ export const SalesforceMarketingCloudLinkedService: coreClient.CompositeMapper =
   }
 };
 
-export const HDInsightOnDemandLinkedService: coreClient.CompositeMapper = {
+export const HdInsightOnDemandLinkedService: coreClient.CompositeMapper = {
   serializedName: "HDInsightOnDemand",
   type: {
     name: "Composite",
-    className: "HDInsightOnDemandLinkedService",
+    className: "HdInsightOnDemandLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -13959,11 +13959,11 @@ export const ResponsysLinkedService: coreClient.CompositeMapper = {
   }
 };
 
-export const DynamicsAXLinkedService: coreClient.CompositeMapper = {
+export const DynamicsAxLinkedService: coreClient.CompositeMapper = {
   serializedName: "DynamicsAX",
   type: {
     name: "Composite",
-    className: "DynamicsAXLinkedService",
+    className: "DynamicsAxLinkedService",
     uberParent: "LinkedService",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
@@ -14094,7 +14094,7 @@ export const GoogleAdWordsLinkedService: coreClient.CompositeMapper = {
     polymorphicDiscriminator: LinkedService.type.polymorphicDiscriminator,
     modelProperties: {
       ...LinkedService.type.modelProperties,
-      clientCustomerID: {
+      clientCustomerId: {
         serializedName: "typeProperties.clientCustomerID",
         required: true,
         type: {
@@ -15042,11 +15042,11 @@ export const AzureSqlTableDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureSqlMITableDataset: coreClient.CompositeMapper = {
+export const AzureSqlMiTableDataset: coreClient.CompositeMapper = {
   serializedName: "AzureSqlMITable",
   type: {
     name: "Composite",
-    className: "AzureSqlMITableDataset",
+    className: "AzureSqlMiTableDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -15077,11 +15077,11 @@ export const AzureSqlMITableDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureSqlDWTableDataset: coreClient.CompositeMapper = {
+export const AzureSqlDwTableDataset: coreClient.CompositeMapper = {
   serializedName: "AzureSqlDWTable",
   type: {
     name: "Composite",
-    className: "AzureSqlDWTableDataset",
+    className: "AzureSqlDwTableDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -15310,11 +15310,11 @@ export const AzureDataLakeStoreDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSDataset: coreClient.CompositeMapper = {
+export const AzureBlobFsDataset: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSFile",
   type: {
     name: "Composite",
-    className: "AzureBlobFSDataset",
+    className: "AzureBlobFsDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -16308,11 +16308,11 @@ export const HttpDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const AmazonMWSObjectDataset: coreClient.CompositeMapper = {
+export const AmazonMwsObjectDataset: coreClient.CompositeMapper = {
   serializedName: "AmazonMWSObject",
   type: {
     name: "Composite",
-    className: "AmazonMWSObjectDataset",
+    className: "AmazonMwsObjectDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -16686,11 +16686,11 @@ export const MagentoObjectDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const MariaDBTableDataset: coreClient.CompositeMapper = {
+export const MariaDbTableDataset: coreClient.CompositeMapper = {
   serializedName: "MariaDBTable",
   type: {
     name: "Composite",
-    className: "MariaDBTableDataset",
+    className: "MariaDbTableDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -16707,11 +16707,11 @@ export const MariaDBTableDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMariaDBTableDataset: coreClient.CompositeMapper = {
+export const AzureMariaDbTableDataset: coreClient.CompositeMapper = {
   serializedName: "AzureMariaDBTable",
   type: {
     name: "Composite",
-    className: "AzureMariaDBTableDataset",
+    className: "AzureMariaDbTableDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -17113,11 +17113,11 @@ export const ResponsysObjectDataset: coreClient.CompositeMapper = {
   }
 };
 
-export const DynamicsAXResourceDataset: coreClient.CompositeMapper = {
+export const DynamicsAxResourceDataset: coreClient.CompositeMapper = {
   serializedName: "DynamicsAXResource",
   type: {
     name: "Composite",
-    className: "DynamicsAXResourceDataset",
+    className: "DynamicsAxResourceDataset",
     uberParent: "Dataset",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Dataset.type.polymorphicDiscriminator,
@@ -18052,11 +18052,11 @@ export const AzureBlobStorageLocation: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSLocation: coreClient.CompositeMapper = {
+export const AzureBlobFsLocation: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSLocation",
   type: {
     name: "Composite",
-    className: "AzureBlobFSLocation",
+    className: "AzureBlobFsLocation",
     uberParent: "DatasetLocation",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: DatasetLocation.type.polymorphicDiscriminator,
@@ -18881,11 +18881,11 @@ export const AzureBlobStorageReadSettings: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSReadSettings: coreClient.CompositeMapper = {
+export const AzureBlobFsReadSettings: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSReadSettings",
   type: {
     name: "Composite",
-    className: "AzureBlobFSReadSettings",
+    className: "AzureBlobFsReadSettings",
     uberParent: "StoreReadSettings",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: StoreReadSettings.type.polymorphicDiscriminator,
@@ -19865,7 +19865,7 @@ export const AzureBlobStorageWriteSettings: coreClient.CompositeMapper = {
     polymorphicDiscriminator: StoreWriteSettings.type.polymorphicDiscriminator,
     modelProperties: {
       ...StoreWriteSettings.type.modelProperties,
-      blockSizeInMB: {
+      blockSizeInMb: {
         serializedName: "blockSizeInMB",
         type: {
           name: "Dictionary",
@@ -19876,17 +19876,17 @@ export const AzureBlobStorageWriteSettings: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSWriteSettings: coreClient.CompositeMapper = {
+export const AzureBlobFsWriteSettings: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSWriteSettings",
   type: {
     name: "Composite",
-    className: "AzureBlobFSWriteSettings",
+    className: "AzureBlobFsWriteSettings",
     uberParent: "StoreWriteSettings",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: StoreWriteSettings.type.polymorphicDiscriminator,
     modelProperties: {
       ...StoreWriteSettings.type.modelProperties,
-      blockSizeInMB: {
+      blockSizeInMb: {
         serializedName: "blockSizeInMB",
         type: {
           name: "Dictionary",
@@ -21435,11 +21435,11 @@ export const AzureDataLakeStoreSource: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSSource: coreClient.CompositeMapper = {
+export const AzureBlobFsSource: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSSource",
   type: {
     name: "Composite",
-    className: "AzureBlobFSSource",
+    className: "AzureBlobFsSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -22299,11 +22299,11 @@ export const AzureSqlSink: coreClient.CompositeMapper = {
   }
 };
 
-export const SqlMISink: coreClient.CompositeMapper = {
+export const SqlMiSink: coreClient.CompositeMapper = {
   serializedName: "SqlMISink",
   type: {
     name: "Composite",
-    className: "SqlMISink",
+    className: "SqlMiSink",
     uberParent: "CopySink",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySink.type.polymorphicDiscriminator,
@@ -22378,11 +22378,11 @@ export const SqlMISink: coreClient.CompositeMapper = {
   }
 };
 
-export const SqlDWSink: coreClient.CompositeMapper = {
+export const SqlDwSink: coreClient.CompositeMapper = {
   serializedName: "SqlDWSink",
   type: {
     name: "Composite",
-    className: "SqlDWSink",
+    className: "SqlDwSink",
     uberParent: "CopySink",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySink.type.polymorphicDiscriminator,
@@ -22420,7 +22420,7 @@ export const SqlDWSink: coreClient.CompositeMapper = {
         serializedName: "copyCommandSettings",
         type: {
           name: "Composite",
-          className: "DWCopyCommandSettings"
+          className: "DwCopyCommandSettings"
         }
       },
       tableOption: {
@@ -22448,7 +22448,7 @@ export const SqlDWSink: coreClient.CompositeMapper = {
         serializedName: "upsertSettings",
         type: {
           name: "Composite",
-          className: "SqlDWUpsertSettings"
+          className: "SqlDwUpsertSettings"
         }
       }
     }
@@ -22532,11 +22532,11 @@ export const AzureDataLakeStoreSink: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureBlobFSSink: coreClient.CompositeMapper = {
+export const AzureBlobFsSink: coreClient.CompositeMapper = {
   serializedName: "AzureBlobFSSink",
   type: {
     name: "Composite",
-    className: "AzureBlobFSSink",
+    className: "AzureBlobFsSink",
     uberParent: "CopySink",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySink.type.polymorphicDiscriminator,
@@ -23779,11 +23779,11 @@ export const CopyActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const HDInsightHiveActivity: coreClient.CompositeMapper = {
+export const HdInsightHiveActivity: coreClient.CompositeMapper = {
   serializedName: "HDInsightHive",
   type: {
     name: "Composite",
-    className: "HDInsightHiveActivity",
+    className: "HdInsightHiveActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -23864,11 +23864,11 @@ export const HDInsightHiveActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const HDInsightPigActivity: coreClient.CompositeMapper = {
+export const HdInsightPigActivity: coreClient.CompositeMapper = {
   serializedName: "HDInsightPig",
   type: {
     name: "Composite",
-    className: "HDInsightPigActivity",
+    className: "HdInsightPigActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -23926,11 +23926,11 @@ export const HDInsightPigActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
+export const HdInsightMapReduceActivity: coreClient.CompositeMapper = {
   serializedName: "HDInsightMapReduce",
   type: {
     name: "Composite",
-    className: "HDInsightMapReduceActivity",
+    className: "HdInsightMapReduceActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -24014,11 +24014,11 @@ export const HDInsightMapReduceActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
+export const HdInsightStreamingActivity: coreClient.CompositeMapper = {
   serializedName: "HDInsightStreaming",
   type: {
     name: "Composite",
-    className: "HDInsightStreamingActivity",
+    className: "HdInsightStreamingActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -24138,11 +24138,11 @@ export const HDInsightStreamingActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const HDInsightSparkActivity: coreClient.CompositeMapper = {
+export const HdInsightSparkActivity: coreClient.CompositeMapper = {
   serializedName: "HDInsightSpark",
   type: {
     name: "Composite",
-    className: "HDInsightSparkActivity",
+    className: "HdInsightSparkActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -24680,11 +24680,11 @@ export const GetMetadataActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
+export const AzureMlBatchExecutionActivity: coreClient.CompositeMapper = {
   serializedName: "AzureMLBatchExecution",
   type: {
     name: "Composite",
-    className: "AzureMLBatchExecutionActivity",
+    className: "AzureMlBatchExecutionActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -24704,7 +24704,7 @@ export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Composite", className: "AzureMLWebServiceFile" }
+            type: { name: "Composite", className: "AzureMlWebServiceFile" }
           }
         }
       },
@@ -24713,7 +24713,7 @@ export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
         type: {
           name: "Dictionary",
           value: {
-            type: { name: "Composite", className: "AzureMLWebServiceFile" }
+            type: { name: "Composite", className: "AzureMlWebServiceFile" }
           }
         }
       }
@@ -24721,11 +24721,11 @@ export const AzureMLBatchExecutionActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLUpdateResourceActivity: coreClient.CompositeMapper = {
+export const AzureMlUpdateResourceActivity: coreClient.CompositeMapper = {
   serializedName: "AzureMLUpdateResource",
   type: {
     name: "Composite",
-    className: "AzureMLUpdateResourceActivity",
+    className: "AzureMlUpdateResourceActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -24758,11 +24758,11 @@ export const AzureMLUpdateResourceActivity: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMLExecutePipelineActivity: coreClient.CompositeMapper = {
+export const AzureMlExecutePipelineActivity: coreClient.CompositeMapper = {
   serializedName: "AzureMLExecutePipeline",
   type: {
     name: "Composite",
-    className: "AzureMLExecutePipelineActivity",
+    className: "AzureMlExecutePipelineActivity",
     uberParent: "Activity",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: Activity.type.polymorphicDiscriminator,
@@ -25977,11 +25977,11 @@ export const AzureSqlSource: coreClient.CompositeMapper = {
   }
 };
 
-export const SqlMISource: coreClient.CompositeMapper = {
+export const SqlMiSource: coreClient.CompositeMapper = {
   serializedName: "SqlMISource",
   type: {
     name: "Composite",
-    className: "SqlMISource",
+    className: "SqlMiSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -26035,11 +26035,11 @@ export const SqlMISource: coreClient.CompositeMapper = {
   }
 };
 
-export const SqlDWSource: coreClient.CompositeMapper = {
+export const SqlDwSource: coreClient.CompositeMapper = {
   serializedName: "SqlDWSource",
   type: {
     name: "Composite",
-    className: "SqlDWSource",
+    className: "SqlDwSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -26167,11 +26167,11 @@ export const CassandraSource: coreClient.CompositeMapper = {
   }
 };
 
-export const AmazonMWSSource: coreClient.CompositeMapper = {
+export const AmazonMwsSource: coreClient.CompositeMapper = {
   serializedName: "AmazonMWSSource",
   type: {
     name: "Composite",
-    className: "AmazonMWSSource",
+    className: "AmazonMwsSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -26461,11 +26461,11 @@ export const MagentoSource: coreClient.CompositeMapper = {
   }
 };
 
-export const MariaDBSource: coreClient.CompositeMapper = {
+export const MariaDbSource: coreClient.CompositeMapper = {
   serializedName: "MariaDBSource",
   type: {
     name: "Composite",
-    className: "MariaDBSource",
+    className: "MariaDbSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -26482,11 +26482,11 @@ export const MariaDBSource: coreClient.CompositeMapper = {
   }
 };
 
-export const AzureMariaDBSource: coreClient.CompositeMapper = {
+export const AzureMariaDbSource: coreClient.CompositeMapper = {
   serializedName: "AzureMariaDBSource",
   type: {
     name: "Composite",
-    className: "AzureMariaDBSource",
+    className: "AzureMariaDbSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -26832,11 +26832,11 @@ export const ResponsysSource: coreClient.CompositeMapper = {
   }
 };
 
-export const DynamicsAXSource: coreClient.CompositeMapper = {
+export const DynamicsAxSource: coreClient.CompositeMapper = {
   serializedName: "DynamicsAXSource",
   type: {
     name: "Composite",
-    className: "DynamicsAXSource",
+    className: "DynamicsAxSource",
     uberParent: "CopySource",
     additionalProperties: { type: { name: "Object" } },
     polymorphicDiscriminator: CopySource.type.polymorphicDiscriminator,
@@ -27043,18 +27043,18 @@ export let discriminators = {
   "LinkedService.AzureStorage": AzureStorageLinkedService,
   "LinkedService.AzureBlobStorage": AzureBlobStorageLinkedService,
   "LinkedService.AzureTableStorage": AzureTableStorageLinkedService,
-  "LinkedService.AzureSqlDW": AzureSqlDWLinkedService,
+  "LinkedService.AzureSqlDW": AzureSqlDwLinkedService,
   "LinkedService.SqlServer": SqlServerLinkedService,
   "LinkedService.AmazonRdsForSqlServer": AmazonRdsForSqlServerLinkedService,
   "LinkedService.AzureSqlDatabase": AzureSqlDatabaseLinkedService,
-  "LinkedService.AzureSqlMI": AzureSqlMILinkedService,
+  "LinkedService.AzureSqlMI": AzureSqlMiLinkedService,
   "LinkedService.AzureBatch": AzureBatchLinkedService,
   "LinkedService.AzureKeyVault": AzureKeyVaultLinkedService,
   "LinkedService.CosmosDb": CosmosDbLinkedService,
   "LinkedService.Dynamics": DynamicsLinkedService,
   "LinkedService.DynamicsCrm": DynamicsCrmLinkedService,
   "LinkedService.CommonDataServiceForApps": CommonDataServiceForAppsLinkedService,
-  "LinkedService.HDInsight": HDInsightLinkedService,
+  "LinkedService.HDInsight": HdInsightLinkedService,
   "LinkedService.FileServer": FileServerLinkedService,
   "LinkedService.AzureFileStorage": AzureFileStorageLinkedService,
   "LinkedService.AmazonS3Compatible": AmazonS3CompatibleLinkedService,
@@ -27068,8 +27068,8 @@ export let discriminators = {
   "LinkedService.Sybase": SybaseLinkedService,
   "LinkedService.Db2": Db2LinkedService,
   "LinkedService.Teradata": TeradataLinkedService,
-  "LinkedService.AzureML": AzureMLLinkedService,
-  "LinkedService.AzureMLService": AzureMLServiceLinkedService,
+  "LinkedService.AzureML": AzureMlLinkedService,
+  "LinkedService.AzureMLService": AzureMlServiceLinkedService,
   "LinkedService.Odbc": OdbcLinkedService,
   "LinkedService.Informix": InformixLinkedService,
   "LinkedService.MicrosoftAccess": MicrosoftAccessLinkedService,
@@ -27082,7 +27082,7 @@ export let discriminators = {
   "LinkedService.MongoDbV2": MongoDbV2LinkedService,
   "LinkedService.CosmosDbMongoDbApi": CosmosDbMongoDbApiLinkedService,
   "LinkedService.AzureDataLakeStore": AzureDataLakeStoreLinkedService,
-  "LinkedService.AzureBlobFS": AzureBlobFSLinkedService,
+  "LinkedService.AzureBlobFS": AzureBlobFsLinkedService,
   "LinkedService.Office365": Office365LinkedService,
   "LinkedService.Salesforce": SalesforceLinkedService,
   "LinkedService.SalesforceServiceCloud": SalesforceServiceCloudLinkedService,
@@ -27097,9 +27097,9 @@ export let discriminators = {
   "LinkedService.HttpServer": HttpLinkedService,
   "LinkedService.FtpServer": FtpServerLinkedService,
   "LinkedService.Sftp": SftpServerLinkedService,
-  "LinkedService.SapBW": SapBWLinkedService,
+  "LinkedService.SapBW": SapBwLinkedService,
   "LinkedService.SapHana": SapHanaLinkedService,
-  "LinkedService.AmazonMWS": AmazonMWSLinkedService,
+  "LinkedService.AmazonMWS": AmazonMwsLinkedService,
   "LinkedService.AzurePostgreSql": AzurePostgreSqlLinkedService,
   "LinkedService.Concur": ConcurLinkedService,
   "LinkedService.Couchbase": CouchbaseLinkedService,
@@ -27113,8 +27113,8 @@ export let discriminators = {
   "LinkedService.Impala": ImpalaLinkedService,
   "LinkedService.Jira": JiraLinkedService,
   "LinkedService.Magento": MagentoLinkedService,
-  "LinkedService.MariaDB": MariaDBLinkedService,
-  "LinkedService.AzureMariaDB": AzureMariaDBLinkedService,
+  "LinkedService.MariaDB": MariaDbLinkedService,
+  "LinkedService.AzureMariaDB": AzureMariaDbLinkedService,
   "LinkedService.Marketo": MarketoLinkedService,
   "LinkedService.Paypal": PaypalLinkedService,
   "LinkedService.Phoenix": PhoenixLinkedService,
@@ -27129,12 +27129,12 @@ export let discriminators = {
   "LinkedService.Vertica": VerticaLinkedService,
   "LinkedService.Netezza": NetezzaLinkedService,
   "LinkedService.SalesforceMarketingCloud": SalesforceMarketingCloudLinkedService,
-  "LinkedService.HDInsightOnDemand": HDInsightOnDemandLinkedService,
+  "LinkedService.HDInsightOnDemand": HdInsightOnDemandLinkedService,
   "LinkedService.AzureDataLakeAnalytics": AzureDataLakeAnalyticsLinkedService,
   "LinkedService.AzureDatabricks": AzureDatabricksLinkedService,
   "LinkedService.AzureDatabricksDeltaLake": AzureDatabricksDeltaLakeLinkedService,
   "LinkedService.Responsys": ResponsysLinkedService,
-  "LinkedService.DynamicsAX": DynamicsAXLinkedService,
+  "LinkedService.DynamicsAX": DynamicsAxLinkedService,
   "LinkedService.OracleServiceCloud": OracleServiceCloudLinkedService,
   "LinkedService.GoogleAdWords": GoogleAdWordsLinkedService,
   "LinkedService.SapTable": SapTableLinkedService,
@@ -27154,8 +27154,8 @@ export let discriminators = {
   "Dataset.AzureBlob": AzureBlobDataset,
   "Dataset.AzureTable": AzureTableDataset,
   "Dataset.AzureSqlTable": AzureSqlTableDataset,
-  "Dataset.AzureSqlMITable": AzureSqlMITableDataset,
-  "Dataset.AzureSqlDWTable": AzureSqlDWTableDataset,
+  "Dataset.AzureSqlMITable": AzureSqlMiTableDataset,
+  "Dataset.AzureSqlDWTable": AzureSqlDwTableDataset,
   "Dataset.CassandraTable": CassandraTableDataset,
   "Dataset.CustomDataset": CustomDataset,
   "Dataset.CosmosDbSqlApiCollection": CosmosDbSqlApiCollectionDataset,
@@ -27164,7 +27164,7 @@ export let discriminators = {
   "Dataset.DynamicsCrmEntity": DynamicsCrmEntityDataset,
   "Dataset.CommonDataServiceForAppsEntity": CommonDataServiceForAppsEntityDataset,
   "Dataset.AzureDataLakeStoreFile": AzureDataLakeStoreDataset,
-  "Dataset.AzureBlobFSFile": AzureBlobFSDataset,
+  "Dataset.AzureBlobFSFile": AzureBlobFsDataset,
   "Dataset.Office365Table": Office365Dataset,
   "Dataset.FileShare": FileShareDataset,
   "Dataset.MongoDbCollection": MongoDbCollectionDataset,
@@ -27199,7 +27199,7 @@ export let discriminators = {
   "Dataset.WebTable": WebTableDataset,
   "Dataset.AzureSearchIndex": AzureSearchIndexDataset,
   "Dataset.HttpFile": HttpDataset,
-  "Dataset.AmazonMWSObject": AmazonMWSObjectDataset,
+  "Dataset.AmazonMWSObject": AmazonMwsObjectDataset,
   "Dataset.AzurePostgreSqlTable": AzurePostgreSqlTableDataset,
   "Dataset.ConcurObject": ConcurObjectDataset,
   "Dataset.CouchbaseTable": CouchbaseTableDataset,
@@ -27213,8 +27213,8 @@ export let discriminators = {
   "Dataset.ImpalaObject": ImpalaObjectDataset,
   "Dataset.JiraObject": JiraObjectDataset,
   "Dataset.MagentoObject": MagentoObjectDataset,
-  "Dataset.MariaDBTable": MariaDBTableDataset,
-  "Dataset.AzureMariaDBTable": AzureMariaDBTableDataset,
+  "Dataset.MariaDBTable": MariaDbTableDataset,
+  "Dataset.AzureMariaDBTable": AzureMariaDbTableDataset,
   "Dataset.MarketoObject": MarketoObjectDataset,
   "Dataset.PaypalObject": PaypalObjectDataset,
   "Dataset.PhoenixObject": PhoenixObjectDataset,
@@ -27230,7 +27230,7 @@ export let discriminators = {
   "Dataset.VerticaTable": VerticaTableDataset,
   "Dataset.SalesforceMarketingCloudObject": SalesforceMarketingCloudObjectDataset,
   "Dataset.ResponsysObject": ResponsysObjectDataset,
-  "Dataset.DynamicsAXResource": DynamicsAXResourceDataset,
+  "Dataset.DynamicsAXResource": DynamicsAxResourceDataset,
   "Dataset.OracleServiceCloudObject": OracleServiceCloudObjectDataset,
   "Dataset.AzureDataExplorerTable": AzureDataExplorerTableDataset,
   "Dataset.GoogleAdWordsObject": GoogleAdWordsObjectDataset,
@@ -27252,7 +27252,7 @@ export let discriminators = {
   "Credential.ServicePrincipal": ServicePrincipalCredential,
   "Credential.ManagedIdentity": ManagedIdentityCredential,
   "DatasetLocation.AzureBlobStorageLocation": AzureBlobStorageLocation,
-  "DatasetLocation.AzureBlobFSLocation": AzureBlobFSLocation,
+  "DatasetLocation.AzureBlobFSLocation": AzureBlobFsLocation,
   "DatasetLocation.AzureDataLakeStoreLocation": AzureDataLakeStoreLocation,
   "DatasetLocation.AmazonS3Location": AmazonS3Location,
   "DatasetLocation.FileServerLocation": FileServerLocation,
@@ -27285,7 +27285,7 @@ export let discriminators = {
   "WebLinkedServiceTypeProperties.Basic": WebBasicAuthentication,
   "WebLinkedServiceTypeProperties.ClientCertificate": WebClientCertificateAuthentication,
   "StoreReadSettings.AzureBlobStorageReadSettings": AzureBlobStorageReadSettings,
-  "StoreReadSettings.AzureBlobFSReadSettings": AzureBlobFSReadSettings,
+  "StoreReadSettings.AzureBlobFSReadSettings": AzureBlobFsReadSettings,
   "StoreReadSettings.AzureDataLakeStoreReadSettings": AzureDataLakeStoreReadSettings,
   "StoreReadSettings.AmazonS3ReadSettings": AmazonS3ReadSettings,
   "StoreReadSettings.FileServerReadSettings": FileServerReadSettings,
@@ -27299,7 +27299,7 @@ export let discriminators = {
   "StoreReadSettings.HdfsReadSettings": HdfsReadSettings,
   "StoreWriteSettings.SftpWriteSettings": SftpWriteSettings,
   "StoreWriteSettings.AzureBlobStorageWriteSettings": AzureBlobStorageWriteSettings,
-  "StoreWriteSettings.AzureBlobFSWriteSettings": AzureBlobFSWriteSettings,
+  "StoreWriteSettings.AzureBlobFSWriteSettings": AzureBlobFsWriteSettings,
   "StoreWriteSettings.AzureDataLakeStoreWriteSettings": AzureDataLakeStoreWriteSettings,
   "StoreWriteSettings.FileServerWriteSettings": FileServerWriteSettings,
   "StoreWriteSettings.AzureFileStorageWriteSettings": AzureFileStorageWriteSettings,
@@ -27347,7 +27347,7 @@ export let discriminators = {
   "CopySource.CosmosDbMongoDbApiSource": CosmosDbMongoDbApiSource,
   "CopySource.Office365Source": Office365Source,
   "CopySource.AzureDataLakeStoreSource": AzureDataLakeStoreSource,
-  "CopySource.AzureBlobFSSource": AzureBlobFSSource,
+  "CopySource.AzureBlobFSSource": AzureBlobFsSource,
   "CopySource.HttpSource": HttpSource,
   "CopySource.SnowflakeSource": SnowflakeSource,
   "CopySource.AzureDatabricksDeltaLakeSource": AzureDatabricksDeltaLakeSource,
@@ -27372,12 +27372,12 @@ export let discriminators = {
   "CopySink.SqlSink": SqlSink,
   "CopySink.SqlServerSink": SqlServerSink,
   "CopySink.AzureSqlSink": AzureSqlSink,
-  "CopySink.SqlMISink": SqlMISink,
-  "CopySink.SqlDWSink": SqlDWSink,
+  "CopySink.SqlMISink": SqlMiSink,
+  "CopySink.SqlDWSink": SqlDwSink,
   "CopySink.SnowflakeSink": SnowflakeSink,
   "CopySink.OracleSink": OracleSink,
   "CopySink.AzureDataLakeStoreSink": AzureDataLakeStoreSink,
-  "CopySink.AzureBlobFSSink": AzureBlobFSSink,
+  "CopySink.AzureBlobFSSink": AzureBlobFsSink,
   "CopySink.AzureSearchIndexSink": AzureSearchIndexSink,
   "CopySink.OdbcSink": OdbcSink,
   "CopySink.InformixSink": InformixSink,
@@ -27410,11 +27410,11 @@ export let discriminators = {
   "Activity.AppendVariable": AppendVariableActivity,
   "Activity.WebHook": WebHookActivity,
   "Activity.Copy": CopyActivity,
-  "Activity.HDInsightHive": HDInsightHiveActivity,
-  "Activity.HDInsightPig": HDInsightPigActivity,
-  "Activity.HDInsightMapReduce": HDInsightMapReduceActivity,
-  "Activity.HDInsightStreaming": HDInsightStreamingActivity,
-  "Activity.HDInsightSpark": HDInsightSparkActivity,
+  "Activity.HDInsightHive": HdInsightHiveActivity,
+  "Activity.HDInsightPig": HdInsightPigActivity,
+  "Activity.HDInsightMapReduce": HdInsightMapReduceActivity,
+  "Activity.HDInsightStreaming": HdInsightStreamingActivity,
+  "Activity.HDInsightSpark": HdInsightSparkActivity,
   "Activity.ExecuteSSISPackage": ExecuteSsisPackageActivity,
   "Activity.Custom": CustomActivity,
   "Activity.SqlServerStoredProcedure": SqlServerStoredProcedureActivity,
@@ -27423,9 +27423,9 @@ export let discriminators = {
   "Activity.Lookup": LookupActivity,
   "Activity.WebActivity": WebActivity,
   "Activity.GetMetadata": GetMetadataActivity,
-  "Activity.AzureMLBatchExecution": AzureMLBatchExecutionActivity,
-  "Activity.AzureMLUpdateResource": AzureMLUpdateResourceActivity,
-  "Activity.AzureMLExecutePipeline": AzureMLExecutePipelineActivity,
+  "Activity.AzureMLBatchExecution": AzureMlBatchExecutionActivity,
+  "Activity.AzureMLUpdateResource": AzureMlUpdateResourceActivity,
+  "Activity.AzureMLExecutePipeline": AzureMlExecutePipelineActivity,
   "Activity.DataLakeAnalyticsU-SQL": DataLakeAnalyticsUsqlActivity,
   "Activity.DatabricksNotebook": DatabricksNotebookActivity,
   "Activity.DatabricksSparkJar": DatabricksSparkJarActivity,
@@ -27454,12 +27454,12 @@ export let discriminators = {
   "CopySource.SqlServerSource": SqlServerSource,
   "CopySource.AmazonRdsForSqlServerSource": AmazonRdsForSqlServerSource,
   "CopySource.AzureSqlSource": AzureSqlSource,
-  "CopySource.SqlMISource": SqlMISource,
-  "CopySource.SqlDWSource": SqlDWSource,
+  "CopySource.SqlMISource": SqlMiSource,
+  "CopySource.SqlDWSource": SqlDwSource,
   "CopySource.AzureMySqlSource": AzureMySqlSource,
   "CopySource.TeradataSource": TeradataSource,
   "CopySource.CassandraSource": CassandraSource,
-  "CopySource.AmazonMWSSource": AmazonMWSSource,
+  "CopySource.AmazonMWSSource": AmazonMwsSource,
   "CopySource.AzurePostgreSqlSource": AzurePostgreSqlSource,
   "CopySource.ConcurSource": ConcurSource,
   "CopySource.CouchbaseSource": CouchbaseSource,
@@ -27473,8 +27473,8 @@ export let discriminators = {
   "CopySource.ImpalaSource": ImpalaSource,
   "CopySource.JiraSource": JiraSource,
   "CopySource.MagentoSource": MagentoSource,
-  "CopySource.MariaDBSource": MariaDBSource,
-  "CopySource.AzureMariaDBSource": AzureMariaDBSource,
+  "CopySource.MariaDBSource": MariaDbSource,
+  "CopySource.AzureMariaDBSource": AzureMariaDbSource,
   "CopySource.MarketoSource": MarketoSource,
   "CopySource.PaypalSource": PaypalSource,
   "CopySource.PhoenixSource": PhoenixSource,
@@ -27490,7 +27490,7 @@ export let discriminators = {
   "CopySource.VerticaSource": VerticaSource,
   "CopySource.SalesforceMarketingCloudSource": SalesforceMarketingCloudSource,
   "CopySource.ResponsysSource": ResponsysSource,
-  "CopySource.DynamicsAXSource": DynamicsAXSource,
+  "CopySource.DynamicsAXSource": DynamicsAxSource,
   "CopySource.OracleServiceCloudSource": OracleServiceCloudSource,
   "CopySource.GoogleAdWordsSource": GoogleAdWordsSource,
   "CopySource.AmazonRedshiftSource": AmazonRedshiftSource,

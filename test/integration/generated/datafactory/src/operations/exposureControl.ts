@@ -2,7 +2,7 @@ import { ExposureControl } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import {
   ExposureControlRequest,
   ExposureControlGetFeatureValueOptionalParams,
@@ -16,13 +16,13 @@ import {
 
 /** Class containing ExposureControl operations. */
 export class ExposureControlImpl implements ExposureControl {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class ExposureControl class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 
@@ -99,7 +99,7 @@ const getFeatureValueOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.locationId
   ],
@@ -122,7 +122,7 @@ const getFeatureValueByFactoryOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
@@ -146,7 +146,7 @@ const queryFeatureValuesByFactoryOperationSpec: coreClient.OperationSpec = {
   requestBody: Parameters.exposureControlBatchRequest,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
-    Parameters.$host,
+    Parameters.Host,
     Parameters.subscriptionId,
     Parameters.resourceGroupName,
     Parameters.factoryName
