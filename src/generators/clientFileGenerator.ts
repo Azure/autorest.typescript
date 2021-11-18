@@ -5,7 +5,8 @@ import {
   Project,
   PropertyDeclarationStructure,
   ClassDeclaration,
-  SourceFile
+  SourceFile,
+  CodeBlockWriter
 } from "ts-morph";
 import { ClientDetails } from "../models/clientDetails";
 import {
@@ -25,6 +26,9 @@ import { getAllModelsNames } from "./utils/responseTypeUtils";
 import { addTracingOperationImports } from "./utils/tracingUtils";
 import { addPagingEsNextRef, addPagingImports } from "./utils/pagingOperations";
 import { getAutorestOptions } from "../autorestSession";
+import { ParameterDetails } from "../models/parameterDetails";
+import { EndpointDetails } from "../transforms/urlTransforms";
+import { PackageDetails } from "../models/packageDetails";
 
 type OperationDeclarationDetails = { name: string; typeName: string };
 
@@ -33,9 +37,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     useCoreV2,
     hideClients,
     srcPath,
-    addCredentials
+    addCredentials,
+    packageDetails
   } = getAutorestOptions();
-  const clientContextClassName = `${clientDetails.className}Context`;
   const hasMappers = !!clientDetails.mappers.length;
 
   // Check if there are any client level operations
@@ -71,6 +75,8 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
       overwrite: true
     }
   );
+
+  !useCoreV2 && writePackageInfo(clientFile, packageDetails);
 
   const flattenedInlineOperations = inlineOperations.reduce<OperationDetails[]>(
     (acc, curr) => (acc = [...acc, ...curr.operations]),
@@ -163,14 +169,9 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
     });
   }
 
-  clientFile.addImportDeclaration({
-    namedImports: [clientContextClassName],
-    moduleSpecifier: `./${clientDetails.sourceFileName}Context`
-  });
-
   const clientClass = clientFile.addClass({
     name: clientDetails.className,
-    extends: clientContextClassName,
+    extends: !useCoreV2 ? "coreHttp.ServiceClient" : "coreClient.ServiceClient",
     isExported: true
   });
 
@@ -185,7 +186,10 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   }
 
   const importedModels = new Set<string>();
-
+  const clientParams = clientDetails.parameters.filter(
+    param => param.implementationLocation === ImplementationLocation.Client
+  );
+  writeClassProperties(clientClass, clientParams, importedModels);
   writeConstructor(clientDetails, clientClass, importedModels);
   writeClientOperations(
     clientFile,
@@ -204,6 +208,26 @@ export function generateClient(clientDetails: ClientDetails, project: Project) {
   }
 
   clientFile.fixUnusedIdentifiers();
+}
+
+function writeClassProperties(
+  clientClass: ClassDeclaration,
+  clientParams: ParameterDetails[],
+  importedModels: Set<string>
+) {
+  const params = clientParams.filter(p => !p.isSynthetic);
+  params.forEach(({ typeDetails }) =>
+    typeDetails.usedModels.forEach(model => importedModels.add(model))
+  );
+  clientClass.addProperties(
+    params.map(param => {
+      return {
+        name: param.name,
+        type: param.typeDetails.typeName,
+        hasQuestionToken: !param.required
+      } as PropertyDeclarationStructure;
+    })
+  );
 }
 
 export function checkForNameCollisions(
@@ -285,8 +309,57 @@ function writeConstructor(
     ]
   });
 
+  const { useCoreV2 } = getAutorestOptions();
+  const hasLro = clientDetails.operationGroups.some(og =>
+    og.operations.some(o => o.isLro)
+  );
+
+  const clientParams = clientDetails.parameters.filter(
+    param => param.implementationLocation === ImplementationLocation.Client
+  );
+  const addBlankLine = true;
+  const requiredParameters = getRequiredParamAssignments(requiredParams);
+  const constantParameters = getConstantClientParamAssignments(clientParams);
+
+  const writeStatement = (content: string, shouldAddBlankLine = false) => (
+    writer: CodeBlockWriter
+  ) => {
+    if (content) {
+      writer.writeLine(content);
+      shouldAddBlankLine && writer.blankLine();
+    }
+  };
+  
+  const writeStatements = (lines: string[], shouldAddBlankLine = false) => (
+    writer: CodeBlockWriter
+  ) => {
+    lines.forEach(line => writer.writeLine(line));
+    shouldAddBlankLine && writer.blankLine();
+  };
+
   clientConstructor.addStatements([
-    `super(${[...requiredParams.map(p => p.name), "options"].join()});`
+    writeStatements(getRequiredParamChecks(requiredParams), addBlankLine),
+    writeStatement(
+      writeDefaultOptions(
+        clientParams.some(p => p.name === "credentials"),
+        hasLro,
+        clientDetails
+      )
+    )
+  ]);
+
+  !useCoreV2 &&
+    clientConstructor.addStatements([
+      writeStatement(getEndpointStatement(clientDetails.endpoint), addBlankLine)
+    ]);
+
+  clientConstructor.addStatements([
+    requiredParameters.length ? "// Parameter assignments" : "",
+    writeStatements(getRequiredParamAssignments(requiredParams), addBlankLine),
+    constantParameters.length
+      ? "// Assigning values to Constant parameters"
+      : "",
+    writeStatements(constantParameters, addBlankLine)
   ]);
 
   const operationDeclarationDetails: OperationDeclarationDetails[] = getOperationGroupsDeclarationDetails(
@@ -361,4 +434,136 @@ function writeClientOperations(
       } as PropertyDeclarationStructure;
     })
   );
+}
+
+function getRequiredParamChecks(requiredParameters: ParameterDetails[]) {
+  return requiredParameters.map(
+    ({ name }) => `if(${name} === undefined) {
+    throw new Error("'${name}' cannot be null");
+  }`
+  );
+}
+
+function getCredentialScopesValue(credentialScopes?: string | string[]) {
+  if (Array.isArray(credentialScopes)) {
+    return `[${credentialScopes.map(scope => `"${scope}"`).join()}]`;
+  } else if (typeof credentialScopes === "string") {
+    return `"${credentialScopes}"`;
+  }
+
+  return credentialScopes;
+}
+
+function writeDefaultOptions(
+  hasCredentials: boolean,
+  hasLro: boolean,
+  clientDetails: ClientDetails
+) {
+  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
+
+  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
+  const addScopes = credentialScopes
+    ? `if(!options.credentialScopes) {
+    options.credentialScopes = ${credentialScopesValues}
+  }`
+    : "";
+
+  const defaults = !hasCredentials
+    ? `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8"
+  };`
+    : `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8",
+    credential: credentials
+  };`;
+
+  return !useCoreV2
+    ? `// Initializing default values for options
+  if (!options) {
+     options = {};
+  }
+
+  const defaultUserAgent = \`azsdk-js-\${packageName.replace(/@.*\\//,"")}/\${packageVersion} \${coreHttp.getDefaultUserAgentValue()}\`;
+  
+  ${addScopes}
+
+  super(${hasCredentials ? "credentials" : `undefined`}, {
+    ...options,
+    userAgent: options.userAgent
+      ? \`\${options.userAgent} \${defaultUserAgent}\`
+      : \`\${defaultUserAgent}\`
+  });
+  
+  this.requestContentType = "application/json; charset=utf-8";
+  
+  `
+    : `// Initializing default values for options
+  if (!options) {
+    options = {};
+  }
+  ${defaults}
+
+  const packageDetails = \`azsdk-js-${packageDetails.name.replace(
+    /@.*\//,
+    ""
+  )}/${packageDetails.version}\`;
+  const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? \`\${options.userAgentOptions.userAgentPrefix} \${packageDetails}\`
+        : \`\${packageDetails}\`;
+  
+  ${addScopes}
+  const optionsWithDefaults = {
+    ...defaults,
+    ...options,
+    userAgentOptions: {
+      userAgentPrefix
+    },
+    baseUri: ${getEndpoint(clientDetails.endpoint)}
+  };
+  super(optionsWithDefaults);
+  `;
+}
+
+function getEndpointStatement({ endpoint }: EndpointDetails) {
+  return `this.baseUri = options.endpoint ${
+    endpoint ? ` || "${endpoint}"` : ""
+  };`;
+}
+
+function getEndpoint({ endpoint }: EndpointDetails) {
+  return `options.endpoint ${endpoint ? ` || "${endpoint}"` : ""}`;
+}
+
+function getRequiredParamAssignments(requiredParameters: ParameterDetails[]) {
+  const disallowedClientParameters = ["credentials"];
+  return requiredParameters
+    .filter(({ name }) => !disallowedClientParameters.includes(name))
+    .map(({ name }) => `this.${name} = ${name};`);
+}
+
+function getConstantClientParamAssignments(
+  clientParameters: ParameterDetails[]
+) {
+  return clientParameters
+    .filter(p => !!p.defaultValue || p.schemaType === SchemaType.Constant)
+    .map(
+      ({ name, defaultValue }) =>
+        `this.${name} = options.${name} ||  ${defaultValue}`
+    );
+}
+
+function writePackageInfo(
+  sourceFile: SourceFile,
+  packageDetails: PackageDetails
+) {
+  sourceFile.addStatements([
+    `\n\n`,
+    `const packageName = "${packageDetails.name || ""}";`,
+    `const packageVersion = "${packageDetails.version || ""}";`
+  ]);
+}
+
+function packageDetails(clientFile: SourceFile, packageDetails: any) {
+  throw new Error("Function not implemented.");
 }

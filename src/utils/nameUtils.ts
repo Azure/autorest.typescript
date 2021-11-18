@@ -183,6 +183,8 @@ export function getMappersName(title: string): string {
 function getCasingConvention(nameType: NameType) {
   switch (nameType) {
     case NameType.File:
+    case NameType.Property:
+    case NameType.Operation:
       return CasingConvention.Camel;
     default:
       return CasingConvention.None;

@@ -71,6 +71,24 @@ modelerfour:
   # Enable older inconsistent behavior that an enum with a single value would become a constant by default.
   seal-single-value-enum-by-default: true
 
+  naming:
+    preserve-uppercase-max-length: 3
+    parameter: camel
+    property: camel
+    operation: pascal
+    operationGroup: pascal
+    choice: pascal
+    choiceValue: pascal
+    constant: pascal
+    type: pascal
+    client: pascal
+    local: camel
+    global: camel
+    override: # a key/value mapping of names to force to a certain value
+      cmyk: CMYK
+      $host: $host
+      LRO: LRO
+
 pipeline:
   typescript: # <- name of plugin
     input: modelerfour/identity

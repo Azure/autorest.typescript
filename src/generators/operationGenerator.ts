@@ -475,7 +475,7 @@ function addClass(
     name: "client",
     isReadonly: true,
     scope: Scope.Private,
-    type: `${clientDetails.className}Context`
+    type: `${clientDetails.className}`
   });
   const constructorDefinition = operationGroupClass.addConstructor({
     docs: [
@@ -487,7 +487,7 @@ function addClass(
       {
         name: "client",
         hasQuestionToken: false,
-        type: `${clientDetails.className}Context`
+        type: `${clientDetails.className}`
       }
     ]
   });
@@ -1319,16 +1319,16 @@ function addImports(
     });
   }
 
-  const clientContextClassName = `${className}Context`;
+  const clientClassName = `${className}`;
 
-  const clientContextFileName = normalizeName(
-    clientContextClassName,
+  const clientFileName = normalizeName(
+    clientClassName,
     NameType.File
   );
 
   operationGroupFile.addImportDeclaration({
-    namedImports: [`${clientContextClassName}`],
-    moduleSpecifier: `../${clientContextFileName}`
+    namedImports: [`${clientClassName}`],
+    moduleSpecifier: `../${clientFileName}`
   });
 
   if (hasLroOperation(operationGroupDetails)) {
