@@ -88,6 +88,7 @@ modelerfour:
       cmyk: CMYK
       $host: $host
       LRO: LRO
+      ID: id
 
 pipeline:
   typescript: # <- name of plugin

@@ -39,7 +39,7 @@ export const ComplexTypeNoMeta: coreClient.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeNoMeta",
     modelProperties: {
-      iD: {
+      id: {
         serializedName: "ID",
         xmlName: "ID",
         type: {
@@ -82,7 +82,7 @@ export const ComplexTypeWithMeta: coreClient.CompositeMapper = {
     name: "Composite",
     className: "ComplexTypeWithMeta",
     modelProperties: {
-      iD: {
+      id: {
         serializedName: "ID",
         xmlName: "ID",
         type: {
