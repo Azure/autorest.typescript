@@ -2,994 +2,994 @@
 // Licensed under the MIT license.
 
 import {
-  PathsgetBooleanTrueParameters,
-  PathsgetBooleanFalseParameters,
-  PathsgetIntOneMillionParameters,
-  PathsgetIntNegativeOneMillionParameters,
-  PathsgetTenBillionParameters,
-  PathsgetNegativeTenBillionParameters,
-  PathsfloatScientificPositiveParameters,
-  PathsfloatScientificNegativeParameters,
-  PathsdoubleDecimalPositiveParameters,
-  PathsdoubleDecimalNegativeParameters,
-  PathsstringUnicodeParameters,
-  PathsstringUrlEncodedParameters,
-  PathsstringUrlNonEncodedParameters,
-  PathsstringEmptyParameters,
-  PathsstringNullParameters,
-  PathsenumValidParameters,
-  PathsenumNullParameters,
-  PathsbyteMultiByteParameters,
-  PathsbyteEmptyParameters,
-  PathsbyteNullParameters,
-  PathsdateValidParameters,
-  PathsdateNullParameters,
-  PathsdateTimeValidParameters,
-  PathsdateTimeNullParameters,
-  Pathsbase64UrlParameters,
-  PathsarrayCsvInPathParameters,
-  PathsunixTimeUrlParameters,
-  QueriesgetBooleanTrueParameters,
-  QueriesgetBooleanFalseParameters,
-  QueriesgetBooleanNullParameters,
-  QueriesgetIntOneMillionParameters,
-  QueriesgetIntNegativeOneMillionParameters,
-  QueriesgetIntNullParameters,
-  QueriesgetTenBillionParameters,
-  QueriesgetNegativeTenBillionParameters,
-  QueriesgetLongNullParameters,
-  QueriesfloatScientificPositiveParameters,
-  QueriesfloatScientificNegativeParameters,
-  QueriesfloatNullParameters,
-  QueriesdoubleDecimalPositiveParameters,
-  QueriesdoubleDecimalNegativeParameters,
-  QueriesdoubleNullParameters,
-  QueriesstringUnicodeParameters,
-  QueriesstringUrlEncodedParameters,
-  QueriesstringEmptyParameters,
-  QueriesstringNullParameters,
-  QueriesenumValidParameters,
-  QueriesenumNullParameters,
-  QueriesbyteMultiByteParameters,
-  QueriesbyteEmptyParameters,
-  QueriesbyteNullParameters,
-  QueriesdateValidParameters,
-  QueriesdateNullParameters,
-  QueriesdateTimeValidParameters,
-  QueriesdateTimeNullParameters,
-  QueriesarrayStringCsvValidParameters,
-  QueriesarrayStringCsvNullParameters,
-  QueriesarrayStringCsvEmptyParameters,
-  QueriesarrayStringNoCollectionFormatEmptyParameters,
-  QueriesarrayStringSsvValidParameters,
-  QueriesarrayStringTsvValidParameters,
-  QueriesarrayStringPipesValidParameters,
-  PathItemsgetAllWithValuesParameters,
-  PathItemsgetGlobalQueryNullParameters,
-  PathItemsgetGlobalAndLocalQueryNullParameters,
-  PathItemsgetLocalPathItemQueryNullParameters
+  PathsGetBooleanTrueParameters,
+  PathsGetBooleanFalseParameters,
+  PathsGetIntOneMillionParameters,
+  PathsGetIntNegativeOneMillionParameters,
+  PathsGetTenBillionParameters,
+  PathsGetNegativeTenBillionParameters,
+  PathsFloatScientificPositiveParameters,
+  PathsFloatScientificNegativeParameters,
+  PathsDoubleDecimalPositiveParameters,
+  PathsDoubleDecimalNegativeParameters,
+  PathsStringUnicodeParameters,
+  PathsStringUrlEncodedParameters,
+  PathsStringUrlNonEncodedParameters,
+  PathsStringEmptyParameters,
+  PathsStringNullParameters,
+  PathsEnumValidParameters,
+  PathsEnumNullParameters,
+  PathsByteMultiByteParameters,
+  PathsByteEmptyParameters,
+  PathsByteNullParameters,
+  PathsDateValidParameters,
+  PathsDateNullParameters,
+  PathsDateTimeValidParameters,
+  PathsDateTimeNullParameters,
+  PathsBase64UrlParameters,
+  PathsArrayCsvInPathParameters,
+  PathsUnixTimeUrlParameters,
+  QueriesGetBooleanTrueParameters,
+  QueriesGetBooleanFalseParameters,
+  QueriesGetBooleanNullParameters,
+  QueriesGetIntOneMillionParameters,
+  QueriesGetIntNegativeOneMillionParameters,
+  QueriesGetIntNullParameters,
+  QueriesGetTenBillionParameters,
+  QueriesGetNegativeTenBillionParameters,
+  QueriesGetLongNullParameters,
+  QueriesFloatScientificPositiveParameters,
+  QueriesFloatScientificNegativeParameters,
+  QueriesFloatNullParameters,
+  QueriesDoubleDecimalPositiveParameters,
+  QueriesDoubleDecimalNegativeParameters,
+  QueriesDoubleNullParameters,
+  QueriesStringUnicodeParameters,
+  QueriesStringUrlEncodedParameters,
+  QueriesStringEmptyParameters,
+  QueriesStringNullParameters,
+  QueriesEnumValidParameters,
+  QueriesEnumNullParameters,
+  QueriesByteMultiByteParameters,
+  QueriesByteEmptyParameters,
+  QueriesByteNullParameters,
+  QueriesDateValidParameters,
+  QueriesDateNullParameters,
+  QueriesDateTimeValidParameters,
+  QueriesDateTimeNullParameters,
+  QueriesArrayStringCsvValidParameters,
+  QueriesArrayStringCsvNullParameters,
+  QueriesArrayStringCsvEmptyParameters,
+  QueriesArrayStringNoCollectionFormatEmptyParameters,
+  QueriesArrayStringSsvValidParameters,
+  QueriesArrayStringTsvValidParameters,
+  QueriesArrayStringPipesValidParameters,
+  PathItemsGetAllWithValuesParameters,
+  PathItemsGetGlobalQueryNullParameters,
+  PathItemsGetGlobalAndLocalQueryNullParameters,
+  PathItemsGetLocalPathItemQueryNullParameters
 } from "./parameters";
 import {
-  PathsgetBooleanTrue200Response,
-  PathsgetBooleanTruedefaultResponse,
-  PathsgetBooleanFalse200Response,
-  PathsgetBooleanFalsedefaultResponse,
-  PathsgetIntOneMillion200Response,
-  PathsgetIntOneMilliondefaultResponse,
-  PathsgetIntNegativeOneMillion200Response,
-  PathsgetIntNegativeOneMilliondefaultResponse,
-  PathsgetTenBillion200Response,
-  PathsgetTenBilliondefaultResponse,
-  PathsgetNegativeTenBillion200Response,
-  PathsgetNegativeTenBilliondefaultResponse,
-  PathsfloatScientificPositive200Response,
-  PathsfloatScientificPositivedefaultResponse,
-  PathsfloatScientificNegative200Response,
-  PathsfloatScientificNegativedefaultResponse,
-  PathsdoubleDecimalPositive200Response,
-  PathsdoubleDecimalPositivedefaultResponse,
-  PathsdoubleDecimalNegative200Response,
-  PathsdoubleDecimalNegativedefaultResponse,
-  PathsstringUnicode200Response,
-  PathsstringUnicodedefaultResponse,
-  PathsstringUrlEncoded200Response,
-  PathsstringUrlEncodeddefaultResponse,
-  PathsstringUrlNonEncoded200Response,
-  PathsstringUrlNonEncodeddefaultResponse,
-  PathsstringEmpty200Response,
-  PathsstringEmptydefaultResponse,
-  PathsstringNull400Response,
-  PathsstringNulldefaultResponse,
-  PathsenumValid200Response,
-  PathsenumValiddefaultResponse,
-  PathsenumNull400Response,
-  PathsenumNulldefaultResponse,
-  PathsbyteMultiByte200Response,
-  PathsbyteMultiBytedefaultResponse,
-  PathsbyteEmpty200Response,
-  PathsbyteEmptydefaultResponse,
-  PathsbyteNull400Response,
-  PathsbyteNulldefaultResponse,
-  PathsdateValid200Response,
-  PathsdateValiddefaultResponse,
-  PathsdateNull400Response,
-  PathsdateNulldefaultResponse,
-  PathsdateTimeValid200Response,
-  PathsdateTimeValiddefaultResponse,
-  PathsdateTimeNull400Response,
-  PathsdateTimeNulldefaultResponse,
-  Pathsbase64Url200Response,
-  Pathsbase64UrldefaultResponse,
-  PathsarrayCsvInPath200Response,
-  PathsarrayCsvInPathdefaultResponse,
-  PathsunixTimeUrl200Response,
-  PathsunixTimeUrldefaultResponse,
-  QueriesgetBooleanTrue200Response,
-  QueriesgetBooleanTruedefaultResponse,
-  QueriesgetBooleanFalse200Response,
-  QueriesgetBooleanFalsedefaultResponse,
-  QueriesgetBooleanNull200Response,
-  QueriesgetBooleanNulldefaultResponse,
-  QueriesgetIntOneMillion200Response,
-  QueriesgetIntOneMilliondefaultResponse,
-  QueriesgetIntNegativeOneMillion200Response,
-  QueriesgetIntNegativeOneMilliondefaultResponse,
-  QueriesgetIntNull200Response,
-  QueriesgetIntNulldefaultResponse,
-  QueriesgetTenBillion200Response,
-  QueriesgetTenBilliondefaultResponse,
-  QueriesgetNegativeTenBillion200Response,
-  QueriesgetNegativeTenBilliondefaultResponse,
-  QueriesgetLongNull200Response,
-  QueriesgetLongNulldefaultResponse,
-  QueriesfloatScientificPositive200Response,
-  QueriesfloatScientificPositivedefaultResponse,
-  QueriesfloatScientificNegative200Response,
-  QueriesfloatScientificNegativedefaultResponse,
-  QueriesfloatNull200Response,
-  QueriesfloatNulldefaultResponse,
-  QueriesdoubleDecimalPositive200Response,
-  QueriesdoubleDecimalPositivedefaultResponse,
-  QueriesdoubleDecimalNegative200Response,
-  QueriesdoubleDecimalNegativedefaultResponse,
-  QueriesdoubleNull200Response,
-  QueriesdoubleNulldefaultResponse,
-  QueriesstringUnicode200Response,
-  QueriesstringUnicodedefaultResponse,
-  QueriesstringUrlEncoded200Response,
-  QueriesstringUrlEncodeddefaultResponse,
-  QueriesstringEmpty200Response,
-  QueriesstringEmptydefaultResponse,
-  QueriesstringNull200Response,
-  QueriesstringNulldefaultResponse,
-  QueriesenumValid200Response,
-  QueriesenumValiddefaultResponse,
-  QueriesenumNull200Response,
-  QueriesenumNulldefaultResponse,
-  QueriesbyteMultiByte200Response,
-  QueriesbyteMultiBytedefaultResponse,
-  QueriesbyteEmpty200Response,
-  QueriesbyteEmptydefaultResponse,
-  QueriesbyteNull200Response,
-  QueriesbyteNulldefaultResponse,
-  QueriesdateValid200Response,
-  QueriesdateValiddefaultResponse,
-  QueriesdateNull200Response,
-  QueriesdateNulldefaultResponse,
-  QueriesdateTimeValid200Response,
-  QueriesdateTimeValiddefaultResponse,
-  QueriesdateTimeNull200Response,
-  QueriesdateTimeNulldefaultResponse,
-  QueriesarrayStringCsvValid200Response,
-  QueriesarrayStringCsvValiddefaultResponse,
-  QueriesarrayStringCsvNull200Response,
-  QueriesarrayStringCsvNulldefaultResponse,
-  QueriesarrayStringCsvEmpty200Response,
-  QueriesarrayStringCsvEmptydefaultResponse,
-  QueriesarrayStringNoCollectionFormatEmpty200Response,
-  QueriesarrayStringNoCollectionFormatEmptydefaultResponse,
-  QueriesarrayStringSsvValid200Response,
-  QueriesarrayStringSsvValiddefaultResponse,
-  QueriesarrayStringTsvValid200Response,
-  QueriesarrayStringTsvValiddefaultResponse,
-  QueriesarrayStringPipesValid200Response,
-  QueriesarrayStringPipesValiddefaultResponse,
-  PathItemsgetAllWithValues200Response,
-  PathItemsgetAllWithValuesdefaultResponse,
-  PathItemsgetGlobalQueryNull200Response,
-  PathItemsgetGlobalQueryNulldefaultResponse,
-  PathItemsgetGlobalAndLocalQueryNull200Response,
-  PathItemsgetGlobalAndLocalQueryNulldefaultResponse,
-  PathItemsgetLocalPathItemQueryNull200Response,
-  PathItemsgetLocalPathItemQueryNulldefaultResponse
+  PathsGetBooleanTrue200Response,
+  PathsGetBooleanTruedefaultResponse,
+  PathsGetBooleanFalse200Response,
+  PathsGetBooleanFalsedefaultResponse,
+  PathsGetIntOneMillion200Response,
+  PathsGetIntOneMilliondefaultResponse,
+  PathsGetIntNegativeOneMillion200Response,
+  PathsGetIntNegativeOneMilliondefaultResponse,
+  PathsGetTenBillion200Response,
+  PathsGetTenBilliondefaultResponse,
+  PathsGetNegativeTenBillion200Response,
+  PathsGetNegativeTenBilliondefaultResponse,
+  PathsFloatScientificPositive200Response,
+  PathsFloatScientificPositivedefaultResponse,
+  PathsFloatScientificNegative200Response,
+  PathsFloatScientificNegativedefaultResponse,
+  PathsDoubleDecimalPositive200Response,
+  PathsDoubleDecimalPositivedefaultResponse,
+  PathsDoubleDecimalNegative200Response,
+  PathsDoubleDecimalNegativedefaultResponse,
+  PathsStringUnicode200Response,
+  PathsStringUnicodedefaultResponse,
+  PathsStringUrlEncoded200Response,
+  PathsStringUrlEncodeddefaultResponse,
+  PathsStringUrlNonEncoded200Response,
+  PathsStringUrlNonEncodeddefaultResponse,
+  PathsStringEmpty200Response,
+  PathsStringEmptydefaultResponse,
+  PathsStringNull400Response,
+  PathsStringNulldefaultResponse,
+  PathsEnumValid200Response,
+  PathsEnumValiddefaultResponse,
+  PathsEnumNull400Response,
+  PathsEnumNulldefaultResponse,
+  PathsByteMultiByte200Response,
+  PathsByteMultiBytedefaultResponse,
+  PathsByteEmpty200Response,
+  PathsByteEmptydefaultResponse,
+  PathsByteNull400Response,
+  PathsByteNulldefaultResponse,
+  PathsDateValid200Response,
+  PathsDateValiddefaultResponse,
+  PathsDateNull400Response,
+  PathsDateNulldefaultResponse,
+  PathsDateTimeValid200Response,
+  PathsDateTimeValiddefaultResponse,
+  PathsDateTimeNull400Response,
+  PathsDateTimeNulldefaultResponse,
+  PathsBase64Url200Response,
+  PathsBase64UrldefaultResponse,
+  PathsArrayCsvInPath200Response,
+  PathsArrayCsvInPathdefaultResponse,
+  PathsUnixTimeUrl200Response,
+  PathsUnixTimeUrldefaultResponse,
+  QueriesGetBooleanTrue200Response,
+  QueriesGetBooleanTruedefaultResponse,
+  QueriesGetBooleanFalse200Response,
+  QueriesGetBooleanFalsedefaultResponse,
+  QueriesGetBooleanNull200Response,
+  QueriesGetBooleanNulldefaultResponse,
+  QueriesGetIntOneMillion200Response,
+  QueriesGetIntOneMilliondefaultResponse,
+  QueriesGetIntNegativeOneMillion200Response,
+  QueriesGetIntNegativeOneMilliondefaultResponse,
+  QueriesGetIntNull200Response,
+  QueriesGetIntNulldefaultResponse,
+  QueriesGetTenBillion200Response,
+  QueriesGetTenBilliondefaultResponse,
+  QueriesGetNegativeTenBillion200Response,
+  QueriesGetNegativeTenBilliondefaultResponse,
+  QueriesGetLongNull200Response,
+  QueriesGetLongNulldefaultResponse,
+  QueriesFloatScientificPositive200Response,
+  QueriesFloatScientificPositivedefaultResponse,
+  QueriesFloatScientificNegative200Response,
+  QueriesFloatScientificNegativedefaultResponse,
+  QueriesFloatNull200Response,
+  QueriesFloatNulldefaultResponse,
+  QueriesDoubleDecimalPositive200Response,
+  QueriesDoubleDecimalPositivedefaultResponse,
+  QueriesDoubleDecimalNegative200Response,
+  QueriesDoubleDecimalNegativedefaultResponse,
+  QueriesDoubleNull200Response,
+  QueriesDoubleNulldefaultResponse,
+  QueriesStringUnicode200Response,
+  QueriesStringUnicodedefaultResponse,
+  QueriesStringUrlEncoded200Response,
+  QueriesStringUrlEncodeddefaultResponse,
+  QueriesStringEmpty200Response,
+  QueriesStringEmptydefaultResponse,
+  QueriesStringNull200Response,
+  QueriesStringNulldefaultResponse,
+  QueriesEnumValid200Response,
+  QueriesEnumValiddefaultResponse,
+  QueriesEnumNull200Response,
+  QueriesEnumNulldefaultResponse,
+  QueriesByteMultiByte200Response,
+  QueriesByteMultiBytedefaultResponse,
+  QueriesByteEmpty200Response,
+  QueriesByteEmptydefaultResponse,
+  QueriesByteNull200Response,
+  QueriesByteNulldefaultResponse,
+  QueriesDateValid200Response,
+  QueriesDateValiddefaultResponse,
+  QueriesDateNull200Response,
+  QueriesDateNulldefaultResponse,
+  QueriesDateTimeValid200Response,
+  QueriesDateTimeValiddefaultResponse,
+  QueriesDateTimeNull200Response,
+  QueriesDateTimeNulldefaultResponse,
+  QueriesArrayStringCsvValid200Response,
+  QueriesArrayStringCsvValiddefaultResponse,
+  QueriesArrayStringCsvNull200Response,
+  QueriesArrayStringCsvNulldefaultResponse,
+  QueriesArrayStringCsvEmpty200Response,
+  QueriesArrayStringCsvEmptydefaultResponse,
+  QueriesArrayStringNoCollectionFormatEmpty200Response,
+  QueriesArrayStringNoCollectionFormatEmptydefaultResponse,
+  QueriesArrayStringSsvValid200Response,
+  QueriesArrayStringSsvValiddefaultResponse,
+  QueriesArrayStringTsvValid200Response,
+  QueriesArrayStringTsvValiddefaultResponse,
+  QueriesArrayStringPipesValid200Response,
+  QueriesArrayStringPipesValiddefaultResponse,
+  PathItemsGetAllWithValues200Response,
+  PathItemsGetAllWithValuesdefaultResponse,
+  PathItemsGetGlobalQueryNull200Response,
+  PathItemsGetGlobalQueryNulldefaultResponse,
+  PathItemsGetGlobalAndLocalQueryNull200Response,
+  PathItemsGetGlobalAndLocalQueryNulldefaultResponse,
+  PathItemsGetLocalPathItemQueryNull200Response,
+  PathItemsGetLocalPathItemQueryNulldefaultResponse
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface PathsgetBooleanTrue {
+export interface PathsGetBooleanTrue {
   /** Get true Boolean value on path */
   get(
-    options?: PathsgetBooleanTrueParameters
+    options?: PathsGetBooleanTrueParameters
   ): Promise<
-    PathsgetBooleanTrue200Response | PathsgetBooleanTruedefaultResponse
+    PathsGetBooleanTrue200Response | PathsGetBooleanTruedefaultResponse
   >;
 }
 
-export interface PathsgetBooleanFalse {
+export interface PathsGetBooleanFalse {
   /** Get false Boolean value on path */
   get(
-    options?: PathsgetBooleanFalseParameters
+    options?: PathsGetBooleanFalseParameters
   ): Promise<
-    PathsgetBooleanFalse200Response | PathsgetBooleanFalsedefaultResponse
+    PathsGetBooleanFalse200Response | PathsGetBooleanFalsedefaultResponse
   >;
 }
 
-export interface PathsgetIntOneMillion {
+export interface PathsGetIntOneMillion {
   /** Get '1000000' integer value */
   get(
-    options?: PathsgetIntOneMillionParameters
+    options?: PathsGetIntOneMillionParameters
   ): Promise<
-    PathsgetIntOneMillion200Response | PathsgetIntOneMilliondefaultResponse
+    PathsGetIntOneMillion200Response | PathsGetIntOneMilliondefaultResponse
   >;
 }
 
-export interface PathsgetIntNegativeOneMillion {
+export interface PathsGetIntNegativeOneMillion {
   /** Get '-1000000' integer value */
   get(
-    options?: PathsgetIntNegativeOneMillionParameters
+    options?: PathsGetIntNegativeOneMillionParameters
   ): Promise<
-    | PathsgetIntNegativeOneMillion200Response
-    | PathsgetIntNegativeOneMilliondefaultResponse
+    | PathsGetIntNegativeOneMillion200Response
+    | PathsGetIntNegativeOneMilliondefaultResponse
   >;
 }
 
-export interface PathsgetTenBillion {
+export interface PathsGetTenBillion {
   /** Get '10000000000' 64 bit integer value */
   get(
-    options?: PathsgetTenBillionParameters
-  ): Promise<PathsgetTenBillion200Response | PathsgetTenBilliondefaultResponse>;
+    options?: PathsGetTenBillionParameters
+  ): Promise<PathsGetTenBillion200Response | PathsGetTenBilliondefaultResponse>;
 }
 
-export interface PathsgetNegativeTenBillion {
+export interface PathsGetNegativeTenBillion {
   /** Get '-10000000000' 64 bit integer value */
   get(
-    options?: PathsgetNegativeTenBillionParameters
+    options?: PathsGetNegativeTenBillionParameters
   ): Promise<
-    | PathsgetNegativeTenBillion200Response
-    | PathsgetNegativeTenBilliondefaultResponse
+    | PathsGetNegativeTenBillion200Response
+    | PathsGetNegativeTenBilliondefaultResponse
   >;
 }
 
-export interface PathsfloatScientificPositive {
+export interface PathsFloatScientificPositive {
   /** Get '1.034E+20' numeric value */
   get(
-    options?: PathsfloatScientificPositiveParameters
+    options?: PathsFloatScientificPositiveParameters
   ): Promise<
-    | PathsfloatScientificPositive200Response
-    | PathsfloatScientificPositivedefaultResponse
+    | PathsFloatScientificPositive200Response
+    | PathsFloatScientificPositivedefaultResponse
   >;
 }
 
-export interface PathsfloatScientificNegative {
+export interface PathsFloatScientificNegative {
   /** Get '-1.034E-20' numeric value */
   get(
-    options?: PathsfloatScientificNegativeParameters
+    options?: PathsFloatScientificNegativeParameters
   ): Promise<
-    | PathsfloatScientificNegative200Response
-    | PathsfloatScientificNegativedefaultResponse
+    | PathsFloatScientificNegative200Response
+    | PathsFloatScientificNegativedefaultResponse
   >;
 }
 
-export interface PathsdoubleDecimalPositive {
+export interface PathsDoubleDecimalPositive {
   /** Get '9999999.999' numeric value */
   get(
-    options?: PathsdoubleDecimalPositiveParameters
+    options?: PathsDoubleDecimalPositiveParameters
   ): Promise<
-    | PathsdoubleDecimalPositive200Response
-    | PathsdoubleDecimalPositivedefaultResponse
+    | PathsDoubleDecimalPositive200Response
+    | PathsDoubleDecimalPositivedefaultResponse
   >;
 }
 
-export interface PathsdoubleDecimalNegative {
+export interface PathsDoubleDecimalNegative {
   /** Get '-9999999.999' numeric value */
   get(
-    options?: PathsdoubleDecimalNegativeParameters
+    options?: PathsDoubleDecimalNegativeParameters
   ): Promise<
-    | PathsdoubleDecimalNegative200Response
-    | PathsdoubleDecimalNegativedefaultResponse
+    | PathsDoubleDecimalNegative200Response
+    | PathsDoubleDecimalNegativedefaultResponse
   >;
 }
 
-export interface PathsstringUnicode {
+export interface PathsStringUnicode {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
   get(
-    options?: PathsstringUnicodeParameters
-  ): Promise<PathsstringUnicode200Response | PathsstringUnicodedefaultResponse>;
+    options?: PathsStringUnicodeParameters
+  ): Promise<PathsStringUnicode200Response | PathsStringUnicodedefaultResponse>;
 }
 
-export interface PathsstringUrlEncoded {
+export interface PathsStringUrlEncoded {
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   get(
-    options?: PathsstringUrlEncodedParameters
+    options?: PathsStringUrlEncodedParameters
   ): Promise<
-    PathsstringUrlEncoded200Response | PathsstringUrlEncodeddefaultResponse
+    PathsStringUrlEncoded200Response | PathsStringUrlEncodeddefaultResponse
   >;
 }
 
-export interface PathsstringUrlNonEncoded {
+export interface PathsStringUrlNonEncoded {
   /** https://tools.ietf.org/html/rfc3986#appendix-A 'path' accept any 'pchar' not encoded */
   get(
-    options?: PathsstringUrlNonEncodedParameters
+    options?: PathsStringUrlNonEncodedParameters
   ): Promise<
-    | PathsstringUrlNonEncoded200Response
-    | PathsstringUrlNonEncodeddefaultResponse
+    | PathsStringUrlNonEncoded200Response
+    | PathsStringUrlNonEncodeddefaultResponse
   >;
 }
 
-export interface PathsstringEmpty {
+export interface PathsStringEmpty {
   /** Get '' */
   get(
-    options?: PathsstringEmptyParameters
-  ): Promise<PathsstringEmpty200Response | PathsstringEmptydefaultResponse>;
+    options?: PathsStringEmptyParameters
+  ): Promise<PathsStringEmpty200Response | PathsStringEmptydefaultResponse>;
 }
 
-export interface PathsstringNull {
+export interface PathsStringNull {
   /** Get null (should throw) */
   get(
-    options?: PathsstringNullParameters
-  ): Promise<PathsstringNull400Response | PathsstringNulldefaultResponse>;
+    options?: PathsStringNullParameters
+  ): Promise<PathsStringNull400Response | PathsStringNulldefaultResponse>;
 }
 
-export interface PathsenumValid {
+export interface PathsEnumValid {
   /** Get using uri with 'green color' in path parameter */
   get(
-    options?: PathsenumValidParameters
-  ): Promise<PathsenumValid200Response | PathsenumValiddefaultResponse>;
+    options?: PathsEnumValidParameters
+  ): Promise<PathsEnumValid200Response | PathsEnumValiddefaultResponse>;
 }
 
-export interface PathsenumNull {
+export interface PathsEnumNull {
   /** Get null (should throw on the client before the request is sent on wire) */
   get(
-    options?: PathsenumNullParameters
-  ): Promise<PathsenumNull400Response | PathsenumNulldefaultResponse>;
+    options?: PathsEnumNullParameters
+  ): Promise<PathsEnumNull400Response | PathsEnumNulldefaultResponse>;
 }
 
-export interface PathsbyteMultiByte {
+export interface PathsByteMultiByte {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   get(
-    options?: PathsbyteMultiByteParameters
-  ): Promise<PathsbyteMultiByte200Response | PathsbyteMultiBytedefaultResponse>;
+    options?: PathsByteMultiByteParameters
+  ): Promise<PathsByteMultiByte200Response | PathsByteMultiBytedefaultResponse>;
 }
 
-export interface PathsbyteEmpty {
+export interface PathsByteEmpty {
   /** Get '' as byte array */
   get(
-    options?: PathsbyteEmptyParameters
-  ): Promise<PathsbyteEmpty200Response | PathsbyteEmptydefaultResponse>;
+    options?: PathsByteEmptyParameters
+  ): Promise<PathsByteEmpty200Response | PathsByteEmptydefaultResponse>;
 }
 
-export interface PathsbyteNull {
+export interface PathsByteNull {
   /** Get null as byte array (should throw) */
   get(
-    options?: PathsbyteNullParameters
-  ): Promise<PathsbyteNull400Response | PathsbyteNulldefaultResponse>;
+    options?: PathsByteNullParameters
+  ): Promise<PathsByteNull400Response | PathsByteNulldefaultResponse>;
 }
 
-export interface PathsdateValid {
+export interface PathsDateValid {
   /** Get '2012-01-01' as date */
   get(
-    options?: PathsdateValidParameters
-  ): Promise<PathsdateValid200Response | PathsdateValiddefaultResponse>;
+    options?: PathsDateValidParameters
+  ): Promise<PathsDateValid200Response | PathsDateValiddefaultResponse>;
 }
 
-export interface PathsdateNull {
+export interface PathsDateNull {
   /** Get null as date - this should throw or be unusable on the client side, depending on date representation */
   get(
-    options?: PathsdateNullParameters
-  ): Promise<PathsdateNull400Response | PathsdateNulldefaultResponse>;
+    options?: PathsDateNullParameters
+  ): Promise<PathsDateNull400Response | PathsDateNulldefaultResponse>;
 }
 
-export interface PathsdateTimeValid {
+export interface PathsDateTimeValid {
   /** Get '2012-01-01T01:01:01Z' as date-time */
   get(
-    options?: PathsdateTimeValidParameters
-  ): Promise<PathsdateTimeValid200Response | PathsdateTimeValiddefaultResponse>;
+    options?: PathsDateTimeValidParameters
+  ): Promise<PathsDateTimeValid200Response | PathsDateTimeValiddefaultResponse>;
 }
 
-export interface PathsdateTimeNull {
+export interface PathsDateTimeNull {
   /** Get null as date-time, should be disallowed or throw depending on representation of date-time */
   get(
-    options?: PathsdateTimeNullParameters
-  ): Promise<PathsdateTimeNull400Response | PathsdateTimeNulldefaultResponse>;
+    options?: PathsDateTimeNullParameters
+  ): Promise<PathsDateTimeNull400Response | PathsDateTimeNulldefaultResponse>;
 }
 
-export interface Pathsbase64Url {
+export interface PathsBase64Url {
   /** Get 'lorem' encoded value as 'bG9yZW0' (base64url) */
   get(
-    options?: Pathsbase64UrlParameters
-  ): Promise<Pathsbase64Url200Response | Pathsbase64UrldefaultResponse>;
+    options?: PathsBase64UrlParameters
+  ): Promise<PathsBase64Url200Response | PathsBase64UrldefaultResponse>;
 }
 
-export interface PathsarrayCsvInPath {
+export interface PathsArrayCsvInPath {
   /** Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   get(
-    options?: PathsarrayCsvInPathParameters
+    options?: PathsArrayCsvInPathParameters
   ): Promise<
-    PathsarrayCsvInPath200Response | PathsarrayCsvInPathdefaultResponse
+    PathsArrayCsvInPath200Response | PathsArrayCsvInPathdefaultResponse
   >;
 }
 
-export interface PathsunixTimeUrl {
+export interface PathsUnixTimeUrl {
   /** Get the date 2016-04-13 encoded value as '1460505600' (Unix time) */
   get(
-    options?: PathsunixTimeUrlParameters
-  ): Promise<PathsunixTimeUrl200Response | PathsunixTimeUrldefaultResponse>;
+    options?: PathsUnixTimeUrlParameters
+  ): Promise<PathsUnixTimeUrl200Response | PathsUnixTimeUrldefaultResponse>;
 }
 
-export interface QueriesgetBooleanTrue {
+export interface QueriesGetBooleanTrue {
   /** Get true Boolean value on path */
   get(
-    options: QueriesgetBooleanTrueParameters
+    options: QueriesGetBooleanTrueParameters
   ): Promise<
-    QueriesgetBooleanTrue200Response | QueriesgetBooleanTruedefaultResponse
+    QueriesGetBooleanTrue200Response | QueriesGetBooleanTruedefaultResponse
   >;
 }
 
-export interface QueriesgetBooleanFalse {
+export interface QueriesGetBooleanFalse {
   /** Get false Boolean value on path */
   get(
-    options: QueriesgetBooleanFalseParameters
+    options: QueriesGetBooleanFalseParameters
   ): Promise<
-    QueriesgetBooleanFalse200Response | QueriesgetBooleanFalsedefaultResponse
+    QueriesGetBooleanFalse200Response | QueriesGetBooleanFalsedefaultResponse
   >;
 }
 
-export interface QueriesgetBooleanNull {
+export interface QueriesGetBooleanNull {
   /** Get null Boolean value on query (query string should be absent) */
   get(
-    options?: QueriesgetBooleanNullParameters
+    options?: QueriesGetBooleanNullParameters
   ): Promise<
-    QueriesgetBooleanNull200Response | QueriesgetBooleanNulldefaultResponse
+    QueriesGetBooleanNull200Response | QueriesGetBooleanNulldefaultResponse
   >;
 }
 
-export interface QueriesgetIntOneMillion {
+export interface QueriesGetIntOneMillion {
   /** Get '1000000' integer value */
   get(
-    options: QueriesgetIntOneMillionParameters
+    options: QueriesGetIntOneMillionParameters
   ): Promise<
-    QueriesgetIntOneMillion200Response | QueriesgetIntOneMilliondefaultResponse
+    QueriesGetIntOneMillion200Response | QueriesGetIntOneMilliondefaultResponse
   >;
 }
 
-export interface QueriesgetIntNegativeOneMillion {
+export interface QueriesGetIntNegativeOneMillion {
   /** Get '-1000000' integer value */
   get(
-    options: QueriesgetIntNegativeOneMillionParameters
+    options: QueriesGetIntNegativeOneMillionParameters
   ): Promise<
-    | QueriesgetIntNegativeOneMillion200Response
-    | QueriesgetIntNegativeOneMilliondefaultResponse
+    | QueriesGetIntNegativeOneMillion200Response
+    | QueriesGetIntNegativeOneMilliondefaultResponse
   >;
 }
 
-export interface QueriesgetIntNull {
+export interface QueriesGetIntNull {
   /** Get null integer value (no query parameter) */
   get(
-    options?: QueriesgetIntNullParameters
-  ): Promise<QueriesgetIntNull200Response | QueriesgetIntNulldefaultResponse>;
+    options?: QueriesGetIntNullParameters
+  ): Promise<QueriesGetIntNull200Response | QueriesGetIntNulldefaultResponse>;
 }
 
-export interface QueriesgetTenBillion {
+export interface QueriesGetTenBillion {
   /** Get '10000000000' 64 bit integer value */
   get(
-    options: QueriesgetTenBillionParameters
+    options: QueriesGetTenBillionParameters
   ): Promise<
-    QueriesgetTenBillion200Response | QueriesgetTenBilliondefaultResponse
+    QueriesGetTenBillion200Response | QueriesGetTenBilliondefaultResponse
   >;
 }
 
-export interface QueriesgetNegativeTenBillion {
+export interface QueriesGetNegativeTenBillion {
   /** Get '-10000000000' 64 bit integer value */
   get(
-    options: QueriesgetNegativeTenBillionParameters
+    options: QueriesGetNegativeTenBillionParameters
   ): Promise<
-    | QueriesgetNegativeTenBillion200Response
-    | QueriesgetNegativeTenBilliondefaultResponse
+    | QueriesGetNegativeTenBillion200Response
+    | QueriesGetNegativeTenBilliondefaultResponse
   >;
 }
 
-export interface QueriesgetLongNull {
+export interface QueriesGetLongNull {
   /** Get 'null 64 bit integer value (no query param in uri) */
   get(
-    options?: QueriesgetLongNullParameters
-  ): Promise<QueriesgetLongNull200Response | QueriesgetLongNulldefaultResponse>;
+    options?: QueriesGetLongNullParameters
+  ): Promise<QueriesGetLongNull200Response | QueriesGetLongNulldefaultResponse>;
 }
 
-export interface QueriesfloatScientificPositive {
+export interface QueriesFloatScientificPositive {
   /** Get '1.034E+20' numeric value */
   get(
-    options: QueriesfloatScientificPositiveParameters
+    options: QueriesFloatScientificPositiveParameters
   ): Promise<
-    | QueriesfloatScientificPositive200Response
-    | QueriesfloatScientificPositivedefaultResponse
+    | QueriesFloatScientificPositive200Response
+    | QueriesFloatScientificPositivedefaultResponse
   >;
 }
 
-export interface QueriesfloatScientificNegative {
+export interface QueriesFloatScientificNegative {
   /** Get '-1.034E-20' numeric value */
   get(
-    options: QueriesfloatScientificNegativeParameters
+    options: QueriesFloatScientificNegativeParameters
   ): Promise<
-    | QueriesfloatScientificNegative200Response
-    | QueriesfloatScientificNegativedefaultResponse
+    | QueriesFloatScientificNegative200Response
+    | QueriesFloatScientificNegativedefaultResponse
   >;
 }
 
-export interface QueriesfloatNull {
+export interface QueriesFloatNull {
   /** Get null numeric value (no query parameter) */
   get(
-    options?: QueriesfloatNullParameters
-  ): Promise<QueriesfloatNull200Response | QueriesfloatNulldefaultResponse>;
+    options?: QueriesFloatNullParameters
+  ): Promise<QueriesFloatNull200Response | QueriesFloatNulldefaultResponse>;
 }
 
-export interface QueriesdoubleDecimalPositive {
+export interface QueriesDoubleDecimalPositive {
   /** Get '9999999.999' numeric value */
   get(
-    options: QueriesdoubleDecimalPositiveParameters
+    options: QueriesDoubleDecimalPositiveParameters
   ): Promise<
-    | QueriesdoubleDecimalPositive200Response
-    | QueriesdoubleDecimalPositivedefaultResponse
+    | QueriesDoubleDecimalPositive200Response
+    | QueriesDoubleDecimalPositivedefaultResponse
   >;
 }
 
-export interface QueriesdoubleDecimalNegative {
+export interface QueriesDoubleDecimalNegative {
   /** Get '-9999999.999' numeric value */
   get(
-    options: QueriesdoubleDecimalNegativeParameters
+    options: QueriesDoubleDecimalNegativeParameters
   ): Promise<
-    | QueriesdoubleDecimalNegative200Response
-    | QueriesdoubleDecimalNegativedefaultResponse
+    | QueriesDoubleDecimalNegative200Response
+    | QueriesDoubleDecimalNegativedefaultResponse
   >;
 }
 
-export interface QueriesdoubleNull {
+export interface QueriesDoubleNull {
   /** Get null numeric value (no query parameter) */
   get(
-    options?: QueriesdoubleNullParameters
-  ): Promise<QueriesdoubleNull200Response | QueriesdoubleNulldefaultResponse>;
+    options?: QueriesDoubleNullParameters
+  ): Promise<QueriesDoubleNull200Response | QueriesDoubleNulldefaultResponse>;
 }
 
-export interface QueriesstringUnicode {
+export interface QueriesStringUnicode {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value */
   get(
-    options: QueriesstringUnicodeParameters
+    options: QueriesStringUnicodeParameters
   ): Promise<
-    QueriesstringUnicode200Response | QueriesstringUnicodedefaultResponse
+    QueriesStringUnicode200Response | QueriesStringUnicodedefaultResponse
   >;
 }
 
-export interface QueriesstringUrlEncoded {
+export interface QueriesStringUrlEncoded {
   /** Get 'begin!*'();:@ &=+$,/?#[]end */
   get(
-    options: QueriesstringUrlEncodedParameters
+    options: QueriesStringUrlEncodedParameters
   ): Promise<
-    QueriesstringUrlEncoded200Response | QueriesstringUrlEncodeddefaultResponse
+    QueriesStringUrlEncoded200Response | QueriesStringUrlEncodeddefaultResponse
   >;
 }
 
-export interface QueriesstringEmpty {
+export interface QueriesStringEmpty {
   /** Get '' */
   get(
-    options: QueriesstringEmptyParameters
-  ): Promise<QueriesstringEmpty200Response | QueriesstringEmptydefaultResponse>;
+    options: QueriesStringEmptyParameters
+  ): Promise<QueriesStringEmpty200Response | QueriesStringEmptydefaultResponse>;
 }
 
-export interface QueriesstringNull {
+export interface QueriesStringNull {
   /** Get null (no query parameter in url) */
   get(
-    options?: QueriesstringNullParameters
-  ): Promise<QueriesstringNull200Response | QueriesstringNulldefaultResponse>;
+    options?: QueriesStringNullParameters
+  ): Promise<QueriesStringNull200Response | QueriesStringNulldefaultResponse>;
 }
 
-export interface QueriesenumValid {
+export interface QueriesEnumValid {
   /** Get using uri with query parameter 'green color' */
   get(
-    options?: QueriesenumValidParameters
-  ): Promise<QueriesenumValid200Response | QueriesenumValiddefaultResponse>;
+    options?: QueriesEnumValidParameters
+  ): Promise<QueriesEnumValid200Response | QueriesEnumValiddefaultResponse>;
 }
 
-export interface QueriesenumNull {
+export interface QueriesEnumNull {
   /** Get null (no query parameter in url) */
   get(
-    options?: QueriesenumNullParameters
-  ): Promise<QueriesenumNull200Response | QueriesenumNulldefaultResponse>;
+    options?: QueriesEnumNullParameters
+  ): Promise<QueriesEnumNull200Response | QueriesEnumNulldefaultResponse>;
 }
 
-export interface QueriesbyteMultiByte {
+export interface QueriesByteMultiByte {
   /** Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array */
   get(
-    options?: QueriesbyteMultiByteParameters
+    options?: QueriesByteMultiByteParameters
   ): Promise<
-    QueriesbyteMultiByte200Response | QueriesbyteMultiBytedefaultResponse
+    QueriesByteMultiByte200Response | QueriesByteMultiBytedefaultResponse
   >;
 }
 
-export interface QueriesbyteEmpty {
+export interface QueriesByteEmpty {
   /** Get '' as byte array */
   get(
-    options: QueriesbyteEmptyParameters
-  ): Promise<QueriesbyteEmpty200Response | QueriesbyteEmptydefaultResponse>;
+    options: QueriesByteEmptyParameters
+  ): Promise<QueriesByteEmpty200Response | QueriesByteEmptydefaultResponse>;
 }
 
-export interface QueriesbyteNull {
+export interface QueriesByteNull {
   /** Get null as byte array (no query parameters in uri) */
   get(
-    options?: QueriesbyteNullParameters
-  ): Promise<QueriesbyteNull200Response | QueriesbyteNulldefaultResponse>;
+    options?: QueriesByteNullParameters
+  ): Promise<QueriesByteNull200Response | QueriesByteNulldefaultResponse>;
 }
 
-export interface QueriesdateValid {
+export interface QueriesDateValid {
   /** Get '2012-01-01' as date */
   get(
-    options: QueriesdateValidParameters
-  ): Promise<QueriesdateValid200Response | QueriesdateValiddefaultResponse>;
+    options: QueriesDateValidParameters
+  ): Promise<QueriesDateValid200Response | QueriesDateValiddefaultResponse>;
 }
 
-export interface QueriesdateNull {
+export interface QueriesDateNull {
   /** Get null as date - this should result in no query parameters in uri */
   get(
-    options?: QueriesdateNullParameters
-  ): Promise<QueriesdateNull200Response | QueriesdateNulldefaultResponse>;
+    options?: QueriesDateNullParameters
+  ): Promise<QueriesDateNull200Response | QueriesDateNulldefaultResponse>;
 }
 
-export interface QueriesdateTimeValid {
+export interface QueriesDateTimeValid {
   /** Get '2012-01-01T01:01:01Z' as date-time */
   get(
-    options: QueriesdateTimeValidParameters
+    options: QueriesDateTimeValidParameters
   ): Promise<
-    QueriesdateTimeValid200Response | QueriesdateTimeValiddefaultResponse
+    QueriesDateTimeValid200Response | QueriesDateTimeValiddefaultResponse
   >;
 }
 
-export interface QueriesdateTimeNull {
+export interface QueriesDateTimeNull {
   /** Get null as date-time, should result in no query parameters in uri */
   get(
-    options?: QueriesdateTimeNullParameters
+    options?: QueriesDateTimeNullParameters
   ): Promise<
-    QueriesdateTimeNull200Response | QueriesdateTimeNulldefaultResponse
+    QueriesDateTimeNull200Response | QueriesDateTimeNulldefaultResponse
   >;
 }
 
-export interface QueriesarrayStringCsvValid {
+export interface QueriesArrayStringCsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the csv-array format */
   get(
-    options?: QueriesarrayStringCsvValidParameters
+    options?: QueriesArrayStringCsvValidParameters
   ): Promise<
-    | QueriesarrayStringCsvValid200Response
-    | QueriesarrayStringCsvValiddefaultResponse
+    | QueriesArrayStringCsvValid200Response
+    | QueriesArrayStringCsvValiddefaultResponse
   >;
 }
 
-export interface QueriesarrayStringCsvNull {
+export interface QueriesArrayStringCsvNull {
   /** Get a null array of string using the csv-array format */
   get(
-    options?: QueriesarrayStringCsvNullParameters
+    options?: QueriesArrayStringCsvNullParameters
   ): Promise<
-    | QueriesarrayStringCsvNull200Response
-    | QueriesarrayStringCsvNulldefaultResponse
+    | QueriesArrayStringCsvNull200Response
+    | QueriesArrayStringCsvNulldefaultResponse
   >;
 }
 
-export interface QueriesarrayStringCsvEmpty {
+export interface QueriesArrayStringCsvEmpty {
   /** Get an empty array [] of string using the csv-array format */
   get(
-    options?: QueriesarrayStringCsvEmptyParameters
+    options?: QueriesArrayStringCsvEmptyParameters
   ): Promise<
-    | QueriesarrayStringCsvEmpty200Response
-    | QueriesarrayStringCsvEmptydefaultResponse
+    | QueriesArrayStringCsvEmpty200Response
+    | QueriesArrayStringCsvEmptydefaultResponse
   >;
 }
 
-export interface QueriesarrayStringNoCollectionFormatEmpty {
+export interface QueriesArrayStringNoCollectionFormatEmpty {
   /** Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao', 'bonjour'] for the 'arrayQuery' parameter to the service */
   get(
-    options?: QueriesarrayStringNoCollectionFormatEmptyParameters
+    options?: QueriesArrayStringNoCollectionFormatEmptyParameters
   ): Promise<
-    | QueriesarrayStringNoCollectionFormatEmpty200Response
-    | QueriesarrayStringNoCollectionFormatEmptydefaultResponse
+    | QueriesArrayStringNoCollectionFormatEmpty200Response
+    | QueriesArrayStringNoCollectionFormatEmptydefaultResponse
   >;
 }
 
-export interface QueriesarrayStringSsvValid {
+export interface QueriesArrayStringSsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the ssv-array format */
   get(
-    options?: QueriesarrayStringSsvValidParameters
+    options?: QueriesArrayStringSsvValidParameters
   ): Promise<
-    | QueriesarrayStringSsvValid200Response
-    | QueriesarrayStringSsvValiddefaultResponse
+    | QueriesArrayStringSsvValid200Response
+    | QueriesArrayStringSsvValiddefaultResponse
   >;
 }
 
-export interface QueriesarrayStringTsvValid {
+export interface QueriesArrayStringTsvValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the tsv-array format */
   get(
-    options?: QueriesarrayStringTsvValidParameters
+    options?: QueriesArrayStringTsvValidParameters
   ): Promise<
-    | QueriesarrayStringTsvValid200Response
-    | QueriesarrayStringTsvValiddefaultResponse
+    | QueriesArrayStringTsvValid200Response
+    | QueriesArrayStringTsvValiddefaultResponse
   >;
 }
 
-export interface QueriesarrayStringPipesValid {
+export interface QueriesArrayStringPipesValid {
   /** Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the pipes-array format */
   get(
-    options?: QueriesarrayStringPipesValidParameters
+    options?: QueriesArrayStringPipesValidParameters
   ): Promise<
-    | QueriesarrayStringPipesValid200Response
-    | QueriesarrayStringPipesValiddefaultResponse
+    | QueriesArrayStringPipesValid200Response
+    | QueriesArrayStringPipesValiddefaultResponse
   >;
 }
 
-export interface PathItemsgetAllWithValues {
+export interface PathItemsGetAllWithValues {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
   get(
-    options?: PathItemsgetAllWithValuesParameters
+    options?: PathItemsGetAllWithValuesParameters
   ): Promise<
-    | PathItemsgetAllWithValues200Response
-    | PathItemsgetAllWithValuesdefaultResponse
+    | PathItemsGetAllWithValues200Response
+    | PathItemsGetAllWithValuesdefaultResponse
   >;
 }
 
-export interface PathItemsgetGlobalQueryNull {
+export interface PathItemsGetGlobalQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery' */
   get(
-    options?: PathItemsgetGlobalQueryNullParameters
+    options?: PathItemsGetGlobalQueryNullParameters
   ): Promise<
-    | PathItemsgetGlobalQueryNull200Response
-    | PathItemsgetGlobalQueryNulldefaultResponse
+    | PathItemsGetGlobalQueryNull200Response
+    | PathItemsGetGlobalQueryNulldefaultResponse
   >;
 }
 
-export interface PathItemsgetGlobalAndLocalQueryNull {
+export interface PathItemsGetGlobalAndLocalQueryNull {
   /** send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery=null, pathItemStringQuery='pathItemStringQuery', localStringQuery=null */
   get(
-    options?: PathItemsgetGlobalAndLocalQueryNullParameters
+    options?: PathItemsGetGlobalAndLocalQueryNullParameters
   ): Promise<
-    | PathItemsgetGlobalAndLocalQueryNull200Response
-    | PathItemsgetGlobalAndLocalQueryNulldefaultResponse
+    | PathItemsGetGlobalAndLocalQueryNull200Response
+    | PathItemsGetGlobalAndLocalQueryNulldefaultResponse
   >;
 }
 
-export interface PathItemsgetLocalPathItemQueryNull {
+export interface PathItemsGetLocalPathItemQueryNull {
   /** send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath', localStringPath='localStringPath', globalStringQuery='globalStringQuery', pathItemStringQuery=null, localStringQuery=null */
   get(
-    options?: PathItemsgetLocalPathItemQueryNullParameters
+    options?: PathItemsGetLocalPathItemQueryNullParameters
   ): Promise<
-    | PathItemsgetLocalPathItemQueryNull200Response
-    | PathItemsgetLocalPathItemQueryNulldefaultResponse
+    | PathItemsGetLocalPathItemQueryNull200Response
+    | PathItemsGetLocalPathItemQueryNulldefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/paths/bool/true/\{boolPath\}' has methods for the following verbs: get */
-  (path: "/paths/bool/true/{boolPath}", boolPath: true): PathsgetBooleanTrue;
+  (path: "/paths/bool/true/{boolPath}", boolPath: true): PathsGetBooleanTrue;
   /** Resource for '/paths/bool/false/\{boolPath\}' has methods for the following verbs: get */
-  (path: "/paths/bool/false/{boolPath}", boolPath: false): PathsgetBooleanFalse;
+  (path: "/paths/bool/false/{boolPath}", boolPath: false): PathsGetBooleanFalse;
   /** Resource for '/paths/int/1000000/\{intPath\}' has methods for the following verbs: get */
   (
     path: "/paths/int/1000000/{intPath}",
     intPath: 1000000
-  ): PathsgetIntOneMillion;
+  ): PathsGetIntOneMillion;
   /** Resource for '/paths/int/-1000000/\{intPath\}' has methods for the following verbs: get */
   (
     path: "/paths/int/-1000000/{intPath}",
     intPath: -1000000
-  ): PathsgetIntNegativeOneMillion;
+  ): PathsGetIntNegativeOneMillion;
   /** Resource for '/paths/long/10000000000/\{longPath\}' has methods for the following verbs: get */
   (
     path: "/paths/long/10000000000/{longPath}",
     longPath: 10000000000
-  ): PathsgetTenBillion;
+  ): PathsGetTenBillion;
   /** Resource for '/paths/long/-10000000000/\{longPath\}' has methods for the following verbs: get */
   (
     path: "/paths/long/-10000000000/{longPath}",
     longPath: -10000000000
-  ): PathsgetNegativeTenBillion;
+  ): PathsGetNegativeTenBillion;
   /** Resource for '/paths/float/1.034E+20/\{floatPath\}' has methods for the following verbs: get */
   (
     path: "/paths/float/1.034E+20/{floatPath}",
     floatPath: 103400000000000000000
-  ): PathsfloatScientificPositive;
+  ): PathsFloatScientificPositive;
   /** Resource for '/paths/float/-1.034E-20/\{floatPath\}' has methods for the following verbs: get */
   (
     path: "/paths/float/-1.034E-20/{floatPath}",
     floatPath: -1.034e-20
-  ): PathsfloatScientificNegative;
+  ): PathsFloatScientificNegative;
   /** Resource for '/paths/double/9999999.999/\{doublePath\}' has methods for the following verbs: get */
   (
     path: "/paths/double/9999999.999/{doublePath}",
     doublePath: 9999999.999
-  ): PathsdoubleDecimalPositive;
+  ): PathsDoubleDecimalPositive;
   /** Resource for '/paths/double/-9999999.999/\{doublePath\}' has methods for the following verbs: get */
   (
     path: "/paths/double/-9999999.999/{doublePath}",
     doublePath: -9999999.999
-  ): PathsdoubleDecimalNegative;
+  ): PathsDoubleDecimalNegative;
   /** Resource for '/paths/string/unicode/\{stringPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/unicode/{stringPath}",
     stringPath: "啊齄丂狛狜隣郎隣兀﨩"
-  ): PathsstringUnicode;
+  ): PathsStringUnicode;
   /** Resource for '/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/\{stringPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}",
     stringPath: "begin!*'();:@ &=+$,/?#[]end"
-  ): PathsstringUrlEncoded;
+  ): PathsStringUrlEncoded;
   /** Resource for '/paths/string/begin!*'();:@&=+$,end/\{stringPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/begin!*'();:@&=+$,end/{stringPath}",
     stringPath: "begin!*'();:@&=+$,end"
-  ): PathsstringUrlNonEncoded;
+  ): PathsStringUrlNonEncoded;
   /** Resource for '/paths/string/empty/\{stringPath\}' has methods for the following verbs: get */
-  (path: "/paths/string/empty/{stringPath}", stringPath: ""): PathsstringEmpty;
+  (path: "/paths/string/empty/{stringPath}", stringPath: ""): PathsStringEmpty;
   /** Resource for '/paths/string/null/\{stringPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/null/{stringPath}",
     stringPath: string
-  ): PathsstringNull;
+  ): PathsStringNull;
   /** Resource for '/paths/enum/green%20color/\{enumPath\}' has methods for the following verbs: get */
   (
     path: "/paths/enum/green%20color/{enumPath}",
     enumPath: "red color" | "green color" | "blue color"
-  ): PathsenumValid;
+  ): PathsEnumValid;
   /** Resource for '/paths/string/null/\{enumPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/null/{enumPath}",
     enumPath: "red color" | "green color" | "blue color"
-  ): PathsenumNull;
+  ): PathsEnumNull;
   /** Resource for '/paths/byte/multibyte/\{bytePath\}' has methods for the following verbs: get */
   (
     path: "/paths/byte/multibyte/{bytePath}",
     bytePath: string
-  ): PathsbyteMultiByte;
+  ): PathsByteMultiByte;
   /** Resource for '/paths/byte/empty/\{bytePath\}' has methods for the following verbs: get */
-  (path: "/paths/byte/empty/{bytePath}", bytePath: ""): PathsbyteEmpty;
+  (path: "/paths/byte/empty/{bytePath}", bytePath: ""): PathsByteEmpty;
   /** Resource for '/paths/byte/null/\{bytePath\}' has methods for the following verbs: get */
-  (path: "/paths/byte/null/{bytePath}", bytePath: string): PathsbyteNull;
+  (path: "/paths/byte/null/{bytePath}", bytePath: string): PathsByteNull;
   /** Resource for '/paths/date/2012-01-01/\{datePath\}' has methods for the following verbs: get */
   (
     path: "/paths/date/2012-01-01/{datePath}",
     datePath: "2012-01-01"
-  ): PathsdateValid;
+  ): PathsDateValid;
   /** Resource for '/paths/date/null/\{datePath\}' has methods for the following verbs: get */
-  (path: "/paths/date/null/{datePath}", datePath: Date | string): PathsdateNull;
+  (path: "/paths/date/null/{datePath}", datePath: Date | string): PathsDateNull;
   /** Resource for '/paths/datetime/2012-01-01T01%3A01%3A01Z/\{dateTimePath\}' has methods for the following verbs: get */
   (
     path: "/paths/datetime/2012-01-01T01%3A01%3A01Z/{dateTimePath}",
     dateTimePath: "2012-01-01T01:01:01Z"
-  ): PathsdateTimeValid;
+  ): PathsDateTimeValid;
   /** Resource for '/paths/datetime/null/\{dateTimePath\}' has methods for the following verbs: get */
   (
     path: "/paths/datetime/null/{dateTimePath}",
     dateTimePath: Date | string
-  ): PathsdateTimeNull;
+  ): PathsDateTimeNull;
   /** Resource for '/paths/string/bG9yZW0/\{base64UrlPath\}' has methods for the following verbs: get */
   (
     path: "/paths/string/bG9yZW0/{base64UrlPath}",
     base64UrlPath: string
-  ): Pathsbase64Url;
+  ): PathsBase64Url;
   /** Resource for '/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/\{arrayPath\}' has methods for the following verbs: get */
   (
     path: "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
     arrayPath: Array<string>
-  ): PathsarrayCsvInPath;
+  ): PathsArrayCsvInPath;
   /** Resource for '/paths/int/1460505600/\{unixTimeUrlPath\}' has methods for the following verbs: get */
   (
     path: "/paths/int/1460505600/{unixTimeUrlPath}",
     unixTimeUrlPath: string
-  ): PathsunixTimeUrl;
+  ): PathsUnixTimeUrl;
   /** Resource for '/queries/bool/true' has methods for the following verbs: get */
-  (path: "/queries/bool/true"): QueriesgetBooleanTrue;
+  (path: "/queries/bool/true"): QueriesGetBooleanTrue;
   /** Resource for '/queries/bool/false' has methods for the following verbs: get */
-  (path: "/queries/bool/false"): QueriesgetBooleanFalse;
+  (path: "/queries/bool/false"): QueriesGetBooleanFalse;
   /** Resource for '/queries/bool/null' has methods for the following verbs: get */
-  (path: "/queries/bool/null"): QueriesgetBooleanNull;
+  (path: "/queries/bool/null"): QueriesGetBooleanNull;
   /** Resource for '/queries/int/1000000' has methods for the following verbs: get */
-  (path: "/queries/int/1000000"): QueriesgetIntOneMillion;
+  (path: "/queries/int/1000000"): QueriesGetIntOneMillion;
   /** Resource for '/queries/int/-1000000' has methods for the following verbs: get */
-  (path: "/queries/int/-1000000"): QueriesgetIntNegativeOneMillion;
+  (path: "/queries/int/-1000000"): QueriesGetIntNegativeOneMillion;
   /** Resource for '/queries/int/null' has methods for the following verbs: get */
-  (path: "/queries/int/null"): QueriesgetIntNull;
+  (path: "/queries/int/null"): QueriesGetIntNull;
   /** Resource for '/queries/long/10000000000' has methods for the following verbs: get */
-  (path: "/queries/long/10000000000"): QueriesgetTenBillion;
+  (path: "/queries/long/10000000000"): QueriesGetTenBillion;
   /** Resource for '/queries/long/-10000000000' has methods for the following verbs: get */
-  (path: "/queries/long/-10000000000"): QueriesgetNegativeTenBillion;
+  (path: "/queries/long/-10000000000"): QueriesGetNegativeTenBillion;
   /** Resource for '/queries/long/null' has methods for the following verbs: get */
-  (path: "/queries/long/null"): QueriesgetLongNull;
+  (path: "/queries/long/null"): QueriesGetLongNull;
   /** Resource for '/queries/float/1.034E+20' has methods for the following verbs: get */
-  (path: "/queries/float/1.034E+20"): QueriesfloatScientificPositive;
+  (path: "/queries/float/1.034E+20"): QueriesFloatScientificPositive;
   /** Resource for '/queries/float/-1.034E-20' has methods for the following verbs: get */
-  (path: "/queries/float/-1.034E-20"): QueriesfloatScientificNegative;
+  (path: "/queries/float/-1.034E-20"): QueriesFloatScientificNegative;
   /** Resource for '/queries/float/null' has methods for the following verbs: get */
-  (path: "/queries/float/null"): QueriesfloatNull;
+  (path: "/queries/float/null"): QueriesFloatNull;
   /** Resource for '/queries/double/9999999.999' has methods for the following verbs: get */
-  (path: "/queries/double/9999999.999"): QueriesdoubleDecimalPositive;
+  (path: "/queries/double/9999999.999"): QueriesDoubleDecimalPositive;
   /** Resource for '/queries/double/-9999999.999' has methods for the following verbs: get */
-  (path: "/queries/double/-9999999.999"): QueriesdoubleDecimalNegative;
+  (path: "/queries/double/-9999999.999"): QueriesDoubleDecimalNegative;
   /** Resource for '/queries/double/null' has methods for the following verbs: get */
-  (path: "/queries/double/null"): QueriesdoubleNull;
+  (path: "/queries/double/null"): QueriesDoubleNull;
   /** Resource for '/queries/string/unicode/' has methods for the following verbs: get */
-  (path: "/queries/string/unicode/"): QueriesstringUnicode;
+  (path: "/queries/string/unicode/"): QueriesStringUnicode;
   /** Resource for '/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend' has methods for the following verbs: get */
   (
     path: "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
-  ): QueriesstringUrlEncoded;
+  ): QueriesStringUrlEncoded;
   /** Resource for '/queries/string/empty' has methods for the following verbs: get */
-  (path: "/queries/string/empty"): QueriesstringEmpty;
+  (path: "/queries/string/empty"): QueriesStringEmpty;
   /** Resource for '/queries/string/null' has methods for the following verbs: get */
-  (path: "/queries/string/null"): QueriesstringNull;
+  (path: "/queries/string/null"): QueriesStringNull;
   /** Resource for '/queries/enum/green%20color' has methods for the following verbs: get */
-  (path: "/queries/enum/green%20color"): QueriesenumValid;
+  (path: "/queries/enum/green%20color"): QueriesEnumValid;
   /** Resource for '/queries/enum/null' has methods for the following verbs: get */
-  (path: "/queries/enum/null"): QueriesenumNull;
+  (path: "/queries/enum/null"): QueriesEnumNull;
   /** Resource for '/queries/byte/multibyte' has methods for the following verbs: get */
-  (path: "/queries/byte/multibyte"): QueriesbyteMultiByte;
+  (path: "/queries/byte/multibyte"): QueriesByteMultiByte;
   /** Resource for '/queries/byte/empty' has methods for the following verbs: get */
-  (path: "/queries/byte/empty"): QueriesbyteEmpty;
+  (path: "/queries/byte/empty"): QueriesByteEmpty;
   /** Resource for '/queries/byte/null' has methods for the following verbs: get */
-  (path: "/queries/byte/null"): QueriesbyteNull;
+  (path: "/queries/byte/null"): QueriesByteNull;
   /** Resource for '/queries/date/2012-01-01' has methods for the following verbs: get */
-  (path: "/queries/date/2012-01-01"): QueriesdateValid;
+  (path: "/queries/date/2012-01-01"): QueriesDateValid;
   /** Resource for '/queries/date/null' has methods for the following verbs: get */
-  (path: "/queries/date/null"): QueriesdateNull;
+  (path: "/queries/date/null"): QueriesDateNull;
   /** Resource for '/queries/datetime/2012-01-01T01%3A01%3A01Z' has methods for the following verbs: get */
-  (path: "/queries/datetime/2012-01-01T01%3A01%3A01Z"): QueriesdateTimeValid;
+  (path: "/queries/datetime/2012-01-01T01%3A01%3A01Z"): QueriesDateTimeValid;
   /** Resource for '/queries/datetime/null' has methods for the following verbs: get */
-  (path: "/queries/datetime/null"): QueriesdateTimeNull;
+  (path: "/queries/datetime/null"): QueriesDateTimeNull;
   /** Resource for '/queries/array/csv/string/valid' has methods for the following verbs: get */
-  (path: "/queries/array/csv/string/valid"): QueriesarrayStringCsvValid;
+  (path: "/queries/array/csv/string/valid"): QueriesArrayStringCsvValid;
   /** Resource for '/queries/array/csv/string/null' has methods for the following verbs: get */
-  (path: "/queries/array/csv/string/null"): QueriesarrayStringCsvNull;
+  (path: "/queries/array/csv/string/null"): QueriesArrayStringCsvNull;
   /** Resource for '/queries/array/csv/string/empty' has methods for the following verbs: get */
-  (path: "/queries/array/csv/string/empty"): QueriesarrayStringCsvEmpty;
+  (path: "/queries/array/csv/string/empty"): QueriesArrayStringCsvEmpty;
   /** Resource for '/queries/array/none/string/empty' has methods for the following verbs: get */
   (
     path: "/queries/array/none/string/empty"
-  ): QueriesarrayStringNoCollectionFormatEmpty;
+  ): QueriesArrayStringNoCollectionFormatEmpty;
   /** Resource for '/queries/array/ssv/string/valid' has methods for the following verbs: get */
-  (path: "/queries/array/ssv/string/valid"): QueriesarrayStringSsvValid;
+  (path: "/queries/array/ssv/string/valid"): QueriesArrayStringSsvValid;
   /** Resource for '/queries/array/tsv/string/valid' has methods for the following verbs: get */
-  (path: "/queries/array/tsv/string/valid"): QueriesarrayStringTsvValid;
+  (path: "/queries/array/tsv/string/valid"): QueriesArrayStringTsvValid;
   /** Resource for '/queries/array/pipes/string/valid' has methods for the following verbs: get */
-  (path: "/queries/array/pipes/string/valid"): QueriesarrayStringPipesValid;
+  (path: "/queries/array/pipes/string/valid"): QueriesArrayStringPipesValid;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/globalStringQuery/pathItemStringQuery/localStringQuery' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string
-  ): PathItemsgetAllWithValues;
+  ): PathItemsGetAllWithValues;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/null/pathItemStringQuery/localStringQuery' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string
-  ): PathItemsgetGlobalQueryNull;
+  ): PathItemsGetGlobalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/null/pathItemStringQuery/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string
-  ): PathItemsgetGlobalAndLocalQueryNull;
+  ): PathItemsGetGlobalAndLocalQueryNull;
   /** Resource for '/pathitem/nullable/globalStringPath/\{globalStringPath\}/pathItemStringPath/\{pathItemStringPath\}/localStringPath/\{localStringPath\}/globalStringQuery/null/null' has methods for the following verbs: get */
   (
     path: "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
     globalStringPath: string,
     pathItemStringPath: string,
     localStringPath: string
-  ): PathItemsgetLocalPathItemQueryNull;
+  ): PathItemsGetLocalPathItemQueryNull;
 }
 
 export type UrlRestClientRestClient = Client & {

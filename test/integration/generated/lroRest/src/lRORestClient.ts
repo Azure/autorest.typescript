@@ -2,1294 +2,1294 @@
 // Licensed under the MIT license.
 
 import {
-  LROsput200SucceededParameters,
-  LROspatch200SucceededIgnoreHeadersParameters,
-  LROsput201SucceededParameters,
-  LROspost202ListParameters,
-  LROsput200SucceededNoStateParameters,
-  LROsput202Retry200Parameters,
-  LROsput201CreatingSucceeded200Parameters,
-  LROsput200UpdatingSucceeded204Parameters,
-  LROsput201CreatingFailed200Parameters,
-  LROsput200Acceptedcanceled200Parameters,
-  LROsputNoHeaderInRetryParameters,
-  LROsputAsyncRetrySucceededParameters,
-  LROsputAsyncNoRetrySucceededParameters,
-  LROsputAsyncRetryFailedParameters,
-  LROsputAsyncNoRetrycanceledParameters,
-  LROsputAsyncNoHeaderInRetryParameters,
-  LROsputNonResourceParameters,
-  LROsputAsyncNonResourceParameters,
-  LROsputSubResourceParameters,
-  LROsputAsyncSubResourceParameters,
-  LROsdeleteProvisioning202Accepted200SucceededParameters,
-  LROsdeleteProvisioning202DeletingFailed200Parameters,
-  LROsdeleteProvisioning202Deletingcanceled200Parameters,
-  LROsdelete204SucceededParameters,
-  LROsdelete202Retry200Parameters,
-  LROsdelete202NoRetry204Parameters,
-  LROsdeleteNoHeaderInRetryParameters,
-  LROsdeleteAsyncNoHeaderInRetryParameters,
-  LROsdeleteAsyncRetrySucceededParameters,
-  LROsdeleteAsyncNoRetrySucceededParameters,
-  LROsdeleteAsyncRetryFailedParameters,
-  LROsdeleteAsyncRetrycanceledParameters,
-  LROspost200WithPayloadParameters,
-  LROspost202Retry200Parameters,
-  LROspost202NoRetry204Parameters,
-  LROspostDoubleHeadersFinalLocationGetParameters,
-  LROspostDoubleHeadersFinalAzureHeaderGetParameters,
-  LROspostDoubleHeadersFinalAzureHeaderGetDefaultParameters,
-  LROspostAsyncRetrySucceededParameters,
-  LROspostAsyncNoRetrySucceededParameters,
-  LROspostAsyncRetryFailedParameters,
-  LROspostAsyncRetrycanceledParameters,
-  LRORetrysput201CreatingSucceeded200Parameters,
-  LRORetrysputAsyncRelativeRetrySucceededParameters,
-  LRORetrysdeleteProvisioning202Accepted200SucceededParameters,
-  LRORetrysdelete202Retry200Parameters,
-  LRORetrysdeleteAsyncRelativeRetrySucceededParameters,
-  LRORetryspost202Retry200Parameters,
-  LRORetryspostAsyncRelativeRetrySucceededParameters,
-  LrosaDsputNonRetry400Parameters,
-  LrosaDsputNonRetry201Creating400Parameters,
-  LrosaDsputNonRetry201Creating400InvalidJsonParameters,
-  LrosaDsputAsyncRelativeRetry400Parameters,
-  LrosaDsdeleteNonRetry400Parameters,
-  LrosaDsdelete202NonRetry400Parameters,
-  LrosaDsdeleteAsyncRelativeRetry400Parameters,
-  LrosaDspostNonRetry400Parameters,
-  LrosaDspost202NonRetry400Parameters,
-  LrosaDspostAsyncRelativeRetry400Parameters,
-  LrosaDsputError201NoProvisioningStatePayloadParameters,
-  LrosaDsputAsyncRelativeRetryNoStatusParameters,
-  LrosaDsputAsyncRelativeRetryNoStatusPayloadParameters,
-  LrosaDsdelete204SucceededParameters,
-  LrosaDsdeleteAsyncRelativeRetryNoStatusParameters,
-  LrosaDspost202NoLocationParameters,
-  LrosaDspostAsyncRelativeRetryNoPayloadParameters,
-  LrosaDsput200InvalidJsonParameters,
-  LrosaDsputAsyncRelativeRetryInvalidHeaderParameters,
-  LrosaDsputAsyncRelativeRetryInvalidJsonPollingParameters,
-  LrosaDsdelete202RetryInvalidHeaderParameters,
-  LrosaDsdeleteAsyncRelativeRetryInvalidHeaderParameters,
-  LrosaDsdeleteAsyncRelativeRetryInvalidJsonPollingParameters,
-  LrosaDspost202RetryInvalidHeaderParameters,
-  LrosaDspostAsyncRelativeRetryInvalidHeaderParameters,
-  LrosaDspostAsyncRelativeRetryInvalidJsonPollingParameters,
-  LROsCustomHeaderputAsyncRetrySucceededParameters,
-  LROsCustomHeaderput201CreatingSucceeded200Parameters,
-  LROsCustomHeaderpost202Retry200Parameters,
-  LROsCustomHeaderpostAsyncRetrySucceededParameters
+  LROsPut200SucceededParameters,
+  LROsPatch200SucceededIgnoreHeadersParameters,
+  LROsPut201SucceededParameters,
+  LROsPost202ListParameters,
+  LROsPut200SucceededNoStateParameters,
+  LROsPut202Retry200Parameters,
+  LROsPut201CreatingSucceeded200Parameters,
+  LROsPut200UpdatingSucceeded204Parameters,
+  LROsPut201CreatingFailed200Parameters,
+  LROsPut200Acceptedcanceled200Parameters,
+  LROsPutNoHeaderInRetryParameters,
+  LROsPutAsyncRetrySucceededParameters,
+  LROsPutAsyncNoRetrySucceededParameters,
+  LROsPutAsyncRetryFailedParameters,
+  LROsPutAsyncNoRetrycanceledParameters,
+  LROsPutAsyncNoHeaderInRetryParameters,
+  LROsPutNonResourceParameters,
+  LROsPutAsyncNonResourceParameters,
+  LROsPutSubResourceParameters,
+  LROsPutAsyncSubResourceParameters,
+  LROsDeleteProvisioning202Accepted200SucceededParameters,
+  LROsDeleteProvisioning202DeletingFailed200Parameters,
+  LROsDeleteProvisioning202Deletingcanceled200Parameters,
+  LROsDelete204SucceededParameters,
+  LROsDelete202Retry200Parameters,
+  LROsDelete202NoRetry204Parameters,
+  LROsDeleteNoHeaderInRetryParameters,
+  LROsDeleteAsyncNoHeaderInRetryParameters,
+  LROsDeleteAsyncRetrySucceededParameters,
+  LROsDeleteAsyncNoRetrySucceededParameters,
+  LROsDeleteAsyncRetryFailedParameters,
+  LROsDeleteAsyncRetrycanceledParameters,
+  LROsPost200WithPayloadParameters,
+  LROsPost202Retry200Parameters,
+  LROsPost202NoRetry204Parameters,
+  LROsPostDoubleHeadersFinalLocationGetParameters,
+  LROsPostDoubleHeadersFinalAzureHeaderGetParameters,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters,
+  LROsPostAsyncRetrySucceededParameters,
+  LROsPostAsyncNoRetrySucceededParameters,
+  LROsPostAsyncRetryFailedParameters,
+  LROsPostAsyncRetrycanceledParameters,
+  LRORetrysPut201CreatingSucceeded200Parameters,
+  LRORetrysPutAsyncRelativeRetrySucceededParameters,
+  LRORetrysDeleteProvisioning202Accepted200SucceededParameters,
+  LRORetrysDelete202Retry200Parameters,
+  LRORetrysDeleteAsyncRelativeRetrySucceededParameters,
+  LRORetrysPost202Retry200Parameters,
+  LRORetrysPostAsyncRelativeRetrySucceededParameters,
+  LrosaDsPutNonRetry400Parameters,
+  LrosaDsPutNonRetry201Creating400Parameters,
+  LrosaDsPutNonRetry201Creating400InvalidJsonParameters,
+  LrosaDsPutAsyncRelativeRetry400Parameters,
+  LrosaDsDeleteNonRetry400Parameters,
+  LrosaDsDelete202NonRetry400Parameters,
+  LrosaDsDeleteAsyncRelativeRetry400Parameters,
+  LrosaDsPostNonRetry400Parameters,
+  LrosaDsPost202NonRetry400Parameters,
+  LrosaDsPostAsyncRelativeRetry400Parameters,
+  LrosaDsPutError201NoProvisioningStatePayloadParameters,
+  LrosaDsPutAsyncRelativeRetryNoStatusParameters,
+  LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters,
+  LrosaDsDelete204SucceededParameters,
+  LrosaDsDeleteAsyncRelativeRetryNoStatusParameters,
+  LrosaDsPost202NoLocationParameters,
+  LrosaDsPostAsyncRelativeRetryNoPayloadParameters,
+  LrosaDsPut200InvalidJsonParameters,
+  LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters,
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters,
+  LrosaDsDelete202RetryInvalidHeaderParameters,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters,
+  LrosaDsPost202RetryInvalidHeaderParameters,
+  LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters,
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters,
+  LROsCustomHeaderPutAsyncRetrySucceededParameters,
+  LROsCustomHeaderPut201CreatingSucceeded200Parameters,
+  LROsCustomHeaderPost202Retry200Parameters,
+  LROsCustomHeaderPostAsyncRetrySucceededParameters
 } from "./parameters";
 import {
-  LROsput200Succeeded200Response,
-  LROsput200Succeeded204Response,
-  LROsput200SucceededdefaultResponse,
-  LROspatch200SucceededIgnoreHeaders200Response,
-  LROspatch200SucceededIgnoreHeadersdefaultResponse,
-  LROsput201Succeeded201Response,
-  LROsput201SucceededdefaultResponse,
-  LROspost202List200Response,
-  LROspost202List202Response,
-  LROspost202ListdefaultResponse,
-  LROsput200SucceededNoState200Response,
-  LROsput200SucceededNoStatedefaultResponse,
-  LROsput202Retry200202Response,
-  LROsput202Retry200defaultResponse,
-  LROsput201CreatingSucceeded200200Response,
-  LROsput201CreatingSucceeded200201Response,
-  LROsput201CreatingSucceeded200defaultResponse,
-  LROsput200UpdatingSucceeded204200Response,
-  LROsput200UpdatingSucceeded204defaultResponse,
-  LROsput201CreatingFailed200200Response,
-  LROsput201CreatingFailed200201Response,
-  LROsput201CreatingFailed200defaultResponse,
-  LROsput200Acceptedcanceled200200Response,
-  LROsput200Acceptedcanceled200defaultResponse,
-  LROsputNoHeaderInRetry202Response,
-  LROsputNoHeaderInRetrydefaultResponse,
-  LROsputAsyncRetrySucceeded200Response,
-  LROsputAsyncRetrySucceededdefaultResponse,
-  LROsputAsyncNoRetrySucceeded200Response,
-  LROsputAsyncNoRetrySucceededdefaultResponse,
-  LROsputAsyncRetryFailed200Response,
-  LROsputAsyncRetryFaileddefaultResponse,
-  LROsputAsyncNoRetrycanceled200Response,
-  LROsputAsyncNoRetrycanceleddefaultResponse,
-  LROsputAsyncNoHeaderInRetry201Response,
-  LROsputAsyncNoHeaderInRetrydefaultResponse,
-  LROsputNonResource202Response,
-  LROsputNonResourcedefaultResponse,
-  LROsputAsyncNonResource202Response,
-  LROsputAsyncNonResourcedefaultResponse,
-  LROsputSubResource202Response,
-  LROsputSubResourcedefaultResponse,
-  LROsputAsyncSubResource202Response,
-  LROsputAsyncSubResourcedefaultResponse,
-  LROsdeleteProvisioning202Accepted200Succeeded200Response,
-  LROsdeleteProvisioning202Accepted200Succeeded202Response,
-  LROsdeleteProvisioning202Accepted200SucceededdefaultResponse,
-  LROsdeleteProvisioning202DeletingFailed200200Response,
-  LROsdeleteProvisioning202DeletingFailed200202Response,
-  LROsdeleteProvisioning202DeletingFailed200defaultResponse,
-  LROsdeleteProvisioning202Deletingcanceled200200Response,
-  LROsdeleteProvisioning202Deletingcanceled200202Response,
-  LROsdeleteProvisioning202Deletingcanceled200defaultResponse,
-  LROsdelete204Succeeded204Response,
-  LROsdelete204SucceededdefaultResponse,
-  LROsdelete202Retry200200Response,
-  LROsdelete202Retry200202Response,
-  LROsdelete202Retry200defaultResponse,
-  LROsdelete202NoRetry204200Response,
-  LROsdelete202NoRetry204202Response,
-  LROsdelete202NoRetry204defaultResponse,
-  LROsdeleteNoHeaderInRetry202Response,
-  LROsdeleteNoHeaderInRetry204Response,
-  LROsdeleteNoHeaderInRetrydefaultResponse,
-  LROsdeleteAsyncNoHeaderInRetry202Response,
-  LROsdeleteAsyncNoHeaderInRetry204Response,
-  LROsdeleteAsyncNoHeaderInRetrydefaultResponse,
-  LROsdeleteAsyncRetrySucceeded202Response,
-  LROsdeleteAsyncRetrySucceededdefaultResponse,
-  LROsdeleteAsyncNoRetrySucceeded202Response,
-  LROsdeleteAsyncNoRetrySucceededdefaultResponse,
-  LROsdeleteAsyncRetryFailed202Response,
-  LROsdeleteAsyncRetryFaileddefaultResponse,
-  LROsdeleteAsyncRetrycanceled202Response,
-  LROsdeleteAsyncRetrycanceleddefaultResponse,
-  LROspost200WithPayload200Response,
-  LROspost200WithPayload202Response,
-  LROspost200WithPayloaddefaultResponse,
-  LROspost202Retry200202Response,
-  LROspost202Retry200defaultResponse,
-  LROspost202NoRetry204202Response,
-  LROspost202NoRetry204defaultResponse,
-  LROspostDoubleHeadersFinalLocationGet202Response,
-  LROspostDoubleHeadersFinalLocationGetdefaultResponse,
-  LROspostDoubleHeadersFinalAzureHeaderGet202Response,
-  LROspostDoubleHeadersFinalAzureHeaderGetdefaultResponse,
-  LROspostDoubleHeadersFinalAzureHeaderGetDefault202Response,
-  LROspostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse,
-  LROspostAsyncRetrySucceeded200Response,
-  LROspostAsyncRetrySucceeded202Response,
-  LROspostAsyncRetrySucceededdefaultResponse,
-  LROspostAsyncNoRetrySucceeded200Response,
-  LROspostAsyncNoRetrySucceeded202Response,
-  LROspostAsyncNoRetrySucceededdefaultResponse,
-  LROspostAsyncRetryFailed202Response,
-  LROspostAsyncRetryFaileddefaultResponse,
-  LROspostAsyncRetrycanceled202Response,
-  LROspostAsyncRetrycanceleddefaultResponse,
-  LRORetrysput201CreatingSucceeded200200Response,
-  LRORetrysput201CreatingSucceeded200201Response,
-  LRORetrysput201CreatingSucceeded200defaultResponse,
-  LRORetrysputAsyncRelativeRetrySucceeded200Response,
-  LRORetrysputAsyncRelativeRetrySucceededdefaultResponse,
-  LRORetrysdeleteProvisioning202Accepted200Succeeded200Response,
-  LRORetrysdeleteProvisioning202Accepted200Succeeded202Response,
-  LRORetrysdeleteProvisioning202Accepted200SucceededdefaultResponse,
-  LRORetrysdelete202Retry200202Response,
-  LRORetrysdelete202Retry200defaultResponse,
-  LRORetrysdeleteAsyncRelativeRetrySucceeded202Response,
-  LRORetrysdeleteAsyncRelativeRetrySucceededdefaultResponse,
-  LRORetryspost202Retry200202Response,
-  LRORetryspost202Retry200defaultResponse,
-  LRORetryspostAsyncRelativeRetrySucceeded202Response,
-  LRORetryspostAsyncRelativeRetrySucceededdefaultResponse,
-  LrosaDsputNonRetry400200Response,
-  LrosaDsputNonRetry400201Response,
-  LrosaDsputNonRetry400defaultResponse,
-  LrosaDsputNonRetry201Creating400200Response,
-  LrosaDsputNonRetry201Creating400201Response,
-  LrosaDsputNonRetry201Creating400defaultResponse,
-  LrosaDsputNonRetry201Creating400InvalidJson200Response,
-  LrosaDsputNonRetry201Creating400InvalidJson201Response,
-  LrosaDsputNonRetry201Creating400InvalidJsondefaultResponse,
-  LrosaDsputAsyncRelativeRetry400200Response,
-  LrosaDsputAsyncRelativeRetry400defaultResponse,
-  LrosaDsdeleteNonRetry400202Response,
-  LrosaDsdeleteNonRetry400defaultResponse,
-  LrosaDsdelete202NonRetry400202Response,
-  LrosaDsdelete202NonRetry400defaultResponse,
-  LrosaDsdeleteAsyncRelativeRetry400202Response,
-  LrosaDsdeleteAsyncRelativeRetry400defaultResponse,
-  LrosaDspostNonRetry400202Response,
-  LrosaDspostNonRetry400defaultResponse,
-  LrosaDspost202NonRetry400202Response,
-  LrosaDspost202NonRetry400defaultResponse,
-  LrosaDspostAsyncRelativeRetry400202Response,
-  LrosaDspostAsyncRelativeRetry400defaultResponse,
-  LrosaDsputError201NoProvisioningStatePayload200Response,
-  LrosaDsputError201NoProvisioningStatePayload201Response,
-  LrosaDsputError201NoProvisioningStatePayloaddefaultResponse,
-  LrosaDsputAsyncRelativeRetryNoStatus200Response,
-  LrosaDsputAsyncRelativeRetryNoStatusdefaultResponse,
-  LrosaDsputAsyncRelativeRetryNoStatusPayload200Response,
-  LrosaDsputAsyncRelativeRetryNoStatusPayloaddefaultResponse,
-  LrosaDsdelete204Succeeded204Response,
-  LrosaDsdelete204SucceededdefaultResponse,
-  LrosaDsdeleteAsyncRelativeRetryNoStatus202Response,
-  LrosaDsdeleteAsyncRelativeRetryNoStatusdefaultResponse,
-  LrosaDspost202NoLocation202Response,
-  LrosaDspost202NoLocationdefaultResponse,
-  LrosaDspostAsyncRelativeRetryNoPayload202Response,
-  LrosaDspostAsyncRelativeRetryNoPayloaddefaultResponse,
-  LrosaDsput200InvalidJson200Response,
-  LrosaDsput200InvalidJson204Response,
-  LrosaDsput200InvalidJsondefaultResponse,
-  LrosaDsputAsyncRelativeRetryInvalidHeader200Response,
-  LrosaDsputAsyncRelativeRetryInvalidHeaderdefaultResponse,
-  LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Response,
-  LrosaDsputAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
-  LrosaDsdelete202RetryInvalidHeader202Response,
-  LrosaDsdelete202RetryInvalidHeaderdefaultResponse,
-  LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDsdeleteAsyncRelativeRetryInvalidHeaderdefaultResponse,
-  LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDsdeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
-  LrosaDspost202RetryInvalidHeader202Response,
-  LrosaDspost202RetryInvalidHeaderdefaultResponse,
-  LrosaDspostAsyncRelativeRetryInvalidHeader202Response,
-  LrosaDspostAsyncRelativeRetryInvalidHeaderdefaultResponse,
-  LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Response,
-  LrosaDspostAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
-  LROsCustomHeaderputAsyncRetrySucceeded200Response,
-  LROsCustomHeaderputAsyncRetrySucceededdefaultResponse,
-  LROsCustomHeaderput201CreatingSucceeded200200Response,
-  LROsCustomHeaderput201CreatingSucceeded200201Response,
-  LROsCustomHeaderput201CreatingSucceeded200defaultResponse,
-  LROsCustomHeaderpost202Retry200202Response,
-  LROsCustomHeaderpost202Retry200defaultResponse,
-  LROsCustomHeaderpostAsyncRetrySucceeded202Response,
-  LROsCustomHeaderpostAsyncRetrySucceededdefaultResponse
+  LROsPut200Succeeded200Response,
+  LROsPut200Succeeded204Response,
+  LROsPut200SucceededdefaultResponse,
+  LROsPatch200SucceededIgnoreHeaders200Response,
+  LROsPatch200SucceededIgnoreHeadersdefaultResponse,
+  LROsPut201Succeeded201Response,
+  LROsPut201SucceededdefaultResponse,
+  LROsPost202List200Response,
+  LROsPost202List202Response,
+  LROsPost202ListdefaultResponse,
+  LROsPut200SucceededNoState200Response,
+  LROsPut200SucceededNoStatedefaultResponse,
+  LROsPut202Retry200202Response,
+  LROsPut202Retry200DefaultResponse,
+  LROsPut201CreatingSucceeded200200Response,
+  LROsPut201CreatingSucceeded200201Response,
+  LROsPut201CreatingSucceeded200DefaultResponse,
+  LROsPut200UpdatingSucceeded204200Response,
+  LROsPut200UpdatingSucceeded204DefaultResponse,
+  LROsPut201CreatingFailed200200Response,
+  LROsPut201CreatingFailed200201Response,
+  LROsPut201CreatingFailed200DefaultResponse,
+  LROsPut200Acceptedcanceled200200Response,
+  LROsPut200Acceptedcanceled200DefaultResponse,
+  LROsPutNoHeaderInRetry202Response,
+  LROsPutNoHeaderInRetrydefaultResponse,
+  LROsPutAsyncRetrySucceeded200Response,
+  LROsPutAsyncRetrySucceededdefaultResponse,
+  LROsPutAsyncNoRetrySucceeded200Response,
+  LROsPutAsyncNoRetrySucceededdefaultResponse,
+  LROsPutAsyncRetryFailed200Response,
+  LROsPutAsyncRetryFaileddefaultResponse,
+  LROsPutAsyncNoRetrycanceled200Response,
+  LROsPutAsyncNoRetrycanceleddefaultResponse,
+  LROsPutAsyncNoHeaderInRetry201Response,
+  LROsPutAsyncNoHeaderInRetrydefaultResponse,
+  LROsPutNonResource202Response,
+  LROsPutNonResourcedefaultResponse,
+  LROsPutAsyncNonResource202Response,
+  LROsPutAsyncNonResourcedefaultResponse,
+  LROsPutSubResource202Response,
+  LROsPutSubResourcedefaultResponse,
+  LROsPutAsyncSubResource202Response,
+  LROsPutAsyncSubResourcedefaultResponse,
+  LROsDeleteProvisioning202Accepted200Succeeded200Response,
+  LROsDeleteProvisioning202Accepted200Succeeded202Response,
+  LROsDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LROsDeleteProvisioning202DeletingFailed200200Response,
+  LROsDeleteProvisioning202DeletingFailed200202Response,
+  LROsDeleteProvisioning202DeletingFailed200DefaultResponse,
+  LROsDeleteProvisioning202Deletingcanceled200200Response,
+  LROsDeleteProvisioning202Deletingcanceled200202Response,
+  LROsDeleteProvisioning202Deletingcanceled200DefaultResponse,
+  LROsDelete204Succeeded204Response,
+  LROsDelete204SucceededdefaultResponse,
+  LROsDelete202Retry200200Response,
+  LROsDelete202Retry200202Response,
+  LROsDelete202Retry200DefaultResponse,
+  LROsDelete202NoRetry204200Response,
+  LROsDelete202NoRetry204202Response,
+  LROsDelete202NoRetry204DefaultResponse,
+  LROsDeleteNoHeaderInRetry202Response,
+  LROsDeleteNoHeaderInRetry204Response,
+  LROsDeleteNoHeaderInRetrydefaultResponse,
+  LROsDeleteAsyncNoHeaderInRetry202Response,
+  LROsDeleteAsyncNoHeaderInRetry204Response,
+  LROsDeleteAsyncNoHeaderInRetrydefaultResponse,
+  LROsDeleteAsyncRetrySucceeded202Response,
+  LROsDeleteAsyncRetrySucceededdefaultResponse,
+  LROsDeleteAsyncNoRetrySucceeded202Response,
+  LROsDeleteAsyncNoRetrySucceededdefaultResponse,
+  LROsDeleteAsyncRetryFailed202Response,
+  LROsDeleteAsyncRetryFaileddefaultResponse,
+  LROsDeleteAsyncRetrycanceled202Response,
+  LROsDeleteAsyncRetrycanceleddefaultResponse,
+  LROsPost200WithPayload200Response,
+  LROsPost200WithPayload202Response,
+  LROsPost200WithPayloaddefaultResponse,
+  LROsPost202Retry200202Response,
+  LROsPost202Retry200DefaultResponse,
+  LROsPost202NoRetry204202Response,
+  LROsPost202NoRetry204DefaultResponse,
+  LROsPostDoubleHeadersFinalLocationGet202Response,
+  LROsPostDoubleHeadersFinalLocationGetdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGet202Response,
+  LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response,
+  LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse,
+  LROsPostAsyncRetrySucceeded200Response,
+  LROsPostAsyncRetrySucceeded202Response,
+  LROsPostAsyncRetrySucceededdefaultResponse,
+  LROsPostAsyncNoRetrySucceeded200Response,
+  LROsPostAsyncNoRetrySucceeded202Response,
+  LROsPostAsyncNoRetrySucceededdefaultResponse,
+  LROsPostAsyncRetryFailed202Response,
+  LROsPostAsyncRetryFaileddefaultResponse,
+  LROsPostAsyncRetrycanceled202Response,
+  LROsPostAsyncRetrycanceleddefaultResponse,
+  LRORetrysPut201CreatingSucceeded200200Response,
+  LRORetrysPut201CreatingSucceeded200201Response,
+  LRORetrysPut201CreatingSucceeded200DefaultResponse,
+  LRORetrysPutAsyncRelativeRetrySucceeded200Response,
+  LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysDeleteProvisioning202Accepted200Succeeded200Response,
+  LRORetrysDeleteProvisioning202Accepted200Succeeded202Response,
+  LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse,
+  LRORetrysDelete202Retry200202Response,
+  LRORetrysDelete202Retry200DefaultResponse,
+  LRORetrysDeleteAsyncRelativeRetrySucceeded202Response,
+  LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse,
+  LRORetrysPost202Retry200202Response,
+  LRORetrysPost202Retry200DefaultResponse,
+  LRORetrysPostAsyncRelativeRetrySucceeded202Response,
+  LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse,
+  LrosaDsPutNonRetry400200Response,
+  LrosaDsPutNonRetry400201Response,
+  LrosaDsPutNonRetry400DefaultResponse,
+  LrosaDsPutNonRetry201Creating400200Response,
+  LrosaDsPutNonRetry201Creating400201Response,
+  LrosaDsPutNonRetry201Creating400DefaultResponse,
+  LrosaDsPutNonRetry201Creating400InvalidJson200Response,
+  LrosaDsPutNonRetry201Creating400InvalidJson201Response,
+  LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse,
+  LrosaDsPutAsyncRelativeRetry400200Response,
+  LrosaDsPutAsyncRelativeRetry400DefaultResponse,
+  LrosaDsDeleteNonRetry400202Response,
+  LrosaDsDeleteNonRetry400DefaultResponse,
+  LrosaDsDelete202NonRetry400202Response,
+  LrosaDsDelete202NonRetry400DefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetry400202Response,
+  LrosaDsDeleteAsyncRelativeRetry400DefaultResponse,
+  LrosaDsPostNonRetry400202Response,
+  LrosaDsPostNonRetry400DefaultResponse,
+  LrosaDsPost202NonRetry400202Response,
+  LrosaDsPost202NonRetry400DefaultResponse,
+  LrosaDsPostAsyncRelativeRetry400202Response,
+  LrosaDsPostAsyncRelativeRetry400DefaultResponse,
+  LrosaDsPutError201NoProvisioningStatePayload200Response,
+  LrosaDsPutError201NoProvisioningStatePayload201Response,
+  LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatus200Response,
+  LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response,
+  LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse,
+  LrosaDsDelete204Succeeded204Response,
+  LrosaDsDelete204SucceededdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryNoStatus202Response,
+  LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse,
+  LrosaDsPost202NoLocation202Response,
+  LrosaDsPost202NoLocationdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryNoPayload202Response,
+  LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse,
+  LrosaDsPut200InvalidJson200Response,
+  LrosaDsPut200InvalidJson204Response,
+  LrosaDsPut200InvalidJsondefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidHeader200Response,
+  LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response,
+  LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsDelete202RetryInvalidHeader202Response,
+  LrosaDsDelete202RetryInvalidHeaderdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response,
+  LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response,
+  LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LrosaDsPost202RetryInvalidHeader202Response,
+  LrosaDsPost202RetryInvalidHeaderdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidHeader202Response,
+  LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse,
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response,
+  LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse,
+  LROsCustomHeaderPutAsyncRetrySucceeded200Response,
+  LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse,
+  LROsCustomHeaderPut201CreatingSucceeded200200Response,
+  LROsCustomHeaderPut201CreatingSucceeded200201Response,
+  LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse,
+  LROsCustomHeaderPost202Retry200202Response,
+  LROsCustomHeaderPost202Retry200DefaultResponse,
+  LROsCustomHeaderPostAsyncRetrySucceeded202Response,
+  LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
 } from "./responses";
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface LROsput200Succeeded {
+export interface LROsPut200Succeeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsput200SucceededParameters
+    options?: LROsPut200SucceededParameters
   ): Promise<
-    | LROsput200Succeeded200Response
-    | LROsput200Succeeded204Response
-    | LROsput200SucceededdefaultResponse
+    | LROsPut200Succeeded200Response
+    | LROsPut200Succeeded204Response
+    | LROsPut200SucceededdefaultResponse
   >;
 }
 
-export interface LROspatch200SucceededIgnoreHeaders {
+export interface LROsPatch200SucceededIgnoreHeaders {
   /** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
   patch(
-    options?: LROspatch200SucceededIgnoreHeadersParameters
+    options?: LROsPatch200SucceededIgnoreHeadersParameters
   ): Promise<
-    | LROspatch200SucceededIgnoreHeaders200Response
-    | LROspatch200SucceededIgnoreHeadersdefaultResponse
+    | LROsPatch200SucceededIgnoreHeaders200Response
+    | LROsPatch200SucceededIgnoreHeadersdefaultResponse
   >;
 }
 
-export interface LROsput201Succeeded {
+export interface LROsPut201Succeeded {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsput201SucceededParameters
+    options?: LROsPut201SucceededParameters
   ): Promise<
-    LROsput201Succeeded201Response | LROsput201SucceededdefaultResponse
+    LROsPut201Succeeded201Response | LROsPut201SucceededdefaultResponse
   >;
 }
 
-export interface LROspost202List {
+export interface LROsPost202List {
   /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
   post(
-    options?: LROspost202ListParameters
+    options?: LROsPost202ListParameters
   ): Promise<
-    | LROspost202List200Response
-    | LROspost202List202Response
-    | LROspost202ListdefaultResponse
+    | LROsPost202List200Response
+    | LROsPost202List202Response
+    | LROsPost202ListdefaultResponse
   >;
 }
 
-export interface LROsput200SucceededNoState {
+export interface LROsPut200SucceededNoState {
   /** Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’. */
   put(
-    options?: LROsput200SucceededNoStateParameters
+    options?: LROsPut200SucceededNoStateParameters
   ): Promise<
-    | LROsput200SucceededNoState200Response
-    | LROsput200SucceededNoStatedefaultResponse
+    | LROsPut200SucceededNoState200Response
+    | LROsPut200SucceededNoStatedefaultResponse
   >;
 }
 
-export interface LROsput202Retry200 {
+export interface LROsPut202Retry200 {
   /** Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState */
   put(
-    options?: LROsput202Retry200Parameters
-  ): Promise<LROsput202Retry200202Response | LROsput202Retry200defaultResponse>;
+    options?: LROsPut202Retry200Parameters
+  ): Promise<LROsPut202Retry200202Response | LROsPut202Retry200DefaultResponse>;
 }
 
-export interface LROsput201CreatingSucceeded200 {
+export interface LROsPut201CreatingSucceeded200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsput201CreatingSucceeded200Parameters
+    options?: LROsPut201CreatingSucceeded200Parameters
   ): Promise<
-    | LROsput201CreatingSucceeded200200Response
-    | LROsput201CreatingSucceeded200201Response
-    | LROsput201CreatingSucceeded200defaultResponse
+    | LROsPut201CreatingSucceeded200200Response
+    | LROsPut201CreatingSucceeded200201Response
+    | LROsPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
-export interface LROsput200UpdatingSucceeded204 {
+export interface LROsPut200UpdatingSucceeded204 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsput200UpdatingSucceeded204Parameters
+    options?: LROsPut200UpdatingSucceeded204Parameters
   ): Promise<
-    | LROsput200UpdatingSucceeded204200Response
-    | LROsput200UpdatingSucceeded204defaultResponse
+    | LROsPut200UpdatingSucceeded204200Response
+    | LROsPut200UpdatingSucceeded204DefaultResponse
   >;
 }
 
-export interface LROsput201CreatingFailed200 {
+export interface LROsPut201CreatingFailed200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
   put(
-    options?: LROsput201CreatingFailed200Parameters
+    options?: LROsPut201CreatingFailed200Parameters
   ): Promise<
-    | LROsput201CreatingFailed200200Response
-    | LROsput201CreatingFailed200201Response
-    | LROsput201CreatingFailed200defaultResponse
+    | LROsPut201CreatingFailed200200Response
+    | LROsPut201CreatingFailed200201Response
+    | LROsPut201CreatingFailed200DefaultResponse
   >;
 }
 
-export interface LROsput200Acceptedcanceled200 {
+export interface LROsPut200Acceptedcanceled200 {
   /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
   put(
-    options?: LROsput200Acceptedcanceled200Parameters
+    options?: LROsPut200Acceptedcanceled200Parameters
   ): Promise<
-    | LROsput200Acceptedcanceled200200Response
-    | LROsput200Acceptedcanceled200defaultResponse
+    | LROsPut200Acceptedcanceled200200Response
+    | LROsPut200Acceptedcanceled200DefaultResponse
   >;
 }
 
-export interface LROsputNoHeaderInRetry {
+export interface LROsPutNoHeaderInRetry {
   /** Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header. */
   put(
-    options?: LROsputNoHeaderInRetryParameters
+    options?: LROsPutNoHeaderInRetryParameters
   ): Promise<
-    LROsputNoHeaderInRetry202Response | LROsputNoHeaderInRetrydefaultResponse
+    LROsPutNoHeaderInRetry202Response | LROsPutNoHeaderInRetrydefaultResponse
   >;
 }
 
-export interface LROsputAsyncRetrySucceeded {
+export interface LROsPutAsyncRetrySucceeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsputAsyncRetrySucceededParameters
+    options?: LROsPutAsyncRetrySucceededParameters
   ): Promise<
-    | LROsputAsyncRetrySucceeded200Response
-    | LROsputAsyncRetrySucceededdefaultResponse
+    | LROsPutAsyncRetrySucceeded200Response
+    | LROsPutAsyncRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROsputAsyncNoRetrySucceeded {
+export interface LROsPutAsyncNoRetrySucceeded {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsputAsyncNoRetrySucceededParameters
+    options?: LROsPutAsyncNoRetrySucceededParameters
   ): Promise<
-    | LROsputAsyncNoRetrySucceeded200Response
-    | LROsputAsyncNoRetrySucceededdefaultResponse
+    | LROsPutAsyncNoRetrySucceeded200Response
+    | LROsPutAsyncNoRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROsputAsyncRetryFailed {
+export interface LROsPutAsyncRetryFailed {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsputAsyncRetryFailedParameters
+    options?: LROsPutAsyncRetryFailedParameters
   ): Promise<
-    LROsputAsyncRetryFailed200Response | LROsputAsyncRetryFaileddefaultResponse
+    LROsPutAsyncRetryFailed200Response | LROsPutAsyncRetryFaileddefaultResponse
   >;
 }
 
-export interface LROsputAsyncNoRetrycanceled {
+export interface LROsPutAsyncNoRetrycanceled {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsputAsyncNoRetrycanceledParameters
+    options?: LROsPutAsyncNoRetrycanceledParameters
   ): Promise<
-    | LROsputAsyncNoRetrycanceled200Response
-    | LROsputAsyncNoRetrycanceleddefaultResponse
+    | LROsPutAsyncNoRetrycanceled200Response
+    | LROsPutAsyncNoRetrycanceleddefaultResponse
   >;
 }
 
-export interface LROsputAsyncNoHeaderInRetry {
+export interface LROsPutAsyncNoHeaderInRetry {
   /** Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
   put(
-    options?: LROsputAsyncNoHeaderInRetryParameters
+    options?: LROsPutAsyncNoHeaderInRetryParameters
   ): Promise<
-    | LROsputAsyncNoHeaderInRetry201Response
-    | LROsputAsyncNoHeaderInRetrydefaultResponse
+    | LROsPutAsyncNoHeaderInRetry201Response
+    | LROsPutAsyncNoHeaderInRetrydefaultResponse
   >;
 }
 
-export interface LROsputNonResource {
+export interface LROsPutNonResource {
   /** Long running put request with non resource. */
   put(
-    options?: LROsputNonResourceParameters
-  ): Promise<LROsputNonResource202Response | LROsputNonResourcedefaultResponse>;
+    options?: LROsPutNonResourceParameters
+  ): Promise<LROsPutNonResource202Response | LROsPutNonResourcedefaultResponse>;
 }
 
-export interface LROsputAsyncNonResource {
+export interface LROsPutAsyncNonResource {
   /** Long running put request with non resource. */
   put(
-    options?: LROsputAsyncNonResourceParameters
+    options?: LROsPutAsyncNonResourceParameters
   ): Promise<
-    LROsputAsyncNonResource202Response | LROsputAsyncNonResourcedefaultResponse
+    LROsPutAsyncNonResource202Response | LROsPutAsyncNonResourcedefaultResponse
   >;
 }
 
-export interface LROsputSubResource {
+export interface LROsPutSubResource {
   /** Long running put request with sub resource. */
   put(
-    options?: LROsputSubResourceParameters
-  ): Promise<LROsputSubResource202Response | LROsputSubResourcedefaultResponse>;
+    options?: LROsPutSubResourceParameters
+  ): Promise<LROsPutSubResource202Response | LROsPutSubResourcedefaultResponse>;
 }
 
-export interface LROsputAsyncSubResource {
+export interface LROsPutAsyncSubResource {
   /** Long running put request with sub resource. */
   put(
-    options?: LROsputAsyncSubResourceParameters
+    options?: LROsPutAsyncSubResourceParameters
   ): Promise<
-    LROsputAsyncSubResource202Response | LROsputAsyncSubResourcedefaultResponse
+    LROsPutAsyncSubResource202Response | LROsPutAsyncSubResourcedefaultResponse
   >;
 }
 
-export interface LROsdeleteProvisioning202Accepted200Succeeded {
+export interface LROsDeleteProvisioning202Accepted200Succeeded {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsdeleteProvisioning202Accepted200SucceededParameters
+    options?: LROsDeleteProvisioning202Accepted200SucceededParameters
   ): Promise<
-    | LROsdeleteProvisioning202Accepted200Succeeded200Response
-    | LROsdeleteProvisioning202Accepted200Succeeded202Response
-    | LROsdeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LROsDeleteProvisioning202Accepted200Succeeded200Response
+    | LROsDeleteProvisioning202Accepted200Succeeded202Response
+    | LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
   >;
 }
 
-export interface LROsdeleteProvisioning202DeletingFailed200 {
+export interface LROsDeleteProvisioning202DeletingFailed200 {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
   delete(
-    options?: LROsdeleteProvisioning202DeletingFailed200Parameters
+    options?: LROsDeleteProvisioning202DeletingFailed200Parameters
   ): Promise<
-    | LROsdeleteProvisioning202DeletingFailed200200Response
-    | LROsdeleteProvisioning202DeletingFailed200202Response
-    | LROsdeleteProvisioning202DeletingFailed200defaultResponse
+    | LROsDeleteProvisioning202DeletingFailed200200Response
+    | LROsDeleteProvisioning202DeletingFailed200202Response
+    | LROsDeleteProvisioning202DeletingFailed200DefaultResponse
   >;
 }
 
-export interface LROsdeleteProvisioning202Deletingcanceled200 {
+export interface LROsDeleteProvisioning202Deletingcanceled200 {
   /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
   delete(
-    options?: LROsdeleteProvisioning202Deletingcanceled200Parameters
+    options?: LROsDeleteProvisioning202Deletingcanceled200Parameters
   ): Promise<
-    | LROsdeleteProvisioning202Deletingcanceled200200Response
-    | LROsdeleteProvisioning202Deletingcanceled200202Response
-    | LROsdeleteProvisioning202Deletingcanceled200defaultResponse
+    | LROsDeleteProvisioning202Deletingcanceled200200Response
+    | LROsDeleteProvisioning202Deletingcanceled200202Response
+    | LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
   >;
 }
 
-export interface LROsdelete204Succeeded {
+export interface LROsDelete204Succeeded {
   /** Long running delete succeeds and returns right away */
   delete(
-    options?: LROsdelete204SucceededParameters
+    options?: LROsDelete204SucceededParameters
   ): Promise<
-    LROsdelete204Succeeded204Response | LROsdelete204SucceededdefaultResponse
+    LROsDelete204Succeeded204Response | LROsDelete204SucceededdefaultResponse
   >;
 }
 
-export interface LROsdelete202Retry200 {
+export interface LROsDelete202Retry200 {
   /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsdelete202Retry200Parameters
+    options?: LROsDelete202Retry200Parameters
   ): Promise<
-    | LROsdelete202Retry200200Response
-    | LROsdelete202Retry200202Response
-    | LROsdelete202Retry200defaultResponse
+    | LROsDelete202Retry200200Response
+    | LROsDelete202Retry200202Response
+    | LROsDelete202Retry200DefaultResponse
   >;
 }
 
-export interface LROsdelete202NoRetry204 {
+export interface LROsDelete202NoRetry204 {
   /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LROsdelete202NoRetry204Parameters
+    options?: LROsDelete202NoRetry204Parameters
   ): Promise<
-    | LROsdelete202NoRetry204200Response
-    | LROsdelete202NoRetry204202Response
-    | LROsdelete202NoRetry204defaultResponse
+    | LROsDelete202NoRetry204200Response
+    | LROsDelete202NoRetry204202Response
+    | LROsDelete202NoRetry204DefaultResponse
   >;
 }
 
-export interface LROsdeleteNoHeaderInRetry {
+export interface LROsDeleteNoHeaderInRetry {
   /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
   delete(
-    options?: LROsdeleteNoHeaderInRetryParameters
+    options?: LROsDeleteNoHeaderInRetryParameters
   ): Promise<
-    | LROsdeleteNoHeaderInRetry202Response
-    | LROsdeleteNoHeaderInRetry204Response
-    | LROsdeleteNoHeaderInRetrydefaultResponse
+    | LROsDeleteNoHeaderInRetry202Response
+    | LROsDeleteNoHeaderInRetry204Response
+    | LROsDeleteNoHeaderInRetrydefaultResponse
   >;
 }
 
-export interface LROsdeleteAsyncNoHeaderInRetry {
+export interface LROsDeleteAsyncNoHeaderInRetry {
   /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
   delete(
-    options?: LROsdeleteAsyncNoHeaderInRetryParameters
+    options?: LROsDeleteAsyncNoHeaderInRetryParameters
   ): Promise<
-    | LROsdeleteAsyncNoHeaderInRetry202Response
-    | LROsdeleteAsyncNoHeaderInRetry204Response
-    | LROsdeleteAsyncNoHeaderInRetrydefaultResponse
+    | LROsDeleteAsyncNoHeaderInRetry202Response
+    | LROsDeleteAsyncNoHeaderInRetry204Response
+    | LROsDeleteAsyncNoHeaderInRetrydefaultResponse
   >;
 }
 
-export interface LROsdeleteAsyncRetrySucceeded {
+export interface LROsDeleteAsyncRetrySucceeded {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsdeleteAsyncRetrySucceededParameters
+    options?: LROsDeleteAsyncRetrySucceededParameters
   ): Promise<
-    | LROsdeleteAsyncRetrySucceeded202Response
-    | LROsdeleteAsyncRetrySucceededdefaultResponse
+    | LROsDeleteAsyncRetrySucceeded202Response
+    | LROsDeleteAsyncRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROsdeleteAsyncNoRetrySucceeded {
+export interface LROsDeleteAsyncNoRetrySucceeded {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsdeleteAsyncNoRetrySucceededParameters
+    options?: LROsDeleteAsyncNoRetrySucceededParameters
   ): Promise<
-    | LROsdeleteAsyncNoRetrySucceeded202Response
-    | LROsdeleteAsyncNoRetrySucceededdefaultResponse
+    | LROsDeleteAsyncNoRetrySucceeded202Response
+    | LROsDeleteAsyncNoRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROsdeleteAsyncRetryFailed {
+export interface LROsDeleteAsyncRetryFailed {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsdeleteAsyncRetryFailedParameters
+    options?: LROsDeleteAsyncRetryFailedParameters
   ): Promise<
-    | LROsdeleteAsyncRetryFailed202Response
-    | LROsdeleteAsyncRetryFaileddefaultResponse
+    | LROsDeleteAsyncRetryFailed202Response
+    | LROsDeleteAsyncRetryFaileddefaultResponse
   >;
 }
 
-export interface LROsdeleteAsyncRetrycanceled {
+export interface LROsDeleteAsyncRetrycanceled {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LROsdeleteAsyncRetrycanceledParameters
+    options?: LROsDeleteAsyncRetrycanceledParameters
   ): Promise<
-    | LROsdeleteAsyncRetrycanceled202Response
-    | LROsdeleteAsyncRetrycanceleddefaultResponse
+    | LROsDeleteAsyncRetrycanceled202Response
+    | LROsDeleteAsyncRetrycanceleddefaultResponse
   >;
 }
 
-export interface LROspost200WithPayload {
+export interface LROsPost200WithPayload {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success. */
   post(
-    options?: LROspost200WithPayloadParameters
+    options?: LROsPost200WithPayloadParameters
   ): Promise<
-    | LROspost200WithPayload200Response
-    | LROspost200WithPayload202Response
-    | LROspost200WithPayloaddefaultResponse
+    | LROsPost200WithPayload200Response
+    | LROsPost200WithPayload202Response
+    | LROsPost200WithPayloaddefaultResponse
   >;
 }
 
-export interface LROspost202Retry200 {
+export interface LROsPost202Retry200 {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LROspost202Retry200Parameters
+    options?: LROsPost202Retry200Parameters
   ): Promise<
-    LROspost202Retry200202Response | LROspost202Retry200defaultResponse
+    LROsPost202Retry200202Response | LROsPost202Retry200DefaultResponse
   >;
 }
 
-export interface LROspost202NoRetry204 {
+export interface LROsPost202NoRetry204 {
   /** Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success */
   post(
-    options?: LROspost202NoRetry204Parameters
+    options?: LROsPost202NoRetry204Parameters
   ): Promise<
-    LROspost202NoRetry204202Response | LROspost202NoRetry204defaultResponse
+    LROsPost202NoRetry204202Response | LROsPost202NoRetry204DefaultResponse
   >;
 }
 
-export interface LROspostDoubleHeadersFinalLocationGet {
+export interface LROsPostDoubleHeadersFinalLocationGet {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object */
   post(
-    options?: LROspostDoubleHeadersFinalLocationGetParameters
+    options?: LROsPostDoubleHeadersFinalLocationGetParameters
   ): Promise<
-    | LROspostDoubleHeadersFinalLocationGet202Response
-    | LROspostDoubleHeadersFinalLocationGetdefaultResponse
+    | LROsPostDoubleHeadersFinalLocationGet202Response
+    | LROsPostDoubleHeadersFinalLocationGetdefaultResponse
   >;
 }
 
-export interface LROspostDoubleHeadersFinalAzureHeaderGet {
+export interface LROsPostDoubleHeadersFinalAzureHeaderGet {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object */
   post(
-    options?: LROspostDoubleHeadersFinalAzureHeaderGetParameters
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetParameters
   ): Promise<
-    | LROspostDoubleHeadersFinalAzureHeaderGet202Response
-    | LROspostDoubleHeadersFinalAzureHeaderGetdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGet202Response
+    | LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
   >;
 }
 
-export interface LROspostDoubleHeadersFinalAzureHeaderGetDefault {
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefault {
   /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior. */
   post(
-    options?: LROspostDoubleHeadersFinalAzureHeaderGetDefaultParameters
+    options?: LROsPostDoubleHeadersFinalAzureHeaderGetDefaultParameters
   ): Promise<
-    | LROspostDoubleHeadersFinalAzureHeaderGetDefault202Response
-    | LROspostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
+    | LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
   >;
 }
 
-export interface LROspostAsyncRetrySucceeded {
+export interface LROsPostAsyncRetrySucceeded {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROspostAsyncRetrySucceededParameters
+    options?: LROsPostAsyncRetrySucceededParameters
   ): Promise<
-    | LROspostAsyncRetrySucceeded200Response
-    | LROspostAsyncRetrySucceeded202Response
-    | LROspostAsyncRetrySucceededdefaultResponse
+    | LROsPostAsyncRetrySucceeded200Response
+    | LROsPostAsyncRetrySucceeded202Response
+    | LROsPostAsyncRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROspostAsyncNoRetrySucceeded {
+export interface LROsPostAsyncNoRetrySucceeded {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROspostAsyncNoRetrySucceededParameters
+    options?: LROsPostAsyncNoRetrySucceededParameters
   ): Promise<
-    | LROspostAsyncNoRetrySucceeded200Response
-    | LROspostAsyncNoRetrySucceeded202Response
-    | LROspostAsyncNoRetrySucceededdefaultResponse
+    | LROsPostAsyncNoRetrySucceeded200Response
+    | LROsPostAsyncNoRetrySucceeded202Response
+    | LROsPostAsyncNoRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROspostAsyncRetryFailed {
+export interface LROsPostAsyncRetryFailed {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROspostAsyncRetryFailedParameters
+    options?: LROsPostAsyncRetryFailedParameters
   ): Promise<
-    | LROspostAsyncRetryFailed202Response
-    | LROspostAsyncRetryFaileddefaultResponse
+    | LROsPostAsyncRetryFailed202Response
+    | LROsPostAsyncRetryFaileddefaultResponse
   >;
 }
 
-export interface LROspostAsyncRetrycanceled {
+export interface LROsPostAsyncRetrycanceled {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROspostAsyncRetrycanceledParameters
+    options?: LROsPostAsyncRetrycanceledParameters
   ): Promise<
-    | LROspostAsyncRetrycanceled202Response
-    | LROspostAsyncRetrycanceleddefaultResponse
+    | LROsPostAsyncRetrycanceled202Response
+    | LROsPostAsyncRetrycanceleddefaultResponse
   >;
 }
 
-export interface LRORetrysput201CreatingSucceeded200 {
+export interface LRORetrysPut201CreatingSucceeded200 {
   /** Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LRORetrysput201CreatingSucceeded200Parameters
+    options?: LRORetrysPut201CreatingSucceeded200Parameters
   ): Promise<
-    | LRORetrysput201CreatingSucceeded200200Response
-    | LRORetrysput201CreatingSucceeded200201Response
-    | LRORetrysput201CreatingSucceeded200defaultResponse
+    | LRORetrysPut201CreatingSucceeded200200Response
+    | LRORetrysPut201CreatingSucceeded200201Response
+    | LRORetrysPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
-export interface LRORetrysputAsyncRelativeRetrySucceeded {
+export interface LRORetrysPutAsyncRelativeRetrySucceeded {
   /** Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LRORetrysputAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysPutAsyncRelativeRetrySucceededParameters
   ): Promise<
-    | LRORetrysputAsyncRelativeRetrySucceeded200Response
-    | LRORetrysputAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPutAsyncRelativeRetrySucceeded200Response
+    | LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
   >;
 }
 
-export interface LRORetrysdeleteProvisioning202Accepted200Succeeded {
+export interface LRORetrysDeleteProvisioning202Accepted200Succeeded {
   /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LRORetrysdeleteProvisioning202Accepted200SucceededParameters
+    options?: LRORetrysDeleteProvisioning202Accepted200SucceededParameters
   ): Promise<
-    | LRORetrysdeleteProvisioning202Accepted200Succeeded200Response
-    | LRORetrysdeleteProvisioning202Accepted200Succeeded202Response
-    | LRORetrysdeleteProvisioning202Accepted200SucceededdefaultResponse
+    | LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
+    | LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
+    | LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
   >;
 }
 
-export interface LRORetrysdelete202Retry200 {
+export interface LRORetrysDelete202Retry200 {
   /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   delete(
-    options?: LRORetrysdelete202Retry200Parameters
+    options?: LRORetrysDelete202Retry200Parameters
   ): Promise<
-    | LRORetrysdelete202Retry200202Response
-    | LRORetrysdelete202Retry200defaultResponse
+    | LRORetrysDelete202Retry200202Response
+    | LRORetrysDelete202Retry200DefaultResponse
   >;
 }
 
-export interface LRORetrysdeleteAsyncRelativeRetrySucceeded {
+export interface LRORetrysDeleteAsyncRelativeRetrySucceeded {
   /** Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LRORetrysdeleteAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysDeleteAsyncRelativeRetrySucceededParameters
   ): Promise<
-    | LRORetrysdeleteAsyncRelativeRetrySucceeded202Response
-    | LRORetrysdeleteAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
+    | LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
   >;
 }
 
-export interface LRORetryspost202Retry200 {
+export interface LRORetrysPost202Retry200 {
   /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LRORetryspost202Retry200Parameters
+    options?: LRORetrysPost202Retry200Parameters
   ): Promise<
-    | LRORetryspost202Retry200202Response
-    | LRORetryspost202Retry200defaultResponse
+    | LRORetrysPost202Retry200202Response
+    | LRORetrysPost202Retry200DefaultResponse
   >;
 }
 
-export interface LRORetryspostAsyncRelativeRetrySucceeded {
+export interface LRORetrysPostAsyncRelativeRetrySucceeded {
   /** Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LRORetryspostAsyncRelativeRetrySucceededParameters
+    options?: LRORetrysPostAsyncRelativeRetrySucceededParameters
   ): Promise<
-    | LRORetryspostAsyncRelativeRetrySucceeded202Response
-    | LRORetryspostAsyncRelativeRetrySucceededdefaultResponse
+    | LRORetrysPostAsyncRelativeRetrySucceeded202Response
+    | LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
   >;
 }
 
-export interface LrosaDsputNonRetry400 {
+export interface LrosaDsPutNonRetry400 {
   /** Long running put request, service returns a 400 to the initial request */
   put(
-    options?: LrosaDsputNonRetry400Parameters
+    options?: LrosaDsPutNonRetry400Parameters
   ): Promise<
-    | LrosaDsputNonRetry400200Response
-    | LrosaDsputNonRetry400201Response
-    | LrosaDsputNonRetry400defaultResponse
+    | LrosaDsPutNonRetry400200Response
+    | LrosaDsPutNonRetry400201Response
+    | LrosaDsPutNonRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDsputNonRetry201Creating400 {
+export interface LrosaDsPutNonRetry201Creating400 {
   /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
   put(
-    options?: LrosaDsputNonRetry201Creating400Parameters
+    options?: LrosaDsPutNonRetry201Creating400Parameters
   ): Promise<
-    | LrosaDsputNonRetry201Creating400200Response
-    | LrosaDsputNonRetry201Creating400201Response
-    | LrosaDsputNonRetry201Creating400defaultResponse
+    | LrosaDsPutNonRetry201Creating400200Response
+    | LrosaDsPutNonRetry201Creating400201Response
+    | LrosaDsPutNonRetry201Creating400DefaultResponse
   >;
 }
 
-export interface LrosaDsputNonRetry201Creating400InvalidJson {
+export interface LrosaDsPutNonRetry201Creating400InvalidJson {
   /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
   put(
-    options?: LrosaDsputNonRetry201Creating400InvalidJsonParameters
+    options?: LrosaDsPutNonRetry201Creating400InvalidJsonParameters
   ): Promise<
-    | LrosaDsputNonRetry201Creating400InvalidJson200Response
-    | LrosaDsputNonRetry201Creating400InvalidJson201Response
-    | LrosaDsputNonRetry201Creating400InvalidJsondefaultResponse
+    | LrosaDsPutNonRetry201Creating400InvalidJson200Response
+    | LrosaDsPutNonRetry201Creating400InvalidJson201Response
+    | LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
   >;
 }
 
-export interface LrosaDsputAsyncRelativeRetry400 {
+export interface LrosaDsPutAsyncRelativeRetry400 {
   /** Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsputAsyncRelativeRetry400Parameters
+    options?: LrosaDsPutAsyncRelativeRetry400Parameters
   ): Promise<
-    | LrosaDsputAsyncRelativeRetry400200Response
-    | LrosaDsputAsyncRelativeRetry400defaultResponse
+    | LrosaDsPutAsyncRelativeRetry400200Response
+    | LrosaDsPutAsyncRelativeRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDsdeleteNonRetry400 {
+export interface LrosaDsDeleteNonRetry400 {
   /** Long running delete request, service returns a 400 with an error body */
   delete(
-    options?: LrosaDsdeleteNonRetry400Parameters
+    options?: LrosaDsDeleteNonRetry400Parameters
   ): Promise<
-    | LrosaDsdeleteNonRetry400202Response
-    | LrosaDsdeleteNonRetry400defaultResponse
+    | LrosaDsDeleteNonRetry400202Response
+    | LrosaDsDeleteNonRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDsdelete202NonRetry400 {
+export interface LrosaDsDelete202NonRetry400 {
   /** Long running delete request, service returns a 202 with a location header */
   delete(
-    options?: LrosaDsdelete202NonRetry400Parameters
+    options?: LrosaDsDelete202NonRetry400Parameters
   ): Promise<
-    | LrosaDsdelete202NonRetry400202Response
-    | LrosaDsdelete202NonRetry400defaultResponse
+    | LrosaDsDelete202NonRetry400202Response
+    | LrosaDsDelete202NonRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetry400 {
+export interface LrosaDsDeleteAsyncRelativeRetry400 {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsdeleteAsyncRelativeRetry400Parameters
+    options?: LrosaDsDeleteAsyncRelativeRetry400Parameters
   ): Promise<
-    | LrosaDsdeleteAsyncRelativeRetry400202Response
-    | LrosaDsdeleteAsyncRelativeRetry400defaultResponse
+    | LrosaDsDeleteAsyncRelativeRetry400202Response
+    | LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDspostNonRetry400 {
+export interface LrosaDsPostNonRetry400 {
   /** Long running post request, service returns a 400 with no error body */
   post(
-    options?: LrosaDspostNonRetry400Parameters
+    options?: LrosaDsPostNonRetry400Parameters
   ): Promise<
-    LrosaDspostNonRetry400202Response | LrosaDspostNonRetry400defaultResponse
+    LrosaDsPostNonRetry400202Response | LrosaDsPostNonRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDspost202NonRetry400 {
+export interface LrosaDsPost202NonRetry400 {
   /** Long running post request, service returns a 202 with a location header */
   post(
-    options?: LrosaDspost202NonRetry400Parameters
+    options?: LrosaDsPost202NonRetry400Parameters
   ): Promise<
-    | LrosaDspost202NonRetry400202Response
-    | LrosaDspost202NonRetry400defaultResponse
+    | LrosaDsPost202NonRetry400202Response
+    | LrosaDsPost202NonRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDspostAsyncRelativeRetry400 {
+export interface LrosaDsPostAsyncRelativeRetry400 {
   /** Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDspostAsyncRelativeRetry400Parameters
+    options?: LrosaDsPostAsyncRelativeRetry400Parameters
   ): Promise<
-    | LrosaDspostAsyncRelativeRetry400202Response
-    | LrosaDspostAsyncRelativeRetry400defaultResponse
+    | LrosaDsPostAsyncRelativeRetry400202Response
+    | LrosaDsPostAsyncRelativeRetry400DefaultResponse
   >;
 }
 
-export interface LrosaDsputError201NoProvisioningStatePayload {
+export interface LrosaDsPutError201NoProvisioningStatePayload {
   /** Long running put request, service returns a 201 to the initial request with no payload */
   put(
-    options?: LrosaDsputError201NoProvisioningStatePayloadParameters
+    options?: LrosaDsPutError201NoProvisioningStatePayloadParameters
   ): Promise<
-    | LrosaDsputError201NoProvisioningStatePayload200Response
-    | LrosaDsputError201NoProvisioningStatePayload201Response
-    | LrosaDsputError201NoProvisioningStatePayloaddefaultResponse
+    | LrosaDsPutError201NoProvisioningStatePayload200Response
+    | LrosaDsPutError201NoProvisioningStatePayload201Response
+    | LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
   >;
 }
 
-export interface LrosaDsputAsyncRelativeRetryNoStatus {
+export interface LrosaDsPutAsyncRelativeRetryNoStatus {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsputAsyncRelativeRetryNoStatusParameters
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusParameters
   ): Promise<
-    | LrosaDsputAsyncRelativeRetryNoStatus200Response
-    | LrosaDsputAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatus200Response
+    | LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
   >;
 }
 
-export interface LrosaDsputAsyncRelativeRetryNoStatusPayload {
+export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsputAsyncRelativeRetryNoStatusPayloadParameters
+    options?: LrosaDsPutAsyncRelativeRetryNoStatusPayloadParameters
   ): Promise<
-    | LrosaDsputAsyncRelativeRetryNoStatusPayload200Response
-    | LrosaDsputAsyncRelativeRetryNoStatusPayloaddefaultResponse
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
+    | LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
   >;
 }
 
-export interface LrosaDsdelete204Succeeded {
+export interface LrosaDsDelete204Succeeded {
   /** Long running delete request, service returns a 204 to the initial request, indicating success. */
   delete(
-    options?: LrosaDsdelete204SucceededParameters
+    options?: LrosaDsDelete204SucceededParameters
   ): Promise<
-    | LrosaDsdelete204Succeeded204Response
-    | LrosaDsdelete204SucceededdefaultResponse
+    | LrosaDsDelete204Succeeded204Response
+    | LrosaDsDelete204SucceededdefaultResponse
   >;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryNoStatus {
+export interface LrosaDsDeleteAsyncRelativeRetryNoStatus {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsdeleteAsyncRelativeRetryNoStatusParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryNoStatusParameters
   ): Promise<
-    | LrosaDsdeleteAsyncRelativeRetryNoStatus202Response
-    | LrosaDsdeleteAsyncRelativeRetryNoStatusdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
+    | LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
   >;
 }
 
-export interface LrosaDspost202NoLocation {
+export interface LrosaDsPost202NoLocation {
   /** Long running post request, service returns a 202 to the initial request, without a location header. */
   post(
-    options?: LrosaDspost202NoLocationParameters
+    options?: LrosaDsPost202NoLocationParameters
   ): Promise<
-    | LrosaDspost202NoLocation202Response
-    | LrosaDspost202NoLocationdefaultResponse
+    | LrosaDsPost202NoLocation202Response
+    | LrosaDsPost202NoLocationdefaultResponse
   >;
 }
 
-export interface LrosaDspostAsyncRelativeRetryNoPayload {
+export interface LrosaDsPostAsyncRelativeRetryNoPayload {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDspostAsyncRelativeRetryNoPayloadParameters
+    options?: LrosaDsPostAsyncRelativeRetryNoPayloadParameters
   ): Promise<
-    | LrosaDspostAsyncRelativeRetryNoPayload202Response
-    | LrosaDspostAsyncRelativeRetryNoPayloaddefaultResponse
+    | LrosaDsPostAsyncRelativeRetryNoPayload202Response
+    | LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
   >;
 }
 
-export interface LrosaDsput200InvalidJson {
+export interface LrosaDsPut200InvalidJson {
   /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
   put(
-    options?: LrosaDsput200InvalidJsonParameters
+    options?: LrosaDsPut200InvalidJsonParameters
   ): Promise<
-    | LrosaDsput200InvalidJson200Response
-    | LrosaDsput200InvalidJson204Response
-    | LrosaDsput200InvalidJsondefaultResponse
+    | LrosaDsPut200InvalidJson200Response
+    | LrosaDsPut200InvalidJson204Response
+    | LrosaDsPut200InvalidJsondefaultResponse
   >;
 }
 
-export interface LrosaDsputAsyncRelativeRetryInvalidHeader {
+export interface LrosaDsPutAsyncRelativeRetryInvalidHeader {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
   put(
-    options?: LrosaDsputAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsPutAsyncRelativeRetryInvalidHeaderParameters
   ): Promise<
-    | LrosaDsputAsyncRelativeRetryInvalidHeader200Response
-    | LrosaDsputAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
+    | LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
   >;
 }
 
-export interface LrosaDsputAsyncRelativeRetryInvalidJsonPolling {
+export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling {
   /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LrosaDsputAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsPutAsyncRelativeRetryInvalidJsonPollingParameters
   ): Promise<
-    | LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Response
-    | LrosaDsputAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
+    | LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   >;
 }
 
-export interface LrosaDsdelete202RetryInvalidHeader {
+export interface LrosaDsDelete202RetryInvalidHeader {
   /** Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers */
   delete(
-    options?: LrosaDsdelete202RetryInvalidHeaderParameters
+    options?: LrosaDsDelete202RetryInvalidHeaderParameters
   ): Promise<
-    | LrosaDsdelete202RetryInvalidHeader202Response
-    | LrosaDsdelete202RetryInvalidHeaderdefaultResponse
+    | LrosaDsDelete202RetryInvalidHeader202Response
+    | LrosaDsDelete202RetryInvalidHeaderdefaultResponse
   >;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidHeader {
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader {
   /** Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid */
   delete(
-    options?: LrosaDsdeleteAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidHeaderParameters
   ): Promise<
-    | LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDsdeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
+    | LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
   >;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling {
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling {
   /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   delete(
-    options?: LrosaDsdeleteAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingParameters
   ): Promise<
-    | LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDsdeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
+    | LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   >;
 }
 
-export interface LrosaDspost202RetryInvalidHeader {
+export interface LrosaDsPost202RetryInvalidHeader {
   /** Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers. */
   post(
-    options?: LrosaDspost202RetryInvalidHeaderParameters
+    options?: LrosaDsPost202RetryInvalidHeaderParameters
   ): Promise<
-    | LrosaDspost202RetryInvalidHeader202Response
-    | LrosaDspost202RetryInvalidHeaderdefaultResponse
+    | LrosaDsPost202RetryInvalidHeader202Response
+    | LrosaDsPost202RetryInvalidHeaderdefaultResponse
   >;
 }
 
-export interface LrosaDspostAsyncRelativeRetryInvalidHeader {
+export interface LrosaDsPostAsyncRelativeRetryInvalidHeader {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
   post(
-    options?: LrosaDspostAsyncRelativeRetryInvalidHeaderParameters
+    options?: LrosaDsPostAsyncRelativeRetryInvalidHeaderParameters
   ): Promise<
-    | LrosaDspostAsyncRelativeRetryInvalidHeader202Response
-    | LrosaDspostAsyncRelativeRetryInvalidHeaderdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
+    | LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
   >;
 }
 
-export interface LrosaDspostAsyncRelativeRetryInvalidJsonPolling {
+export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling {
   /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LrosaDspostAsyncRelativeRetryInvalidJsonPollingParameters
+    options?: LrosaDsPostAsyncRelativeRetryInvalidJsonPollingParameters
   ): Promise<
-    | LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Response
-    | LrosaDspostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
+    | LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   >;
 }
 
-export interface LROsCustomHeaderputAsyncRetrySucceeded {
+export interface LROsCustomHeaderPutAsyncRetrySucceeded {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   put(
-    options?: LROsCustomHeaderputAsyncRetrySucceededParameters
+    options?: LROsCustomHeaderPutAsyncRetrySucceededParameters
   ): Promise<
-    | LROsCustomHeaderputAsyncRetrySucceeded200Response
-    | LROsCustomHeaderputAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPutAsyncRetrySucceeded200Response
+    | LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
   >;
 }
 
-export interface LROsCustomHeaderput201CreatingSucceeded200 {
+export interface LROsCustomHeaderPut201CreatingSucceeded200 {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
   put(
-    options?: LROsCustomHeaderput201CreatingSucceeded200Parameters
+    options?: LROsCustomHeaderPut201CreatingSucceeded200Parameters
   ): Promise<
-    | LROsCustomHeaderput201CreatingSucceeded200200Response
-    | LROsCustomHeaderput201CreatingSucceeded200201Response
-    | LROsCustomHeaderput201CreatingSucceeded200defaultResponse
+    | LROsCustomHeaderPut201CreatingSucceeded200200Response
+    | LROsCustomHeaderPut201CreatingSucceeded200201Response
+    | LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
   >;
 }
 
-export interface LROsCustomHeaderpost202Retry200 {
+export interface LROsCustomHeaderPost202Retry200 {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
   post(
-    options?: LROsCustomHeaderpost202Retry200Parameters
+    options?: LROsCustomHeaderPost202Retry200Parameters
   ): Promise<
-    | LROsCustomHeaderpost202Retry200202Response
-    | LROsCustomHeaderpost202Retry200defaultResponse
+    | LROsCustomHeaderPost202Retry200202Response
+    | LROsCustomHeaderPost202Retry200DefaultResponse
   >;
 }
 
-export interface LROsCustomHeaderpostAsyncRetrySucceeded {
+export interface LROsCustomHeaderPostAsyncRetrySucceeded {
   /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
   post(
-    options?: LROsCustomHeaderpostAsyncRetrySucceededParameters
+    options?: LROsCustomHeaderPostAsyncRetrySucceededParameters
   ): Promise<
-    | LROsCustomHeaderpostAsyncRetrySucceeded202Response
-    | LROsCustomHeaderpostAsyncRetrySucceededdefaultResponse
+    | LROsCustomHeaderPostAsyncRetrySucceeded202Response
+    | LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
   >;
 }
 
 export interface Routes {
   /** Resource for '/lro/put/200/succeeded' has methods for the following verbs: put */
-  (path: "/lro/put/200/succeeded"): LROsput200Succeeded;
+  (path: "/lro/put/200/succeeded"): LROsPut200Succeeded;
   /** Resource for '/lro/patch/200/succeeded/ignoreheaders' has methods for the following verbs: patch */
   (
     path: "/lro/patch/200/succeeded/ignoreheaders"
-  ): LROspatch200SucceededIgnoreHeaders;
+  ): LROsPatch200SucceededIgnoreHeaders;
   /** Resource for '/lro/put/201/succeeded' has methods for the following verbs: put */
-  (path: "/lro/put/201/succeeded"): LROsput201Succeeded;
+  (path: "/lro/put/201/succeeded"): LROsPut201Succeeded;
   /** Resource for '/lro/list' has methods for the following verbs: post */
-  (path: "/lro/list"): LROspost202List;
+  (path: "/lro/list"): LROsPost202List;
   /** Resource for '/lro/put/200/succeeded/nostate' has methods for the following verbs: put */
-  (path: "/lro/put/200/succeeded/nostate"): LROsput200SucceededNoState;
+  (path: "/lro/put/200/succeeded/nostate"): LROsPut200SucceededNoState;
   /** Resource for '/lro/put/202/retry/200' has methods for the following verbs: put */
-  (path: "/lro/put/202/retry/200"): LROsput202Retry200;
+  (path: "/lro/put/202/retry/200"): LROsPut202Retry200;
   /** Resource for '/lro/put/201/creating/succeeded/200' has methods for the following verbs: put */
-  (path: "/lro/put/201/creating/succeeded/200"): LROsput201CreatingSucceeded200;
+  (path: "/lro/put/201/creating/succeeded/200"): LROsPut201CreatingSucceeded200;
   /** Resource for '/lro/put/200/updating/succeeded/200' has methods for the following verbs: put */
-  (path: "/lro/put/200/updating/succeeded/200"): LROsput200UpdatingSucceeded204;
+  (path: "/lro/put/200/updating/succeeded/200"): LROsPut200UpdatingSucceeded204;
   /** Resource for '/lro/put/201/created/failed/200' has methods for the following verbs: put */
-  (path: "/lro/put/201/created/failed/200"): LROsput201CreatingFailed200;
+  (path: "/lro/put/201/created/failed/200"): LROsPut201CreatingFailed200;
   /** Resource for '/lro/put/200/accepted/canceled/200' has methods for the following verbs: put */
-  (path: "/lro/put/200/accepted/canceled/200"): LROsput200Acceptedcanceled200;
+  (path: "/lro/put/200/accepted/canceled/200"): LROsPut200Acceptedcanceled200;
   /** Resource for '/lro/put/noheader/202/200' has methods for the following verbs: put */
-  (path: "/lro/put/noheader/202/200"): LROsputNoHeaderInRetry;
+  (path: "/lro/put/noheader/202/200"): LROsPutNoHeaderInRetry;
   /** Resource for '/lro/putasync/retry/succeeded' has methods for the following verbs: put */
-  (path: "/lro/putasync/retry/succeeded"): LROsputAsyncRetrySucceeded;
+  (path: "/lro/putasync/retry/succeeded"): LROsPutAsyncRetrySucceeded;
   /** Resource for '/lro/putasync/noretry/succeeded' has methods for the following verbs: put */
-  (path: "/lro/putasync/noretry/succeeded"): LROsputAsyncNoRetrySucceeded;
+  (path: "/lro/putasync/noretry/succeeded"): LROsPutAsyncNoRetrySucceeded;
   /** Resource for '/lro/putasync/retry/failed' has methods for the following verbs: put */
-  (path: "/lro/putasync/retry/failed"): LROsputAsyncRetryFailed;
+  (path: "/lro/putasync/retry/failed"): LROsPutAsyncRetryFailed;
   /** Resource for '/lro/putasync/noretry/canceled' has methods for the following verbs: put */
-  (path: "/lro/putasync/noretry/canceled"): LROsputAsyncNoRetrycanceled;
+  (path: "/lro/putasync/noretry/canceled"): LROsPutAsyncNoRetrycanceled;
   /** Resource for '/lro/putasync/noheader/201/200' has methods for the following verbs: put */
-  (path: "/lro/putasync/noheader/201/200"): LROsputAsyncNoHeaderInRetry;
+  (path: "/lro/putasync/noheader/201/200"): LROsPutAsyncNoHeaderInRetry;
   /** Resource for '/lro/putnonresource/202/200' has methods for the following verbs: put */
-  (path: "/lro/putnonresource/202/200"): LROsputNonResource;
+  (path: "/lro/putnonresource/202/200"): LROsPutNonResource;
   /** Resource for '/lro/putnonresourceasync/202/200' has methods for the following verbs: put */
-  (path: "/lro/putnonresourceasync/202/200"): LROsputAsyncNonResource;
+  (path: "/lro/putnonresourceasync/202/200"): LROsPutAsyncNonResource;
   /** Resource for '/lro/putsubresource/202/200' has methods for the following verbs: put */
-  (path: "/lro/putsubresource/202/200"): LROsputSubResource;
+  (path: "/lro/putsubresource/202/200"): LROsPutSubResource;
   /** Resource for '/lro/putsubresourceasync/202/200' has methods for the following verbs: put */
-  (path: "/lro/putsubresourceasync/202/200"): LROsputAsyncSubResource;
+  (path: "/lro/putsubresourceasync/202/200"): LROsPutAsyncSubResource;
   /** Resource for '/lro/delete/provisioning/202/accepted/200/succeeded' has methods for the following verbs: delete */
   (
     path: "/lro/delete/provisioning/202/accepted/200/succeeded"
-  ): LROsdeleteProvisioning202Accepted200Succeeded;
+  ): LROsDeleteProvisioning202Accepted200Succeeded;
   /** Resource for '/lro/delete/provisioning/202/deleting/200/failed' has methods for the following verbs: delete */
   (
     path: "/lro/delete/provisioning/202/deleting/200/failed"
-  ): LROsdeleteProvisioning202DeletingFailed200;
+  ): LROsDeleteProvisioning202DeletingFailed200;
   /** Resource for '/lro/delete/provisioning/202/deleting/200/canceled' has methods for the following verbs: delete */
   (
     path: "/lro/delete/provisioning/202/deleting/200/canceled"
-  ): LROsdeleteProvisioning202Deletingcanceled200;
+  ): LROsDeleteProvisioning202Deletingcanceled200;
   /** Resource for '/lro/delete/204/succeeded' has methods for the following verbs: delete */
-  (path: "/lro/delete/204/succeeded"): LROsdelete204Succeeded;
+  (path: "/lro/delete/204/succeeded"): LROsDelete204Succeeded;
   /** Resource for '/lro/delete/202/retry/200' has methods for the following verbs: delete */
-  (path: "/lro/delete/202/retry/200"): LROsdelete202Retry200;
+  (path: "/lro/delete/202/retry/200"): LROsDelete202Retry200;
   /** Resource for '/lro/delete/202/noretry/204' has methods for the following verbs: delete */
-  (path: "/lro/delete/202/noretry/204"): LROsdelete202NoRetry204;
+  (path: "/lro/delete/202/noretry/204"): LROsDelete202NoRetry204;
   /** Resource for '/lro/delete/noheader' has methods for the following verbs: delete */
-  (path: "/lro/delete/noheader"): LROsdeleteNoHeaderInRetry;
+  (path: "/lro/delete/noheader"): LROsDeleteNoHeaderInRetry;
   /** Resource for '/lro/deleteasync/noheader/202/204' has methods for the following verbs: delete */
-  (path: "/lro/deleteasync/noheader/202/204"): LROsdeleteAsyncNoHeaderInRetry;
+  (path: "/lro/deleteasync/noheader/202/204"): LROsDeleteAsyncNoHeaderInRetry;
   /** Resource for '/lro/deleteasync/retry/succeeded' has methods for the following verbs: delete */
-  (path: "/lro/deleteasync/retry/succeeded"): LROsdeleteAsyncRetrySucceeded;
+  (path: "/lro/deleteasync/retry/succeeded"): LROsDeleteAsyncRetrySucceeded;
   /** Resource for '/lro/deleteasync/noretry/succeeded' has methods for the following verbs: delete */
-  (path: "/lro/deleteasync/noretry/succeeded"): LROsdeleteAsyncNoRetrySucceeded;
+  (path: "/lro/deleteasync/noretry/succeeded"): LROsDeleteAsyncNoRetrySucceeded;
   /** Resource for '/lro/deleteasync/retry/failed' has methods for the following verbs: delete */
-  (path: "/lro/deleteasync/retry/failed"): LROsdeleteAsyncRetryFailed;
+  (path: "/lro/deleteasync/retry/failed"): LROsDeleteAsyncRetryFailed;
   /** Resource for '/lro/deleteasync/retry/canceled' has methods for the following verbs: delete */
-  (path: "/lro/deleteasync/retry/canceled"): LROsdeleteAsyncRetrycanceled;
+  (path: "/lro/deleteasync/retry/canceled"): LROsDeleteAsyncRetrycanceled;
   /** Resource for '/lro/post/payload/200' has methods for the following verbs: post */
-  (path: "/lro/post/payload/200"): LROspost200WithPayload;
+  (path: "/lro/post/payload/200"): LROsPost200WithPayload;
   /** Resource for '/lro/post/202/retry/200' has methods for the following verbs: post */
-  (path: "/lro/post/202/retry/200"): LROspost202Retry200;
+  (path: "/lro/post/202/retry/200"): LROsPost202Retry200;
   /** Resource for '/lro/post/202/noretry/204' has methods for the following verbs: post */
-  (path: "/lro/post/202/noretry/204"): LROspost202NoRetry204;
+  (path: "/lro/post/202/noretry/204"): LROsPost202NoRetry204;
   /** Resource for '/lro/LROPostDoubleHeadersFinalLocationGet' has methods for the following verbs: post */
   (
     path: "/lro/LROPostDoubleHeadersFinalLocationGet"
-  ): LROspostDoubleHeadersFinalLocationGet;
+  ): LROsPostDoubleHeadersFinalLocationGet;
   /** Resource for '/lro/LROPostDoubleHeadersFinalAzureHeaderGet' has methods for the following verbs: post */
   (
     path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGet"
-  ): LROspostDoubleHeadersFinalAzureHeaderGet;
+  ): LROsPostDoubleHeadersFinalAzureHeaderGet;
   /** Resource for '/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault' has methods for the following verbs: post */
   (
     path: "/lro/LROPostDoubleHeadersFinalAzureHeaderGetDefault"
-  ): LROspostDoubleHeadersFinalAzureHeaderGetDefault;
+  ): LROsPostDoubleHeadersFinalAzureHeaderGetDefault;
   /** Resource for '/lro/postasync/retry/succeeded' has methods for the following verbs: post */
-  (path: "/lro/postasync/retry/succeeded"): LROspostAsyncRetrySucceeded;
+  (path: "/lro/postasync/retry/succeeded"): LROsPostAsyncRetrySucceeded;
   /** Resource for '/lro/postasync/noretry/succeeded' has methods for the following verbs: post */
-  (path: "/lro/postasync/noretry/succeeded"): LROspostAsyncNoRetrySucceeded;
+  (path: "/lro/postasync/noretry/succeeded"): LROsPostAsyncNoRetrySucceeded;
   /** Resource for '/lro/postasync/retry/failed' has methods for the following verbs: post */
-  (path: "/lro/postasync/retry/failed"): LROspostAsyncRetryFailed;
+  (path: "/lro/postasync/retry/failed"): LROsPostAsyncRetryFailed;
   /** Resource for '/lro/postasync/retry/canceled' has methods for the following verbs: post */
-  (path: "/lro/postasync/retry/canceled"): LROspostAsyncRetrycanceled;
+  (path: "/lro/postasync/retry/canceled"): LROsPostAsyncRetrycanceled;
   /** Resource for '/lro/retryerror/put/201/creating/succeeded/200' has methods for the following verbs: put */
   (
     path: "/lro/retryerror/put/201/creating/succeeded/200"
-  ): LRORetrysput201CreatingSucceeded200;
+  ): LRORetrysPut201CreatingSucceeded200;
   /** Resource for '/lro/retryerror/putasync/retry/succeeded' has methods for the following verbs: put */
   (
     path: "/lro/retryerror/putasync/retry/succeeded"
-  ): LRORetrysputAsyncRelativeRetrySucceeded;
+  ): LRORetrysPutAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/retryerror/delete/provisioning/202/accepted/200/succeeded' has methods for the following verbs: delete */
   (
     path: "/lro/retryerror/delete/provisioning/202/accepted/200/succeeded"
-  ): LRORetrysdeleteProvisioning202Accepted200Succeeded;
+  ): LRORetrysDeleteProvisioning202Accepted200Succeeded;
   /** Resource for '/lro/retryerror/delete/202/retry/200' has methods for the following verbs: delete */
-  (path: "/lro/retryerror/delete/202/retry/200"): LRORetrysdelete202Retry200;
+  (path: "/lro/retryerror/delete/202/retry/200"): LRORetrysDelete202Retry200;
   /** Resource for '/lro/retryerror/deleteasync/retry/succeeded' has methods for the following verbs: delete */
   (
     path: "/lro/retryerror/deleteasync/retry/succeeded"
-  ): LRORetrysdeleteAsyncRelativeRetrySucceeded;
+  ): LRORetrysDeleteAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/retryerror/post/202/retry/200' has methods for the following verbs: post */
-  (path: "/lro/retryerror/post/202/retry/200"): LRORetryspost202Retry200;
+  (path: "/lro/retryerror/post/202/retry/200"): LRORetrysPost202Retry200;
   /** Resource for '/lro/retryerror/postasync/retry/succeeded' has methods for the following verbs: post */
   (
     path: "/lro/retryerror/postasync/retry/succeeded"
-  ): LRORetryspostAsyncRelativeRetrySucceeded;
+  ): LRORetrysPostAsyncRelativeRetrySucceeded;
   /** Resource for '/lro/nonretryerror/put/400' has methods for the following verbs: put */
-  (path: "/lro/nonretryerror/put/400"): LrosaDsputNonRetry400;
+  (path: "/lro/nonretryerror/put/400"): LrosaDsPutNonRetry400;
   /** Resource for '/lro/nonretryerror/put/201/creating/400' has methods for the following verbs: put */
   (
     path: "/lro/nonretryerror/put/201/creating/400"
-  ): LrosaDsputNonRetry201Creating400;
+  ): LrosaDsPutNonRetry201Creating400;
   /** Resource for '/lro/nonretryerror/put/201/creating/400/invalidjson' has methods for the following verbs: put */
   (
     path: "/lro/nonretryerror/put/201/creating/400/invalidjson"
-  ): LrosaDsputNonRetry201Creating400InvalidJson;
+  ): LrosaDsPutNonRetry201Creating400InvalidJson;
   /** Resource for '/lro/nonretryerror/putasync/retry/400' has methods for the following verbs: put */
   (
     path: "/lro/nonretryerror/putasync/retry/400"
-  ): LrosaDsputAsyncRelativeRetry400;
+  ): LrosaDsPutAsyncRelativeRetry400;
   /** Resource for '/lro/nonretryerror/delete/400' has methods for the following verbs: delete */
-  (path: "/lro/nonretryerror/delete/400"): LrosaDsdeleteNonRetry400;
+  (path: "/lro/nonretryerror/delete/400"): LrosaDsDeleteNonRetry400;
   /** Resource for '/lro/nonretryerror/delete/202/retry/400' has methods for the following verbs: delete */
   (
     path: "/lro/nonretryerror/delete/202/retry/400"
-  ): LrosaDsdelete202NonRetry400;
+  ): LrosaDsDelete202NonRetry400;
   /** Resource for '/lro/nonretryerror/deleteasync/retry/400' has methods for the following verbs: delete */
   (
     path: "/lro/nonretryerror/deleteasync/retry/400"
-  ): LrosaDsdeleteAsyncRelativeRetry400;
+  ): LrosaDsDeleteAsyncRelativeRetry400;
   /** Resource for '/lro/nonretryerror/post/400' has methods for the following verbs: post */
-  (path: "/lro/nonretryerror/post/400"): LrosaDspostNonRetry400;
+  (path: "/lro/nonretryerror/post/400"): LrosaDsPostNonRetry400;
   /** Resource for '/lro/nonretryerror/post/202/retry/400' has methods for the following verbs: post */
-  (path: "/lro/nonretryerror/post/202/retry/400"): LrosaDspost202NonRetry400;
+  (path: "/lro/nonretryerror/post/202/retry/400"): LrosaDsPost202NonRetry400;
   /** Resource for '/lro/nonretryerror/postasync/retry/400' has methods for the following verbs: post */
   (
     path: "/lro/nonretryerror/postasync/retry/400"
-  ): LrosaDspostAsyncRelativeRetry400;
+  ): LrosaDsPostAsyncRelativeRetry400;
   /** Resource for '/lro/error/put/201/noprovisioningstatepayload' has methods for the following verbs: put */
   (
     path: "/lro/error/put/201/noprovisioningstatepayload"
-  ): LrosaDsputError201NoProvisioningStatePayload;
+  ): LrosaDsPutError201NoProvisioningStatePayload;
   /** Resource for '/lro/error/putasync/retry/nostatus' has methods for the following verbs: put */
   (
     path: "/lro/error/putasync/retry/nostatus"
-  ): LrosaDsputAsyncRelativeRetryNoStatus;
+  ): LrosaDsPutAsyncRelativeRetryNoStatus;
   /** Resource for '/lro/error/putasync/retry/nostatuspayload' has methods for the following verbs: put */
   (
     path: "/lro/error/putasync/retry/nostatuspayload"
-  ): LrosaDsputAsyncRelativeRetryNoStatusPayload;
+  ): LrosaDsPutAsyncRelativeRetryNoStatusPayload;
   /** Resource for '/lro/error/delete/204/nolocation' has methods for the following verbs: delete */
-  (path: "/lro/error/delete/204/nolocation"): LrosaDsdelete204Succeeded;
+  (path: "/lro/error/delete/204/nolocation"): LrosaDsDelete204Succeeded;
   /** Resource for '/lro/error/deleteasync/retry/nostatus' has methods for the following verbs: delete */
   (
     path: "/lro/error/deleteasync/retry/nostatus"
-  ): LrosaDsdeleteAsyncRelativeRetryNoStatus;
+  ): LrosaDsDeleteAsyncRelativeRetryNoStatus;
   /** Resource for '/lro/error/post/202/nolocation' has methods for the following verbs: post */
-  (path: "/lro/error/post/202/nolocation"): LrosaDspost202NoLocation;
+  (path: "/lro/error/post/202/nolocation"): LrosaDsPost202NoLocation;
   /** Resource for '/lro/error/postasync/retry/nopayload' has methods for the following verbs: post */
   (
     path: "/lro/error/postasync/retry/nopayload"
-  ): LrosaDspostAsyncRelativeRetryNoPayload;
+  ): LrosaDsPostAsyncRelativeRetryNoPayload;
   /** Resource for '/lro/error/put/200/invalidjson' has methods for the following verbs: put */
-  (path: "/lro/error/put/200/invalidjson"): LrosaDsput200InvalidJson;
+  (path: "/lro/error/put/200/invalidjson"): LrosaDsPut200InvalidJson;
   /** Resource for '/lro/error/putasync/retry/invalidheader' has methods for the following verbs: put */
   (
     path: "/lro/error/putasync/retry/invalidheader"
-  ): LrosaDsputAsyncRelativeRetryInvalidHeader;
+  ): LrosaDsPutAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/putasync/retry/invalidjsonpolling' has methods for the following verbs: put */
   (
     path: "/lro/error/putasync/retry/invalidjsonpolling"
-  ): LrosaDsputAsyncRelativeRetryInvalidJsonPolling;
+  ): LrosaDsPutAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/error/delete/202/retry/invalidheader' has methods for the following verbs: delete */
   (
     path: "/lro/error/delete/202/retry/invalidheader"
-  ): LrosaDsdelete202RetryInvalidHeader;
+  ): LrosaDsDelete202RetryInvalidHeader;
   /** Resource for '/lro/error/deleteasync/retry/invalidheader' has methods for the following verbs: delete */
   (
     path: "/lro/error/deleteasync/retry/invalidheader"
-  ): LrosaDsdeleteAsyncRelativeRetryInvalidHeader;
+  ): LrosaDsDeleteAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/deleteasync/retry/invalidjsonpolling' has methods for the following verbs: delete */
   (
     path: "/lro/error/deleteasync/retry/invalidjsonpolling"
-  ): LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling;
+  ): LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/error/post/202/retry/invalidheader' has methods for the following verbs: post */
   (
     path: "/lro/error/post/202/retry/invalidheader"
-  ): LrosaDspost202RetryInvalidHeader;
+  ): LrosaDsPost202RetryInvalidHeader;
   /** Resource for '/lro/error/postasync/retry/invalidheader' has methods for the following verbs: post */
   (
     path: "/lro/error/postasync/retry/invalidheader"
-  ): LrosaDspostAsyncRelativeRetryInvalidHeader;
+  ): LrosaDsPostAsyncRelativeRetryInvalidHeader;
   /** Resource for '/lro/error/postasync/retry/invalidjsonpolling' has methods for the following verbs: post */
   (
     path: "/lro/error/postasync/retry/invalidjsonpolling"
-  ): LrosaDspostAsyncRelativeRetryInvalidJsonPolling;
+  ): LrosaDsPostAsyncRelativeRetryInvalidJsonPolling;
   /** Resource for '/lro/customheader/putasync/retry/succeeded' has methods for the following verbs: put */
   (
     path: "/lro/customheader/putasync/retry/succeeded"
-  ): LROsCustomHeaderputAsyncRetrySucceeded;
+  ): LROsCustomHeaderPutAsyncRetrySucceeded;
   /** Resource for '/lro/customheader/put/201/creating/succeeded/200' has methods for the following verbs: put */
   (
     path: "/lro/customheader/put/201/creating/succeeded/200"
-  ): LROsCustomHeaderput201CreatingSucceeded200;
+  ): LROsCustomHeaderPut201CreatingSucceeded200;
   /** Resource for '/lro/customheader/post/202/retry/200' has methods for the following verbs: post */
   (
     path: "/lro/customheader/post/202/retry/200"
-  ): LROsCustomHeaderpost202Retry200;
+  ): LROsCustomHeaderPost202Retry200;
   /** Resource for '/lro/customheader/postasync/retry/succeeded' has methods for the following verbs: post */
   (
     path: "/lro/customheader/postasync/retry/succeeded"
-  ): LROsCustomHeaderpostAsyncRetrySucceeded;
+  ): LROsCustomHeaderPostAsyncRetrySucceeded;
 }
 
 export type LRORestClientRestClient = Client & {

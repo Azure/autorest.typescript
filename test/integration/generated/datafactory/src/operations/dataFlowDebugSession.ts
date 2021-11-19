@@ -345,10 +345,10 @@ export class DataFlowDebugSessionImpl implements DataFlowDebugSession {
   }
 
   /**
-   * queryByFactoryNext
+   * QueryByFactoryNext
    * @param resourceGroupName The resource group name.
    * @param factoryName The factory name.
-   * @param nextLink The nextLink from the previous successful call to the queryByFactory method.
+   * @param nextLink The nextLink from the previous successful call to the QueryByFactory method.
    * @param options The options parameters.
    */
   private _queryByFactoryNext(

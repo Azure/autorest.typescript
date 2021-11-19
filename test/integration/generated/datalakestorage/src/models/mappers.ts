@@ -13,22 +13,6 @@ export const StorageError: coreClient.CompositeMapper = {
     name: "Composite",
     className: "StorageError",
     modelProperties: {
-      error: {
-        serializedName: "error",
-        type: {
-          name: "Composite",
-          className: "StorageErrorError"
-        }
-      }
-    }
-  }
-};
-
-export const StorageErrorError: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "StorageErrorError",
-    modelProperties: {
       code: {
         serializedName: "Code",
         type: {
@@ -359,7 +343,7 @@ export const BlobItemInternal: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      isCurrentVersion: {
+      IsCurrentVersion: {
         serializedName: "IsCurrentVersion",
         type: {
           name: "Boolean"
@@ -551,7 +535,7 @@ export const BlobPropertiesInternal: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isSealed: {
+      IsSealed: {
         serializedName: "Sealed",
         type: {
           name: "Boolean"
@@ -748,7 +732,7 @@ export const PathUpdateHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      xMsContinuation: {
+      XMsContinuation: {
         serializedName: "x-ms-continuation",
         type: {
           name: "String"
@@ -1127,7 +1111,7 @@ export const PathGetPropertiesHeaders: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      aCL: {
+      ACL: {
         serializedName: "x-ms-acl",
         type: {
           name: "String"

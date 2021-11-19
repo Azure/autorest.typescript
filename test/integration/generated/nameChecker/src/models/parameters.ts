@@ -340,8 +340,8 @@ export const selectedFields: OperationQueryParameter = {
   collectionFormat: "CSV"
 };
 
-export const search$DONotNormalizeText: OperationQueryParameter = {
-  parameterPath: "search$DONotNormalizeText",
+export const searchDONOTNormalizeText: OperationQueryParameter = {
+  parameterPath: "searchDONOTNormalizeText",
   mapper: {
     serializedName: "search",
     required: true,

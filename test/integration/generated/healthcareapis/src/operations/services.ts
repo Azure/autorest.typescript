@@ -456,8 +456,8 @@ export class ServicesImpl implements Services {
   }
 
   /**
-   * listNext
-   * @param nextLink The nextLink from the previous successful call to the list method.
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -471,9 +471,9 @@ export class ServicesImpl implements Services {
   }
 
   /**
-   * listByResourceGroupNext
+   * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
-   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(

@@ -347,11 +347,11 @@ export interface IotMappingProperties {
 /** The managed identity of a service. */
 export interface ServiceManagedIdentity {
   /** Setting indicating whether the service has a managed identity associated with it. */
-  identity?: ServiceManagedIdentityIdentity;
+  identity?: ServiceManagedIdentity;
 }
 
 /** Setting indicating whether the service has a managed identity associated with it. */
-export interface ServiceManagedIdentityIdentity {
+export interface ServiceManagedIdentity {
   /** Type of identity being specified, currently SystemAssigned and None are allowed. */
   type?: ManagedServiceIdentityType;
 }

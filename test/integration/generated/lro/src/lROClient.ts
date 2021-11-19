@@ -55,14 +55,14 @@ export class LROClient extends coreClient.ServiceClient {
 
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";
-    this.lROs = new LROsImpl(this);
-    this.lRORetrys = new LRORetrysImpl(this);
+    this.LROs = new LROsImpl(this);
+    this.LRORetrys = new LRORetrysImpl(this);
     this.lrosaDs = new LrosaDsImpl(this);
-    this.lROsCustomHeader = new LROsCustomHeaderImpl(this);
+    this.LROsCustomHeader = new LROsCustomHeaderImpl(this);
   }
 
-  lROs: LROs;
-  lRORetrys: LRORetrys;
+  LROs: LROs;
+  LRORetrys: LRORetrys;
   lrosaDs: LrosaDs;
-  lROsCustomHeader: LROsCustomHeader;
+  LROsCustomHeader: LROsCustomHeader;
 }

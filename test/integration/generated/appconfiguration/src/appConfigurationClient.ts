@@ -431,8 +431,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getKeysNext
-   * @param nextLink The nextLink from the previous successful call to the getKeys method.
+   * GetKeysNext
+   * @param nextLink The nextLink from the previous successful call to the GetKeys method.
    * @param options The options parameters.
    */
   private _getKeysNext(
@@ -446,8 +446,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getKeyValuesNext
-   * @param nextLink The nextLink from the previous successful call to the getKeyValues method.
+   * GetKeyValuesNext
+   * @param nextLink The nextLink from the previous successful call to the GetKeyValues method.
    * @param options The options parameters.
    */
   private _getKeyValuesNext(
@@ -461,8 +461,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getLabelsNext
-   * @param nextLink The nextLink from the previous successful call to the getLabels method.
+   * GetLabelsNext
+   * @param nextLink The nextLink from the previous successful call to the GetLabels method.
    * @param options The options parameters.
    */
   private _getLabelsNext(
@@ -476,8 +476,8 @@ export class AppConfigurationClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getRevisionsNext
-   * @param nextLink The nextLink from the previous successful call to the getRevisions method.
+   * GetRevisionsNext
+   * @param nextLink The nextLink from the previous successful call to the GetRevisions method.
    * @param options The options parameters.
    */
   private _getRevisionsNext(

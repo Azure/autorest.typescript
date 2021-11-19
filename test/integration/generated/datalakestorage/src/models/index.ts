@@ -10,11 +10,11 @@ import * as coreClient from "@azure/core-client";
 
 export interface StorageError {
   /** The service error response object. */
-  error?: StorageErrorError;
+  error?: StorageError;
 }
 
 /** The service error response object. */
-export interface StorageErrorError {
+export interface StorageError {
   /** The service error code. */
   code?: string;
   /** The service error message. */
@@ -82,7 +82,7 @@ export interface BlobItemInternal {
   deleted: boolean;
   snapshot: string;
   versionId?: string;
-  isCurrentVersion?: boolean;
+  IsCurrentVersion?: boolean;
   /** Properties of a blob */
   properties: BlobPropertiesInternal;
   deletionId?: string;
@@ -119,7 +119,7 @@ export interface BlobPropertiesInternal {
   accessTierChangeTime?: Date;
   tagCount?: number;
   expiresOn?: Date;
-  isSealed?: boolean;
+  IsSealed?: boolean;
   lastAccessedOn?: Date;
   deleteTime?: Date;
 }
@@ -180,7 +180,7 @@ export interface PathUpdateHeaders {
   /** User-defined properties associated with the file or directory, in the format of a comma-separated list of name and value pairs "n1=v1, n2=v2, ...", where each value is a base64 encoded string. Note that the string may only contain ASCII characters in the ISO-8859-1 character set. */
   properties?: string;
   /** When performing setAccessControlRecursive on a directory, the number of paths that are processed with each invocation is limited.  If the number of paths to be processed exceeds this limit, a continuation token is returned in this response header.  When a continuation token is returned in the response, it must be specified in a subsequent invocation of the setAccessControlRecursive operation to continue the setAccessControlRecursive operation on the directory. */
-  xMsContinuation?: string;
+  XMsContinuation?: string;
   /** A server-generated UUID recorded in the analytics logs for troubleshooting and correlation. */
   requestId?: string;
   /** The version of the REST protocol used to process the request. */
@@ -301,7 +301,7 @@ export interface PathGetPropertiesHeaders {
   /** The POSIX access permissions for the file owner, the file owning group, and others. Included in the response if Hierarchical Namespace is enabled for the account. */
   permissions?: string;
   /** The POSIX access control list for the file or directory.  Included in the response only if the action is "getAccessControl" and Hierarchical Namespace is enabled for the account. */
-  aCL?: string;
+  ACL?: string;
   /** When a resource is leased, specifies whether the lease is of infinite or fixed duration. */
   leaseDuration?: string;
   /** Lease state of the resource. */

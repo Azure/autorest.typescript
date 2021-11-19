@@ -11,62 +11,62 @@ import {
 } from "./outputModels";
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
-export interface LROsput200Succeeded200Response extends HttpResponse {
+export interface LROsPut200Succeeded200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
-export interface LROsput200Succeeded204Response extends HttpResponse {
+export interface LROsPut200Succeeded204Response extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
-export interface LROsput200SucceededdefaultResponse extends HttpResponse {
+export interface LROsPut200SucceededdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROspatch200SucceededIgnoreHeaders200Headers {
+export interface LROsPatch200SucceededIgnoreHeaders200Headers {
   /** This header should be ignored in this case */
   "azure-asyncoperation"?: string;
 }
 
 /** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
-export interface LROspatch200SucceededIgnoreHeaders200Response
+export interface LROsPatch200SucceededIgnoreHeaders200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROspatch200SucceededIgnoreHeaders200Headers;
+  headers: RawHttpHeaders & LROsPatch200SucceededIgnoreHeaders200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request with location header. We should not have any subsequent calls after receiving this first response. */
-export interface LROspatch200SucceededIgnoreHeadersdefaultResponse
+export interface LROsPatch200SucceededIgnoreHeadersdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
-export interface LROsput201Succeeded201Response extends HttpResponse {
+export interface LROsPut201Succeeded201Response extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Succeeded’. */
-export interface LROsput201SucceededdefaultResponse extends HttpResponse {
+export interface LROsPut201SucceededdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
-export interface LROspost202List200Response extends HttpResponse {
+export interface LROsPost202List200Response extends HttpResponse {
   status: "200";
   body: Array<ProductOutput>;
 }
 
-export interface LROspost202List202Headers {
+export interface LROsPost202List202Headers {
   /** Location to poll for result status: will be set to /lro/list/pollingGet */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/list/finalGet */
@@ -74,129 +74,129 @@ export interface LROspost202List202Headers {
 }
 
 /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
-export interface LROspost202List202Response extends HttpResponse {
+export interface LROsPost202List202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspost202List202Headers;
+  headers: RawHttpHeaders & LROsPost202List202Headers;
 }
 
 /** Long running put request, service returns a 202 with empty body to first request, returns a 200 with body [{ 'id': '100', 'name': 'foo' }]. */
-export interface LROspost202ListdefaultResponse extends HttpResponse {
+export interface LROsPost202ListdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’. */
-export interface LROsput200SucceededNoState200Response extends HttpResponse {
+export interface LROsPut200SucceededNoState200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that does not contain ProvisioningState=’Succeeded’. */
-export interface LROsput200SucceededNoStatedefaultResponse
+export interface LROsPut200SucceededNoStatedefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState */
-export interface LROsput202Retry200202Response extends HttpResponse {
+export interface LROsPut202Retry200202Response extends HttpResponse {
   status: "202";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 202 to the initial request, with a location header that points to a polling URL that returns a 200 and an entity that doesn't contains ProvisioningState */
-export interface LROsput202Retry200defaultResponse extends HttpResponse {
+export interface LROsPut202Retry200DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsput201CreatingSucceeded200200Response
+export interface LROsPut201CreatingSucceeded200200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsput201CreatingSucceeded200201Response
+export interface LROsPut201CreatingSucceeded200201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsput201CreatingSucceeded200defaultResponse
+export interface LROsPut201CreatingSucceeded200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsput200UpdatingSucceeded204200Response
+export interface LROsPut200UpdatingSucceeded204200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Updating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsput200UpdatingSucceeded204defaultResponse
+export interface LROsPut200UpdatingSucceeded204DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsput201CreatingFailed200200Response extends HttpResponse {
+export interface LROsPut201CreatingFailed200200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsput201CreatingFailed200201Response extends HttpResponse {
+export interface LROsPut201CreatingFailed200201Response extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Created’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsput201CreatingFailed200defaultResponse
+export interface LROsPut201CreatingFailed200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
-export interface LROsput200Acceptedcanceled200200Response extends HttpResponse {
+export interface LROsPut200Acceptedcanceled200200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
-export interface LROsput200Acceptedcanceled200defaultResponse
+export interface LROsPut200Acceptedcanceled200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputNoHeaderInRetry202Headers {
+export interface LROsPutNoHeaderInRetry202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/noheader/202/200/operationResults */
   location?: string;
 }
 
 /** Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header. */
-export interface LROsputNoHeaderInRetry202Response extends HttpResponse {
+export interface LROsPutNoHeaderInRetry202Response extends HttpResponse {
   status: "202";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputNoHeaderInRetry202Headers;
+  headers: RawHttpHeaders & LROsPutNoHeaderInRetry202Headers;
 }
 
 /** Long running put request, service returns a 202 to the initial request with location header. Subsequent calls to operation status do not contain location header. */
-export interface LROsputNoHeaderInRetrydefaultResponse extends HttpResponse {
+export interface LROsPutNoHeaderInRetrydefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputAsyncRetrySucceeded200Headers {
+export interface LROsPutAsyncRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -206,20 +206,20 @@ export interface LROsputAsyncRetrySucceeded200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncRetrySucceeded200Response extends HttpResponse {
+export interface LROsPutAsyncRetrySucceeded200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputAsyncRetrySucceeded200Headers;
+  headers: RawHttpHeaders & LROsPutAsyncRetrySucceeded200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncRetrySucceededdefaultResponse
+export interface LROsPutAsyncRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputAsyncNoRetrySucceeded200Headers {
+export interface LROsPutAsyncNoRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/noretry/succeeded/operationResults/200 */
@@ -227,20 +227,20 @@ export interface LROsputAsyncNoRetrySucceeded200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncNoRetrySucceeded200Response extends HttpResponse {
+export interface LROsPutAsyncNoRetrySucceeded200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputAsyncNoRetrySucceeded200Headers;
+  headers: RawHttpHeaders & LROsPutAsyncNoRetrySucceeded200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncNoRetrySucceededdefaultResponse
+export interface LROsPutAsyncNoRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputAsyncRetryFailed200Headers {
+export interface LROsPutAsyncRetryFailed200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
@@ -250,19 +250,19 @@ export interface LROsputAsyncRetryFailed200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncRetryFailed200Response extends HttpResponse {
+export interface LROsPutAsyncRetryFailed200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputAsyncRetryFailed200Headers;
+  headers: RawHttpHeaders & LROsPutAsyncRetryFailed200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncRetryFaileddefaultResponse extends HttpResponse {
+export interface LROsPutAsyncRetryFaileddefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputAsyncNoRetrycanceled200Headers {
+export interface LROsPutAsyncNoRetrycanceled200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/noretry/canceled/operationResults/200 */
@@ -270,93 +270,93 @@ export interface LROsputAsyncNoRetrycanceled200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncNoRetrycanceled200Response extends HttpResponse {
+export interface LROsPutAsyncNoRetrycanceled200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputAsyncNoRetrycanceled200Headers;
+  headers: RawHttpHeaders & LROsPutAsyncNoRetrycanceled200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsputAsyncNoRetrycanceleddefaultResponse
+export interface LROsPutAsyncNoRetrycanceleddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsputAsyncNoHeaderInRetry201Headers {
+export interface LROsPutAsyncNoHeaderInRetry201Headers {
   "azure-asyncoperation"?: string;
 }
 
 /** Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
-export interface LROsputAsyncNoHeaderInRetry201Response extends HttpResponse {
+export interface LROsPutAsyncNoHeaderInRetry201Response extends HttpResponse {
   status: "201";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsputAsyncNoHeaderInRetry201Headers;
+  headers: RawHttpHeaders & LROsPutAsyncNoHeaderInRetry201Headers;
 }
 
 /** Long running put request, service returns a 202 to the initial request with Azure-AsyncOperation header. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
-export interface LROsputAsyncNoHeaderInRetrydefaultResponse
+export interface LROsPutAsyncNoHeaderInRetrydefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request with non resource. */
-export interface LROsputNonResource202Response extends HttpResponse {
+export interface LROsPutNonResource202Response extends HttpResponse {
   status: "202";
   body: SkuOutput;
 }
 
 /** Long running put request with non resource. */
-export interface LROsputNonResourcedefaultResponse extends HttpResponse {
+export interface LROsPutNonResourcedefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request with non resource. */
-export interface LROsputAsyncNonResource202Response extends HttpResponse {
+export interface LROsPutAsyncNonResource202Response extends HttpResponse {
   status: "202";
   body: SkuOutput;
 }
 
 /** Long running put request with non resource. */
-export interface LROsputAsyncNonResourcedefaultResponse extends HttpResponse {
+export interface LROsPutAsyncNonResourcedefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request with sub resource. */
-export interface LROsputSubResource202Response extends HttpResponse {
+export interface LROsPutSubResource202Response extends HttpResponse {
   status: "202";
   body: SubProductOutput;
 }
 
 /** Long running put request with sub resource. */
-export interface LROsputSubResourcedefaultResponse extends HttpResponse {
+export interface LROsPutSubResourcedefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request with sub resource. */
-export interface LROsputAsyncSubResource202Response extends HttpResponse {
+export interface LROsPutAsyncSubResource202Response extends HttpResponse {
   status: "202";
   body: SubProductOutput;
 }
 
 /** Long running put request with sub resource. */
-export interface LROsputAsyncSubResourcedefaultResponse extends HttpResponse {
+export interface LROsPutAsyncSubResourcedefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdeleteProvisioning202Accepted200Succeeded200Response
+export interface LROsDeleteProvisioning202Accepted200Succeeded200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROsdeleteProvisioning202Accepted200Succeeded202Headers {
+export interface LROsDeleteProvisioning202Accepted200Succeeded202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -364,29 +364,29 @@ export interface LROsdeleteProvisioning202Accepted200Succeeded202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdeleteProvisioning202Accepted200Succeeded202Response
+export interface LROsDeleteProvisioning202Accepted200Succeeded202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LROsdeleteProvisioning202Accepted200Succeeded202Headers;
+    LROsDeleteProvisioning202Accepted200Succeeded202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdeleteProvisioning202Accepted200SucceededdefaultResponse
+export interface LROsDeleteProvisioning202Accepted200SucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsdeleteProvisioning202DeletingFailed200200Response
+export interface LROsDeleteProvisioning202DeletingFailed200200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROsdeleteProvisioning202DeletingFailed200202Headers {
+export interface LROsDeleteProvisioning202DeletingFailed200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/failed */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -394,29 +394,29 @@ export interface LROsdeleteProvisioning202DeletingFailed200202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsdeleteProvisioning202DeletingFailed200202Response
+export interface LROsDeleteProvisioning202DeletingFailed200202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LROsdeleteProvisioning202DeletingFailed200202Headers;
+    LROsDeleteProvisioning202DeletingFailed200202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Failed’ */
-export interface LROsdeleteProvisioning202DeletingFailed200defaultResponse
+export interface LROsDeleteProvisioning202DeletingFailed200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
-export interface LROsdeleteProvisioning202Deletingcanceled200200Response
+export interface LROsDeleteProvisioning202Deletingcanceled200200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROsdeleteProvisioning202Deletingcanceled200202Headers {
+export interface LROsDeleteProvisioning202Deletingcanceled200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/provisioning/202/deleting/200/canceled */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -424,40 +424,40 @@ export interface LROsdeleteProvisioning202Deletingcanceled200202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
-export interface LROsdeleteProvisioning202Deletingcanceled200202Response
+export interface LROsDeleteProvisioning202Deletingcanceled200202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LROsdeleteProvisioning202Deletingcanceled200202Headers;
+    LROsDeleteProvisioning202Deletingcanceled200202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Canceled’ */
-export interface LROsdeleteProvisioning202Deletingcanceled200defaultResponse
+export interface LROsDeleteProvisioning202Deletingcanceled200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete succeeds and returns right away */
-export interface LROsdelete204Succeeded204Response extends HttpResponse {
+export interface LROsDelete204Succeeded204Response extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running delete succeeds and returns right away */
-export interface LROsdelete204SucceededdefaultResponse extends HttpResponse {
+export interface LROsDelete204SucceededdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202Retry200200Response extends HttpResponse {
+export interface LROsDelete202Retry200200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROsdelete202Retry200202Headers {
+export interface LROsDelete202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -465,25 +465,25 @@ export interface LROsdelete202Retry200202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202Retry200202Response extends HttpResponse {
+export interface LROsDelete202Retry200202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdelete202Retry200202Headers;
+  headers: RawHttpHeaders & LROsDelete202Retry200202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202Retry200defaultResponse extends HttpResponse {
+export interface LROsDelete202Retry200DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202NoRetry204200Response extends HttpResponse {
+export interface LROsDelete202NoRetry204200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROsdelete202NoRetry204202Headers {
+export interface LROsDelete202NoRetry204202Headers {
   /** Location to poll for result status: will be set to /lro/delete/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -491,70 +491,70 @@ export interface LROsdelete202NoRetry204202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202NoRetry204202Response extends HttpResponse {
+export interface LROsDelete202NoRetry204202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdelete202NoRetry204202Headers;
+  headers: RawHttpHeaders & LROsDelete202NoRetry204202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsdelete202NoRetry204defaultResponse extends HttpResponse {
+export interface LROsDelete202NoRetry204DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteNoHeaderInRetry202Headers {
+export interface LROsDeleteNoHeaderInRetry202Headers {
   /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
-export interface LROsdeleteNoHeaderInRetry202Response extends HttpResponse {
+export interface LROsDeleteNoHeaderInRetry202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteNoHeaderInRetry202Headers;
+  headers: RawHttpHeaders & LROsDeleteNoHeaderInRetry202Headers;
 }
 
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
-export interface LROsdeleteNoHeaderInRetry204Response extends HttpResponse {
+export interface LROsDeleteNoHeaderInRetry204Response extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns a location header in the initial request. Subsequent calls to operation status do not contain location header. */
-export interface LROsdeleteNoHeaderInRetrydefaultResponse extends HttpResponse {
+export interface LROsDeleteNoHeaderInRetrydefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteAsyncNoHeaderInRetry202Headers {
+export interface LROsDeleteAsyncNoHeaderInRetry202Headers {
   /** Location to poll for result status: will be set to /lro/put/noheader/202/204/operationresults */
   location?: string;
 }
 
 /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
-export interface LROsdeleteAsyncNoHeaderInRetry202Response
+export interface LROsDeleteAsyncNoHeaderInRetry202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteAsyncNoHeaderInRetry202Headers;
+  headers: RawHttpHeaders & LROsDeleteAsyncNoHeaderInRetry202Headers;
 }
 
 /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
-export interface LROsdeleteAsyncNoHeaderInRetry204Response
+export interface LROsDeleteAsyncNoHeaderInRetry204Response
   extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns an Azure-AsyncOperation header in the initial request. Subsequent calls to operation status do not contain Azure-AsyncOperation header. */
-export interface LROsdeleteAsyncNoHeaderInRetrydefaultResponse
+export interface LROsDeleteAsyncNoHeaderInRetrydefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteAsyncRetrySucceeded202Headers {
+export interface LROsDeleteAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
@@ -564,20 +564,20 @@ export interface LROsdeleteAsyncRetrySucceeded202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetrySucceeded202Response extends HttpResponse {
+export interface LROsDeleteAsyncRetrySucceeded202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteAsyncRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LROsDeleteAsyncRetrySucceeded202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetrySucceededdefaultResponse
+export interface LROsDeleteAsyncRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteAsyncNoRetrySucceeded202Headers {
+export interface LROsDeleteAsyncNoRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/noretry/succeeded/operationResults/200 */
@@ -587,21 +587,21 @@ export interface LROsdeleteAsyncNoRetrySucceeded202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncNoRetrySucceeded202Response
+export interface LROsDeleteAsyncNoRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteAsyncNoRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LROsDeleteAsyncNoRetrySucceeded202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncNoRetrySucceededdefaultResponse
+export interface LROsDeleteAsyncNoRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteAsyncRetryFailed202Headers {
+export interface LROsDeleteAsyncRetryFailed202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/failed/operationResults/200 */
@@ -611,20 +611,20 @@ export interface LROsdeleteAsyncRetryFailed202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetryFailed202Response extends HttpResponse {
+export interface LROsDeleteAsyncRetryFailed202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteAsyncRetryFailed202Headers;
+  headers: RawHttpHeaders & LROsDeleteAsyncRetryFailed202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetryFaileddefaultResponse
+export interface LROsDeleteAsyncRetryFaileddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsdeleteAsyncRetrycanceled202Headers {
+export interface LROsDeleteAsyncRetrycanceled202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/canceled/operationResults/200 */
@@ -634,38 +634,38 @@ export interface LROsdeleteAsyncRetrycanceled202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetrycanceled202Response extends HttpResponse {
+export interface LROsDeleteAsyncRetrycanceled202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsdeleteAsyncRetrycanceled202Headers;
+  headers: RawHttpHeaders & LROsDeleteAsyncRetrycanceled202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsdeleteAsyncRetrycanceleddefaultResponse
+export interface LROsDeleteAsyncRetrycanceleddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success. */
-export interface LROspost200WithPayload200Response extends HttpResponse {
+export interface LROsPost200WithPayload200Response extends HttpResponse {
   status: "200";
   body: SkuOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success. */
-export interface LROspost200WithPayload202Response extends HttpResponse {
+export interface LROsPost200WithPayload202Response extends HttpResponse {
   status: "202";
   body: SkuOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header. Poll returns a 200 with a response body after success. */
-export interface LROspost200WithPayloaddefaultResponse extends HttpResponse {
+export interface LROsPost200WithPayloaddefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROspost202Retry200202Headers {
+export interface LROsPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -673,19 +673,19 @@ export interface LROspost202Retry200202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LROspost202Retry200202Response extends HttpResponse {
+export interface LROsPost202Retry200202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspost202Retry200202Headers;
+  headers: RawHttpHeaders & LROsPost202Retry200202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LROspost202Retry200defaultResponse extends HttpResponse {
+export interface LROsPost202Retry200DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROspost202NoRetry204202Headers {
+export interface LROsPost202NoRetry204202Headers {
   /** Location to poll for result status: will be set to /lro/post/202/noretry/204 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -693,67 +693,67 @@ export interface LROspost202NoRetry204202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success */
-export interface LROspost202NoRetry204202Response extends HttpResponse {
+export interface LROsPost202NoRetry204202Response extends HttpResponse {
   status: "202";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROspost202NoRetry204202Headers;
+  headers: RawHttpHeaders & LROsPost202NoRetry204202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with 'Location' header, 204 with noresponse body after success */
-export interface LROspost202NoRetry204defaultResponse extends HttpResponse {
+export interface LROsPost202NoRetry204DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object */
-export interface LROspostDoubleHeadersFinalLocationGet202Response
+export interface LROsPostDoubleHeadersFinalLocationGet202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final object */
-export interface LROspostDoubleHeadersFinalLocationGetdefaultResponse
+export interface LROsPostDoubleHeadersFinalLocationGetdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object */
-export interface LROspostDoubleHeadersFinalAzureHeaderGet202Response
+export interface LROsPostDoubleHeadersFinalAzureHeaderGet202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object */
-export interface LROspostDoubleHeadersFinalAzureHeaderGetdefaultResponse
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior. */
-export interface LROspostDoubleHeadersFinalAzureHeaderGetDefault202Response
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefault202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request with both Location and Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the final object if you support initial Autorest behavior. */
-export interface LROspostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
+export interface LROsPostDoubleHeadersFinalAzureHeaderGetDefaultdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetrySucceeded200Response extends HttpResponse {
+export interface LROsPostAsyncRetrySucceeded200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROspostAsyncRetrySucceeded202Headers {
+export interface LROsPostAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -763,26 +763,26 @@ export interface LROspostAsyncRetrySucceeded202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetrySucceeded202Response extends HttpResponse {
+export interface LROsPostAsyncRetrySucceeded202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspostAsyncRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LROsPostAsyncRetrySucceeded202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetrySucceededdefaultResponse
+export interface LROsPostAsyncRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncNoRetrySucceeded200Response extends HttpResponse {
+export interface LROsPostAsyncNoRetrySucceeded200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LROspostAsyncNoRetrySucceeded202Headers {
+export interface LROsPostAsyncNoRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -792,20 +792,20 @@ export interface LROspostAsyncNoRetrySucceeded202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncNoRetrySucceeded202Response extends HttpResponse {
+export interface LROsPostAsyncNoRetrySucceeded202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspostAsyncNoRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LROsPostAsyncNoRetrySucceeded202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncNoRetrySucceededdefaultResponse
+export interface LROsPostAsyncNoRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROspostAsyncRetryFailed202Headers {
+export interface LROsPostAsyncRetryFailed202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
@@ -815,19 +815,19 @@ export interface LROspostAsyncRetryFailed202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetryFailed202Response extends HttpResponse {
+export interface LROsPostAsyncRetryFailed202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspostAsyncRetryFailed202Headers;
+  headers: RawHttpHeaders & LROsPostAsyncRetryFailed202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetryFaileddefaultResponse extends HttpResponse {
+export interface LROsPostAsyncRetryFaileddefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROspostAsyncRetrycanceled202Headers {
+export interface LROsPostAsyncRetrycanceled202Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/canceled/operationResults/200 */
@@ -837,41 +837,41 @@ export interface LROspostAsyncRetrycanceled202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetrycanceled202Response extends HttpResponse {
+export interface LROsPostAsyncRetrycanceled202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROspostAsyncRetrycanceled202Headers;
+  headers: RawHttpHeaders & LROsPostAsyncRetrycanceled202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROspostAsyncRetrycanceleddefaultResponse
+export interface LROsPostAsyncRetrycanceleddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysput201CreatingSucceeded200200Response
+export interface LRORetrysPut201CreatingSucceeded200200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysput201CreatingSucceeded200201Response
+export interface LRORetrysPut201CreatingSucceeded200201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 500, then a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysput201CreatingSucceeded200defaultResponse
+export interface LRORetrysPut201CreatingSucceeded200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LRORetrysputAsyncRelativeRetrySucceeded200Headers {
+export interface LRORetrysPutAsyncRelativeRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
@@ -881,28 +881,28 @@ export interface LRORetrysputAsyncRelativeRetrySucceeded200Headers {
 }
 
 /** Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetrysputAsyncRelativeRetrySucceeded200Response
+export interface LRORetrysPutAsyncRelativeRetrySucceeded200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LRORetrysputAsyncRelativeRetrySucceeded200Headers;
+  headers: RawHttpHeaders & LRORetrysPutAsyncRelativeRetrySucceeded200Headers;
 }
 
 /** Long running put request, service returns a 500, then a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetrysputAsyncRelativeRetrySucceededdefaultResponse
+export interface LRORetrysPutAsyncRelativeRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysdeleteProvisioning202Accepted200Succeeded200Response
+export interface LRORetrysDeleteProvisioning202Accepted200Succeeded200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
-export interface LRORetrysdeleteProvisioning202Accepted200Succeeded202Headers {
+export interface LRORetrysDeleteProvisioning202Accepted200Succeeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/provisioning/202/accepted/200/succeeded */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -910,22 +910,22 @@ export interface LRORetrysdeleteProvisioning202Accepted200Succeeded202Headers {
 }
 
 /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysdeleteProvisioning202Accepted200Succeeded202Response
+export interface LRORetrysDeleteProvisioning202Accepted200Succeeded202Response
   extends HttpResponse {
   status: "202";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LRORetrysdeleteProvisioning202Accepted200Succeeded202Headers;
+    LRORetrysDeleteProvisioning202Accepted200Succeeded202Headers;
 }
 
 /** Long running delete request, service returns a 500, then a  202 to the initial request, with an entity that contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysdeleteProvisioning202Accepted200SucceededdefaultResponse
+export interface LRORetrysDeleteProvisioning202Accepted200SucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LRORetrysdelete202Retry200202Headers {
+export interface LRORetrysDelete202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -933,20 +933,20 @@ export interface LRORetrysdelete202Retry200202Headers {
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysdelete202Retry200202Response extends HttpResponse {
+export interface LRORetrysDelete202Retry200202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LRORetrysdelete202Retry200202Headers;
+  headers: RawHttpHeaders & LRORetrysDelete202Retry200202Headers;
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LRORetrysdelete202Retry200defaultResponse
+export interface LRORetrysDelete202Retry200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LRORetrysdeleteAsyncRelativeRetrySucceeded202Headers {
+export interface LRORetrysDeleteAsyncRelativeRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/deleteasync/retry/succeeded/operationResults/200 */
@@ -956,22 +956,22 @@ export interface LRORetrysdeleteAsyncRelativeRetrySucceeded202Headers {
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetrysdeleteAsyncRelativeRetrySucceeded202Response
+export interface LRORetrysDeleteAsyncRelativeRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
   headers: RawHttpHeaders &
-    LRORetrysdeleteAsyncRelativeRetrySucceeded202Headers;
+    LRORetrysDeleteAsyncRelativeRetrySucceeded202Headers;
 }
 
 /** Long running delete request, service returns a 500, then a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetrysdeleteAsyncRelativeRetrySucceededdefaultResponse
+export interface LRORetrysDeleteAsyncRelativeRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LRORetryspost202Retry200202Headers {
+export interface LRORetrysPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -979,19 +979,19 @@ export interface LRORetryspost202Retry200202Headers {
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LRORetryspost202Retry200202Response extends HttpResponse {
+export interface LRORetrysPost202Retry200202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LRORetryspost202Retry200202Headers;
+  headers: RawHttpHeaders & LRORetrysPost202Retry200202Headers;
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LRORetryspost202Retry200defaultResponse extends HttpResponse {
+export interface LRORetrysPost202Retry200DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LRORetryspostAsyncRelativeRetrySucceeded202Headers {
+export interface LRORetrysPostAsyncRelativeRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/retryerror/putasync/retry/succeeded/operationResults/200 */
@@ -1001,81 +1001,81 @@ export interface LRORetryspostAsyncRelativeRetrySucceeded202Headers {
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetryspostAsyncRelativeRetrySucceeded202Response
+export interface LRORetrysPostAsyncRelativeRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LRORetryspostAsyncRelativeRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LRORetrysPostAsyncRelativeRetrySucceeded202Headers;
 }
 
 /** Long running post request, service returns a 500, then a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LRORetryspostAsyncRelativeRetrySucceededdefaultResponse
+export interface LRORetrysPostAsyncRelativeRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 400 to the initial request */
-export interface LrosaDsputNonRetry400200Response extends HttpResponse {
+export interface LrosaDsPutNonRetry400200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 400 to the initial request */
-export interface LrosaDsputNonRetry400201Response extends HttpResponse {
+export interface LrosaDsPutNonRetry400201Response extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 400 to the initial request */
-export interface LrosaDsputNonRetry400defaultResponse extends HttpResponse {
+export interface LrosaDsPutNonRetry400DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400200Response
+export interface LrosaDsPutNonRetry201Creating400200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400201Response
+export interface LrosaDsPutNonRetry201Creating400201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400defaultResponse
+export interface LrosaDsPutNonRetry201Creating400DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400InvalidJson200Response
+export interface LrosaDsPutNonRetry201Creating400InvalidJson200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400InvalidJson201Response
+export interface LrosaDsPutNonRetry201Creating400InvalidJson201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and 201 response code */
-export interface LrosaDsputNonRetry201Creating400InvalidJsondefaultResponse
+export interface LrosaDsPutNonRetry201Creating400InvalidJsondefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsputAsyncRelativeRetry400200Headers {
+export interface LrosaDsPutAsyncRelativeRetry400200Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
@@ -1085,21 +1085,21 @@ export interface LrosaDsputAsyncRelativeRetry400200Headers {
 }
 
 /** Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetry400200Response
+export interface LrosaDsPutAsyncRelativeRetry400200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LrosaDsputAsyncRelativeRetry400200Headers;
+  headers: RawHttpHeaders & LrosaDsPutAsyncRelativeRetry400200Headers;
 }
 
 /** Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetry400defaultResponse
+export interface LrosaDsPutAsyncRelativeRetry400DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdeleteNonRetry400202Headers {
+export interface LrosaDsDeleteNonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1107,19 +1107,19 @@ export interface LrosaDsdeleteNonRetry400202Headers {
 }
 
 /** Long running delete request, service returns a 400 with an error body */
-export interface LrosaDsdeleteNonRetry400202Response extends HttpResponse {
+export interface LrosaDsDeleteNonRetry400202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDsdeleteNonRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsDeleteNonRetry400202Headers;
 }
 
 /** Long running delete request, service returns a 400 with an error body */
-export interface LrosaDsdeleteNonRetry400defaultResponse extends HttpResponse {
+export interface LrosaDsDeleteNonRetry400DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdelete202NonRetry400202Headers {
+export interface LrosaDsDelete202NonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/delete/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1127,20 +1127,20 @@ export interface LrosaDsdelete202NonRetry400202Headers {
 }
 
 /** Long running delete request, service returns a 202 with a location header */
-export interface LrosaDsdelete202NonRetry400202Response extends HttpResponse {
+export interface LrosaDsDelete202NonRetry400202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDsdelete202NonRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsDelete202NonRetry400202Headers;
 }
 
 /** Long running delete request, service returns a 202 with a location header */
-export interface LrosaDsdelete202NonRetry400defaultResponse
+export interface LrosaDsDelete202NonRetry400DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetry400202Headers {
+export interface LrosaDsDeleteAsyncRelativeRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/nonretryerror/deleteasync/retry/operationResults/400 */
@@ -1150,21 +1150,21 @@ export interface LrosaDsdeleteAsyncRelativeRetry400202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetry400202Response
+export interface LrosaDsDeleteAsyncRelativeRetry400202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDsdeleteAsyncRelativeRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsDeleteAsyncRelativeRetry400202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetry400defaultResponse
+export interface LrosaDsDeleteAsyncRelativeRetry400DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspostNonRetry400202Headers {
+export interface LrosaDsPostNonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1172,19 +1172,19 @@ export interface LrosaDspostNonRetry400202Headers {
 }
 
 /** Long running post request, service returns a 400 with no error body */
-export interface LrosaDspostNonRetry400202Response extends HttpResponse {
+export interface LrosaDsPostNonRetry400202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspostNonRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsPostNonRetry400202Headers;
 }
 
 /** Long running post request, service returns a 400 with no error body */
-export interface LrosaDspostNonRetry400defaultResponse extends HttpResponse {
+export interface LrosaDsPostNonRetry400DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspost202NonRetry400202Headers {
+export interface LrosaDsPost202NonRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/retryerror/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1192,19 +1192,19 @@ export interface LrosaDspost202NonRetry400202Headers {
 }
 
 /** Long running post request, service returns a 202 with a location header */
-export interface LrosaDspost202NonRetry400202Response extends HttpResponse {
+export interface LrosaDsPost202NonRetry400202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspost202NonRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsPost202NonRetry400202Headers;
 }
 
 /** Long running post request, service returns a 202 with a location header */
-export interface LrosaDspost202NonRetry400defaultResponse extends HttpResponse {
+export interface LrosaDsPost202NonRetry400DefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspostAsyncRelativeRetry400202Headers {
+export interface LrosaDsPostAsyncRelativeRetry400202Headers {
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/nonretryerror/putasync/retry/operationResults/400 */
@@ -1214,42 +1214,42 @@ export interface LrosaDspostAsyncRelativeRetry400202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetry400202Response
+export interface LrosaDsPostAsyncRelativeRetry400202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspostAsyncRelativeRetry400202Headers;
+  headers: RawHttpHeaders & LrosaDsPostAsyncRelativeRetry400202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetry400defaultResponse
+export interface LrosaDsPostAsyncRelativeRetry400DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request with no payload */
-export interface LrosaDsputError201NoProvisioningStatePayload200Response
+export interface LrosaDsPutError201NoProvisioningStatePayload200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request with no payload */
-export interface LrosaDsputError201NoProvisioningStatePayload201Response
+export interface LrosaDsPutError201NoProvisioningStatePayload201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 201 to the initial request with no payload */
-export interface LrosaDsputError201NoProvisioningStatePayloaddefaultResponse
+export interface LrosaDsPutError201NoProvisioningStatePayloaddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsputAsyncRelativeRetryNoStatus200Headers {
+export interface LrosaDsPutAsyncRelativeRetryNoStatus200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -1259,21 +1259,21 @@ export interface LrosaDsputAsyncRelativeRetryNoStatus200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryNoStatus200Response
+export interface LrosaDsPutAsyncRelativeRetryNoStatus200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LrosaDsputAsyncRelativeRetryNoStatus200Headers;
+  headers: RawHttpHeaders & LrosaDsPutAsyncRelativeRetryNoStatus200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryNoStatusdefaultResponse
+export interface LrosaDsPutAsyncRelativeRetryNoStatusdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsputAsyncRelativeRetryNoStatusPayload200Headers {
+export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -1283,34 +1283,34 @@ export interface LrosaDsputAsyncRelativeRetryNoStatusPayload200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryNoStatusPayload200Response
+export interface LrosaDsPutAsyncRelativeRetryNoStatusPayload200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LrosaDsputAsyncRelativeRetryNoStatusPayload200Headers;
+    LrosaDsPutAsyncRelativeRetryNoStatusPayload200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryNoStatusPayloaddefaultResponse
+export interface LrosaDsPutAsyncRelativeRetryNoStatusPayloaddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running delete request, service returns a 204 to the initial request, indicating success. */
-export interface LrosaDsdelete204Succeeded204Response extends HttpResponse {
+export interface LrosaDsDelete204Succeeded204Response extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running delete request, service returns a 204 to the initial request, indicating success. */
-export interface LrosaDsdelete204SucceededdefaultResponse extends HttpResponse {
+export interface LrosaDsDelete204SucceededdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryNoStatus202Headers {
+export interface LrosaDsDeleteAsyncRelativeRetryNoStatus202Headers {
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/deleteasync/retry/succeeded/operationResults/200 */
@@ -1320,21 +1320,21 @@ export interface LrosaDsdeleteAsyncRelativeRetryNoStatus202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetryNoStatus202Response
+export interface LrosaDsDeleteAsyncRelativeRetryNoStatus202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDsdeleteAsyncRelativeRetryNoStatus202Headers;
+  headers: RawHttpHeaders & LrosaDsDeleteAsyncRelativeRetryNoStatus202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetryNoStatusdefaultResponse
+export interface LrosaDsDeleteAsyncRelativeRetryNoStatusdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspost202NoLocation202Headers {
+export interface LrosaDsPost202NoLocation202Headers {
   /** Location to poll for result status: will not be set */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1342,19 +1342,19 @@ export interface LrosaDspost202NoLocation202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, without a location header. */
-export interface LrosaDspost202NoLocation202Response extends HttpResponse {
+export interface LrosaDsPost202NoLocation202Response extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspost202NoLocation202Headers;
+  headers: RawHttpHeaders & LrosaDsPost202NoLocation202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, without a location header. */
-export interface LrosaDspost202NoLocationdefaultResponse extends HttpResponse {
+export interface LrosaDsPost202NoLocationdefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspostAsyncRelativeRetryNoPayload202Headers {
+export interface LrosaDsPostAsyncRelativeRetryNoPayload202Headers {
   /** Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/error/putasync/retry/failed/operationResults/nopayload */
@@ -1364,39 +1364,39 @@ export interface LrosaDspostAsyncRelativeRetryNoPayload202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetryNoPayload202Response
+export interface LrosaDsPostAsyncRelativeRetryNoPayload202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspostAsyncRelativeRetryNoPayload202Headers;
+  headers: RawHttpHeaders & LrosaDsPostAsyncRelativeRetryNoPayload202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetryNoPayloaddefaultResponse
+export interface LrosaDsPostAsyncRelativeRetryNoPayloaddefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
-export interface LrosaDsput200InvalidJson200Response extends HttpResponse {
+export interface LrosaDsPut200InvalidJson200Response extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
-export interface LrosaDsput200InvalidJson204Response extends HttpResponse {
+export interface LrosaDsPut200InvalidJson204Response extends HttpResponse {
   status: "204";
   body: Record<string, unknown>;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that is not a valid json */
-export interface LrosaDsput200InvalidJsondefaultResponse extends HttpResponse {
+export interface LrosaDsPut200InvalidJsondefaultResponse extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsputAsyncRelativeRetryInvalidHeader200Headers {
+export interface LrosaDsPutAsyncRelativeRetryInvalidHeader200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/succeeded/operationResults/200 */
@@ -1406,21 +1406,21 @@ export interface LrosaDsputAsyncRelativeRetryInvalidHeader200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
-export interface LrosaDsputAsyncRelativeRetryInvalidHeader200Response
+export interface LrosaDsPutAsyncRelativeRetryInvalidHeader200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LrosaDsputAsyncRelativeRetryInvalidHeader200Headers;
+  headers: RawHttpHeaders & LrosaDsPutAsyncRelativeRetryInvalidHeader200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
-export interface LrosaDsputAsyncRelativeRetryInvalidHeaderdefaultResponse
+export interface LrosaDsPutAsyncRelativeRetryInvalidHeaderdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Headers {
+export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Headers {
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/putasync/retry/failed/operationResults/200 */
@@ -1430,22 +1430,22 @@ export interface LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Headers {
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Response
+export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
   headers: RawHttpHeaders &
-    LrosaDsputAsyncRelativeRetryInvalidJsonPolling200Headers;
+    LrosaDsPutAsyncRelativeRetryInvalidJsonPolling200Headers;
 }
 
 /** Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsputAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+export interface LrosaDsPutAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdelete202RetryInvalidHeader202Headers {
+export interface LrosaDsDelete202RetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
@@ -1453,21 +1453,21 @@ export interface LrosaDsdelete202RetryInvalidHeader202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers */
-export interface LrosaDsdelete202RetryInvalidHeader202Response
+export interface LrosaDsDelete202RetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDsdelete202RetryInvalidHeader202Headers;
+  headers: RawHttpHeaders & LrosaDsDelete202RetryInvalidHeader202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request receing a reponse with an invalid 'Location' and 'Retry-After' headers */
-export interface LrosaDsdelete202RetryInvalidHeaderdefaultResponse
+export interface LrosaDsDelete202RetryInvalidHeaderdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Headers {
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /foo */
@@ -1477,22 +1477,22 @@ export interface LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid */
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Response
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
   headers: RawHttpHeaders &
-    LrosaDsdeleteAsyncRelativeRetryInvalidHeader202Headers;
+    LrosaDsDeleteAsyncRelativeRetryInvalidHeader202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. The endpoint indicated in the Azure-AsyncOperation header is invalid */
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidHeaderdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Headers {
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Headers {
   /** Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/error/deleteasync/retry/failed/operationResults/invalidjsonpolling */
@@ -1502,22 +1502,22 @@ export interface LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Headers {
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Response
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
   headers: RawHttpHeaders &
-    LrosaDsdeleteAsyncRelativeRetryInvalidJsonPolling202Headers;
+    LrosaDsDeleteAsyncRelativeRetryInvalidJsonPolling202Headers;
 }
 
 /** Long running delete request, service returns a 202 to the initial request. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDsdeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+export interface LrosaDsDeleteAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspost202RetryInvalidHeader202Headers {
+export interface LrosaDsPost202RetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to /foo */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to /bar */
@@ -1525,21 +1525,21 @@ export interface LrosaDspost202RetryInvalidHeader202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers. */
-export interface LrosaDspost202RetryInvalidHeader202Response
+export interface LrosaDsPost202RetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LrosaDspost202RetryInvalidHeader202Headers;
+  headers: RawHttpHeaders & LrosaDsPost202RetryInvalidHeader202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with invalid 'Location' and 'Retry-After' headers. */
-export interface LrosaDspost202RetryInvalidHeaderdefaultResponse
+export interface LrosaDsPost202RetryInvalidHeaderdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspostAsyncRelativeRetryInvalidHeader202Headers {
+export interface LrosaDsPostAsyncRelativeRetryInvalidHeader202Headers {
   /** Location to poll for result status: will be set to foo */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to foo */
@@ -1549,22 +1549,22 @@ export interface LrosaDspostAsyncRelativeRetryInvalidHeader202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
-export interface LrosaDspostAsyncRelativeRetryInvalidHeader202Response
+export interface LrosaDsPostAsyncRelativeRetryInvalidHeader202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
   headers: RawHttpHeaders &
-    LrosaDspostAsyncRelativeRetryInvalidHeader202Headers;
+    LrosaDsPostAsyncRelativeRetryInvalidHeader202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation header is invalid. */
-export interface LrosaDspostAsyncRelativeRetryInvalidHeaderdefaultResponse
+export interface LrosaDsPostAsyncRelativeRetryInvalidHeaderdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Headers {
+export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Headers {
   /** Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/error/postasync/retry/failed/operationResults/invalidjsonpolling */
@@ -1574,22 +1574,22 @@ export interface LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Headers {
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Response
+export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
   headers: RawHttpHeaders &
-    LrosaDspostAsyncRelativeRetryInvalidJsonPolling202Headers;
+    LrosaDsPostAsyncRelativeRetryInvalidJsonPolling202Headers;
 }
 
 /** Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LrosaDspostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
+export interface LrosaDsPostAsyncRelativeRetryInvalidJsonPollingdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsCustomHeaderputAsyncRetrySucceeded200Headers {
+export interface LROsCustomHeaderPutAsyncRetrySucceeded200Headers {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
@@ -1599,42 +1599,42 @@ export interface LROsCustomHeaderputAsyncRetrySucceeded200Headers {
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsCustomHeaderputAsyncRetrySucceeded200Response
+export interface LROsCustomHeaderPutAsyncRetrySucceeded200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
-  headers: RawHttpHeaders & LROsCustomHeaderputAsyncRetrySucceeded200Headers;
+  headers: RawHttpHeaders & LROsCustomHeaderPutAsyncRetrySucceeded200Headers;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 200 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsCustomHeaderputAsyncRetrySucceededdefaultResponse
+export interface LROsCustomHeaderPutAsyncRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsCustomHeaderput201CreatingSucceeded200200Response
+export interface LROsCustomHeaderPut201CreatingSucceeded200200Response
   extends HttpResponse {
   status: "200";
   body: ProductOutput;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsCustomHeaderput201CreatingSucceeded200201Response
+export interface LROsCustomHeaderPut201CreatingSucceeded200201Response
   extends HttpResponse {
   status: "201";
   body: ProductOutput;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running put request, service returns a 201 to the initial request, with an entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a ‘200’ with ProvisioningState=’Succeeded’ */
-export interface LROsCustomHeaderput201CreatingSucceeded200defaultResponse
+export interface LROsCustomHeaderPut201CreatingSucceeded200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsCustomHeaderpost202Retry200202Headers {
+export interface LROsCustomHeaderPost202Retry200202Headers {
   /** Location to poll for result status: will be set to /lro/customheader/post/202/retry/200 */
   location?: string;
   /** Number of milliseconds until the next poll should be sent, will be set to zero */
@@ -1642,21 +1642,21 @@ export interface LROsCustomHeaderpost202Retry200202Headers {
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LROsCustomHeaderpost202Retry200202Response
+export interface LROsCustomHeaderPost202Retry200202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsCustomHeaderpost202Retry200202Headers;
+  headers: RawHttpHeaders & LROsCustomHeaderPost202Retry200202Headers;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with 'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success */
-export interface LROsCustomHeaderpost202Retry200defaultResponse
+export interface LROsCustomHeaderPost202Retry200DefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;
 }
 
-export interface LROsCustomHeaderpostAsyncRetrySucceeded202Headers {
+export interface LROsCustomHeaderPostAsyncRetrySucceeded202Headers {
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
   "azure-asyncoperation"?: string;
   /** Location to poll for result status: will be set to /lro/customheader/putasync/retry/succeeded/operationResults/200 */
@@ -1666,15 +1666,15 @@ export interface LROsCustomHeaderpostAsyncRetrySucceeded202Headers {
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsCustomHeaderpostAsyncRetrySucceeded202Response
+export interface LROsCustomHeaderPostAsyncRetrySucceeded202Response
   extends HttpResponse {
   status: "202";
   body: Record<string, unknown>;
-  headers: RawHttpHeaders & LROsCustomHeaderpostAsyncRetrySucceeded202Headers;
+  headers: RawHttpHeaders & LROsCustomHeaderPostAsyncRetrySucceeded202Headers;
 }
 
 /** x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for all requests. Long running post request, service returns a 202 to the initial request, with an entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation header for operation status */
-export interface LROsCustomHeaderpostAsyncRetrySucceededdefaultResponse
+export interface LROsCustomHeaderPostAsyncRetrySucceededdefaultResponse
   extends HttpResponse {
   status: "500";
   body: CloudErrorOutput;

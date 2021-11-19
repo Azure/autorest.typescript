@@ -125,11 +125,11 @@ export class FhirDestinationsImpl implements FhirDestinations {
   }
 
   /**
-   * listByIotConnectorNext
+   * ListByIotConnectorNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
    * @param workspaceName The name of workspace resource.
    * @param iotConnectorName The name of IoT Connector resource.
-   * @param nextLink The nextLink from the previous successful call to the listByIotConnector method.
+   * @param nextLink The nextLink from the previous successful call to the ListByIotConnector method.
    * @param options The options parameters.
    */
   private _listByIotConnectorNext(

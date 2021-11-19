@@ -1009,8 +1009,8 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * listBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the listBySubscription method.
+   * ListBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
   private _listBySubscriptionNext(
@@ -1024,9 +1024,9 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * listByResourceGroupNext
+   * ListByResourceGroupNext
    * @param resourceGroupName Resource group identifier.
-   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
@@ -1041,10 +1041,10 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * listValidSkusNext
+   * ListValidSkusNext
    * @param provisioningServiceName Name of provisioning service.
    * @param resourceGroupName Name of resource group.
-   * @param nextLink The nextLink from the previous successful call to the listValidSkus method.
+   * @param nextLink The nextLink from the previous successful call to the ListValidSkus method.
    * @param options The options parameters.
    */
   private _listValidSkusNext(
@@ -1060,10 +1060,10 @@ export class IotDpsResourceImpl implements IotDpsResource {
   }
 
   /**
-   * listKeysNext
+   * ListKeysNext
    * @param provisioningServiceName The provisioning service name to get the shared access keys for.
    * @param resourceGroupName resource group name
-   * @param nextLink The nextLink from the previous successful call to the listKeys method.
+   * @param nextLink The nextLink from the previous successful call to the ListKeys method.
    * @param options The options parameters.
    */
   private _listKeysNext(

@@ -53,11 +53,11 @@ const uploadRangeFromURLOperationSpec: coreClient.OperationSpec = {
   httpMethod: "PUT",
   responses: {
     201: {
-      headersMapper: Mappers.FileUploadRangeFromUrlHeaders
+      headersMapper: Mappers.FileUploadRangeFromURLHeaders
     },
     default: {
       bodyMapper: Mappers.StorageError,
-      headersMapper: Mappers.FileUploadRangeFromUrlExceptionHeaders
+      headersMapper: Mappers.FileUploadRangeFromURLExceptionHeaders
     }
   },
   queryParameters: [Parameters.comp, Parameters.timeout],

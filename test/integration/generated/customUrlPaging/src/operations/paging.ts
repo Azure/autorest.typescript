@@ -264,9 +264,9 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getPagesPartialUrlNext
+   * GetPagesPartialUrlNext
    * @param accountName Account Name
-   * @param nextLink The nextLink from the previous successful call to the getPagesPartialUrl method.
+   * @param nextLink The nextLink from the previous successful call to the GetPagesPartialUrl method.
    * @param options The options parameters.
    */
   private _getPagesPartialUrlNext(

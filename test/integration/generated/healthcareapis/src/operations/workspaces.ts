@@ -440,8 +440,8 @@ export class WorkspacesImpl implements Workspaces {
   }
 
   /**
-   * listBySubscriptionNext
-   * @param nextLink The nextLink from the previous successful call to the listBySubscription method.
+   * ListBySubscriptionNext
+   * @param nextLink The nextLink from the previous successful call to the ListBySubscription method.
    * @param options The options parameters.
    */
   private _listBySubscriptionNext(
@@ -455,9 +455,9 @@ export class WorkspacesImpl implements Workspaces {
   }
 
   /**
-   * listByResourceGroupNext
+   * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
-   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(

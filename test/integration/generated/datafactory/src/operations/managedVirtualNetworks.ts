@@ -164,10 +164,10 @@ export class ManagedVirtualNetworksImpl implements ManagedVirtualNetworks {
   }
 
   /**
-   * listByFactoryNext
+   * ListByFactoryNext
    * @param resourceGroupName The resource group name.
    * @param factoryName The factory name.
-   * @param nextLink The nextLink from the previous successful call to the listByFactory method.
+   * @param nextLink The nextLink from the previous successful call to the ListByFactory method.
    * @param options The options parameters.
    */
   private _listByFactoryNext(

@@ -78,8 +78,8 @@ export class DomainServiceOperationsImpl implements DomainServiceOperations {
   }
 
   /**
-   * listNext
-   * @param nextLink The nextLink from the previous successful call to the list method.
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   private _listNext(

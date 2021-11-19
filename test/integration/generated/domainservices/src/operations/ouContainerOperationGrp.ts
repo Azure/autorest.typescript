@@ -441,11 +441,11 @@ export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
   }
 
   /**
-   * listNext
+   * ListNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
    * @param domainServiceName The name of the domain service.
-   * @param nextLink The nextLink from the previous successful call to the list method.
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   private _listNext(

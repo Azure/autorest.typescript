@@ -33,7 +33,7 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
-export interface getHorse {
+export interface GetHorse {
   /** Get a horse with name 'Fred' and isAShowHorse true */
   get(
     options?: GetHorseParameters
@@ -42,7 +42,7 @@ export interface getHorse {
   put(options: PutHorseParameters): Promise<PutHorse200Response>;
 }
 
-export interface getPet {
+export interface GetPet {
   /** Get a pet with name 'Peanut' */
   get(
     options?: GetPetParameters
@@ -51,7 +51,7 @@ export interface getPet {
   put(options: PutPetParameters): Promise<PutPet200Response>;
 }
 
-export interface getFeline {
+export interface GetFeline {
   /** Get a feline where meows and hisses are true */
   get(
     options?: GetFelineParameters
@@ -60,7 +60,7 @@ export interface getFeline {
   put(options: PutFelineParameters): Promise<PutFeline200Response>;
 }
 
-export interface getCat {
+export interface GetCat {
   /** Get a cat with name 'Whiskers' where likesMilk, meows, and hisses is true */
   get(
     options?: GetCatParameters
@@ -69,7 +69,7 @@ export interface getCat {
   put(options: PutCatParameters): Promise<PutCat200Response>;
 }
 
-export interface getKitten {
+export interface GetKitten {
   /** Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet is false */
   get(
     options?: GetKittenParameters
@@ -80,15 +80,15 @@ export interface getKitten {
 
 export interface Routes {
   /** Resource for '/multipleInheritance/horse' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/horse"): getHorse;
+  (path: "/multipleInheritance/horse"): GetHorse;
   /** Resource for '/multipleInheritance/pet' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/pet"): getPet;
+  (path: "/multipleInheritance/pet"): GetPet;
   /** Resource for '/multipleInheritance/feline' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/feline"): getFeline;
+  (path: "/multipleInheritance/feline"): GetFeline;
   /** Resource for '/multipleInheritance/cat' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/cat"): getCat;
+  (path: "/multipleInheritance/cat"): GetCat;
   /** Resource for '/multipleInheritance/kitten' has methods for the following verbs: get, put */
-  (path: "/multipleInheritance/kitten"): getKitten;
+  (path: "/multipleInheritance/kitten"): GetKitten;
 }
 
 export type MultipleInheritanceRestClientRestClient = Client & {

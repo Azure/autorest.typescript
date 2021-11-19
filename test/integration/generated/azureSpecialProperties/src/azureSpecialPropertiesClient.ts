@@ -90,7 +90,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     // Assigning values to Constant parameters
     this.$host = options.$host || "http://localhost:3000";
     this.apiVersion = options.apiVersion || "2015-07-01-preview";
-    this.xMsClientRequestId = new XMsClientRequestIdImpl(this);
+    this.XMsClientRequestId = new XMsClientRequestIdImpl(this);
     this.subscriptionInCredentials = new SubscriptionInCredentialsImpl(this);
     this.subscriptionInMethod = new SubscriptionInMethodImpl(this);
     this.apiVersionDefault = new ApiVersionDefaultImpl(this);
@@ -100,7 +100,7 @@ export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
     this.header = new HeaderImpl(this);
   }
 
-  xMsClientRequestId: XMsClientRequestId;
+  XMsClientRequestId: XMsClientRequestId;
   subscriptionInCredentials: SubscriptionInCredentials;
   subscriptionInMethod: SubscriptionInMethod;
   apiVersionDefault: ApiVersionDefault;

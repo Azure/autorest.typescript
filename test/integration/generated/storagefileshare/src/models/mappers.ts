@@ -17,11 +17,11 @@ export const StorageError: coreClient.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromUrlHeaders: coreClient.CompositeMapper = {
+export const FileUploadRangeFromURLHeaders: coreClient.CompositeMapper = {
   serializedName: "File_uploadRangeFromURLHeaders",
   type: {
     name: "Composite",
-    className: "FileUploadRangeFromUrlHeaders",
+    className: "FileUploadRangeFromURLHeaders",
     modelProperties: {
       eTag: {
         serializedName: "etag",
@@ -37,7 +37,7 @@ export const FileUploadRangeFromUrlHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      xMsContentCrc64: {
+      XMsContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -65,7 +65,7 @@ export const FileUploadRangeFromUrlHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
@@ -76,11 +76,11 @@ export const FileUploadRangeFromUrlHeaders: coreClient.CompositeMapper = {
   }
 };
 
-export const FileUploadRangeFromUrlExceptionHeaders: coreClient.CompositeMapper = {
+export const FileUploadRangeFromURLExceptionHeaders: coreClient.CompositeMapper = {
   serializedName: "File_uploadRangeFromURLExceptionHeaders",
   type: {
     name: "Composite",
-    className: "FileUploadRangeFromUrlExceptionHeaders",
+    className: "FileUploadRangeFromURLExceptionHeaders",
     modelProperties: {
       errorCode: {
         serializedName: "x-ms-error-code",

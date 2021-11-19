@@ -6,7 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
-export * from "./lROs";
-export * from "./lRORetrys";
+export * from "./LROs";
+export * from "./LRORetrys";
 export * from "./lrosaDs";
-export * from "./lROsCustomHeader";
+export * from "./LROsCustomHeader";

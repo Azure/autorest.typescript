@@ -302,9 +302,9 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getSecretsNext
+   * GetSecretsNext
    * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
-   * @param nextLink The nextLink from the previous successful call to the getSecrets method.
+   * @param nextLink The nextLink from the previous successful call to the GetSecrets method.
    * @param options The options parameters.
    */
   getSecretsNext(
@@ -319,10 +319,10 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getSecretVersionsNext
+   * GetSecretVersionsNext
    * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
    * @param secretName The name of the secret.
-   * @param nextLink The nextLink from the previous successful call to the getSecretVersions method.
+   * @param nextLink The nextLink from the previous successful call to the GetSecretVersions method.
    * @param options The options parameters.
    */
   getSecretVersionsNext(
@@ -338,9 +338,9 @@ export class KeyVaultClient extends coreClient.ServiceClient {
   }
 
   /**
-   * getDeletedSecretsNext
+   * GetDeletedSecretsNext
    * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
-   * @param nextLink The nextLink from the previous successful call to the getDeletedSecrets method.
+   * @param nextLink The nextLink from the previous successful call to the GetDeletedSecrets method.
    * @param options The options parameters.
    */
   getDeletedSecretsNext(

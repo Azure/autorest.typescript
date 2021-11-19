@@ -430,10 +430,10 @@ export class FhirServicesImpl implements FhirServices {
   }
 
   /**
-   * listByWorkspaceNext
+   * ListByWorkspaceNext
    * @param resourceGroupName The name of the resource group that contains the service instance.
    * @param workspaceName The name of workspace resource.
-   * @param nextLink The nextLink from the previous successful call to the listByWorkspace method.
+   * @param nextLink The nextLink from the previous successful call to the ListByWorkspace method.
    * @param options The options parameters.
    */
   private _listByWorkspaceNext(

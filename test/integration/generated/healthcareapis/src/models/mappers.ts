@@ -900,22 +900,6 @@ export const ServiceManagedIdentity: coreClient.CompositeMapper = {
     name: "Composite",
     className: "ServiceManagedIdentity",
     modelProperties: {
-      identity: {
-        serializedName: "identity",
-        type: {
-          name: "Composite",
-          className: "ServiceManagedIdentityIdentity"
-        }
-      }
-    }
-  }
-};
-
-export const ServiceManagedIdentityIdentity: coreClient.CompositeMapper = {
-  type: {
-    name: "Composite",
-    className: "ServiceManagedIdentityIdentity",
-    modelProperties: {
       type: {
         serializedName: "type",
         type: {

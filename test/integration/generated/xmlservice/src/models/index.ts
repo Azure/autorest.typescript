@@ -19,7 +19,7 @@ export interface RootWithRefAndNoMeta {
 /** I am a complex type with no XML node */
 export interface ComplexTypeNoMeta {
   /** The id of the res */
-  id?: string;
+  ID?: string;
 }
 
 /** I am root, and I ref a model WITH meta */
@@ -33,7 +33,7 @@ export interface RootWithRefAndMeta {
 /** I am a complex type with XML node */
 export interface ComplexTypeWithMeta {
   /** The id of the res */
-  id?: string;
+  ID?: string;
 }
 
 /** Data about a slideshow */

@@ -431,8 +431,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getNoItemNamePagesNext
-   * @param nextLink The nextLink from the previous successful call to the getNoItemNamePages method.
+   * GetNoItemNamePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetNoItemNamePages method.
    * @param options The options parameters.
    */
   getNoItemNamePagesNext(
@@ -446,8 +446,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getSinglePagesNext
-   * @param nextLink The nextLink from the previous successful call to the getSinglePages method.
+   * GetSinglePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePages method.
    * @param options The options parameters.
    */
   getSinglePagesNext(
@@ -461,8 +461,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * firstResponseEmptyNext
-   * @param nextLink The nextLink from the previous successful call to the firstResponseEmpty method.
+   * FirstResponseEmptyNext
+   * @param nextLink The nextLink from the previous successful call to the FirstResponseEmpty method.
    * @param options The options parameters.
    */
   firstResponseEmptyNext(
@@ -476,8 +476,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePages method.
+   * GetMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePages method.
    * @param options The options parameters.
    */
   getMultiplePagesNext(
@@ -491,8 +491,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getOdataMultiplePagesNext
-   * @param nextLink The nextLink from the previous successful call to the getOdataMultiplePages method.
+   * GetOdataMultiplePagesNext
+   * @param nextLink The nextLink from the previous successful call to the GetOdataMultiplePages method.
    * @param options The options parameters.
    */
   getOdataMultiplePagesNext(
@@ -506,9 +506,9 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesWithOffsetNext
+   * GetMultiplePagesWithOffsetNext
    * @param pagingGetMultiplePagesWithOffsetOptions Parameter group
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesWithOffset
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesWithOffset
    *                 method.
    * @param options The options parameters.
    */
@@ -524,8 +524,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesRetryFirstNext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesRetryFirst
+   * GetMultiplePagesRetryFirstNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetryFirst
    *                 method.
    * @param options The options parameters.
    */
@@ -540,8 +540,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesRetrySecondNext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesRetrySecond
+   * GetMultiplePagesRetrySecondNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesRetrySecond
    *                 method.
    * @param options The options parameters.
    */
@@ -556,8 +556,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getSinglePagesFailureNext
-   * @param nextLink The nextLink from the previous successful call to the getSinglePagesFailure method.
+   * GetSinglePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the GetSinglePagesFailure method.
    * @param options The options parameters.
    */
   getSinglePagesFailureNext(
@@ -571,8 +571,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesFailureNext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesFailure
+   * GetMultiplePagesFailureNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailure
    *                 method.
    * @param options The options parameters.
    */
@@ -587,8 +587,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesFailureUriNext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesFailureUri
+   * GetMultiplePagesFailureUriNext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesFailureUri
    *                 method.
    * @param options The options parameters.
    */
@@ -603,8 +603,8 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getMultiplePagesLRONext
-   * @param nextLink The nextLink from the previous successful call to the getMultiplePagesLRO method.
+   * GetMultiplePagesLRONext
+   * @param nextLink The nextLink from the previous successful call to the GetMultiplePagesLRO method.
    * @param options The options parameters.
    */
   getMultiplePagesLRONext(
@@ -618,9 +618,9 @@ export class PagingImpl implements Paging {
   }
 
   /**
-   * getPagingModelWithItemNameWithXMSClientNameNext
+   * GetPagingModelWithItemNameWithXMSClientNameNext
    * @param nextLink The nextLink from the previous successful call to the
-   *                 getPagingModelWithItemNameWithXMSClientName method.
+   *                 GetPagingModelWithItemNameWithXMSClientName method.
    * @param options The options parameters.
    */
   getPagingModelWithItemNameWithXMSClientNameNext(

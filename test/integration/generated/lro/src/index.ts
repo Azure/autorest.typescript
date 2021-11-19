@@ -7,5 +7,5 @@
  */
 
 export * from "./models";
-export { LROClient } from "./lROClient";
+export { LROClient } from "./LROClient";
 export * from "./operationsInterfaces";

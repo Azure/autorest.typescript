@@ -294,8 +294,8 @@ export class FactoriesImpl implements Factories {
   }
 
   /**
-   * listNext
-   * @param nextLink The nextLink from the previous successful call to the list method.
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -309,9 +309,9 @@ export class FactoriesImpl implements Factories {
   }
 
   /**
-   * listByResourceGroupNext
+   * ListByResourceGroupNext
    * @param resourceGroupName The resource group name.
-   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(

@@ -23,271 +23,271 @@ import {
   ReadonlyObj
 } from "./models";
 
-export type BasicgetValidParameters = RequestParameters;
+export type BasicGetValidParameters = RequestParameters;
 
-export interface BasicputValidBodyParam {
+export interface BasicPutValidBodyParam {
   /** Please put {id: 2, name: 'abc', color: 'Magenta'} */
   body: BasicDef;
 }
 
-export interface BasicputValidMediaTypesParam {
+export interface BasicPutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type BasicputValidParameters = BasicputValidMediaTypesParam &
-  BasicputValidBodyParam &
+export type BasicPutValidParameters = BasicPutValidMediaTypesParam &
+  BasicPutValidBodyParam &
   RequestParameters;
-export type BasicgetInvalidParameters = RequestParameters;
-export type BasicgetEmptyParameters = RequestParameters;
-export type BasicgetNullParameters = RequestParameters;
-export type BasicgetNotProvidedParameters = RequestParameters;
-export type PrimitivegetIntParameters = RequestParameters;
+export type BasicGetInvalidParameters = RequestParameters;
+export type BasicGetEmptyParameters = RequestParameters;
+export type BasicGetNullParameters = RequestParameters;
+export type BasicGetNotProvidedParameters = RequestParameters;
+export type PrimitiveGetIntParameters = RequestParameters;
 
-export interface PrimitiveputIntBodyParam {
+export interface PrimitivePutIntBodyParam {
   /** Please put -1 and 2 */
   body: IntWrapper;
 }
 
-export interface PrimitiveputIntMediaTypesParam {
+export interface PrimitivePutIntMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputIntParameters = PrimitiveputIntMediaTypesParam &
-  PrimitiveputIntBodyParam &
+export type PrimitivePutIntParameters = PrimitivePutIntMediaTypesParam &
+  PrimitivePutIntBodyParam &
   RequestParameters;
-export type PrimitivegetLongParameters = RequestParameters;
+export type PrimitiveGetLongParameters = RequestParameters;
 
-export interface PrimitiveputLongBodyParam {
+export interface PrimitivePutLongBodyParam {
   /** Please put 1099511627775 and -999511627788 */
   body: LongWrapper;
 }
 
-export interface PrimitiveputLongMediaTypesParam {
+export interface PrimitivePutLongMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputLongParameters = PrimitiveputLongMediaTypesParam &
-  PrimitiveputLongBodyParam &
+export type PrimitivePutLongParameters = PrimitivePutLongMediaTypesParam &
+  PrimitivePutLongBodyParam &
   RequestParameters;
-export type PrimitivegetFloatParameters = RequestParameters;
+export type PrimitiveGetFloatParameters = RequestParameters;
 
-export interface PrimitiveputFloatBodyParam {
+export interface PrimitivePutFloatBodyParam {
   /** Please put 1.05 and -0.003 */
   body: FloatWrapper;
 }
 
-export interface PrimitiveputFloatMediaTypesParam {
+export interface PrimitivePutFloatMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputFloatParameters = PrimitiveputFloatMediaTypesParam &
-  PrimitiveputFloatBodyParam &
+export type PrimitivePutFloatParameters = PrimitivePutFloatMediaTypesParam &
+  PrimitivePutFloatBodyParam &
   RequestParameters;
-export type PrimitivegetDoubleParameters = RequestParameters;
+export type PrimitiveGetDoubleParameters = RequestParameters;
 
-export interface PrimitiveputDoubleBodyParam {
+export interface PrimitivePutDoubleBodyParam {
   /** Please put 3e-100 and -0.000000000000000000000000000000000000000000000000000000005 */
   body: DoubleWrapper;
 }
 
-export interface PrimitiveputDoubleMediaTypesParam {
+export interface PrimitivePutDoubleMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputDoubleParameters = PrimitiveputDoubleMediaTypesParam &
-  PrimitiveputDoubleBodyParam &
+export type PrimitivePutDoubleParameters = PrimitivePutDoubleMediaTypesParam &
+  PrimitivePutDoubleBodyParam &
   RequestParameters;
-export type PrimitivegetBoolParameters = RequestParameters;
+export type PrimitiveGetBoolParameters = RequestParameters;
 
-export interface PrimitiveputBoolBodyParam {
+export interface PrimitivePutBoolBodyParam {
   /** Please put true and false */
   body: BooleanWrapper;
 }
 
-export interface PrimitiveputBoolMediaTypesParam {
+export interface PrimitivePutBoolMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputBoolParameters = PrimitiveputBoolMediaTypesParam &
-  PrimitiveputBoolBodyParam &
+export type PrimitivePutBoolParameters = PrimitivePutBoolMediaTypesParam &
+  PrimitivePutBoolBodyParam &
   RequestParameters;
-export type PrimitivegetStringParameters = RequestParameters;
+export type PrimitiveGetStringParameters = RequestParameters;
 
-export interface PrimitiveputStringBodyParam {
+export interface PrimitivePutStringBodyParam {
   /** Please put 'goodrequest', '', and null */
   body: StringWrapper;
 }
 
-export interface PrimitiveputStringMediaTypesParam {
+export interface PrimitivePutStringMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputStringParameters = PrimitiveputStringMediaTypesParam &
-  PrimitiveputStringBodyParam &
+export type PrimitivePutStringParameters = PrimitivePutStringMediaTypesParam &
+  PrimitivePutStringBodyParam &
   RequestParameters;
-export type PrimitivegetDateParameters = RequestParameters;
+export type PrimitiveGetDateParameters = RequestParameters;
 
-export interface PrimitiveputDateBodyParam {
+export interface PrimitivePutDateBodyParam {
   /** Please put '0001-01-01' and '2016-02-29' */
   body: DateWrapper;
 }
 
-export interface PrimitiveputDateMediaTypesParam {
+export interface PrimitivePutDateMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputDateParameters = PrimitiveputDateMediaTypesParam &
-  PrimitiveputDateBodyParam &
+export type PrimitivePutDateParameters = PrimitivePutDateMediaTypesParam &
+  PrimitivePutDateBodyParam &
   RequestParameters;
-export type PrimitivegetDateTimeParameters = RequestParameters;
+export type PrimitiveGetDateTimeParameters = RequestParameters;
 
-export interface PrimitiveputDateTimeBodyParam {
+export interface PrimitivePutDateTimeBodyParam {
   /** Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00' */
   body: DatetimeWrapper;
 }
 
-export interface PrimitiveputDateTimeMediaTypesParam {
+export interface PrimitivePutDateTimeMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputDateTimeParameters = PrimitiveputDateTimeMediaTypesParam &
-  PrimitiveputDateTimeBodyParam &
+export type PrimitivePutDateTimeParameters = PrimitivePutDateTimeMediaTypesParam &
+  PrimitivePutDateTimeBodyParam &
   RequestParameters;
-export type PrimitivegetDateTimeRfc1123Parameters = RequestParameters;
+export type PrimitiveGetDateTimeRfc1123Parameters = RequestParameters;
 
-export interface PrimitiveputDateTimeRfc1123BodyParam {
+export interface PrimitivePutDateTimeRfc1123BodyParam {
   /** Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00 GMT' */
   body: Datetimerfc1123Wrapper;
 }
 
-export interface PrimitiveputDateTimeRfc1123MediaTypesParam {
+export interface PrimitivePutDateTimeRfc1123MediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputDateTimeRfc1123Parameters = PrimitiveputDateTimeRfc1123MediaTypesParam &
-  PrimitiveputDateTimeRfc1123BodyParam &
+export type PrimitivePutDateTimeRfc1123Parameters = PrimitivePutDateTimeRfc1123MediaTypesParam &
+  PrimitivePutDateTimeRfc1123BodyParam &
   RequestParameters;
-export type PrimitivegetDurationParameters = RequestParameters;
+export type PrimitiveGetDurationParameters = RequestParameters;
 
-export interface PrimitiveputDurationBodyParam {
+export interface PrimitivePutDurationBodyParam {
   /** Please put 'P123DT22H14M12.011S' */
   body: DurationWrapper;
 }
 
-export interface PrimitiveputDurationMediaTypesParam {
+export interface PrimitivePutDurationMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputDurationParameters = PrimitiveputDurationMediaTypesParam &
-  PrimitiveputDurationBodyParam &
+export type PrimitivePutDurationParameters = PrimitivePutDurationMediaTypesParam &
+  PrimitivePutDurationBodyParam &
   RequestParameters;
-export type PrimitivegetByteParameters = RequestParameters;
+export type PrimitiveGetByteParameters = RequestParameters;
 
-export interface PrimitiveputByteBodyParam {
+export interface PrimitivePutByteBodyParam {
   /** Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6) */
   body: ByteWrapper;
 }
 
-export interface PrimitiveputByteMediaTypesParam {
+export interface PrimitivePutByteMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PrimitiveputByteParameters = PrimitiveputByteMediaTypesParam &
-  PrimitiveputByteBodyParam &
+export type PrimitivePutByteParameters = PrimitivePutByteMediaTypesParam &
+  PrimitivePutByteBodyParam &
   RequestParameters;
-export type ArraygetValidParameters = RequestParameters;
+export type ArrayGetValidParameters = RequestParameters;
 
-export interface ArrayputValidBodyParam {
+export interface ArrayPutValidBodyParam {
   /** Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The quick brown fox jumps over the lazy dog" */
   body: ArrayWrapper;
 }
 
-export interface ArrayputValidMediaTypesParam {
+export interface ArrayPutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type ArrayputValidParameters = ArrayputValidMediaTypesParam &
-  ArrayputValidBodyParam &
+export type ArrayPutValidParameters = ArrayPutValidMediaTypesParam &
+  ArrayPutValidBodyParam &
   RequestParameters;
-export type ArraygetEmptyParameters = RequestParameters;
+export type ArrayGetEmptyParameters = RequestParameters;
 
-export interface ArrayputEmptyBodyParam {
+export interface ArrayPutEmptyBodyParam {
   /** Please put an empty array */
   body: ArrayWrapper;
 }
 
-export interface ArrayputEmptyMediaTypesParam {
+export interface ArrayPutEmptyMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type ArrayputEmptyParameters = ArrayputEmptyMediaTypesParam &
-  ArrayputEmptyBodyParam &
+export type ArrayPutEmptyParameters = ArrayPutEmptyMediaTypesParam &
+  ArrayPutEmptyBodyParam &
   RequestParameters;
-export type ArraygetNotProvidedParameters = RequestParameters;
-export type DictionarygetValidParameters = RequestParameters;
+export type ArrayGetNotProvidedParameters = RequestParameters;
+export type DictionaryGetValidParameters = RequestParameters;
 
-export interface DictionaryputValidBodyParam {
+export interface DictionaryPutValidBodyParam {
   /** Please put a dictionary with 5 key-value pairs: "txt":"notepad", "bmp":"mspaint", "xls":"excel", "exe":"", "":null */
   body: DictionaryWrapper;
 }
 
-export interface DictionaryputValidMediaTypesParam {
+export interface DictionaryPutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type DictionaryputValidParameters = DictionaryputValidMediaTypesParam &
-  DictionaryputValidBodyParam &
+export type DictionaryPutValidParameters = DictionaryPutValidMediaTypesParam &
+  DictionaryPutValidBodyParam &
   RequestParameters;
-export type DictionarygetEmptyParameters = RequestParameters;
+export type DictionaryGetEmptyParameters = RequestParameters;
 
-export interface DictionaryputEmptyBodyParam {
+export interface DictionaryPutEmptyBodyParam {
   /** Please put an empty dictionary */
   body: DictionaryWrapper;
 }
 
-export interface DictionaryputEmptyMediaTypesParam {
+export interface DictionaryPutEmptyMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type DictionaryputEmptyParameters = DictionaryputEmptyMediaTypesParam &
-  DictionaryputEmptyBodyParam &
+export type DictionaryPutEmptyParameters = DictionaryPutEmptyMediaTypesParam &
+  DictionaryPutEmptyBodyParam &
   RequestParameters;
-export type DictionarygetNullParameters = RequestParameters;
-export type DictionarygetNotProvidedParameters = RequestParameters;
-export type InheritancegetValidParameters = RequestParameters;
+export type DictionaryGetNullParameters = RequestParameters;
+export type DictionaryGetNotProvidedParameters = RequestParameters;
+export type InheritanceGetValidParameters = RequestParameters;
 
-export interface InheritanceputValidBodyParam {
+export interface InheritancePutValidBodyParam {
   /** Please put a siamese with id=2, name="Siameee", color=green, breed=persion, which hates 2 dogs, the 1st one named "Potato" with id=1 and food="tomato", and the 2nd one named "Tomato" with id=-1 and food="french fries". */
   body: Siamese;
 }
 
-export interface InheritanceputValidMediaTypesParam {
+export interface InheritancePutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type InheritanceputValidParameters = InheritanceputValidMediaTypesParam &
-  InheritanceputValidBodyParam &
+export type InheritancePutValidParameters = InheritancePutValidMediaTypesParam &
+  InheritancePutValidBodyParam &
   RequestParameters;
-export type PolymorphismgetValidParameters = RequestParameters;
+export type PolymorphismGetValidParameters = RequestParameters;
 
-export interface PolymorphismputValidBodyParam {
+export interface PolymorphismPutValidBodyParam {
   /**
    * Please put a salmon that looks like this:
    * {
@@ -326,46 +326,46 @@ export interface PolymorphismputValidBodyParam {
   body: Fish;
 }
 
-export interface PolymorphismputValidMediaTypesParam {
+export interface PolymorphismPutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PolymorphismputValidParameters = PolymorphismputValidMediaTypesParam &
-  PolymorphismputValidBodyParam &
+export type PolymorphismPutValidParameters = PolymorphismPutValidMediaTypesParam &
+  PolymorphismPutValidBodyParam &
   RequestParameters;
-export type PolymorphismgetDotSyntaxParameters = RequestParameters;
-export type PolymorphismgetComposedWithDiscriminatorParameters = RequestParameters;
-export type PolymorphismgetComposedWithoutDiscriminatorParameters = RequestParameters;
-export type PolymorphismgetComplicatedParameters = RequestParameters;
+export type PolymorphismGetDotSyntaxParameters = RequestParameters;
+export type PolymorphismGetComposedWithDiscriminatorParameters = RequestParameters;
+export type PolymorphismGetComposedWithoutDiscriminatorParameters = RequestParameters;
+export type PolymorphismGetComplicatedParameters = RequestParameters;
 
-export interface PolymorphismputComplicatedBodyParam {
+export interface PolymorphismPutComplicatedBodyParam {
   body: Salmon;
 }
 
-export interface PolymorphismputComplicatedMediaTypesParam {
+export interface PolymorphismPutComplicatedMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PolymorphismputComplicatedParameters = PolymorphismputComplicatedMediaTypesParam &
-  PolymorphismputComplicatedBodyParam &
+export type PolymorphismPutComplicatedParameters = PolymorphismPutComplicatedMediaTypesParam &
+  PolymorphismPutComplicatedBodyParam &
   RequestParameters;
 
-export interface PolymorphismputMissingDiscriminatorBodyParam {
+export interface PolymorphismPutMissingDiscriminatorBodyParam {
   body: Salmon;
 }
 
-export interface PolymorphismputMissingDiscriminatorMediaTypesParam {
+export interface PolymorphismPutMissingDiscriminatorMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PolymorphismputMissingDiscriminatorParameters = PolymorphismputMissingDiscriminatorMediaTypesParam &
-  PolymorphismputMissingDiscriminatorBodyParam &
+export type PolymorphismPutMissingDiscriminatorParameters = PolymorphismPutMissingDiscriminatorMediaTypesParam &
+  PolymorphismPutMissingDiscriminatorBodyParam &
   RequestParameters;
 
-export interface PolymorphismputValidMissingRequiredBodyParam {
+export interface PolymorphismPutValidMissingRequiredBodyParam {
   /**
    * Please attempt put a sawshark that looks like this, the client should not allow this data to be sent:
    * {
@@ -397,17 +397,17 @@ export interface PolymorphismputValidMissingRequiredBodyParam {
   body: Fish;
 }
 
-export interface PolymorphismputValidMissingRequiredMediaTypesParam {
+export interface PolymorphismPutValidMissingRequiredMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PolymorphismputValidMissingRequiredParameters = PolymorphismputValidMissingRequiredMediaTypesParam &
-  PolymorphismputValidMissingRequiredBodyParam &
+export type PolymorphismPutValidMissingRequiredParameters = PolymorphismPutValidMissingRequiredMediaTypesParam &
+  PolymorphismPutValidMissingRequiredBodyParam &
   RequestParameters;
-export type PolymorphicrecursivegetValidParameters = RequestParameters;
+export type PolymorphicrecursiveGetValidParameters = RequestParameters;
 
-export interface PolymorphicrecursiveputValidBodyParam {
+export interface PolymorphicrecursivePutValidBodyParam {
   /**
    * Please put a salmon that looks like this:
    * {
@@ -466,26 +466,26 @@ export interface PolymorphicrecursiveputValidBodyParam {
   body: Fish;
 }
 
-export interface PolymorphicrecursiveputValidMediaTypesParam {
+export interface PolymorphicrecursivePutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type PolymorphicrecursiveputValidParameters = PolymorphicrecursiveputValidMediaTypesParam &
-  PolymorphicrecursiveputValidBodyParam &
+export type PolymorphicrecursivePutValidParameters = PolymorphicrecursivePutValidMediaTypesParam &
+  PolymorphicrecursivePutValidBodyParam &
   RequestParameters;
-export type ReadonlypropertygetValidParameters = RequestParameters;
+export type ReadonlypropertyGetValidParameters = RequestParameters;
 
-export interface ReadonlypropertyputValidBodyParam {
+export interface ReadonlypropertyPutValidBodyParam {
   body: ReadonlyObj;
 }
 
-export interface ReadonlypropertyputValidMediaTypesParam {
+export interface ReadonlypropertyPutValidMediaTypesParam {
   /** Request content type */
   contentType?: "application/json";
 }
 
-export type ReadonlypropertyputValidParameters = ReadonlypropertyputValidMediaTypesParam &
-  ReadonlypropertyputValidBodyParam &
+export type ReadonlypropertyPutValidParameters = ReadonlypropertyPutValidMediaTypesParam &
+  ReadonlypropertyPutValidBodyParam &
   RequestParameters;
-export type FlattencomplexgetValidParameters = RequestParameters;
+export type FlattencomplexGetValidParameters = RequestParameters;

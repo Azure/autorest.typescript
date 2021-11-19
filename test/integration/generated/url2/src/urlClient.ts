@@ -49,8 +49,8 @@ export class UrlClient extends coreClient.ServiceClient {
     super(optionsWithDefaults);
     // Parameter assignments
     this.$host = $host;
-    this.gET = new GETImpl(this);
+    this.GET = new GETImpl(this);
   }
 
-  gET: GET;
+  GET: GET;
 }

@@ -110,28 +110,10 @@ export const UserDelegationKey: coreClient.CompositeMapper = {
 };
 
 export const DataLakeStorageError: coreClient.CompositeMapper = {
-  serializedName: "DataLakeStorageError",
-  type: {
-    name: "Composite",
-    className: "DataLakeStorageError",
-    modelProperties: {
-      dataLakeStorageErrorDetails: {
-        serializedName: "error",
-        xmlName: "error",
-        type: {
-          name: "Composite",
-          className: "DataLakeStorageErrorError"
-        }
-      }
-    }
-  }
-};
-
-export const DataLakeStorageErrorError: coreClient.CompositeMapper = {
   serializedName: "DataLakeStorageErrorError",
   type: {
     name: "Composite",
-    className: "DataLakeStorageErrorError",
+    className: "DataLakeStorageError",
     modelProperties: {
       code: {
         serializedName: "Code",
@@ -220,7 +202,7 @@ export const BlobItemInternal: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      isCurrentVersion: {
+      IsCurrentVersion: {
         serializedName: "IsCurrentVersion",
         xmlName: "IsCurrentVersion",
         type: {
@@ -521,7 +503,7 @@ export const BlobPropertiesInternal: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isSealed: {
+      IsSealed: {
         serializedName: "Sealed",
         xmlName: "Sealed",
         type: {
@@ -1980,7 +1962,7 @@ export const PageBlobUploadPagesHeaders: coreClient.CompositeMapper = {
           name: "ByteArray"
         }
       },
-      xMsContentCrc64: {
+      XMsContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -2022,7 +2004,7 @@ export const PageBlobUploadPagesHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
@@ -2105,14 +2087,14 @@ export const BlockBlobStageBlockHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      xMsContentCrc64: {
+      XMsContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
           name: "ByteArray"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
@@ -2216,7 +2198,7 @@ export const BlockBlobUploadHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
@@ -2320,7 +2302,7 @@ export const BlockBlobPutBlobFromUrlHeaders: coreClient.CompositeMapper = {
           name: "DateTimeRfc1123"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {
@@ -2389,7 +2371,7 @@ export const AppendBlobAppendBlockHeaders: coreClient.CompositeMapper = {
           name: "ByteArray"
         }
       },
-      xMsContentCrc64: {
+      XMsContentCrc64: {
         serializedName: "x-ms-content-crc64",
         xmlName: "x-ms-content-crc64",
         type: {
@@ -2438,7 +2420,7 @@ export const AppendBlobAppendBlockHeaders: coreClient.CompositeMapper = {
           name: "Number"
         }
       },
-      isServerEncrypted: {
+      IsServerEncrypted: {
         serializedName: "x-ms-request-server-encrypted",
         xmlName: "x-ms-request-server-encrypted",
         type: {

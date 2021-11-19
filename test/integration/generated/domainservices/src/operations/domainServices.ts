@@ -455,8 +455,8 @@ export class DomainServicesImpl implements DomainServices {
   }
 
   /**
-   * listNext
-   * @param nextLink The nextLink from the previous successful call to the list method.
+   * ListNext
+   * @param nextLink The nextLink from the previous successful call to the List method.
    * @param options The options parameters.
    */
   private _listNext(
@@ -470,10 +470,10 @@ export class DomainServicesImpl implements DomainServices {
   }
 
   /**
-   * listByResourceGroupNext
+   * ListByResourceGroupNext
    * @param resourceGroupName The name of the resource group within the user's subscription. The name is
    *                          case insensitive.
-   * @param nextLink The nextLink from the previous successful call to the listByResourceGroup method.
+   * @param nextLink The nextLink from the previous successful call to the ListByResourceGroup method.
    * @param options The options parameters.
    */
   private _listByResourceGroupNext(
