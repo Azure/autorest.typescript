@@ -11,7 +11,7 @@ import { Applications } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   Application,
   ApplicationsListNextOptionalParams,
@@ -51,13 +51,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Applications operations. */
 export class ApplicationsImpl implements Applications {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class Applications class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

@@ -49,7 +49,7 @@ describe("LROs", () => {
       };
       client = new LROClient(clientOptions);
       client.pipeline.addPolicy(customPolicy);
-      const poller = await client.lROs.beginPut200Succeeded({
+      const poller = await client.LROs.beginPut200Succeeded({
         ...LROOptions,
         requestOptions: {},
         onResponse: rawResponse => {
@@ -92,7 +92,7 @@ describe("LROs", () => {
       client = new LROClient(clientOptions);
       client.pipeline.addPolicy(customPolicy);
 
-      const poller = await client.lROs.beginPut200Succeeded({
+      const poller = await client.LROs.beginPut200Succeeded({
         ...LROOptions,
         onResponse: rawResponse => {
           // Verify that a default policy was executed
@@ -114,7 +114,7 @@ describe("LROs", () => {
   describe("serialized state", () => {
     let state: any, serializedState: string;
     it("should handle serializing the state", async () => {
-      const poller = await client.lROs.beginPut200Succeeded(LROOptions);
+      const poller = await client.LROs.beginPut200Succeeded(LROOptions);
       poller.onProgress(currentState => {
         if (state === undefined && serializedState === undefined) {
           state = currentState;
@@ -129,12 +129,12 @@ describe("LROs", () => {
 
   describe("BodyPolling Strategy", () => {
     it("should handle initial response with terminal state through an Azure Resource", async () => {
-      const result = await client.lROs.beginPut200SucceededAndWait(LROOptions);
+      const result = await client.LROs.beginPut200SucceededAndWait(LROOptions);
       assert.equal(result.provisioningState, "Succeeded");
     });
 
     it("should handle initial response with terminal state without provisioning State", async () => {
-      const result = await client.lROs.beginPut200SucceededNoStateAndWait(
+      const result = await client.LROs.beginPut200SucceededNoStateAndWait(
         LROOptions
       );
       assert.deepEqual(result.id, "100");
@@ -142,7 +142,7 @@ describe("LROs", () => {
     });
 
     it("should handle initial response creating followed by success through an Azure Resource", async () => {
-      const result = await client.lROs.beginPut201CreatingSucceeded200AndWait(
+      const result = await client.LROs.beginPut201CreatingSucceeded200AndWait(
         LROOptions
       );
       assert.deepEqual(result.provisioningState, "Succeeded");
@@ -152,7 +152,7 @@ describe("LROs", () => {
 
     it("should handle put200Acceptedcanceled200", async () => {
       try {
-        await client.lROs.beginPut200Acceptedcanceled200AndWait(LROOptions);
+        await client.LROs.beginPut200Acceptedcanceled200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -163,7 +163,7 @@ describe("LROs", () => {
     });
 
     it("should handle put200UpdatingSucceeded204", async () => {
-      const result = await client.lROs.beginPut200UpdatingSucceeded204AndWait(
+      const result = await client.LROs.beginPut200UpdatingSucceeded204AndWait(
         LROOptions
       );
       assert.deepEqual(result.provisioningState, "Succeeded");
@@ -173,7 +173,7 @@ describe("LROs", () => {
 
     it("should handle put201CreatingFailed200", async () => {
       try {
-        await client.lROs.beginPut201CreatingFailed200AndWait(LROOptions);
+        await client.LROs.beginPut201CreatingFailed200AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -186,13 +186,13 @@ describe("LROs", () => {
 
   describe("Location Strategy", () => {
     it("should handle post202Retry200", async () => {
-      await client.lROs.beginPost202Retry200AndWait(LROOptions);
+      await client.LROs.beginPost202Retry200AndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle post202NoRetry204", async () => {
       try {
-        await client.lROs.beginPost202NoRetry204AndWait(LROOptions);
+        await client.LROs.beginPost202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -204,7 +204,7 @@ describe("LROs", () => {
 
     it("should handle deleteNoHeaderInRetry", async () => {
       try {
-        await client.lROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
+        await client.LROs.beginDeleteNoHeaderInRetryAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -215,12 +215,12 @@ describe("LROs", () => {
     });
 
     it("should handle put202Retry200", async () => {
-      await client.lROs.beginPut202Retry200AndWait(LROOptions);
+      await client.LROs.beginPut202Retry200AndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle putNoHeaderInRetry", async () => {
-      const result = await client.lROs.beginPutNoHeaderInRetryAndWait(
+      const result = await client.LROs.beginPutNoHeaderInRetryAndWait(
         LROOptions
       );
       assert.equal(result.id, "100");
@@ -229,25 +229,25 @@ describe("LROs", () => {
     });
 
     it("should handle putSubResource", async () => {
-      const result = await client.lROs.beginPutSubResourceAndWait(LROOptions);
+      const result = await client.LROs.beginPutSubResourceAndWait(LROOptions);
       assert.equal(result.id, "100");
       assert.equal(result.provisioningState, "Succeeded");
     });
 
     it("should handle putNonResource", async () => {
-      const result = await client.lROs.beginPutNonResourceAndWait(LROOptions);
+      const result = await client.LROs.beginPutNonResourceAndWait(LROOptions);
       assert.equal(result.id, "100");
       assert.equal(result.name, "sku");
     });
 
     it("should handle delete202Retry200", async () => {
-      await client.lROs.beginDelete202Retry200AndWait(LROOptions);
+      await client.LROs.beginDelete202Retry200AndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle delete202NoRetry204", async () => {
       try {
-        await client.lROs.beginDelete202NoRetry204AndWait(LROOptions);
+        await client.LROs.beginDelete202NoRetry204AndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -258,21 +258,21 @@ describe("LROs", () => {
     });
 
     it("should handle deleteProvisioning202Accepted200Succeeded", async () => {
-      await client.lROs.beginDeleteProvisioning202Accepted200Succeeded(
+      await client.LROs.beginDeleteProvisioning202Accepted200Succeeded(
         LROOptions
       );
       check200(lastResponse);
     });
 
     it("should handle deleteProvisioning202DeletingFailed200", async () => {
-      const result = await client.lROs.beginDeleteProvisioning202DeletingFailed200AndWait(
+      const result = await client.LROs.beginDeleteProvisioning202DeletingFailed200AndWait(
         LROOptions
       );
       assert.equal(result.provisioningState, "Failed");
     });
 
     it("should handle deleteProvisioning202Deletingcanceled200", async () => {
-      const result = await client.lROs.beginDeleteProvisioning202Deletingcanceled200AndWait(
+      const result = await client.LROs.beginDeleteProvisioning202Deletingcanceled200AndWait(
         LROOptions
       );
       assert.equal(result.provisioningState, "Canceled");
@@ -281,7 +281,7 @@ describe("LROs", () => {
 
   describe("Passthrough strategy", () => {
     it("should handle delete204Succeeded", async () => {
-      await client.lROs.beginDelete204SucceededAndWait(LROOptions);
+      await client.LROs.beginDelete204SucceededAndWait(LROOptions);
       check204(lastResponse);
     });
   });
@@ -295,7 +295,7 @@ describe("LROs", () => {
     });
 
     it("should handle postDoubleHeadersFinalLocationGet", async () => {
-      const result = await client.lROs.beginPostDoubleHeadersFinalLocationGetAndWait(
+      const result = await client.LROs.beginPostDoubleHeadersFinalLocationGetAndWait(
         LROOptions
       );
       check200(lastResponse);
@@ -304,7 +304,7 @@ describe("LROs", () => {
     });
 
     it("should handle postDoubleHeadersFinalAzureHeaderGet", async () => {
-      const result = await client.lROs.beginPostDoubleHeadersFinalAzureHeaderGetAndWait(
+      const result = await client.LROs.beginPostDoubleHeadersFinalAzureHeaderGetAndWait(
         LROOptions
       );
       check200(lastResponse);
@@ -312,7 +312,7 @@ describe("LROs", () => {
     });
 
     it("should handle post200WithPayload", async () => {
-      const result = await client.lROs.beginPost200WithPayloadAndWait(
+      const result = await client.LROs.beginPost200WithPayloadAndWait(
         LROOptions
       );
       assert.equal(result.id, "1");
@@ -320,7 +320,7 @@ describe("LROs", () => {
     });
 
     it("should handle postDoubleHeadersFinalAzureHeaderGetDefault", async () => {
-      const result = await client.lROs.beginPostDoubleHeadersFinalAzureHeaderGetDefaultAndWait(
+      const result = await client.LROs.beginPostDoubleHeadersFinalAzureHeaderGetDefaultAndWait(
         LROOptions
       );
       check200(lastResponse);
@@ -328,18 +328,18 @@ describe("LROs", () => {
     });
 
     it("should handle deleteAsyncRetrySucceeded", async () => {
-      await client.lROs.beginDeleteAsyncRetrySucceededAndWait(LROOptions);
+      await client.LROs.beginDeleteAsyncRetrySucceededAndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle deleteAsyncNoRetrySucceeded", async () => {
-      await client.lROs.beginDeleteAsyncNoRetrySucceededAndWait(LROOptions);
+      await client.LROs.beginDeleteAsyncNoRetrySucceededAndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle deleteAsyncRetrycanceled", async () => {
       try {
-        await client.lROs.beginDeleteAsyncRetrycanceledAndWait(LROOptions);
+        await client.LROs.beginDeleteAsyncRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -351,7 +351,7 @@ describe("LROs", () => {
 
     it("should handle DeleteAsyncRetryFailed", async () => {
       try {
-        await client.lROs.beginDeleteAsyncRetryFailedAndWait(LROOptions);
+        await client.LROs.beginDeleteAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -362,7 +362,7 @@ describe("LROs", () => {
     });
 
     it("should handle putAsyncRetrySucceeded", async () => {
-      const result = await client.lROs.beginPutAsyncRetrySucceededAndWait(
+      const result = await client.LROs.beginPutAsyncRetrySucceededAndWait(
         LROOptions
       );
       assert.equal(result.id, "100");
@@ -371,7 +371,7 @@ describe("LROs", () => {
     });
 
     it("should handle put201Succeeded", async () => {
-      const result = await client.lROs.beginPut201SucceededAndWait({
+      const result = await client.LROs.beginPut201SucceededAndWait({
         ...LROOptions,
         product: {}
       });
@@ -381,14 +381,14 @@ describe("LROs", () => {
     });
 
     it("should handle post202List", async () => {
-      const result = await client.lROs.beginPost202ListAndWait(LROOptions);
+      const result = await client.LROs.beginPost202ListAndWait(LROOptions);
       assert.equal(result[0].id, "100");
       assert.equal(result[0].name, "foo");
     });
 
     it("should handle putAsyncRetryFailed", async () => {
       try {
-        await client.lROs.beginPutAsyncRetryFailedAndWait(LROOptions);
+        await client.LROs.beginPutAsyncRetryFailedAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -399,7 +399,7 @@ describe("LROs", () => {
     });
 
     it("should handle putAsyncNonResource", async () => {
-      const result = await client.lROs.beginPutAsyncNonResourceAndWait(
+      const result = await client.LROs.beginPutAsyncNonResourceAndWait(
         LROOptions
       );
       assert.equal(result.name, "sku");
@@ -407,7 +407,7 @@ describe("LROs", () => {
     });
 
     it("should handle putAsyncNoHeaderInRetry", async () => {
-      const result = await client.lROs.beginPutAsyncNoHeaderInRetryAndWait(
+      const result = await client.LROs.beginPutAsyncNoHeaderInRetryAndWait(
         LROOptions
       );
       assert.equal(result.name, "foo");
@@ -417,7 +417,7 @@ describe("LROs", () => {
     });
 
     it("should handle putAsyncNoRetrySucceeded", async () => {
-      const result = await client.lROs.beginPutAsyncNoRetrySucceededAndWait(
+      const result = await client.LROs.beginPutAsyncNoRetrySucceededAndWait(
         LROOptions
       );
       assert.equal(result.name, "foo");
@@ -426,7 +426,7 @@ describe("LROs", () => {
 
     it("should handle putAsyncNoRetrycanceled", async () => {
       try {
-        await client.lROs.beginPutAsyncNoRetrycanceledAndWait(LROOptions);
+        await client.LROs.beginPutAsyncNoRetrycanceledAndWait(LROOptions);
         throw new Error("should have thrown instead");
       } catch (e) {
         assert.equal(
@@ -437,7 +437,7 @@ describe("LROs", () => {
     });
 
     it("should handle putAsyncSubResource", async () => {
-      const result = await client.lROs.beginPutAsyncSubResourceAndWait(
+      const result = await client.LROs.beginPutAsyncSubResourceAndWait(
         LROOptions
       );
       assert.equal(result.id, "100");
@@ -445,12 +445,12 @@ describe("LROs", () => {
     });
 
     it("should handle deleteAsyncNoHeaderInRetry", async () => {
-      await client.lROs.beginDeleteAsyncNoHeaderInRetryAndWait(LROOptions);
+      await client.LROs.beginDeleteAsyncNoHeaderInRetryAndWait(LROOptions);
       check200(lastResponse);
     });
 
     it("should handle postAsyncNoRetrySucceeded", async () => {
-      const result = await client.lROs.beginPostAsyncNoRetrySucceededAndWait({
+      const result = await client.LROs.beginPostAsyncNoRetrySucceededAndWait({
         ...LROOptions,
         product
       });
@@ -459,7 +459,7 @@ describe("LROs", () => {
 
     it("should handle postAsyncRetryFailed", async () => {
       try {
-        await client.lROs.beginPostAsyncRetryFailedAndWait({
+        await client.LROs.beginPostAsyncRetryFailedAndWait({
           ...LROOptions,
           product
         });
@@ -473,7 +473,7 @@ describe("LROs", () => {
     });
 
     it("should handle postAsyncRetrySucceeded", async () => {
-      const result = await client.lROs.beginPostAsyncRetrySucceededAndWait({
+      const result = await client.LROs.beginPostAsyncRetrySucceededAndWait({
         ...LROOptions,
         product
       });
@@ -482,7 +482,7 @@ describe("LROs", () => {
 
     it("should handle postAsyncRetrycanceled", async () => {
       try {
-        await client.lROs.beginPostAsyncRetrycanceledAndWait({
+        await client.LROs.beginPostAsyncRetrycanceledAndWait({
           ...LROOptions,
           product
         });
@@ -514,7 +514,7 @@ describe("Custom Headers", () => {
   });
 
   it("should handle putAsyncRetrySucceeded with customheaders ", async () => {
-    const result = await client.lROsCustomHeader.beginPutAsyncRetrySucceededAndWait(
+    const result = await client.LROsCustomHeader.beginPutAsyncRetrySucceededAndWait(
       options
     );
     assert.deepInclude(result.provisioningState, "Succeeded");
@@ -523,12 +523,12 @@ describe("Custom Headers", () => {
   });
 
   it("should handle postAsyncRetrySucceeded with customheaders ", async () => {
-    await client.lROsCustomHeader.beginPostAsyncRetrySucceededAndWait(options);
+    await client.LROsCustomHeader.beginPostAsyncRetrySucceededAndWait(options);
     check200(lastResponse);
   });
 
   it("should handle put201CreatingSucceeded200 with customheaders ", async () => {
-    const result = await client.lROsCustomHeader.beginPut201CreatingSucceeded200AndWait(
+    const result = await client.LROsCustomHeader.beginPut201CreatingSucceeded200AndWait(
       options
     );
     assert.equal(result.provisioningState, "Succeeded");
@@ -537,7 +537,7 @@ describe("Custom Headers", () => {
   });
 
   it("should handle post202Retry200 with customheaders ", async () => {
-    await client.lROsCustomHeader.beginPost202Retry200AndWait(options);
+    await client.LROsCustomHeader.beginPost202Retry200AndWait(options);
     check200(lastResponse);
   });
 });
@@ -801,7 +801,7 @@ describe("LRORetries", () => {
   });
 
   it("should retry put201CreatingSucceeded200", async () => {
-    const result = await client.lRORetrys.beginPut201CreatingSucceeded200AndWait(
+    const result = await client.LRORetrys.beginPut201CreatingSucceeded200AndWait(
       LROOptions
     );
     assert.equal(result.provisioningState, "Succeeded");
@@ -810,7 +810,7 @@ describe("LRORetries", () => {
   });
 
   it("should retry putAsyncRelativeRetrySucceeded", async () => {
-    const result = await client.lRORetrys.beginPutAsyncRelativeRetrySucceededAndWait(
+    const result = await client.LRORetrys.beginPutAsyncRelativeRetrySucceededAndWait(
       LROOptions
     );
     assert.equal(result.provisioningState, "Succeeded");
@@ -819,7 +819,7 @@ describe("LRORetries", () => {
   });
 
   it("should retry deleteProvisioning202Accepted200Succeeded", async () => {
-    const result = await client.lRORetrys.beginDeleteProvisioning202Accepted200SucceededAndWait(
+    const result = await client.LRORetrys.beginDeleteProvisioning202Accepted200SucceededAndWait(
       LROOptions
     );
     assert.equal(result.provisioningState, "Succeeded");
@@ -828,24 +828,24 @@ describe("LRORetries", () => {
   });
 
   it("should retry delete202Retry200", async () => {
-    await client.lRORetrys.beginDelete202Retry200AndWait(LROOptions);
+    await client.LRORetrys.beginDelete202Retry200AndWait(LROOptions);
     check200(lastResponse);
   });
 
   it("should retry deleteAsyncRelativeRetrySucceeded", async () => {
-    await client.lRORetrys.beginDeleteAsyncRelativeRetrySucceededAndWait(
+    await client.LRORetrys.beginDeleteAsyncRelativeRetrySucceededAndWait(
       LROOptions
     );
     check200(lastResponse);
   });
 
   it("should retry post202Retry200", async () => {
-    await client.lRORetrys.beginPost202Retry200AndWait(LROOptions);
+    await client.LRORetrys.beginPost202Retry200AndWait(LROOptions);
     check200(lastResponse);
   });
 
   it("should retry postAsyncRelativeRetrySucceeded", async () => {
-    await client.lRORetrys.beginPostAsyncRelativeRetrySucceededAndWait(
+    await client.LRORetrys.beginPostAsyncRelativeRetrySucceededAndWait(
       LROOptions
     );
     check200(lastResponse);

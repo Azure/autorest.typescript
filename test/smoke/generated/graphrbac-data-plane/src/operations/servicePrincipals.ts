@@ -11,7 +11,7 @@ import { ServicePrincipals } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   ServicePrincipal,
   ServicePrincipalsListNextOptionalParams,
@@ -46,13 +46,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ServicePrincipals operations. */
 export class ServicePrincipalsImpl implements ServicePrincipals {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class ServicePrincipals class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

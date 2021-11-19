@@ -141,7 +141,9 @@ export declare interface Subscription {
     managedByTenants?: ManagedByTenant[];
 }
 
-export declare class SubscriptionClient extends SubscriptionClientContext {
+export declare class SubscriptionClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
     /**
      * Initializes a new instance of the SubscriptionClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -151,17 +153,6 @@ export declare class SubscriptionClient extends SubscriptionClientContext {
     operations: Operations;
     subscriptions: Subscriptions;
     tenants: Tenants;
-}
-
-export declare class SubscriptionClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    /**
-     * Initializes a new instance of the SubscriptionClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
 }
 
 /** Optional parameters. */

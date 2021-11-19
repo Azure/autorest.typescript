@@ -241,7 +241,7 @@ describe("AzureSpecialProperties", () => {
 
     it("should overwrite x-ms-client-request-id, paramGet", async function() {
       let _response: FullOperationResponse;
-      await client.xMsClientRequestId.paramGet(validClientId, {
+      await client.XMsClientRequestId.paramGet(validClientId, {
         ...responseStatusChecker,
         onResponse: r => {
           _response = r;
@@ -263,7 +263,7 @@ describe("AzureSpecialProperties", () => {
           _response = r;
         }
       };
-      await client.xMsClientRequestId.get(options);
+      await client.XMsClientRequestId.get(options);
       assert.equal(_response!.headers.get("x-ms-request-id"), "123");
     });
 
@@ -281,7 +281,7 @@ describe("AzureSpecialProperties", () => {
       });
 
       let _response: FullOperationResponse;
-      await client.xMsClientRequestId.get({
+      await client.XMsClientRequestId.get({
         ...responseStatusChecker,
         onResponse: r => {
           _response = r;
@@ -301,7 +301,7 @@ describe("AzureSpecialProperties", () => {
       };
 
       try {
-        await client.xMsClientRequestId.get(options);
+        await client.XMsClientRequestId.get(options);
         assert.fail("Expected error to be thrown");
       } catch (error) {
         const errorHeader = (error as RestError).response?.headers.get(

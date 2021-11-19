@@ -11,7 +11,7 @@ import { ResourceLinks } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagementLinkClientContext } from "../managementLinkClientContext";
+import { ManagementLinkClient } from "../managementLinkClient";
 import {
   ResourceLink,
   ResourceLinksListAtSubscriptionNextOptionalParams,
@@ -32,13 +32,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing ResourceLinks operations. */
 export class ResourceLinksImpl implements ResourceLinks {
-  private readonly client: ManagementLinkClientContext;
+  private readonly client: ManagementLinkClient;
 
   /**
    * Initialize a new instance of the class ResourceLinks class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagementLinkClientContext) {
+  constructor(client: ManagementLinkClient) {
     this.client = client;
   }
 

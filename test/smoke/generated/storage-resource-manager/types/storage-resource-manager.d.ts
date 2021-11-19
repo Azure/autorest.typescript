@@ -16,7 +16,7 @@ export declare interface AccountSasParameters {
     /** The signed permissions for the account SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
     permissions: Permissions_2;
     /** An IP address or a range of IP addresses from which to accept requests. */
-    iPAddressOrRange?: string;
+    IPAddressOrRange?: string;
     /** The protocol permitted for a request made with the account SAS. */
     protocols?: HttpProtocol;
     /** The time at which the SAS becomes valid. */
@@ -1458,7 +1458,7 @@ export declare type ImmutabilityPolicyUpdateType = string;
 /** IP rule with specific IP or IP range in CIDR format. */
 export declare interface IPRule {
     /** Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed. */
-    iPAddressOrRange: string;
+    IPAddressOrRange: string;
     /** The action of IP ACL rule. */
     action?: "Allow";
 }
@@ -2599,7 +2599,7 @@ export declare interface ServiceSasParameters {
     /** The signed permissions for the service SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
     permissions?: Permissions_2;
     /** An IP address or a range of IP addresses from which to accept requests. */
-    iPAddressOrRange?: string;
+    IPAddressOrRange?: string;
     /** The protocol permitted for a request made with the account SAS. */
     protocols?: HttpProtocol;
     /** The time at which the SAS becomes valid. */
@@ -2851,7 +2851,7 @@ export declare type StorageAccount = TrackedResource & {
      */
     readonly networkRuleSet?: NetworkRuleSet;
     /** Account HierarchicalNamespace enabled if sets to true. */
-    isHnsEnabled?: boolean;
+    IsHnsEnabled?: boolean;
     /**
      * Geo Replication Stats
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -2913,7 +2913,7 @@ export declare interface StorageAccountCreateParameters {
     /** Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01. */
     enableHttpsTrafficOnly?: boolean;
     /** Account HierarchicalNamespace enabled if sets to true. */
-    isHnsEnabled?: boolean;
+    IsHnsEnabled?: boolean;
     /** Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled. */
     largeFileSharesState?: LargeFileSharesState;
     /** Maintains information about the network routing choice opted by the user for data transfer */
@@ -3362,7 +3362,10 @@ export declare interface StorageAccountUpdateParameters {
     routingPreference?: RoutingPreference;
 }
 
-export declare class StorageManagementClient extends StorageManagementClientContext {
+export declare class StorageManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the StorageManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -3383,19 +3386,6 @@ export declare class StorageManagementClient extends StorageManagementClientCont
     blobContainers: BlobContainers;
     fileServices: FileServices;
     fileShares: FileShares;
-}
-
-export declare class StorageManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the StorageManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

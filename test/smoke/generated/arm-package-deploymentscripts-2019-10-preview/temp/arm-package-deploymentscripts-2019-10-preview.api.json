@@ -1767,9 +1767,13 @@
               "text": "export declare class DeploymentScriptsClient extends "
             },
             {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
               "kind": "Reference",
-              "text": "DeploymentScriptsClientContext",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class"
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -1847,134 +1851,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#deploymentScripts:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "deploymentScripts: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DeploymentScripts",
-                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "deploymentScripts",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            }
-          ],
-          "extendsTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          },
-          "implementsTokenRanges": []
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class DeploymentScriptsClientContext extends "
-            },
-            {
-              "kind": "Content",
-              "text": "coreClient."
-            },
-            {
-              "kind": "Reference",
-              "text": "ServiceClient",
-              "canonicalReference": "@azure/core-client!ServiceClient:class"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "DeploymentScriptsClientContext",
-          "members": [
-            {
-              "kind": "Constructor",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext:constructor(1)",
-              "docComment": "/**\n * Initializes a new instance of the DeploymentScriptsClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription Id which forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor(credentials: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreAuth."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TokenCredential",
-                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", subscriptionId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "DeploymentScriptsClientOptionalParams",
-                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "credentials",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                },
-                {
-                  "parameterName": "subscriptionId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 4,
-                    "endIndex": 5
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#$host:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#$host:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -2001,7 +1878,7 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#apiVersion:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#apiVersion:member",
               "docComment": "",
               "excerptTokens": [
                 {
@@ -2028,7 +1905,35 @@
             },
             {
               "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#deploymentScripts:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "deploymentScripts: "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "DeploymentScripts",
+                  "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScripts:interface"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "deploymentScripts",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@msinternal/arm-package-deploymentscripts-2019-10-preview!DeploymentScriptsClient#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {

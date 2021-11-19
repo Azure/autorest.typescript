@@ -498,7 +498,7 @@ export const StorageAccountCreateParameters: coreClient.CompositeMapper = {
           name: "Boolean"
         }
       },
-      isHnsEnabled: {
+      IsHnsEnabled: {
         serializedName: "properties.isHnsEnabled",
         type: {
           name: "Boolean"
@@ -826,7 +826,7 @@ export const IPRule: coreClient.CompositeMapper = {
     name: "Composite",
     className: "IPRule",
     modelProperties: {
-      iPAddressOrRange: {
+      IPAddressOrRange: {
         serializedName: "value",
         required: true,
         type: {
@@ -1594,7 +1594,7 @@ export const AccountSasParameters: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      iPAddressOrRange: {
+      IPAddressOrRange: {
         serializedName: "signedIp",
         type: {
           name: "String"
@@ -1670,7 +1670,7 @@ export const ServiceSasParameters: coreClient.CompositeMapper = {
           name: "String"
         }
       },
-      iPAddressOrRange: {
+      IPAddressOrRange: {
         serializedName: "signedIp",
         type: {
           name: "String"
@@ -3310,7 +3310,7 @@ export const StorageAccount: coreClient.CompositeMapper = {
           className: "NetworkRuleSet"
         }
       },
-      isHnsEnabled: {
+      IsHnsEnabled: {
         serializedName: "properties.isHnsEnabled",
         type: {
           name: "Boolean"

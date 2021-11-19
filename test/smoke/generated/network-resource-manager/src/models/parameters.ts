@@ -1440,13 +1440,13 @@ export const virtualWANName1: OperationURLParameter = {
   }
 };
 
-export const wANParameters: OperationParameter = {
-  parameterPath: "wANParameters",
+export const WANParameters: OperationParameter = {
+  parameterPath: "WANParameters",
   mapper: VirtualWANMapper
 };
 
-export const wANParameters1: OperationParameter = {
-  parameterPath: "wANParameters",
+export const WANParameters1: OperationParameter = {
+  parameterPath: "WANParameters",
   mapper: TagsObjectMapper
 };
 

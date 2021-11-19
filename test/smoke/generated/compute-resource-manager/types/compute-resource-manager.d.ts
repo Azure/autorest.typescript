@@ -347,7 +347,9 @@ export declare interface ComponentsNj115SSchemasVirtualmachinescalesetidentityPr
     readonly clientId?: string;
 }
 
-export declare class ComputeManagementClient extends ComputeManagementClientContext {
+export declare class ComputeManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the ComputeManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -386,19 +388,6 @@ export declare class ComputeManagementClient extends ComputeManagementClientCont
     galleryApplications: GalleryApplications;
     galleryApplicationVersions: GalleryApplicationVersions;
     containerServices: ContainerServices;
-}
-
-export declare class ComputeManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the ComputeManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId Subscription credentials which uniquely identify Microsoft Azure subscription.
-     *                       The subscription ID forms part of the URI for every service call.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

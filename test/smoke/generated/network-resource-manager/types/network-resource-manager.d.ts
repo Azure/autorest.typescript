@@ -2776,7 +2776,7 @@ export declare interface BastionSessionState {
 /** Bastion Shareable Link. */
 export declare interface BastionShareableLink {
     /** Reference of the virtual machine resource. */
-    vm: Vm;
+    vm: VM;
     /**
      * The unique Bastion Shareable Link to the virtual machine.
      * NOTE: This property will not be serialized. It can only be populated by the server.
@@ -11213,7 +11213,9 @@ export declare interface NetworkInterfaceTapConfigurationsListOptionalParams ext
 /** Contains response data for the list operation. */
 export declare type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapConfigurationListResult;
 
-export declare class NetworkManagementClient extends NetworkManagementClientContext {
+export declare class NetworkManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the NetworkManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -11475,19 +11477,6 @@ export declare class NetworkManagementClient extends NetworkManagementClientCont
     expressRouteConnections: ExpressRouteConnections;
     hubRouteTables: HubRouteTables;
     webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
-}
-
-export declare class NetworkManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the NetworkManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The subscription credentials which uniquely identify the Microsoft Azure
-     *                       subscription. The subscription ID forms part of the URI for every service call.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: NetworkManagementClientOptionalParams);
 }
 
 /** Optional parameters. */
@@ -19371,26 +19360,26 @@ export declare interface VirtualWans {
      * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
      * @param resourceGroupName The resource group name of the VirtualWan.
      * @param virtualWANName The name of the VirtualWAN being created or updated.
-     * @param wANParameters Parameters supplied to create or update VirtualWAN.
+     * @param WANParameters Parameters supplied to create or update VirtualWAN.
      * @param options The options parameters.
      */
-    beginCreateOrUpdate(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
+    beginCreateOrUpdate(resourceGroupName: string, virtualWANName: string, WANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<PollerLike<PollOperationState<VirtualWansCreateOrUpdateResponse>, VirtualWansCreateOrUpdateResponse>>;
     /**
      * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
      * @param resourceGroupName The resource group name of the VirtualWan.
      * @param virtualWANName The name of the VirtualWAN being created or updated.
-     * @param wANParameters Parameters supplied to create or update VirtualWAN.
+     * @param WANParameters Parameters supplied to create or update VirtualWAN.
      * @param options The options parameters.
      */
-    beginCreateOrUpdateAndWait(resourceGroupName: string, virtualWANName: string, wANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<VirtualWansCreateOrUpdateResponse>;
+    beginCreateOrUpdateAndWait(resourceGroupName: string, virtualWANName: string, WANParameters: VirtualWAN, options?: VirtualWansCreateOrUpdateOptionalParams): Promise<VirtualWansCreateOrUpdateResponse>;
     /**
      * Updates a VirtualWAN tags.
      * @param resourceGroupName The resource group name of the VirtualWan.
      * @param virtualWANName The name of the VirtualWAN being updated.
-     * @param wANParameters Parameters supplied to Update VirtualWAN tags.
+     * @param WANParameters Parameters supplied to Update VirtualWAN tags.
      * @param options The options parameters.
      */
-    updateTags(resourceGroupName: string, virtualWANName: string, wANParameters: TagsObject, options?: VirtualWansUpdateTagsOptionalParams): Promise<VirtualWansUpdateTagsResponse>;
+    updateTags(resourceGroupName: string, virtualWANName: string, WANParameters: TagsObject, options?: VirtualWansUpdateTagsOptionalParams): Promise<VirtualWansUpdateTagsResponse>;
     /**
      * Deletes a VirtualWAN.
      * @param resourceGroupName The resource group name of the VirtualWan.
@@ -19506,7 +19495,7 @@ export declare interface VirtualWanVpnProfileParameters {
 }
 
 /** Describes a Virtual Machine. */
-export declare type Vm = Resource & {};
+export declare type VM = Resource & {};
 
 /** List of routes that control routing from VirtualHub into a virtual network connection. */
 export declare interface VnetRoute {

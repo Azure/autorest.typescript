@@ -937,7 +937,7 @@ export type DeletedApplicationsListNextResponse = ApplicationListResult;
 export interface GroupsIsMemberOfOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the isMemberOf operation. */
+/** Contains response data for the IsMemberOf operation. */
 export type GroupsIsMemberOfResponse = CheckGroupMembershipResult;
 
 /** Optional parameters. */

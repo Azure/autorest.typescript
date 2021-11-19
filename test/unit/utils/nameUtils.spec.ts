@@ -1,7 +1,7 @@
 import * as assert from "assert";
 import { normalizeName, NameType } from "../../../src/utils/nameUtils";
 
-describe.skip("NameUtils", () => {
+describe("NameUtils", () => {
   describe("normalizeName", () => {
     describe("to Class", () => {
       it("should generate property name with PascalCase from all lowercase", () => {

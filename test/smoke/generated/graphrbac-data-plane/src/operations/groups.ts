@@ -11,7 +11,7 @@ import { Groups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   ADGroup,
   GroupsListNextOptionalParams,
@@ -50,13 +50,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Groups operations. */
 export class GroupsImpl implements Groups {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class Groups class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 
@@ -346,13 +346,13 @@ export class GroupsImpl implements Groups {
    * @param parameters The check group membership parameters.
    * @param options The options parameters.
    */
-  isMemberOf(
+  IsMemberOf(
     parameters: CheckGroupMembershipParameters,
     options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse> {
     return this.client.sendOperationRequest(
       { parameters, options },
-      isMemberOfOperationSpec
+      IsMemberOfOperationSpec
     );
   }
 
@@ -578,7 +578,7 @@ export class GroupsImpl implements Groups {
 // Operation Specifications
 const serializer = coreClient.createSerializer(Mappers, /* isXml */ false);
 
-const isMemberOfOperationSpec: coreClient.OperationSpec = {
+const IsMemberOfOperationSpec: coreClient.OperationSpec = {
   path: "/{tenantID}/isMemberOf",
   httpMethod: "POST",
   responses: {

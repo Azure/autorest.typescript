@@ -1076,8 +1076,12 @@ export interface ResourceListResult {
 }
 
 // @public (undocumented)
-export class ResourceManagementClient extends ResourceManagementClientContext {
+export class ResourceManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ResourceManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     deploymentOperations: DeploymentOperations;
     // (undocumented)
@@ -1091,18 +1095,9 @@ export class ResourceManagementClient extends ResourceManagementClientContext {
     // (undocumented)
     resources: Resources;
     // (undocumented)
-    tags: Tags;
-}
-
-// @public (undocumented)
-export class ResourceManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ResourceManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     subscriptionId: string;
+    // (undocumented)
+    tags: Tags;
 }
 
 // @public

@@ -263,14 +263,14 @@ describe("typescript", function() {
 
     it("should get a complex type ref with no XML metadata", async function() {
       const result = await testClient.xml.getComplexTypeRefNoMeta();
-      result.refToModel!.id!.should.equal("myid");
+      result.refToModel!.ID!.should.equal("myid");
       result.something!.should.equal("else");
     });
 
     it("should put a complex type ref with no XML metadata", async function() {
       const arg = {
         refToModel: {
-          id: "myid"
+          ID: "myid"
         },
         something: "else"
       };
@@ -279,14 +279,14 @@ describe("typescript", function() {
 
     it("should get a complex type ref with XML metadata", async function() {
       const result = await testClient.xml.getComplexTypeRefWithMeta();
-      result.refToModel!.id!.should.equal("myid");
+      result.refToModel!.ID!.should.equal("myid");
       result.something!.should.equal("else");
     });
 
     it("should put a complex type ref with XML metadata", async function() {
       const arg = {
         refToModel: {
-          id: "myid"
+          ID: "myid"
         },
         something: "else"
       };

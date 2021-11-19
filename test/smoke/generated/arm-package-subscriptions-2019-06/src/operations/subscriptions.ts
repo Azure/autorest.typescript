@@ -11,7 +11,7 @@ import { Subscriptions } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SubscriptionClientContext } from "../subscriptionClientContext";
+import { SubscriptionClient } from "../subscriptionClient";
 import {
   Location,
   SubscriptionsListLocationsOptionalParams,
@@ -28,13 +28,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Subscriptions operations. */
 export class SubscriptionsImpl implements Subscriptions {
-  private readonly client: SubscriptionClientContext;
+  private readonly client: SubscriptionClient;
 
   /**
    * Initialize a new instance of the class Subscriptions class.
    * @param client Reference to the service client
    */
-  constructor(client: SubscriptionClientContext) {
+  constructor(client: SubscriptionClient) {
     this.client = client;
   }
 

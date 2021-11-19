@@ -569,7 +569,10 @@ export declare interface GraphError {
     message?: string;
 }
 
-export declare class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export declare class GraphRbacManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    tenantID: string;
     /**
      * Initializes a new instance of the GraphRbacManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -586,19 +589,6 @@ export declare class GraphRbacManagementClient extends GraphRbacManagementClient
     objects: Objects;
     domains: Domains;
     oAuth2PermissionGrantOperations: OAuth2PermissionGrantOperations;
-}
-
-export declare class GraphRbacManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    tenantID: string;
-    /**
-     * Initializes a new instance of the GraphRbacManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param tenantID The tenant ID.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
 }
 
 /** Optional parameters. */
@@ -710,7 +700,7 @@ export declare interface Groups {
      * @param parameters The check group membership parameters.
      * @param options The options parameters.
      */
-    isMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
+    IsMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
     /**
      * Remove a member from a group.
      * @param groupObjectId The object ID of the group from which to remove the member.
@@ -812,7 +802,7 @@ export declare type GroupsGetResponse = ADGroup;
 export declare interface GroupsIsMemberOfOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the isMemberOf operation. */
+/** Contains response data for the IsMemberOf operation. */
 export declare type GroupsIsMemberOfResponse = CheckGroupMembershipResult;
 
 /** Optional parameters. */

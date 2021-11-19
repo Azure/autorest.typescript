@@ -11,7 +11,7 @@ import { OAuth2PermissionGrantOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   OAuth2PermissionGrant,
   OAuth2PermissionGrantListNextOptionalParams,
@@ -27,13 +27,13 @@ import {
 /** Class containing OAuth2PermissionGrantOperations operations. */
 export class OAuth2PermissionGrantOperationsImpl
   implements OAuth2PermissionGrantOperations {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class OAuth2PermissionGrantOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

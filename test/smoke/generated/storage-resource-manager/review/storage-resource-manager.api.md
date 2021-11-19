@@ -15,7 +15,7 @@ export type AccessTier = "Hot" | "Cool";
 
 // @public
 export interface AccountSasParameters {
-    iPAddressOrRange?: string;
+    IPAddressOrRange?: string;
     keyToSign?: string;
     permissions: Permissions_2;
     protocols?: HttpProtocol;
@@ -665,7 +665,7 @@ export type ImmutabilityPolicyUpdateType = string;
 // @public
 export interface IPRule {
     action?: "Allow";
-    iPAddressOrRange: string;
+    IPAddressOrRange: string;
 }
 
 // @public
@@ -1441,7 +1441,7 @@ export interface ServiceSasParameters {
     contentLanguage?: string;
     contentType?: string;
     identifier?: string;
-    iPAddressOrRange?: string;
+    IPAddressOrRange?: string;
     keyToSign?: string;
     partitionKeyEnd?: string;
     partitionKeyStart?: string;
@@ -1532,7 +1532,7 @@ export type StorageAccount = TrackedResource & {
     azureFilesIdentityBasedAuthentication?: AzureFilesIdentityBasedAuthentication;
     enableHttpsTrafficOnly?: boolean;
     readonly networkRuleSet?: NetworkRuleSet;
-    isHnsEnabled?: boolean;
+    IsHnsEnabled?: boolean;
     readonly geoReplicationStats?: GeoReplicationStats;
     readonly failoverInProgress?: boolean;
     largeFileSharesState?: LargeFileSharesState;
@@ -1555,7 +1555,7 @@ export interface StorageAccountCreateParameters {
     enableHttpsTrafficOnly?: boolean;
     encryption?: Encryption;
     identity?: Identity;
-    isHnsEnabled?: boolean;
+    IsHnsEnabled?: boolean;
     kind: Kind;
     largeFileSharesState?: LargeFileSharesState;
     location: string;
@@ -1754,8 +1754,12 @@ export interface StorageAccountUpdateParameters {
 }
 
 // @public (undocumented)
-export class StorageManagementClient extends StorageManagementClientContext {
+export class StorageManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     blobContainers: BlobContainers;
     // (undocumented)
@@ -1781,18 +1785,9 @@ export class StorageManagementClient extends StorageManagementClientContext {
     // (undocumented)
     storageAccounts: StorageAccounts;
     // (undocumented)
-    usages: Usages;
-}
-
-// @public (undocumented)
-export class StorageManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     subscriptionId: string;
+    // (undocumented)
+    usages: Usages;
 }
 
 // @public

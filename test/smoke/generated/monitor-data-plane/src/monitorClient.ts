@@ -6,11 +6,11 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import { MetricsImpl } from "./operations";
 import { Metrics } from "./operationsInterfaces";
 import { MonitorClientOptionalParams } from "./models";
-import * as coreClient from "@azure/core-client";
 
 export class MonitorClient extends coreClient.ServiceClient {
   $host: string;

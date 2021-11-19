@@ -10875,18 +10875,18 @@ export declare interface WebApps {
      * Description for Invoke the MSDeploy web app extension.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateMSDeployOperation(resourceGroupName: string, name: string, mSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationResponse>, WebAppsCreateMSDeployOperationResponse>>;
+    beginCreateMSDeployOperation(resourceGroupName: string, name: string, MSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationResponse>, WebAppsCreateMSDeployOperationResponse>>;
     /**
      * Description for Invoke the MSDeploy web app extension.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateMSDeployOperationAndWait(resourceGroupName: string, name: string, mSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationOptionalParams): Promise<WebAppsCreateMSDeployOperationResponse>;
+    beginCreateMSDeployOperationAndWait(resourceGroupName: string, name: string, MSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationOptionalParams): Promise<WebAppsCreateMSDeployOperationResponse>;
     /**
      * Description for Get the MSDeploy Log for the last MSDeploy operation.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11144,19 +11144,19 @@ export declare interface WebApps {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @param instanceId ID of web app instance.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateInstanceMSDeployOperation(resourceGroupName: string, name: string, instanceId: string, mSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>, WebAppsCreateInstanceMSDeployOperationResponse>>;
+    beginCreateInstanceMSDeployOperation(resourceGroupName: string, name: string, instanceId: string, MSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationResponse>, WebAppsCreateInstanceMSDeployOperationResponse>>;
     /**
      * Description for Invoke the MSDeploy web app extension.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @param instanceId ID of web app instance.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateInstanceMSDeployOperationAndWait(resourceGroupName: string, name: string, instanceId: string, mSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationOptionalParams): Promise<WebAppsCreateInstanceMSDeployOperationResponse>;
+    beginCreateInstanceMSDeployOperationAndWait(resourceGroupName: string, name: string, instanceId: string, MSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationOptionalParams): Promise<WebAppsCreateInstanceMSDeployOperationResponse>;
     /**
      * Description for Get the MSDeploy Log for the last MSDeploy operation.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -11214,7 +11214,7 @@ export declare interface WebApps {
      * @param name Name of the app.
      * @param options The options parameters.
      */
-    isCloneable(resourceGroupName: string, name: string, options?: WebAppsIsCloneableOptionalParams): Promise<WebAppsIsCloneableResponse>;
+    IsCloneable(resourceGroupName: string, name: string, options?: WebAppsIsCloneableOptionalParams): Promise<WebAppsIsCloneableResponse>;
     /**
      * Description for This is to allow calling via powershell and ARM template.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -12158,19 +12158,19 @@ export declare interface WebApps {
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @param slot Name of web app slot. If not specified then will default to production slot.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, mSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>, WebAppsCreateMSDeployOperationSlotResponse>>;
+    beginCreateMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, MSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateMSDeployOperationSlotResponse>, WebAppsCreateMSDeployOperationSlotResponse>>;
     /**
      * Description for Invoke the MSDeploy web app extension.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @param slot Name of web app slot. If not specified then will default to production slot.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateMSDeployOperationSlotAndWait(resourceGroupName: string, name: string, slot: string, mSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationSlotOptionalParams): Promise<WebAppsCreateMSDeployOperationSlotResponse>;
+    beginCreateMSDeployOperationSlotAndWait(resourceGroupName: string, name: string, slot: string, MSDeploy: MSDeploy, options?: WebAppsCreateMSDeployOperationSlotOptionalParams): Promise<WebAppsCreateMSDeployOperationSlotResponse>;
     /**
      * Description for Get the MSDeploy Log for the last MSDeploy operation.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -12468,20 +12468,20 @@ export declare interface WebApps {
      * @param name Name of web app.
      * @param slot Name of web app slot. If not specified then will default to production slot.
      * @param instanceId ID of web app instance.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateInstanceMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, mSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>, WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
+    beginCreateInstanceMSDeployOperationSlot(resourceGroupName: string, name: string, slot: string, instanceId: string, MSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams): Promise<PollerLike<PollOperationState<WebAppsCreateInstanceMSDeployOperationSlotResponse>, WebAppsCreateInstanceMSDeployOperationSlotResponse>>;
     /**
      * Description for Invoke the MSDeploy web app extension.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
      * @param name Name of web app.
      * @param slot Name of web app slot. If not specified then will default to production slot.
      * @param instanceId ID of web app instance.
-     * @param mSDeploy Details of MSDeploy operation
+     * @param MSDeploy Details of MSDeploy operation
      * @param options The options parameters.
      */
-    beginCreateInstanceMSDeployOperationSlotAndWait(resourceGroupName: string, name: string, slot: string, instanceId: string, mSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse>;
+    beginCreateInstanceMSDeployOperationSlotAndWait(resourceGroupName: string, name: string, slot: string, instanceId: string, MSDeploy: MSDeploy, options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse>;
     /**
      * Description for Get the MSDeploy Log for the last MSDeploy operation.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -12550,7 +12550,7 @@ export declare interface WebApps {
      *             slot.
      * @param options The options parameters.
      */
-    isCloneableSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsIsCloneableSlotOptionalParams): Promise<WebAppsIsCloneableSlotResponse>;
+    IsCloneableSlot(resourceGroupName: string, name: string, slot: string, options?: WebAppsIsCloneableSlotOptionalParams): Promise<WebAppsIsCloneableSlotResponse>;
     /**
      * Description for This is to allow calling via powershell and ARM template.
      * @param resourceGroupName Name of the resource group to which the resource belongs.
@@ -14920,14 +14920,14 @@ export declare type WebAppsInstallSiteExtensionSlotResponse = SiteExtensionInfo;
 export declare interface WebAppsIsCloneableOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the isCloneable operation. */
+/** Contains response data for the IsCloneable operation. */
 export declare type WebAppsIsCloneableResponse = SiteCloneability;
 
 /** Optional parameters. */
 export declare interface WebAppsIsCloneableSlotOptionalParams extends coreClient.OperationOptions {
 }
 
-/** Contains response data for the isCloneableSlot operation. */
+/** Contains response data for the IsCloneableSlot operation. */
 export declare type WebAppsIsCloneableSlotResponse = SiteCloneability;
 
 /** Optional parameters. */
@@ -16660,7 +16660,10 @@ export declare type WebSiteInstanceStatus = ProxyOnlyResource & {
     };
 };
 
-export declare class WebSiteManagementClient extends WebSiteManagementClientContext {
+export declare class WebSiteManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
+    apiVersion: string;
     /**
      * Initializes a new instance of the WebSiteManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -16847,20 +16850,6 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
     appServiceEnvironments: AppServiceEnvironments;
     appServicePlans: AppServicePlans;
     resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
-}
-
-export declare class WebSiteManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    apiVersion: string;
-    /**
-     * Initializes a new instance of the WebSiteManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId Your Azure subscription ID. This is a GUID-formatted string (e.g.
-     *                       00000000-0000-0000-0000-000000000000).
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

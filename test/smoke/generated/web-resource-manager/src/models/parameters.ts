@@ -881,8 +881,8 @@ export const domainOwnershipIdentifier1: OperationParameter = {
   mapper: IdentifierMapper
 };
 
-export const mSDeploy: OperationParameter = {
-  parameterPath: "mSDeploy",
+export const MSDeploy: OperationParameter = {
+  parameterPath: "MSDeploy",
   mapper: MSDeployMapper
 };
 

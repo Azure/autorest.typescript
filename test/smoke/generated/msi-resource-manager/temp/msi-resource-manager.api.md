@@ -40,25 +40,20 @@ export type IdentityUpdate = Resource & {
 };
 
 // @public (undocumented)
-export class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
-    // (undocumented)
-    operations: Operations;
-    // (undocumented)
-    systemAssignedIdentities: SystemAssignedIdentities;
-    // (undocumented)
-    userAssignedIdentities: UserAssignedIdentities;
-}
-
-// @public (undocumented)
-export class ManagedServiceIdentityClientContext extends coreClient.ServiceClient {
+export class ManagedServiceIdentityClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
     // (undocumented)
     apiVersion: string;
     // (undocumented)
+    operations: Operations;
+    // (undocumented)
     subscriptionId: string;
+    // (undocumented)
+    systemAssignedIdentities: SystemAssignedIdentities;
+    // (undocumented)
+    userAssignedIdentities: UserAssignedIdentities;
 }
 
 // @public

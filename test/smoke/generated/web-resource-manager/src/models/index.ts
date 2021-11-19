@@ -8451,7 +8451,7 @@ export type WebAppsListInstanceProcessThreadsResponse = ProcessThreadInfoCollect
 export interface WebAppsIsCloneableOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the isCloneable operation. */
+/** Contains response data for the IsCloneable operation. */
 export type WebAppsIsCloneableResponse = SiteCloneability;
 
 /** Optional parameters. */
@@ -9575,7 +9575,7 @@ export type WebAppsListInstanceProcessThreadsSlotResponse = ProcessThreadInfoCol
 export interface WebAppsIsCloneableSlotOptionalParams
   extends coreClient.OperationOptions {}
 
-/** Contains response data for the isCloneableSlot operation. */
+/** Contains response data for the IsCloneableSlot operation. */
 export type WebAppsIsCloneableSlotResponse = SiteCloneability;
 
 /** Optional parameters. */

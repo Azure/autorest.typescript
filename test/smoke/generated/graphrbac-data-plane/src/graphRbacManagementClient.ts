@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import {
   SignedInUserImpl,
@@ -29,10 +30,13 @@ import {
   Domains,
   OAuth2PermissionGrantOperations
 } from "./operationsInterfaces";
-import { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
 import { GraphRbacManagementClientOptionalParams } from "./models";
 
-export class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export class GraphRbacManagementClient extends coreClient.ServiceClient {
+  $host: string;
+  apiVersion: string;
+  tenantID: string;
+
   /**
    * Initializes a new instance of the GraphRbacManagementClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -44,7 +48,43 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     tenantID: string,
     options?: GraphRbacManagementClientOptionalParams
   ) {
-    super(credentials, tenantID, options);
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+    if (tenantID === undefined) {
+      throw new Error("'tenantID' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: GraphRbacManagementClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
+
+    const packageDetails = `azsdk-js-graphrbac-data-plane/1.0.0-beta.1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "https://graph.windows.net"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.tenantID = tenantID;
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "https://graph.windows.net";
+    this.apiVersion = options.apiVersion || "1.6";
     this.signedInUser = new SignedInUserImpl(this);
     this.applications = new ApplicationsImpl(this);
     this.deletedApplications = new DeletedApplicationsImpl(this);

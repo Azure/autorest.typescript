@@ -11,7 +11,7 @@ import { WebApps } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
+import { WebSiteManagementClient } from "../webSiteManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -829,13 +829,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing WebApps operations. */
 export class WebAppsImpl implements WebApps {
-  private readonly client: WebSiteManagementClientContext;
+  private readonly client: WebSiteManagementClient;
 
   /**
    * Initialize a new instance of the class WebApps class.
    * @param client Reference to the service client
    */
-  constructor(client: WebSiteManagementClientContext) {
+  constructor(client: WebSiteManagementClient) {
     this.client = client;
   }
 
@@ -6403,13 +6403,13 @@ export class WebAppsImpl implements WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperation(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
@@ -6458,7 +6458,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, name, mSDeploy, options },
+      { resourceGroupName, name, MSDeploy, options },
       createMSDeployOperationOperationSpec
     );
     return new LroEngine(lro, {
@@ -6471,19 +6471,19 @@ export class WebAppsImpl implements WebApps {
    * Description for Invoke the MSDeploy web app extension.
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationAndWait(
     resourceGroupName: string,
     name: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationOptionalParams
   ): Promise<WebAppsCreateMSDeployOperationResponse> {
     const poller = await this.beginCreateMSDeployOperation(
       resourceGroupName,
       name,
-      mSDeploy,
+      MSDeploy,
       options
     );
     return poller.pollUntilDone();
@@ -7204,14 +7204,14 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperation(
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<
     PollerLike<
@@ -7260,7 +7260,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, name, instanceId, mSDeploy, options },
+      { resourceGroupName, name, instanceId, MSDeploy, options },
       createInstanceMSDeployOperationOperationSpec
     );
     return new LroEngine(lro, {
@@ -7274,21 +7274,21 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationAndWait(
     resourceGroupName: string,
     name: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationOptionalParams
   ): Promise<WebAppsCreateInstanceMSDeployOperationResponse> {
     const poller = await this.beginCreateInstanceMSDeployOperation(
       resourceGroupName,
       name,
       instanceId,
-      mSDeploy,
+      MSDeploy,
       options
     );
     return poller.pollUntilDone();
@@ -7478,14 +7478,14 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of the app.
    * @param options The options parameters.
    */
-  isCloneable(
+  IsCloneable(
     resourceGroupName: string,
     name: string,
     options?: WebAppsIsCloneableOptionalParams
   ): Promise<WebAppsIsCloneableResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, options },
-      isCloneableOperationSpec
+      IsCloneableOperationSpec
     );
   }
 
@@ -10432,14 +10432,14 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
@@ -10488,7 +10488,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, name, slot, mSDeploy, options },
+      { resourceGroupName, name, slot, MSDeploy, options },
       createMSDeployOperationSlotOperationSpec
     );
     return new LroEngine(lro, {
@@ -10502,21 +10502,21 @@ export class WebAppsImpl implements WebApps {
    * @param resourceGroupName Name of the resource group to which the resource belongs.
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateMSDeployOperationSlotAndWait(
     resourceGroupName: string,
     name: string,
     slot: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateMSDeployOperationSlotOptionalParams
   ): Promise<WebAppsCreateMSDeployOperationSlotResponse> {
     const poller = await this.beginCreateMSDeployOperationSlot(
       resourceGroupName,
       name,
       slot,
-      mSDeploy,
+      MSDeploy,
       options
     );
     return poller.pollUntilDone();
@@ -11339,7 +11339,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationSlot(
@@ -11347,7 +11347,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<
     PollerLike<
@@ -11396,7 +11396,7 @@ export class WebAppsImpl implements WebApps {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, name, slot, instanceId, mSDeploy, options },
+      { resourceGroupName, name, slot, instanceId, MSDeploy, options },
       createInstanceMSDeployOperationSlotOperationSpec
     );
     return new LroEngine(lro, {
@@ -11411,7 +11411,7 @@ export class WebAppsImpl implements WebApps {
    * @param name Name of web app.
    * @param slot Name of web app slot. If not specified then will default to production slot.
    * @param instanceId ID of web app instance.
-   * @param mSDeploy Details of MSDeploy operation
+   * @param MSDeploy Details of MSDeploy operation
    * @param options The options parameters.
    */
   async beginCreateInstanceMSDeployOperationSlotAndWait(
@@ -11419,7 +11419,7 @@ export class WebAppsImpl implements WebApps {
     name: string,
     slot: string,
     instanceId: string,
-    mSDeploy: MSDeploy,
+    MSDeploy: MSDeploy,
     options?: WebAppsCreateInstanceMSDeployOperationSlotOptionalParams
   ): Promise<WebAppsCreateInstanceMSDeployOperationSlotResponse> {
     const poller = await this.beginCreateInstanceMSDeployOperationSlot(
@@ -11427,7 +11427,7 @@ export class WebAppsImpl implements WebApps {
       name,
       slot,
       instanceId,
-      mSDeploy,
+      MSDeploy,
       options
     );
     return poller.pollUntilDone();
@@ -11650,7 +11650,7 @@ export class WebAppsImpl implements WebApps {
    *             slot.
    * @param options The options parameters.
    */
-  isCloneableSlot(
+  IsCloneableSlot(
     resourceGroupName: string,
     name: string,
     slot: string,
@@ -11658,7 +11658,7 @@ export class WebAppsImpl implements WebApps {
   ): Promise<WebAppsIsCloneableSlotResponse> {
     return this.client.sendOperationRequest(
       { resourceGroupName, name, slot, options },
-      isCloneableSlotOperationSpec
+      IsCloneableSlotOperationSpec
     );
   }
 
@@ -17702,7 +17702,7 @@ const createMSDeployOperationOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.MSDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18493,7 +18493,7 @@ const createInstanceMSDeployOperationOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.MSDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -18703,7 +18703,7 @@ const listInstanceProcessThreadsOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const isCloneableOperationSpec: coreClient.OperationSpec = {
+const IsCloneableOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/iscloneable",
   httpMethod: "POST",
@@ -21361,7 +21361,7 @@ const createMSDeployOperationSlotOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.MSDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22185,7 +22185,7 @@ const createInstanceMSDeployOperationSlotOperationSpec: coreClient.OperationSpec
       bodyMapper: Mappers.DefaultErrorResponse
     }
   },
-  requestBody: Parameters.mSDeploy,
+  requestBody: Parameters.MSDeploy,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -22404,7 +22404,7 @@ const listInstanceProcessThreadsSlotOperationSpec: coreClient.OperationSpec = {
   headerParameters: [Parameters.accept],
   serializer
 };
-const isCloneableSlotOperationSpec: coreClient.OperationSpec = {
+const IsCloneableSlotOperationSpec: coreClient.OperationSpec = {
   path:
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/slots/{slot}/iscloneable",
   httpMethod: "POST",

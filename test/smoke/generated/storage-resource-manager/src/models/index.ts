@@ -198,7 +198,7 @@ export interface StorageAccountCreateParameters {
   /** Allows https traffic only to storage service if sets to true. The default value is true since API version 2019-04-01. */
   enableHttpsTrafficOnly?: boolean;
   /** Account HierarchicalNamespace enabled if sets to true. */
-  isHnsEnabled?: boolean;
+  IsHnsEnabled?: boolean;
   /** Allow large file shares if sets to Enabled. It cannot be disabled once it is enabled. */
   largeFileSharesState?: LargeFileSharesState;
   /** Maintains information about the network routing choice opted by the user for data transfer */
@@ -320,7 +320,7 @@ export interface VirtualNetworkRule {
 /** IP rule with specific IP or IP range in CIDR format. */
 export interface IPRule {
   /** Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed. */
-  iPAddressOrRange: string;
+  IPAddressOrRange: string;
   /** The action of IP ACL rule. */
   action?: "Allow";
 }
@@ -680,7 +680,7 @@ export interface AccountSasParameters {
   /** The signed permissions for the account SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
   permissions: Permissions;
   /** An IP address or a range of IP addresses from which to accept requests. */
-  iPAddressOrRange?: string;
+  IPAddressOrRange?: string;
   /** The protocol permitted for a request made with the account SAS. */
   protocols?: HttpProtocol;
   /** The time at which the SAS becomes valid. */
@@ -709,7 +709,7 @@ export interface ServiceSasParameters {
   /** The signed permissions for the service SAS. Possible values include: Read (r), Write (w), Delete (d), List (l), Add (a), Create (c), Update (u) and Process (p). */
   permissions?: Permissions;
   /** An IP address or a range of IP addresses from which to accept requests. */
-  iPAddressOrRange?: string;
+  IPAddressOrRange?: string;
   /** The protocol permitted for a request made with the account SAS. */
   protocols?: HttpProtocol;
   /** The time at which the SAS becomes valid. */
@@ -1363,7 +1363,7 @@ export type StorageAccount = TrackedResource & {
    */
   readonly networkRuleSet?: NetworkRuleSet;
   /** Account HierarchicalNamespace enabled if sets to true. */
-  isHnsEnabled?: boolean;
+  IsHnsEnabled?: boolean;
   /**
    * Geo Replication Stats
    * NOTE: This property will not be serialized. It can only be populated by the server.

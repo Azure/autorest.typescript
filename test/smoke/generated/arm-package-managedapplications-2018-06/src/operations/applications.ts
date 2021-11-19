@@ -11,7 +11,7 @@ import { Applications } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ApplicationClientContext } from "../applicationClientContext";
+import { ApplicationClient } from "../applicationClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -43,13 +43,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Applications operations. */
 export class ApplicationsImpl implements Applications {
-  private readonly client: ApplicationClientContext;
+  private readonly client: ApplicationClient;
 
   /**
    * Initialize a new instance of the class Applications class.
    * @param client Reference to the service client
    */
-  constructor(client: ApplicationClientContext) {
+  constructor(client: ApplicationClient) {
     this.client = client;
   }
 

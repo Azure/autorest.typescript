@@ -127,12 +127,17 @@ function getSuffix(nameType?: NameType) {
  */
 export function normalizeTypeName({ kind, typeName }: TypeDetails) {
   // Only Enum and Composite kinds need normalization
+  let tempTypeName = "";
+  if (typeName.endsWith("[]")) {
+    tempTypeName = "[]"
+    typeName = typeName.replace("[]", "");
+  }
   if ([PropertyKind.Enum, PropertyKind.Composite].includes(kind)) {
-    return `${normalizeName(typeName, NameType.Interface)}`;
+    return `${normalizeName(typeName, NameType.Interface)}${tempTypeName}`;
   }
 
   // Other kinds are already in the form they need to be
-  return typeName;
+  return typeName + tempTypeName;
 }
 
 export function normalizeName(
@@ -206,10 +211,10 @@ function toCasing(str: string, casing: CasingConvention): string {
     return str;
   }
   if (casing === CasingConvention.Camel) {
-    return Style.camel(str, true, {}, 3);
+    return Style.camel(str, true, {}, 5);
   }
   if (casing === CasingConvention.Pascal) {
-    return Style.pascal(str, true, {}, 3);
+    return Style.pascal(str, true, {}, 5);
   }
 
   return str;

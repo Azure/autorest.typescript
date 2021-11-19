@@ -652,7 +652,9 @@ export declare interface ContainerPartitionKey {
     version?: number;
 }
 
-export declare class CosmosDBManagementClient extends CosmosDBManagementClientContext {
+export declare class CosmosDBManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the CosmosDBManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -681,18 +683,6 @@ export declare class CosmosDBManagementClient extends CosmosDBManagementClientCo
     notebookWorkspaces: NotebookWorkspaces;
     privateLinkResources: PrivateLinkResources;
     privateEndpointConnections: PrivateEndpointConnections;
-}
-
-export declare class CosmosDBManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the CosmosDBManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: CosmosDBManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

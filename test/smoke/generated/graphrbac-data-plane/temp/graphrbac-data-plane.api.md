@@ -345,8 +345,12 @@ export interface GraphError {
 }
 
 // @public (undocumented)
-export class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export class GraphRbacManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     applications: Applications;
     // (undocumented)
@@ -364,18 +368,9 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     // (undocumented)
     signedInUser: SignedInUser;
     // (undocumented)
-    users: Users;
-}
-
-// @public (undocumented)
-export class GraphRbacManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     tenantID: string;
+    // (undocumented)
+    users: Users;
 }
 
 // @public
@@ -427,7 +422,7 @@ export interface Groups {
     create(parameters: GroupCreateParameters, options?: GroupsCreateOptionalParams): Promise<GroupsCreateResponse>;
     delete(objectId: string, options?: GroupsDeleteOptionalParams): Promise<void>;
     get(objectId: string, options?: GroupsGetOptionalParams): Promise<GroupsGetResponse>;
-    isMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
+    IsMemberOf(parameters: CheckGroupMembershipParameters, options?: GroupsIsMemberOfOptionalParams): Promise<GroupsIsMemberOfResponse>;
     list(options?: GroupsListOptionalParams): PagedAsyncIterableIterator<ADGroup>;
     listGroupMembers(objectId: string, options?: GroupsGetGroupMembersOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;
     listGroupMembersNext(nextLink: string, options?: GroupsGetGroupMembersNextOptionalParams): PagedAsyncIterableIterator<DirectoryObjectUnion>;

@@ -11,7 +11,7 @@ import { VirtualWans } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { NetworkManagementClientContext } from "../networkManagementClientContext";
+import { NetworkManagementClient } from "../networkManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -37,13 +37,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing VirtualWans operations. */
 export class VirtualWansImpl implements VirtualWans {
-  private readonly client: NetworkManagementClientContext;
+  private readonly client: NetworkManagementClient;
 
   /**
    * Initialize a new instance of the class VirtualWans class.
    * @param client Reference to the service client
    */
-  constructor(client: NetworkManagementClientContext) {
+  constructor(client: NetworkManagementClient) {
     this.client = client;
   }
 
@@ -163,13 +163,13 @@ export class VirtualWansImpl implements VirtualWans {
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being created or updated.
-   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param WANParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
   async beginCreateOrUpdate(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: VirtualWAN,
+    WANParameters: VirtualWAN,
     options?: VirtualWansCreateOrUpdateOptionalParams
   ): Promise<
     PollerLike<
@@ -218,7 +218,7 @@ export class VirtualWansImpl implements VirtualWans {
 
     const lro = new LroImpl(
       sendOperation,
-      { resourceGroupName, virtualWANName, wANParameters, options },
+      { resourceGroupName, virtualWANName, WANParameters, options },
       createOrUpdateOperationSpec
     );
     return new LroEngine(lro, {
@@ -232,19 +232,19 @@ export class VirtualWansImpl implements VirtualWans {
    * Creates a VirtualWAN resource if it doesn't exist else updates the existing VirtualWAN.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being created or updated.
-   * @param wANParameters Parameters supplied to create or update VirtualWAN.
+   * @param WANParameters Parameters supplied to create or update VirtualWAN.
    * @param options The options parameters.
    */
   async beginCreateOrUpdateAndWait(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: VirtualWAN,
+    WANParameters: VirtualWAN,
     options?: VirtualWansCreateOrUpdateOptionalParams
   ): Promise<VirtualWansCreateOrUpdateResponse> {
     const poller = await this.beginCreateOrUpdate(
       resourceGroupName,
       virtualWANName,
-      wANParameters,
+      WANParameters,
       options
     );
     return poller.pollUntilDone();
@@ -254,17 +254,17 @@ export class VirtualWansImpl implements VirtualWans {
    * Updates a VirtualWAN tags.
    * @param resourceGroupName The resource group name of the VirtualWan.
    * @param virtualWANName The name of the VirtualWAN being updated.
-   * @param wANParameters Parameters supplied to Update VirtualWAN tags.
+   * @param WANParameters Parameters supplied to Update VirtualWAN tags.
    * @param options The options parameters.
    */
   updateTags(
     resourceGroupName: string,
     virtualWANName: string,
-    wANParameters: TagsObject,
+    WANParameters: TagsObject,
     options?: VirtualWansUpdateTagsOptionalParams
   ): Promise<VirtualWansUpdateTagsResponse> {
     return this.client.sendOperationRequest(
-      { resourceGroupName, virtualWANName, wANParameters, options },
+      { resourceGroupName, virtualWANName, WANParameters, options },
       updateTagsOperationSpec
     );
   }
@@ -453,7 +453,7 @@ const createOrUpdateOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.wANParameters,
+  requestBody: Parameters.WANParameters,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,
@@ -477,7 +477,7 @@ const updateTagsOperationSpec: coreClient.OperationSpec = {
       bodyMapper: Mappers.CloudError
     }
   },
-  requestBody: Parameters.wANParameters1,
+  requestBody: Parameters.WANParameters1,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [
     Parameters.$host,

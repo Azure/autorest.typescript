@@ -202,8 +202,8 @@ export type Cookiecuttershark = Shark & {
   fishtype: "cookiecuttershark";
 };
 
-/** Known values of {@link CmykColors} that the service accepts. */
-export enum KnownCmykColors {
+/** Known values of {@link CMYKColors} that the service accepts. */
+export enum KnownCMYKColors {
   Cyan = "cyan",
   Magenta = "Magenta",
   Yellow = "YELLOW",
@@ -211,8 +211,8 @@ export enum KnownCmykColors {
 }
 
 /**
- * Defines values for CmykColors. \
- * {@link KnownCmykColors} can be used interchangeably with CmykColors,
+ * Defines values for CMYKColors. \
+ * {@link KnownCMYKColors} can be used interchangeably with CMYKColors,
  *  this enum contains the known values that the service supports.
  * ### Known values supported by the service
  * **cyan** \
@@ -220,7 +220,7 @@ export enum KnownCmykColors {
  * **YELLOW** \
  * **blacK**
  */
-export type CmykColors = string;
+export type CMYKColors = string;
 
 /** Known values of {@link MyKind} that the service accepts. */
 export enum KnownMyKind {

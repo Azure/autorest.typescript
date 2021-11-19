@@ -95,7 +95,7 @@ export interface Groups {
    * @param parameters The check group membership parameters.
    * @param options The options parameters.
    */
-  isMemberOf(
+  IsMemberOf(
     parameters: CheckGroupMembershipParameters,
     options?: GroupsIsMemberOfOptionalParams
   ): Promise<GroupsIsMemberOfResponse>;
