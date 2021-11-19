@@ -649,7 +649,7 @@ const errorSchema = new ObjectSchema("Error", "Test Error schema", {
   ]
 });
 
-describe.skip("Mapper Transforms", () => {
+describe("Mapper Transforms", () => {
   it("should generate a Color mapper", () => {
     const mapper = transformMapper({
       schema: refColorSchema
