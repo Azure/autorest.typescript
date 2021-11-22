@@ -19,7 +19,6 @@ import { transformOptions } from "./optionsTransforms";
 import { transformParameters } from "./parameterTransforms";
 import { transformObjects, transformObject } from "./objectTransforms";
 import { ObjectDetails } from "../models/modelDetails";
-import { Host } from "@autorest/extension-base";
 import { transformBaseUrl } from "./urlTransforms";
 import { normalizeModelWithExtensions } from "./extensions";
 import { transformGroups } from "./groupTransforms";
@@ -80,8 +79,7 @@ export function transformChoice(
 }
 
 export async function transformCodeModel(
-  codeModel: CodeModel,
-  host: Host
+  codeModel: CodeModel
 ): Promise<ClientDetails> {
   const { name: clientName } = getLanguageMetadata(codeModel.language);
   const className = normalizeName(
