@@ -20,24 +20,5 @@ describe("BodyFile Client", () => {
 
       assert.lengthOf(result.body, 8281);
     });
-
-    it.skip("getFileLarge supports readableStream", async function() {
-      this.timeout(50000);
-      const result = await client.path("/files/stream/verylarge").get();
-
-      if (result.status !== "200") {
-        const error = `Unexpected response: ${result.status}`;
-        assert.fail(error);
-        throw error;
-      }
-
-      // const byteCount = await countBytesFromStream(result.body);
-
-      // assert.equal(
-      //   byteCount,
-      //   3000 * 1024 * 1024,
-      //   "Expected a very large file."
-      // );
-    });
   });
 });
