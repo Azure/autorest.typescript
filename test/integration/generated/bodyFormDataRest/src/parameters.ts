@@ -13,7 +13,7 @@ export interface UploadFileFormBody {
    *
    * Value may contain any sequence of octets
    */
-  fileContent: string;
+  fileContent: string | Uint8Array;
   /** File name to upload. Name has to be spelled exactly as written here. */
   fileName: string;
 }
@@ -33,7 +33,7 @@ export interface UploadFileViaBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string;
+  body: string | Uint8Array;
 }
 
 export interface UploadFileViaBodyMediaTypesParam {
@@ -51,7 +51,7 @@ export interface UploadFilesBodyParam {
 
 export interface UploadFilesFormBody {
   /** Files to upload. */
-  fileContent: Array<string>;
+  fileContent: Array<string | Uint8Array>;
 }
 
 export interface UploadFilesMediaTypesParam {

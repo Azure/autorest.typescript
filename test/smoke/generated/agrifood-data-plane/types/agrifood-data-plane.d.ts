@@ -438,7 +438,7 @@ export declare interface AttachmentsCreateOrUpdateFormBody {
      *
      * Value may contain any sequence of octets
      */
-    file?: string;
+    file?: string | Uint8Array;
     /** Farmer id for this attachment. */
     FarmerId?: string;
     /** Associated Resource id for this attachment. */
@@ -495,7 +495,8 @@ export declare interface AttachmentsDownload {
 /** Downloads and returns attachment as response for the given input filePath. */
 export declare interface AttachmentsDownload200Response extends HttpResponse {
     status: "200";
-    body: Record<string, unknown>;
+    /** Value may contain any sequence of octets */
+    body: Uint8Array;
 }
 
 /** Downloads and returns attachment as response for the given input filePath. */
@@ -4187,7 +4188,8 @@ export declare interface ScenesDownload {
 /** Downloads and returns file stream as response for the given input filePath. */
 export declare interface ScenesDownload200Response extends HttpResponse {
     status: "200";
-    body: Record<string, unknown>;
+    /** Value may contain any sequence of octets */
+    body: Uint8Array;
 }
 
 /** Downloads and returns file stream as response for the given input filePath. */

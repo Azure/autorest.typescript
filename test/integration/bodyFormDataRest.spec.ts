@@ -26,7 +26,7 @@ describe("Integration tests for BodyFormData", () => {
 
     const result = await client.path("/formdata/stream/uploadfile").post({
       contentType: "multipart/form-data",
-      body: { fileContent: content as any, fileName },
+      body: { fileContent: content, fileName },
       binaryResponse: true
     });
 
@@ -38,7 +38,7 @@ describe("Integration tests for BodyFormData", () => {
       throw error;
     }
 
-    assert.deepInclude(result.body as any, content);
+    assert.deepInclude(result.body, content);
   });
 
   it("should correctly accept file via body", async () => {
@@ -47,7 +47,7 @@ describe("Integration tests for BodyFormData", () => {
       new Uint8Array([72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100])
     );
     const response = await client.path("/formdata/stream/uploadfile").put({
-      body: content as any,
+      body: content,
       binaryResponse: true,
       contentType: "application/octet-stream"
     });
@@ -59,6 +59,6 @@ describe("Integration tests for BodyFormData", () => {
     }
 
     assert.equal(response.status, "200");
-    assert.deepInclude(response.body as any, content);
+    assert.deepInclude(response.body, content);
   });
 });

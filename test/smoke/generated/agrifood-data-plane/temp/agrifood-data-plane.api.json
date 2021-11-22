@@ -5663,7 +5663,12 @@
                 },
                 {
                   "kind": "Content",
-                  "text": "string"
+                  "text": "string | "
+                },
+                {
+                  "kind": "Reference",
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
                 },
                 {
                   "kind": "Content",
@@ -5675,7 +5680,7 @@
               "name": "file",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 2
+                "endIndex": 3
               }
             },
             {
@@ -6254,7 +6259,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/agrifood-data-plane!AttachmentsDownload200Response#body:member",
-              "docComment": "",
+              "docComment": "/**\n * Value may contain any sequence of octets\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -6262,12 +6267,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Record",
-                  "canonicalReference": "!Record:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string, unknown>"
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
                 },
                 {
                   "kind": "Content",
@@ -6279,7 +6280,7 @@
               "name": "body",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 2
               }
             },
             {
@@ -54204,7 +54205,7 @@
             {
               "kind": "PropertySignature",
               "canonicalReference": "@msinternal/agrifood-data-plane!ScenesDownload200Response#body:member",
-              "docComment": "",
+              "docComment": "/**\n * Value may contain any sequence of octets\n */\n",
               "excerptTokens": [
                 {
                   "kind": "Content",
@@ -54212,12 +54213,8 @@
                 },
                 {
                   "kind": "Reference",
-                  "text": "Record",
-                  "canonicalReference": "!Record:type"
-                },
-                {
-                  "kind": "Content",
-                  "text": "<string, unknown>"
+                  "text": "Uint8Array",
+                  "canonicalReference": "!Uint8Array:interface"
                 },
                 {
                   "kind": "Content",
@@ -54229,7 +54226,7 @@
               "name": "body",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
-                "endIndex": 3
+                "endIndex": 2
               }
             },
             {

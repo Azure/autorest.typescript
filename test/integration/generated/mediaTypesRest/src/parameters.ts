@@ -10,7 +10,7 @@ export interface AnalyzeBodyBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body?: string;
+  body?: string | Uint8Array;
 }
 
 export interface AnalyzeBodyMediaTypesParam {
@@ -45,7 +45,7 @@ export interface AnalyzeBodyNoAcceptHeaderBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body?: string;
+  body?: string | Uint8Array;
 }
 
 export interface AnalyzeBodyNoAcceptHeaderMediaTypesParam {
@@ -94,7 +94,7 @@ export interface BinaryBodyWithTwoContentTypesBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string;
+  body: string | Uint8Array;
 }
 
 export interface BinaryBodyWithTwoContentTypesMediaTypesParam {
@@ -112,7 +112,7 @@ export interface BinaryBodyWithThreeContentTypesBodyParam {
    *
    * Value may contain any sequence of octets
    */
-  body: string;
+  body: string | Uint8Array;
 }
 
 export interface BinaryBodyWithThreeContentTypesMediaTypesParam {

@@ -224,7 +224,7 @@ export interface AttachmentsCreateOrUpdateFormBody {
    *
    * Value may contain any sequence of octets
    */
-  file?: string;
+  file?: string | Uint8Array;
   /** Farmer id for this attachment. */
   FarmerId?: string;
   /** Associated Resource id for this attachment. */

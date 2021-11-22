@@ -344,7 +344,7 @@ export interface AttachmentsCreateOrUpdateFormBody {
     Description?: string;
     ETag?: string;
     FarmerId?: string;
-    file?: string;
+    file?: string | Uint8Array;
     Id?: string;
     ModifiedDateTime?: string;
     Name?: string;
@@ -388,8 +388,7 @@ export interface AttachmentsDownload {
 
 // @public
 export interface AttachmentsDownload200Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
+    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
@@ -3410,8 +3409,7 @@ export interface ScenesDownload {
 
 // @public
 export interface ScenesDownload200Response extends HttpResponse {
-    // (undocumented)
-    body: Record<string, unknown>;
+    body: Uint8Array;
     // (undocumented)
     status: "200";
 }
