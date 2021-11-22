@@ -1,3 +1,7 @@
+## 6.0.0-beta.15 (2021-11-22)
+
+- [Fix] Pinned version of `@autorest/extension-base` to previous version without breaking change.
+
 ## 6.0.0-beta.15 (2021-11-10)
 
 - [Feature] Bumped the modeler m4 version to 4.21.4
