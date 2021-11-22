@@ -41,7 +41,6 @@
   },
   "devDependencies": {
     "autorest": "latest",
-    "myfakepackage": "latest",
     "@microsoft/api-extractor": "^7.18.11",
     "@types/node": "^14.14.22",
     "dotenv": "^8.2.0",

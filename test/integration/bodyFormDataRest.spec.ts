@@ -27,7 +27,7 @@ describe("Integration tests for BodyFormData", () => {
     const result = await client.path("/formdata/stream/uploadfile").post({
       contentType: "multipart/form-data",
       body: { fileContent: content as any, fileName },
-      binaryContent: true
+      binaryResponse: true
     });
 
     assert.equal(result.status, "200");
@@ -48,7 +48,7 @@ describe("Integration tests for BodyFormData", () => {
     );
     const response = await client.path("/formdata/stream/uploadfile").put({
       body: content as any,
-      binaryContent: true,
+      binaryResponse: true,
       contentType: "application/octet-stream"
     });
 

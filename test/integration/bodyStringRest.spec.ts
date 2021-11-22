@@ -26,7 +26,8 @@ describe(" BodyStringRest", () => {
 
       const putResponse = await resource.put({
         allowInsecureConnection: true,
-        body: ""
+        body: "",
+        contentType: "application/json"
       });
       assert.equal(putResponse.status, "200");
 
@@ -39,7 +40,8 @@ describe(" BodyStringRest", () => {
       const putResult = await resource.put({
         allowInsecureConnection: true,
         body:
-          "    Now is the time for all good men to come to the aid of their country    "
+          "    Now is the time for all good men to come to the aid of their country    ",
+        contentType: "application/json"
       });
 
       const result = await resource.get({ allowInsecureConnection: true });
@@ -64,7 +66,8 @@ describe(" BodyStringRest", () => {
 
       const putResult = await resource.put({
         allowInsecureConnection: true,
-        body: "red color"
+        body: "red color",
+        contentType: "application/json"
       });
 
       assert.equal(putResult.status, "200");
@@ -108,9 +111,9 @@ describe(" BodyStringRest", () => {
     });
 
     it("should correctly send and receive a base64Url encoded string", async () => {
-      const result = await client
-        .path("/string/base64UrlEncoding")
-        .get({ allowInsecureConnection: true });
+      const result = await client.path("/string/base64UrlEncoding").get({
+        allowInsecureConnection: true
+      });
       assert.equal(result.status, "200");
 
       if (result.status !== "200") {
@@ -125,9 +128,11 @@ describe(" BodyStringRest", () => {
 
       assert.equal(result.body, expected);
 
-      const result2 = await client
-        .path("/string/base64UrlEncoding")
-        .put({ allowInsecureConnection: true, body: expected });
+      const result2 = await client.path("/string/base64UrlEncoding").put({
+        allowInsecureConnection: true,
+        body: expected,
+        contentType: "application/json"
+      });
 
       assert.equal(result2.status, "200");
     });
@@ -140,9 +145,11 @@ describe(" BodyStringRest", () => {
     });
 
     it("should putEnumReferenced", async function() {
-      const result = await client
-        .path("/string/enum/Referenced")
-        .put({ allowInsecureConnection: true, body: "red color" });
+      const result = await client.path("/string/enum/Referenced").put({
+        allowInsecureConnection: true,
+        body: "red color",
+        contentType: "application/json"
+      });
 
       assert.equal(result.status, "200");
     });
@@ -186,7 +193,8 @@ describe(" BodyStringRest", () => {
       const result = await client.path("/string/mbcs").put({
         allowInsecureConnection: true,
         body:
-          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€"
+          "啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€",
+        contentType: "application/json"
       });
       assert.equal(result.status, "200");
     });

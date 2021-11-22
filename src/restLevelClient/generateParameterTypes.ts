@@ -14,7 +14,7 @@ import {
 } from "ts-morph";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
-import { getDocs, getPropertySignature } from "./getPropertySignature";
+import { getPropertySignature } from "./getPropertySignature";
 import { primitiveSchemaToType } from "./schemaHelpers";
 import { getOperationParameters } from "./helpers/getOperationParameters";
 import { hasInputModels } from "./helpers/modelHelpers";
@@ -121,42 +121,42 @@ export function generateParameterInterfaces(
       if (headerParameterDefinitions !== undefined) {
         hasHeaders = true;
       }
-
-      // Add Operation parameters type alias which is composed of the types we generated above
-      // plus the common type RequestParameters
-      if (requestCount > 1) {
-        parametersFile.addTypeAlias({
-          name: topParamName,
-          isExported: true,
-          type: [...subParamNames].join(" | ")
-        });
-      }
     }
 
-    if (hasHeaders) {
-      parametersFile.addImportDeclarations([
-        {
-          namedImports: ["RawHttpHeadersInput"],
-          moduleSpecifier: "@azure/core-rest-pipeline"
-        }
-      ]);
+    // Add Operation parameters type alias which is composed of the types we generated above
+    // plus the common type RequestParameters
+    if (requestCount > 1) {
+      parametersFile.addTypeAlias({
+        name: topParamName,
+        isExported: true,
+        type: [...subParamNames].join(" | ")
+      });
     }
+  }
 
+  if (hasHeaders) {
     parametersFile.addImportDeclarations([
       {
-        namedImports: ["RequestParameters"],
-        moduleSpecifier: "@azure-rest/core-client"
+        namedImports: ["RawHttpHeadersInput"],
+        moduleSpecifier: "@azure/core-rest-pipeline"
       }
     ]);
+  }
 
-    if (hasInputModels(model)) {
-      parametersFile.addImportDeclarations([
-        {
-          namedImports: [...importedModels],
-          moduleSpecifier: "./models"
-        }
-      ]);
+  parametersFile.addImportDeclarations([
+    {
+      namedImports: ["RequestParameters"],
+      moduleSpecifier: "@azure-rest/core-client"
     }
+  ]);
+
+  if (hasInputModels(model)) {
+    parametersFile.addImportDeclarations([
+      {
+        namedImports: [...importedModels],
+        moduleSpecifier: "./models"
+      }
+    ]);
   }
 }
 
@@ -254,10 +254,7 @@ function buildBodyParametersDefinition(
   internalReferences.add(bodyParameterInterfaceName);
 
   // In case of formData we'd get multiple properties in body marked as partialBody
-  if (
-    bodyParameters.length > 1 &&
-    !bodyParameters.some(p => !p.isPartialBody)
-  ) {
+  if (bodyParameters.some(p => p.isPartialBody)) {
     let allOptionalParts = true;
     const propertiesDefinitions: PropertySignatureStructure[] = [];
     for (const param of bodyParameters) {

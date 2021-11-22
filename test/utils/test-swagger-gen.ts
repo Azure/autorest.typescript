@@ -903,7 +903,9 @@ const testSwaggers: { [name: string]: SwaggerConfig } = {
     clientName: "MediaTypes",
     packageName: "media-types-service-rest",
     licenseHeader: true,
-    useCoreV2: true
+    addCredentials: false,
+    isTestPackage: true,
+    restLevelClient: true
   },
   bodyFileRest: {
     swaggerOrConfig: "body-file.json",

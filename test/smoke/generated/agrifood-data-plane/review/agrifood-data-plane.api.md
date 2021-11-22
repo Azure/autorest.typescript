@@ -326,7 +326,8 @@ export interface AttachmentsCreateOrUpdate201Response extends HttpResponse {
 
 // @public (undocumented)
 export interface AttachmentsCreateOrUpdateBodyParam {
-    body?: string;
+    // (undocumented)
+    body?: AttachmentsCreateOrUpdateFormBody;
 }
 
 // @public
@@ -335,6 +336,22 @@ export interface AttachmentsCreateOrUpdatedefaultResponse extends HttpResponse {
     body: ErrorResponseOutput;
     // (undocumented)
     status: "500";
+}
+
+// @public (undocumented)
+export interface AttachmentsCreateOrUpdateFormBody {
+    CreatedDateTime?: string;
+    Description?: string;
+    ETag?: string;
+    FarmerId?: string;
+    file?: string;
+    Id?: string;
+    ModifiedDateTime?: string;
+    Name?: string;
+    OriginalFileName?: string;
+    ResourceId?: string;
+    ResourceType?: string;
+    Status?: string;
 }
 
 // @public (undocumented)

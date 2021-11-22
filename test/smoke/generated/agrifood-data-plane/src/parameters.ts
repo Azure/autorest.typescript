@@ -215,12 +215,41 @@ export type AttachmentsListByFarmerIdParameters = AttachmentsListByFarmerIdQuery
 export type AttachmentsGetParameters = RequestParameters;
 
 export interface AttachmentsCreateOrUpdateBodyParam {
+  body?: AttachmentsCreateOrUpdateFormBody;
+}
+
+export interface AttachmentsCreateOrUpdateFormBody {
   /**
    * File to be uploaded.
    *
    * Value may contain any sequence of octets
    */
-  body?: string;
+  file?: string;
+  /** Farmer id for this attachment. */
+  FarmerId?: string;
+  /** Associated Resource id for this attachment. */
+  ResourceId?: string;
+  /**
+   * Associated Resource type for this attachment
+   * i.e. Farmer, Farm, Field, SeasonalField, Boundary, FarmOperationApplicationData, HarvestData, TillageData, PlantingData.
+   */
+  ResourceType?: string;
+  /** Original File Name for this attachment. */
+  OriginalFileName?: string;
+  /** Unique id. */
+  Id?: string;
+  /** Status of the resource. */
+  Status?: string;
+  /** Date when resource was created. */
+  CreatedDateTime?: string;
+  /** Date when resource was last modified. */
+  ModifiedDateTime?: string;
+  /** Name to identify resource. */
+  Name?: string;
+  /** Textual description of resource. */
+  Description?: string;
+  /** The ETag value to implement optimistic concurrency. */
+  ETag?: string;
 }
 
 export interface AttachmentsCreateOrUpdateMediaTypesParam {

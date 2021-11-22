@@ -18,7 +18,14 @@ export interface UploadFileFormBody {
   fileName: string;
 }
 
-export type UploadFileParameters = UploadFileBodyParam & RequestParameters;
+export interface UploadFileMediaTypesParam {
+  /** Request content type */
+  contentType?: "multipart/form-data";
+}
+
+export type UploadFileParameters = UploadFileMediaTypesParam &
+  UploadFileBodyParam &
+  RequestParameters;
 
 export interface UploadFileViaBodyBodyParam {
   /**
@@ -29,12 +36,29 @@ export interface UploadFileViaBodyBodyParam {
   body: string;
 }
 
-export type UploadFileViaBodyParameters = UploadFileViaBodyBodyParam &
+export interface UploadFileViaBodyMediaTypesParam {
+  /** Request content type */
+  contentType?: "application/octet-stream";
+}
+
+export type UploadFileViaBodyParameters = UploadFileViaBodyMediaTypesParam &
+  UploadFileViaBodyBodyParam &
   RequestParameters;
 
 export interface UploadFilesBodyParam {
-  /** Files to upload. */
-  body: Array<string>;
+  body: UploadFilesFormBody;
 }
 
-export type UploadFilesParameters = UploadFilesBodyParam & RequestParameters;
+export interface UploadFilesFormBody {
+  /** Files to upload. */
+  fileContent: Array<string>;
+}
+
+export interface UploadFilesMediaTypesParam {
+  /** Request content type */
+  contentType?: "multipart/form-data";
+}
+
+export type UploadFilesParameters = UploadFilesMediaTypesParam &
+  UploadFilesBodyParam &
+  RequestParameters;
