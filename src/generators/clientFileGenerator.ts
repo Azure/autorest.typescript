@@ -564,7 +564,3 @@ function writePackageInfo(
     `const packageVersion = "${packageDetails.version || ""}";`
   ]);
 }
-
-function packageDetails(clientFile: SourceFile, packageDetails: any) {
-  throw new Error("Function not implemented.");
-}
