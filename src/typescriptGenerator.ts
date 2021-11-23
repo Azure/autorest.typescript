@@ -9,7 +9,6 @@ import { Project, IndentationText } from "ts-morph";
 import { Host } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
 import { generateClient } from "./generators/clientFileGenerator";
-import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { generateIndexFile } from "./generators/indexGenerator";
@@ -80,7 +79,6 @@ export async function generateTypeScriptLibrary(
   generateApiExtractorConfig(project);
 
   generateClient(clientDetails, project);
-  generateClientContext(clientDetails, packageDetails, project);
   generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);

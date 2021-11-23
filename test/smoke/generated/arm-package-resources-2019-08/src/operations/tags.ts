@@ -11,7 +11,7 @@ import { Tags } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourceManagementClientContext } from "../resourceManagementClientContext";
+import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   TagDetails,
   TagsListNextOptionalParams,
@@ -29,13 +29,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Tags operations. */
 export class TagsImpl implements Tags {
-  private readonly client: ResourceManagementClientContext;
+  private readonly client: ResourceManagementClient;
 
   /**
    * Initialize a new instance of the class Tags class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClientContext) {
+  constructor(client: ResourceManagementClient) {
     this.client = client;
   }
 

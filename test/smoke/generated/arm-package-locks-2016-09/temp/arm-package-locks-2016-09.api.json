@@ -475,9 +475,13 @@
               "text": "export declare class ManagementLockClient extends "
             },
             {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
               "kind": "Reference",
-              "text": "ManagementLockClientContext",
-              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:class"
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -555,6 +559,60 @@
             },
             {
               "kind": "Property",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#authorizationOperations:member",
               "docComment": "",
               "excerptTokens": [
@@ -608,163 +666,10 @@
                 "endIndex": 2
               },
               "isStatic": false
-            }
-          ],
-          "extendsTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          },
-          "implementsTokenRanges": []
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class ManagementLockClientContext extends "
-            },
-            {
-              "kind": "Content",
-              "text": "coreClient."
-            },
-            {
-              "kind": "Reference",
-              "text": "ServiceClient",
-              "canonicalReference": "@azure/core-client!ServiceClient:class"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "ManagementLockClientContext",
-          "members": [
-            {
-              "kind": "Constructor",
-              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext:constructor(1)",
-              "docComment": "/**\n * Initializes a new instance of the ManagementLockClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - The ID of the target subscription.\n *\n * @param options - The parameter options\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor(credentials: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreAuth."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TokenCredential",
-                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", subscriptionId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "ManagementLockClientOptionalParams",
-                  "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "credentials",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                },
-                {
-                  "parameterName": "subscriptionId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 4,
-                    "endIndex": 5
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
-                  }
-                }
-              ]
             },
             {
               "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#$host:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "$host: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$host",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#apiVersion:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "apiVersion: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "apiVersion",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClientContext#subscriptionId:member",
+              "canonicalReference": "@msinternal/arm-package-locks-2016-09!ManagementLockClient#subscriptionId:member",
               "docComment": "",
               "excerptTokens": [
                 {

@@ -2,7 +2,10 @@ import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
-export declare class ManagementLinkClient extends ManagementLinkClientContext {
+export declare class ManagementLinkClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the ManagementLinkClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -12,19 +15,6 @@ export declare class ManagementLinkClient extends ManagementLinkClientContext {
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
     operations: Operations;
     resourceLinks: ResourceLinks;
-}
-
-export declare class ManagementLinkClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the ManagementLinkClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
 }
 
 /** Optional parameters. */

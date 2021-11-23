@@ -3,7 +3,7 @@ import { Triggers } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DataFactoryClientContext } from "../dataFactoryClientContext";
+import { DataFactoryClient } from "../dataFactoryClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -33,13 +33,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Triggers operations. */
 export class TriggersImpl implements Triggers {
-  private readonly client: DataFactoryClientContext;
+  private readonly client: DataFactoryClient;
 
   /**
    * Initialize a new instance of the class Triggers class.
    * @param client Reference to the service client
    */
-  constructor(client: DataFactoryClientContext) {
+  constructor(client: DataFactoryClient) {
     this.client = client;
   }
 

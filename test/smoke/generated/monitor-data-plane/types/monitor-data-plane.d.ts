@@ -78,7 +78,8 @@ export declare interface MetricsCreateOptionalParams extends coreClient.Operatio
 /** Contains response data for the create operation. */
 export declare type MetricsCreateResponse = AzureMetricsResult;
 
-export declare class MonitorClient extends MonitorClientContext {
+export declare class MonitorClient extends coreClient.ServiceClient {
+    $host: string;
     /**
      * Initializes a new instance of the MonitorClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -86,16 +87,6 @@ export declare class MonitorClient extends MonitorClientContext {
      */
     constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
     metrics: Metrics;
-}
-
-export declare class MonitorClientContext extends coreClient.ServiceClient {
-    $host: string;
-    /**
-     * Initializes a new instance of the MonitorClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
 }
 
 /** Optional parameters. */

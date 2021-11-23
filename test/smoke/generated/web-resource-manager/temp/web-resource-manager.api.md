@@ -8871,8 +8871,12 @@ export type WebSiteInstanceStatus = ProxyOnlyResource & {
 };
 
 // @public (undocumented)
-export class WebSiteManagementClient extends WebSiteManagementClientContext {
+export class WebSiteManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     appServiceCertificateOrders: AppServiceCertificateOrders;
     // (undocumented)
@@ -8911,6 +8915,8 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     // (undocumented)
     staticSites: StaticSites;
     // (undocumented)
+    subscriptionId: string;
+    // (undocumented)
     topLevelDomains: TopLevelDomains;
     updatePublishingUser(userDetails: User, options?: UpdatePublishingUserOptionalParams): Promise<UpdatePublishingUserResponse>;
     updateSourceControl(sourceControlType: string, requestMessage: SourceControl, options?: UpdateSourceControlOptionalParams): Promise<UpdateSourceControlResponse>;
@@ -8919,17 +8925,6 @@ export class WebSiteManagementClient extends WebSiteManagementClientContext {
     verifyHostingEnvironmentVnet(parameters: VnetParameters, options?: VerifyHostingEnvironmentVnetOptionalParams): Promise<VerifyHostingEnvironmentVnetResponse>;
     // (undocumented)
     webApps: WebApps;
-}
-
-// @public (undocumented)
-export class WebSiteManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
-    subscriptionId: string;
 }
 
 // @public

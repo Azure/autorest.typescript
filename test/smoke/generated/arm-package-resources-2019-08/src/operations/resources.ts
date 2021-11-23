@@ -11,7 +11,7 @@ import { Resources } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourceManagementClientContext } from "../resourceManagementClientContext";
+import { ResourceManagementClient } from "../resourceManagementClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -49,13 +49,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Resources operations. */
 export class ResourcesImpl implements Resources {
-  private readonly client: ResourceManagementClientContext;
+  private readonly client: ResourceManagementClient;
 
   /**
    * Initialize a new instance of the class Resources class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClientContext) {
+  constructor(client: ResourceManagementClient) {
     this.client = client;
   }
 

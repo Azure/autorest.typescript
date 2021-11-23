@@ -6,19 +6,49 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { GetImpl } from "./operations";
 import { Get } from "./operationsInterfaces";
-import { UrlClientContext } from "./urlClientContext";
 import { UrlClientOptionalParams } from "./models";
 
-export class UrlClient extends UrlClientContext {
+export class UrlClient extends coreClient.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the UrlClient class.
    * @param $host server parameter
    * @param options The parameter options
    */
   constructor($host: string, options?: UrlClientOptionalParams) {
-    super($host, options);
+    if ($host === undefined) {
+      throw new Error("'$host' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: UrlClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-url/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{$host}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.$host = $host;
     this.get = new GetImpl(this);
   }
 

@@ -10,7 +10,7 @@ import { Bool } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyBooleanClientContext } from "../bodyBooleanClientContext";
+import { BodyBooleanClient } from "../bodyBooleanClient";
 import {
   BoolGetTrueOptionalParams,
   BoolGetTrueResponse,
@@ -26,13 +26,13 @@ import {
 
 /** Class containing Bool operations. */
 export class BoolImpl implements Bool {
-  private readonly client: BodyBooleanClientContext;
+  private readonly client: BodyBooleanClient;
 
   /**
    * Initialize a new instance of the class Bool class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyBooleanClientContext) {
+  constructor(client: BodyBooleanClient) {
     this.client = client;
   }
 

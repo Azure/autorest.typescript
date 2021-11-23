@@ -69,17 +69,12 @@ export interface MetricsCreateOptionalParams extends coreClient.OperationOptions
 export type MetricsCreateResponse = AzureMetricsResult;
 
 // @public (undocumented)
-export class MonitorClient extends MonitorClientContext {
-    constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
-    // (undocumented)
-    metrics: Metrics;
-}
-
-// @public (undocumented)
-export class MonitorClientContext extends coreClient.ServiceClient {
+export class MonitorClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, options?: MonitorClientOptionalParams);
+    // (undocumented)
+    metrics: Metrics;
 }
 
 // @public

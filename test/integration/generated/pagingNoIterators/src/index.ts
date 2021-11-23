@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { PagingNoIteratorsClient } from "./pagingNoIteratorsClient";
-export { PagingNoIteratorsClientContext } from "./pagingNoIteratorsClientContext";
 export * from "./operationsInterfaces";

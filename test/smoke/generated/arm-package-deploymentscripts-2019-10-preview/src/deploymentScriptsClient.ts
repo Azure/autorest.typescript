@@ -6,13 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import { DeploymentScriptsImpl } from "./operations";
 import { DeploymentScripts } from "./operationsInterfaces";
-import { DeploymentScriptsClientContext } from "./deploymentScriptsClientContext";
 import { DeploymentScriptsClientOptionalParams } from "./models";
 
-export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
+export class DeploymentScriptsClient extends coreClient.ServiceClient {
+  $host: string;
+  subscriptionId: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the DeploymentScriptsClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -24,7 +28,43 @@ export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
     subscriptionId: string,
     options?: DeploymentScriptsClientOptionalParams
   ) {
-    super(credentials, subscriptionId, options);
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: DeploymentScriptsClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
+
+    const packageDetails = `azsdk-js-arm-package-deploymentscripts-2019-10-preview/1.0.0-beta.1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "https://management.azure.com"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "https://management.azure.com";
+    this.apiVersion = options.apiVersion || "2019-10-01-preview";
     this.deploymentScripts = new DeploymentScriptsImpl(this);
   }
 

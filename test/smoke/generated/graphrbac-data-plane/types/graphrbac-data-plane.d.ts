@@ -569,7 +569,10 @@ export declare interface GraphError {
     message?: string;
 }
 
-export declare class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export declare class GraphRbacManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    tenantID: string;
     /**
      * Initializes a new instance of the GraphRbacManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -586,19 +589,6 @@ export declare class GraphRbacManagementClient extends GraphRbacManagementClient
     objects: Objects;
     domains: Domains;
     oAuth2PermissionGrantOperations: OAuth2PermissionGrantOperations;
-}
-
-export declare class GraphRbacManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    tenantID: string;
-    /**
-     * Initializes a new instance of the GraphRbacManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param tenantID The tenant ID.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

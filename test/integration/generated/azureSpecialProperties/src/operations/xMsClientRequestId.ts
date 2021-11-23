@@ -10,7 +10,7 @@ import { XMsClientRequestId } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AzureSpecialPropertiesClientContext } from "../azureSpecialPropertiesClientContext";
+import { AzureSpecialPropertiesClient } from "../azureSpecialPropertiesClient";
 import {
   XMsClientRequestIdGetOptionalParams,
   XMsClientRequestIdParamGetOptionalParams
@@ -18,13 +18,13 @@ import {
 
 /** Class containing XMsClientRequestId operations. */
 export class XMsClientRequestIdImpl implements XMsClientRequestId {
-  private readonly client: AzureSpecialPropertiesClientContext;
+  private readonly client: AzureSpecialPropertiesClient;
 
   /**
    * Initialize a new instance of the class XMsClientRequestId class.
    * @param client Reference to the service client
    */
-  constructor(client: AzureSpecialPropertiesClientContext) {
+  constructor(client: AzureSpecialPropertiesClient) {
     this.client = client;
   }
 

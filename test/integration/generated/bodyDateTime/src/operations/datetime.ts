@@ -10,7 +10,7 @@ import { Datetime } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDateTimeClientContext } from "../bodyDateTimeClientContext";
+import { BodyDateTimeClient } from "../bodyDateTimeClient";
 import {
   DatetimeGetNullOptionalParams,
   DatetimeGetNullResponse,
@@ -53,13 +53,13 @@ import {
 
 /** Class containing Datetime operations. */
 export class DatetimeImpl implements Datetime {
-  private readonly client: BodyDateTimeClientContext;
+  private readonly client: BodyDateTimeClient;
 
   /**
    * Initialize a new instance of the class Datetime class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDateTimeClientContext) {
+  constructor(client: BodyDateTimeClient) {
     this.client = client;
   }
 

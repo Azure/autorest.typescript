@@ -11,7 +11,7 @@ import { SubscriptionUsages } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClientContext } from "../sqlManagementClientContext";
+import { SqlManagementClient } from "../sqlManagementClient";
 import {
   SubscriptionUsage,
   SubscriptionUsagesListByLocationNextOptionalParams,
@@ -25,13 +25,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing SubscriptionUsages operations. */
 export class SubscriptionUsagesImpl implements SubscriptionUsages {
-  private readonly client: SqlManagementClientContext;
+  private readonly client: SqlManagementClient;
 
   /**
    * Initialize a new instance of the class SubscriptionUsages class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClientContext) {
+  constructor(client: SqlManagementClient) {
     this.client = client;
   }
 

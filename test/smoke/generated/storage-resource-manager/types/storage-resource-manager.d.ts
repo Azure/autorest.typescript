@@ -3362,7 +3362,10 @@ export declare interface StorageAccountUpdateParameters {
     routingPreference?: RoutingPreference;
 }
 
-export declare class StorageManagementClient extends StorageManagementClientContext {
+export declare class StorageManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the StorageManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -3383,19 +3386,6 @@ export declare class StorageManagementClient extends StorageManagementClientCont
     blobContainers: BlobContainers;
     fileServices: FileServices;
     fileShares: FileShares;
-}
-
-export declare class StorageManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the StorageManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

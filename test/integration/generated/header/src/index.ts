@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { HeaderClient } from "./headerClient";
-export { HeaderClientContext } from "./headerClientContext";
 export * from "./operationsInterfaces";

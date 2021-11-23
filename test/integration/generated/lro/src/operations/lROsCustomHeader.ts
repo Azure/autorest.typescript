@@ -10,7 +10,7 @@ import { LROsCustomHeader } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { LROClientContext } from "../lROClientContext";
+import { LROClient } from "../lROClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -26,13 +26,13 @@ import {
 
 /** Class containing LROsCustomHeader operations. */
 export class LROsCustomHeaderImpl implements LROsCustomHeader {
-  private readonly client: LROClientContext;
+  private readonly client: LROClient;
 
   /**
    * Initialize a new instance of the class LROsCustomHeader class.
    * @param client Reference to the service client
    */
-  constructor(client: LROClientContext) {
+  constructor(client: LROClient) {
     this.client = client;
   }
 

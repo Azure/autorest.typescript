@@ -1,7 +1,6 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { PetStoreContext } from "./petStoreContext";
 import {
   PetStoreOptionalParams,
   AddPetUsingByteArray$binaryOptionalParams,
@@ -38,13 +37,40 @@ import {
   DeleteUserOptionalParams
 } from "./models";
 
-export class PetStore extends PetStoreContext {
+export class PetStore extends coreClient.ServiceClient {
+  $host: string;
+
   /**
    * Initializes a new instance of the PetStore class.
    * @param options The parameter options
    */
   constructor(options?: PetStoreOptionalParams) {
-    super(options);
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: PetStoreOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-petstore/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://petstore.swagger.io/v2"
+    };
+    super(optionsWithDefaults);
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://petstore.swagger.io/v2";
   }
 
   /**

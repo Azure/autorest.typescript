@@ -11,7 +11,7 @@ import { Objects } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   DirectoryObjectUnion,
   ObjectsGetObjectsByObjectIdsNextOptionalParams,
@@ -24,13 +24,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Objects operations. */
 export class ObjectsImpl implements Objects {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class Objects class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

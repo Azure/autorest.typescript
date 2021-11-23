@@ -8,4 +8,3 @@
 
 export * from "./models";
 export { ArrayConstraintsClient } from "./arrayConstraintsClient";
-export { ArrayConstraintsClientContext } from "./arrayConstraintsClientContext";

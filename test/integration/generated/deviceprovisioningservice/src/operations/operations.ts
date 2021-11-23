@@ -3,7 +3,7 @@ import { Operations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DeviceProvisioningClientContext } from "../deviceProvisioningClientContext";
+import { DeviceProvisioningClient } from "../deviceProvisioningClient";
 import {
   Operation,
   OperationsListNextOptionalParams,
@@ -15,13 +15,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Operations operations. */
 export class OperationsImpl implements Operations {
-  private readonly client: DeviceProvisioningClientContext;
+  private readonly client: DeviceProvisioningClient;
 
   /**
    * Initialize a new instance of the class Operations class.
    * @param client Reference to the service client
    */
-  constructor(client: DeviceProvisioningClientContext) {
+  constructor(client: DeviceProvisioningClient) {
     this.client = client;
   }
 

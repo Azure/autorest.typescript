@@ -1996,7 +1996,10 @@ export declare interface ResourceListResult {
     readonly nextLink?: string;
 }
 
-export declare class ResourceManagementClient extends ResourceManagementClientContext {
+export declare class ResourceManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the ResourceManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -2011,19 +2014,6 @@ export declare class ResourceManagementClient extends ResourceManagementClientCo
     resourceGroups: ResourceGroups;
     tags: Tags;
     deploymentOperations: DeploymentOperations;
-}
-
-export declare class ResourceManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the ResourceManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ResourceManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

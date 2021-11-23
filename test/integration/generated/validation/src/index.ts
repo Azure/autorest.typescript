@@ -8,4 +8,3 @@
 
 export * from "./models";
 export { ValidationClient } from "./validationClient";
-export { ValidationClientContext } from "./validationClientContext";

@@ -1754,8 +1754,12 @@ export interface StorageAccountUpdateParameters {
 }
 
 // @public (undocumented)
-export class StorageManagementClient extends StorageManagementClientContext {
+export class StorageManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     blobContainers: BlobContainers;
     // (undocumented)
@@ -1781,18 +1785,9 @@ export class StorageManagementClient extends StorageManagementClientContext {
     // (undocumented)
     storageAccounts: StorageAccounts;
     // (undocumented)
-    usages: Usages;
-}
-
-// @public (undocumented)
-export class StorageManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: StorageManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     subscriptionId: string;
+    // (undocumented)
+    usages: Usages;
 }
 
 // @public

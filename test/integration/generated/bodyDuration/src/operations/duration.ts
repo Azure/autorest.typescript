@@ -10,7 +10,7 @@ import { Duration } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDurationClientContext } from "../bodyDurationClientContext";
+import { BodyDurationClient } from "../bodyDurationClient";
 import {
   DurationGetNullOptionalParams,
   DurationGetNullResponse,
@@ -23,13 +23,13 @@ import {
 
 /** Class containing Duration operations. */
 export class DurationImpl implements Duration {
-  private readonly client: BodyDurationClientContext;
+  private readonly client: BodyDurationClient;
 
   /**
    * Initialize a new instance of the class Duration class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDurationClientContext) {
+  constructor(client: BodyDurationClient) {
     this.client = client;
   }
 

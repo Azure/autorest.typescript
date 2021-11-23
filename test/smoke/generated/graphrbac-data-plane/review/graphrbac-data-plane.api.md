@@ -345,8 +345,12 @@ export interface GraphError {
 }
 
 // @public (undocumented)
-export class GraphRbacManagementClient extends GraphRbacManagementClientContext {
+export class GraphRbacManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     applications: Applications;
     // (undocumented)
@@ -364,18 +368,9 @@ export class GraphRbacManagementClient extends GraphRbacManagementClientContext 
     // (undocumented)
     signedInUser: SignedInUser;
     // (undocumented)
-    users: Users;
-}
-
-// @public (undocumented)
-export class GraphRbacManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, tenantID: string, options?: GraphRbacManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     tenantID: string;
+    // (undocumented)
+    users: Users;
 }
 
 // @public

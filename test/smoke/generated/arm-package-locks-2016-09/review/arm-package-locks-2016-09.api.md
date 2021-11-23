@@ -41,21 +41,16 @@ export enum KnownLockLevel {
 export type LockLevel = string;
 
 // @public (undocumented)
-export class ManagementLockClient extends ManagementLockClientContext {
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
-    // (undocumented)
-    authorizationOperations: AuthorizationOperations;
-    // (undocumented)
-    managementLocks: ManagementLocks;
-}
-
-// @public (undocumented)
-export class ManagementLockClientContext extends coreClient.ServiceClient {
+export class ManagementLockClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
     // (undocumented)
     apiVersion: string;
+    // (undocumented)
+    authorizationOperations: AuthorizationOperations;
+    // (undocumented)
+    managementLocks: ManagementLocks;
     // (undocumented)
     subscriptionId: string;
 }

@@ -11,7 +11,7 @@ import { Operations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagementLinkClientContext } from "../managementLinkClientContext";
+import { ManagementLinkClient } from "../managementLinkClient";
 import {
   Operation,
   OperationsListNextOptionalParams,
@@ -23,13 +23,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Operations operations. */
 export class OperationsImpl implements Operations {
-  private readonly client: ManagementLinkClientContext;
+  private readonly client: ManagementLinkClient;
 
   /**
    * Initialize a new instance of the class Operations class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagementLinkClientContext) {
+  constructor(client: ManagementLinkClient) {
     this.client = client;
   }
 

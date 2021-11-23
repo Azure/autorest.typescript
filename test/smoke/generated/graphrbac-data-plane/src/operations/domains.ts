@@ -11,7 +11,7 @@ import { Domains } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   Domain,
   DomainsListOptionalParams,
@@ -23,13 +23,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Domains operations. */
 export class DomainsImpl implements Domains {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class Domains class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

@@ -8,4 +8,3 @@
 
 export * from "./models";
 export { MapperRequiredClient } from "./mapperRequiredClient";
-export { MapperRequiredClientContext } from "./mapperRequiredClientContext";

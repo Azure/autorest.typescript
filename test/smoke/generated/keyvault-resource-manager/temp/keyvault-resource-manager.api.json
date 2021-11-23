@@ -990,9 +990,13 @@
               "text": "export declare class KeyVaultManagementClient extends "
             },
             {
+              "kind": "Content",
+              "text": "coreClient."
+            },
+            {
               "kind": "Reference",
-              "text": "KeyVaultManagementClientContext",
-              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext:class"
+              "text": "ServiceClient",
+              "canonicalReference": "@azure/core-client!ServiceClient:class"
             },
             {
               "kind": "Content",
@@ -1067,6 +1071,60 @@
                   }
                 }
               ]
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClient#$host:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "$host: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "$host",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
+              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClient#apiVersion:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "apiVersion: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "apiVersion",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
             },
             {
               "kind": "Property",
@@ -1154,6 +1212,33 @@
             },
             {
               "kind": "Property",
+              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClient#subscriptionId:member",
+              "docComment": "",
+              "excerptTokens": [
+                {
+                  "kind": "Content",
+                  "text": "subscriptionId: "
+                },
+                {
+                  "kind": "Content",
+                  "text": "string"
+                },
+                {
+                  "kind": "Content",
+                  "text": ";"
+                }
+              ],
+              "isOptional": false,
+              "releaseTag": "Public",
+              "name": "subscriptionId",
+              "propertyTypeTokenRange": {
+                "startIndex": 1,
+                "endIndex": 2
+              },
+              "isStatic": false
+            },
+            {
+              "kind": "Property",
               "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClient#vaults:member",
               "docComment": "",
               "excerptTokens": [
@@ -1174,186 +1259,6 @@
               "isOptional": false,
               "releaseTag": "Public",
               "name": "vaults",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            }
-          ],
-          "extendsTokenRange": {
-            "startIndex": 1,
-            "endIndex": 3
-          },
-          "implementsTokenRanges": []
-        },
-        {
-          "kind": "Class",
-          "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext:class",
-          "docComment": "",
-          "excerptTokens": [
-            {
-              "kind": "Content",
-              "text": "export declare class KeyVaultManagementClientContext extends "
-            },
-            {
-              "kind": "Content",
-              "text": "coreClient."
-            },
-            {
-              "kind": "Reference",
-              "text": "ServiceClient",
-              "canonicalReference": "@azure/core-client!ServiceClient:class"
-            },
-            {
-              "kind": "Content",
-              "text": " "
-            }
-          ],
-          "releaseTag": "Public",
-          "name": "KeyVaultManagementClientContext",
-          "members": [
-            {
-              "kind": "Constructor",
-              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext:constructor(1)",
-              "docComment": "/**\n * Initializes a new instance of the KeyVaultManagementClientContext class.\n *\n * @param credentials - Subscription credentials which uniquely identify client subscription.\n *\n * @param subscriptionId - Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call.\n *\n * @param options - The parameter options\n */\n",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "constructor(credentials: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "coreAuth."
-                },
-                {
-                  "kind": "Reference",
-                  "text": "TokenCredential",
-                  "canonicalReference": "@azure/core-auth!TokenCredential:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", subscriptionId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ", options?: "
-                },
-                {
-                  "kind": "Reference",
-                  "text": "KeyVaultManagementClientOptionalParams",
-                  "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientOptionalParams:interface"
-                },
-                {
-                  "kind": "Content",
-                  "text": ");"
-                }
-              ],
-              "releaseTag": "Public",
-              "overloadIndex": 1,
-              "parameters": [
-                {
-                  "parameterName": "credentials",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 1,
-                    "endIndex": 3
-                  }
-                },
-                {
-                  "parameterName": "subscriptionId",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 4,
-                    "endIndex": 5
-                  }
-                },
-                {
-                  "parameterName": "options",
-                  "parameterTypeTokenRange": {
-                    "startIndex": 6,
-                    "endIndex": 7
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext#$host:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "$host: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "$host",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext#apiVersion:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "apiVersion: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "apiVersion",
-              "propertyTypeTokenRange": {
-                "startIndex": 1,
-                "endIndex": 2
-              },
-              "isStatic": false
-            },
-            {
-              "kind": "Property",
-              "canonicalReference": "@msinternal/keyvault-resource-manager!KeyVaultManagementClientContext#subscriptionId:member",
-              "docComment": "",
-              "excerptTokens": [
-                {
-                  "kind": "Content",
-                  "text": "subscriptionId: "
-                },
-                {
-                  "kind": "Content",
-                  "text": "string"
-                },
-                {
-                  "kind": "Content",
-                  "text": ";"
-                }
-              ],
-              "isOptional": false,
-              "releaseTag": "Public",
-              "name": "subscriptionId",
               "propertyTypeTokenRange": {
                 "startIndex": 1,
                 "endIndex": 2

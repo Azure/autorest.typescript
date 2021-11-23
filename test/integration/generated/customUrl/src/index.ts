@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { CustomUrlClient } from "./customUrlClient";
-export { CustomUrlClientContext } from "./customUrlClientContext";
 export * from "./operationsInterfaces";

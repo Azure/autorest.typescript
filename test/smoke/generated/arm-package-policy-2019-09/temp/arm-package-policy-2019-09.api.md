@@ -242,23 +242,18 @@ export interface PolicyAssignmentsListOptionalParams extends coreClient.Operatio
 export type PolicyAssignmentsListResponse = PolicyAssignmentListResult;
 
 // @public (undocumented)
-export class PolicyClient extends PolicyClientContext {
+export class PolicyClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     policyAssignments: PolicyAssignments;
     // (undocumented)
     policyDefinitions: PolicyDefinitions;
     // (undocumented)
     policySetDefinitions: PolicySetDefinitions;
-}
-
-// @public (undocumented)
-export class PolicyClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
     // (undocumented)
     subscriptionId: string;
 }
