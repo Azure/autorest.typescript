@@ -11,7 +11,7 @@ import { AuthorizationOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ManagementLockClientContext } from "../managementLockClientContext";
+import { ManagementLockClient } from "../managementLockClient";
 import {
   Operation,
   AuthorizationOperationsListNextOptionalParams,
@@ -23,13 +23,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing AuthorizationOperations operations. */
 export class AuthorizationOperationsImpl implements AuthorizationOperations {
-  private readonly client: ManagementLockClientContext;
+  private readonly client: ManagementLockClient;
 
   /**
    * Initialize a new instance of the class AuthorizationOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: ManagementLockClientContext) {
+  constructor(client: ManagementLockClient) {
     this.client = client;
   }
 

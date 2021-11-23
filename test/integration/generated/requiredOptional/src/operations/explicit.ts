@@ -11,7 +11,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { RequiredOptionalClientContext } from "../requiredOptionalClientContext";
+import { RequiredOptionalClient } from "../requiredOptionalClient";
 import {
   ExplicitPutOptionalBinaryBodyOptionalParams,
   ExplicitPutRequiredBinaryBodyOptionalParams,
@@ -46,13 +46,13 @@ import {
 
 /** Class containing Explicit operations. */
 export class ExplicitImpl implements Explicit {
-  private readonly client: RequiredOptionalClientContext;
+  private readonly client: RequiredOptionalClient;
 
   /**
    * Initialize a new instance of the class Explicit class.
    * @param client Reference to the service client
    */
-  constructor(client: RequiredOptionalClientContext) {
+  constructor(client: RequiredOptionalClient) {
     this.client = client;
   }
 

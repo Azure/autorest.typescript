@@ -10,7 +10,7 @@ import { Group } from "../operationsInterfaces";
 import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { UserAgentCoreV1ClientContext } from "../userAgentCoreV1ClientContext";
+import { UserAgentCoreV1Client } from "../userAgentCoreV1Client";
 import {
   GroupGetSampleResourceGroupOptionalParams,
   GroupGetSampleResourceGroupResponse
@@ -18,13 +18,13 @@ import {
 
 /** Class containing Group operations. */
 export class GroupImpl implements Group {
-  private readonly client: UserAgentCoreV1ClientContext;
+  private readonly client: UserAgentCoreV1Client;
 
   /**
    * Initialize a new instance of the class Group class.
    * @param client Reference to the service client
    */
-  constructor(client: UserAgentCoreV1ClientContext) {
+  constructor(client: UserAgentCoreV1Client) {
     this.client = client;
   }
 

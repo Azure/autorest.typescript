@@ -84,23 +84,18 @@ export interface Subscription {
 }
 
 // @public (undocumented)
-export class SubscriptionClient extends SubscriptionClientContext {
+export class SubscriptionClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     operations: Operations;
     // (undocumented)
     subscriptions: Subscriptions;
     // (undocumented)
     tenants: Tenants;
-}
-
-// @public (undocumented)
-export class SubscriptionClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, options?: SubscriptionClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
 }
 
 // @public

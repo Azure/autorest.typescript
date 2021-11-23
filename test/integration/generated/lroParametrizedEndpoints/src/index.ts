@@ -8,4 +8,3 @@
 
 export * from "./models";
 export { LroParametrizedEndpointsClient } from "./lroParametrizedEndpointsClient";
-export { LroParametrizedEndpointsClientContext } from "./lroParametrizedEndpointsClientContext";

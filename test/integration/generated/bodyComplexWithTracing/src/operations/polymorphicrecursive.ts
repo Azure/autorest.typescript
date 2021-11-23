@@ -12,7 +12,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreTracing from "@azure/core-tracing";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyComplexWithTracingContext } from "../bodyComplexWithTracingContext";
+import { BodyComplexWithTracing } from "../bodyComplexWithTracing";
 import {
   PolymorphicrecursiveGetValidOptionalParams,
   PolymorphicrecursiveGetValidResponse,
@@ -22,13 +22,13 @@ import {
 
 /** Class containing Polymorphicrecursive operations. */
 export class PolymorphicrecursiveImpl implements Polymorphicrecursive {
-  private readonly client: BodyComplexWithTracingContext;
+  private readonly client: BodyComplexWithTracing;
 
   /**
    * Initialize a new instance of the class Polymorphicrecursive class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyComplexWithTracingContext) {
+  constructor(client: BodyComplexWithTracing) {
     this.client = client;
   }
 

@@ -10,7 +10,7 @@ import { Pet } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { XmsErrorResponsesClientContext } from "../xmsErrorResponsesClientContext";
+import { XmsErrorResponsesClient } from "../xmsErrorResponsesClient";
 import {
   PetGetPetByIdOptionalParams,
   PetGetPetByIdResponse,
@@ -21,13 +21,13 @@ import {
 
 /** Class containing Pet operations. */
 export class PetImpl implements Pet {
-  private readonly client: XmsErrorResponsesClientContext;
+  private readonly client: XmsErrorResponsesClient;
 
   /**
    * Initialize a new instance of the class Pet class.
    * @param client Reference to the service client
    */
-  constructor(client: XmsErrorResponsesClientContext) {
+  constructor(client: XmsErrorResponsesClient) {
     this.client = client;
   }
 

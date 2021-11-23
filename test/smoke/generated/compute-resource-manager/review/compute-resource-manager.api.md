@@ -213,7 +213,9 @@ export interface ComponentsNj115SSchemasVirtualmachinescalesetidentityProperties
 }
 
 // @public (undocumented)
-export class ComputeManagementClient extends ComputeManagementClientContext {
+export class ComputeManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
     // (undocumented)
     availabilitySets: AvailabilitySets;
@@ -252,6 +254,8 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
     // (undocumented)
     sshPublicKeys: SshPublicKeys;
     // (undocumented)
+    subscriptionId: string;
+    // (undocumented)
     usageOperations: UsageOperations;
     // (undocumented)
     virtualMachineExtensionImages: VirtualMachineExtensionImages;
@@ -275,15 +279,6 @@ export class ComputeManagementClient extends ComputeManagementClientContext {
     virtualMachineScaleSetVMs: VirtualMachineScaleSetVMs;
     // (undocumented)
     virtualMachineSizes: VirtualMachineSizes;
-}
-
-// @public (undocumented)
-export class ComputeManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ComputeManagementClientOptionalParams);
-    // (undocumented)
-    subscriptionId: string;
 }
 
 // @public

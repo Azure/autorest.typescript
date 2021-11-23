@@ -6,12 +6,15 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PathsImpl } from "./operations";
 import { Paths } from "./operationsInterfaces";
-import { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 import { CustomUrlMoreOptionsClientOptionalParams } from "./models";
 
-export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContext {
+export class CustomUrlMoreOptionsClient extends coreClient.ServiceClient {
+  dnsSuffix: string;
+  subscriptionId: string;
+
   /**
    * Initializes a new instance of the CustomUrlMoreOptionsClient class.
    * @param subscriptionId The subscription id with value 'test12'.
@@ -21,7 +24,38 @@ export class CustomUrlMoreOptionsClient extends CustomUrlMoreOptionsClientContex
     subscriptionId: string,
     options?: CustomUrlMoreOptionsClientOptionalParams
   ) {
-    super(subscriptionId, options);
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: CustomUrlMoreOptionsClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-custom-url-MoreOptions/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{vault}{secret}{dnsSuffix}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.dnsSuffix = options.dnsSuffix || "host";
     this.paths = new PathsImpl(this);
   }
 

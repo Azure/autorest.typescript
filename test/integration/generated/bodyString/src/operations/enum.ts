@@ -10,7 +10,7 @@ import { Enum } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyStringClientContext } from "../bodyStringClientContext";
+import { BodyStringClient } from "../bodyStringClient";
 import {
   EnumGetNotExpandableOptionalParams,
   EnumGetNotExpandableResponse,
@@ -27,13 +27,13 @@ import {
 
 /** Class containing Enum operations. */
 export class EnumImpl implements Enum {
-  private readonly client: BodyStringClientContext;
+  private readonly client: BodyStringClient;
 
   /**
    * Initialize a new instance of the class Enum class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyStringClientContext) {
+  constructor(client: BodyStringClient) {
     this.client = client;
   }
 

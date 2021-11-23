@@ -64,7 +64,10 @@ export declare type IdentityUpdate = Resource & {
     readonly clientId?: string;
 };
 
-export declare class ManagedServiceIdentityClient extends ManagedServiceIdentityClientContext {
+export declare class ManagedServiceIdentityClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the ManagedServiceIdentityClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -75,19 +78,6 @@ export declare class ManagedServiceIdentityClient extends ManagedServiceIdentity
     systemAssignedIdentities: SystemAssignedIdentities;
     operations: Operations;
     userAssignedIdentities: UserAssignedIdentities;
-}
-
-export declare class ManagedServiceIdentityClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the ManagedServiceIdentityClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The Id of the Subscription to which the identity belongs.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagedServiceIdentityClientOptionalParams);
 }
 
 /** Optional parameters. */

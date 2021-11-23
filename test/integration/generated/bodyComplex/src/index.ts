@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { BodyComplexClient } from "./bodyComplexClient";
-export { BodyComplexClientContext } from "./bodyComplexClientContext";
 export * from "./operationsInterfaces";

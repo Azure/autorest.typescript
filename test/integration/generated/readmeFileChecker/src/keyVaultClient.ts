@@ -1,10 +1,9 @@
 import * as coreClient from "@azure/core-client";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { KeyVaultClientContext } from "./keyVaultClientContext";
 import {
-  KeyVaultClientOptionalParams,
   ApiVersion72Preview,
+  KeyVaultClientOptionalParams,
   SetSecretOptionalParams,
   SetSecretResponse,
   DeleteSecretOptionalParams,
@@ -37,7 +36,9 @@ import {
 } from "./models";
 
 /** @internal */
-export class KeyVaultClient extends KeyVaultClientContext {
+export class KeyVaultClient extends coreClient.ServiceClient {
+  apiVersion: ApiVersion72Preview;
+
   /**
    * Initializes a new instance of the KeyVaultClient class.
    * @param apiVersion Api Version
@@ -47,7 +48,35 @@ export class KeyVaultClient extends KeyVaultClientContext {
     apiVersion: ApiVersion72Preview,
     options?: KeyVaultClientOptionalParams
   ) {
-    super(apiVersion, options);
+    if (apiVersion === undefined) {
+      throw new Error("'apiVersion' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: KeyVaultClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-keyvault-secrets/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{vaultBaseUrl}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.apiVersion = apiVersion;
   }
 
   /**

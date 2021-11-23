@@ -2,7 +2,10 @@ import * as coreAuth from '@azure/core-auth';
 import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
-export declare class FeatureClient extends FeatureClientContext {
+export declare class FeatureClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the FeatureClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -29,19 +32,6 @@ export declare class FeatureClient extends FeatureClientContext {
      */
     private _listOperationsNext;
     features: Features;
-}
-
-export declare class FeatureClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the FeatureClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: FeatureClientOptionalParams);
 }
 
 /** Optional parameters. */

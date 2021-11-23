@@ -11,7 +11,7 @@ import { Providers } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { ResourceManagementClientContext } from "../resourceManagementClientContext";
+import { ResourceManagementClient } from "../resourceManagementClient";
 import {
   Provider,
   ProvidersListNextOptionalParams,
@@ -35,13 +35,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Providers operations. */
 export class ProvidersImpl implements Providers {
-  private readonly client: ResourceManagementClientContext;
+  private readonly client: ResourceManagementClient;
 
   /**
    * Initialize a new instance of the class Providers class.
    * @param client Reference to the service client
    */
-  constructor(client: ResourceManagementClientContext) {
+  constructor(client: ResourceManagementClient) {
     this.client = client;
   }
 

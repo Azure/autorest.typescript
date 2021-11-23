@@ -11,7 +11,7 @@ import { Groups } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { GraphRbacManagementClientContext } from "../graphRbacManagementClientContext";
+import { GraphRbacManagementClient } from "../graphRbacManagementClient";
 import {
   ADGroup,
   GroupsListNextOptionalParams,
@@ -50,13 +50,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Groups operations. */
 export class GroupsImpl implements Groups {
-  private readonly client: GraphRbacManagementClientContext;
+  private readonly client: GraphRbacManagementClient;
 
   /**
    * Initialize a new instance of the class Groups class.
    * @param client Reference to the service client
    */
-  constructor(client: GraphRbacManagementClientContext) {
+  constructor(client: GraphRbacManagementClient) {
     this.client = client;
   }
 

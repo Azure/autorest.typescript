@@ -16660,7 +16660,10 @@ export declare type WebSiteInstanceStatus = ProxyOnlyResource & {
     };
 };
 
-export declare class WebSiteManagementClient extends WebSiteManagementClientContext {
+export declare class WebSiteManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
+    apiVersion: string;
     /**
      * Initializes a new instance of the WebSiteManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -16847,20 +16850,6 @@ export declare class WebSiteManagementClient extends WebSiteManagementClientCont
     appServiceEnvironments: AppServiceEnvironments;
     appServicePlans: AppServicePlans;
     resourceHealthMetadataOperations: ResourceHealthMetadataOperations;
-}
-
-export declare class WebSiteManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    apiVersion: string;
-    /**
-     * Initializes a new instance of the WebSiteManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId Your Azure subscription ID. This is a GUID-formatted string (e.g.
-     *                       00000000-0000-0000-0000-000000000000).
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: WebSiteManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

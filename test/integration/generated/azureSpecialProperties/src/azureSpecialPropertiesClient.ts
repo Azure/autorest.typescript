@@ -6,6 +6,7 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import {
   XMsClientRequestIdImpl,
@@ -27,10 +28,13 @@ import {
   Odata,
   Header
 } from "./operationsInterfaces";
-import { AzureSpecialPropertiesClientContext } from "./azureSpecialPropertiesClientContext";
 import { AzureSpecialPropertiesClientOptionalParams } from "./models";
 
-export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientContext {
+export class AzureSpecialPropertiesClient extends coreClient.ServiceClient {
+  $host: string;
+  subscriptionId: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the AzureSpecialPropertiesClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -43,7 +47,49 @@ export class AzureSpecialPropertiesClient extends AzureSpecialPropertiesClientCo
     subscriptionId: string,
     options?: AzureSpecialPropertiesClientOptionalParams
   ) {
-    super(credentials, subscriptionId, options);
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: AzureSpecialPropertiesClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
+
+    const packageDetails = `azsdk-js-azure-special-properties/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    if (!options.credentialScopes) {
+      options.credentialScopes = [
+        "https://microsoft.com/.default",
+        "http://microsoft.com/.default"
+      ];
+    }
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "http://localhost:3000"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "http://localhost:3000";
+    this.apiVersion = options.apiVersion || "2015-07-01-preview";
     this.xMsClientRequestId = new XMsClientRequestIdImpl(this);
     this.subscriptionInCredentials = new SubscriptionInCredentialsImpl(this);
     this.subscriptionInMethod = new SubscriptionInMethodImpl(this);

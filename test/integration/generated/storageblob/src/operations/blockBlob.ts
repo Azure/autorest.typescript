@@ -3,7 +3,7 @@ import * as coreClient from "@azure/core-client";
 import * as coreRestPipeline from "@azure/core-rest-pipeline";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { StorageBlobClientContext } from "../storageBlobClientContext";
+import { StorageBlobClient } from "../storageBlobClient";
 import {
   BlockBlobStageBlockOptionalParams,
   BlockBlobStageBlockResponse,
@@ -15,13 +15,13 @@ import {
 
 /** Class containing BlockBlob operations. */
 export class BlockBlobImpl implements BlockBlob {
-  private readonly client: StorageBlobClientContext;
+  private readonly client: StorageBlobClient;
 
   /**
    * Initialize a new instance of the class BlockBlob class.
    * @param client Reference to the service client
    */
-  constructor(client: StorageBlobClientContext) {
+  constructor(client: StorageBlobClient) {
     this.client = client;
   }
 

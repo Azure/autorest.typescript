@@ -2,7 +2,7 @@ import { Documents } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SearchClientContext } from "../searchClientContext";
+import { SearchClient } from "../searchClient";
 import {
   DocumentsCountOptionalParams,
   DocumentsCountResponse,
@@ -30,13 +30,13 @@ import {
 
 /** Class containing Documents operations. */
 export class DocumentsImpl implements Documents {
-  private readonly client: SearchClientContext;
+  private readonly client: SearchClient;
 
   /**
    * Initialize a new instance of the class Documents class.
    * @param client Reference to the service client
    */
-  constructor(client: SearchClientContext) {
+  constructor(client: SearchClient) {
     this.client = client;
   }
 

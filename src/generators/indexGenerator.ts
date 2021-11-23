@@ -102,10 +102,6 @@ function generateHLCIndex(clientDetails: ClientDetails, file: SourceFile) {
     {
       moduleSpecifier: `./${clientDetails.sourceFileName}`,
       namedExports: [clientDetails.className]
-    },
-    {
-      moduleSpecifier: `./${clientDetails.sourceFileName}Context`,
-      namedExports: [`${clientDetails.className}Context`]
     }
   ]);
 

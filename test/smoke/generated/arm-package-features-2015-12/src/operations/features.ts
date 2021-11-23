@@ -11,7 +11,7 @@ import { Features } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { FeatureClientContext } from "../featureClientContext";
+import { FeatureClient } from "../featureClient";
 import {
   FeatureResult,
   FeaturesListAllNextOptionalParams,
@@ -33,13 +33,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Features operations. */
 export class FeaturesImpl implements Features {
-  private readonly client: FeatureClientContext;
+  private readonly client: FeatureClient;
 
   /**
    * Initialize a new instance of the class Features class.
    * @param client Reference to the service client
    */
-  constructor(client: FeatureClientContext) {
+  constructor(client: FeatureClient) {
     this.client = client;
   }
 

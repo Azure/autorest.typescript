@@ -11,7 +11,7 @@ import { ResourceHealthMetadataOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { WebSiteManagementClientContext } from "../webSiteManagementClientContext";
+import { WebSiteManagementClient } from "../webSiteManagementClient";
 import {
   ResourceHealthMetadata,
   ResourceHealthMetadataListNextOptionalParams,
@@ -40,13 +40,13 @@ import {
 /** Class containing ResourceHealthMetadataOperations operations. */
 export class ResourceHealthMetadataOperationsImpl
   implements ResourceHealthMetadataOperations {
-  private readonly client: WebSiteManagementClientContext;
+  private readonly client: WebSiteManagementClient;
 
   /**
    * Initialize a new instance of the class ResourceHealthMetadataOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: WebSiteManagementClientContext) {
+  constructor(client: WebSiteManagementClient) {
     this.client = client;
   }
 

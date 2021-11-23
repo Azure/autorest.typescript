@@ -43,7 +43,10 @@ export declare enum KnownLockLevel {
  */
 export declare type LockLevel = string;
 
-export declare class ManagementLockClient extends ManagementLockClientContext {
+export declare class ManagementLockClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the ManagementLockClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -53,19 +56,6 @@ export declare class ManagementLockClient extends ManagementLockClientContext {
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
     authorizationOperations: AuthorizationOperations;
     managementLocks: ManagementLocks;
-}
-
-export declare class ManagementLockClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the ManagementLockClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLockClientOptionalParams);
 }
 
 /** Optional parameters. */

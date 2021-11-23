@@ -32,21 +32,16 @@ export interface ApplicationArtifact {
 export type ApplicationArtifactType = "Template" | "Custom";
 
 // @public (undocumented)
-export class ApplicationClient extends ApplicationClientContext {
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
-    // (undocumented)
-    applicationDefinitions: ApplicationDefinitions;
-    // (undocumented)
-    applications: Applications;
-}
-
-// @public (undocumented)
-export class ApplicationClientContext extends coreClient.ServiceClient {
+export class ApplicationClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ApplicationClientOptionalParams);
     // (undocumented)
     apiVersion: string;
+    // (undocumented)
+    applicationDefinitions: ApplicationDefinitions;
+    // (undocumented)
+    applications: Applications;
     // (undocumented)
     subscriptionId: string;
 }

@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { BodyBooleanQuirksClient } from "./bodyBooleanQuirksClient";
-export { BodyBooleanQuirksClientContext } from "./bodyBooleanQuirksClientContext";
 export * from "./operationsInterfaces";
