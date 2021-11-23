@@ -1,5 +1,4 @@
 import { ClientDetails } from "./models/clientDetails";
-import { ParameterDetails } from "./models/parameterDetails";
 
 const RESERVED_MEMBER_NAMES = ["pipeline"];
 

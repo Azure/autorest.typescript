@@ -1,4 +1,8 @@
-import { Channel, Host, Message } from "@autorest/extension-base";
+import {
+  Channel,
+  AutorestExtensionHost,
+  Message
+} from "@autorest/extension-base";
 import { assert } from "chai";
 import { getCredentialScopes } from "../../../src/utils/autorestOptions";
 
@@ -6,7 +10,7 @@ describe("transformOptions", () => {
   describe("getCredentialScopes", () => {
     it("should throw an error if credentials is false but credential-scopes are provided", async () => {
       const mockHost = {
-        GetValue: async (key: string) => {
+        getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return false;
@@ -18,8 +22,8 @@ describe("transformOptions", () => {
               return undefined;
           }
         },
-        Message: (message: Message) => {}
-      } as Host;
+        message: (message: Message) => {}
+      } as AutorestExtensionHost;
       try {
         await getCredentialScopes(mockHost);
         assert.fail("Expected to throw");
@@ -33,7 +37,7 @@ describe("transformOptions", () => {
 
     it("should set default scopes when isArm is set and no credential-scopes were passed", async () => {
       const mockHost = {
-        GetValue: async (key: string) => {
+        getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return true;
@@ -45,15 +49,15 @@ describe("transformOptions", () => {
               return undefined;
           }
         },
-        Message: (message: Message) => {}
-      } as Host;
+        message: (message: Message) => {}
+      } as AutorestExtensionHost;
       const scopes = await getCredentialScopes(mockHost);
       assert.deepEqual(scopes, ["https://management.azure.com/.default"]);
     });
 
     it("should log a warning when credentials is true but no scopes are passed", async () => {
       const mockHost = {
-        GetValue: async (key: string) => {
+        getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return true;
@@ -65,21 +69,21 @@ describe("transformOptions", () => {
               return undefined;
           }
         },
-        Message: (message: Message) => {
+        message: (message: Message) => {
           assert.include(
             message.Text,
             "You have default credential policy BearerTokenCredentialPolicy"
           );
           assert.equal(message.Channel, Channel.Warning);
         }
-      } as Host;
+      } as AutorestExtensionHost;
       const scopes = await getCredentialScopes(mockHost);
       assert.equal(scopes, undefined);
     });
 
     it("should handle a single credential scope", async () => {
       const mockHost = {
-        GetValue: async (key: string) => {
+        getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return true;
@@ -91,15 +95,15 @@ describe("transformOptions", () => {
               return undefined;
           }
         },
-        Message: (message: Message) => {}
-      } as Host;
+        message: (message: Message) => {}
+      } as AutorestExtensionHost;
       const scopes = await getCredentialScopes(mockHost);
       assert.deepEqual(scopes, ["https://microsoft.com/.defaults"]);
     });
 
     it("should handle a multiple credential scopes", async () => {
       const mockHost = {
-        GetValue: async (key: string) => {
+        getValue: async (key: string) => {
           switch (key) {
             case "add-credentials":
               return true;
@@ -111,8 +115,8 @@ describe("transformOptions", () => {
               return undefined;
           }
         },
-        Message: (message: Message) => {}
-      } as Host;
+        message: (message: Message) => {}
+      } as AutorestExtensionHost;
       const scopes = await getCredentialScopes(mockHost);
       assert.deepEqual(scopes, [
         "https://microsoft.com/.defaults",
