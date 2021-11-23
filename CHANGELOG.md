@@ -1,4 +1,4 @@
-## 6.0.0-beta.16 (2021-11-22)
+## 6.0.0-beta.16 (UNRELEASED)
 
 - [Feature] Bumped @autorest/extension-base version to 3.4.1 and fix breaking changes. [#1253](https://github.com/Azure/autorest.typescript/pull/1253)
 
