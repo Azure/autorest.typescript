@@ -1,4 +1,8 @@
-import { Host, Session, startSession } from "@autorest/extension-base";
+import {
+  AutorestExtensionHost,
+  Session,
+  startSession
+} from "@autorest/extension-base";
 import { CodeModel, codeModelSchema } from "@autorest/codemodel";
 import { extractAutorestOptions } from "./utils/autorestOptions";
 import { PackageDetails } from "./models/packageDetails";
@@ -29,17 +33,17 @@ export interface AutorestOptions {
   generateTest?: boolean;
 }
 
-let host: Host;
+let host: AutorestExtensionHost;
 let session: Session<CodeModel>;
 let options: AutorestOptions;
 
-export async function initializeSession(autorestHost: Host) {
+export async function initializeSession(autorestHost: AutorestExtensionHost) {
   if (!host) {
     host = autorestHost;
   }
 
   if (!session) {
-    session = await startSession<CodeModel>(host, undefined, codeModelSchema);
+    session = await startSession<CodeModel>(host, codeModelSchema);
   }
 
   if (!options) {
@@ -57,7 +61,7 @@ export function getSession(): Session<CodeModel> {
   return session;
 }
 
-export function getHost(): Host {
+export function getHost(): AutorestExtensionHost {
   if (!host) {
     throw new Error(
       "Host has not been initialized, make sure to call initializeSession early in the plugin startup"

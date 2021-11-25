@@ -455,31 +455,8 @@ function getCredentialScopesValue(credentialScopes?: string | string[]) {
   return credentialScopes;
 }
 
-function writeDefaultOptions(
-  hasCredentials: boolean,
-  hasLro: boolean,
-  clientDetails: ClientDetails
-) {
-  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
-
-  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
-  const addScopes = credentialScopes
-    ? `if(!options.credentialScopes) {
-    options.credentialScopes = ${credentialScopesValues}
-  }`
-    : "";
-
-  const defaults = !hasCredentials
-    ? `const defaults: ${clientDetails.className}OptionalParams = {
-    requestContentType: "application/json; charset=utf-8"
-  };`
-    : `const defaults: ${clientDetails.className}OptionalParams = {
-    requestContentType: "application/json; charset=utf-8",
-    credential: credentials
-  };`;
-
-  return !useCoreV2
-    ? `// Initializing default values for options
+function getTrack2DefaultContent(addScopes: string, hasCredentials: boolean) {
+  return `// Initializing default values for options
   if (!options) {
      options = {};
   }
@@ -497,8 +474,11 @@ function writeDefaultOptions(
   
   this.requestContentType = "application/json; charset=utf-8";
   
-  `
-    : `// Initializing default values for options
+  `;
+}
+
+function getTrack1DefaultContent(addScopes: string, defaults: string, packageDetails: PackageDetails, clientDetails: ClientDetails) {
+  return `// Initializing default values for options
   if (!options) {
     options = {};
   }
@@ -524,6 +504,34 @@ function writeDefaultOptions(
   };
   super(optionsWithDefaults);
   `;
+}
+
+function writeDefaultOptions(
+  hasCredentials: boolean,
+  hasLro: boolean,
+  clientDetails: ClientDetails
+) {
+  const { useCoreV2, credentialScopes, packageDetails } = getAutorestOptions();
+
+  const credentialScopesValues = getCredentialScopesValue(credentialScopes);
+  const addScopes = credentialScopes
+    ? `if(!options.credentialScopes) {
+    options.credentialScopes = ${credentialScopesValues}
+  }`
+    : "";
+
+  const defaults = !hasCredentials
+    ? `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8"
+  };`
+    : `const defaults: ${clientDetails.className}OptionalParams = {
+    requestContentType: "application/json; charset=utf-8",
+    credential: credentials
+  };`;
+
+  return !useCoreV2
+    ? getTrack2DefaultContent(addScopes, hasCredentials)
+    : getTrack1DefaultContent(addScopes, defaults, packageDetails, clientDetails);
 }
 
 function getEndpointStatement({ endpoint }: EndpointDetails) {
@@ -563,8 +571,4 @@ function writePackageInfo(
     `const packageName = "${packageDetails.name || ""}";`,
     `const packageVersion = "${packageDetails.version || ""}";`
   ]);
-}
-
-function packageDetails(clientFile: SourceFile, packageDetails: any) {
-  throw new Error("Function not implemented.");
 }

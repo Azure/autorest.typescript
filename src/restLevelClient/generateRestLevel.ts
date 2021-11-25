@@ -74,9 +74,9 @@ export async function generateRestLevelClient() {
     }
 
     // Write the file to the AutoRest host
-    host.WriteFile(
-      filePath.substr(1), // Get rid of the leading slash '/'
-      fileContents
-    );
+    host.writeFile({
+      filename: filePath.substr(1), // Get rid of the leading slash '/'
+      content: fileContents
+    });
   }
 }

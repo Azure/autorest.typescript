@@ -1,4 +1,4 @@
-import { Channel, Host } from "@autorest/extension-base";
+import { Channel, AutorestExtensionHost } from "@autorest/extension-base";
 import { AutorestOptions, getHost, getSession } from "../autorestSession";
 import { TracingInfo } from "../models/clientDetails";
 import { PackageDetails } from "../models/packageDetails";
@@ -31,7 +31,7 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
   const azureOutputDirectory = await getAzureOutputDirectoryPath(host);
   const headAsBoolean = await getHeadAsBoolean(host);
   const isTestPackage = await getIsTestPackage(host);
-  const generateTest = await getGenerateTest(host)
+  const generateTest = await getGenerateTest(host);
 
   return {
     azureArm,
@@ -55,78 +55,92 @@ export async function extractAutorestOptions(): Promise<AutorestOptions> {
     azureOutputDirectory,
     headAsBoolean,
     isTestPackage,
-    generateTest,
+    generateTest
   };
 }
 
-async function getHeadAsBoolean(host: Host): Promise<boolean> {
-  const headAsBoolean = await host.GetValue("head-as-boolean");
+async function getHeadAsBoolean(host: AutorestExtensionHost): Promise<boolean> {
+  const headAsBoolean = await host.getValue("head-as-boolean");
 
   return Boolean(headAsBoolean);
 }
 
-async function getIsTestPackage(host: Host): Promise<boolean> {
-  const isTestPackage: boolean = await host.GetValue("is-test-package");
+async function getIsTestPackage(host: AutorestExtensionHost): Promise<boolean> {
+  const isTestPackage = await host.getValue("is-test-package");
   return isTestPackage === null ? false : Boolean(isTestPackage);
 }
 
-async function getGenerateTest(host: Host): Promise<boolean> {
-  const generateTest: boolean = await host.GetValue("generate-test");
+async function getGenerateTest(host: AutorestExtensionHost): Promise<boolean> {
+  const generateTest = await host.getValue("generate-test");
   return generateTest === null ? false : Boolean(generateTest);
 }
 
-async function getSkipEnumValidation(host: Host): Promise<boolean> {
-  const skipEnumValidation = await host.GetValue("skip-enum-validation");
+async function getSkipEnumValidation(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const skipEnumValidation = await host.getValue("skip-enum-validation");
 
   return skipEnumValidation === true;
 }
 
-async function getAllowInsecureConnection(host: Host): Promise<boolean> {
-  return (await host.GetValue("allow-insecure-connection")) || false;
+async function getAllowInsecureConnection(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  return (await host.getValue("allow-insecure-connection")) || false;
 }
 
-async function getIgnoreNullableOnOptional(host: Host): Promise<boolean> {
+async function getIgnoreNullableOnOptional(
+  host: AutorestExtensionHost
+): Promise<boolean> {
   const isAzureArm = await getIsAzureArm(host);
-  return (await host.GetValue("ignore-nullable-on-optional"))
+  return (await host.getValue("ignore-nullable-on-optional"))
     ? true
     : isAzureArm;
 }
 
-async function getDisableAsyncOperators(host: Host): Promise<boolean> {
-  return (await host.GetValue("disable-async-iterators")) === true;
+async function getDisableAsyncOperators(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  return (await host.getValue("disable-async-iterators")) === true;
 }
 
-async function getHideClients(host: Host): Promise<boolean> {
-  return (await host.GetValue("hide-clients")) || false;
+async function getHideClients(host: AutorestExtensionHost): Promise<boolean> {
+  return (await host.getValue("hide-clients")) || false;
 }
-async function getGenerateMetadata(host: Host) {
-  return (await host.GetValue("generate-metadata")) !== false;
-}
-
-async function getLicenseHeader(host: Host): Promise<boolean> {
-  return (await host.GetValue("license-header")) || false;
+async function getGenerateMetadata(host: AutorestExtensionHost) {
+  return (await host.getValue("generate-metadata")) !== false;
 }
 
-async function getTitle(host: Host): Promise<string | undefined> {
-  return (await host.GetValue("title")) || undefined;
+async function getLicenseHeader(host: AutorestExtensionHost): Promise<boolean> {
+  return (await host.getValue("license-header")) || false;
 }
 
-async function getSrcPath(host: Host): Promise<string> {
-  return ((await host.GetValue("source-code-folder-path")) as string) || "src";
+async function getTitle(
+  host: AutorestExtensionHost
+): Promise<string | undefined> {
+  return (await host.getValue("title")) || undefined;
 }
 
-async function getOutputPath(host: Host): Promise<string | undefined> {
-  return (await host.GetValue("output-folder")) || undefined;
+async function getSrcPath(host: AutorestExtensionHost): Promise<string> {
+  return ((await host.getValue("source-code-folder-path")) as string) || "src";
+}
+
+async function getOutputPath(
+  host: AutorestExtensionHost
+): Promise<string | undefined> {
+  return (await host.getValue("output-folder")) || undefined;
 }
 
 async function getKeyCredentialHeaderName(
-  host: Host
+  host: AutorestExtensionHost
 ): Promise<string | undefined> {
-  return (await host.GetValue("credential-key-header-name")) || undefined;
+  return (await host.getValue("credential-key-header-name")) || undefined;
 }
 
-async function getAddCredentials(host: Host): Promise<boolean> {
-  const addCredentials = await host.GetValue("add-credentials");
+async function getAddCredentials(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  const addCredentials = await host.getValue("add-credentials");
 
   // Only set addCredentials to false if explicitly set to false
   // otherwise default to true
@@ -136,34 +150,38 @@ async function getAddCredentials(host: Host): Promise<boolean> {
     return true;
   }
 }
-async function getIsAzureArm(host: Host): Promise<boolean> {
-  const flag = (await host.GetValue("azure-arm")) === true;
-  const openapi = (await host.GetValue("openapi-type")) === "arm";
+async function getIsAzureArm(host: AutorestExtensionHost): Promise<boolean> {
+  const flag = (await host.getValue("azure-arm")) === true;
+  const openapi = (await host.getValue("openapi-type")) === "arm";
 
   return flag || openapi;
 }
 
-async function getRestLevelClient(host: Host): Promise<boolean> {
-  return (await host.GetValue("rest-level-client")) === true;
+async function getRestLevelClient(
+  host: AutorestExtensionHost
+): Promise<boolean> {
+  return (await host.getValue("rest-level-client")) === true;
 }
 
-async function getUseCoreV2(host: Host): Promise<boolean> {
-  const useCoreV2Option: boolean = await host.GetValue("use-core-v2");
+async function getUseCoreV2(host: AutorestExtensionHost): Promise<boolean> {
+  const useCoreV2Option = await host.getValue("use-core-v2");
   return useCoreV2Option === null ? true : Boolean(useCoreV2Option);
 }
 
-async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
+async function getTracingInfo(
+  host: AutorestExtensionHost
+): Promise<TracingInfo | undefined> {
   const tracing: TracingInfo | undefined =
-    (await host.GetValue("tracing-info")) || undefined;
+    (await host.getValue("tracing-info")) || undefined;
 
   if (tracing && tracing.namespace && tracing.packagePrefix) {
     return tracing;
   }
 
-  const namespace =
-    (await host.GetValue("tracing-info.namespace")) || undefined;
-  const packagePrefix =
-    (await host.GetValue("tracing-info.packagePrefix")) || undefined;
+  const namespace: string | undefined =
+    (await host.getValue<string>("tracing-info.namespace")) || undefined;
+  const packagePrefix: string | undefined =
+    (await host.getValue("tracing-info.packagePrefix")) || undefined;
 
   if (packagePrefix && namespace) {
     return {
@@ -181,13 +199,17 @@ async function getTracingInfo(host: Host): Promise<TracingInfo | undefined> {
   );
 }
 
-async function getPackageDetails(host: Host): Promise<PackageDetails> {
+async function getPackageDetails(
+  host: AutorestExtensionHost
+): Promise<PackageDetails> {
   const { model } = getSession();
   const name = normalizeName(model.language.default.name, NameType.File);
   // TODO: Look for an existing package.json and
-  const packageName = (await host.GetValue("package-name")) || name;
-  const packageNameParts = packageName.match(/(^@(.*)\/)?(.*)/);
-  const version = (await host.GetValue("package-version")) || "1.0.0-beta.1";
+  const packageName: string = (await host.getValue("package-name")) || name;
+  const packageNameParts: RegExpMatchArray =
+    packageName.match(/(^@(.*)\/)?(.*)/) ?? [];
+  const version: string =
+    (await host.getValue("package-version")) || "1.0.0-beta.1";
 
   return {
     name: packageName,
@@ -199,11 +221,11 @@ async function getPackageDetails(host: Host): Promise<PackageDetails> {
 }
 
 export async function getCredentialScopes(
-  host: Host
+  host: AutorestExtensionHost
 ): Promise<string[] | undefined> {
-  const addCredentials = await host.GetValue("add-credentials");
-  const credentialScopes = await host.GetValue("credential-scopes");
-  const azureArm = await host.GetValue("azure-arm");
+  const addCredentials = await host.getValue("add-credentials");
+  const credentialScopes = await host.getValue("credential-scopes");
+  const azureArm = await host.getValue("azure-arm");
 
   if (credentialScopes && !addCredentials) {
     throw new Error(
@@ -215,7 +237,7 @@ export async function getCredentialScopes(
     if (azureArm) {
       return ["https://management.azure.com/.default"];
     } else if (addCredentials) {
-      host.Message({
+      host.message({
         Channel: Channel.Warning,
         Text: `You have default credential policy BearerTokenCredentialPolicy
         but not the --credential-scopes flag set while generating non-management plane code.
@@ -233,11 +255,9 @@ export async function getCredentialScopes(
 }
 
 async function getAzureOutputDirectoryPath(
-  host: Host
+  host: AutorestExtensionHost
 ): Promise<string | undefined> {
-  const outputDirectoryPath: string | null = await host.GetValue(
-    "outputFolderUri"
-  );
+  const outputDirectoryPath = await host.getValue<string>("outputFolderUri");
   const outputDirectoryRelativePath: string | undefined = outputDirectoryPath
     ?.replace(/\/$/, "")
     .split("/")

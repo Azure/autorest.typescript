@@ -23,5 +23,4 @@ describe("Check Internal Header", () => {
 
     assert.equal(containsInternal, true, "Expected internal Header missing");
   });
-
 });
