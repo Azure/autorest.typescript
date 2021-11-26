@@ -739,7 +739,7 @@ describe("LRO Rest Client", () => {
 
       assert.equal(result.body.id, "100");
       assert.equal(result.body.properties?.provisioningState, "Succeeded");
-    });
+    }).timeout(5000);
 
     it("should handle deleteAsyncNoHeaderInRetry", async () => {
       const initialResponse = await client
@@ -795,7 +795,7 @@ describe("LRO Rest Client", () => {
           "The long running operation has failed. The provisioning state: failed."
         );
       }
-    });
+    }).timeout(5000);
 
     it("should handle postAsyncRetrySucceeded", async () => {
       const initialResponse = await client

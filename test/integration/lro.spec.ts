@@ -470,7 +470,7 @@ describe("LROs", () => {
           "The long running operation has failed. The provisioning state: failed."
         );
       }
-    });
+    }).timeout(5000);
 
     it("should handle postAsyncRetrySucceeded", async () => {
       const result = await client.LROs.beginPostAsyncRetrySucceededAndWait({
