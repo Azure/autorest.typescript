@@ -127,17 +127,13 @@ function getSuffix(nameType?: NameType) {
  */
 export function normalizeTypeName({ kind, typeName }: TypeDetails) {
   // Only Enum and Composite kinds need normalization
-  let tempTypeName = "";
-  if (typeName.endsWith("[]")) {
-    tempTypeName = "[]"
-    typeName = typeName.replace("[]", "");
-  }
+  const isArray = typeName.endsWith("[]");
   if ([PropertyKind.Enum, PropertyKind.Composite].includes(kind)) {
-    return `${normalizeName(typeName, NameType.Interface)}${tempTypeName}`;
+    return `${normalizeName(typeName, NameType.Interface)}${isArray ? "[]" : ""}`;
   }
 
   // Other kinds are already in the form they need to be
-  return typeName + tempTypeName;
+  return typeName;
 }
 
 export function normalizeName(
