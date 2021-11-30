@@ -86,7 +86,7 @@ function restLevelPackage(packageDetails: PackageDetails) {
     },
     keywords: [],
     author: "",
-    license: "ISC",
+    license: "MIT",
     engines: {
       node: ">=12.0.0"
     },
