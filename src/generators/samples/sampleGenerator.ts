@@ -34,7 +34,7 @@ export function generateSamples(
       });
 
       const readmeFileContents = hbs.compile(file, { noEscape: true });
-      project.createSourceFile(`samples/v1/typescript/src/${sample.sampleFunctionName}.ts`, readmeFileContents(sample), {
+      project.createSourceFile(`samples-dev/${sample.sampleFunctionName}.ts`, readmeFileContents(sample), {
         overwrite: true
       });
     } catch (error) {

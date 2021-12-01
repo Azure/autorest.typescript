@@ -133,12 +133,18 @@ function regularAutorestPackage(
     azureArm,
     addCredentials,
     azureOutputDirectory,
-    generateTest
+    generateTest,
   } = getAutorestOptions();
   const { model } = getSession();
   const hasLro = hasPollingOperations(model);
   const hasAsyncIterators =
     !disablePagingAsyncIterators && clientDetails.options.hasPaging;
+  const clientPackageName = packageDetails.name;
+  let apiRefUrlQueryParameter: string = "";
+  if (packageDetails.version.includes("beta")) {
+    apiRefUrlQueryParameter = "?view=azure-node-preview";
+  }
+  const description = packageDetails.description;
 
   const packageInfo: Record<string, any> = {
     name: packageDetails.name,
@@ -165,7 +171,6 @@ function regularAutorestPackage(
         "@azure/core-tracing": "1.0.0-preview.13",
         "@opentelemetry/api": "^0.10.2"
       }),
-
       tslib: "^2.2.0"
     },
     keywords: ["node", "azure", "typescript", "browser", "isomorphic"],
@@ -260,6 +265,14 @@ function regularAutorestPackage(
       "npm run integration-test:node && npm run integration-test:browser";
     packageInfo.scripts["integration-test:node"] =
       "mocha -r esm --require ts-node/register --timeout 1200000 --full-trace test/*.ts --reporter ../../../common/tools/mocha-multi-reporter.js";
+    packageInfo["//sampleConfiguration"] = {
+      "productName": description,
+      "productSlugs": [
+        "azure"
+      ],
+      "disableDocsMs": true,
+      "apiRefLink": `https://docs.microsoft.com/javascript/api/${clientPackageName}${apiRefUrlQueryParameter}`
+    };
   }
   return packageInfo;
 }

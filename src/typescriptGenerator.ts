@@ -21,9 +21,6 @@ import { generateTsConfig } from "./generators/static/tsConfigFileGenerator";
 import { generateRollupConfig } from "./generators/static/rollupConfigFileGenerator";
 import { generateOperations } from "./generators/operationGenerator";
 import { generateOperationsInterfaces } from "./generators/operationInterfaceGenerator";
-import { generateSamplePackageJson } from './generators/samples/packageJsonFileGenerator';
-import { generateSampleReadme } from './generators/samples/readmeMeGenerator';
-import { generateSampleTsConfig } from './generators/samples/tsConfigFileGenerator'
 import { generateSampleEnv } from './generators/samples/sampleEnvGenerator';
 import { generateSamples } from './generators/samples/sampleGenerator';
 import { generateParameters } from "./generators/parametersGenerator";
@@ -91,9 +88,6 @@ export async function generateTypeScriptLibrary(
   generateOperationsInterfaces(clientDetails, project);
   if (clientDetails.samples.length > 0) {
     generateSamples(clientDetails, project);
-    generateSamplePackageJson(packageDetails, project);
-    generateSampleReadme(clientDetails, project);
-    generateSampleTsConfig(project);
     generateSampleEnv(project);
   }
   generateParameters(clientDetails, project);

@@ -4,7 +4,7 @@
 import { Project } from "ts-morph";
 import { getAutorestOptions } from "../../autorestSession";
 
-const highLevelTsConfig = {
+const highLevelTsConfig: Record<string, any>  = {
   compilerOptions: {
     module: "es6",
     moduleResolution: "node",
@@ -46,14 +46,17 @@ const restLevelTsConfig = {
 };
 
 export function generateTsConfig(project: Project) {
-  const { generateMetadata, restLevelClient, generateTest } = getAutorestOptions();
+  const { generateMetadata, restLevelClient, generateTest, packageDetails } = getAutorestOptions();
 
   if (!generateMetadata) {
     return;
   }
 
+  const clientPackageName = packageDetails.name;
   if (generateTest) {
-    highLevelTsConfig.include.push("./test/**/*.ts");
+    highLevelTsConfig.include.push("./test/**/*.ts", "samples-dev/**/*.ts");
+    highLevelTsConfig.compilerOptions["paths"] = {};
+    highLevelTsConfig.compilerOptions["paths"][clientPackageName] = ["./src/index"]
   }
   
   const tsConfigContents = restLevelClient
