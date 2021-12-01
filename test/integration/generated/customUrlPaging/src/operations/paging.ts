@@ -11,7 +11,7 @@ import { Paging } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { CustomUrlPagingClientContext } from "../customUrlPagingClientContext";
+import { CustomUrlPagingClient } from "../customUrlPagingClient";
 import {
   Product,
   PagingGetPagesPartialUrlNextOptionalParams,
@@ -27,13 +27,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing Paging operations. */
 export class PagingImpl implements Paging {
-  private readonly client: CustomUrlPagingClientContext;
+  private readonly client: CustomUrlPagingClient;
 
   /**
    * Initialize a new instance of the class Paging class.
    * @param client Reference to the service client
    */
-  constructor(client: CustomUrlPagingClientContext) {
+  constructor(client: CustomUrlPagingClient) {
     this.client = client;
   }
 

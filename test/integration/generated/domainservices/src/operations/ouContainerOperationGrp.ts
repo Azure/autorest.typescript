@@ -3,7 +3,7 @@ import { OuContainerOperationGrp } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { DomainServicesClientContext } from "../domainServicesClientContext";
+import { DomainServicesClient } from "../domainServicesClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -25,13 +25,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing OuContainerOperationGrp operations. */
 export class OuContainerOperationGrpImpl implements OuContainerOperationGrp {
-  private readonly client: DomainServicesClientContext;
+  private readonly client: DomainServicesClient;
 
   /**
    * Initialize a new instance of the class OuContainerOperationGrp class.
    * @param client Reference to the service client
    */
-  constructor(client: DomainServicesClientContext) {
+  constructor(client: DomainServicesClient) {
     this.client = client;
   }
 

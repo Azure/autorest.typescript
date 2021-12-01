@@ -10,7 +10,7 @@ import { Xml } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { XmlServiceClientContext } from "../xmlServiceClientContext";
+import { XmlServiceClient } from "../xmlServiceClient";
 import {
   XmlGetComplexTypeRefNoMetaOptionalParams,
   XmlGetComplexTypeRefNoMetaResponse,
@@ -79,13 +79,13 @@ import {
 
 /** Class containing Xml operations. */
 export class XmlImpl implements Xml {
-  private readonly client: XmlServiceClientContext;
+  private readonly client: XmlServiceClient;
 
   /**
    * Initialize a new instance of the class Xml class.
    * @param client Reference to the service client
    */
-  constructor(client: XmlServiceClientContext) {
+  constructor(client: XmlServiceClient) {
     this.client = client;
   }
 

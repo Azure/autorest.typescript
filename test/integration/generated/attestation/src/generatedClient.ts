@@ -6,20 +6,54 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PolicyImpl } from "./operations";
 import { Policy } from "./operationsInterfaces";
-import { GeneratedClientContext } from "./generatedClientContext";
 import { GeneratedClientOptionalParams } from "./models";
 
 /** @internal */
-export class GeneratedClient extends GeneratedClientContext {
+export class GeneratedClient extends coreClient.ServiceClient {
+  instanceUrl: string;
+  apiVersion: string;
+
   /**
    * Initializes a new instance of the GeneratedClient class.
    * @param instanceUrl The attestation instance base URI, for example https://mytenant.attest.azure.net.
    * @param options The parameter options
    */
   constructor(instanceUrl: string, options?: GeneratedClientOptionalParams) {
-    super(instanceUrl, options);
+    if (instanceUrl === undefined) {
+      throw new Error("'instanceUrl' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: GeneratedClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-attestation/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{instanceUrl}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.instanceUrl = instanceUrl;
+
+    // Assigning values to Constant parameters
+    this.apiVersion = options.apiVersion || "2020-10-01";
     this.policy = new PolicyImpl(this);
   }
 

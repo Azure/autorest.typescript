@@ -123,19 +123,14 @@ export interface DeploymentScripts {
 }
 
 // @public (undocumented)
-export class DeploymentScriptsClient extends DeploymentScriptsClientContext {
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
-    // (undocumented)
-    deploymentScripts: DeploymentScripts;
-}
-
-// @public (undocumented)
-export class DeploymentScriptsClientContext extends coreClient.ServiceClient {
+export class DeploymentScriptsClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: DeploymentScriptsClientOptionalParams);
     // (undocumented)
     apiVersion: string;
+    // (undocumented)
+    deploymentScripts: DeploymentScripts;
     // (undocumented)
     subscriptionId: string;
 }

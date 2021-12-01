@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { BodyIntegerClient } from "./bodyIntegerClient";
-export { BodyIntegerClientContext } from "./bodyIntegerClientContext";
 export * from "./operationsInterfaces";

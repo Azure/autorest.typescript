@@ -6,10 +6,9 @@ import * as fsextra from "fs-extra";
 import * as path from "path";
 import { CodeModel } from "@autorest/codemodel";
 import { Project, IndentationText } from "ts-morph";
-import { Host } from "@autorest/extension-base";
+import { AutorestExtensionHost } from "@autorest/extension-base";
 import { transformCodeModel } from "./transforms/transforms";
 import { generateClient } from "./generators/clientFileGenerator";
-import { generateClientContext } from "./generators/clientContextFileGenerator";
 import { generateModels } from "./generators/modelsGenerator";
 import { generateMappers } from "./generators/mappersGenerator";
 import { generateIndexFile } from "./generators/indexGenerator";
@@ -53,7 +52,7 @@ const prettierJSONOptions: prettier.Options = {
 
 export async function generateTypeScriptLibrary(
   codeModel: CodeModel,
-  host: Host
+  host: AutorestExtensionHost
 ): Promise<void> {
   const project = new Project({
     useInMemoryFileSystem: true,
@@ -70,7 +69,7 @@ export async function generateTypeScriptLibrary(
     srcPath
   } = getAutorestOptions();
 
-  const clientDetails = await transformCodeModel(codeModel, host);
+  const clientDetails = await transformCodeModel(codeModel);
   conflictResolver(clientDetails);
 
   // Skip metadata generation if `generate-metadata` is explicitly false
@@ -85,7 +84,6 @@ export async function generateTypeScriptLibrary(
   generateApiExtractorConfig(project);
 
   generateClient(clientDetails, project);
-  generateClientContext(clientDetails, packageDetails, project);
   generateModels(clientDetails, project);
 
   generateMappers(clientDetails, project);
@@ -140,9 +138,9 @@ export async function generateTypeScriptLibrary(
     }
 
     // Write the file to the AutoRest host
-    host.WriteFile(
-      filePath.substr(1), // Get rid of the leading slash '/'
-      fileContents
-    );
+    host.writeFile({
+      filename: filePath.substr(1), // Get rid of the leading slash '/'
+      content: fileContents
+    });
   }
 }

@@ -6739,7 +6739,9 @@ export interface NetworkInterfaceTapConfigurationsListOptionalParams extends cor
 export type NetworkInterfaceTapConfigurationsListResponse = NetworkInterfaceTapConfigurationListResult;
 
 // @public (undocumented)
-export class NetworkManagementClient extends NetworkManagementClientContext {
+export class NetworkManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: NetworkManagementClientOptionalParams);
     // (undocumented)
     applicationGateways: ApplicationGateways;
@@ -6896,6 +6898,8 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     serviceTags: ServiceTags;
     // (undocumented)
     subnets: Subnets;
+    // (undocumented)
+    subscriptionId: string;
     supportedSecurityProviders(resourceGroupName: string, virtualWANName: string, options?: SupportedSecurityProvidersOptionalParams): Promise<SupportedSecurityProvidersResponse>;
     // (undocumented)
     usages: Usages;
@@ -6939,15 +6943,6 @@ export class NetworkManagementClient extends NetworkManagementClientContext {
     vpnSitesConfiguration: VpnSitesConfiguration;
     // (undocumented)
     webApplicationFirewallPolicies: WebApplicationFirewallPolicies;
-}
-
-// @public (undocumented)
-export class NetworkManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: NetworkManagementClientOptionalParams);
-    // (undocumented)
-    subscriptionId: string;
 }
 
 // @public

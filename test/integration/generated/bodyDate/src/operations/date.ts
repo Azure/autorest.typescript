@@ -10,7 +10,7 @@ import { DateOperations } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyDateClientContext } from "../bodyDateClientContext";
+import { BodyDateClient } from "../bodyDateClient";
 import {
   DateGetNullOptionalParams,
   DateGetNullResponse,
@@ -30,13 +30,13 @@ import {
 
 /** Class containing DateOperations operations. */
 export class DateOperationsImpl implements DateOperations {
-  private readonly client: BodyDateClientContext;
+  private readonly client: BodyDateClient;
 
   /**
    * Initialize a new instance of the class DateOperations class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyDateClientContext) {
+  constructor(client: BodyDateClient) {
     this.client = client;
   }
 

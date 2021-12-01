@@ -9,5 +9,4 @@
 /// <reference lib="esnext.asynciterable" />
 export * from "./models";
 export { GraphRbacManagementClient } from "./graphRbacManagementClient";
-export { GraphRbacManagementClientContext } from "./graphRbacManagementClientContext";
 export * from "./operationsInterfaces";

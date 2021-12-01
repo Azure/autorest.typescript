@@ -11,7 +11,7 @@ import { ElasticPoolDatabaseActivities } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { SqlManagementClientContext } from "../sqlManagementClientContext";
+import { SqlManagementClient } from "../sqlManagementClient";
 import {
   ElasticPoolDatabaseActivity,
   ElasticPoolDatabaseActivitiesListByElasticPoolOptionalParams,
@@ -22,13 +22,13 @@ import {
 /** Class containing ElasticPoolDatabaseActivities operations. */
 export class ElasticPoolDatabaseActivitiesImpl
   implements ElasticPoolDatabaseActivities {
-  private readonly client: SqlManagementClientContext;
+  private readonly client: SqlManagementClient;
 
   /**
    * Initialize a new instance of the class ElasticPoolDatabaseActivities class.
    * @param client Reference to the service client
    */
-  constructor(client: SqlManagementClientContext) {
+  constructor(client: SqlManagementClient) {
     this.client = client;
   }
 

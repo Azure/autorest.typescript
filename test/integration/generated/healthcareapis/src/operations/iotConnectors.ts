@@ -3,7 +3,7 @@ import { IotConnectors } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { HealthCareApisClientContext } from "../healthCareApisClientContext";
+import { HealthCareApisClient } from "../healthCareApisClient";
 import { PollerLike, PollOperationState, LroEngine } from "@azure/core-lro";
 import { LroImpl } from "../lroImpl";
 import {
@@ -25,13 +25,13 @@ import {
 /// <reference lib="esnext.asynciterable" />
 /** Class containing IotConnectors operations. */
 export class IotConnectorsImpl implements IotConnectors {
-  private readonly client: HealthCareApisClientContext;
+  private readonly client: HealthCareApisClient;
 
   /**
    * Initialize a new instance of the class IotConnectors class.
    * @param client Reference to the service client
    */
-  constructor(client: HealthCareApisClientContext) {
+  constructor(client: HealthCareApisClient) {
     this.client = client;
   }
 

@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { CustomUrlMoreOptionsClient } from "./customUrlMoreOptionsClient";
-export { CustomUrlMoreOptionsClientContext } from "./customUrlMoreOptionsClientContext";
 export * from "./operationsInterfaces";

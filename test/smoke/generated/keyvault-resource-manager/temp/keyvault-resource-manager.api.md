@@ -79,8 +79,12 @@ export interface IPRule {
 export type KeyPermissions = string;
 
 // @public (undocumented)
-export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
+export class KeyVaultManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
+    // (undocumented)
+    apiVersion: string;
     // (undocumented)
     operations: Operations;
     // (undocumented)
@@ -88,18 +92,9 @@ export class KeyVaultManagementClient extends KeyVaultManagementClientContext {
     // (undocumented)
     privateLinkResources: PrivateLinkResources;
     // (undocumented)
-    vaults: Vaults;
-}
-
-// @public (undocumented)
-export class KeyVaultManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: KeyVaultManagementClientOptionalParams);
-    // (undocumented)
-    apiVersion: string;
-    // (undocumented)
     subscriptionId: string;
+    // (undocumented)
+    vaults: Vaults;
 }
 
 // @public

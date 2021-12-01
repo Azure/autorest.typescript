@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-import { AutoRestExtension, Host } from "@autorest/extension-base";
+import {
+  AutoRestExtension,
+  AutorestExtensionHost
+} from "@autorest/extension-base";
 import { generateTypeScriptLibrary } from "./typescriptGenerator";
 import { generateRestLevelClient } from "./restLevelClient/generateRestLevel";
 import {
@@ -11,7 +14,7 @@ import {
 } from "./autorestSession";
 import { serialize } from "@azure-tools/codegen";
 
-export async function processRequest(host: Host) {
+export async function processRequest(host: AutorestExtensionHost) {
   await initializeSession(host);
   const session = getSession();
   const { restLevelClient } = getAutorestOptions();
@@ -20,7 +23,7 @@ export async function processRequest(host: Host) {
     restLevelClient
       ? await generateRestLevelClient()
       : await generateTypeScriptLibrary(session.model, host);
-    session.log(`Autorest.Typescript took ${Date.now() - start}ms`, "");
+    session.info(`Autorest.Typescript took ${Date.now() - start}ms`);
   } catch (err) {
     session.error("An error was encountered while handling a request:", err);
     throw err;
@@ -29,8 +32,8 @@ export async function processRequest(host: Host) {
 
 async function main() {
   const pluginHost = new AutoRestExtension();
-  pluginHost.Add("typescript", processRequest);
-  await pluginHost.Run();
+  pluginHost.add("typescript", processRequest);
+  await pluginHost.run();
 }
 
 main();

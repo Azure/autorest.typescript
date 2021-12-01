@@ -9,21 +9,16 @@ import * as coreClient from '@azure/core-client';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 
 // @public (undocumented)
-export class ManagementLinkClient extends ManagementLinkClientContext {
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
-    // (undocumented)
-    operations: Operations;
-    // (undocumented)
-    resourceLinks: ResourceLinks;
-}
-
-// @public (undocumented)
-export class ManagementLinkClientContext extends coreClient.ServiceClient {
+export class ManagementLinkClient extends coreClient.ServiceClient {
     // (undocumented)
     $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: ManagementLinkClientOptionalParams);
     // (undocumented)
     apiVersion: string;
+    // (undocumented)
+    operations: Operations;
+    // (undocumented)
+    resourceLinks: ResourceLinks;
     // (undocumented)
     subscriptionId: string;
 }

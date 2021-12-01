@@ -13523,7 +13523,9 @@ export declare interface SloUsageMetric {
     readonly inRangeTimeRatio?: number;
 }
 
-export declare class SqlManagementClient extends SqlManagementClientContext {
+export declare class SqlManagementClient extends coreClient.ServiceClient {
+    $host: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the SqlManagementClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -13622,18 +13624,6 @@ export declare class SqlManagementClient extends SqlManagementClientContext {
     managedDatabases: ManagedDatabases;
     serverAzureADAdministrators: ServerAzureADAdministrators;
     managedInstanceOperations: ManagedInstanceOperations;
-}
-
-export declare class SqlManagementClientContext extends coreClient.ServiceClient {
-    $host: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the SqlManagementClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The subscription ID that identifies an Azure subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: SqlManagementClientOptionalParams);
 }
 
 /** Optional parameters. */

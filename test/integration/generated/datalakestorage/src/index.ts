@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { DataLakeStorageClient } from "./dataLakeStorageClient";
-export { DataLakeStorageClientContext } from "./dataLakeStorageClientContext";
 export * from "./operationsInterfaces";

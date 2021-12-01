@@ -6585,7 +6585,9 @@ export interface SloUsageMetric {
 }
 
 // @public (undocumented)
-export class SqlManagementClient extends SqlManagementClientContext {
+export class SqlManagementClient extends coreClient.ServiceClient {
+    // (undocumented)
+    $host: string;
     constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: SqlManagementClientOptionalParams);
     // (undocumented)
     backupLongTermRetentionPolicies: BackupLongTermRetentionPolicies;
@@ -6746,6 +6748,8 @@ export class SqlManagementClient extends SqlManagementClientContext {
     // (undocumented)
     serviceTierAdvisors: ServiceTierAdvisors;
     // (undocumented)
+    subscriptionId: string;
+    // (undocumented)
     subscriptionUsages: SubscriptionUsages;
     // (undocumented)
     syncAgents: SyncAgents;
@@ -6769,15 +6773,6 @@ export class SqlManagementClient extends SqlManagementClientContext {
     workloadClassifiers: WorkloadClassifiers;
     // (undocumented)
     workloadGroups: WorkloadGroups;
-}
-
-// @public (undocumented)
-export class SqlManagementClientContext extends coreClient.ServiceClient {
-    // (undocumented)
-    $host: string;
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: SqlManagementClientOptionalParams);
-    // (undocumented)
-    subscriptionId: string;
 }
 
 // @public

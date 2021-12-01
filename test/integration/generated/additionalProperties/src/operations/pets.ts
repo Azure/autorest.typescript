@@ -10,7 +10,7 @@ import { Pets } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { AdditionalPropertiesClientContext } from "../additionalPropertiesClientContext";
+import { AdditionalPropertiesClient } from "../additionalPropertiesClient";
 import {
   PetAPTrue,
   PetsCreateAPTrueOptionalParams,
@@ -34,13 +34,13 @@ import {
 
 /** Class containing Pets operations. */
 export class PetsImpl implements Pets {
-  private readonly client: AdditionalPropertiesClientContext;
+  private readonly client: AdditionalPropertiesClient;
 
   /**
    * Initialize a new instance of the class Pets class.
    * @param client Reference to the service client
    */
-  constructor(client: AdditionalPropertiesClientContext) {
+  constructor(client: AdditionalPropertiesClient) {
     this.client = client;
   }
 

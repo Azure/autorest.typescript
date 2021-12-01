@@ -10,7 +10,7 @@ import { Array } from "../operationsInterfaces";
 import * as coreClient from "@azure/core-client";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
-import { BodyArrayClientContext } from "../bodyArrayClientContext";
+import { BodyArrayClient } from "../bodyArrayClient";
 import {
   ArrayGetNullOptionalParams,
   ArrayGetNullResponse,
@@ -139,13 +139,13 @@ import {
 
 /** Class containing Array operations. */
 export class ArrayImpl implements Array {
-  private readonly client: BodyArrayClientContext;
+  private readonly client: BodyArrayClient;
 
   /**
    * Initialize a new instance of the class Array class.
    * @param client Reference to the service client
    */
-  constructor(client: BodyArrayClientContext) {
+  constructor(client: BodyArrayClient) {
     this.client = client;
   }
 

@@ -6,13 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import * as coreAuth from "@azure/core-auth";
 import { ApplicationsImpl, ApplicationDefinitionsImpl } from "./operations";
 import { Applications, ApplicationDefinitions } from "./operationsInterfaces";
-import { ApplicationClientContext } from "./applicationClientContext";
 import { ApplicationClientOptionalParams } from "./models";
 
-export class ApplicationClient extends ApplicationClientContext {
+export class ApplicationClient extends coreClient.ServiceClient {
+  $host: string;
+  apiVersion: string;
+  subscriptionId: string;
+
   /**
    * Initializes a new instance of the ApplicationClient class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -24,7 +28,43 @@ export class ApplicationClient extends ApplicationClientContext {
     subscriptionId: string,
     options?: ApplicationClientOptionalParams
   ) {
-    super(credentials, subscriptionId, options);
+    if (credentials === undefined) {
+      throw new Error("'credentials' cannot be null");
+    }
+    if (subscriptionId === undefined) {
+      throw new Error("'subscriptionId' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: ApplicationClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8",
+      credential: credentials
+    };
+
+    const packageDetails = `azsdk-js-arm-package-managedapplications-2018-06/1.0.0-beta.1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "https://management.azure.com"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.subscriptionId = subscriptionId;
+
+    // Assigning values to Constant parameters
+    this.$host = options.$host || "https://management.azure.com";
+    this.apiVersion = options.apiVersion || "2018-06-01";
     this.applications = new ApplicationsImpl(this);
     this.applicationDefinitions = new ApplicationDefinitionsImpl(this);
   }

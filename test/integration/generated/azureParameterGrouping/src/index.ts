@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { AzureParameterGroupingClient } from "./azureParameterGroupingClient";
-export { AzureParameterGroupingClientContext } from "./azureParameterGroupingClientContext";
 export * from "./operationsInterfaces";

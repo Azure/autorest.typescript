@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { UrlClient } from "./urlClient";
-export { UrlClientContext } from "./urlClientContext";
 export * from "./operationsInterfaces";

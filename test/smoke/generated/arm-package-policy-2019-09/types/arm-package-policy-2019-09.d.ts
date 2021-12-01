@@ -466,7 +466,10 @@ export declare interface PolicyAssignmentsListOptionalParams extends coreClient.
 /** Contains response data for the list operation. */
 export declare type PolicyAssignmentsListResponse = PolicyAssignmentListResult;
 
-export declare class PolicyClient extends PolicyClientContext {
+export declare class PolicyClient extends coreClient.ServiceClient {
+    $host: string;
+    apiVersion: string;
+    subscriptionId: string;
     /**
      * Initializes a new instance of the PolicyClient class.
      * @param credentials Subscription credentials which uniquely identify client subscription.
@@ -477,19 +480,6 @@ export declare class PolicyClient extends PolicyClientContext {
     policyAssignments: PolicyAssignments;
     policyDefinitions: PolicyDefinitions;
     policySetDefinitions: PolicySetDefinitions;
-}
-
-export declare class PolicyClientContext extends coreClient.ServiceClient {
-    $host: string;
-    apiVersion: string;
-    subscriptionId: string;
-    /**
-     * Initializes a new instance of the PolicyClientContext class.
-     * @param credentials Subscription credentials which uniquely identify client subscription.
-     * @param subscriptionId The ID of the target subscription.
-     * @param options The parameter options
-     */
-    constructor(credentials: coreAuth.TokenCredential, subscriptionId: string, options?: PolicyClientOptionalParams);
 }
 
 /** Optional parameters. */

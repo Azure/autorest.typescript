@@ -8,4 +8,3 @@
 
 export * from "./models";
 export { MultipleInheritanceClient } from "./multipleInheritanceClient";
-export { MultipleInheritanceClientContext } from "./multipleInheritanceClientContext";

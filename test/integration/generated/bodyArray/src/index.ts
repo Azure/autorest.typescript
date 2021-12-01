@@ -8,5 +8,4 @@
 
 export * from "./models";
 export { BodyArrayClient } from "./bodyArrayClient";
-export { BodyArrayClientContext } from "./bodyArrayClientContext";
 export * from "./operationsInterfaces";

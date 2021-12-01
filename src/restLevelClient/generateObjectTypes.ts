@@ -4,13 +4,11 @@ import {
   isObjectSchema,
   ObjectSchema,
   Property,
-  SchemaContext,
-  SchemaUsage
+  SchemaContext
 } from "@autorest/codemodel";
 import { Channel } from "@autorest/extension-base";
 import {
   InterfaceDeclarationStructure,
-  Program,
   PropertySignatureStructure,
   StructureKind,
   TypeAliasDeclarationStructure

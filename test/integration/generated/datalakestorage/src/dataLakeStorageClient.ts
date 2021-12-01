@@ -6,12 +6,17 @@
  * Changes may cause incorrect behavior and will be lost if the code is regenerated.
  */
 
+import * as coreClient from "@azure/core-client";
 import { PathOperationsImpl } from "./operations";
 import { PathOperations } from "./operationsInterfaces";
-import { DataLakeStorageClientContext } from "./dataLakeStorageClientContext";
 import { DataLakeStorageClientOptionalParams } from "./models";
 
-export class DataLakeStorageClient extends DataLakeStorageClientContext {
+export class DataLakeStorageClient extends coreClient.ServiceClient {
+  url: string;
+  fileSystem: string;
+  path: string;
+  version: string;
+
   /**
    * Initializes a new instance of the DataLakeStorageClient class.
    * @param url The URL of the service account, container, or blob that is the target of the desired
@@ -26,7 +31,46 @@ export class DataLakeStorageClient extends DataLakeStorageClientContext {
     path: string,
     options?: DataLakeStorageClientOptionalParams
   ) {
-    super(url, fileSystem, path, options);
+    if (url === undefined) {
+      throw new Error("'url' cannot be null");
+    }
+    if (fileSystem === undefined) {
+      throw new Error("'fileSystem' cannot be null");
+    }
+    if (path === undefined) {
+      throw new Error("'path' cannot be null");
+    }
+
+    // Initializing default values for options
+    if (!options) {
+      options = {};
+    }
+    const defaults: DataLakeStorageClientOptionalParams = {
+      requestContentType: "application/json; charset=utf-8"
+    };
+
+    const packageDetails = `azsdk-js-datalakestorage/1.0.0-preview1`;
+    const userAgentPrefix =
+      options.userAgentOptions && options.userAgentOptions.userAgentPrefix
+        ? `${options.userAgentOptions.userAgentPrefix} ${packageDetails}`
+        : `${packageDetails}`;
+
+    const optionsWithDefaults = {
+      ...defaults,
+      ...options,
+      userAgentOptions: {
+        userAgentPrefix
+      },
+      baseUri: options.endpoint || "{url}"
+    };
+    super(optionsWithDefaults);
+    // Parameter assignments
+    this.url = url;
+    this.fileSystem = fileSystem;
+    this.path = path;
+
+    // Assigning values to Constant parameters
+    this.version = options.version || "2020-06-12";
     this.pathOperations = new PathOperationsImpl(this);
   }
 
