@@ -4,7 +4,7 @@ import { Operation, OperationGroup } from "@autorest/codemodel";
 import { getLanguageMetadata } from "./languageHelpers";
 import { TypeDetails, PropertyKind } from "../models/modelDetails";
 
-interface ReservedName {
+export interface ReservedName {
   name: string;
   reservedFor: NameType[];
 }
@@ -93,11 +93,15 @@ export enum CasingConvention {
   Camel
 }
 
-export function guardReservedNames(name: string, nameType: NameType): string {
+export function guardReservedNames(
+  name: string,
+  nameType: NameType,
+  customReservedNames: ReservedName[] = []
+): string {
   const suffix = getSuffix(nameType);
-  return ReservedModelNames.filter(r => r.reservedFor.includes(nameType)).find(
-    r => r.name === name.toLowerCase()
-  )
+  return [...ReservedModelNames, ...customReservedNames]
+    .filter(r => r.reservedFor.includes(nameType))
+    .find(r => r.name === name.toLowerCase())
     ? `${name}${suffix}`
     : name;
 }
@@ -136,7 +140,8 @@ export function normalizeTypeName({ kind, typeName }: TypeDetails) {
 export function normalizeName(
   name: string,
   nameType: NameType,
-  shouldGuard?: boolean
+  shouldGuard?: boolean,
+  customReservedNames: ReservedName[] = []
 ): string {
   if (name.startsWith("$DO_NOT_NORMALIZE$")) {
     return name.replace("$DO_NOT_NORMALIZE$", "");
@@ -153,7 +158,9 @@ export function normalizeName(
     .join("");
 
   const normalized = checkBeginning(`${normalizedFirstPart}${normalizedParts}`);
-  return shouldGuard ? guardReservedNames(normalized, nameType) : normalized;
+  return shouldGuard
+    ? guardReservedNames(normalized, nameType, customReservedNames)
+    : normalized;
 }
 
 function checkBeginning(name: string): string {

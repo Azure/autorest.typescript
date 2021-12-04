@@ -65,6 +65,115 @@ import {
 import { getClient, ClientOptions, Client } from "@azure-rest/core-client";
 import "@azure/core-auth";
 
+export interface StringOperations {
+  /** Get null string value value */
+  getNull(
+    options?: StringGetNullParameters
+  ): Promise<StringGetNull200Response | StringGetNulldefaultResponse>;
+  /** Set string value null */
+  putNull(
+    options?: StringPutNullParameters
+  ): Promise<StringPutNull200Response | StringPutNulldefaultResponse>;
+  /** Get empty string value value '' */
+  getEmpty(
+    options?: StringGetEmptyParameters
+  ): Promise<StringGetEmpty200Response | StringGetEmptydefaultResponse>;
+  /** Set string value empty '' */
+  putEmpty(
+    options: StringPutEmptyParameters
+  ): Promise<StringPutEmpty200Response | StringPutEmptydefaultResponse>;
+  /** Get mbcs string value '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
+  getMbcs(
+    options?: StringGetMbcsParameters
+  ): Promise<StringGetMbcs200Response | StringGetMbcsdefaultResponse>;
+  /** Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€' */
+  putMbcs(
+    options: StringPutMbcsParameters
+  ): Promise<StringPutMbcs200Response | StringPutMbcsdefaultResponse>;
+  /** Get string value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
+  getWhitespace(
+    options?: StringGetWhitespaceParameters
+  ): Promise<
+    StringGetWhitespace200Response | StringGetWhitespacedefaultResponse
+  >;
+  /** Set String value with leading and trailing whitespace '<tab><space><space>Now is the time for all good men to come to the aid of their country<tab><space><space>' */
+  putWhitespace(
+    options: StringPutWhitespaceParameters
+  ): Promise<
+    StringPutWhitespace200Response | StringPutWhitespacedefaultResponse
+  >;
+  /** Get String value when no string value is sent in response payload */
+  getNotProvided(
+    options?: StringGetNotProvidedParameters
+  ): Promise<
+    StringGetNotProvided200Response | StringGetNotProvideddefaultResponse
+  >;
+  /** Get value that is base64 encoded */
+  getBase64Encoded(
+    options?: StringGetBase64EncodedParameters
+  ): Promise<
+    StringGetBase64Encoded200Response | StringGetBase64EncodeddefaultResponse
+  >;
+  /** Get value that is base64url encoded */
+  getBase64UrlEncoded(
+    options?: StringGetBase64UrlEncodedParameters
+  ): Promise<
+    | StringGetBase64UrlEncoded200Response
+    | StringGetBase64UrlEncodeddefaultResponse
+  >;
+  /** Put value that is base64url encoded */
+  putBase64UrlEncoded(
+    options: StringPutBase64UrlEncodedParameters
+  ): Promise<
+    | StringPutBase64UrlEncoded200Response
+    | StringPutBase64UrlEncodeddefaultResponse
+  >;
+  /** Get null value that is expected to be base64url encoded */
+  getNullBase64UrlEncoded(
+    options?: StringGetNullBase64UrlEncodedParameters
+  ): Promise<
+    | StringGetNullBase64UrlEncoded200Response
+    | StringGetNullBase64UrlEncodeddefaultResponse
+  >;
+}
+
+export interface EnumOperations {
+  /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
+  getNotExpandable(
+    options?: EnumGetNotExpandableParameters
+  ): Promise<
+    EnumGetNotExpandable200Response | EnumGetNotExpandabledefaultResponse
+  >;
+  /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
+  putNotExpandable(
+    options: EnumPutNotExpandableParameters
+  ): Promise<
+    EnumPutNotExpandable200Response | EnumPutNotExpandabledefaultResponse
+  >;
+  /** Get enum value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'. */
+  getReferenced(
+    options?: EnumGetReferencedParameters
+  ): Promise<EnumGetReferenced200Response | EnumGetReferenceddefaultResponse>;
+  /** Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color' */
+  putReferenced(
+    options: EnumPutReferencedParameters
+  ): Promise<EnumPutReferenced200Response | EnumPutReferenceddefaultResponse>;
+  /** Get value 'green-color' from the constant. */
+  getReferencedConstant(
+    options?: EnumGetReferencedConstantParameters
+  ): Promise<
+    | EnumGetReferencedConstant200Response
+    | EnumGetReferencedConstantdefaultResponse
+  >;
+  /** Sends value 'green-color' from a constant */
+  putReferencedConstant(
+    options: EnumPutReferencedConstantParameters
+  ): Promise<
+    | EnumPutReferencedConstant200Response
+    | EnumPutReferencedConstantdefaultResponse
+  >;
+}
+
 export interface StringGetNull {
   /** Get null string value value */
   get(
@@ -228,6 +337,8 @@ export interface Routes {
 
 export type BodyStringRestRestClient = Client & {
   path: Routes;
+  string: StringOperations;
+  enum: EnumOperations;
 };
 
 export default function BodyStringRest(

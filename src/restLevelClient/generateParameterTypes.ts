@@ -16,7 +16,7 @@ import { getLanguageMetadata } from "../utils/languageHelpers";
 import { NameType, normalizeName } from "../utils/nameUtils";
 import { getPropertySignature } from "./getPropertySignature";
 import { primitiveSchemaToType } from "./schemaHelpers";
-import { getOperationParameters } from "./helpers/getOperationParameters";
+import { getOperationParameters } from "./helpers/operationHelpers";
 import { hasInputModels } from "./helpers/modelHelpers";
 
 /**

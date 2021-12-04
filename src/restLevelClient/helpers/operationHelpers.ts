@@ -3,6 +3,8 @@ import {
   Operation,
   Parameter
 } from "@autorest/codemodel";
+import { OptionalKind, MethodSignatureStructure } from "ts-morph";
+import { Methods } from "../interfaces";
 
 /**
  * Given an operation, extract all its parameters
@@ -34,4 +36,31 @@ function filterMethodNotSynthetic(parameter: Parameter) {
     !parameter.origin &&
     parameter.implementation === ImplementationLocation.Method
   );
+}
+
+export function buildMethodDefinitions(
+  methods: Methods
+): OptionalKind<MethodSignatureStructure>[] {
+  const methodDefinitions: OptionalKind<MethodSignatureStructure>[] = [];
+  for (const key of Object.keys(methods)) {
+    const method = methods[key];
+    const description = methods[key][0].description;
+
+    let areAllOptional = !method.some(m => !m.hasOptionalOptions);
+
+    methodDefinitions.push({
+      name: key,
+      ...(description && { docs: [{ description }] }),
+      parameters: [
+        {
+          name: "options",
+          hasQuestionToken: areAllOptional,
+          type: method.map(m => m.optionsName).join(" | ")
+        }
+      ],
+      returnType: method.map(m => m.returnType).join(" | ")
+    });
+  }
+
+  return methodDefinitions;
 }
