@@ -100,14 +100,14 @@ export async function transformCodeModel(
 
   const options = await transformOptions(operationGroups);
 
-  const [objects, groups, mappers, unions, parameters, samples ] = await Promise.all([
+  const [objects, groups, mappers, unions, parameters ] = await Promise.all([
     transformObjects(codeModel, uberParents),
     transformGroups(codeModel),
     transformMappers(codeModel, uberParents, options),
     transformChoices(codeModel),
     transformParameters(codeModel, options),
-    transformSamples(codeModel, options),
   ]);
+  const samples = await transformSamples(codeModel, operationGroups, options);
 
   const baseUrl = transformBaseUrl(codeModel);
 

@@ -1,6 +1,8 @@
 import {
   CodeModel,
   ConstantSchema,
+  Operation,
+  OperationGroup,
   Protocol,
   SchemaType
 } from "@autorest/codemodel";
@@ -9,22 +11,32 @@ import { SampleDetails } from "../models/sampleDetails";
 import { ExampleValue, TestCodeModel } from "@autorest/testmodeler";
 import { getLanguageMetadata } from "../utils/languageHelpers";
 import { getAutorestOptions, getSession } from "../autorestSession";
-import { NameType, normalizeName } from "../utils/nameUtils";
+import { getOperationFullName, NameType, normalizeName } from "../utils/nameUtils";
 import {
   transformOperation,
   transformOperationGroup
 } from "./operationTransforms";
 import { calculateMethodName } from "../generators/utils/operationsUtils";
 import { camelCase } from "@azure-tools/codegen";
+import { OperationGroupDetails } from "../models/operationDetails";
 
 export async function transformSamples(
   codeModel: CodeModel,
+  operationsGroupDetails: OperationGroupDetails[],
   options: ClientOptions
 ): Promise<SampleDetails[]> {
-  return await getAllExamples(codeModel as TestCodeModel);
+  return await getAllExamples(codeModel as TestCodeModel, operationsGroupDetails);
 }
 
-export async function getAllExamples(codeModel: TestCodeModel) {
+function getTransformedOperationGroup(operationGroup: OperationGroup, operationGroupDetails: OperationGroupDetails[]) {
+  return operationGroupDetails.filter(operationGroupDetail => operationGroup.$key === operationGroupDetail.key)[0];
+}
+
+function getTransformedOperation(operationGroup: OperationGroup, operation: Operation, operationGroupDetails: OperationGroupDetails, clientName: string) {
+  return operationGroupDetails.operations.filter(operationDetail => operationDetail.fullName === getOperationFullName(operationGroup, operation, clientName))[0];
+}
+
+export async function getAllExamples(codeModel: TestCodeModel, operationGroupDetails: OperationGroupDetails[]) {
   const { packageDetails } = getAutorestOptions();
   const session = getSession();
   let examplesModels: SampleDetails[] = [];
@@ -33,14 +45,12 @@ export async function getAllExamples(codeModel: TestCodeModel) {
       try {
         for (const example of exampleGroups.examples) {
           const clientName = getLanguageMetadata(codeModel.language).name;
-          const ogDetails = await transformOperationGroup(
-            example.operationGroup,
-            clientName
-          );
+          const ogDetails = getTransformedOperationGroup(example.operationGroup, operationGroupDetails);
           
-          const opDetails = await transformOperation(
-            example.operation,
+          const opDetails = getTransformedOperation(
             example.operationGroup,
+            example.operation,
+            ogDetails,
             clientName
           );
           let methodName = calculateMethodName(opDetails);
